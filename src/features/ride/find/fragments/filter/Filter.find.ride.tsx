@@ -2,6 +2,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { Autocomplete } from "@/core/components/autocomplete";
 
 // Debounce function untuk mengurangi jumlah permintaan API
 function debounce(func: Function, delay: number) {
@@ -32,8 +33,8 @@ export const FilterFindRide = () => {
         autocompleteService.getPlacePredictions(
           {
             input,
-            componentRestrictions: { country: "id" }, // Hanya Indonesia
-            types: ["geocode"], // Hanya alamat
+            componentRestrictions: { country: "de" }, // Only Germany
+            types: ["(cities)"], // Hanya alamat
           },
           (predictions, status) => {
             if (
@@ -54,11 +55,15 @@ export const FilterFindRide = () => {
     }
   }, [query]);
 
+  const handleQuery = (value: string) => {
+    setQuery(value);
+  };
+
   return (
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
-        "w-full",
+        "w-full max-w-container",
         "px-[3rem] py-[3rem]",
         "bg-[#FFFFFFCC]",
         "rounded-[1.25rem]",
@@ -76,7 +81,20 @@ export const FilterFindRide = () => {
         )}
       >
         {/* form */}
-        <div></div>
+        <div
+          className={clsx(
+            "grid grid-cols-[1fr_2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
+            "w-full"
+          )}
+        >
+          <Autocomplete
+            {...dictionaries.filter.form.city}
+            items={suggestions.map((item) => {
+              return { id: item, name: item };
+            })}
+            onQuery={handleQuery}
+          />
+        </div>
 
         {/* button */}
         <button
@@ -85,7 +103,7 @@ export const FilterFindRide = () => {
             "w-full",
             "bg-[#5AC53D]",
             "py-[1rem]",
-            "rounded-[1.25rem]",
+            "rounded-[0.375rem]",
             "text-[1rem] text-[#FFFFFF] font-medium"
           )}
         >

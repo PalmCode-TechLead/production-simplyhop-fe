@@ -206,7 +206,6 @@ export const MapFindRide = () => {
           }}
         />
       )}
-      {/* {directions && <DirectionsRenderer directions={directions} />} */}
     </GoogleMap>
   );
 };

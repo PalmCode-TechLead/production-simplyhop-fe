@@ -9,18 +9,30 @@
     "title": "Mitfahrgelegenheit finden",
     "form": {
       "city": {
-        "label": "Stadt"
+        "inputProps": {
+          "id": "city",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "city",
+          "children": "Stadt",
+          "required": false
+        }
       },
       "start": {
+        "id": "start",
         "label": "Start"
       },
       "end": {
+        "id": "end",
         "label": "Ziel"
       },
       "date": {
+        "id": "date",
         "label": "Datum"
       },
       "passenger": {
+        "id": "passenger",
         "label": "Passagiere"
       }
     },

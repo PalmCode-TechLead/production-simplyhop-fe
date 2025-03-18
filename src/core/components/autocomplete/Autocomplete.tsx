@@ -7,42 +7,37 @@ import {
   useOnClickOutside,
 } from "usehooks-ts";
 import SVGIcon from "../../icons";
+import { InputLabel, InputLabelProps } from "../input_label";
+import { Input } from "../input";
+import { InputContainer } from "../input_container";
 
 export interface AutocompleteProps {
-  id?: string;
-  required?: boolean;
   type?: "sync" | "async";
-  label?: string;
-  placeholder?: string;
   selected?: { id: string; name: string } | null;
   items?: { id: string; name: string }[];
   disabled?: boolean;
-  error?: {
-    message: string;
-  };
+  emptyMessage?: string;
   search?: boolean;
   debounceQuery?: boolean;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  labelProps?: InputLabelProps;
   onSelect?: (data: { id: string; name: string }) => void;
   onQuery?: (data: string) => void;
   onLoadMore?: () => void;
 }
 
 export const Autocomplete = ({
-  id = "",
-  required = false,
   type = "sync",
-  label = "",
-  placeholder = "",
   selected = null,
   disabled = false,
   items = [],
-  error = {
-    message: "No Result",
-  },
+  emptyMessage = "No Result",
   search = true,
   onSelect = () => {},
   // NOTES: async purpose
   debounceQuery = false,
+  inputProps,
+  labelProps,
   onQuery = () => {},
   onLoadMore = () => {},
 }: AutocompleteProps) => {
@@ -94,19 +89,7 @@ export const Autocomplete = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <div
-          className={clsx(
-            "relative",
-            "w-full",
-            "cursor-default",
-            "overflow-hidden",
-            "rounded-[1rem]",
-            "border border-[#B5B5B5]",
-            "px-[1.5rem] py-[11.5px]",
-            "h-[56px]",
-            "grid grid-flow-col items-center content-center justify-between justify-items-start"
-          )}
-        >
+        <InputContainer>
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[0.125rem]",
@@ -114,32 +97,18 @@ export const Autocomplete = ({
               "relative"
             )}
           >
-            <input
+            <Input
               ref={inputRef}
-              type={type}
-              id={id}
-              placeholder=" "
-              className={clsx(
-                "peer",
-                "w-full",
-                "bg-transparent",
-                "font-Manrope font-normal text-[0.875rem] leading-[1.25rem]",
-                "text-[#201E2C] disabled:text-[#666666]",
-                "placeholder:text-[#666666] placeholder:text-[0.875rem]",
-                "outline-none",
-                "border-none",
-                "appearance-none"
-              )}
+              {...inputProps}
               value={query}
-              disabled={disabled}
               onFocus={() => {
                 if (disabled) {
                   return;
                 }
                 setIsFocus(true);
-                setIsOpen(true);
               }}
               onChange={(event) => {
+                setIsOpen(!!event.target.value.length);
                 setQuery(event.target.value);
                 if (debounceQuery) {
                   debounced(event.target.value);
@@ -148,29 +117,21 @@ export const Autocomplete = ({
                 }
               }}
             />
-            <label
-              htmlFor={id}
+
+            <InputLabel
+              {...labelProps}
               className={clsx(
-                "absolute",
                 !!query
                   ? "top-[-16px] text-[0.75rem]"
-                  : "left-0 top-0 text-[0.75rem]",
-                "text-[#98989E]",
-                "transition-all transform scale-100",
-                "peer-focus:top-[-16px] peer-focus:text-[0.75rem]"
+                  : "left-0 top-0 text-[0.75rem]"
               )}
               onClick={() => {
                 inputRef.current?.focus();
                 setIsOpen(true);
               }}
-            >
-              {label}
-              {required && (
-                <span className={clsx("text-[#FF0066]")}>{"*"}</span>
-              )}
-            </label>
+            />
           </div>
-        </div>
+        </InputContainer>
 
         {!disabled && (
           <div
@@ -196,7 +157,7 @@ export const Autocomplete = ({
                   "text-[0.875rem] text-[#201E2C] font-normal"
                 )}
               >
-                {error.message}
+                {emptyMessage}
               </div>
             ) : (
               filteredItems.map((item, index) => (
