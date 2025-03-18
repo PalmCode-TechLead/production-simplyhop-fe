@@ -20,12 +20,26 @@
         }
       },
       "start": {
-        "id": "start",
-        "label": "Start"
+        "inputProps": {
+          "id": "start",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "start",
+          "children": "Start",
+          "required": false
+        }
       },
       "end": {
-        "id": "end",
-        "label": "Ziel"
+        "inputProps": {
+          "id": "end",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "end",
+          "children": "Ziel",
+          "required": false
+        }
       },
       "date": {
         "id": "date",

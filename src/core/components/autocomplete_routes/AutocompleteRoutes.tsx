@@ -22,8 +22,15 @@ export interface AutocompleteRoutesProps {
   emptyMessage?: string;
   search?: boolean;
   debounceQuery?: boolean;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  labelProps?: InputLabelProps;
+  start?: {
+    inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    labelProps?: InputLabelProps;
+  };
+  end?: {
+    inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    labelProps?: InputLabelProps;
+  };
+
   onSelect?: (data: { id: string; name: string }) => void;
   onQuery?: (data: string) => void;
   onLoadMore?: () => void;
@@ -39,8 +46,15 @@ export const AutocompleteRoutes = ({
   onSelect = () => {},
   // NOTES: async purpose
   debounceQuery = false,
-  inputProps,
-  labelProps,
+  start = {
+    inputProps: {},
+    labelProps: {},
+  },
+  end = {
+    inputProps: {},
+    labelProps: {},
+  },
+
   onQuery = () => {},
   onLoadMore = () => {},
 }: AutocompleteRoutesProps) => {
@@ -103,25 +117,28 @@ export const AutocompleteRoutes = ({
         >
           <div
             className={clsx(
-              "grid grid-cols-1 gap-[0.125rem]",
+              "grid grid-cols-[1fr_auto_1fr] gap-[1rem]",
               isFocus
-              ? "items-end content-end"
-              : !!query.length
-              ? "items-end content-end"
-              : "items-center content-center",
+                ? "items-end content-end"
+                : !!query.length
+                ? "items-end content-end"
+                : "items-center content-center",
               "w-full",
               "relative"
             )}
           >
             <Input
               ref={inputRef}
-              {...inputProps}
+              {...start.inputProps}
               value={query}
               onFocus={() => {
                 if (disabled) {
                   return;
                 }
                 setIsFocus(true);
+              }}
+              onBlur={() => {
+                setIsFocus(false);
               }}
               onChange={(event) => {
                 setIsOpen(!!event.target.value.length);
@@ -135,11 +152,50 @@ export const AutocompleteRoutes = ({
             />
 
             <InputLabel
-              {...labelProps}
+              {...start.labelProps}
               className={clsx(
                 !!query
                   ? "top-[-16px] text-[0.75rem]"
                   : "left-0 top-0 text-[0.75rem]"
+              )}
+              onClick={() => {
+                inputRef.current?.focus();
+                setIsOpen(true);
+              }}
+            />
+
+            <div className={clsx("bg-[#E0ECDC]", "w-[1px] h-full")} />
+
+            <Input
+              ref={inputRef}
+              {...end.inputProps}
+              value={query}
+              onFocus={() => {
+                if (disabled) {
+                  return;
+                }
+                setIsFocus(true);
+              }}
+              onBlur={() => {
+                setIsFocus(false);
+              }}
+              onChange={(event) => {
+                setIsOpen(!!event.target.value.length);
+                setQuery(event.target.value);
+                if (debounceQuery) {
+                  debounced(event.target.value);
+                } else {
+                  onQuery(event.target.value);
+                }
+              }}
+            />
+
+            <InputLabel
+              {...end.labelProps}
+              className={clsx(
+                !!query
+                  ? "top-[-16px] text-[0.75rem]"
+                  : "left-[calc(50%+1rem)] top-0 text-[0.75rem]"
               )}
               onClick={() => {
                 inputRef.current?.focus();

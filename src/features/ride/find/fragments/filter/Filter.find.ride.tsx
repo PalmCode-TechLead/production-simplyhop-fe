@@ -95,7 +95,12 @@ export const FilterFindRide = () => {
             onQuery={handleQuery}
           />
           <AutocompleteRoutes
-            {...dictionaries.filter.form.city}
+            start={{
+              ...dictionaries.filter.form.start,
+            }}
+            end={{
+              ...dictionaries.filter.form.end,
+            }}
             onQuery={handleQuery}
           />
         </div>
