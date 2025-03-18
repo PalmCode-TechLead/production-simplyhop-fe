@@ -1,7 +1,6 @@
 "use client";
 import {
   GoogleMap,
-  DirectionsRenderer,
   useLoadScript,
   Polyline,
   Marker,
@@ -9,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
 import { decode } from "@googlemaps/polyline-codec";
+import clsx from "clsx";
 
 const libraries: any = ["places"];
 
@@ -145,9 +145,21 @@ export const MapFindRide = () => {
           position={selectedStartMarker}
           onCloseClick={() => setSelectedStartMarker(null)}
         >
-          <div style={{ fontSize: "14px", fontWeight: "bold" }}>
-            <p>Start</p>
-            <p>Living Hotel Das Viktual...</p>
+          <div
+            className={clsx(
+              "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]"
+            )}
+          >
+            <p
+              className={clsx(
+                "text-[0.625rem] text-[#232323B2] font-extralight"
+              )}
+            >
+              Start
+            </p>
+            <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
+              Living Hotel Das Viktual...
+            </p>
           </div>
         </InfoWindow>
       )}
@@ -155,7 +167,7 @@ export const MapFindRide = () => {
       {/* End Marker */}
       <Marker
         position={endPoint}
-        onClick={() => setSelectedEndMarker(startPoint)}
+        onClick={() => setSelectedEndMarker(endPoint)}
         icon={{
           url: "/icons/map/end_point.svg", // Bisa diganti dengan custom SVG
           scaledSize: new window.google.maps.Size(32, 56),
@@ -168,9 +180,21 @@ export const MapFindRide = () => {
           position={selectedEndMarker}
           onCloseClick={() => setSelectedEndMarker(null)}
         >
-          <div style={{ fontSize: "14px", fontWeight: "bold" }}>
-            <p>End</p>
-            <p>Media Markt</p>
+          <div
+            className={clsx(
+              "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]"
+            )}
+          >
+            <p
+              className={clsx(
+                "text-[0.625rem] text-[#232323B2] font-extralight"
+              )}
+            >
+              End
+            </p>
+            <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
+              Media Markt...
+            </p>
           </div>
         </InfoWindow>
       )}
