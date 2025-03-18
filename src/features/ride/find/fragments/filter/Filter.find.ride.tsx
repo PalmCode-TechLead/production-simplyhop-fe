@@ -2,7 +2,8 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { Autocomplete } from "@/core/components/autocomplete";
+import { AutocompleteCity } from "@/core/components/autocomplete_city";
+import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 
 // Debounce function untuk mengurangi jumlah permintaan API
 function debounce(func: Function, delay: number) {
@@ -18,7 +19,6 @@ export const FilterFindRide = () => {
 
   const [query, setQuery] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<string[]>([]);
-  const inputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.google) {
@@ -34,7 +34,7 @@ export const FilterFindRide = () => {
           {
             input,
             componentRestrictions: { country: "de" }, // Only Germany
-            types: ["(cities)"], // Hanya alamat
+            types: ["(cities)"], // Hanya kota
           },
           (predictions, status) => {
             if (
@@ -87,11 +87,15 @@ export const FilterFindRide = () => {
             "w-full"
           )}
         >
-          <Autocomplete
+          <AutocompleteCity
             {...dictionaries.filter.form.city}
             items={suggestions.map((item) => {
               return { id: item, name: item };
             })}
+            onQuery={handleQuery}
+          />
+          <AutocompleteRoutes
+            {...dictionaries.filter.form.city}
             onQuery={handleQuery}
           />
         </div>

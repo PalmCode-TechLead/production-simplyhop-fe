@@ -10,8 +10,11 @@ import SVGIcon from "../../icons";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { Input } from "../input";
 import { InputContainer } from "../input_container";
+import { AutocompleteOptionsContainer } from "../autocomplete_options_container";
+import { AutocompleteOption } from "../autocomplete_option";
+import { AutocompleteEmptyBox } from "../autocomplete_empty_box";
 
-export interface AutocompleteProps {
+export interface AutocompleteCityProps {
   type?: "sync" | "async";
   selected?: { id: string; name: string } | null;
   items?: { id: string; name: string }[];
@@ -26,7 +29,7 @@ export interface AutocompleteProps {
   onLoadMore?: () => void;
 }
 
-export const Autocomplete = ({
+export const AutocompleteCity = ({
   type = "sync",
   selected = null,
   disabled = false,
@@ -40,7 +43,7 @@ export const Autocomplete = ({
   labelProps,
   onQuery = () => {},
   onLoadMore = () => {},
-}: AutocompleteProps) => {
+}: AutocompleteCityProps) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -89,10 +92,23 @@ export const Autocomplete = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer>
+        <InputContainer
+          className={clsx(
+            isFocus
+              ? "items-end content-end"
+              : !!query.length
+              ? "items-end content-end"
+              : "items-center content-center"
+          )}
+        >
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.125rem]",
+              "grid grid-cols-[1fr_1rem] justify-start justify-items-start gap-[0.5rem]",
+              isFocus
+                ? "items-end content-end"
+                : !!query.length
+                ? "items-end content-end"
+                : "items-center content-center",
               "w-full",
               "relative"
             )}
@@ -107,6 +123,9 @@ export const Autocomplete = ({
                 }
                 setIsFocus(true);
               }}
+              onBlur={() => {
+                setIsFocus(false);
+              }}
               onChange={(event) => {
                 setIsOpen(!!event.target.value.length);
                 setQuery(event.target.value);
@@ -117,6 +136,20 @@ export const Autocomplete = ({
                 }
               }}
             />
+
+            <div
+              className={clsx(
+                "flex items-center justify-center",
+                "w-[1rem] h-[1rem]",
+                "bg-[#E8F0E6]",
+                "rounded-[50%]"
+              )}
+            >
+              <SVGIcon
+                name="Navigation"
+                className={clsx("w-[0.625rem] h-[0.625rem]", "text-[#5AC53D]")}
+              />
+            </div>
 
             <InputLabel
               {...labelProps}
@@ -134,55 +167,24 @@ export const Autocomplete = ({
         </InputContainer>
 
         {!disabled && (
-          <div
-            className={clsx(
-              "absolute z-9999",
-              "w-full",
-              "max-h-[160px]",
-              "overflow-auto",
-              "mt-[0.5rem]",
-              "bg-[white]",
-              "border border-[#B5B5B5]",
-              "focus:outline-none",
-              "rounded-[1rem]",
-              "z-[20]",
-              isOpen ? "inline" : "hidden"
-            )}
+          <AutocompleteOptionsContainer
+            className={clsx(isOpen ? "inline" : "hidden")}
           >
             {filteredItems.length === 0 && query !== "" ? (
-              <div
-                className={clsx(
-                  "relative cursor-default select-none",
-                  "p-[1rem]",
-                  "text-[0.875rem] text-[#201E2C] font-normal"
-                )}
-              >
-                {emptyMessage}
-              </div>
+              <AutocompleteEmptyBox>{emptyMessage}</AutocompleteEmptyBox>
             ) : (
               filteredItems.map((item, index) => (
-                <div
+                <AutocompleteOption
                   key={index}
                   className={clsx(
-                    `relative cursor-pointer select-none p-[1rem]`,
-                    "bg-[white]",
-                    filteredItems.length - 1 !== index
-                      ? "border-b border-b-[#B5B5B5]"
-                      : "border-b border-b-[#B5B5B5]"
+                    selected?.id === item.id
+                      ? "font-bold text-[#FF6201]"
+                      : "font-normal text-[#201E2C]"
                   )}
                   onClick={() => handleChange(item)}
                 >
-                  <span
-                    className={clsx(
-                      "text-[1rem]",
-                      selected?.id === item.id
-                        ? "font-bold text-[#FF6201]"
-                        : "font-normal text-[#201E2C]"
-                    )}
-                  >
-                    {item.name}
-                  </span>
-                </div>
+                  {item.name}
+                </AutocompleteOption>
               ))
             )}
 
@@ -193,7 +195,7 @@ export const Autocomplete = ({
             >
               Bottom
             </div>
-          </div>
+          </AutocompleteOptionsContainer>
         )}
       </div>
     </div>

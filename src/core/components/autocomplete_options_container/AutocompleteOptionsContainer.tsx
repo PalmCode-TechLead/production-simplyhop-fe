@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import clsx from "clsx";
 
-export const InputContainer = forwardRef<
+export const AutocompleteOptionsContainer = forwardRef<
   HTMLDivElement,
   React.InputHTMLAttributes<HTMLDivElement>
 >((props, ref) => {
@@ -10,15 +10,16 @@ export const InputContainer = forwardRef<
       ref={ref}
       {...props}
       className={clsx(
-        "relative",
+        "absolute z-9999",
         "w-full",
-        "cursor-default",
-        "overflow-hidden",
-        "rounded-[0.375rem]",
-        "border border-[#E2E2E2]",
-        "px-[1.625rem] py-[0.5rem]",
-        "h-[56px]",
-        "grid grid-flow-col justify-between justify-items-start",
+        "max-h-[160px]",
+        "overflow-auto",
+        "mt-[0.5rem]",
+        "bg-[white]",
+        "border border-[#B5B5B5]",
+        "focus:outline-none",
+        "rounded-[1rem]",
+        "z-[20]",
         props.className
       )}
     >
