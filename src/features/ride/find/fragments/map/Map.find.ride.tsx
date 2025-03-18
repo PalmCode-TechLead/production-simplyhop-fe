@@ -9,11 +9,12 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { decode } from "@googlemaps/polyline-codec";
 import clsx from "clsx";
+import { ENVIRONMENTS } from "@/core/environments";
 
 const libraries: any = ["places"];
 
 export const MapFindRide = () => {
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY ?? "";
+  const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
 
   if (!apiKey) {
     console.error(
@@ -31,9 +32,6 @@ export const MapFindRide = () => {
     height: "calc(100vh - 90px)",
   };
 
-  const [directions, setDirections] =
-    useState<google.maps.DirectionsResult | null>(null);
-
   const [polylinePath, setPolylinePath] = useState<
     { lat: number; lng: number }[]
   >([]);
@@ -44,8 +42,8 @@ export const MapFindRide = () => {
   useEffect(() => {
     if (!isLoaded || !window.google) return;
     const fetchRoute = async () => {
-      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY;
-      const url = `https://routes.googleapis.com/directions/v2:computeRoutes`;
+      const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
+      const url = `${ENVIRONMENTS.ROUTES_GOOGLE_API_URL}/directions/v2:computeRoutes`;
 
       const requestBody = {
         origin: {

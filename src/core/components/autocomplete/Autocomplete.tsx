@@ -54,11 +54,11 @@ export const Autocomplete = ({
 
   const debounced = useDebounceCallback(onQuery, 500);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  useOnClickOutside(containerRef, () => {
-    setQuery(selected?.name ?? "");
-    setIsFocus(false);
-    setIsOpen(false);
-  });
+  // useOnClickOutside(containerRef, () => {
+  //   setQuery(selected?.name ?? "");
+  //   setIsFocus(false);
+  //   setIsOpen(false);
+  // });
 
   const { ref, isIntersecting } = useIntersectionObserver();
 
@@ -107,88 +107,6 @@ export const Autocomplete = ({
             "grid grid-flow-col items-center content-center justify-between justify-items-start"
           )}
         >
-          {/* <div
-            className={clsx(
-              "grid grid-cols-1 items-center content-center justify-start justify-items-start",
-              "w-full",
-              isFocus ? "border border-[#B5B5B5]" : "border border-[#B5B5B5]",
-              "rounded-[1rem]",
-              "px-[1.5rem] py-[11.5px]",
-              "h-[56px]"
-            )}
-            onClick={() => {
-              if (disabled) {
-                return;
-              }
-              setIsFocus(true);
-              setIsOpen(true);
-            }}
-          >
-            <p className={clsx("text-[0.75rem] text-[#98989E] font-normal")}>
-              {label}
-            </p>
-            {(isFocus || !!selected) && (
-              <>
-                {search ? (
-                  <input
-                    ref={inputRef}
-                    className={clsx(
-                      "w-full",
-                      "py-[0.25rem] px-[0.125rem]",
-                      "rounded-[1rem]",
-                      "bg-[white]",
-                      "disabled:opacity-50",
-                      "outline-none",
-                      "disabled:text-[#666666]",
-                      "placeholder:text-[#666666]",
-                      "text-[0.875rem] font-normal leading-5 text-[#201E2C]"
-                    )}
-                    value={query}
-                    placeholder={placeholder}
-                    disabled={disabled}
-                    onFocus={() => {
-                      if (disabled) {
-                        return;
-                      }
-                      setIsFocus(true);
-                      setIsOpen(true);
-                    }}
-                    onChange={(event) => {
-                      setQuery(event.target.value);
-                      if (debounceQuery) {
-                        debounced(event.target.value);
-                      } else {
-                        onQuery(event.target.value);
-                      }
-                    }}
-                  />
-                ) : (
-                  <button
-                    className={clsx(
-                      "w-full",
-                      "py-[0.25rem] px-[0.125rem]",
-                      "rounded-[1rem]",
-                      "bg-[white]",
-                      "disabled:opacity-50",
-                      "outline-none",
-                      "text-[#666666]",
-                      "text-[0.875rem] font-normal leading-5 text-[#201E2C] text-left"
-                    )}
-                    disabled={disabled}
-                    onClick={() => {
-                      if (disabled) {
-                        return;
-                      }
-                      setIsFocus(true);
-                      setIsOpen(true);
-                    }}
-                  >
-                    {!selected ? placeholder : selected.name}
-                  </button>
-                )}
-              </>
-            )}
-          </div> */}
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[0.125rem]",
@@ -252,23 +170,6 @@ export const Autocomplete = ({
               )}
             </label>
           </div>
-
-          {!disabled && (
-            <button
-              className={clsx(
-                isOpen ? "rotate-180" : "rotate-0",
-                "absolute inset-y-0 right-[0.5rem] flex items-center justify-end"
-              )}
-              onClick={() => {
-                setIsOpen((prev) => !prev);
-              }}
-            >
-              <SVGIcon
-                name={"ChevronDown"}
-                className={clsx("w-[1.25rem] h-[1.25rem]", "text-[#BAB9BE]")}
-              />
-            </button>
-          )}
         </div>
 
         {!disabled && (
