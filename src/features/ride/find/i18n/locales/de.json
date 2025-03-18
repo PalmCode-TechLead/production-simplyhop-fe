@@ -4,5 +4,30 @@
       "name": "Search"
     },
     "label": "Fahrt finden"
+  },
+  "filter": {
+    "title": "Mitfahrgelegenheit finden",
+    "form": {
+      "city": {
+        "label": "Stadt"
+      },
+      "start": {
+        "label": "Start"
+      },
+      "end": {
+        "label": "Ziel"
+      },
+      "date": {
+        "label": "Datum"
+      },
+      "passenger": {
+        "label": "Passagiere"
+      }
+    },
+    "cta": {
+      "primary": {
+        "children": "Suchen"
+      }
+    }
   }
 }

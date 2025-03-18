@@ -2,6 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { MapFindRide } from "../fragments/map";
 import { BadgeFindRide } from "../fragments/badge";
+import { FilterFindRide } from "../fragments/filter";
 
 export const FindRideContainer = () => {
   return (
@@ -15,6 +16,8 @@ export const FindRideContainer = () => {
       >
         <div className={clsx("max-w-[1344px]", "w-full")}>
           <BadgeFindRide />
+
+          <FilterFindRide />
         </div>
       </div>
     </div>

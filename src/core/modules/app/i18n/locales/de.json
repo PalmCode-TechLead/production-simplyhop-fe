@@ -9,7 +9,7 @@
     "items": [
       {
         "id": "finden",
-        "name": "Finden",
+        "name": "Mitfahrt suchen",
         "href": "/",
         "icon": {
           "name": "Search"
@@ -17,7 +17,7 @@
       },
       {
         "id": "fahrt_planen",
-        "name": "Fahrt planen",
+        "name": "Mitfahrt anbieten",
         "href": "/fahrt-planen",
         "icon": {
           "name": "CarFront"

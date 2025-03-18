@@ -17,7 +17,8 @@ export const TopNavigation = () => {
       <div
         className={clsx(
           "grid grid-cols-1 items-center content-center justify-center justify-items-center",
-          "w-full h-full"
+          "w-full h-full",
+          "bg-[white]"
         )}
       >
         <div
