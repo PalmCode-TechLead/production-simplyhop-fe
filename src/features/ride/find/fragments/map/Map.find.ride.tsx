@@ -3,6 +3,7 @@ import {
   GoogleMap,
   LoadScript,
   DirectionsRenderer,
+  useLoadScript,
 } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 
@@ -17,6 +18,9 @@ declare global {
 }
 export const MapFindRide = (props: IMapFindRideProps) => {
   const apiKey: string = process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY ?? "";
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: apiKey,
+  });
 
   const containerStyle = {
     width: "100%",
@@ -29,34 +33,37 @@ export const MapFindRide = (props: IMapFindRideProps) => {
   };
 
   const [directions, setDirections] = useState<DirectionsResult | null>(null);
-
+  console.log(isLoaded, "ini loaded");
   useEffect(() => {
-    const loadDirections = () => {
-      if (window.google) {
-        const directionsService = new window.google.maps.DirectionsService();
-        console.log(directionsService, "ini apa");
-        directionsService.route(
-          {
-            origin: "San Francisco, CA",
-            destination: "Los Angeles, CA",
-            travelMode: window.google.maps.TravelMode.DRIVING,
-          },
-          (result, status) => {
-            console.log(result, "ini result");
-            if (status === window.google.maps.DirectionsStatus.OK) {
-              setDirections(result);
-            } else {
-              console.error(`Error fetching directions: ${status}`);
+    if (typeof window !== "undefined") {
+      const loadDirections = () => {
+        if (window.google) {
+          const directionsService = new window.google.maps.DirectionsService();
+          console.log(directionsService, window.google.maps, "ini apa");
+          directionsService.route(
+            {
+              origin: { lat: 37.7749, lng: -122.4194 }, // Example: San Francisco
+              destination: { lat: 34.0522, lng: -118.2437 }, // Example: Los Angeles
+              travelMode: window.google.maps.TravelMode.DRIVING,
+            },
+            (result, status) => {
+              console.log(result, "ini result");
+              if (status === window.google.maps.DirectionsStatus.OK) {
+                setDirections(result);
+              } else {
+                console.error(`Error fetching directions: ${status}`);
+              }
             }
-          }
-        );
-      }
-    };
+          );
+        }
+      };
 
-    if (window.google) {
-      loadDirections();
+      if (window.google) {
+        loadDirections();
+      }
     }
-  }, []);
+  }, [isLoaded]);
+
   return (
     <LoadScript googleMapsApiKey={apiKey}>
       <GoogleMap
