@@ -183,7 +183,7 @@ export const AutocompleteRoutes = ({
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",
-              "items-destination content-destination",
+              "items-end content-end",
               "w-full h-full",
               "relative"
             )}
