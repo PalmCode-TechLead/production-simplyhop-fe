@@ -449,7 +449,7 @@ export const FilterFindRide = () => {
             labelProps={{
               ...dictionaries.filter.form.date.labelProps,
             }}
-            // value={dateValue}
+            value={state.filters.date.selected}
             onSelect={handleSelectDate}
           />
 
