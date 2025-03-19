@@ -6,10 +6,14 @@ import { AutocompleteCity } from "@/core/components/autocomplete_city";
 import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { FindRideActionEnum, FindRideContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
+import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
 
 export const FilterFindRide = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(FindRideContext);
+
+  const { mutate: fetchRestGooglePostRouteDirections } =
+    useRestGooglePostRouteDirections();
 
   const fetchAutocompleteCityList = async (
     input: string,
@@ -50,7 +54,7 @@ export const FilterFindRide = () => {
         {
           input: input,
           componentRestrictions: { country: "de" },
-          types: ["geocode"], // Mengembalikan alamat, bukan hanya kota
+          types: ["establishment"],
           locationBias: new google.maps.Circle({
             center: new google.maps.LatLng(coordinate.lat, coordinate.lng), // Pusat Munich
             radius: 20000, // Radius 20km dari pusat Munich
@@ -291,6 +295,7 @@ export const FilterFindRide = () => {
         lat: response.lat,
         lng: response.lng,
       };
+      console.log(lat_lng, "ini lat_lng");
     } catch (err) {
       throw new Error("Err get lat lng");
     }
@@ -310,6 +315,18 @@ export const FilterFindRide = () => {
       },
     });
   };
+
+  React.useEffect(() => {
+    if (
+      !!state.filters.origin.selected.lat_lng &&
+      !!state.filters.destination.selected.lat_lng
+    ) {
+      fetchRestGooglePostRouteDirections();
+    }
+  }, [
+    state.filters.origin.selected.lat_lng,
+    state.filters.destination.selected.lat_lng,
+  ]);
 
   const handleSelectDate = (date: Date) => {
     //

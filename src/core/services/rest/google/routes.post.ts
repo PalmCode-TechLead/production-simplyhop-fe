@@ -11,13 +11,18 @@ export const fetchRestGooglePostRouteDirections = async (
       ENVIRONMENTS.ROUTES_GOOGLE_API_URL
     }${RestGoogleAPICollectionURL.routes.getDirections()}`;
 
-    const res = await axios.post(url, payload?.body, {
-      "Content-Type": "application/json",
-      "X-Goog-Api-Key": ENVIRONMENTS.GOOGLE_MAP_API_KEY,
-      "X-Goog-FieldMask":
-        "routes.duration,routes.distanceMeters,routes.polyline",
-    } as any);
-    return res.data;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": ENVIRONMENTS.GOOGLE_MAP_API_KEY!,
+        "X-Goog-FieldMask":
+          "routes.duration,routes.distanceMeters,routes.polyline",
+      },
+      body: JSON.stringify(payload?.body ?? {}),
+    });
+    const data = await res.json();
+    return data;
   } catch (err) {
     throw (err as AxiosError)?.response?.data || (err as AxiosError)?.response;
   }

@@ -1,7 +1,10 @@
 "use client";
 import React, { createContext, useReducer, Dispatch } from "react";
 import { FindRideActions, FindRideInitialStateType } from "./Find.ride.types";
-import { FindRideFiltersReducers } from "./Find.ride.reducers";
+import {
+  FindRideFiltersReducers,
+  FindRideMapReducers,
+} from "./Find.ride.reducers";
 
 const initialState: FindRideInitialStateType = {
   filters: {
@@ -27,6 +30,9 @@ const initialState: FindRideInitialStateType = {
       items: [],
     },
   },
+  map: {
+    polyline_path: [],
+  },
 };
 
 const FindRideContext = createContext<{
@@ -38,10 +44,11 @@ const FindRideContext = createContext<{
 });
 
 const mainReducer = (
-  { filters }: FindRideInitialStateType,
+  { filters, map }: FindRideInitialStateType,
   action: FindRideActions
 ) => ({
   filters: FindRideFiltersReducers(filters, action),
+  map: FindRideMapReducers(map, action),
 });
 
 const FindRideProvider = (props: { children: React.ReactNode }) => {

@@ -12,6 +12,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface FindRideInitialStateType {
   filters: FindRideFilters;
+  map: FindRideMap;
 }
 
 // State Collection Types consist of:
@@ -39,13 +40,19 @@ export interface FindRideFilters {
   };
 }
 
+export interface FindRideMap {
+  polyline_path: { lat: number; lng: number }[];
+}
+
 export enum FindRideActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
+  // Map
+  SetMapData = "SetMapData",
 }
 
 // Action Collection Types
-export type FindRideActions = FindRideFiltersActions;
+export type FindRideActions = FindRideFiltersActions | FindRideMapActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -55,3 +62,11 @@ type FindRideFiltersPayload = {
 
 export type FindRideFiltersActions =
   ActionMap<FindRideFiltersPayload>[keyof ActionMap<FindRideFiltersPayload>];
+
+// Map
+type FindRideMapPayload = {
+  [FindRideActionEnum.SetMapData]: FindRideMap;
+};
+
+export type FindRideMapActions =
+  ActionMap<FindRideMapPayload>[keyof ActionMap<FindRideMapPayload>];

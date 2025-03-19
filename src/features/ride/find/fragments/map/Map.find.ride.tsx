@@ -6,15 +6,17 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { decode } from "@googlemaps/polyline-codec";
 import clsx from "clsx";
 import { ENVIRONMENTS } from "@/core/environments";
+import { FindRideContext } from "../../context";
 
 const libraries: any = ["places"];
 
 export const MapFindRide = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
+  const { state, dispatch } = useContext(FindRideContext);
 
   if (!apiKey) {
     console.error(
@@ -93,26 +95,26 @@ export const MapFindRide = () => {
     fetchRoute();
   }, [isLoaded]);
 
-  const [selectedStartMarker, setSelectedStartMarker] = useState<null | {
-    lat: number;
-    lng: number;
-  }>(null);
-
-  const [selectedEndMarker, setSelectedEndMarker] = useState<null | {
-    lat: number;
-    lng: number;
-  }>(null);
-
   const mapRef = useRef<google.maps.Map | null>(null);
 
+  // NOTES: readjust map view
   useEffect(() => {
     if (mapRef.current) {
       const bounds = new window.google.maps.LatLngBounds();
-      polylinePath.forEach((point) => bounds.extend(point));
+      (!state.map.polyline_path.length
+        ? polylinePath
+        : state.map.polyline_path
+      ).forEach((point) => bounds.extend(point));
       mapRef.current.fitBounds(bounds);
     }
-  }, [isLoaded, mapRef.current]);
+  }, [
+    isLoaded,
+    mapRef.current,
+    polylinePath.length,
+    state.map.polyline_path.length,
+  ]);
 
+  console.log(state.map.polyline_path, "ini polyline map");
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
@@ -128,77 +130,88 @@ export const MapFindRide = () => {
       }}
     >
       {/* Start Marker */}
-      <Marker
-        position={startPoint}
-        onClick={() => setSelectedStartMarker(startPoint)}
-        icon={{
-          url: "/icons/map/start_point.svg", // Bisa diganti dengan custom SVG
-          scaledSize: new window.google.maps.Size(32, 56),
-        }}
-      />
+      {!!state.filters.origin.selected.lat_lng && (
+        <Marker
+          position={state.filters.origin.selected.lat_lng}
+          icon={{
+            url: "/icons/map/start_point.svg", // Bisa diganti dengan custom SVG
+            scaledSize: new window.google.maps.Size(32, 56),
+          }}
+        />
+      )}
 
       {/* Start Info Window */}
-      {selectedStartMarker && (
-        <InfoWindow
-          position={selectedStartMarker}
-          onCloseClick={() => setSelectedStartMarker(null)}
-        >
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]"
-            )}
+      {!!state.filters.origin.selected.item &&
+        !!state.filters.origin.selected.lat_lng && (
+          <InfoWindow
+            position={state.filters.origin.selected.lat_lng}
+            options={{
+              headerDisabled: true,
+            }}
           >
-            <p
+            <div
               className={clsx(
-                "text-[0.625rem] text-[#232323B2] font-extralight"
+                "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]",
+                "w-[228px]"
               )}
             >
-              Start
-            </p>
-            <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
-              Living Hotel Das Viktual...
-            </p>
-          </div>
-        </InfoWindow>
-      )}
+              <p
+                className={clsx(
+                  "text-[0.625rem] text-[#232323B2] font-extralight"
+                )}
+              >
+                Start
+              </p>
+              <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
+                {state.filters.origin.selected.item.name}
+              </p>
+            </div>
+          </InfoWindow>
+        )}
 
       {/* End Marker */}
-      <Marker
-        position={endPoint}
-        onClick={() => setSelectedEndMarker(endPoint)}
-        icon={{
-          url: "/icons/map/end_point.svg", // Bisa diganti dengan custom SVG
-          scaledSize: new window.google.maps.Size(32, 56),
-        }}
-      />
+      {!!state.filters.destination.selected.lat_lng && (
+        <Marker
+          position={state.filters.destination.selected.lat_lng}
+          icon={{
+            url: "/icons/map/end_point.svg",
+            scaledSize: new window.google.maps.Size(32, 56),
+          }}
+        />
+      )}
 
       {/* End InfoWindow */}
-      {selectedEndMarker && (
-        <InfoWindow
-          position={selectedEndMarker}
-          onCloseClick={() => setSelectedEndMarker(null)}
-        >
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]"
-            )}
+      {!!state.filters.destination.selected.item &&
+        !!state.filters.destination.selected.lat_lng && (
+          <InfoWindow
+            position={state.filters.destination.selected.lat_lng}
+            options={{
+              headerDisabled: true,
+            }}
           >
-            <p
+            <div
               className={clsx(
-                "text-[0.625rem] text-[#232323B2] font-extralight"
+                "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]",
+                "w-[228px]"
               )}
             >
-              End
-            </p>
-            <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
-              Media Markt...
-            </p>
-          </div>
-        </InfoWindow>
-      )}
-      {polylinePath.length > 0 && (
+              <p
+                className={clsx(
+                  "text-[0.625rem] text-[#232323B2] font-extralight"
+                )}
+              >
+                End
+              </p>
+              <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
+                {state.filters.destination.selected.item.name}
+              </p>
+            </div>
+          </InfoWindow>
+        )}
+
+      {!!state.map.polyline_path.length && (
         <Polyline
-          path={polylinePath}
+          path={state.map.polyline_path}
           options={{
             strokeColor: "#5AC53D",
             strokeOpacity: 0.8,
