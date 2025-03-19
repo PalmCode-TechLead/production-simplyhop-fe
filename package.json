@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@googlemaps/polyline-codec": "^1.0.28",
+    "@headlessui/react": "^2.2.0",
     "@react-google-maps/api": "^2.20.6",
     "clsx": "^2.1.1",
     "lucide-react": "^0.482.0",

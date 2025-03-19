@@ -4,6 +4,7 @@ import {
   Navigation,
   MessageSquare,
   User,
+  Check,
 } from "lucide-react";
 
 export const svgMap = {
@@ -12,6 +13,7 @@ export const svgMap = {
   Navigation,
   MessageSquare,
   User,
+  Check,
 };
 
 export type SVGName = keyof typeof svgMap;
