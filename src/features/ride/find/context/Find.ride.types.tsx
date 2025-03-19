@@ -11,38 +11,41 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface FindRideInitialStateType {
-  details: FindRideDetails;
+  filters: FindRideFilters;
 }
 
 // State Collection Types consist of:
-export interface FindRideDetails {
-  form: {
-    username: {
-      value: string;
+export interface FindRideFilters {
+  city: {
+    items: { id: string; name: string }[];
+    selected: {
+      item: null | { id: string; name: string };
+      lat_lng: null | { lat: number; lng: number };
     };
-    location: {
-      value: string;
-    };
-    profile_picture: {
-      value: FileList | null;
-      link: string;
-    };
+  };
+  start: {
+    items: { id: string; name: string }[];
+    selected: null | { id: string; name: string };
+  };
+  end: {
+    items: { id: string; name: string }[];
+    selected: null | { id: string; name: string };
   };
 }
 
 export enum FindRideActionEnum {
-  // Details
-  SetDetailsData = "SetDetailsData",
+  // Filters
+  SetFiltersData = "SetFiltersData",
 }
 
 // Action Collection Types
-export type FindRideActions = FindRideDetailsActions;
+export type FindRideActions = FindRideFiltersActions;
 
 // Action Collection Types consist of:
-// Details
-type FindRideDetailsPayload = {
-  [FindRideActionEnum.SetDetailsData]: FindRideDetails;
+// Filters
+type FindRideFiltersPayload = {
+  [FindRideActionEnum.SetFiltersData]: FindRideFilters;
 };
 
-export type FindRideDetailsActions =
-  ActionMap<FindRideDetailsPayload>[keyof ActionMap<FindRideDetailsPayload>];
+export type FindRideFiltersActions =
+  ActionMap<FindRideFiltersPayload>[keyof ActionMap<FindRideFiltersPayload>];

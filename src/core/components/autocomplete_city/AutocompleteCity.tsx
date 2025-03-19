@@ -1,11 +1,7 @@
-import { Fragment, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
 
-import {
-  useIntersectionObserver,
-  useDebounceCallback,
-  useOnClickOutside,
-} from "usehooks-ts";
+import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
 import SVGIcon from "../../icons";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { Input } from "../input";
@@ -58,8 +54,6 @@ export const AutocompleteCity = ({
   //   setIsOpen(false);
   // });
 
-  const { ref, isIntersecting } = useIntersectionObserver();
-
   const filteredItems = !query.length
     ? items
     : type === "async"
@@ -82,12 +76,6 @@ export const AutocompleteCity = ({
   useEffect(() => {
     setQuery(selected?.name ?? "");
   }, [selected?.name]);
-
-  useEffect(() => {
-    if (isIntersecting && type === "async") {
-      onLoadMore();
-    }
-  }, [isIntersecting, type]);
 
   return (
     <div ref={containerRef} className={clsx("w-full")}>
@@ -181,14 +169,6 @@ export const AutocompleteCity = ({
                 </AutocompleteOption>
               ))
             )}
-
-            {/* NOTES: infinite scroll identifier */}
-            <div
-              ref={ref}
-              className={clsx("opacity-0", "h-[0px]", "overflow-hidden")}
-            >
-              Bottom
-            </div>
           </AutocompleteOptionsContainer>
         )}
       </div>

@@ -1,20 +1,24 @@
+"use client";
 import React, { createContext, useReducer, Dispatch } from "react";
 import { FindRideActions, FindRideInitialStateType } from "./Find.ride.types";
-import { FindRideDetailsReducers } from "./Find.ride.reducers";
+import { FindRideFiltersReducers } from "./Find.ride.reducers";
 
 const initialState: FindRideInitialStateType = {
-  details: {
-    form: {
-      username: {
-        value: "",
+  filters: {
+    city: {
+      selected: {
+        item: null,
+        lat_lng: null,
       },
-      location: {
-        value: "",
-      },
-      profile_picture: {
-        value: null,
-        link: "",
-      },
+      items: [],
+    },
+    start: {
+      selected: null,
+      items: [],
+    },
+    end: {
+      selected: null,
+      items: [],
     },
   },
 };
@@ -28,10 +32,10 @@ const FindRideContext = createContext<{
 });
 
 const mainReducer = (
-  { details }: FindRideInitialStateType,
+  { filters }: FindRideInitialStateType,
   action: FindRideActions
 ) => ({
-  details: FindRideDetailsReducers(details, action),
+  filters: FindRideFiltersReducers(filters, action),
 });
 
 const FindRideProvider = (props: { children: React.ReactNode }) => {

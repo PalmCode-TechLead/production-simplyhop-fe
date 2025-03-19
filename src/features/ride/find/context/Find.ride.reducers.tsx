@@ -1,16 +1,16 @@
 import {
   FindRideActionEnum,
   FindRideActions,
-  FindRideDetails,
+  FindRideFilters,
 } from "./Find.ride.types";
 
-// Details
-export const FindRideDetailsReducers = (
-  state: FindRideDetails,
+// Filters
+export const FindRideFiltersReducers = (
+  state: FindRideFilters,
   action: FindRideActions
 ) => {
   switch (action.type) {
-    case FindRideActionEnum.SetDetailsData:
+    case FindRideActionEnum.SetFiltersData:
       return action.payload;
 
     default:

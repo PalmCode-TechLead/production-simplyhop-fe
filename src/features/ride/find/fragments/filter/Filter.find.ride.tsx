@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { AutocompleteCity } from "@/core/components/autocomplete_city";
 import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
+import { FindRideActionEnum, FindRideContext } from "../../context";
+import { ENVIRONMENTS } from "@/core/environments";
 
 // Debounce function untuk mengurangi jumlah permintaan API
 function debounce(func: Function, delay: number) {
@@ -16,48 +18,253 @@ function debounce(func: Function, delay: number) {
 
 export const FilterFindRide = () => {
   const dictionaries = getDictionaries();
+  const { state, dispatch } = React.useContext(FindRideContext);
 
-  const [query, setQuery] = React.useState("");
-  const [suggestions, setSuggestions] = React.useState<string[]>([]);
-
-  React.useEffect(() => {
+  const fetchAutocompleteCityList = async (
+    input: string,
+    callback: (data: null | google.maps.places.AutocompletePrediction[]) => void
+  ) => {
     if (typeof window !== "undefined" && window.google) {
       const autocompleteService = new google.maps.places.AutocompleteService();
 
-      const fetchPredictions = (input: string) => {
-        if (!input) {
-          setSuggestions([]);
-          return;
-        }
-
-        autocompleteService.getPlacePredictions(
-          {
-            input,
-            componentRestrictions: { country: "de" }, // Only Germany
-            types: ["(cities)"], // Hanya kota
-          },
-          (predictions, status) => {
-            if (
-              status === google.maps.places.PlacesServiceStatus.OK &&
-              predictions
-            ) {
-              setSuggestions(predictions.map((p) => p.description));
-            }
+      await autocompleteService.getPlacePredictions(
+        {
+          input,
+          componentRestrictions: { country: "de" },
+          types: ["(cities)"],
+        },
+        (predictions, status) => {
+          if (
+            status === google.maps.places.PlacesServiceStatus.OK &&
+            predictions
+          ) {
+            callback(predictions);
+          } else {
+            callback(null);
           }
-        );
-      };
-
-      const debounceFetch = debounce(fetchPredictions, 300);
-      setQuery((prev) => {
-        debounceFetch(prev);
-        return prev;
-      });
+        }
+      );
     }
-  }, [query]);
-
-  const handleQuery = (value: string) => {
-    setQuery(value);
   };
+
+  const fetchAutocompletePlace = async (
+    input: string,
+    coordinate: { lat: number; lng: number } | null,
+    callback: (data: null | google.maps.places.AutocompletePrediction[]) => void
+  ) => {
+    if (typeof window !== "undefined" && window.google && !!coordinate) {
+      const autocompleteService = new google.maps.places.AutocompleteService();
+
+      await autocompleteService.getPlacePredictions(
+        {
+          input: input,
+          componentRestrictions: { country: "de" },
+          types: ["geocode"], // Mengembalikan alamat, bukan hanya kota
+          locationBias: new google.maps.Circle({
+            center: new google.maps.LatLng(coordinate.lat, coordinate.lng), // Pusat Munich
+            radius: 20000, // Radius 20km dari pusat Munich
+          }),
+        },
+        (predictions, status) => {
+          if (
+            status === google.maps.places.PlacesServiceStatus.OK &&
+            predictions
+          ) {
+            console.log(predictions, "ini predictions");
+            callback(predictions);
+          } else {
+            callback(null);
+          }
+        }
+      );
+    }
+  };
+
+  type LatLng = { lat: number; lng: number };
+
+  const getCityLatLng = async (
+    placeId: string,
+    apiKey: string
+  ): Promise<LatLng> => {
+    const url = `${ENVIRONMENTS.SITE_URL}/google/maps/maps/api/place/details/json?place_id=${placeId}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data, "ini data");
+      if (data.status === "OK" && data.result?.geometry?.location) {
+        return {
+          lat: data.result.geometry.location.lat,
+          lng: data.result.geometry.location.lng,
+        };
+      } else {
+        throw new Error(`Failed to get city coordinates: ${data.status}`);
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  const handleQueryCity = async (input: string) => {
+    if (!input.length) {
+      dispatch({
+        type: FindRideActionEnum.SetFiltersData,
+        payload: {
+          ...state.filters,
+          start: {
+            ...state.filters.start,
+            items: [],
+          },
+        },
+      });
+      return;
+    }
+    const handleResult = (
+      data: null | google.maps.places.AutocompletePrediction[]
+    ) => {
+      if (!!data) {
+        dispatch({
+          type: FindRideActionEnum.SetFiltersData,
+          payload: {
+            ...state.filters,
+            city: {
+              ...state.filters.city,
+              items: data.map((p) => {
+                return {
+                  id: p.place_id,
+                  name: p.description,
+                };
+              }),
+            },
+          },
+        });
+      }
+    };
+    await fetchAutocompleteCityList(input, handleResult);
+  };
+
+  const handleSelectCity = async (data: { id: string; name: string }) => {
+    let lat_lng: null | { lat: number; lng: number } = null;
+    try {
+      const response = await getCityLatLng(
+        data.id,
+        ENVIRONMENTS.GOOGLE_MAP_API_KEY
+      );
+      lat_lng = {
+        lat: response.lat,
+        lng: response.lng,
+      };
+    } catch (err) {
+      console.error("Error get lat lng");
+    }
+    console.log(lat_lng, "ini lat_lng");
+
+    await dispatch({
+      type: FindRideActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        city: {
+          ...state.filters.city,
+          selected: {
+            ...state.filters.city.selected,
+            item: data,
+            lat_lng: lat_lng,
+          },
+        },
+      },
+    });
+  };
+
+  const handleQueryStartRoutes = async (input: string) => {
+    if (!input.length) {
+      dispatch({
+        type: FindRideActionEnum.SetFiltersData,
+        payload: {
+          ...state.filters,
+          start: {
+            ...state.filters.start,
+            items: [],
+          },
+        },
+      });
+      return;
+    }
+
+    const handleResult = (
+      data: null | google.maps.places.AutocompletePrediction[]
+    ) => {
+      if (!!data) {
+        dispatch({
+          type: FindRideActionEnum.SetFiltersData,
+          payload: {
+            ...state.filters,
+            start: {
+              ...state.filters.start,
+              items: data.map((p) => {
+                return {
+                  id: p.place_id,
+                  name: p.description,
+                };
+              }),
+            },
+          },
+        });
+      }
+    };
+
+    await fetchAutocompletePlace(
+      input,
+      state.filters.city.selected.lat_lng,
+      handleResult
+    );
+  };
+
+  const handleQueryEndRoutes = async (input: string) => {
+    if (!input.length) {
+      dispatch({
+        type: FindRideActionEnum.SetFiltersData,
+        payload: {
+          ...state.filters,
+          end: {
+            ...state.filters.end,
+            items: [],
+          },
+        },
+      });
+      return;
+    }
+
+    const handleResult = (
+      data: null | google.maps.places.AutocompletePrediction[]
+    ) => {
+      if (!!data) {
+        dispatch({
+          type: FindRideActionEnum.SetFiltersData,
+          payload: {
+            ...state.filters,
+            end: {
+              ...state.filters.end,
+              items: data.map((p) => {
+                return {
+                  id: p.place_id,
+                  name: p.description,
+                };
+              }),
+            },
+          },
+        });
+      }
+    };
+
+    await fetchAutocompletePlace(
+      input,
+      state.filters.city.selected.lat_lng,
+      handleResult
+    );
+  };
+
+  console.log(state.filters.city.items, "ini items");
 
   return (
     <div
@@ -89,19 +296,38 @@ export const FilterFindRide = () => {
         >
           <AutocompleteCity
             {...dictionaries.filter.form.city}
-            items={suggestions.map((item) => {
-              return { id: item, name: item };
-            })}
-            onQuery={handleQuery}
+            items={state.filters.city.items}
+            debounceQuery
+            onQuery={handleQueryCity}
+            onSelect={handleSelectCity}
           />
           <AutocompleteRoutes
             start={{
-              ...dictionaries.filter.form.start,
+              autocomplete: {
+                selected: state.filters.start.selected,
+                items: state.filters.start.items,
+                onQuery: (data: string) => handleQueryStartRoutes(data),
+              },
+              inputProps: {
+                ...dictionaries.filter.form.start.inputProps,
+              },
+              labelProps: {
+                ...dictionaries.filter.form.start.labelProps,
+              },
             }}
             end={{
-              ...dictionaries.filter.form.end,
+              autocomplete: {
+                selected: state.filters.end.selected,
+                items: state.filters.end.items,
+                onQuery: (data: string) => handleQueryEndRoutes(data),
+              },
+              inputProps: {
+                ...dictionaries.filter.form.end.inputProps,
+              },
+              labelProps: {
+                ...dictionaries.filter.form.end.labelProps,
+              },
             }}
-            onQuery={handleQuery}
           />
         </div>
 
