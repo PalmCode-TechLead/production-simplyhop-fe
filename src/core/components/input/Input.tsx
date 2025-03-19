@@ -18,7 +18,8 @@ export const Input = forwardRef<
         "placeholder:text-[#666666] placeholder:text-[0.875rem]",
         "outline-none",
         "border-none",
-        "appearance-none"
+        "appearance-none",
+        props.className
       )}
     />
   );

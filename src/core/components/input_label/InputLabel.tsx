@@ -18,7 +18,7 @@ export const InputLabel = ({
         "absolute",
         "text-[#606060]",
         "transition-all transform scale-100",
-        "peer-focus:top-[-16px] peer-focus:text-[0.75rem]",
+        // "peer-focus:top-[-16px] peer-focus:text-[0.75rem]",
         className
       )}
     >

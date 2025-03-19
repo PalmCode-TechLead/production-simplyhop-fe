@@ -92,24 +92,12 @@ export const AutocompleteCity = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer
-          className={clsx(
-            isFocus
-              ? "items-end content-end"
-              : !!query.length
-              ? "items-end content-end"
-              : "items-center content-center"
-          )}
-        >
+        <InputContainer>
           <div
             className={clsx(
-              "grid grid-cols-[1fr_1rem] justify-start justify-items-start gap-[0.5rem]",
-              isFocus
-                ? "items-end content-end"
-                : !!query.length
-                ? "items-end content-end"
-                : "items-center content-center",
-              "w-full",
+              "grid grid-cols-1 justify-start justify-items-start gap-[0.5rem]",
+              "items-end content-end",
+              "w-full h-full",
               "relative"
             )}
           >
@@ -117,6 +105,7 @@ export const AutocompleteCity = ({
               ref={inputRef}
               {...inputProps}
               value={query}
+              className={clsx("pr-[1.5rem]")}
               onFocus={() => {
                 if (disabled) {
                   return;
@@ -142,7 +131,12 @@ export const AutocompleteCity = ({
                 "flex items-center justify-center",
                 "w-[1rem] h-[1rem]",
                 "bg-[#E8F0E6]",
-                "rounded-[50%]"
+                "rounded-[50%]",
+                "absolute",
+                !!query
+                  ? "top-[75%] right-0 translate-y-[-50%] text-[0.75rem]"
+                  : "top-[50%] right-0 translate-y-[-50%] text-[0.75rem]",
+                "peer-focus:top-[75%]"
               )}
             >
               <SVGIcon
@@ -155,8 +149,9 @@ export const AutocompleteCity = ({
               {...labelProps}
               className={clsx(
                 !!query
-                  ? "top-[-16px] text-[0.75rem]"
-                  : "left-0 top-0 text-[0.75rem]"
+                  ? "top-[25%] translate-y-[-50%] text-[0.75rem]"
+                  : "left-0 top-[50%] translate-y-[-50%] text-[0.75rem]",
+                "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
               )}
               onClick={() => {
                 inputRef.current?.focus();
