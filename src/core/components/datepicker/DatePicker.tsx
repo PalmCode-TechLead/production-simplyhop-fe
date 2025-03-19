@@ -75,14 +75,14 @@ export const DatePicker = ({
         ref={ref}
       >
         <InputContainer
-          className={clsx("cursor-pointer", "relative")}
+          className={clsx("cursor-pointer")}
           onClick={handleClickDropdown}
         >
           <Input value={formattedValue} disabled />
           <InputLabel
+            {...labelProps}
             className={clsx(
-              "top-[25%] left-0 translate-y-[-50%] text-[0.75rem]",
-              "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
+              "top-[25%] !left-[26px] translate-y-[-50%] text-[0.75rem]"
             )}
           />
         </InputContainer>
@@ -91,7 +91,7 @@ export const DatePicker = ({
         {isOpen && (
           <div
             className={clsx(
-              "absolute top-[60px]",
+              "absolute top-[-360px]",
               "z-10",
               "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
               "w-full",

@@ -12,9 +12,9 @@ export const Input = forwardRef<
       className={clsx(
         "peer",
         "w-full",
-        "bg-transparent",
+        // "bg-transparent",
         "font-medium text-[0.875rem] leading-[1.25rem]",
-        "text-[#000000] disabled:text-[#666666]",
+        "text-[#000000] disabled:text-[#000000]",
         "placeholder:text-[#666666] placeholder:text-[0.875rem]",
         "outline-none",
         "border-none",
