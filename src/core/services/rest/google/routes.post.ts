@@ -1,15 +1,15 @@
 import axios, { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
-import { GoogleAPICollectionURL } from "@/core/utils/router/constants/google_api";
+import { RestGoogleAPICollectionURL } from "@/core/utils/router/constants/google_api";
 import { RestGooglePostRouteDirectionsPayloadRequestInterface } from "@/core/models/rest/google/route";
 
-export const fetchRestGoogleGetRoutes = async (
+export const fetchRestGooglePostRouteDirections = async (
   payload?: RestGooglePostRouteDirectionsPayloadRequestInterface
 ) => {
   try {
     const url = `${
       ENVIRONMENTS.ROUTES_GOOGLE_API_URL
-    }${GoogleAPICollectionURL.routes.getRoutes()}`;
+    }${RestGoogleAPICollectionURL.routes.getDirections()}`;
 
     const res = await axios.post(url, payload?.body, {
       "Content-Type": "application/json",

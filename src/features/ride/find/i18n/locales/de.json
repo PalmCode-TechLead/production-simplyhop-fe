@@ -19,7 +19,7 @@
           "required": false
         }
       },
-      "start": {
+      "origin": {
         "inputProps": {
           "id": "start",
           "placeholder": " "
@@ -30,7 +30,7 @@
           "required": false
         }
       },
-      "end": {
+      "destination": {
         "inputProps": {
           "id": "end",
           "placeholder": " "

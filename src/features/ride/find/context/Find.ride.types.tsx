@@ -23,13 +23,19 @@ export interface FindRideFilters {
       lat_lng: null | { lat: number; lng: number };
     };
   };
-  start: {
+  origin: {
     items: { id: string; name: string }[];
-    selected: null | { id: string; name: string };
+    selected: {
+      item: null | { id: string; name: string };
+      lat_lng: null | { lat: number; lng: number };
+    };
   };
-  end: {
+  destination: {
     items: { id: string; name: string }[];
-    selected: null | { id: string; name: string };
+    selected: {
+      item: null | { id: string; name: string };
+      lat_lng: null | { lat: number; lng: number };
+    };
   };
 }
 

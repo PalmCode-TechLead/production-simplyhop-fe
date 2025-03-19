@@ -101,8 +101,8 @@ export const FilterFindRide = () => {
         type: FindRideActionEnum.SetFiltersData,
         payload: {
           ...state.filters,
-          start: {
-            ...state.filters.start,
+          city: {
+            ...state.filters.city,
             items: [],
           },
         },
@@ -161,14 +161,14 @@ export const FilterFindRide = () => {
     });
   };
 
-  const handleQueryStartRoutes = async (input: string) => {
+  const handleQueryOriginRoutes = async (input: string) => {
     if (!input.length) {
       dispatch({
         type: FindRideActionEnum.SetFiltersData,
         payload: {
           ...state.filters,
-          start: {
-            ...state.filters.start,
+          origin: {
+            ...state.filters.origin,
             items: [],
           },
         },
@@ -184,8 +184,8 @@ export const FilterFindRide = () => {
           type: FindRideActionEnum.SetFiltersData,
           payload: {
             ...state.filters,
-            start: {
-              ...state.filters.start,
+            origin: {
+              ...state.filters.origin,
               items: data.map((p) => {
                 return {
                   id: p.place_id,
@@ -205,14 +205,45 @@ export const FilterFindRide = () => {
     );
   };
 
-  const handleQueryEndRoutes = async (input: string) => {
+  const handleSelectOriginRoutes = async (data: {
+    id: string;
+    name: string;
+  }) => {
+    let lat_lng: null | { lat: number; lng: number } = null;
+    try {
+      const response = await getLatLngFromPlaceId(data.id);
+      lat_lng = {
+        lat: response.lat,
+        lng: response.lng,
+      };
+    } catch (err) {
+      throw new Error("Err get lat lng");
+    }
+
+    await dispatch({
+      type: FindRideActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          selected: {
+            ...state.filters.origin.selected,
+            item: data,
+            lat_lng: lat_lng,
+          },
+        },
+      },
+    });
+  };
+
+  const handleQueryDestinationRoutes = async (input: string) => {
     if (!input.length) {
       dispatch({
         type: FindRideActionEnum.SetFiltersData,
         payload: {
           ...state.filters,
-          end: {
-            ...state.filters.end,
+          destination: {
+            ...state.filters.destination,
             items: [],
           },
         },
@@ -228,8 +259,8 @@ export const FilterFindRide = () => {
           type: FindRideActionEnum.SetFiltersData,
           payload: {
             ...state.filters,
-            end: {
-              ...state.filters.end,
+            destination: {
+              ...state.filters.destination,
               items: data.map((p) => {
                 return {
                   id: p.place_id,
@@ -247,6 +278,37 @@ export const FilterFindRide = () => {
       state.filters.city.selected.lat_lng,
       handleResult
     );
+  };
+
+  const handleSelectDestinationRoutes = async (data: {
+    id: string;
+    name: string;
+  }) => {
+    let lat_lng: null | { lat: number; lng: number } = null;
+    try {
+      const response = await getLatLngFromPlaceId(data.id);
+      lat_lng = {
+        lat: response.lat,
+        lng: response.lng,
+      };
+    } catch (err) {
+      throw new Error("Err get lat lng");
+    }
+
+    await dispatch({
+      type: FindRideActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          selected: {
+            ...state.filters.destination.selected,
+            item: data,
+            lat_lng: lat_lng,
+          },
+        },
+      },
+    });
   };
 
   const handleSelectDate = (date: Date) => {
@@ -293,30 +355,34 @@ export const FilterFindRide = () => {
             onSelect={handleSelectCity}
           />
           <AutocompleteRoutes
-            start={{
+            origin={{
               autocomplete: {
-                selected: state.filters.start.selected,
-                items: state.filters.start.items,
-                onQuery: (data: string) => handleQueryStartRoutes(data),
+                selected: state.filters.origin.selected.item,
+                items: state.filters.origin.items,
+                onQuery: (data: string) => handleQueryOriginRoutes(data),
+                onSelect: (data: { id: string; name: string }) =>
+                  handleSelectOriginRoutes(data),
               },
               inputProps: {
-                ...dictionaries.filter.form.start.inputProps,
+                ...dictionaries.filter.form.origin.inputProps,
               },
               labelProps: {
-                ...dictionaries.filter.form.start.labelProps,
+                ...dictionaries.filter.form.origin.labelProps,
               },
             }}
-            end={{
+            destination={{
               autocomplete: {
-                selected: state.filters.end.selected,
-                items: state.filters.end.items,
-                onQuery: (data: string) => handleQueryEndRoutes(data),
+                selected: state.filters.destination.selected.item,
+                items: state.filters.destination.items,
+                onQuery: (data: string) => handleQueryDestinationRoutes(data),
+                onSelect: (data: { id: string; name: string }) =>
+                  handleSelectDestinationRoutes(data),
               },
               inputProps: {
-                ...dictionaries.filter.form.end.inputProps,
+                ...dictionaries.filter.form.destination.inputProps,
               },
               labelProps: {
-                ...dictionaries.filter.form.end.labelProps,
+                ...dictionaries.filter.form.destination.labelProps,
               },
             }}
           />

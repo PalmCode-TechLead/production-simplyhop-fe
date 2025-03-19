@@ -1,5 +1,5 @@
-export const GoogleAPICollectionURL = {
+export const RestGoogleAPICollectionURL = {
   routes: {
-    getRoutes: () => `/directions/v2:computeRoutes`,
+    getDirections: () => `/directions/v2:computeRoutes`,
   },
 };

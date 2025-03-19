@@ -12,12 +12,18 @@ const initialState: FindRideInitialStateType = {
       },
       items: [],
     },
-    start: {
-      selected: null,
+    origin: {
+      selected: {
+        item: null,
+        lat_lng: null,
+      },
       items: [],
     },
-    end: {
-      selected: null,
+    destination: {
+      selected: {
+        item: null,
+        lat_lng: null,
+      },
       items: [],
     },
   },

@@ -18,7 +18,7 @@ export interface AutocompleteRoutesProps {
   emptyMessage?: string;
   search?: boolean;
   debounceQuery?: boolean;
-  start?: {
+  origin?: {
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
     labelProps?: InputLabelProps;
     autocomplete: {
@@ -31,7 +31,7 @@ export interface AutocompleteRoutesProps {
       onQuery: (data: string) => void;
     };
   };
-  end?: {
+  destination?: {
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
     labelProps?: InputLabelProps;
     autocomplete: {
@@ -54,7 +54,7 @@ export const AutocompleteRoutes = ({
   emptyMessage = "No Result",
   search = true,
 
-  start = {
+  origin = {
     autocomplete: {
       selected: null,
       items: [],
@@ -67,7 +67,7 @@ export const AutocompleteRoutes = ({
     inputProps: {},
     labelProps: {},
   },
-  end = {
+  destination = {
     autocomplete: {
       selected: null,
       items: [],
@@ -81,7 +81,7 @@ export const AutocompleteRoutes = ({
     labelProps: {},
   },
 }: AutocompleteRoutesProps) => {
-  const [startAutocomplete, setStartAutocomplete] = useState<{
+  const [originAutocomplete, setOriginAutocomplete] = useState<{
     isFocus: boolean;
     query: string;
     isOpen: boolean;
@@ -90,7 +90,7 @@ export const AutocompleteRoutes = ({
     query: "",
     isOpen: false,
   });
-  const [endAutocomplete, setEndAutocomplete] = useState<{
+  const [destinationAutocomplete, setDestinationAutocomplete] = useState<{
     isFocus: boolean;
     query: string;
     isOpen: boolean;
@@ -99,9 +99,9 @@ export const AutocompleteRoutes = ({
     query: "",
     isOpen: false,
   });
-  const startInputRef = useRef<HTMLInputElement | null>(null);
-  const endInputRef = useRef<HTMLInputElement | null>(null);
-  const isOpen = startAutocomplete.isOpen || endAutocomplete.isOpen;
+  const originInputRef = useRef<HTMLInputElement | null>(null);
+  const destinationInputRef = useRef<HTMLInputElement | null>(null);
+  const isOpen = originAutocomplete.isOpen || destinationAutocomplete.isOpen;
 
   // const [isFocus, setIsFocus] = useState<boolean>(false);
   // const [query, setQuery] = useState("");
@@ -110,8 +110,11 @@ export const AutocompleteRoutes = ({
   // const [isOpen, setIsOpen] = useState<boolean>(false);
   // const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const startDebounced = useDebounceCallback(start.autocomplete.onQuery, 500);
-  const endDebounced = useDebounceCallback(end.autocomplete.onQuery, 500);
+  const originDebounced = useDebounceCallback(origin.autocomplete.onQuery, 500);
+  const destinationDebounced = useDebounceCallback(
+    destination.autocomplete.onQuery,
+    500
+  );
   // const containerRef = useRef<HTMLDivElement | null>(null);
   // useOnClickOutside(containerRef, () => {
   //   setQuery(selected?.name ?? "");
@@ -119,49 +122,51 @@ export const AutocompleteRoutes = ({
   //   setIsOpen(false);
   // });
 
-  const startFilteredItems = !startAutocomplete.query.length
-    ? start.autocomplete?.items ?? []
+  const originFilteredItems = !originAutocomplete.query.length
+    ? origin.autocomplete?.items ?? []
     : type === "async"
-    ? start.autocomplete?.items ?? []
+    ? origin.autocomplete?.items ?? []
     : !search
-    ? start.autocomplete?.items ?? []
-    : (start.autocomplete?.items ?? []).filter((item) =>
+    ? origin.autocomplete?.items ?? []
+    : (origin.autocomplete?.items ?? []).filter((item) =>
         item.name
           .toLowerCase()
           .replace(/\s+/g, "")
-          .includes(startAutocomplete.query.toLowerCase().replace(/\s+/g, ""))
+          .includes(originAutocomplete.query.toLowerCase().replace(/\s+/g, ""))
       );
 
-  const endFilteredItems = !endAutocomplete.query.length
-    ? end.autocomplete?.items ?? []
+  const destinationFilteredItems = !destinationAutocomplete.query.length
+    ? destination.autocomplete?.items ?? []
     : type === "async"
-    ? end.autocomplete?.items ?? []
+    ? destination.autocomplete?.items ?? []
     : !search
-    ? end.autocomplete?.items ?? []
-    : (end.autocomplete?.items ?? []).filter((item) =>
+    ? destination.autocomplete?.items ?? []
+    : (destination.autocomplete?.items ?? []).filter((item) =>
         item.name
           .toLowerCase()
           .replace(/\s+/g, "")
-          .includes(endAutocomplete.query.toLowerCase().replace(/\s+/g, ""))
+          .includes(
+            destinationAutocomplete.query.toLowerCase().replace(/\s+/g, "")
+          )
       );
 
-  const handleChangeStart = (data: { id: string; name: string }) => {
-    if (start.autocomplete?.onSelect) {
-      start.autocomplete?.onSelect(data);
+  const handleChangeorigin = (data: { id: string; name: string }) => {
+    if (origin.autocomplete?.onSelect) {
+      origin.autocomplete?.onSelect(data);
     }
-    setStartAutocomplete({
-      ...startAutocomplete,
+    setOriginAutocomplete({
+      ...originAutocomplete,
       query: data.name ?? "",
       isOpen: false,
     });
   };
 
-  const handleChangeEnd = (data: { id: string; name: string }) => {
-    if (end.autocomplete?.onSelect) {
-      end.autocomplete?.onSelect(data);
+  const handleChangedestination = (data: { id: string; name: string }) => {
+    if (destination.autocomplete?.onSelect) {
+      destination.autocomplete?.onSelect(data);
     }
-    setEndAutocomplete({
-      ...endAutocomplete,
+    setDestinationAutocomplete({
+      ...destinationAutocomplete,
       query: data.name ?? "",
       isOpen: false,
     });
@@ -178,50 +183,50 @@ export const AutocompleteRoutes = ({
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",
-              "items-end content-end",
+              "items-destination content-destination",
               "w-full h-full",
               "relative"
             )}
           >
             <Input
-              ref={startInputRef}
-              {...start.inputProps}
-              value={startAutocomplete.query}
+              ref={originInputRef}
+              {...origin.inputProps}
+              value={originAutocomplete.query}
               onFocus={() => {
                 if (disabled) {
                   return;
                 }
-                setStartAutocomplete({
-                  ...startAutocomplete,
+                setOriginAutocomplete({
+                  ...originAutocomplete,
                   isFocus: true,
                 });
               }}
               onBlur={() => {
                 // setIsFocus(false);
-                setStartAutocomplete({
-                  ...startAutocomplete,
+                setOriginAutocomplete({
+                  ...originAutocomplete,
                   isFocus: false,
                 });
               }}
               onChange={(event) => {
-                setStartAutocomplete({
-                  ...startAutocomplete,
+                setOriginAutocomplete({
+                  ...originAutocomplete,
                   query: event.target.value,
                   isOpen: !!event.target.value.length,
                 });
-                if (start.autocomplete?.debounceQuery) {
-                  startDebounced(event.target.value);
+                if (origin.autocomplete?.debounceQuery) {
+                  originDebounced(event.target.value);
                 } else {
-                  start.autocomplete.onQuery(event.target.value);
+                  origin.autocomplete.onQuery(event.target.value);
                 }
               }}
             />
 
             <InputLabel
-              {...start.labelProps}
+              {...origin.labelProps}
               className={clsx(
                 // !!query
-                !!startAutocomplete.query
+                !!originAutocomplete.query
                   ? "top-[25%] translate-y-[-50%] text-[0.75rem]"
                   : "left-0 top-[50%] translate-y-[-50%] text-[0.75rem]",
                 "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
@@ -229,72 +234,72 @@ export const AutocompleteRoutes = ({
               onClick={() => {
                 // inputRef.current?.focus();
                 // setIsOpen(true);
-                startInputRef.current?.focus();
+                originInputRef.current?.focus();
               }}
             />
 
             <div className={clsx("bg-[#E0ECDC]", "w-[1px] h-full")} />
 
             <Input
-              ref={endInputRef}
-              {...end.inputProps}
-              value={endAutocomplete.query}
+              ref={destinationInputRef}
+              {...destination.inputProps}
+              value={destinationAutocomplete.query}
               onFocus={() => {
                 if (disabled) {
                   return;
                 }
-                setEndAutocomplete({
-                  ...endAutocomplete,
+                setDestinationAutocomplete({
+                  ...destinationAutocomplete,
                   isFocus: true,
                 });
               }}
               onBlur={() => {
-                setEndAutocomplete({
-                  ...endAutocomplete,
+                setDestinationAutocomplete({
+                  ...destinationAutocomplete,
                   isFocus: false,
                 });
               }}
               onChange={(event) => {
-                setEndAutocomplete({
-                  ...endAutocomplete,
+                setDestinationAutocomplete({
+                  ...destinationAutocomplete,
                   query: event.target.value,
                   isOpen: !!event.target.value.length,
                 });
-                if (end.autocomplete?.debounceQuery) {
-                  endDebounced(event.target.value);
+                if (destination.autocomplete?.debounceQuery) {
+                  destinationDebounced(event.target.value);
                 } else {
-                  end.autocomplete.onQuery(event.target.value);
+                  destination.autocomplete.onQuery(event.target.value);
                 }
               }}
             />
 
             <InputLabel
-              {...end.labelProps}
+              {...destination.labelProps}
               className={clsx(
-                !!endAutocomplete.query
+                !!destinationAutocomplete.query
                   ? "top-[25%] left-[calc(50%+1rem)] translate-y-[-50%] text-[0.75rem]"
                   : "top-[50%] left-[calc(50%+1rem)] translate-y-[-50%] text-[0.75rem]",
                 "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
               )}
               onClick={() => {
                 // inputRef.current?.focus();
-                endInputRef.current?.focus();
+                destinationInputRef.current?.focus();
                 // setIsOpen(true);
               }}
             />
           </div>
         </InputContainer>
 
-        {!start.autocomplete?.disabled && (
+        {!origin.autocomplete?.disabled && (
           <AutocompleteOptionsContainer
             className={clsx(isOpen ? "inline" : "hidden")}
           >
-            {startAutocomplete.isFocus &&
-            startFilteredItems.length === 0 &&
-            startAutocomplete.query !== "" ? (
+            {originAutocomplete.isFocus &&
+            originFilteredItems.length === 0 &&
+            originAutocomplete.query !== "" ? (
               <AutocompleteEmptyBox>{emptyMessage}</AutocompleteEmptyBox>
             ) : (
-              startFilteredItems.map((item, index) => (
+              originFilteredItems.map((item, index) => (
                 <AutocompleteOption
                   key={index}
                   // className={clsx(
@@ -302,19 +307,19 @@ export const AutocompleteRoutes = ({
                   //     ? "font-bold text-[#FF6201]"
                   //     : "font-normal text-[#201E2C]"
                   // )}
-                  onClick={() => handleChangeStart(item)}
+                  onClick={() => handleChangeorigin(item)}
                 >
                   {item.name}
                 </AutocompleteOption>
               ))
             )}
 
-            {endAutocomplete.isFocus &&
-            endFilteredItems.length === 0 &&
-            endAutocomplete.query !== "" ? (
+            {destinationAutocomplete.isFocus &&
+            destinationFilteredItems.length === 0 &&
+            destinationAutocomplete.query !== "" ? (
               <AutocompleteEmptyBox>{emptyMessage}</AutocompleteEmptyBox>
             ) : (
-              endFilteredItems.map((item, index) => (
+              destinationFilteredItems.map((item, index) => (
                 <AutocompleteOption
                   key={index}
                   // className={clsx(
@@ -322,7 +327,7 @@ export const AutocompleteRoutes = ({
                   //     ? "font-bold text-[#FF6201]"
                   //     : "font-normal text-[#201E2C]"
                   // )}
-                  onClick={() => handleChangeEnd(item)}
+                  onClick={() => handleChangedestination(item)}
                 >
                   {item.name}
                 </AutocompleteOption>
