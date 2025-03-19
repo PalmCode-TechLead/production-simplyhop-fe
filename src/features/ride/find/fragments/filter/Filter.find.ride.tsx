@@ -5,16 +5,6 @@ import { getDictionaries } from "../../i18n";
 import { AutocompleteCity } from "@/core/components/autocomplete_city";
 import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { FindRideActionEnum, FindRideContext } from "../../context";
-import { ENVIRONMENTS } from "@/core/environments";
-
-// Debounce function untuk mengurangi jumlah permintaan API
-function debounce(func: Function, delay: number) {
-  let timeoutId: NodeJS.Timeout;
-  return (...args: any[]) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => func(...args), delay);
-  };
-}
 
 export const FilterFindRide = () => {
   const dictionaries = getDictionaries();
@@ -70,7 +60,6 @@ export const FilterFindRide = () => {
             status === google.maps.places.PlacesServiceStatus.OK &&
             predictions
           ) {
-            console.log(predictions, "ini predictions");
             callback(predictions);
           } else {
             callback(null);
@@ -80,30 +69,29 @@ export const FilterFindRide = () => {
     }
   };
 
-  type LatLng = { lat: number; lng: number };
+  const getLatLngFromPlaceId = (
+    placeId: string
+  ): Promise<{ lat: number; lng: number }> => {
+    return new Promise((resolve, reject) => {
+      // Membuat service tanpa perlu inisialisasi map
+      const service = new google.maps.places.PlacesService(
+        document.createElement("div")
+      );
 
-  const getCityLatLng = async (
-    placeId: string,
-    apiKey: string
-  ): Promise<LatLng> => {
-    const url = `${ENVIRONMENTS.SITE_URL}/google/maps/maps/api/place/details/json?place_id=${placeId}&key=${apiKey}`;
-
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log(data, "ini data");
-      if (data.status === "OK" && data.result?.geometry?.location) {
-        return {
-          lat: data.result.geometry.location.lat,
-          lng: data.result.geometry.location.lng,
-        };
-      } else {
-        throw new Error(`Failed to get city coordinates: ${data.status}`);
-      }
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+      service.getDetails({ placeId }, (place, status) => {
+        if (
+          status === google.maps.places.PlacesServiceStatus.OK &&
+          place?.geometry?.location
+        ) {
+          resolve({
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+          });
+        } else {
+          reject(new Error(`Failed to get location: ${status}`));
+        }
+      });
+    });
   };
 
   const handleQueryCity = async (input: string) => {
@@ -147,18 +135,14 @@ export const FilterFindRide = () => {
   const handleSelectCity = async (data: { id: string; name: string }) => {
     let lat_lng: null | { lat: number; lng: number } = null;
     try {
-      const response = await getCityLatLng(
-        data.id,
-        ENVIRONMENTS.GOOGLE_MAP_API_KEY
-      );
+      const response = await getLatLngFromPlaceId(data.id);
       lat_lng = {
         lat: response.lat,
         lng: response.lng,
       };
     } catch (err) {
-      console.error("Error get lat lng");
+      throw new Error("Err get lat lng");
     }
-    console.log(lat_lng, "ini lat_lng");
 
     await dispatch({
       type: FindRideActionEnum.SetFiltersData,
@@ -263,8 +247,6 @@ export const FilterFindRide = () => {
       handleResult
     );
   };
-
-  console.log(state.filters.city.items, "ini items");
 
   return (
     <div
