@@ -3,21 +3,21 @@ import * as React from "react";
 import clsx from "clsx";
 import { useOnClickOutside } from "usehooks-ts";
 import { DayPickerActivityMobile } from "../daypicker";
-import Skeleton from "react-loading-skeleton";
+import { InputContainer } from "../input_container";
+import { InputLabel, InputLabelProps } from "../input_label";
+import { Input } from "../input";
 
 export interface DatePickerProps {
-  label?: string;
   value?: Date;
   disabled?: boolean;
-  isLoading?: boolean;
+  labelProps?: InputLabelProps;
   onSelect?: (data: Date) => void;
 }
 
 export const DatePicker = ({
-  label = "",
   value = new Date(),
   disabled = false,
-  isLoading = false,
+  labelProps,
   onSelect = (data: Date) => {},
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -59,35 +59,6 @@ export const DatePicker = ({
     year: "numeric",
   });
 
-  if (isLoading) {
-    return (
-      <div
-        className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-          "w-full"
-        )}
-      >
-        {label.length > 0 && (
-          <p className={clsx("text-[15px] text-[#212121] font-normal")}>
-            {label}
-          </p>
-        )}
-
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-            "w-full",
-            "relative"
-          )}
-        >
-          <div className="w-full">
-            <Skeleton width={"100%"} height={39.5} />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div
       className={clsx(
@@ -95,12 +66,6 @@ export const DatePicker = ({
         "w-full"
       )}
     >
-      {label.length > 0 && (
-        <p className={clsx("text-[0.875rem] text-[#212121] font-semibold")}>
-          {label}
-        </p>
-      )}
-
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
@@ -109,37 +74,18 @@ export const DatePicker = ({
         )}
         ref={ref}
       >
-        <button
-          className={clsx(
-            "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.75rem]",
-            "w-full",
-            "rounded-[0.75rem]",
-            "px-[1rem] py-[0.625rem]",
-            "bg-[#F9FAFB]",
-            "text-[0.875rem] text-[#1D2939] font-normal",
-            "border border-[#D0D5DD]"
-          )}
-          disabled={disabled}
+        <InputContainer
+          className={clsx("cursor-pointer", "relative")}
           onClick={handleClickDropdown}
         >
-          {formattedValue}
-
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.44444 7.55556V4M15.5556 7.55556V4M7.55556 11.1111H16.4444M5.77778 20H18.2222C19.2041 20 20 19.2041 20 18.2222V7.55556C20 6.57372 19.2041 5.77778 18.2222 5.77778H5.77778C4.79594 5.77778 4 6.57372 4 7.55556V18.2222C4 19.2041 4.79594 20 5.77778 20Z"
-              stroke="#7857E0"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
+          <Input value={formattedValue} disabled />
+          <InputLabel
+            className={clsx(
+              "top-[25%] left-0 translate-y-[-50%] text-[0.75rem]",
+              "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
+            )}
+          />
+        </InputContainer>
 
         {/* body */}
         {isOpen && (

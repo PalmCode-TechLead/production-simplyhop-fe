@@ -42,8 +42,11 @@
         }
       },
       "date": {
-        "id": "date",
-        "label": "Datum"
+        "labelProps": {
+          "id": "date",
+          "children": "Datum",
+          "required": false
+        }
       },
       "passenger": {
         "id": "passenger",

@@ -249,16 +249,24 @@ export const FilterFindRide = () => {
     );
   };
 
+  const handleSelectDate = (date: Date) => {
+    //
+  };
+
   return (
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
         "w-full max-w-container",
         "px-[3rem] py-[3rem]",
-        "bg-[#FFFFFFCC]",
+        "bg-[#FFFFFF]",
         "rounded-[1.25rem]",
-        "absolute bottom-[72px]"
+        "absolute bottom-[72px]",
+        "border border-[#D3E7CE]"
       )}
+      style={{
+        boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
+      }}
     >
       <p className={clsx("text-[2rem] text-[#292929] font-bold")}>
         {dictionaries.filter.title}
@@ -314,10 +322,11 @@ export const FilterFindRide = () => {
           />
 
           <DatePicker
-          // label={dictionaries.update_activity.form.date.label}
-          // value={dateValue}
-          // isLoading={isFetchingGetActivityByID}
-          // onSelect={handleSelectDate}
+            labelProps={{
+              ...dictionaries.filter.form.date.labelProps,
+            }}
+            // value={dateValue}
+            onSelect={handleSelectDate}
           />
         </div>
 
