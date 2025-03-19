@@ -5,6 +5,10 @@ import {
   MessageSquare,
   User,
   Check,
+  ChevronRight,
+  ChevronLeft,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 
 export const svgMap = {
@@ -14,6 +18,10 @@ export const svgMap = {
   MessageSquare,
   User,
   Check,
+  ChevronRight,
+  ChevronLeft,
+  ChevronUp,
+  ChevronDown,
 };
 
 export type SVGName = keyof typeof svgMap;

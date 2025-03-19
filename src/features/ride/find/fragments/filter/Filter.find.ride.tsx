@@ -5,6 +5,7 @@ import { getDictionaries } from "../../i18n";
 import { AutocompleteCity } from "@/core/components/autocomplete_city";
 import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { FindRideActionEnum, FindRideContext } from "../../context";
+import { DatePicker } from "@/core/components/datepicker";
 
 export const FilterFindRide = () => {
   const dictionaries = getDictionaries();
@@ -310,6 +311,13 @@ export const FilterFindRide = () => {
                 ...dictionaries.filter.form.end.labelProps,
               },
             }}
+          />
+
+          <DatePicker
+          // label={dictionaries.update_activity.form.date.label}
+          // value={dateValue}
+          // isLoading={isFetchingGetActivityByID}
+          // onSelect={handleSelectDate}
           />
         </div>
 
