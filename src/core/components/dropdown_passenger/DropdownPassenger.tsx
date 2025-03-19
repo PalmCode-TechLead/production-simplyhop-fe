@@ -40,9 +40,8 @@ export const DropdownPassenger = ({
     setIsOpen((prev) => !prev);
   };
   return (
-    <div className={clsx("relative", "w-full")}>
+    <div ref={ref} className={clsx("relative", "w-full")}>
       <InputContainer
-        ref={ref}
         className={clsx(
           "cursor-pointer",
           "font-medium text-[0.875rem] leading-[1.25rem]",
