@@ -38,6 +38,13 @@ export interface FindRideFilters {
       lat_lng: null | { lat: number; lng: number };
     };
   };
+  date: {
+    selected: Date;
+  };
+
+  passenger: {
+    value: { id: string; value: number }[];
+  };
 }
 
 export interface FindRideMap {

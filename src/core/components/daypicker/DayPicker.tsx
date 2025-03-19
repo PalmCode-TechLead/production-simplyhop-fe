@@ -255,7 +255,7 @@ export const DayPickerActivityMobile = ({
               "rounded-[50%]",
               "w-[2rem] h-[2rem]",
               datesAreEqual(calendarItem.date, date)
-                ? "bg-[#643FDB]"
+                ? "bg-green-500"
                 : "bg-transparent",
 
               datesAreEqual(calendarItem.date, date)

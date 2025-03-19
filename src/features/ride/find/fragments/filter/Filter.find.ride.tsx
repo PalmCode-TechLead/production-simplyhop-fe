@@ -7,6 +7,7 @@ import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { FindRideActionEnum, FindRideContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
+import { DropdownPassenger } from "@/core/components/dropdown_passenger";
 
 export const FilterFindRide = () => {
   const dictionaries = getDictionaries();
@@ -316,6 +317,31 @@ export const FilterFindRide = () => {
     });
   };
 
+  const handleSelectDate = (date: Date) => {
+    dispatch({
+      type: FindRideActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        date: {
+          selected: date,
+        },
+      },
+    });
+  };
+
+  const handleChangePassenger = (value: { id: string; value: number }[]) => {
+    dispatch({
+      type: FindRideActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        passenger: {
+          value: value,
+        },
+      },
+    });
+  };
+
+  // NOTES: listen and fetch route directions
   React.useEffect(() => {
     if (
       !!state.filters.origin.selected.lat_lng &&
@@ -328,9 +354,24 @@ export const FilterFindRide = () => {
     state.filters.destination.selected.lat_lng,
   ]);
 
-  const handleSelectDate = (date: Date) => {
-    //
-  };
+  // NOTES: set default passenger
+  React.useEffect(() => {
+    dispatch({
+      type: FindRideActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        passenger: {
+          ...state.filters.passenger,
+          value: dictionaries.filter.form.passenger.items.map((item) => {
+            return {
+              id: item.id,
+              value: item.value,
+            };
+          }),
+        },
+      },
+    });
+  }, []);
 
   return (
     <div
@@ -410,6 +451,39 @@ export const FilterFindRide = () => {
             }}
             // value={dateValue}
             onSelect={handleSelectDate}
+          />
+
+          <DropdownPassenger
+            labelProps={{
+              ...dictionaries.filter.form.passenger.labelProps,
+            }}
+            maskedValue={dictionaries.filter.form.passenger.maskedValue
+              .replaceAll(
+                "{{adult}}",
+                String(
+                  state.filters.passenger.value.find(
+                    (item) => item.id === "adult"
+                  )?.value ?? 0
+                )
+              )
+              .replaceAll(
+                "{{children}}",
+                String(
+                  state.filters.passenger.value.find(
+                    (item) => item.id === "children"
+                  )?.value ?? 0
+                )
+              )}
+            items={dictionaries.filter.form.passenger.items.map((item) => {
+              return {
+                ...item,
+                value:
+                  state.filters.passenger.value.find(
+                    (passengerItem) => passengerItem.id === item.id
+                  )?.value ?? 0,
+              };
+            })}
+            onChange={handleChangePassenger}
           />
         </div>
 

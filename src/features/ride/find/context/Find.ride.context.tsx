@@ -29,6 +29,12 @@ const initialState: FindRideInitialStateType = {
       },
       items: [],
     },
+    date: {
+      selected: new Date(),
+    },
+    passenger: {
+      value: [],
+    },
   },
   map: {
     polyline_path: [],

@@ -76,8 +76,26 @@
         }
       },
       "passenger": {
-        "id": "passenger",
-        "label": "Passagiere"
+        "labelProps": {
+          "id": "passenger",
+          "children": "Passagiere",
+          "required": false
+        },
+        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind",
+        "items": [
+          {
+            "id": "adult",
+            "name": "Erwachsene",
+            "description": "Alter: 18 oder älter",
+            "value": 1
+          },
+          {
+            "id": "children",
+            "name": "Kinder",
+            "description": "Alter: 0-12",
+            "value": 0
+          }
+        ]
       }
     },
     "cta": {

@@ -75,10 +75,15 @@ export const DatePicker = ({
         ref={ref}
       >
         <InputContainer
-          className={clsx("cursor-pointer")}
+          className={clsx(
+            "cursor-pointer",
+            "font-medium text-[0.875rem] leading-[1.25rem]",
+            "text-[#000000] whitespace-nowrap",
+            "w-full"
+          )}
           onClick={handleClickDropdown}
         >
-          <Input value={formattedValue} disabled />
+          {formattedValue}
           <InputLabel
             {...labelProps}
             className={clsx(
