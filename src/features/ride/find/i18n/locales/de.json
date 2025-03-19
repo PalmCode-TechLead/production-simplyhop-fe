@@ -5,6 +5,33 @@
     },
     "label": "Fahrt finden"
   },
+  "map": {
+    "marker": {
+      "origin": {
+        "icon": {
+          "url": "/icons/map/start_point.svg"
+        }
+      },
+      "destination": {
+        "icon": {
+          "url": "/icons/map/end_point.svg"
+        }
+      }
+    },
+    "info_window": {
+      "origin": {
+        "title": "Start"
+      },
+      "destination": {
+        "title": "End"
+      }
+    },
+    "polyline": {
+      "strokeColor": "#5AC53D",
+      "strokeOpacity": 0.8,
+      "strokeWeight": 8
+    }
+  },
   "filter": {
     "title": "Mitfahrgelegenheit finden",
     "form": {

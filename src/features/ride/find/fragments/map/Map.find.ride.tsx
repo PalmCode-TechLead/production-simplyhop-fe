@@ -11,12 +11,18 @@ import { decode } from "@googlemaps/polyline-codec";
 import clsx from "clsx";
 import { ENVIRONMENTS } from "@/core/environments";
 import { FindRideContext } from "../../context";
+import { MapInfoWindow } from "@/core/components/map_info_window";
+import { getDictionaries } from "../../i18n";
+import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
 
 const libraries: any = ["places"];
 
 export const MapFindRide = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
+  const dictionaries = getDictionaries();
   const { state, dispatch } = useContext(FindRideContext);
+  const { location: userLocation, error } = useGeolocation();
+  console.log(userLocation, "ini user location");
 
   if (!apiKey) {
     console.error(
@@ -105,7 +111,12 @@ export const MapFindRide = () => {
         ? polylinePath
         : state.map.polyline_path
       ).forEach((point) => bounds.extend(point));
-      mapRef.current.fitBounds(bounds);
+      mapRef.current.fitBounds(bounds, {
+        top: 200,
+        bottom: 200,
+        left: 200,
+        right: 200,
+      });
     }
   }, [
     isLoaded,
@@ -114,7 +125,6 @@ export const MapFindRide = () => {
     state.map.polyline_path.length,
   ]);
 
-  console.log(state.map.polyline_path, "ini polyline map");
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
@@ -127,6 +137,7 @@ export const MapFindRide = () => {
         mapTypeControl: false,
         streetViewControl: false,
         cameraControl: false,
+        fullscreenControl: false,
       }}
     >
       {/* Start Marker */}
@@ -134,7 +145,7 @@ export const MapFindRide = () => {
         <Marker
           position={state.filters.origin.selected.lat_lng}
           icon={{
-            url: "/icons/map/start_point.svg", // Bisa diganti dengan custom SVG
+            ...dictionaries.map.marker.origin.icon,
             scaledSize: new window.google.maps.Size(32, 56),
           }}
         />
@@ -149,38 +160,25 @@ export const MapFindRide = () => {
               headerDisabled: true,
             }}
           >
-            <div
-              className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]",
-                "w-[228px]"
-              )}
-            >
-              <p
-                className={clsx(
-                  "text-[0.625rem] text-[#232323B2] font-extralight"
-                )}
-              >
-                Start
-              </p>
-              <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
-                {state.filters.origin.selected.item.name}
-              </p>
-            </div>
+            <MapInfoWindow
+              {...dictionaries.map.info_window.origin}
+              description={state.filters.origin.selected.item.name}
+            />
           </InfoWindow>
         )}
 
-      {/* End Marker */}
+      {/* Destination Marker */}
       {!!state.filters.destination.selected.lat_lng && (
         <Marker
           position={state.filters.destination.selected.lat_lng}
           icon={{
-            url: "/icons/map/end_point.svg",
+            ...dictionaries.map.marker.destination.icon,
             scaledSize: new window.google.maps.Size(32, 56),
           }}
         />
       )}
 
-      {/* End InfoWindow */}
+      {/* Destination InfoWindow */}
       {!!state.filters.destination.selected.item &&
         !!state.filters.destination.selected.lat_lng && (
           <InfoWindow
@@ -189,23 +187,10 @@ export const MapFindRide = () => {
               headerDisabled: true,
             }}
           >
-            <div
-              className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[0.375rem]",
-                "w-[228px]"
-              )}
-            >
-              <p
-                className={clsx(
-                  "text-[0.625rem] text-[#232323B2] font-extralight"
-                )}
-              >
-                End
-              </p>
-              <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
-                {state.filters.destination.selected.item.name}
-              </p>
-            </div>
+            <MapInfoWindow
+              {...dictionaries.map.info_window.destination}
+              description={state.filters.destination.selected.item.name}
+            />
           </InfoWindow>
         )}
 

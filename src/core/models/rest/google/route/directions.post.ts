@@ -20,14 +20,6 @@ export type RestGooglePostRouteDirectionsBodyRequestInterface = {
       latLng: { latitude: number; longitude: number };
     };
   };
-  waypoints?: {
-    location: {
-      latLng: {
-        latitude: number; // Titik tengah
-        longitude: number;
-      };
-    };
-  }[];
   travelMode: string;
   routingPreference: string;
   computeAlternativeRoutes: boolean;
