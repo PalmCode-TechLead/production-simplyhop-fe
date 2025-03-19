@@ -16,9 +16,9 @@ export const AutocompleteOptionsContainer = forwardRef<
         "overflow-auto",
         "mt-[0.5rem]",
         "bg-[white]",
-        "border border-[#B5B5B5]",
+        "border border-[#E2E2E2]",
         "focus:outline-none",
-        "rounded-[1rem]",
+        "rounded-[0.375rem]",
         "z-[20]",
         props.className
       )}

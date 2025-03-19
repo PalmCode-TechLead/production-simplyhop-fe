@@ -166,34 +166,18 @@ export const AutocompleteRoutes = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer
-          className={clsx(
-            // isFocus
-            //   ? "items-end content-end"
-            //   : !!query.length
-            //   ? "items-end content-end"
-            //   : "items-center content-center"
-            "items-end content-end"
-          )}
-        >
+        <InputContainer>
           <div
             className={clsx(
-              "grid grid-cols-[1fr_auto_1fr] gap-[1rem]",
-              // isFocus
-              //   ? "items-end content-end"
-              //   : !!query.length
-              //   ? "items-end content-end"
-              //   : "items-center content-center",
+              "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",
               "items-end content-end",
-              "w-full",
+              "w-full h-full",
               "relative"
             )}
           >
             <Input
-              // ref={inputRef}
               ref={startInputRef}
               {...start.inputProps}
-              // value={query}
               value={startAutocomplete.query}
               onFocus={() => {
                 if (disabled) {
@@ -222,13 +206,6 @@ export const AutocompleteRoutes = ({
                 } else {
                   onQuery(event.target.value);
                 }
-                // setIsOpen(!!event.target.value.length);
-                // setQuery(event.target.value);
-                // if (debounceQuery) {
-                //   debounced(event.target.value);
-                // } else {
-                //   onQuery(event.target.value);
-                // }
               }}
             />
 
@@ -237,8 +214,9 @@ export const AutocompleteRoutes = ({
               className={clsx(
                 // !!query
                 !!startAutocomplete.query
-                  ? "top-[-16px] text-[0.75rem]"
-                  : "left-0 top-0 text-[0.75rem]"
+                  ? "top-[25%] translate-y-[-50%] text-[0.75rem]"
+                  : "left-0 top-[50%] translate-y-[-50%] text-[0.75rem]",
+                "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
               )}
               onClick={() => {
                 // inputRef.current?.focus();
@@ -290,10 +268,10 @@ export const AutocompleteRoutes = ({
             <InputLabel
               {...end.labelProps}
               className={clsx(
-                // !!query
                 !!endAutocomplete.query
-                  ? "top-[-16px] text-[0.75rem]"
-                  : "left-[calc(50%+1rem)] top-0 text-[0.75rem]"
+                  ? "top-[25%] left-[calc(50%+1rem)] translate-y-[-50%] text-[0.75rem]"
+                  : "top-[50%] left-[calc(50%+1rem)] translate-y-[-50%] text-[0.75rem]",
+                "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
               )}
               onClick={() => {
                 // inputRef.current?.focus();

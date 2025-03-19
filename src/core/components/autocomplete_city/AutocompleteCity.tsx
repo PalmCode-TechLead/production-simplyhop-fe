@@ -149,8 +149,8 @@ export const AutocompleteCity = ({
               {...labelProps}
               className={clsx(
                 !!query
-                  ? "top-[25%] translate-y-[-50%] text-[0.75rem]"
-                  : "left-0 top-[50%] translate-y-[-50%] text-[0.75rem]",
+                  ? "top-[25%] left-0 translate-y-[-50%] text-[0.75rem]"
+                  : "top-[50%] left-0 translate-y-[-50%] text-[0.75rem]",
                 "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
               )}
               onClick={() => {
