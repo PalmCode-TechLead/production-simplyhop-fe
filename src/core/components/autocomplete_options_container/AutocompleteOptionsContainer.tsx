@@ -22,6 +22,9 @@ export const AutocompleteOptionsContainer = forwardRef<
         "z-[20]",
         props.className
       )}
+      style={{
+        boxShadow: "0px 0px 25px 0px #365F2B66",
+      }}
     >
       {props.children}
     </div>

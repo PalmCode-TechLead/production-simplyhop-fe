@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { InputContainer } from "../input_container";
 import { InputLabel, InputLabelProps } from "../input_label";
 import SVGIcon from "@/core/icons";
+import { useOnClickOutside } from "usehooks-ts";
 
 export interface DropdownPassengerProps {
   labelProps?: InputLabelProps;
@@ -31,12 +32,17 @@ export const DropdownPassenger = ({
   onChange = () => {},
 }: DropdownPassengerProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  useOnClickOutside(ref as any, () => {
+    setIsOpen(false);
+  });
   const handleClick = () => {
     setIsOpen((prev) => !prev);
   };
   return (
     <div className={clsx("relative", "w-full")}>
       <InputContainer
+        ref={ref}
         className={clsx(
           "cursor-pointer",
           "font-medium text-[0.875rem] leading-[1.25rem]",

@@ -31,9 +31,9 @@ export const DatePicker = ({
   //   }
   // }, [value]);
 
-  // useOnClickOutside(ref, () => {
-  //   setIsOpen((_) => false);
-  // });
+  useOnClickOutside(ref as any, () => {
+    setIsOpen((_) => false);
+  });
 
   const handleClickDropdown = () => {
     setIsOpen((prev) => !prev);

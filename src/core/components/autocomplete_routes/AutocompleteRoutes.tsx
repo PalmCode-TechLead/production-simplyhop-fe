@@ -103,24 +103,26 @@ export const AutocompleteRoutes = ({
   const destinationInputRef = useRef<HTMLInputElement | null>(null);
   const isOpen = originAutocomplete.isOpen || destinationAutocomplete.isOpen;
 
-  // const [isFocus, setIsFocus] = useState<boolean>(false);
-  // const [query, setQuery] = useState("");
   const containerRef = useRef<HTMLDivElement | null>(null);
-
-  // const [isOpen, setIsOpen] = useState<boolean>(false);
-  // const inputRef = useRef<HTMLInputElement | null>(null);
 
   const originDebounced = useDebounceCallback(origin.autocomplete.onQuery, 500);
   const destinationDebounced = useDebounceCallback(
     destination.autocomplete.onQuery,
     500
   );
-  // const containerRef = useRef<HTMLDivElement | null>(null);
-  // useOnClickOutside(containerRef, () => {
-  //   setQuery(selected?.name ?? "");
-  //   setIsFocus(false);
-  //   setIsOpen(false);
-  // });
+
+  useOnClickOutside(containerRef as any, () => {
+    setOriginAutocomplete({
+      query: origin.autocomplete.selected?.name ?? "",
+      isFocus: false,
+      isOpen: false,
+    });
+    setDestinationAutocomplete({
+      query: destination.autocomplete.selected?.name ?? "",
+      isFocus: false,
+      isOpen: false,
+    });
+  });
 
   const originFilteredItems = !originAutocomplete.query.length
     ? origin.autocomplete?.items ?? []

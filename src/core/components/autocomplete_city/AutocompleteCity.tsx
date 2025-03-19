@@ -48,11 +48,11 @@ export const AutocompleteCity = ({
 
   const debounced = useDebounceCallback(onQuery, 500);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  // useOnClickOutside(containerRef, () => {
-  //   setQuery(selected?.name ?? "");
-  //   setIsFocus(false);
-  //   setIsOpen(false);
-  // });
+  useOnClickOutside(containerRef as any, () => {
+    setQuery(selected?.name ?? "");
+    setIsFocus(false);
+    setIsOpen(false);
+  });
 
   const filteredItems = !query.length
     ? items
