@@ -413,6 +413,7 @@ export const FilterFindRide = () => {
             onSelect={handleSelectCity}
           />
           <AutocompleteRoutes
+            disabled={!state.filters.city.selected.item}
             origin={{
               autocomplete: {
                 selected: state.filters.origin.selected.item,
@@ -495,8 +496,16 @@ export const FilterFindRide = () => {
             "bg-[#5AC53D]",
             "py-[1rem]",
             "rounded-[0.375rem]",
-            "text-[1rem] text-[#FFFFFF] font-medium"
+            "text-[1rem] text-[#FFFFFF] font-medium",
+            "disabled:opacity-50"
           )}
+          disabled={
+            !state.filters.city.selected.item ||
+            !state.filters.origin.selected.item ||
+            !state.filters.destination.selected.item ||
+            !state.filters.date.selected ||
+            !state.filters.passenger.value.length
+          }
         >
           {dictionaries.filter.cta.primary.children}
         </button>

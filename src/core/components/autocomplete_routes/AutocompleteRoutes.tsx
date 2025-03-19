@@ -178,10 +178,11 @@ export const AutocompleteRoutes = ({
   //   setQuery(selected?.name ?? "");
   // }, [selected?.name]);
 
+  console.log(disabled, "ini disabled");
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer>
+        <InputContainer className={clsx(disabled && "!opacity-50")}>
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",

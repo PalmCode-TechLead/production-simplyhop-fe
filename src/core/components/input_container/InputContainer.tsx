@@ -18,6 +18,7 @@ export const InputContainer = forwardRef<
         "border border-[#E2E2E2]",
         "px-[1.625rem] py-[0.5rem]",
         "h-[56px]",
+        "bg-[white]",
         "grid grid-rows-1 grid-cols-1 justify-between justify-items-start",
         "items-end content-end",
         props.className
