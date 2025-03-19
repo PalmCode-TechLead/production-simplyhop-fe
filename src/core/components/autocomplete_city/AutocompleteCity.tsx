@@ -160,7 +160,6 @@ export const AutocompleteCity = ({
               )}
               onClick={() => {
                 inputRef.current?.focus();
-                setIsOpen(true);
               }}
             />
           </div>

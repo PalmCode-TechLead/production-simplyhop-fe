@@ -13,11 +13,11 @@ import { InputContainer } from "../input_container";
 import { AutocompleteOptionsContainer } from "../autocomplete_options_container";
 import { AutocompleteOption } from "../autocomplete_option";
 import { AutocompleteEmptyBox } from "../autocomplete_empty_box";
+import useAutocomplete from "@/core/utils/ui/hooks/useAutocomplete";
 
 export interface AutocompleteRoutesProps {
   type?: "sync" | "async";
-  selected?: { id: string; name: string } | null;
-  items?: { id: string; name: string }[];
+
   disabled?: boolean;
   emptyMessage?: string;
   search?: boolean;
@@ -25,10 +25,24 @@ export interface AutocompleteRoutesProps {
   start?: {
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
     labelProps?: InputLabelProps;
+    autocomplete?: {
+      selected?: { id: string; name: string } | null;
+      items?: { id: string; name: string }[];
+      disabled?: boolean;
+      emptyMessage?: string;
+      debounceQuery?: boolean;
+    };
   };
   end?: {
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
     labelProps?: InputLabelProps;
+    autocomplete?: {
+      selected?: { id: string; name: string } | null;
+      items?: { id: string; name: string }[];
+      disabled?: boolean;
+      emptyMessage?: string;
+      debounceQuery?: boolean;
+    };
   };
 
   onSelect?: (data: { id: string; name: string }) => void;
@@ -38,34 +52,67 @@ export interface AutocompleteRoutesProps {
 
 export const AutocompleteRoutes = ({
   type = "sync",
-  selected = null,
+
   disabled = false,
-  items = [],
+
   emptyMessage = "No Result",
   search = true,
   onSelect = () => {},
   // NOTES: async purpose
   debounceQuery = false,
   start = {
+    autocomplete: {
+      selected: null,
+      items: [],
+      disabled: false,
+      emptyMessage: "",
+      debounceQuery: false,
+    },
     inputProps: {},
     labelProps: {},
   },
   end = {
+    autocomplete: {
+      selected: null,
+      items: [],
+      disabled: false,
+      emptyMessage: "",
+      debounceQuery: false,
+    },
     inputProps: {},
     labelProps: {},
   },
 
-  onQuery = () => {},
+  onQuery = (data: string) => {},
   onLoadMore = () => {},
 }: AutocompleteRoutesProps) => {
-  const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [query, setQuery] = useState("");
+  const [startAutocomplete, setStartAutocomplete] = useState<{
+    isFocus: boolean;
+    query: string;
+  }>({
+    isFocus: false,
+    query: "",
+  });
+  const [endAutocomplete, setEndAutocomplete] = useState<{
+    isFocus: boolean;
+    query: string;
+  }>({
+    isFocus: false,
+    query: "",
+  });
+  const startInputRef = useRef<HTMLInputElement | null>(null);
+  const endInputRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  // const [isFocus, setIsFocus] = useState<boolean>(false);
+  // const [query, setQuery] = useState("");
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const inputRef = useRef<HTMLInputElement | null>(null);
 
   const debounced = useDebounceCallback(onQuery, 500);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  // const containerRef = useRef<HTMLDivElement | null>(null);
   // useOnClickOutside(containerRef, () => {
   //   setQuery(selected?.name ?? "");
   //   setIsFocus(false);
@@ -74,28 +121,41 @@ export const AutocompleteRoutes = ({
 
   const { ref, isIntersecting } = useIntersectionObserver();
 
-  const filteredItems = !query.length
-    ? items
+  const startFilteredItems = !startAutocomplete.query.length
+    ? start.autocomplete?.items ?? []
     : type === "async"
-    ? items
+    ? start.autocomplete?.items ?? []
     : !search
-    ? items
-    : items.filter((item) =>
+    ? start.autocomplete?.items ?? []
+    : (start.autocomplete?.items ?? []).filter((item) =>
         item.name
           .toLowerCase()
           .replace(/\s+/g, "")
-          .includes(query.toLowerCase().replace(/\s+/g, ""))
+          .includes(startAutocomplete.query.toLowerCase().replace(/\s+/g, ""))
       );
 
-  const handleChange = (data: { id: string; name: string }) => {
-    onSelect(data);
-    setQuery(data.name ?? "");
-    setIsOpen(false);
-  };
+  const endFilteredItems = !endAutocomplete.query.length
+    ? end.autocomplete?.items ?? []
+    : type === "async"
+    ? end.autocomplete?.items ?? []
+    : !search
+    ? end.autocomplete?.items ?? []
+    : (end.autocomplete?.items ?? []).filter((item) =>
+        item.name
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(endAutocomplete.query.toLowerCase().replace(/\s+/g, ""))
+      );
 
-  useEffect(() => {
-    setQuery(selected?.name ?? "");
-  }, [selected?.name]);
+  // const handleChange = (data: { id: string; name: string }) => {
+  //   onSelect(data);
+  //   setQuery(data.name ?? "");
+  //   setIsOpen(false);
+  // };
+
+  // useEffect(() => {
+  //   setQuery(selected?.name ?? "");
+  // }, [selected?.name]);
 
   useEffect(() => {
     if (isIntersecting && type === "async") {
@@ -108,80 +168,117 @@ export const AutocompleteRoutes = ({
       <div className={clsx("relative w-full")}>
         <InputContainer
           className={clsx(
-            isFocus
-              ? "items-end content-end"
-              : !!query.length
-              ? "items-end content-end"
-              : "items-center content-center"
+            // isFocus
+            //   ? "items-end content-end"
+            //   : !!query.length
+            //   ? "items-end content-end"
+            //   : "items-center content-center"
+            "items-end content-end"
           )}
         >
           <div
             className={clsx(
               "grid grid-cols-[1fr_auto_1fr] gap-[1rem]",
-              isFocus
-                ? "items-end content-end"
-                : !!query.length
-                ? "items-end content-end"
-                : "items-center content-center",
+              // isFocus
+              //   ? "items-end content-end"
+              //   : !!query.length
+              //   ? "items-end content-end"
+              //   : "items-center content-center",
+              "items-end content-end",
               "w-full",
               "relative"
             )}
           >
             <Input
-              ref={inputRef}
+              // ref={inputRef}
+              ref={startInputRef}
               {...start.inputProps}
-              value={query}
+              // value={query}
+              value={startAutocomplete.query}
               onFocus={() => {
                 if (disabled) {
                   return;
                 }
-                setIsFocus(true);
+                setStartAutocomplete({
+                  ...startAutocomplete,
+                  isFocus: true,
+                });
               }}
               onBlur={() => {
-                setIsFocus(false);
+                // setIsFocus(false);
+                setStartAutocomplete({
+                  ...startAutocomplete,
+                  isFocus: false,
+                });
               }}
               onChange={(event) => {
                 setIsOpen(!!event.target.value.length);
-                setQuery(event.target.value);
+                setStartAutocomplete({
+                  ...startAutocomplete,
+                  query: event.target.value,
+                });
                 if (debounceQuery) {
                   debounced(event.target.value);
                 } else {
                   onQuery(event.target.value);
                 }
+                // setIsOpen(!!event.target.value.length);
+                // setQuery(event.target.value);
+                // if (debounceQuery) {
+                //   debounced(event.target.value);
+                // } else {
+                //   onQuery(event.target.value);
+                // }
               }}
             />
 
             <InputLabel
               {...start.labelProps}
               className={clsx(
-                !!query
+                // !!query
+                !!startAutocomplete.query
                   ? "top-[-16px] text-[0.75rem]"
                   : "left-0 top-0 text-[0.75rem]"
               )}
               onClick={() => {
-                inputRef.current?.focus();
-                setIsOpen(true);
+                // inputRef.current?.focus();
+                // setIsOpen(true);
+                startInputRef.current?.focus();
               }}
             />
 
             <div className={clsx("bg-[#E0ECDC]", "w-[1px] h-full")} />
 
             <Input
-              ref={inputRef}
+              // ref={inputRef}
+              ref={endInputRef}
               {...end.inputProps}
-              value={query}
+              // value={query}
+              value={endAutocomplete.query}
               onFocus={() => {
                 if (disabled) {
                   return;
                 }
-                setIsFocus(true);
+                // setIsFocus(true);
+                setEndAutocomplete({
+                  ...endAutocomplete,
+                  isFocus: true,
+                });
               }}
               onBlur={() => {
-                setIsFocus(false);
+                // setIsFocus(false);
+                setEndAutocomplete({
+                  ...endAutocomplete,
+                  isFocus: false,
+                });
               }}
               onChange={(event) => {
                 setIsOpen(!!event.target.value.length);
-                setQuery(event.target.value);
+                // setQuery(event.target.value);
+                setEndAutocomplete({
+                  ...endAutocomplete,
+                  query: event.target.value,
+                });
                 if (debounceQuery) {
                   debounced(event.target.value);
                 } else {
@@ -193,13 +290,15 @@ export const AutocompleteRoutes = ({
             <InputLabel
               {...end.labelProps}
               className={clsx(
-                !!query
+                // !!query
+                !!endAutocomplete.query
                   ? "top-[-16px] text-[0.75rem]"
                   : "left-[calc(50%+1rem)] top-0 text-[0.75rem]"
               )}
               onClick={() => {
-                inputRef.current?.focus();
-                setIsOpen(true);
+                // inputRef.current?.focus();
+                endInputRef.current?.focus();
+                // setIsOpen(true);
               }}
             />
           </div>
@@ -209,25 +308,26 @@ export const AutocompleteRoutes = ({
           <AutocompleteOptionsContainer
             className={clsx(isOpen ? "inline" : "hidden")}
           >
-            {filteredItems.length === 0 && query !== "" ? (
+            {startAutocomplete.isFocus &&
+            startFilteredItems.length === 0 &&
+            startAutocomplete.query !== "" ? (
               <AutocompleteEmptyBox>{emptyMessage}</AutocompleteEmptyBox>
             ) : (
-              filteredItems.map((item, index) => (
+              startFilteredItems.map((item, index) => (
                 <AutocompleteOption
                   key={index}
-                  className={clsx(
-                    selected?.id === item.id
-                      ? "font-bold text-[#FF6201]"
-                      : "font-normal text-[#201E2C]"
-                  )}
-                  onClick={() => handleChange(item)}
+                  // className={clsx(
+                  //   selected?.id === item.id
+                  //     ? "font-bold text-[#FF6201]"
+                  //     : "font-normal text-[#201E2C]"
+                  // )}
+                  // onClick={() => handleChange(item)}
                 >
                   {item.name}
                 </AutocompleteOption>
               ))
             )}
 
-            {/* NOTES: infinite scroll identifier */}
             <div
               ref={ref}
               className={clsx("opacity-0", "h-[0px]", "overflow-hidden")}
