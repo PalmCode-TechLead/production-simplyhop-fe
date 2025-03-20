@@ -5,7 +5,6 @@ import { getDictionaries } from "../../i18n";
 import { SearchField } from "@/core/components/searchfield";
 import { TabList, Tab, TabGroup } from "@headlessui/react";
 import { ListItemChatTrip } from "../../components/list_item";
-import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 
