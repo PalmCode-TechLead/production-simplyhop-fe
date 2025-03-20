@@ -68,7 +68,7 @@ export const MonthPickerActivityMobile = ({
   date = new Date(),
   onClickYear = () => {},
 
-  onClickMonth = (date: Date) => {},
+  onClickMonth = () => {},
 }: MonthPickerActivityMobileProps) => {
   const [newDate, setNewDate] = React.useState<Date>(date);
   const yearName = newDate.toLocaleString("en-US", {

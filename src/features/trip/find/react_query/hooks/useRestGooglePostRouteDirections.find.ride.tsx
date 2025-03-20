@@ -31,22 +31,6 @@ export const useRestGooglePostRouteDirections = () => {
           },
         },
       },
-      // waypoints: [
-      //   {
-      //     location: {
-      //       latLng: {
-      //         latitude:
-      //           ((state.filters.origin.selected.lat_lng?.lat ?? 0) +
-      //             (state.filters.destination.selected.lat_lng?.lat ?? 0)) /
-      //           2, // Titik tengah
-      //         longitude:
-      //           ((state.filters.origin.selected.lat_lng?.lng ?? 0) +
-      //             (state.filters.destination.selected.lat_lng?.lng ?? 0)) /
-      //           2, // Titik tengah
-      //       },
-      //     },
-      //   },
-      // ],
       travelMode: "DRIVE",
       routingPreference: "TRAFFIC_AWARE_OPTIMAL",
       computeAlternativeRoutes: false,

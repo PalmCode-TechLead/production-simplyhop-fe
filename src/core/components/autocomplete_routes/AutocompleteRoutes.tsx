@@ -1,15 +1,13 @@
-import { Fragment, useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import clsx from "clsx";
 
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
-import SVGIcon from "../../icons";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { Input } from "../input";
 import { InputContainer } from "../input_container";
 import { AutocompleteOptionsContainer } from "../autocomplete_options_container";
 import { AutocompleteOption } from "../autocomplete_option";
 import { AutocompleteEmptyBox } from "../autocomplete_empty_box";
-import useAutocomplete from "@/core/utils/ui/hooks/useAutocomplete";
 
 export interface AutocompleteRoutesProps {
   type?: "sync" | "async";
@@ -174,11 +172,6 @@ export const AutocompleteRoutes = ({
     });
   };
 
-  // useEffect(() => {
-  //   setQuery(selected?.name ?? "");
-  // }, [selected?.name]);
-
-  console.log(disabled, "ini disabled");
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>

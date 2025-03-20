@@ -8,7 +8,6 @@ import {
 } from "@react-google-maps/api";
 import { useContext, useEffect, useRef, useState } from "react";
 import { decode } from "@googlemaps/polyline-codec";
-import clsx from "clsx";
 import { ENVIRONMENTS } from "@/core/environments";
 import { FindTripContext } from "../../context";
 import { MapInfoWindow } from "@/core/components/map_info_window";

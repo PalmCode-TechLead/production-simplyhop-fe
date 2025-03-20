@@ -63,7 +63,7 @@ export interface YearPickerActivityMobileProps {
 
 export const YearPickerActivityMobile = ({
   date = new Date(),
-  onClickYear = (date: Date) => {},
+  onClickYear = () => {},
 }: YearPickerActivityMobileProps) => {
   const [newDate, setNewDate] = React.useState<Date>(date);
   const calendarYears = generateYearList(newDate);

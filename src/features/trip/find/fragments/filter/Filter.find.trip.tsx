@@ -147,7 +147,7 @@ export const FilterFindTrip = () => {
         lng: response.lng,
       };
     } catch (err) {
-      throw new Error("Err get lat lng");
+      throw new Error(`Err get lat lng ${err}`);
     }
 
     await dispatch({
@@ -222,7 +222,7 @@ export const FilterFindTrip = () => {
         lng: response.lng,
       };
     } catch (err) {
-      throw new Error("Err get lat lng");
+      throw new Error(`Err get lat lng ${err}`);
     }
 
     await dispatch({
