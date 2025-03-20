@@ -20,6 +20,7 @@ export const TopNavigation = () => {
           "w-full h-full",
           "bg-[white]"
         )}
+        style={{ boxShadow: "0px 5px 10px 0px #0000000D" }}
       >
         <div
           className={clsx(

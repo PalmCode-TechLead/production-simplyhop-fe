@@ -69,6 +69,7 @@ export const ListChatTrip = () => {
           {data.map((item, itemIndex) => (
             <Link
               key={itemIndex}
+              className={clsx("cursor-pointer")}
               href={`${AppCollectionURL.private.chat()}?id=${itemIndex}`}
             >
               <ListItemChatTrip {...item} />

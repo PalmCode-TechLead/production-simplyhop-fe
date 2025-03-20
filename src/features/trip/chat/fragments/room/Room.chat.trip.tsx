@@ -7,6 +7,7 @@ import SVGIcon from "@/core/icons";
 import { ChatField } from "@/core/components/chatfield";
 import { RoomHeaderChatTrip } from "../../components/room_header";
 import { useSearchParams } from "next/navigation";
+import { OrderCardChatTrip } from "../../components/order_card";
 
 export interface RoomChatTripProps {}
 
@@ -20,7 +21,7 @@ export const RoomChatTrip = (props: RoomChatTripProps) => {
   return (
     <div
       className={clsx(
-        "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start",
+        "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
         "w-full h-[calc(100vh-90px)]"
       )}
     >
@@ -33,7 +34,9 @@ export const RoomChatTrip = (props: RoomChatTripProps) => {
 
       {/* chat */}
 
-      <div className={clsx("w-full h-full", "overflow-hidden")}></div>
+      <div className={clsx("w-full", "overflow-hidden")}>
+        <OrderCardChatTrip />
+      </div>
 
       {/* action commentar */}
       <div

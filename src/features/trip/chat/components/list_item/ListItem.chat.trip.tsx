@@ -52,7 +52,11 @@ export const ListItemChatTrip = ({
             {name}
           </p>
           <p
-            className={clsx("text-[0.875rem] text-[#4F5665] font-normal")}
+            className={clsx(
+              "text-[0.875rem] text-[#4F5665] font-normal text-left",
+              "line-clamp-1 text-ellipsis",
+              "w-full"
+            )}
             dangerouslySetInnerHTML={{ __html: message }}
           />
         </div>
