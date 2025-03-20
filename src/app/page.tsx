@@ -1,13 +1,13 @@
 import { AppContainer } from "@/core/modules/app/container";
-import { FindRideContainer } from "@/features/ride/find/container/Find.ride.container";
-import { FindRideProvider } from "@/features/ride/find/context";
+import { FindTripContainer } from "@/features/trip/find/container/Find.trip.container";
+import { FindTripProvider } from "@/features/trip/find/context";
 
 export default function Home() {
   return (
-    <FindRideProvider>
+    <FindTripProvider>
       <AppContainer>
-        <FindRideContainer />
+        <FindTripContainer />
       </AppContainer>
-    </FindRideProvider>
+    </FindTripProvider>
   );
 }

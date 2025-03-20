@@ -1,0 +1,37 @@
+{
+  "title": "Chat",
+  "search": {
+    "inputProps": {
+      "id": "search",
+      "placeholder": " "
+    },
+    "labelProps": {
+      "id": "search",
+      "children": "Search people or message",
+      "required": false
+    }
+  },
+  "tab": {
+    "items": [
+      {
+        "id": "all",
+        "name": "Alle"
+      },
+      {
+        "id": "offered-trips",
+        "name": "Angebotene Fahrten"
+      },
+      {
+        "id": "my-rides",
+        "name": "Meine Mitfahrten"
+      }
+    ]
+  },
+  "chat": {
+    "cta": {
+      "send": {
+        "children": "Senden"
+      }
+    }
+  }
+}
