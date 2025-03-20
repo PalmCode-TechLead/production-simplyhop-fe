@@ -7,7 +7,6 @@ export interface ListItemChatTripProps {
   name?: string;
   message?: string;
   date?: string;
-  onClick?: () => void;
 }
 
 export const ListItemChatTrip = ({
@@ -15,15 +14,13 @@ export const ListItemChatTrip = ({
   name = "",
   message = "",
   date = "",
-  onClick = () => {},
 }: ListItemChatTripProps) => {
   return (
-    <button
+    <div
       className={clsx(
         "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[1.5rem]",
         "w-full"
       )}
-      onClick={onClick}
     >
       <div
         className={clsx(
@@ -65,6 +62,6 @@ export const ListItemChatTrip = ({
       <span className={clsx("text-[0.625rem] text-[#4F5665] font-normal")}>
         {date}
       </span>
-    </button>
+    </div>
   );
 };

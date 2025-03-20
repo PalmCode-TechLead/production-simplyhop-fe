@@ -19,7 +19,7 @@ export const RoomChatTrip = () => {
     <div
       className={clsx(
         "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
-        "w-full h-[calc(100vh-90px)]"
+        "w-full h-full"
       )}
     >
       {/* header */}
@@ -31,7 +31,7 @@ export const RoomChatTrip = () => {
 
       {/* chat */}
 
-      <div className={clsx("w-full", "overflow-hidden")}>
+      <div className={clsx("w-full h-full", "overflow-hidden")}>
         <OrderCardChatTrip />
       </div>
 
