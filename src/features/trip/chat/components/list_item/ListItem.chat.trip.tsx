@@ -36,7 +36,7 @@ export const ListItemChatTrip = ({
           className={clsx(
             "w-[2.5rem] h-[2.5rem]",
             "rounded-[50%]",
-            "object-center"
+            "object-cover object-center"
           )}
         />
         <div

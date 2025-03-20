@@ -11,6 +11,7 @@ import {
   ChevronDown,
   Minus,
   Plus,
+  SendHorizonal,
 } from "lucide-react";
 
 export const svgMap = {
@@ -25,7 +26,8 @@ export const svgMap = {
   ChevronUp,
   ChevronDown,
   Minus,
-  Plus
+  Plus,
+  SendHorizonal
 };
 
 export type SVGName = keyof typeof svgMap;

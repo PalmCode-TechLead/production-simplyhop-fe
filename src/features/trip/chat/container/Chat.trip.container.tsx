@@ -6,7 +6,13 @@ import { RoomChatTrip } from "../fragments/room";
 export const ChatTripContainer = () => {
   console.log("ini kepanggil ga");
   return (
-    <div className={clsx("w-full h-full", "relative")}>
+    <div
+      className={clsx(
+        "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
+        "w-full h-full min-h-[calc(100vh-90px)]",
+        "relative"
+      )}
+    >
       <div
         className={clsx(
           "grid grid-rows-1 grid-cols-1 items-start content-start justify-center justify-items-center",

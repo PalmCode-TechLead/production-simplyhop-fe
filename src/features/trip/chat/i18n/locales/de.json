@@ -38,6 +38,17 @@
       "send": {
         "children": "Senden"
       }
+    },
+    "message": {
+      "inputProps": {
+        "id": "chat",
+        "placeholder": " "
+      },
+      "labelProps": {
+        "id": "chat",
+        "children": "Schreibe eine Nachricht...",
+        "required": false
+      }
     }
   }
 }
