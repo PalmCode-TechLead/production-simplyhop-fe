@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { CustomerOrderCardChatTrip } from "../../components/customer_order_card";
 import { ConversationItemChatTrip } from "../../components/conversation_item";
 import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
-import EmojiPicker, { Emoji, EmojiClickData } from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
