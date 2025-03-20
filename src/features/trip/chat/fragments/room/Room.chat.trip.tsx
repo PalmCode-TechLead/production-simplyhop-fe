@@ -7,6 +7,7 @@ import { ChatField } from "@/core/components/chatfield";
 import { RoomHeaderChatTrip } from "../../components/room_header";
 import { useSearchParams } from "next/navigation";
 import { OrderCardChatTrip } from "../../components/order_card";
+import { ConversationItemChatTrip } from "../../components/conversation_item";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -15,6 +16,14 @@ export const RoomChatTrip = () => {
   if (!id) {
     return null;
   }
+  const conversationData = Array.from({ length: 10 }, (_, i) => i + 1).map(
+    (item) => {
+      if (item % 2 === 1) {
+        return dictionaries.chat.room.conversation.chat.sender;
+      }
+      return dictionaries.chat.room.conversation.chat.recipient;
+    }
+  );
   return (
     <div
       className={clsx(
@@ -26,13 +35,19 @@ export const RoomChatTrip = () => {
       <RoomHeaderChatTrip
         image={{ ...dictionaries.chat.room.header.image }}
         name={dictionaries.chat.room.header.name}
-        account_name={dictionaries.chat.room.header.account}
       />
 
       {/* chat */}
 
-      <div className={clsx("w-full h-full", "overflow-hidden")}>
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+          "w-full h-full",
+          "overflow-auto"
+        )}
+      >
         <OrderCardChatTrip />
+        <ConversationItemChatTrip chats={conversationData} />
       </div>
 
       {/* action commentar */}

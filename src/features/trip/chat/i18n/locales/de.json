@@ -44,8 +44,37 @@
           "width": 36,
           "height": 36
         },
-        "name": "Suzana Colin",
-        "account": "@Suzana"
+        "name": "Suzana Colin"
+      },
+      "conversation": {
+        "chat": {
+          "sender": {
+            "id": "sender",
+            "type": "sender",
+            "time": "10:30 AM",
+            "name": "Jack Raymonds",
+            "image": {
+              "src": "/images/chat/sender.png",
+              "width": 36,
+              "height": 36,
+              "alt": "sender"
+            },
+            "message": "Hey Grace, how's it going?"
+          },
+          "recipient": {
+            "id": "recipient",
+            "type": "recipient",
+            "time": "10:30 AM",
+            "name": "Grace Miller",
+            "image": {
+              "src": "/images/chat/recipient.png",
+              "width": 36,
+              "height": 36,
+              "alt": "recipient"
+            },
+            "message": "Hi Jack! I'm doing well, thanks. Can't wait for our ride tomorrow!"
+          }
+        }
       },
       "message": {
         "inputProps": {

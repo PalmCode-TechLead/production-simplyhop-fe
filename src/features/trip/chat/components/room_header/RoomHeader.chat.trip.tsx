@@ -5,13 +5,11 @@ import Image, { ImageProps } from "next/image";
 export interface RoomHeaderChatTripProps {
   image?: ImageProps;
   name?: string;
-  account_name?: string;
 }
 
 export const RoomHeaderChatTrip = ({
   image,
   name = "",
-  account_name = "",
 }: RoomHeaderChatTripProps) => {
   return (
     <div
@@ -42,9 +40,6 @@ export const RoomHeaderChatTrip = ({
         <h2 className={clsx("text-[#141414] text-[1rem] font-semibold")}>
           {name}
         </h2>
-        <span className={clsx("text-[0.625rem] font-normal text-[#4F5665]")}>
-          {account_name}
-        </span>
       </div>
     </div>
   );
