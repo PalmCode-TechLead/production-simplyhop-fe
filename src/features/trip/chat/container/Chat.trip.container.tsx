@@ -2,6 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { ListChatTrip } from "../fragments/list";
 import { RoomChatTrip } from "../fragments/room";
+import { Suspense } from "react";
 
 export const ChatTripContainer = () => {
   return (
@@ -30,7 +31,9 @@ export const ChatTripContainer = () => {
           {/* NOTES: divider */}
           <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9]")} />
           {/* NOTES: Room */}
-          <RoomChatTrip />
+          <Suspense fallback={<div />}>
+            <RoomChatTrip />
+          </Suspense>
         </div>
       </div>
     </div>

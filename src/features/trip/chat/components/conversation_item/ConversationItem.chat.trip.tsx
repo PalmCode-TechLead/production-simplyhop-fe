@@ -21,12 +21,16 @@ export const ConversationItemChatTrip = ({
         "w-full"
       )}
     >
-      {chats.map((chat) => {
+      {chats.map((chat, chatIndex) => {
         const { type, ...otherChatProps } = chat;
-        if (chat.type === "sender") {
-          return <SenderMessageItemChatTrip {...otherChatProps} />;
+        if (type === "sender") {
+          return (
+            <SenderMessageItemChatTrip {...otherChatProps} key={chatIndex} />
+          );
         }
-        return <RecipientMessageItemChatTrip {...otherChatProps} />;
+        return (
+          <RecipientMessageItemChatTrip {...otherChatProps} key={chatIndex} />
+        );
       })}
     </div>
   );
