@@ -12,6 +12,7 @@ export interface SearchFieldProps {
 
 export const SearchField = ({ inputProps, labelProps }: SearchFieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
+  const [value, setValue] = React.useState<string>("");
   return (
     <InputContainer
       className={clsx(
@@ -20,14 +21,22 @@ export const SearchField = ({ inputProps, labelProps }: SearchFieldProps) => {
         "!border !border-[#E8E8E8]"
       )}
     >
-      <Input ref={inputRef} {...inputProps} />
+      <Input
+        ref={inputRef}
+        {...inputProps}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(e.currentTarget.value);
+          if (!inputProps?.onChange) return;
+          inputProps.onChange(e);
+        }}
+      />
       <InputLabel
         {...labelProps}
         className={clsx(
-          !!inputProps?.value
+          !!value.length
             ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
             : "top-[50%] left-[1.625rem] translate-y-[-50%] text-[1rem]",
-          "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[1rem]"
+          "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]"
         )}
         onClick={() => {
           inputRef.current?.focus();
