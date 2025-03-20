@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useDebounceCallback, useIntersectionObserver } from "usehooks-ts";
 
 export interface useAutocompleteProps {

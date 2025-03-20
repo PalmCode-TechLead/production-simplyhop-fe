@@ -31,25 +31,11 @@ export type RestGooglePostRouteDirectionsResponseInterface = NextApiResponse<
 >;
 
 export interface RestGooglePostRouteDirectionsSuccessResponseInterface {
-  response_code: number;
-  response_status: string;
-  message: string;
-  data: {
-    authorization: {
-      type: string;
-      expires_in: number;
-      token: string;
+  routes: {
+    polyline: {
+      encodedPolyline: string;
     };
-    user: {
-      id: number;
-      email: string;
-      email_verified_at: null | string;
-      created_at: string;
-      updated_at: string;
-      role: string;
-    };
-  };
-  redirect: null;
+  }[];
 }
 
 export interface RestGooglePostRouteDirectionsErrorResponseInterface {

@@ -20,3 +20,5 @@ export const AutocompleteEmptyBox = forwardRef<
     </div>
   );
 });
+
+AutocompleteEmptyBox.displayName = "AutocompleteEmptyBox";

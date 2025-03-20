@@ -298,7 +298,7 @@ export const FilterFindTrip = () => {
       };
       console.log(lat_lng, "ini lat_lng");
     } catch (err) {
-      throw new Error("Err get lat lng");
+      throw new Error(`Err get lat lng ${err}`);
     }
 
     await dispatch({
@@ -355,7 +355,7 @@ export const FilterFindTrip = () => {
   ]);
 
   // NOTES: set default passenger
-  React.useEffect(() => {
+  const setDefaultPassenger = () => {
     dispatch({
       type: FindTripActionEnum.SetFiltersData,
       payload: {
@@ -371,6 +371,10 @@ export const FilterFindTrip = () => {
         },
       },
     });
+  };
+
+  React.useEffect(() => {
+    setDefaultPassenger();
   }, []);
 
   return (

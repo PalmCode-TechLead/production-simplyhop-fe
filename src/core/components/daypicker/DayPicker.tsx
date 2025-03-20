@@ -8,7 +8,7 @@ const addYearNumber = (date: Date, number: number): Date => {
 
   const month = new Date(date).getMonth();
 
-  let newYear = year + number;
+  const newYear = year + number;
 
   const day = new Date().getDate();
   const newDate = new Date(newYear, month, day);
@@ -20,7 +20,7 @@ const subtractYearNumber = (date: Date, number: number): Date => {
 
   const month = new Date(date).getMonth();
 
-  let newYear = year - number;
+  const newYear = year - number;
 
   const day = new Date().getDate();
   const newDate = new Date(newYear, month, day);
@@ -127,9 +127,9 @@ export interface DayPickerActivityMobileProps {
 export const DayPickerActivityMobile = ({
   date = new Date(),
 
-  onClickDate = (date: Date) => {},
-  onClickMonth = (date: Date) => {},
-  onClickYear = (date: Date) => {},
+  onClickDate = () => {},
+  onClickMonth = () => {},
+  onClickYear = () => {},
 }: DayPickerActivityMobileProps) => {
   const [newDate, setNewDate] = React.useState<Date>(date);
   const monthName = newDate.toLocaleString("en-US", {

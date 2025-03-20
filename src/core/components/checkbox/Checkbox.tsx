@@ -9,13 +9,11 @@ import { useRef } from "react";
 import SVGIcon from "../../icons";
 
 export interface CheckboxProps extends CheckboxComponentProps {
-  variant?: "primary" | "secondary";
   label?: string;
   required?: boolean;
 }
 
 export const Checkbox = ({
-  variant = "primary",
   label = "",
   required = false,
   ...otherProps

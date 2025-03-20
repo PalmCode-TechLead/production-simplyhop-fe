@@ -22,7 +22,6 @@ export interface AutocompleteCityProps {
   labelProps?: InputLabelProps;
   onSelect?: (data: { id: string; name: string }) => void;
   onQuery?: (data: string) => void;
-  onLoadMore?: () => void;
 }
 
 export const AutocompleteCity = ({
@@ -38,9 +37,7 @@ export const AutocompleteCity = ({
   inputProps,
   labelProps,
   onQuery = () => {},
-  onLoadMore = () => {},
 }: AutocompleteCityProps) => {
-  const [isFocus, setIsFocus] = useState<boolean>(false);
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -50,7 +47,7 @@ export const AutocompleteCity = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(containerRef as any, () => {
     setQuery(selected?.name ?? "");
-    setIsFocus(false);
+
     setIsOpen(false);
   });
 
@@ -98,10 +95,6 @@ export const AutocompleteCity = ({
                 if (disabled) {
                   return;
                 }
-                setIsFocus(true);
-              }}
-              onBlur={() => {
-                setIsFocus(false);
               }}
               onChange={(event) => {
                 setIsOpen(!!event.target.value.length);

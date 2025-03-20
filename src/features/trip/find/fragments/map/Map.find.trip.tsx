@@ -19,8 +19,8 @@ const libraries: any = ["places"];
 export const MapFindTrip = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
   const dictionaries = getDictionaries();
-  const { state, dispatch } = useContext(FindTripContext);
-  const { location: userLocation, error } = useGeolocation();
+  const { state } = useContext(FindTripContext);
+  const { location: userLocation } = useGeolocation();
   console.log(userLocation, "ini user location");
 
   if (!apiKey) {
@@ -98,7 +98,7 @@ export const MapFindTrip = () => {
       }
     };
     fetchRoute();
-  }, [isLoaded]);
+  }, [isLoaded, endPoint.lat, endPoint.lng, startPoint.lat, startPoint.lng]);
 
   const mapRef = useRef<google.maps.Map | null>(null);
 
@@ -119,7 +119,8 @@ export const MapFindTrip = () => {
     }
   }, [
     isLoaded,
-    mapRef.current,
+    polylinePath,
+    state.map.polyline_path,
     polylinePath.length,
     state.map.polyline_path.length,
   ]);

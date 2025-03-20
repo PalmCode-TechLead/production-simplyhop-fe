@@ -5,20 +5,17 @@ import { useOnClickOutside } from "usehooks-ts";
 import { DayPickerActivityMobile } from "../daypicker";
 import { InputContainer } from "../input_container";
 import { InputLabel, InputLabelProps } from "../input_label";
-import { Input } from "../input";
 
 export interface DatePickerProps {
   value?: Date;
-  disabled?: boolean;
   labelProps?: InputLabelProps;
   onSelect?: (data: Date) => void;
 }
 
 export const DatePicker = ({
   value = new Date(),
-  disabled = false,
   labelProps,
-  onSelect = (data: Date) => {},
+  onSelect = () => {},
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
@@ -32,7 +29,7 @@ export const DatePicker = ({
   // }, [value]);
 
   useOnClickOutside(ref as any, () => {
-    setIsOpen((_) => false);
+    setIsOpen(false);
   });
 
   const handleClickDropdown = () => {

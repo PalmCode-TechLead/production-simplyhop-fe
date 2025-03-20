@@ -30,3 +30,5 @@ export const AutocompleteOptionsContainer = forwardRef<
     </div>
   );
 });
+
+AutocompleteOptionsContainer.displayName = "AutocompleteOptionsContainer";

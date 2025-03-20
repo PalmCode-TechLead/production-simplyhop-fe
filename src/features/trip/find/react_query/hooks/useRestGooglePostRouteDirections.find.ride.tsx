@@ -42,13 +42,14 @@ export const useRestGooglePostRouteDirections = () => {
       mutationFn: () => {
         return fetchRestGooglePostRouteDirections(payload);
       },
-      onSuccess(data: any) {
+      onSuccess(data) {
+        if (!Object.keys(data).length) return;
         const encodedPolyline = data.routes[0].polyline.encodedPolyline;
         const decodedPolyline = decode(encodedPolyline).map(([lat, lng]) => ({
           lat,
           lng,
         }));
-        console.log(decodedPolyline, "ini polyline fetch");
+
         dispatch({
           type: FindTripActionEnum.SetMapData,
           payload: {

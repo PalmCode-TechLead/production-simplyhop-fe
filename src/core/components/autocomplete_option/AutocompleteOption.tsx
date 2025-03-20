@@ -20,3 +20,5 @@ export const AutocompleteOption = forwardRef<
     </div>
   );
 });
+
+AutocompleteOption.displayName = "AutocompleteOption";

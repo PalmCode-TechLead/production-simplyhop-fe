@@ -2,16 +2,13 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import Image from "next/image";
 import SVGIcon from "@/core/icons";
 import { ChatField } from "@/core/components/chatfield";
 import { RoomHeaderChatTrip } from "../../components/room_header";
 import { useSearchParams } from "next/navigation";
 import { OrderCardChatTrip } from "../../components/order_card";
 
-export interface RoomChatTripProps {}
-
-export const RoomChatTrip = (props: RoomChatTripProps) => {
+export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
