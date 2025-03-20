@@ -6,8 +6,9 @@ import SVGIcon from "@/core/icons";
 import { ChatField } from "@/core/components/chatfield";
 import { RoomHeaderChatTrip } from "../../components/room_header";
 import { useSearchParams } from "next/navigation";
-import { OrderCardChatTrip } from "../../components/order_card";
+import { CustomerOrderCardChatTrip } from "../../components/customer_order_card";
 import { ConversationItemChatTrip } from "../../components/conversation_item";
+import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -46,7 +47,8 @@ export const RoomChatTrip = () => {
           "overflow-auto"
         )}
       >
-        <OrderCardChatTrip />
+        <CustomerOrderCardChatTrip />
+        <DriverOrderCardChatTrip />
         <ConversationItemChatTrip chats={conversationData} />
       </div>
 
