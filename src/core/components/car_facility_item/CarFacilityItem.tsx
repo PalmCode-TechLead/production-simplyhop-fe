@@ -3,14 +3,16 @@ import clsx from "clsx";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 
 export interface CarFacilityItemProps {
-  icon?: React.HTMLAttributes<SVGElement>;
+  id?: string;
+  icon?: SVGIconProps;
   name?: {
-    label: string;
-    color: string; // HEXCode
+    label?: string;
+    color?: string; // HEXCode
   };
 }
 
 export const CarFacilityItem = ({
+  id = "",
   icon,
   name = {
     label: "",
@@ -19,6 +21,7 @@ export const CarFacilityItem = ({
 }: CarFacilityItemProps) => {
   return (
     <div
+      id={id}
       className={clsx(
         "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.375rem]"
       )}

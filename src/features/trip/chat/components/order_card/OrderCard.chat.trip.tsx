@@ -1,78 +1,162 @@
 import * as React from "react";
 import clsx from "clsx";
-import Image from "next/image";
-import SVGIcon from "@/core/icons";
-import { TravelTimeItem } from "@/core/components/travel_time_item";
-import { DepartureItem } from "@/core/components/departure_item";
-import { ArrivalItem } from "@/core/components/arrival_item";
-import { CarFacilityItem } from "@/core/components/car_facility_item";
-import { CarPriceItem } from "@/core/components/car_price_item";
-import { PriceOfferedItem } from "@/core/components/price_offered_item/PriceOfferedItem";
-import { TripNoteItem } from "@/core/components/trip_note_item";
+import Image, { ImageProps } from "next/image";
+import { SVGIconProps } from "@/core/icons";
+import {
+  TravelTimeItem,
+  TravelTimeItemProps,
+} from "@/core/components/travel_time_item";
+import {
+  DepartureItem,
+  DepartureItemProps,
+} from "@/core/components/departure_item";
+import { ArrivalItem, ArrivalItemProps } from "@/core/components/arrival_item";
+import {
+  CarFacilityItem,
+  CarFacilityItemProps,
+} from "@/core/components/car_facility_item";
+import {
+  CarPriceItem,
+  CarPriceItemProps,
+} from "@/core/components/car_price_item";
+import {
+  PriceOfferedItem,
+  PriceOfferedItemProps,
+} from "@/core/components/price_offered_item/PriceOfferedItem";
+import {
+  TripNoteItem,
+  TripNoteItemProps,
+} from "@/core/components/trip_note_item";
+import CarIdentityItem, {
+  CarIdentityItemProps,
+} from "@/core/components/car_identity_item/CarIdentityItem";
 
-export interface IOrderCardChatTripProps {}
+export interface OrderCardChatTripProps {
+  car?: {
+    image: ImageProps;
+    identity?: CarIdentityItemProps;
+    facility?: {
+      top: CarFacilityItemProps[];
+      bottom: CarFacilityItemProps[];
+    };
+  };
 
-export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
-  const top = [
-    {
-      id: "people",
-      icon: {
-        name: "User",
-        className: "text-[#D41010]",
-      },
-      name: {
-        label: "Letzter Platz für deine Buchung",
-        color: "#D41010",
-      },
-    },
-    {
-      id: "briefcase",
-      icon: {
-        name: "Briefcase",
-        className: "text-[#D41010]",
-      },
-      name: {
-        label: "Kein Gepäck erlaubt",
-        color: "#D41010",
-      },
-    },
-  ];
+  routes?: {
+    departure?: DepartureItemProps;
+    travelTime?: TravelTimeItemProps;
+    arrival?: ArrivalItemProps;
+  };
+  price?: {
+    initial?: CarPriceItemProps;
+    offered?: PriceOfferedItemProps;
+  };
+  note?: TripNoteItemProps;
+}
 
-  const bottom = [
-    {
-      id: "cigarette-off",
-      icon: {
-        name: "CigaretteOff",
-        className: "text-[#727272]",
-      },
-      name: {
-        label: "Nichtraucher",
-        color: "#727272",
-      },
+export const OrderCardChatTrip = ({
+  car = {
+    image: {
+      src: "/images/general/car.png",
+      alt: "car",
+      width: 145,
+      height: 46,
     },
-    {
-      id: "music",
-      icon: {
-        name: "Music",
-        className: "text-[#727272]",
-      },
-      name: {
-        label: "Musik erlaubt",
-        color: "#727272",
-      },
+    identity: {
+      name: "Toyota Rav 4",
+      number: "WOB ZK 295",
     },
-    {
-      id: "dog",
-      icon: {
-        name: "Dog",
-        className: "text-[#727272]",
-      },
-      name: {
-        label: "Haustiere erlaubt",
-        color: "#727272",
-      },
+    facility: {
+      top: [
+        {
+          id: "people",
+          icon: {
+            name: "User",
+            className: "text-[#D41010]",
+          },
+          name: {
+            label: "Letzter Platz für deine Buchung",
+            color: "#D41010",
+          },
+        },
+        {
+          id: "briefcase",
+          icon: {
+            name: "Briefcase",
+            className: "text-[#D41010]",
+          },
+          name: {
+            label: "Kein Gepäck erlaubt",
+            color: "#D41010",
+          },
+        },
+      ],
+      bottom: [
+        {
+          id: "cigarette-off",
+          icon: {
+            name: "CigaretteOff",
+            className: "text-[#727272]",
+          },
+          name: {
+            label: "Nichtraucher",
+            color: "#727272",
+          },
+        },
+        {
+          id: "music",
+          icon: {
+            name: "Music",
+            className: "text-[#727272]",
+          },
+          name: {
+            label: "Musik erlaubt",
+            color: "#727272",
+          },
+        },
+        {
+          id: "dog",
+          icon: {
+            name: "Dog",
+            className: "text-[#727272]",
+          },
+          name: {
+            label: "Haustiere erlaubt",
+            color: "#727272",
+          },
+        },
+      ],
     },
-  ];
+  },
+
+  routes = {
+    departure: {
+      place: "Munich",
+      time: "17.30 Uhr",
+    },
+    travelTime: {
+      time: "1h 15m",
+    },
+    arrival: {
+      place: "Berlin",
+      time: "18.30 Uhr",
+    },
+  },
+
+  price = {
+    initial: {
+      label: "Angebotspreis",
+      price: "€25.00",
+    },
+    offered: {
+      label: "Angebotener Preis",
+      price: "€25.00",
+    },
+  },
+  note = {
+    label: "Hinweis",
+    note: "Lorem Ipsum",
+  },
+}: OrderCardChatTripProps) => {
   return (
     <div
       className={clsx(
@@ -90,13 +174,7 @@ export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
           "w-full"
         )}
       >
-        <Image
-          src={"/images/general/car.png"}
-          alt="car"
-          width={145}
-          height={46}
-          className={clsx("w-[145px]")}
-        />
+        <Image {...car.image} className={clsx("w-[145px]")} />
 
         <div
           className={clsx(
@@ -104,34 +182,21 @@ export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
             "w-full"
           )}
         >
-          {/* name */}
-          <div
-            className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
-              "w-full"
-            )}
-          >
-            <SVGIcon
-              name="Car"
-              className={clsx("w-[1rem] h-[1rem]", "text-[black]")}
-            />
-            <p className={clsx("text-[black] text-[1rem] font-medium")}>
-              {"Toyota Rav 4"}
-            </p>
-          </div>
-          {/* routes */}
+          {/* identity */}
+          <CarIdentityItem {...car.identity} />
 
+          {/* routes */}
           <div
             className={clsx(
               "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
               "w-full"
             )}
           >
-            <DepartureItem place={"Munich"} time={"17.30 Uhr"} />
+            <DepartureItem {...routes.departure} />
 
-            <TravelTimeItem time={"1h 15m"} />
+            <TravelTimeItem {...routes.travelTime} />
 
-            <ArrivalItem place={"Berlin"} time={"18.30 Uhr"} />
+            <ArrivalItem {...routes.arrival} />
           </div>
 
           {/* facility */}
@@ -147,10 +212,10 @@ export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
                 "w-full"
               )}
             >
-              {top.map((item, index) => (
+              {car.facility?.top.map((item, index) => (
                 <CarFacilityItem
                   key={index}
-                  icon={{ ...item.icon }}
+                  icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
                   name={{ ...item.name }}
                 />
               ))}
@@ -162,10 +227,10 @@ export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
                 "w-full"
               )}
             >
-              {bottom.map((item, Index) => (
+              {car.facility?.bottom.map((item, Index) => (
                 <CarFacilityItem
                   key={Index}
-                  icon={{ ...item.icon }}
+                  icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
                   name={{ ...item.name }}
                 />
               ))}
@@ -173,7 +238,7 @@ export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
           </div>
         </div>
         {/* price */}
-        <CarPriceItem label={"Angebotspreis"} price={"€25.00"} />
+        <CarPriceItem {...price.initial} />
       </div>
 
       {/* price offered */}
@@ -184,7 +249,7 @@ export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
           "border-t border-t-[#F8F8F8]"
         )}
       >
-        <PriceOfferedItem label={"Angebotener Preis"} price={"€20.00"} />
+        <PriceOfferedItem {...price.offered} />
       </div>
 
       {/* trip note */}
@@ -195,7 +260,7 @@ export const OrderCardChatTrip = (props: IOrderCardChatTripProps) => {
           "border-t border-t-[#F8F8F8]"
         )}
       >
-        <TripNoteItem label={"Hinweis"} note={"Lorem Ipsum"} />
+        <TripNoteItem {...note} />
       </div>
 
       {/* action */}
