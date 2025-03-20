@@ -28,7 +28,10 @@ export const TopNavigation = () => {
           )}
         >
           {/* NOTES: logo */}
-          <Image {...dictionaries.logo} />
+          <Image
+            {...dictionaries.logo}
+            className={clsx("w-[170px] h-[62px]")}
+          />
 
           {/* NOTES: menu */}
           <div

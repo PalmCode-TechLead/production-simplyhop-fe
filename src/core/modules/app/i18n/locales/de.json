@@ -2,8 +2,9 @@
   "logo": {
     "src": "/logo/simply_hop.png",
     "width": 170,
-    "height": 46,
-    "alt": "logo"
+    "height": 62,
+    "alt": "logo",
+    "priority": true
   },
   "menu": {
     "items": [

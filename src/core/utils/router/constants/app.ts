@@ -3,6 +3,7 @@ export const AppCollectionURL = {
     home: () => "/",
   },
   private: {
+    chat: () => "/chat",
     upload: () => "/upload",
   },
 };

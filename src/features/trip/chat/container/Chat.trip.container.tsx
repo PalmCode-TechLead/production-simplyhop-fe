@@ -4,7 +4,6 @@ import { ListChatTrip } from "../fragments/list";
 import { RoomChatTrip } from "../fragments/room";
 
 export const ChatTripContainer = () => {
-  console.log("ini kepanggil ga");
   return (
     <div
       className={clsx(

@@ -28,26 +28,40 @@
     ]
   },
   "chat": {
-    "data": {
-      "image_url": "/images/general/default_avatar.jpeg",
-      "name": "Suzana Colin",
-      "message": "That sounds like a great plan! Excited 😃",
-      "date": "Dez 16"
-    },
-    "cta": {
-      "send": {
-        "children": "Senden"
+    "list": {
+      "data": {
+        "image_url": "/images/general/default_avatar.jpeg",
+        "name": "Suzana Colin",
+        "message": "That sounds like a great plan! Excited 😃",
+        "date": "Dez 16"
       }
     },
-    "message": {
-      "inputProps": {
-        "id": "chat",
-        "placeholder": " "
+    "room": {
+      "header": {
+        "image": {
+          "src": "/images/general/default_avatar.jpeg",
+          "alt": "avatar",
+          "width": 36,
+          "height": 36
+        },
+        "name": "Suzana Colin",
+        "account": "@Suzana"
       },
-      "labelProps": {
-        "id": "chat",
-        "children": "Schreibe eine Nachricht...",
-        "required": false
+      "message": {
+        "inputProps": {
+          "id": "chat",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "chat",
+          "children": "Schreibe eine Nachricht...",
+          "required": false
+        }
+      },
+      "cta": {
+        "send": {
+          "children": "Senden"
+        }
       }
     }
   }

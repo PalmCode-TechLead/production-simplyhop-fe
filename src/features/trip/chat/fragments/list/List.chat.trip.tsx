@@ -5,16 +5,17 @@ import { getDictionaries } from "../../i18n";
 import { SearchField } from "@/core/components/searchfield";
 import { TabList, Tab, TabGroup } from "@headlessui/react";
 import { ListItemChatTrip } from "../../components/list_item";
+import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
+import { AppCollectionURL } from "@/core/utils/router/constants/app";
 
-export interface ListChatTripProps {}
-
-export const ListChatTrip = (props: ListChatTripProps) => {
+export const ListChatTrip = () => {
   const dictionaries = getDictionaries();
 
   const data = Array.from({ length: 5 }).map(() => {
-    return dictionaries.chat.data;
+    return dictionaries.chat.list.data;
   });
- 
+
   return (
     <div
       className={clsx(
@@ -67,7 +68,12 @@ export const ListChatTrip = (props: ListChatTripProps) => {
           )}
         >
           {data.map((item, itemIndex) => (
-            <ListItemChatTrip key={itemIndex} {...item} />
+            <Link
+              key={itemIndex}
+              href={`${AppCollectionURL.private.chat()}?id=${itemIndex}`}
+            >
+              <ListItemChatTrip {...item} />
+            </Link>
           ))}
         </div>
       </TabGroup>

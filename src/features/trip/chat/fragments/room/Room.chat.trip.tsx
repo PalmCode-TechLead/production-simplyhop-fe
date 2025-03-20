@@ -1,15 +1,22 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import Image from "next/image";
 import SVGIcon from "@/core/icons";
-import { InputContainer } from "@/core/components/input_container";
 import { ChatField } from "@/core/components/chatfield";
+import { RoomHeaderChatTrip } from "../../components/room_header";
+import { useSearchParams } from "next/navigation";
 
 export interface RoomChatTripProps {}
 
 export const RoomChatTrip = (props: RoomChatTripProps) => {
   const dictionaries = getDictionaries();
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  if (!id) {
+    return null;
+  }
   return (
     <div
       className={clsx(
@@ -18,38 +25,11 @@ export const RoomChatTrip = (props: RoomChatTripProps) => {
       )}
     >
       {/* header */}
-      <div
-        className={clsx(
-          "grid grid-flow-col items-center content-center justify-items-start justify-start gap-[0.75rem]",
-          "w-full",
-          "px-[2.25rem] py-[0.75rem]",
-          "border-b border-b-[#E9E9E9]"
-        )}
-      >
-        <Image
-          src={"/images/general/default_avatar.jpeg"}
-          alt="sample_image"
-          width={36}
-          height={36}
-          className={clsx(
-            "w-[2.25rem] h-[2.25rem]",
-            "rounded-[50%]",
-            "object-center object-cover"
-          )}
-        />
-        <div
-          className={clsx(
-            "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0rem]"
-          )}
-        >
-          <h2 className={clsx("text-[#141414] text-[1rem] font-semibold")}>
-            {"Suzana Colin"}
-          </h2>
-          <span className={clsx("text-[0.625rem] font-normal text-[#4F5665]")}>
-            {"@Suzana"}
-          </span>
-        </div>
-      </div>
+      <RoomHeaderChatTrip
+        image={{ ...dictionaries.chat.room.header.image }}
+        name={dictionaries.chat.room.header.name}
+        account_name={dictionaries.chat.room.header.account}
+      />
 
       {/* chat */}
 
@@ -65,8 +45,8 @@ export const RoomChatTrip = (props: RoomChatTripProps) => {
         )}
       >
         <ChatField
-          labelProps={{ ...dictionaries.chat.message.labelProps }}
-          inputProps={{ ...dictionaries.chat.message.inputProps }}
+          labelProps={{ ...dictionaries.chat.room.message.labelProps }}
+          inputProps={{ ...dictionaries.chat.room.message.inputProps }}
         />
         <button
           className={clsx(
@@ -77,7 +57,7 @@ export const RoomChatTrip = (props: RoomChatTripProps) => {
             "text-[0.875rem] text-[white] font-normal"
           )}
         >
-          {dictionaries.chat.cta.send.children}
+          {dictionaries.chat.room.cta.send.children}
           <SVGIcon
             name="SendHorizonal"
             className={clsx("w-[1rem] h-[1rem]", "text-[white]")}
