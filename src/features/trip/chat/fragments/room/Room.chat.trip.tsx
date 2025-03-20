@@ -9,10 +9,12 @@ import { useSearchParams } from "next/navigation";
 import { CustomerOrderCardChatTrip } from "../../components/customer_order_card";
 import { ConversationItemChatTrip } from "../../components/conversation_item";
 import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
+import EmojiPicker, { Emoji, EmojiClickData } from "emoji-picker-react";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
+  const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
   if (!id) {
     return null;
@@ -25,6 +27,27 @@ export const RoomChatTrip = () => {
       return dictionaries.chat.room.conversation.chat.recipient;
     }
   );
+
+  const handleClickEmoji = () => {
+    setIsEmojiOpen((prev) => !prev);
+  };
+
+  const handleSelectEmoji = (emojiData: EmojiClickData) => {
+    // dispatch({
+    //   type: ReviewActionEnum.SetCommentsData,
+    //   payload: {
+    //     ...state.comments,
+    //     form: {
+    //       ...state.comments.form,
+    //       comment: {
+    //         ...state.comments.form.comment,
+    //         value: state.comments.form.comment.value + emojiData.emoji,
+    //       },
+    //     },
+    //   },
+    // });
+    // setIsEmojiOpen(false);
+  };
   return (
     <div
       className={clsx(
@@ -55,12 +78,32 @@ export const RoomChatTrip = () => {
       {/* action commentar */}
       <div
         className={clsx(
-          "grid grid-cols-[1fr_auto] items-center content-center justify-start justify-items-start gap-[0.625rem]",
+          "grid-cols-[1.5rem_1fr_auto]",
+          "grid  items-center content-center justify-start justify-items-start gap-[0.625rem]",
           "w-full",
           "px-[2.5rem] py-[1rem]",
           "border-t border-t-[#DFDFDF]"
         )}
       >
+        <div className={clsx("relative")}>
+          <button onClick={handleClickEmoji}>
+            <SVGIcon
+              name="Smile"
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#BDBDBD]")}
+            />
+          </button>
+          {isEmojiOpen && (
+            <EmojiPicker
+              className={clsx(
+                "!absolute",
+                "top-[-480px] left-[-175px]",
+                "z-[10]"
+              )}
+              onEmojiClick={handleSelectEmoji}
+            />
+          )}
+        </div>
+
         <ChatField
           labelProps={{ ...dictionaries.chat.room.message.labelProps }}
           inputProps={{ ...dictionaries.chat.room.message.inputProps }}

@@ -17,6 +17,7 @@ import {
   CigaretteOff,
   Music,
   Dog,
+  Smile,
 } from "lucide-react";
 
 export const svgMap = {
@@ -37,7 +38,8 @@ export const svgMap = {
   Briefcase,
   CigaretteOff,
   Music,
-  Dog
+  Dog,
+  Smile
 };
 
 export type SVGName = keyof typeof svgMap;
