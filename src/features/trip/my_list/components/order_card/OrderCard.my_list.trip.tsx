@@ -18,6 +18,14 @@ import {
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
+import {
+  TravelDateItem,
+  TravelDateItemProps,
+} from "@/core/components/travel_date_item";
+import {
+  TravelStartTimeItem,
+  TravelStartTimeItemProps,
+} from "@/core/components/travel_start_time_item";
 
 export interface OrderCardMyListTripProps {
   car?: {
@@ -26,6 +34,8 @@ export interface OrderCardMyListTripProps {
   };
 
   routes?: {
+    date?: TravelDateItemProps;
+    startTime?: TravelStartTimeItemProps;
     departure?: DepartureItemProps;
     travelTime?: TravelTimeItemProps;
     arrival?: ArrivalItemProps;
@@ -56,6 +66,14 @@ export const OrderCardMyListTrip = ({
   },
 
   routes = {
+    date: {
+      label: "Datum",
+      date: "24.02.25",
+    },
+    startTime: {
+      label: "Startzeit",
+      time: "17:30 Uhr",
+    },
     departure: {
       place: "Munich",
       time: "17.30 Uhr",
@@ -106,6 +124,15 @@ export const OrderCardMyListTrip = ({
           )}
         >
           {/* routes */}
+          <div
+            className={clsx(
+              "grid grid-flow-col place-content-start place-items-start gap-[1rem]"
+            )}
+          >
+            <TravelDateItem {...routes.date} />
+            <TravelStartTimeItem {...routes.startTime} />
+          </div>
+
           <div
             className={clsx(
               "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
