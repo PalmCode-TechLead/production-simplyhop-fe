@@ -411,6 +411,7 @@ export const FilterFindTrip = () => {
         >
           <AutocompleteCity
             {...dictionaries.filter.form.city}
+            selected={state.filters.city.selected.item}
             items={state.filters.city.items}
             debounceQuery
             onQuery={handleQueryCity}
