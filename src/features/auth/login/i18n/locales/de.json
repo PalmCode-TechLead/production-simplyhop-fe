@@ -1,8 +1,35 @@
 {
-  "top_badge": {
-    "icon": {
-      "name": "Search"
+  "background": {
+    "image_url": "/images/auth/auth-bg.png"
+  },
+  "form": {
+    "header": {
+      "logo": "/logo/simply_hop.png"
     },
-    "label": "Fahrt finden"
+    "title": "Login",
+    "input": {
+      "email": {
+        "inputProps": {
+          "id": "email",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "email",
+          "children": "Email",
+          "required": false
+        }
+      },
+      "password": {
+        "inputProps": {
+          "id": "password",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "password",
+          "children": "Passwort",
+          "required": false
+        }
+      }
+    }
   }
 }
