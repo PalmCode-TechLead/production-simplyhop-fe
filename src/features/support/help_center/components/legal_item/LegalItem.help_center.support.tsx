@@ -1,0 +1,56 @@
+import * as React from "react";
+import clsx from "clsx";
+
+export interface LegalItemHelpCenterSupportProps {
+  id?: string;
+  name?: string;
+  description?: string;
+  cta?: {
+    children: string;
+    onClick: () => void;
+  };
+}
+
+export const LegalItemHelpCenterSupport = ({
+  id = "",
+  name = "",
+  description = "",
+  cta = {
+    children: "",
+    onClick: () => {},
+  },
+}: LegalItemHelpCenterSupportProps) => {
+  return (
+    <div
+      id={id}
+      className={clsx(
+        "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
+        "w-full"
+      )}
+    >
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
+          "w-full"
+        )}
+      >
+        <p className={clsx("text-[#232323CC] text-[1rem] font-medium")}>
+          {name}
+        </p>
+        <p className={clsx("text-[#606060] text-[0.875rem] font-normal")}>
+          {description}
+        </p>
+      </div>
+
+      <button
+        className={clsx(
+          "px-[46.5px] py-[1rem]",
+          "text-[#5AC53D] text-[0.875rem] font-medium"
+        )}
+        onClick={cta.onClick}
+      >
+        {cta.children}
+      </button>
+    </div>
+  );
+};

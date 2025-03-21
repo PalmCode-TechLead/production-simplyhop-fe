@@ -1,8 +1,31 @@
 {
-  "top_badge": {
-    "icon": {
-      "name": "Search"
-    },
-    "label": "Fahrt finden"
+  "legal": {
+    "title": "Rechtliches",
+    "items": [
+      {
+        "id": "agb",
+        "name": "AGB’s",
+        "description": "Bitte lies dir die Allgemeinen Geschäftsbedingungen sorgfältig durch.",
+        "cta": {
+          "children": "Seite öffnen"
+        }
+      },
+      {
+        "id": "data-protection",
+        "name": "Datenschutz",
+        "description": "Bitte lies dir die Datenschutzbestimmungen sorgfältig durch.",
+        "cta": {
+          "children": "Seite öffnen"
+        }
+      },
+      {
+        "id": "faq",
+        "name": "Frage und Antwort",
+        "description": "Hier findest du Antworten auf häufig gestellte Fragen.",
+        "cta": {
+          "children": "Seite öffnen"
+        }
+      }
+    ]
   }
 }
