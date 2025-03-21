@@ -10,6 +10,7 @@ import { CustomerOrderCardChatTrip } from "../../components/customer_order_card"
 import { ConversationItemChatTrip } from "../../components/conversation_item";
 import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
+import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -63,17 +64,11 @@ export const RoomChatTrip = () => {
 
       {/* chat */}
 
-      <div
-        className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full h-full",
-          "overflow-auto"
-        )}
-      >
+      <RoomConversationContainerChatTrip>
         <CustomerOrderCardChatTrip />
         <DriverOrderCardChatTrip />
         <ConversationItemChatTrip chats={conversationData} />
-      </div>
+      </RoomConversationContainerChatTrip>
 
       {/* action commentar */}
       <div
