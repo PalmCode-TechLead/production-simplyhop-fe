@@ -2,7 +2,7 @@ import {
   ChatTripActionEnum,
   ChatTripActions,
   ChatTripList,
-  ChatTripConversation,
+  ChatTripRoom,
 } from "./Chat.trip.types";
 
 // List
@@ -19,13 +19,13 @@ export const ChatTripListReducers = (
   }
 };
 
-// Conversation
-export const ChatTripConversationReducers = (
-  state: ChatTripConversation,
+// Room
+export const ChatTripRoomReducers = (
+  state: ChatTripRoom,
   action: ChatTripActions
 ) => {
   switch (action.type) {
-    case ChatTripActionEnum.SetConversationData:
+    case ChatTripActionEnum.SetRoomData:
       return action.payload;
 
     default:

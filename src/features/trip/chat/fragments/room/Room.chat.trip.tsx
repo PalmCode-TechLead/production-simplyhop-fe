@@ -9,12 +9,14 @@ import { useSearchParams } from "next/navigation";
 import { CustomerOrderCardChatTrip } from "../../components/customer_order_card";
 import { ConversationItemChatTrip } from "../../components/conversation_item";
 import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
-import EmojiPicker from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
+import { ChatTripActionEnum, ChatTripContext } from "../../context";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
+  const { state, dispatch } = React.useContext(ChatTripContext);
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
   if (!id) {
@@ -33,21 +35,41 @@ export const RoomChatTrip = () => {
     setIsEmojiOpen((prev) => !prev);
   };
 
-  const handleSelectEmoji = () => {
-    // dispatch({
-    //   type: ReviewActionEnum.SetCommentsData,
-    //   payload: {
-    //     ...state.comments,
-    //     form: {
-    //       ...state.comments.form,
-    //       comment: {
-    //         ...state.comments.form.comment,
-    //         value: state.comments.form.comment.value + emojiData.emoji,
-    //       },
-    //     },
-    //   },
-    // });
-    // setIsEmojiOpen(false);
+  const handleChangeChat = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: ChatTripActionEnum.SetRoomData,
+      payload: {
+        ...state.room,
+        chat: {
+          ...state.room.chat,
+          input: {
+            ...state.room.chat.input,
+            value: e.currentTarget.value,
+          },
+        },
+      },
+    });
+  };
+
+  const handleSelectEmoji = (emojiData: EmojiClickData) => {
+    dispatch({
+      type: ChatTripActionEnum.SetRoomData,
+      payload: {
+        ...state.room,
+        chat: {
+          ...state.room.chat,
+          input: {
+            ...state.room.chat.input,
+            value: state.room.chat.input.value + emojiData.emoji,
+          },
+        },
+      },
+    });
+    setIsEmojiOpen(false);
+  };
+
+  const handleClickSend = () => {
+    //
   };
   return (
     <div
@@ -101,7 +123,11 @@ export const RoomChatTrip = () => {
 
         <ChatField
           labelProps={{ ...dictionaries.chat.room.message.labelProps }}
-          inputProps={{ ...dictionaries.chat.room.message.inputProps }}
+          inputProps={{
+            ...dictionaries.chat.room.message.inputProps,
+            value: state.room.chat.input.value,
+            onChange: handleChangeChat,
+          }}
         />
         <button
           className={clsx(
@@ -111,6 +137,7 @@ export const RoomChatTrip = () => {
             "rounded-[0.375rem]",
             "text-[0.875rem] text-[white] font-normal"
           )}
+          onClick={handleClickSend}
         >
           {dictionaries.chat.room.cta.send.children}
           <SVGIcon

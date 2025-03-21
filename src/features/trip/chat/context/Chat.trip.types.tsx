@@ -12,7 +12,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface ChatTripInitialStateType {
   list: ChatTripList;
-  conversation: ChatTripConversation;
+  room: ChatTripRoom;
 }
 
 // State Collection Types consist of:
@@ -34,24 +34,26 @@ export interface ChatTripList {
   };
 }
 
-export interface ChatTripConversation {
+export interface ChatTripRoom {
   message: {
     items: [];
   };
-  input: {
-    value: string;
+  chat: {
+    input: {
+      value: string;
+    };
   };
 }
 
 export enum ChatTripActionEnum {
   // List
   SetListData = "SetListData",
-  // Conversation
-  SetConversationData = "SetConversationData",
+  // Room
+  SetRoomData = "SetRoomData",
 }
 
 // Action Collection Types
-export type ChatTripActions = ChatTripListActions | ChatTripConversationActions;
+export type ChatTripActions = ChatTripListActions | ChatTripRoomActions;
 
 // Action Collection Types consist of:
 // List
@@ -62,10 +64,10 @@ type ChatTripListPayload = {
 export type ChatTripListActions =
   ActionMap<ChatTripListPayload>[keyof ActionMap<ChatTripListPayload>];
 
-// Conversation
-type ChatTripConversationPayload = {
-  [ChatTripActionEnum.SetConversationData]: ChatTripConversation;
+// Room
+type ChatTripRoomPayload = {
+  [ChatTripActionEnum.SetRoomData]: ChatTripRoom;
 };
 
-export type ChatTripConversationActions =
-  ActionMap<ChatTripConversationPayload>[keyof ActionMap<ChatTripConversationPayload>];
+export type ChatTripRoomActions =
+  ActionMap<ChatTripRoomPayload>[keyof ActionMap<ChatTripRoomPayload>];
