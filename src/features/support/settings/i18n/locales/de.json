@@ -1,8 +1,26 @@
 {
-  "top_badge": {
-    "icon": {
-      "name": "Search"
+  "security": {
+    "title": "Security",
+    "detail": {
+      "name": "Passwort",
+      "description": "Das Login-Passwort trägt dazu bei, die Konto- und Kommunikationssicherheit zu gewährleisten."
     },
-    "label": "Fahrt finden"
+    "cta": {
+      "change_password": {
+        "children": "Passwort ändern"
+      }
+    }
+  },
+  "account": {
+    "title": "Konto",
+    "detail": {
+      "name": "Deaktivieren dein Konto",
+      "description": "Hier kannst du dein Konto deaktivieren."
+    },
+    "cta": {
+      "deactivate_account": {
+        "children": "Konto deaktivieren"
+      }
+    }
   }
 }
