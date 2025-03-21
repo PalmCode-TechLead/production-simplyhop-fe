@@ -1,8 +1,6 @@
 import React from "react";
 
-export interface GoogleProps extends React.HTMLAttributes<SVGElement> {}
-
-export const Google = (props: GoogleProps) => {
+export const Google = () => {
   return (
     <svg
       width="21"

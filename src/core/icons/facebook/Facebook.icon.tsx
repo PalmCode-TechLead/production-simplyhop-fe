@@ -1,8 +1,6 @@
 import React from "react";
 
-export interface FacebookProps extends React.HTMLAttributes<SVGElement> {}
-
-export const Facebook = (props: FacebookProps) => {
+export const Facebook = () => {
   return (
     <svg
       width="25"
