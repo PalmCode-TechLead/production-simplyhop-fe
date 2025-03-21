@@ -8,7 +8,8 @@
         "src": "/logo/simply_hop.png",
         "width": 148,
         "height": 40,
-        "alt": "logo"
+        "alt": "logo",
+        "priority": true
       }
     },
     "title": "Login",

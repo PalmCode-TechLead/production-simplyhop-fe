@@ -1,16 +1,16 @@
 import {
   LoginAuthActionEnum,
   LoginAuthActions,
-  LoginAuthFilters,
+  LoginAuthForm,
 } from "./Login.auth.types";
 
-// Filters
-export const LoginAuthFiltersReducers = (
-  state: LoginAuthFilters,
+// Form
+export const LoginAuthFormReducers = (
+  state: LoginAuthForm,
   action: LoginAuthActions
 ) => {
   switch (action.type) {
-    case LoginAuthActionEnum.SetFiltersData:
+    case LoginAuthActionEnum.SetFormData:
       return action.payload;
 
     default:

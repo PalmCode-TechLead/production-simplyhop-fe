@@ -11,29 +11,32 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface LoginAuthInitialStateType {
-  filters: LoginAuthFilters;
+  form: LoginAuthForm;
 }
 
 // State Collection Types consist of:
-export interface LoginAuthFilters {
-  passenger: {
-    value: { id: string; value: number }[];
+export interface LoginAuthForm {
+  email: {
+    value: string;
+  };
+  password: {
+    value: string;
   };
 }
 
 export enum LoginAuthActionEnum {
-  // Filters
-  SetFiltersData = "SetFiltersData",
+  // Form
+  SetFormData = "SetFormData",
 }
 
 // Action Collection Types
-export type LoginAuthActions = LoginAuthFiltersActions;
+export type LoginAuthActions = LoginAuthFormActions;
 
 // Action Collection Types consist of:
-// Filters
-type LoginAuthFiltersPayload = {
-  [LoginAuthActionEnum.SetFiltersData]: LoginAuthFilters;
+// Form
+type LoginAuthFormPayload = {
+  [LoginAuthActionEnum.SetFormData]: LoginAuthForm;
 };
 
-export type LoginAuthFiltersActions =
-  ActionMap<LoginAuthFiltersPayload>[keyof ActionMap<LoginAuthFiltersPayload>];
+export type LoginAuthFormActions =
+  ActionMap<LoginAuthFormPayload>[keyof ActionMap<LoginAuthFormPayload>];

@@ -4,12 +4,15 @@ import {
   LoginAuthActions,
   LoginAuthInitialStateType,
 } from "./Login.auth.types";
-import { LoginAuthFiltersReducers } from "./Login.auth.reducers";
+import { LoginAuthFormReducers } from "./Login.auth.reducers";
 
 const initialState: LoginAuthInitialStateType = {
-  filters: {
-    passenger: {
-      value: [],
+  form: {
+    email: {
+      value: "",
+    },
+    password: {
+      value: "",
     },
   },
 };
@@ -23,10 +26,10 @@ const LoginAuthContext = createContext<{
 });
 
 const mainReducer = (
-  { filters }: LoginAuthInitialStateType,
+  { form }: LoginAuthInitialStateType,
   action: LoginAuthActions
 ) => ({
-  filters: LoginAuthFiltersReducers(filters, action),
+  form: LoginAuthFormReducers(form, action),
 });
 
 const LoginAuthProvider = (props: { children: React.ReactNode }) => {

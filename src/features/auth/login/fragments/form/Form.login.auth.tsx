@@ -6,9 +6,37 @@ import { getDictionaries } from "../../i18n";
 import { Textfield } from "@/core/components/textfield";
 import Link from "next/link";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
+import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
+  const { state, dispatch } = React.useContext(LoginAuthContext);
+
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: LoginAuthActionEnum.SetFormData,
+      payload: {
+        ...state.form,
+        email: {
+          ...state.form.email,
+          value: e.currentTarget.value,
+        },
+      },
+    });
+  };
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: LoginAuthActionEnum.SetFormData,
+      payload: {
+        ...state.form,
+        password: {
+          ...state.form.password,
+          value: e.currentTarget.value,
+        },
+      },
+    });
+  };
 
   const handleClickLogin = () => {};
   return (
@@ -43,11 +71,19 @@ export const FormLoginAuth = () => {
       >
         <Textfield
           labelProps={{ ...dictionaries.form.input.email.labelProps }}
-          inputProps={{ ...dictionaries.form.input.email.inputProps }}
+          inputProps={{
+            ...dictionaries.form.input.email.inputProps,
+            value: state.form.email.value,
+            onChange: handleChangeEmail,
+          }}
         />
         <Textfield
           labelProps={{ ...dictionaries.form.input.password.labelProps }}
-          inputProps={{ ...dictionaries.form.input.password.inputProps }}
+          inputProps={{
+            ...dictionaries.form.input.password.inputProps,
+            value: state.form.password.value,
+            onChange: handleChangePassword,
+          }}
         />
 
         <button
@@ -103,8 +139,9 @@ export const FormLoginAuth = () => {
           )}
         >
           {/* bundaran */}
-          {dictionaries.form.social_media.items.map((item) => (
+          {dictionaries.form.social_media.items.map((item, itemIndex) => (
             <button
+              key={itemIndex}
               className={clsx(
                 "flex items-center justify-center",
                 "w-[2rem] h-[2rem]",
