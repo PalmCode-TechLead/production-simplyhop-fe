@@ -48,22 +48,22 @@
         {
           "id": "konto",
           "name": "Konto",
-          "href": "/settings/konto"
+          "href": "/support/konto"
         },
         {
           "id": "fahrzeuginformationen",
           "name": "Fahrzeuginformationen",
-          "href": "/settings/fahrzeuginformationen"
+          "href": "/support/fahrzeuginformationen"
         },
         {
           "id": "einstellungen",
           "name": "Einstellungen",
-          "href": "/settings/einstellungen"
+          "href": "/support/einstellungen"
         },
         {
           "id": "hilfe-center",
           "name": "Hilfe-Center",
-          "href": "/settings/hilfe-center"
+          "href": "/support/hilfe-center"
         }
       ]
     }
