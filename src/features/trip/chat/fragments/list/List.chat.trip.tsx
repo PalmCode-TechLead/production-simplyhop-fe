@@ -25,7 +25,7 @@ export const ListChatTrip = () => {
         },
         message: {
           ...state.list.message,
-          items: Array.from({ length: 5 }).map(() => {
+          items: Array.from({ length: 10 }).map(() => {
             return dictionaries.chat.list.data;
           }),
         },
@@ -112,7 +112,8 @@ export const ListChatTrip = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "w-full"
+            "w-full max-h-[400px]",
+            "overflow-auto"
           )}
         >
           {state.list.message.items.map((item, itemIndex) => (
