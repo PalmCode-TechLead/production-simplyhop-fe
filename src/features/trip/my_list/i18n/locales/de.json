@@ -1,0 +1,25 @@
+{
+  "header": {
+    "title": "Meine Fahrten",
+
+    "archive": {
+      "icon": {
+        "name": "FileClock"
+      },
+      "label": "Archive",
+      "href": "/meine-fahrten/archive"
+    }
+  },
+  "tab": {
+    "items": [
+      {
+        "id": "the-trips-i-offer",
+        "name": "Meine angebotenen Fahrten"
+      },
+      {
+        "id": "my-rides-as-passenger",
+        "name": "Meine Fahrten als Mitfahrer"
+      }
+    ]
+  }
+}
