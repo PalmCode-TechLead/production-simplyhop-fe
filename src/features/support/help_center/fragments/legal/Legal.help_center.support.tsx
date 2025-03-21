@@ -7,7 +7,7 @@ import { LegalItemHelpCenterSupport } from "../../components/legal_item";
 export const LegalHelpCenterSupport = () => {
   const dictionaries = getDictionaries();
 
-  const handleClickLegalItem = (data: string) => {
+  const handleClickLegalItem = (_: string) => {
     //
   };
   return (
