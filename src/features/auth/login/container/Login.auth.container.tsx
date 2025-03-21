@@ -5,7 +5,11 @@ import { FormLoginAuth } from "../fragments/form";
 export const LoginAuthContainer = () => {
   return (
     <div
-      className={clsx("w-full h-full min-h-[100vh]", "relative")}
+      className={clsx(
+        "grid grid-cols-1 place-content-center place-items-center",
+        "w-full h-full min-h-[100vh]",
+        "relative"
+      )}
       style={{
         backgroundImage: `url('/images/auth/auth-bg.png')`,
         backgroundPosition: "cover",
