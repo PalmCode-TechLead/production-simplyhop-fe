@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Image from "next/image";
 
 export interface ListItemChatTripProps {
+  id?: string;
   image_url?: string;
   name?: string;
   message?: string;
@@ -10,6 +11,7 @@ export interface ListItemChatTripProps {
 }
 
 export const ListItemChatTrip = ({
+  id = "",
   image_url = "",
   name = "",
   message = "",
@@ -17,6 +19,7 @@ export const ListItemChatTrip = ({
 }: ListItemChatTripProps) => {
   return (
     <div
+      id={id}
       className={clsx(
         "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[1.5rem]",
         "w-full"

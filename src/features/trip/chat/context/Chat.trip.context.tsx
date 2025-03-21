@@ -8,7 +8,13 @@ import {
 
 const initialState: ChatTripInitialStateType = {
   list: {
-    city: {
+    search: {
+      value: "",
+    },
+    tab: {
+      selected: null,
+    },
+    message: {
       items: [],
     },
   },

@@ -17,8 +17,20 @@ export interface ChatTripInitialStateType {
 
 // State Collection Types consist of:
 export interface ChatTripList {
-  city: {
-    items: { id: string; name: string }[];
+  search: {
+    value: string;
+  };
+  tab: {
+    selected: { id: string; name: string } | null;
+  };
+  message: {
+    items: {
+      id: string;
+      image_url: string;
+      name: string;
+      message: string;
+      date: string;
+    }[];
   };
 }
 

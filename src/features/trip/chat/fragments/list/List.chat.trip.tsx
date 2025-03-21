@@ -7,13 +7,57 @@ import { TabList, Tab, TabGroup } from "@headlessui/react";
 import { ListItemChatTrip } from "../../components/list_item";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import { ChatTripActionEnum, ChatTripContext } from "../../context";
 
 export const ListChatTrip = () => {
   const dictionaries = getDictionaries();
+  const { state, dispatch } = React.useContext(ChatTripContext);
 
-  const data = Array.from({ length: 5 }).map(() => {
-    return dictionaries.chat.list.data;
-  });
+  React.useEffect(() => {
+    dispatch({
+      type: ChatTripActionEnum.SetListData,
+      payload: {
+        ...state.list,
+        tab: {
+          ...state.list.tab,
+          selected:
+            dictionaries.tab.items.find((_, index) => index === 0) ?? null,
+        },
+        message: {
+          ...state.list.message,
+          items: Array.from({ length: 5 }).map(() => {
+            return dictionaries.chat.list.data;
+          }),
+        },
+      },
+    });
+  }, []);
+
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: ChatTripActionEnum.SetListData,
+      payload: {
+        ...state.list,
+        search: {
+          ...state.list.search,
+          value: e.currentTarget.value,
+        },
+      },
+    });
+  };
+
+  const handleClickTab = (data: { id: string; name: string } | null) => {
+    dispatch({
+      type: ChatTripActionEnum.SetListData,
+      payload: {
+        ...state.list,
+        tab: {
+          ...state.list.tab,
+          selected: data,
+        },
+      },
+    });
+  };
 
   return (
     <div
@@ -29,7 +73,11 @@ export const ListChatTrip = () => {
       {/* Search */}
       <SearchField
         labelProps={{ ...dictionaries.search.labelProps }}
-        inputProps={{ ...dictionaries.search.inputProps }}
+        inputProps={{
+          ...dictionaries.search.inputProps,
+          value: state.list.search.value,
+          onChange: handleChangeSearch,
+        }}
       />
       {/* Tab */}
       <TabGroup
@@ -54,6 +102,7 @@ export const ListChatTrip = () => {
                 "data-[selected]:border-b data-[selected]:border-b-[#5AC53D]",
                 "cursor-pointer"
               )}
+              onClick={() => handleClickTab(item)}
             >
               {item.name}
             </Tab>
@@ -66,7 +115,7 @@ export const ListChatTrip = () => {
             "w-full"
           )}
         >
-          {data.map((item, itemIndex) => (
+          {state.list.message.items.map((item, itemIndex) => (
             <Link
               key={itemIndex}
               className={clsx("cursor-pointer")}
