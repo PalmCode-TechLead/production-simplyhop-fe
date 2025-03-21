@@ -2,18 +2,24 @@
 import React, { createContext, useReducer, Dispatch } from "react";
 import { ChatTripActions, ChatTripInitialStateType } from "./Chat.trip.types";
 import {
-  ChatTripFiltersReducers,
-  ChatTripMapReducers,
+  ChatTripListReducers,
+  ChatTripConversationReducers,
 } from "./Chat.trip.reducers";
 
 const initialState: ChatTripInitialStateType = {
-  filters: {
+  list: {
     city: {
       items: [],
     },
   },
-  map: {
-    polyline_path: [],
+  conversation: {
+    message: {
+      items: [],
+    },
+
+    input: {
+      value: "",
+    },
   },
 };
 
@@ -26,11 +32,11 @@ const ChatTripContext = createContext<{
 });
 
 const mainReducer = (
-  { filters, map }: ChatTripInitialStateType,
+  { list, conversation }: ChatTripInitialStateType,
   action: ChatTripActions
 ) => ({
-  filters: ChatTripFiltersReducers(filters, action),
-  map: ChatTripMapReducers(map, action),
+  list: ChatTripListReducers(list, action),
+  conversation: ChatTripConversationReducers(conversation, action),
 });
 
 const ChatTripProvider = (props: { children: React.ReactNode }) => {

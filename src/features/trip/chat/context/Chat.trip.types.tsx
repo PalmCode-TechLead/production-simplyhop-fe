@@ -11,44 +11,49 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface ChatTripInitialStateType {
-  filters: ChatTripFilters;
-  map: ChatTripMap;
+  list: ChatTripList;
+  conversation: ChatTripConversation;
 }
 
 // State Collection Types consist of:
-export interface ChatTripFilters {
+export interface ChatTripList {
   city: {
     items: { id: string; name: string }[];
   };
 }
 
-export interface ChatTripMap {
-  polyline_path: { lat: number; lng: number }[];
+export interface ChatTripConversation {
+  message: {
+    items: [];
+  };
+  input: {
+    value: string;
+  };
 }
 
 export enum ChatTripActionEnum {
-  // Filters
-  SetFiltersData = "SetFiltersData",
-  // Map
-  SetMapData = "SetMapData",
+  // List
+  SetListData = "SetListData",
+  // Conversation
+  SetConversationData = "SetConversationData",
 }
 
 // Action Collection Types
-export type ChatTripActions = ChatTripFiltersActions | ChatTripMapActions;
+export type ChatTripActions = ChatTripListActions | ChatTripConversationActions;
 
 // Action Collection Types consist of:
-// Filters
-type ChatTripFiltersPayload = {
-  [ChatTripActionEnum.SetFiltersData]: ChatTripFilters;
+// List
+type ChatTripListPayload = {
+  [ChatTripActionEnum.SetListData]: ChatTripList;
 };
 
-export type ChatTripFiltersActions =
-  ActionMap<ChatTripFiltersPayload>[keyof ActionMap<ChatTripFiltersPayload>];
+export type ChatTripListActions =
+  ActionMap<ChatTripListPayload>[keyof ActionMap<ChatTripListPayload>];
 
-// Map
-type ChatTripMapPayload = {
-  [ChatTripActionEnum.SetMapData]: ChatTripMap;
+// Conversation
+type ChatTripConversationPayload = {
+  [ChatTripActionEnum.SetConversationData]: ChatTripConversation;
 };
 
-export type ChatTripMapActions =
-  ActionMap<ChatTripMapPayload>[keyof ActionMap<ChatTripMapPayload>];
+export type ChatTripConversationActions =
+  ActionMap<ChatTripConversationPayload>[keyof ActionMap<ChatTripConversationPayload>];

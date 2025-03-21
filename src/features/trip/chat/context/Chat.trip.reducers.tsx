@@ -1,17 +1,17 @@
 import {
   ChatTripActionEnum,
   ChatTripActions,
-  ChatTripFilters,
-  ChatTripMap,
+  ChatTripList,
+  ChatTripConversation,
 } from "./Chat.trip.types";
 
-// Filters
-export const ChatTripFiltersReducers = (
-  state: ChatTripFilters,
+// List
+export const ChatTripListReducers = (
+  state: ChatTripList,
   action: ChatTripActions
 ) => {
   switch (action.type) {
-    case ChatTripActionEnum.SetFiltersData:
+    case ChatTripActionEnum.SetListData:
       return action.payload;
 
     default:
@@ -19,10 +19,13 @@ export const ChatTripFiltersReducers = (
   }
 };
 
-// Map
-export const ChatTripMapReducers = (state: ChatTripMap, action: ChatTripActions) => {
+// Conversation
+export const ChatTripConversationReducers = (
+  state: ChatTripConversation,
+  action: ChatTripActions
+) => {
   switch (action.type) {
-    case ChatTripActionEnum.SetMapData:
+    case ChatTripActionEnum.SetConversationData:
       return action.payload;
 
     default:
