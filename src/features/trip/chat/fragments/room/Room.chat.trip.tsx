@@ -33,7 +33,7 @@ export const RoomChatTrip = () => {
     setIsEmojiOpen((prev) => !prev);
   };
 
-  const handleSelectEmoji = (emojiData: EmojiClickData) => {
+  const handleSelectEmoji = () => {
     // dispatch({
     //   type: ReviewActionEnum.SetCommentsData,
     //   payload: {
