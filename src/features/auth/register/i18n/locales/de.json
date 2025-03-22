@@ -1,0 +1,79 @@
+{
+  "background": {
+    "image_url": "/images/auth/auth-bg.png"
+  },
+  "form": {
+    "header": {
+      "logo": {
+        "src": "/logo/simply_hop.png",
+        "width": 148,
+        "height": 40,
+        "alt": "logo",
+        "priority": true
+      }
+    },
+    "title": "Kostenlos registrieren",
+    "input": {
+      "email": {
+        "inputProps": {
+          "id": "email",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "email",
+          "children": "Email",
+          "required": false
+        }
+      },
+      "password": {
+        "inputProps": {
+          "id": "password",
+          "placeholder": " ",
+          "type": "password"
+        },
+        "labelProps": {
+          "id": "password",
+          "children": "Passwort",
+          "required": false
+        }
+      }
+    },
+    "cta": {
+      "login": {
+        "children": "Login"
+      }
+    },
+    "account": {
+      "label": "Du hast noch kein Konto? ",
+      "cta": {
+        "children": "Jetzt registrieren",
+        "href": "/register"
+      }
+    },
+    "social_media": {
+      "label": "Oder melde dich über die soziale Medien an",
+      "items": [
+        {
+          "id": "facebook",
+          "icon": "Facebook"
+        },
+        {
+          "id": "google",
+          "icon": "Google"
+        }
+      ]
+    },
+    "privacy_policy": {
+      "label": "Wenn du dich anmeldest, stimmst du den <a href='' style='color:#5AC53D;'>Datenschutzbestimmungen</a> und den <a href='' style='color:#5AC53D;'>AGB</a> von Simplyhop zu. ",
+      "credit": {
+        "logo": {
+          "src": "/logo/simply_hop.png",
+          "width": 52,
+          "height": 14,
+          "alt": "logo"
+        },
+        "message": "Alle Rechte vorbehalten"
+      }
+    }
+  }
+}

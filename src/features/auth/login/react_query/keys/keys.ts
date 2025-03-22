@@ -1,5 +1,5 @@
-export const ResultTripReactQueryKey = {
+export const LoginAuthReactQueryKey = {
   RestGooglePostRouteDirections: () => {
-    return ["ResultTripReactQueryKey.RestGooglePostRouteDirections"];
+    return ["LoginAuthReactQueryKey.RestGooglePostRouteDirections"];
   },
 };
