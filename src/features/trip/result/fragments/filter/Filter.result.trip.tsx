@@ -286,29 +286,6 @@ export const FilterResultTrip = () => {
     });
   };
 
-  // NOTES: set default passenger
-  // const setDefaultPassenger = () => {
-  //   dispatch({
-  //     type: ResultTripActionEnum.SetFiltersData,
-  //     payload: {
-  //       ...state.filters,
-  //       passenger: {
-  //         ...state.filters.passenger,
-  //         value: dictionaries.filter.form.passenger.items.map((item) => {
-  //           return {
-  //             id: item.id,
-  //             value: item.value,
-  //           };
-  //         }),
-  //       },
-  //     },
-  //   });
-  // };
-
-  // React.useEffect(() => {
-  //   setDefaultPassenger();
-  // }, []);
-
   const handleClickSearch = () => {
     let params = "";
     if (state.filters.city.selected.item) {

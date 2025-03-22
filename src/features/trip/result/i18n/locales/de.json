@@ -69,5 +69,35 @@
         "children": "Suchen"
       }
     }
+  },
+  "advanced_filter": {
+    "counter": {
+      "label": "Filter nach"
+    },
+    "seat": {
+      "label": "Sitze",
+      "items": [
+        {
+          "id": "1",
+          "name": "1"
+        },
+        {
+          "id": "2",
+          "name": "2"
+        }
+      ]
+    },
+    "luggage": {
+      "label": "Gepäck"
+    },
+    "smoker": {
+      "label": "Nichtraucher"
+    },
+    "music": {
+      "label": "Musik"
+    },
+    "pets": {
+      "label": "Tiere"
+    }
   }
 }

@@ -4,7 +4,10 @@ import {
   ResultTripActions,
   ResultTripInitialStateType,
 } from "./Result.trip.types";
-import { ResultTripFiltersReducers } from "./Result.trip.reducers";
+import {
+  ResultTripAdvancedFilterReducers,
+  ResultTripFiltersReducers,
+} from "./Result.trip.reducers";
 
 const initialState: ResultTripInitialStateType = {
   filters: {
@@ -36,6 +39,23 @@ const initialState: ResultTripInitialStateType = {
       value: [],
     },
   },
+  advanced_filter: {
+    seat: {
+      selected: null,
+    },
+    luggage: {
+      selected: null,
+    },
+    smoker: {
+      selected: null,
+    },
+    music: {
+      selected: null,
+    },
+    pets: {
+      selected: null,
+    },
+  },
 };
 
 const ResultTripContext = createContext<{
@@ -47,10 +67,11 @@ const ResultTripContext = createContext<{
 });
 
 const mainReducer = (
-  { filters }: ResultTripInitialStateType,
+  { filters, advanced_filter }: ResultTripInitialStateType,
   action: ResultTripActions
 ) => ({
   filters: ResultTripFiltersReducers(filters, action),
+  advanced_filter: ResultTripAdvancedFilterReducers(advanced_filter, action),
 });
 
 const ResultTripProvider = (props: { children: React.ReactNode }) => {

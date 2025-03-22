@@ -12,6 +12,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface ResultTripInitialStateType {
   filters: ResultTripFilters;
+  advanced_filter: ResultTripAdvancedFilter;
 }
 
 // State Collection Types consist of:
@@ -46,13 +47,35 @@ export interface ResultTripFilters {
   };
 }
 
+export interface ResultTripAdvancedFilter {
+  seat: {
+    selected: null | { id: string; name: string };
+  };
+  luggage: {
+    selected: null | { id: string; name: string };
+  };
+  smoker: {
+    selected: null | { id: string; name: string };
+  };
+  music: {
+    selected: null | { id: string; name: string };
+  };
+  pets: {
+    selected: null | { id: string; name: string };
+  };
+}
+
 export enum ResultTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
+  // AdvancedFilter
+  SetAdvancedFilterData = "SetAdvancedFilterData",
 }
 
 // Action Collection Types
-export type ResultTripActions = ResultTripFiltersActions;
+export type ResultTripActions =
+  | ResultTripFiltersActions
+  | ResultTripAdvancedFilterActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -62,3 +85,11 @@ type ResultTripFiltersPayload = {
 
 export type ResultTripFiltersActions =
   ActionMap<ResultTripFiltersPayload>[keyof ActionMap<ResultTripFiltersPayload>];
+
+// AdvancedFilter
+type ResultTripAdvancedFilterPayload = {
+  [ResultTripActionEnum.SetAdvancedFilterData]: ResultTripAdvancedFilter;
+};
+
+export type ResultTripAdvancedFilterActions =
+  ActionMap<ResultTripAdvancedFilterPayload>[keyof ActionMap<ResultTripAdvancedFilterPayload>];
