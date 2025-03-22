@@ -89,6 +89,32 @@ export const FilterFindTrip = () => {
             lat_lng: lat_lng,
           },
         },
+        // NOTES: reset origin and destination
+        origin: {
+          ...state.filters.origin,
+          selected: {
+            ...state.filters.origin.selected,
+            item: null,
+            lat_lng: null,
+          },
+        },
+        destination: {
+          ...state.filters.destination,
+          selected: {
+            ...state.filters.destination.selected,
+            item: null,
+            lat_lng: null,
+          },
+        },
+      },
+    });
+
+    // NOTES: reset polyline
+    await dispatch({
+      type: FindTripActionEnum.SetMapData,
+      payload: {
+        ...state.map,
+        polyline_path: [],
       },
     });
   };
