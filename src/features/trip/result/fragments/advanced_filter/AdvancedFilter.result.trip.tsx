@@ -92,7 +92,8 @@ export const CarFacilityFilterResulTrip = () => {
     <div
       className={clsx(
         "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1.5rem]",
-        "w-full"
+        "w-full",
+        "bg-[white]"
       )}
     >
       <div

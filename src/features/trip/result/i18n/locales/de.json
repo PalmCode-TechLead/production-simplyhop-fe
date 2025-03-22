@@ -105,5 +105,39 @@
   },
   "ride": {
     "title": "Mitfahgelegenheit finden"
+  },
+  "detail": {
+    "title": "Fahrt anbieten",
+    "price": {
+      "form": {
+        "title": "preis",
+        "input": {
+          "price": {
+            "inputProps": {
+              "id": "price",
+              "placeholder": " "
+            }
+          }
+        }
+      }
+    },
+    "notes": {
+      "form": {
+        "title": "Hinweis",
+        "input": {
+          "notes": {
+            "inputProps": {
+              "id": "notes",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "notes",
+              "children": "Möchtest du dem Fahrer noch etwas mitteilen?",
+              "required": false
+            }
+          }
+        }
+      }
+    }
   }
 }

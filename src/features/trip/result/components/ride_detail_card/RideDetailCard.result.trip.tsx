@@ -16,10 +16,6 @@ import {
   CarFacilityItem,
   CarFacilityItemProps,
 } from "@/core/components/car_facility_item";
-import {
-  CarPriceItem,
-  CarPriceItemProps,
-} from "@/core/components/car_price_item";
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
@@ -27,11 +23,8 @@ import {
   DriverProfileLabel,
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label/DriverProfileLabel";
-import { RideBadge, RideBadgeProps } from "@/core/components/ride_badge";
-import { Button } from "@/core/components/button";
-import Link from "next/link";
 
-export interface RideCardResultTripProps {
+export interface RideDetailCardResultTripProps {
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -50,21 +43,9 @@ export interface RideCardResultTripProps {
     travelTime?: TravelTimeItemProps;
     arrival?: ArrivalItemProps;
   };
-  price?: {
-    initial?: CarPriceItemProps;
-  };
-  ride?: {
-    badge: RideBadgeProps[];
-  };
-  cta?: {
-    ride: {
-      href: string;
-      children: React.ReactNode;
-    };
-  };
 }
 
-export const RideCardResultTrip = ({
+export const RideDetailCardResultTrip = ({
   driver = {
     profile: {
       avatar: {
@@ -160,34 +141,7 @@ export const RideCardResultTrip = ({
       time: "18.30 Uhr",
     },
   },
-
-  price = {
-    initial: {
-      label: "Angebotspreis",
-      price: "€25.00",
-    },
-  },
-  ride = {
-    badge: [
-      {
-        id: "bester_preis",
-        label: "Bester Preis",
-        variant: "success",
-      },
-      {
-        id: "fahrerin",
-        label: "Fahrerin (W)",
-        variant: "danger",
-      },
-    ],
-  },
-  cta = {
-    ride: {
-      href: "/mitfahrt-suchen/result?city_id=ChIJ2V-Mo_l1nkcRfZixfUq4DAE&origin_id=ChIJuWG8S2DfnUcRbT-8T9g5EVY&destination_id=ChIJs4qDdmLfnUcRBbJZt1DoAfs&date=2025-03-22&adult=1&children=0&ride_id=1",
-      children: "Mitfahren",
-    },
-  },
-}: RideCardResultTripProps) => {
+}: RideDetailCardResultTripProps) => {
   return (
     <div
       className={clsx(
@@ -197,11 +151,15 @@ export const RideCardResultTrip = ({
         "rounded-[0.625rem]",
         "border border-[#EFEFEF]"
       )}
+      style={{
+        backdropFilter: "blur(20px)",
+        boxShadow: "0px 0px 25px 0px #969C9640",
+      }}
     >
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[52px]",
+          "grid grid-flow-col items-start content-start justify-start justify-items-start gap-[52px]",
           "w-full"
         )}
       >
@@ -212,17 +170,8 @@ export const RideCardResultTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
-            )}
-          >
-            {ride.badge.map((item, itemIndex) => (
-              <RideBadge {...item} key={itemIndex} />
-            ))}
-          </div>
+          <Image {...car.image} className={clsx("w-[145px]")} />
         </div>
-        <Image {...car.image} className={clsx("w-[145px]")} />
 
         <div
           className={clsx(
@@ -285,18 +234,6 @@ export const RideCardResultTrip = ({
             </div>
           </div>
         </div>
-        {/* price */}
-        <CarPriceItem {...price.initial} />
-
-        {/* cta */}
-        <Link href={cta.ride.href}>
-          <Button
-            className={clsx("!px-[1rem] !py-[0.5rem]")}
-            // onClick={cta.ride.onClick}
-          >
-            {cta.ride.children}
-          </Button>
-        </Link>
       </div>
     </div>
   );
