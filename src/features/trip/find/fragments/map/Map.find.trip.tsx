@@ -13,8 +13,7 @@ import { FindTripContext } from "../../context";
 import { MapInfoWindow } from "@/core/components/map_info_window";
 import { getDictionaries } from "../../i18n";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
-
-const libraries: any = ["places"];
+import { libraries } from "@/core/utils/map/constants";
 
 export const MapFindTrip = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;

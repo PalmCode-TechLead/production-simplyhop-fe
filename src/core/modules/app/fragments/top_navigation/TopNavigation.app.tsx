@@ -57,9 +57,13 @@ export const TopNavigation = () => {
 
                     pathname === menu.href
                       ? "text-green-500"
+                      : pathname.includes(menu.id)
+                      ? "text-green-500"
                       : "text-neutral-300",
                     "text-[1rem] font-semibold text-inter",
                     pathname === menu.href
+                      ? "border-b-[0.25rem] border-b-green-500"
+                      : pathname.includes(menu.id)
                       ? "border-b-[0.25rem] border-b-green-500"
                       : "border-b-[0.25rem] border-b-white"
                   )}
@@ -70,6 +74,8 @@ export const TopNavigation = () => {
                     className={clsx(
                       "w-[1rem] h-[1rem]",
                       pathname === menu.href
+                        ? "text-green-500"
+                        : pathname.includes(menu.id)
                         ? "text-green-500"
                         : "text-neutral-300"
                     )}

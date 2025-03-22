@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
@@ -171,6 +171,20 @@ export const AutocompleteRoutes = ({
       isOpen: false,
     });
   };
+
+  useEffect(() => {
+    setOriginAutocomplete({
+      ...originAutocomplete,
+      query: origin.autocomplete.selected?.name ?? "",
+    });
+    setDestinationAutocomplete({
+      ...destinationAutocomplete,
+      query: destination.autocomplete.selected?.name ?? "",
+    });
+  }, [
+    origin.autocomplete.selected?.name,
+    destination.autocomplete.selected?.name,
+  ]);
 
   return (
     <div ref={containerRef} className={clsx("w-full")}>

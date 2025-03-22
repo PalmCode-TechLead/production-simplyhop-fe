@@ -1,13 +1,234 @@
 "use client";
+import { RIDE_FILTER } from "@/core/enums";
 import { useSearchParams } from "next/navigation";
 import * as React from "react";
+import { ResultTripContext } from "./Result.trip.context";
+import {
+  getLatLngFromPlaceId,
+  getPlaceNameFromPlaceId,
+} from "@/core/utils/map/functions";
+import { ResultTripActionEnum } from "./Result.trip.types";
+import { ENVIRONMENTS } from "@/core/environments";
+import { useLoadScript } from "@react-google-maps/api";
+import { libraries } from "@/core/utils/map/constants";
+import { getDictionaries } from "../i18n";
 
-export const useRideFilterResultTrip = (params?: string) => {
-  if (!params) {
-    return;
-  }
-
+export const useRideFilterResultTrip = () => {
+  const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
+  const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
+  const cityId = searchParams.get(RIDE_FILTER.CITY);
+  const originId = searchParams.get(RIDE_FILTER.ORIGIN);
+  const destinationId = searchParams.get(RIDE_FILTER.DESTINATION);
+  const date = searchParams.get(RIDE_FILTER.DATE);
+  const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
+  const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
 
-  React.useEffect(() => {}, []);
+  const { state, dispatch } = React.useContext(ResultTripContext);
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: apiKey,
+    libraries: libraries,
+  });
+
+  const setCityValueFromParams = async (data: { id: string }) => {
+    let lat_lng: null | { lat: number; lng: number } = null;
+    let name: string = "";
+    try {
+      const response = await getLatLngFromPlaceId(data.id);
+      lat_lng = {
+        lat: response.lat,
+        lng: response.lng,
+      };
+    } catch (err) {
+      throw new Error(`Err get lat lng ${err}`);
+    }
+
+    try {
+      const response = await getPlaceNameFromPlaceId(data.id);
+      name = response.name;
+    } catch (err) {
+      throw new Error(`Err get lat lng ${err}`);
+    }
+
+    return {
+      data: {
+        id: data.id,
+        name: name,
+      },
+      lat_lng: lat_lng,
+    };
+  };
+
+  const setOriginRoutesFromParams = async (data: { id: string }) => {
+    let lat_lng: null | { lat: number; lng: number } = null;
+    let name: string = "";
+    try {
+      const response = await getLatLngFromPlaceId(data.id);
+      lat_lng = {
+        lat: response.lat,
+        lng: response.lng,
+      };
+    } catch (err) {
+      throw new Error(`Err get lat lng ${err}`);
+    }
+
+    try {
+      const response = await getPlaceNameFromPlaceId(data.id);
+      name = response.name;
+    } catch (err) {
+      throw new Error(`Err get lat lng ${err}`);
+    }
+
+    return {
+      data: {
+        id: data.id,
+        name: name,
+      },
+      lat_lng: lat_lng,
+    };
+  };
+
+  const setDestinationRoutesFromParams = async (data: { id: string }) => {
+    let lat_lng: null | { lat: number; lng: number } = null;
+    let name: string = "";
+    try {
+      const response = await getLatLngFromPlaceId(data.id);
+      lat_lng = {
+        lat: response.lat,
+        lng: response.lng,
+      };
+    } catch (err) {
+      throw new Error(`Err get lat lng ${err}`);
+    }
+
+    try {
+      const response = await getPlaceNameFromPlaceId(data.id);
+      name = response.name;
+    } catch (err) {
+      throw new Error(`Err get lat lng ${err}`);
+    }
+
+    return {
+      data: {
+        id: data.id,
+        name: name,
+      },
+      lat_lng: lat_lng,
+    };
+  };
+
+  const setDefaultData = async () => {
+    let cityData: null | { id: string; name: string } = null;
+    let cityLatLng: null | { lat: number; lng: number } = null;
+
+    let originData: null | { id: string; name: string } = null;
+    let originLatLng: null | { lat: number; lng: number } = null;
+
+    let destinationData: null | { id: string; name: string } = null;
+    let destinationLatLng: null | { lat: number; lng: number } = null;
+
+    let dateData: null | Date = null;
+
+    let adultData: null | number = null;
+    let childrenData: null | number = null;
+
+    if (cityId) {
+      const { data, lat_lng } = await setCityValueFromParams({
+        id: cityId,
+      });
+      if (!!data && !!lat_lng) {
+        cityData = data;
+        cityLatLng = lat_lng;
+      }
+    }
+
+    if (originId) {
+      const { data, lat_lng } = await setOriginRoutesFromParams({
+        id: originId,
+      });
+      if (!!data && !!lat_lng) {
+        originData = data;
+        originLatLng = lat_lng;
+      }
+    }
+
+    if (destinationId) {
+      const { data, lat_lng } = await setDestinationRoutesFromParams({
+        id: destinationId,
+      });
+      if (!!data && !!lat_lng) {
+        destinationData = data;
+        destinationLatLng = lat_lng;
+      }
+    }
+
+    if (date) {
+      dateData = new Date(date);
+    }
+
+    if (adult) {
+      adultData = Number(adult);
+    }
+
+    if (children) {
+      childrenData = Number(children);
+    }
+
+    if (!!cityData && !!originData && !!destinationData) {
+      dispatch({
+        type: ResultTripActionEnum.SetFiltersData,
+        payload: {
+          ...state.filters,
+          city: {
+            ...state.filters.city,
+            selected: {
+              ...state.filters.city.selected,
+              item: cityData,
+              lat_lng: cityLatLng,
+            },
+          },
+          origin: {
+            ...state.filters.origin,
+            selected: {
+              ...state.filters.origin.selected,
+              item: originData,
+              lat_lng: originLatLng,
+            },
+          },
+          destination: {
+            ...state.filters.destination,
+            selected: {
+              ...state.filters.destination.selected,
+              item: destinationData,
+              lat_lng: destinationLatLng,
+            },
+          },
+          date: {
+            ...state.filters.date,
+            selected: dateData ?? new Date(),
+          },
+
+          passenger: {
+            ...state.filters.passenger,
+            value: dictionaries.filter.form.passenger.items.map((item) => {
+              return {
+                ...item,
+                value:
+                  item.id === "adult"
+                    ? adultData ?? 0
+                    : item.id === "children"
+                    ? childrenData ?? 0
+                    : 0,
+              };
+            }),
+          },
+        },
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    if (!isLoaded || !window.google) return;
+    setDefaultData();
+  }, [isLoaded]);
 };

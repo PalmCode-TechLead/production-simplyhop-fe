@@ -13,6 +13,11 @@ import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { RIDE_FILTER } from "@/core/enums";
 import dayjs from "dayjs";
 import { Button } from "@/core/components/button";
+import {
+  fetchAutocompleteCityList,
+  fetchAutocompletePlace,
+  getLatLngFromPlaceId,
+} from "@/core/utils/map/functions";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
@@ -21,90 +26,6 @@ export const FilterFindTrip = () => {
 
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();
-
-  const fetchAutocompleteCityList = async (
-    input: string,
-    callback: (data: null | google.maps.places.AutocompletePrediction[]) => void
-  ) => {
-    if (typeof window !== "undefined" && window.google) {
-      const autocompleteService = new google.maps.places.AutocompleteService();
-
-      await autocompleteService.getPlacePredictions(
-        {
-          input,
-          componentRestrictions: { country: "de" },
-          types: ["(cities)"],
-        },
-        (predictions, status) => {
-          if (
-            status === google.maps.places.PlacesServiceStatus.OK &&
-            predictions
-          ) {
-            callback(predictions);
-          } else {
-            callback(null);
-          }
-        }
-      );
-    }
-  };
-
-  const fetchAutocompletePlace = async (
-    input: string,
-    coordinate: { lat: number; lng: number } | null,
-    callback: (data: null | google.maps.places.AutocompletePrediction[]) => void
-  ) => {
-    if (typeof window !== "undefined" && window.google && !!coordinate) {
-      const autocompleteService = new google.maps.places.AutocompleteService();
-
-      await autocompleteService.getPlacePredictions(
-        {
-          input: input,
-          componentRestrictions: { country: "de" },
-          types: ["establishment"],
-          locationBias: new google.maps.Circle({
-            center: new google.maps.LatLng(coordinate.lat, coordinate.lng), // Pusat Munich
-            radius: 20000, // Radius 20km dari pusat Munich
-          }),
-        },
-        (predictions, status) => {
-          if (
-            status === google.maps.places.PlacesServiceStatus.OK &&
-            predictions
-          ) {
-            callback(predictions);
-          } else {
-            callback(null);
-          }
-        }
-      );
-    }
-  };
-
-  const getLatLngFromPlaceId = (
-    placeId: string
-  ): Promise<{ lat: number; lng: number }> => {
-    return new Promise((resolve, reject) => {
-      // Membuat service tanpa perlu inisialisasi map
-      const service = new google.maps.places.PlacesService(
-        document.createElement("div")
-      );
-
-      service.getDetails({ placeId }, (place, status) => {
-        if (
-          status === google.maps.places.PlacesServiceStatus.OK &&
-          place?.geometry?.location
-        ) {
-          resolve({
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-          });
-        } else {
-          reject(new Error(`Failed to get location: ${status}`));
-        }
-      });
-    });
-  };
 
   const handleQueryCity = async (input: string) => {
     if (!input.length) {
