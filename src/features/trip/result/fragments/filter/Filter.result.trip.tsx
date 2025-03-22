@@ -20,6 +20,7 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
+import { Button } from "@/core/components/button";
 
 export const FilterResultTrip = () => {
   const router = useRouter();
@@ -241,7 +242,6 @@ export const FilterResultTrip = () => {
         lat: response.lat,
         lng: response.lng,
       };
-      console.log(lat_lng, "ini lat_lng");
     } catch (err) {
       throw new Error(`Err get lat lng ${err}`);
     }
@@ -457,17 +457,8 @@ export const FilterResultTrip = () => {
             onChange={handleChangePassenger}
           />
 
-          <button
-            className={clsx(
-              "grid grid-cols-1 place-content-center place-items-center",
-              "w-full",
-              "bg-[#5AC53D]",
-              "py-[1rem]",
-              "rounded-[0.375rem]",
-              "text-[1rem] text-[#FFFFFF] font-medium",
-              "disabled:opacity-50",
-              "px-[1.25rem] py-[0.75rem]"
-            )}
+          <Button
+            className={clsx("px-[1.25rem] py-[0.75rem]")}
             disabled={
               !state.filters.city.selected.item ||
               !state.filters.origin.selected.item ||
@@ -478,7 +469,7 @@ export const FilterResultTrip = () => {
             onClick={handleClickSearch}
           >
             {dictionaries.filter.cta.primary.children}
-          </button>
+          </Button>
         </div>
 
         {/* button */}

@@ -249,7 +249,6 @@ export const FilterFindTrip = () => {
         lat: response.lat,
         lng: response.lng,
       };
-      console.log(lat_lng, "ini lat_lng");
     } catch (err) {
       throw new Error(`Err get lat lng ${err}`);
     }

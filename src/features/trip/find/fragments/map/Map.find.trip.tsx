@@ -124,8 +124,6 @@ export const MapFindTrip = () => {
     state.map.polyline_path.length,
   ]);
 
-  console.log(state.map.polyline_path.length, "ini apa");
-
   if (!isLoaded) return <div />;
 
   return (
