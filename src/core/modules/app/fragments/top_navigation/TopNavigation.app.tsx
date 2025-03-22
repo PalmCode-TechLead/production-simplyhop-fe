@@ -11,9 +11,7 @@ export const TopNavigation = () => {
   const dictionaries = getDictionaries();
   const pathname = usePathname();
   return (
-    <nav
-      className={clsx("fixed top-0 left-0 right-0", "h-[90px] w-full", "z-30")}
-    >
+    <nav className={clsx("fixed top-0 left-0 right-0", "w-full", "z-30")}>
       <div
         className={clsx(
           "grid grid-cols-1 items-center content-center justify-center justify-items-center",
@@ -37,14 +35,14 @@ export const TopNavigation = () => {
           {/* NOTES: menu */}
           <div
             className={clsx(
-              "grid grid-flow-col items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
+              "grid grid-rows-1 grid-flow-col items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
               "w-full"
             )}
           >
             <div
               className={clsx(
                 "grid grid-flow-col items-center content-center justify-end justify-items-end gap-4 lg:gap-8",
-                "w-full"
+                "w-full h-full"
               )}
             >
               {dictionaries.menu.items.map((menu, menuIndex) => (
@@ -53,10 +51,15 @@ export const TopNavigation = () => {
                   key={menuIndex}
                   className={clsx(
                     "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
+                    "h-[90px]",
+
                     pathname === menu.href
                       ? "text-green-500"
                       : "text-neutral-300",
-                    "text-[1rem] font-semibold text-inter"
+                    "text-[1rem] font-semibold text-inter",
+                    pathname === menu.href
+                      ? "border-b-[0.25rem] border-b-green-500"
+                      : "border-b-[0.25rem] border-b-white"
                   )}
                 >
                   <SVGIcon
