@@ -8,6 +8,30 @@ import { ResultTripFiltersReducers } from "./Result.trip.reducers";
 
 const initialState: ResultTripInitialStateType = {
   filters: {
+    city: {
+      selected: {
+        item: null,
+        lat_lng: null,
+      },
+      items: [],
+    },
+    origin: {
+      selected: {
+        item: null,
+        lat_lng: null,
+      },
+      items: [],
+    },
+    destination: {
+      selected: {
+        item: null,
+        lat_lng: null,
+      },
+      items: [],
+    },
+    date: {
+      selected: new Date(),
+    },
     passenger: {
       value: [],
     },

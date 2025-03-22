@@ -16,6 +16,31 @@ export interface ResultTripInitialStateType {
 
 // State Collection Types consist of:
 export interface ResultTripFilters {
+  city: {
+    items: { id: string; name: string }[];
+    selected: {
+      item: null | { id: string; name: string };
+      lat_lng: null | { lat: number; lng: number };
+    };
+  };
+  origin: {
+    items: { id: string; name: string }[];
+    selected: {
+      item: null | { id: string; name: string };
+      lat_lng: null | { lat: number; lng: number };
+    };
+  };
+  destination: {
+    items: { id: string; name: string }[];
+    selected: {
+      item: null | { id: string; name: string };
+      lat_lng: null | { lat: number; lng: number };
+    };
+  };
+  date: {
+    selected: Date;
+  };
+
   passenger: {
     value: { id: string; value: number }[];
   };
