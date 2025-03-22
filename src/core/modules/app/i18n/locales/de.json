@@ -70,5 +70,129 @@
         }
       ]
     }
+  },
+  "car": {
+    "facility": {
+      "seat": {
+        "available": {
+          "id": "available_seat",
+          "icon": {
+            "name": "User",
+            "color": "#727272"
+          },
+          "name": {
+            "label": "{{number}} Sitzplätze verfügbar",
+            "color": "#727272"
+          }
+        },
+        "empty": {
+          "id": "empty_seat",
+          "icon": {
+            "name": "User",
+            "color": "#D41010"
+          },
+          "name": {
+            "label": "Letzter Platz für deine Buchung",
+            "color": "#D41010"
+          }
+        },
+        "luggage": {
+          "available": {
+            "id": "available_luggage",
+            "icon": {
+              "name": "Briefcase",
+              "color": "#727272"
+            },
+            "name": {
+              "label": "{{number}} mittelgroße Gepäckstücke erlaubt",
+              "color": "#727272"
+            }
+          },
+          "empty": {
+            "id": "empty_luggage",
+            "icon": {
+              "name": "Briefcase",
+              "color": "#D41010"
+            },
+            "name": {
+              "label": "Kein Gepäck erlaubt",
+              "color": "#D41010"
+            }
+          }
+        },
+        "smoking": {
+          "allowed": {
+            "id": "allowed_smoking",
+            "icon": {
+              "name": "CigaretteOff",
+              "color": "#727272"
+            },
+            "name": {
+              "label": "Nichtraucher",
+              "color": "#727272"
+            }
+          },
+          "prohibited": {
+            "id": "prohibited_smoking",
+            "icon": {
+              "name": "CigaretteOff",
+              "color": "#D41010"
+            },
+            "name": {
+              "label": "Nichtraucher",
+              "color": "#D41010"
+            }
+          }
+        },
+        "music": {
+          "allowed": {
+            "id": "allowed_music",
+            "icon": {
+              "name": "Music",
+              "color": "#727272"
+            },
+            "name": {
+              "label": "Musik erlaubt",
+              "color": "#727272"
+            }
+          },
+          "prohibited": {
+            "id": "prohibited_music",
+            "icon": {
+              "name": "Music",
+              "color": "#D41010"
+            },
+            "name": {
+              "label": "Musik erlaubt",
+              "color": "#D41010"
+            }
+          }
+        },
+        "pets": {
+          "allowed": {
+            "id": "allowed-pets",
+            "icon": {
+              "name": "Dog",
+              "color": "#727272"
+            },
+            "name": {
+              "label": "Haustiere erlaubt",
+              "color": "#727272"
+            }
+          },
+          "prohibited": {
+            "id": "prohibited_pets",
+            "icon": {
+              "name": "Dog",
+              "color": "#D41010"
+            },
+            "name": {
+              "label": "Haustiere erlaubt",
+              "color": "#D41010"
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -26,6 +26,7 @@ import {
   TravelStartTimeItem,
   TravelStartTimeItemProps,
 } from "@/core/components/travel_start_time_item";
+import { Button } from "@/core/components/button";
 
 export interface OrderCardMyListTripProps {
   car?: {
@@ -156,20 +157,13 @@ export const OrderCardMyListTrip = ({
         {/* price */}
         <CarPriceItem {...price.initial} />
 
-        {/* button */}
-        <button
-          className={clsx(
-            "flex items-center justify-center",
-            "bg-[#5AC53D]",
-            "border border-[#5AC53D]",
-            "px-[1rem] py-[0.75rem]",
-            "rounded-[0.375rem]",
-            "text-[white] text-[0.875rem] font-medium"
-          )}
+        {/* cta */}
+        <Button
+          className={clsx("!px-[0.5rem] !py-[0.5rem]")}
           onClick={cta.detail.onClick}
         >
           {cta.detail.children}
-        </button>
+        </Button>
       </div>
 
       {/* action */}

@@ -2,6 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { FilterResultTrip } from "../fragments/filter";
 import { CarFacilityFilterResulTrip } from "../fragments/advanced_filter";
+import { RidesResultTrip } from "../fragments/rides";
 
 export const ResultTripContainer = () => {
   return (
@@ -28,6 +29,8 @@ export const ResultTripContainer = () => {
           <FilterResultTrip />
 
           <CarFacilityFilterResulTrip />
+
+          <RidesResultTrip />
         </div>
       </div>
     </div>

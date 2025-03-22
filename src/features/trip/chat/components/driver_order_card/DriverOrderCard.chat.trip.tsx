@@ -87,7 +87,7 @@ export const DriverOrderCardChatTrip = ({
           id: "people",
           icon: {
             name: "User",
-            className: "text-[#D41010]",
+            color: "#D41010",
           },
           name: {
             label: "Letzter Platz für deine Buchung",
@@ -98,7 +98,7 @@ export const DriverOrderCardChatTrip = ({
           id: "briefcase",
           icon: {
             name: "Briefcase",
-            className: "text-[#D41010]",
+            color: "#D41010",
           },
           name: {
             label: "Kein Gepäck erlaubt",
@@ -111,7 +111,7 @@ export const DriverOrderCardChatTrip = ({
           id: "cigarette-off",
           icon: {
             name: "CigaretteOff",
-            className: "text-[#727272]",
+            color: "#727272",
           },
           name: {
             label: "Nichtraucher",
@@ -122,7 +122,7 @@ export const DriverOrderCardChatTrip = ({
           id: "music",
           icon: {
             name: "Music",
-            className: "text-[#727272]",
+            color: "#727272",
           },
           name: {
             label: "Musik erlaubt",
@@ -133,7 +133,7 @@ export const DriverOrderCardChatTrip = ({
           id: "dog",
           icon: {
             name: "Dog",
-            className: "text-[#727272]",
+            color: "#727272",
           },
           name: {
             label: "Haustiere erlaubt",

@@ -10,7 +10,7 @@ export default function RoomConversationContainerChatTrip({
 }: RoomConversationContainerChatTripProps) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const scrollToBottom = () => {
-    ref.current?.scrollIntoView({ behavior: "instant" });
+    // ref.current?.scrollIntoView({ behavior: "instant" });
   };
 
   React.useEffect(() => {

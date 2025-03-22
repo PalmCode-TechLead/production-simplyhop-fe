@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import Image, { ImageProps } from "next/image";
@@ -19,20 +20,21 @@ import {
   CarPriceItem,
   CarPriceItemProps,
 } from "@/core/components/car_price_item";
-import {
-  PriceOfferedItem,
-  PriceOfferedItemProps,
-} from "@/core/components/price_offered_item/PriceOfferedItem";
-import {
-  TripNoteItem,
-  TripNoteItemProps,
-} from "@/core/components/trip_note_item";
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
+import {
+  DriverProfileLabel,
+  DriverProfileLabelProps,
+} from "@/core/components/driver_profile_label/DriverProfileLabel";
+import { RideBadge, RideBadgeProps } from "@/core/components/ride_badge";
+import { Button } from "@/core/components/button";
 
-export interface CustomerOrderCardChatTripProps {
-  time?: string;
+export interface RideCardResultTripProps {
+  driver?: {
+    profile: DriverProfileLabelProps;
+  };
+
   car?: {
     image: ImageProps;
     identity?: CarIdentityItemProps;
@@ -49,13 +51,27 @@ export interface CustomerOrderCardChatTripProps {
   };
   price?: {
     initial?: CarPriceItemProps;
-    offered?: PriceOfferedItemProps;
   };
-  note?: TripNoteItemProps;
+  ride?: {
+    badge: RideBadgeProps[];
+  };
+  cta?: {
+    ride: {
+      children: React.ReactNode;
+      onClick: () => void;
+    };
+  };
 }
 
-export const CustomerOrderCardChatTrip = ({
-  time = "10:30 AM",
+export const RideCardResultTrip = ({
+  driver = {
+    profile: {
+      avatar: {
+        image: undefined,
+      },
+      name: "Kelly",
+    },
+  },
   car = {
     image: {
       src: "/images/general/car.png",
@@ -149,140 +165,135 @@ export const CustomerOrderCardChatTrip = ({
       label: "Angebotspreis",
       price: "€25.00",
     },
-    offered: {
-      label: "Angebotener Preis",
-      price: "€25.00",
+  },
+  ride = {
+    badge: [
+      {
+        id: "bester_preis",
+        label: "Bester Preis",
+        variant: "success",
+      },
+      {
+        id: "fahrerin",
+        label: "Fahrerin (W)",
+        variant: "danger",
+      },
+    ],
+  },
+  cta = {
+    ride: {
+      children: "Mitfahren",
+      onClick: () => {},
     },
   },
-  note = {
-    label: "Hinweis",
-    note: "Lorem Ipsum",
-  },
-}: CustomerOrderCardChatTripProps) => {
+}: RideCardResultTripProps) => {
   return (
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-        "w-full"
+        "w-full",
+        "px-[1.5rem] py-[1rem]",
+        "rounded-[0.625rem]",
+        "border border-[#EFEFEF]"
       )}
     >
+      {/* car */}
       <div
         className={clsx(
-          "grid grid-cols-1 items-start-content-start justify-center justify-items-center gap-[1.5rem]",
+          "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[52px]",
           "w-full"
         )}
       >
-        <span className={clsx("text-[#A0A0A0] text-[0.75rem] font-normal")}>
-          {time}
-        </span>
-      </div>
-
-      <div
-        className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-          "w-full",
-          "px-[1.5rem] py-[1rem]",
-          "rounded-[0.625rem]",
-          "border border-[#EFEFEF]"
-        )}
-      >
-        {/* car */}
+        {/* rider */}
         <div
           className={clsx(
-            "grid grid-cols-[auto_1fr_auto] items-start content-start justify-start justify-items-start gap-[52px]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"
+          )}
+        >
+          <DriverProfileLabel {...driver.profile} />
+          <div
+            className={clsx(
+              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+            )}
+          >
+            {ride.badge.map((item, itemIndex) => (
+              <RideBadge {...item} key={itemIndex} />
+            ))}
+          </div>
+        </div>
+        <Image {...car.image} className={clsx("w-[145px]")} />
+
+        <div
+          className={clsx(
+            "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
             "w-full"
           )}
         >
-          <Image {...car.image} className={clsx("w-[145px]")} />
+          {/* identity */}
+          <CarIdentityItem {...car.identity} />
 
+          {/* routes */}
           <div
             className={clsx(
-              "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
+              "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
               "w-full"
             )}
           >
-            {/* identity */}
-            <CarIdentityItem {...car.identity} />
+            <DepartureItem {...routes.departure} />
 
-            {/* routes */}
+            <TravelTimeItem {...routes.travelTime} />
+
+            <ArrivalItem {...routes.arrival} />
+          </div>
+
+          {/* facility */}
+          <div
+            className={clsx(
+              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+              "w-full"
+            )}
+          >
             <div
               className={clsx(
-                "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
+                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
                 "w-full"
               )}
             >
-              <DepartureItem {...routes.departure} />
-
-              <TravelTimeItem {...routes.travelTime} />
-
-              <ArrivalItem {...routes.arrival} />
+              {car.facility?.top.map((item, index) => (
+                <CarFacilityItem
+                  key={index}
+                  icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
+                  name={{ ...item.name }}
+                />
+              ))}
             </div>
 
-            {/* facility */}
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
                 "w-full"
               )}
             >
-              <div
-                className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                  "w-full"
-                )}
-              >
-                {car.facility?.top.map((item, index) => (
-                  <CarFacilityItem
-                    key={index}
-                    icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
-                    name={{ ...item.name }}
-                  />
-                ))}
-              </div>
-
-              <div
-                className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                  "w-full"
-                )}
-              >
-                {car.facility?.bottom.map((item, Index) => (
-                  <CarFacilityItem
-                    key={Index}
-                    icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
-                    name={{ ...item.name }}
-                  />
-                ))}
-              </div>
+              {car.facility?.bottom.map((item, Index) => (
+                <CarFacilityItem
+                  key={Index}
+                  icon={{ ...item.icon } as { name: SVGIconProps["name"] }}
+                  name={{ ...item.name }}
+                />
+              ))}
             </div>
           </div>
-          {/* price */}
-          <CarPriceItem {...price.initial} />
         </div>
+        {/* price */}
+        <CarPriceItem {...price.initial} />
 
-        {/* price offered */}
-        <div
-          className={clsx(
-            "w-full",
-            "px-[1rem] py-[0.75rem]",
-            "border-t border-t-[#F8F8F8]"
-          )}
+        {/* cta */}
+        <Button
+          className={clsx("!px-[1rem] !py-[0.5rem]")}
+          onClick={cta.ride.onClick}
         >
-          <PriceOfferedItem {...price.offered} />
-        </div>
-
-        {/* trip note */}
-        <div
-          className={clsx(
-            "w-full",
-            "px-[1rem] py-[0.75rem]",
-            "border-t border-t-[#F8F8F8]"
-          )}
-        >
-          <TripNoteItem {...note} />
-        </div>
-
-        {/* action */}
+          {cta.ride.children}
+        </Button>
       </div>
     </div>
   );

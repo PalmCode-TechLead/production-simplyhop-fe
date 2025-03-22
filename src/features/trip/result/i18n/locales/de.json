@@ -102,5 +102,8 @@
     "sort": {
       "label": "Sortieren"
     }
+  },
+  "ride": {
+    "title": "Mitfahgelegenheit finden"
   }
 }
