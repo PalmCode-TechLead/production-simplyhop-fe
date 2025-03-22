@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 export const ResultTripContainer = () => {
   return (
-    <div className={clsx("w-full h-full", "relative")}>
+    <div className={clsx("W-full h-full", "relative")}>
       <div></div>
     </div>
   );

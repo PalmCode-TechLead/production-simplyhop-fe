@@ -4,9 +4,7 @@ import { FindTripProvider } from "@/features/trip/find/context";
 export default function Home() {
   return (
     <FindTripProvider>
-      {/* <AppContainer> */}
       <FindTripContainer />
-      {/* </AppContainer> */}
     </FindTripProvider>
   );
 }

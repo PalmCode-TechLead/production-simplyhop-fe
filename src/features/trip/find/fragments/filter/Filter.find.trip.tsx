@@ -8,8 +8,13 @@ import { FindTripActionEnum, FindTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
 import { DropdownPassenger } from "@/core/components/dropdown_passenger";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import { RIDE_FILTER } from "@/core/enums";
+import dayjs from "dayjs";
 
 export const FilterFindTrip = () => {
+  const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(FindTripContext);
 
@@ -377,6 +382,44 @@ export const FilterFindTrip = () => {
     setDefaultPassenger();
   }, []);
 
+  const handleClickSearch = () => {
+    let params = "";
+    if (state.filters.city.selected.item) {
+      const city = `${RIDE_FILTER.CITY}=${state.filters.city.selected.item.id}`;
+      params = params + city;
+    }
+    if (state.filters.origin.selected.item) {
+      const origin = `&${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item.id}`;
+      params = params + origin;
+    }
+    if (state.filters.destination.selected.item) {
+      const destination = `&${RIDE_FILTER.DESTINATION}=${state.filters.destination.selected.item.id}`;
+      params = params + destination;
+    }
+    if (state.filters.date.selected) {
+      const date = `&${RIDE_FILTER.DATE}=${dayjs(
+        state.filters.date.selected
+      ).format("YYYY-MM-DD")}`;
+      params = params + date;
+    }
+    if (state.filters.passenger.value) {
+      const adult = `&${RIDE_FILTER.ADULT_PASSENGER}=${
+        state.filters.passenger.value.find(
+          (passengerItem) => passengerItem.id === "adult"
+        )?.value ?? 0
+      }`;
+      params = params + adult;
+
+      const children = `&${RIDE_FILTER.CHILDREN_PASSENGER}=${
+        state.filters.passenger.value.find(
+          (passengerItem) => passengerItem.id === "children"
+        )?.value ?? 0
+      }`;
+      params = params + children;
+    }
+    router.push(AppCollectionURL.public.tripResult(params));
+  };
+
   return (
     <div
       className={clsx(
@@ -511,6 +554,7 @@ export const FilterFindTrip = () => {
             !state.filters.date.selected ||
             !state.filters.passenger.value.length
           }
+          onClick={handleClickSearch}
         >
           {dictionaries.filter.cta.primary.children}
         </button>
