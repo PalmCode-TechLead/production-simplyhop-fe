@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { RIDE_FILTER } from "@/core/enums";
 import dayjs from "dayjs";
+import { Button } from "@/core/components/button";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
@@ -537,16 +538,7 @@ export const FilterFindTrip = () => {
         </div>
 
         {/* button */}
-        <button
-          className={clsx(
-            "grid grid-cols-1 place-content-center place-items-center",
-            "w-full",
-            "bg-[#5AC53D]",
-            "py-[1rem]",
-            "rounded-[0.375rem]",
-            "text-[1rem] text-[#FFFFFF] font-medium",
-            "disabled:opacity-50"
-          )}
+        <Button
           disabled={
             !state.filters.city.selected.item ||
             !state.filters.origin.selected.item ||
@@ -557,7 +549,7 @@ export const FilterFindTrip = () => {
           onClick={handleClickSearch}
         >
           {dictionaries.filter.cta.primary.children}
-        </button>
+        </Button>
       </div>
     </div>
   );
