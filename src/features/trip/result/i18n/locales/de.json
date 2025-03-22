@@ -138,6 +138,11 @@
           }
         }
       }
+    },
+    "cta": {
+      "send": {
+        "children": "Anfrage senden"
+      }
     }
   }
 }

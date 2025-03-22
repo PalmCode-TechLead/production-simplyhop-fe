@@ -1,24 +1,32 @@
 "use client";
 import * as React from "react";
 import { InputLabel, InputLabelProps } from "../input_label";
+import { InputContainer } from "../input_container";
 import clsx from "clsx";
 import { Textarea } from "../textarea/Textarea";
 import { TextareaContainer } from "../textarea_container";
-import { TextareaLabel } from "../textarea_label";
 
-export interface TextareafieldProps {
+export interface TextareafieldNotesProps {
   inputProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
   labelProps?: InputLabelProps;
 }
 
-export const Textareafield = ({
+export const TextareafieldNotes = ({
   inputProps,
   labelProps,
-}: TextareafieldProps) => {
+}: TextareafieldNotesProps) => {
   const textareaRef = React.useRef<null | HTMLTextAreaElement>(null);
   const [value, setValue] = React.useState<string>("");
   return (
-    <TextareaContainer className={clsx("relative")}>
+    <TextareaContainer
+      className={clsx(
+        "grid grid-cols-1 place-content-start place-items-start",
+        "relative",
+        "!border-[0px]",
+        "!rounded-[0px]",
+        "!w-full"
+      )}
+    >
       <Textarea
         ref={textareaRef}
         {...inputProps}
@@ -28,7 +36,7 @@ export const Textareafield = ({
           inputProps.onChange(e);
         }}
       />
-      <TextareaLabel
+      <InputLabel
         {...labelProps}
         className={clsx(
           !!value.length
