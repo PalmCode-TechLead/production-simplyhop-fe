@@ -20,6 +20,7 @@ import {
   Smile,
   FileClock,
   SlidersHorizontal,
+  ArrowDownWideNarrow,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -46,6 +47,7 @@ export const svgMap = {
   Smile,
   FileClock,
   SlidersHorizontal,
+  ArrowDownWideNarrow,
   Facebook,
   Google,
 };

@@ -55,6 +55,9 @@ const initialState: ResultTripInitialStateType = {
     pets: {
       selected: null,
     },
+    sort: {
+      selected: null,
+    },
   },
 };
 

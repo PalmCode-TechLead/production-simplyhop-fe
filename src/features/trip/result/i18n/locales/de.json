@@ -98,6 +98,9 @@
     },
     "pets": {
       "label": "Tiere"
+    },
+    "sort": {
+      "label": "Sortieren"
     }
   }
 }

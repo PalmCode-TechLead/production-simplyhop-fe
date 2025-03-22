@@ -5,6 +5,7 @@ import { CarFacilityFilterCounterBadge } from "@/core/components/car_facility_fi
 import { getDictionaries } from "../../i18n";
 import { CarFacilityFilterDropdown } from "@/core/components/car_facility_filter_dropdown";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
+import { CarSortDropdown } from "@/core/components/car_sort_dropdown";
 
 export const CarFacilityFilterResulTrip = () => {
   const dictionaries = getDictionaries();
@@ -74,6 +75,19 @@ export const CarFacilityFilterResulTrip = () => {
       },
     });
   };
+
+  const handleSelectSort = (data: { id: string; name: string }) => {
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        sort: {
+          ...state.advanced_filter.sort,
+          selected: data,
+        },
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -118,6 +132,11 @@ export const CarFacilityFilterResulTrip = () => {
       </div>
 
       {/* sort */}
+      <CarSortDropdown
+        {...dictionaries.advanced_filter.sort}
+        selected={state.advanced_filter.sort.selected}
+        onSelect={handleSelectSort}
+      />
     </div>
   );
 };

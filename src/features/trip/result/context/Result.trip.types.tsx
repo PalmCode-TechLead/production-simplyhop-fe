@@ -63,6 +63,9 @@ export interface ResultTripAdvancedFilter {
   pets: {
     selected: null | { id: string; name: string };
   };
+  sort: {
+    selected: null | { id: string; name: string };
+  };
 }
 
 export enum ResultTripActionEnum {
