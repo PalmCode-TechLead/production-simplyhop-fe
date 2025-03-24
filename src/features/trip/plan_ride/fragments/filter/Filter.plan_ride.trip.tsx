@@ -18,6 +18,7 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
+import { AutocompleteAuto } from "@/core/components/autocomplete_auto";
 
 export const FilterPlanRideTrip = () => {
   const router = useRouter();
@@ -26,6 +27,32 @@ export const FilterPlanRideTrip = () => {
 
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();
+
+  const handleQueryAuto = async (input: string) => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        auto: {
+          ...state.filters.auto,
+          query: input,
+        },
+      },
+    });
+  };
+
+  const handleSelectAuto = async (data: { id: string; name: string }) => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        auto: {
+          ...state.filters.auto,
+          selected: data,
+        },
+      },
+    });
+  };
 
   const handleQueryCity = async (input: string) => {
     if (!input.length) {
@@ -382,9 +409,29 @@ export const FilterPlanRideTrip = () => {
         boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
       }}
     >
-      <p className={clsx("text-[2rem] text-[#292929] font-bold")}>
-        {dictionaries.filter.title}
-      </p>
+      <div
+        className={clsx(
+          "grid grid-cols-[1fr_397px] items-center content-center justify-start justify-items-start",
+          "w-full",
+          "gap-[1rem]"
+        )}
+      >
+        <p className={clsx("text-[2rem] text-[#292929] font-bold")}>
+          {dictionaries.filter.title}
+        </p>
+        <AutocompleteAuto
+          {...dictionaries.filter.form.auto}
+          selected={state.filters.auto.selected}
+          items={state.filters.auto.items.filter((item) =>
+            item.name
+              .toLowerCase()
+              .includes(state.filters.auto.query.toLowerCase())
+          )}
+          debounceQuery
+          onQuery={handleQueryAuto}
+          onSelect={handleSelectAuto}
+        />
+      </div>
 
       <div
         className={clsx(

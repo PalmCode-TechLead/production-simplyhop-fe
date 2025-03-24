@@ -1,13 +1,21 @@
 "use client";
 import React, { createContext, useReducer, Dispatch } from "react";
-import { PlanRideTripActions, PlanRideTripInitialStateType } from "./PlanRide.trip.types";
+import {
+  PlanRideTripActions,
+  PlanRideTripInitialStateType,
+} from "./PlanRide.trip.types";
 import {
   PlanRideTripFiltersReducers,
   PlanRideTripMapReducers,
-} from './PlanRide.trip.reducers'
+} from "./PlanRide.trip.reducers";
 
 const initialState: PlanRideTripInitialStateType = {
   filters: {
+    auto: {
+      query:'',
+      selected: null,
+      items: [],
+    },
     city: {
       selected: {
         item: null,

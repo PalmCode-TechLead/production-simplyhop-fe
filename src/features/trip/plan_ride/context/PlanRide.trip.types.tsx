@@ -17,6 +17,11 @@ export interface PlanRideTripInitialStateType {
 
 // State Collection Types consist of:
 export interface PlanRideTripFilters {
+  auto: {
+    query: string;
+    items: { id: string; name: string }[];
+    selected: null | { id: string; name: string };
+  };
   city: {
     items: { id: string; name: string }[];
     selected: {
@@ -59,7 +64,9 @@ export enum PlanRideTripActionEnum {
 }
 
 // Action Collection Types
-export type PlanRideTripActions = PlanRideTripFiltersActions | PlanRideTripMapActions;
+export type PlanRideTripActions =
+  | PlanRideTripFiltersActions
+  | PlanRideTripMapActions;
 
 // Action Collection Types consist of:
 // Filters

@@ -35,6 +35,17 @@
   "filter": {
     "title": "Mitfahrt anbieten",
     "form": {
+      "auto": {
+        "inputProps": {
+          "id": "auto",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "auto",
+          "children": "Auto",
+          "required": false
+        }
+      },
       "city": {
         "inputProps": {
           "id": "city",
