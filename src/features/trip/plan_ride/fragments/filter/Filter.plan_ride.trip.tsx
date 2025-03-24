@@ -8,7 +8,6 @@ import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
 import { DropdownPassenger } from "@/core/components/dropdown_passenger";
-import { useRouter } from "next/navigation";
 import { Button } from "@/core/components/button";
 import {
   fetchAutocompleteCityList,
@@ -18,7 +17,6 @@ import {
 import { AutocompleteAuto } from "@/core/components/autocomplete_auto";
 
 export const FilterPlanRideTrip = () => {
-  const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(PlanRideTripContext);
 
