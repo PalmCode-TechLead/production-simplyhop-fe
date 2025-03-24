@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { InputLabel, InputLabelProps } from "../input_label";
+import { InputLabelProps } from "../input_label";
 import clsx from "clsx";
 import { Textarea } from "../textarea/Textarea";
 import { TextareaContainer } from "../textarea_container";

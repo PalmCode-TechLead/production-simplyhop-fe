@@ -21,7 +21,7 @@ export const Avatar = ({ image }: AvatarProps) => {
       )}
     >
       {image ? (
-        <Image {...image} />
+        <Image {...image} alt={image.alt} />
       ) : (
         <SVGIcon
           name="User"

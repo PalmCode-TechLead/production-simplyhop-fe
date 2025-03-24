@@ -6,20 +6,41 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { RideDetailCardResultTrip } from "../../components/ride_detail_card";
 import { getDictionaries } from "../../i18n";
 import { PriceCardResultTrip } from "../../components/price_card";
-import { Textareafield } from "@/core/components/textareafield";
 import { TextareafieldNotes } from "@/core/components/textareafield_notes";
 import { Card } from "@/core/components/card";
 import { PriceInputResultTrip } from "../../components/price_input";
 import { Button } from "@/core/components/button";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import { ResultTripActionEnum, ResultTripContext } from "../../context";
 
 export const DetailResultTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { state, dispatch } = React.useContext(ResultTripContext);
   const rideId = searchParams.get("ride_id");
-  const isOpen = !!rideId;
+  const isOpen = state.detail.is_open;
+
+  React.useEffect(() => {
+    if (rideId) {
+      dispatch({
+        type: ResultTripActionEnum.SetDetailData,
+        payload: {
+          ...state.detail,
+          is_open: true,
+        },
+      });
+    }
+  }, [rideId]);
+
   const handleClose = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        is_open: false,
+      },
+    });
     const params = new URLSearchParams(searchParams.toString()); // Ambil semua params
     params.delete("ride_id");
     router.push(
@@ -29,12 +50,20 @@ export const DetailResultTrip = () => {
   };
 
   const handleClickSend = () => {
-    const params = new URLSearchParams(searchParams.toString()); // Ambil semua params
-    params.delete("ride_id");
-    router.push(
-      `${AppCollectionURL.public.tripResult()}?${params.toString()}`,
-      { scroll: false }
-    );
+    dispatch({
+      type: ResultTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        is_open: false,
+      },
+    });
+    dispatch({
+      type: ResultTripActionEnum.SetNotificationData,
+      payload: {
+        ...state.notification,
+        is_open: true,
+      },
+    });
   };
   return (
     <Modal

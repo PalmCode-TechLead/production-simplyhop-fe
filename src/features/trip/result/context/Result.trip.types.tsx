@@ -13,6 +13,9 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface ResultTripInitialStateType {
   filters: ResultTripFilters;
   advanced_filter: ResultTripAdvancedFilter;
+  rides: ResultTripRides;
+  detail: ResultTripDetail;
+  notification: ResultTripNotification;
 }
 
 // State Collection Types consist of:
@@ -68,17 +71,38 @@ export interface ResultTripAdvancedFilter {
   };
 }
 
+export interface ResultTripRides {
+  data: any[];
+}
+
+export interface ResultTripDetail {
+  is_open: boolean;
+}
+
+export interface ResultTripNotification {
+  is_open: boolean;
+}
+
 export enum ResultTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
   // AdvancedFilter
   SetAdvancedFilterData = "SetAdvancedFilterData",
+  // Rides
+  SetRidesData = "SetRidesData",
+  // Detail
+  SetDetailData = "SetDetailData",
+  // Notification
+  SetNotificationData = "SetNotificationData",
 }
 
 // Action Collection Types
 export type ResultTripActions =
   | ResultTripFiltersActions
-  | ResultTripAdvancedFilterActions;
+  | ResultTripAdvancedFilterActions
+  | ResultTripRidesActions
+  | ResultTripDetailActions
+  | ResultTripNotificationActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -96,3 +120,27 @@ type ResultTripAdvancedFilterPayload = {
 
 export type ResultTripAdvancedFilterActions =
   ActionMap<ResultTripAdvancedFilterPayload>[keyof ActionMap<ResultTripAdvancedFilterPayload>];
+
+// Rides
+type ResultTripRidesPayload = {
+  [ResultTripActionEnum.SetRidesData]: ResultTripRides;
+};
+
+export type ResultTripRidesActions =
+  ActionMap<ResultTripRidesPayload>[keyof ActionMap<ResultTripRidesPayload>];
+
+// Detail
+type ResultTripDetailPayload = {
+  [ResultTripActionEnum.SetDetailData]: ResultTripDetail;
+};
+
+export type ResultTripDetailActions =
+  ActionMap<ResultTripDetailPayload>[keyof ActionMap<ResultTripDetailPayload>];
+
+// Notification
+type ResultTripNotificationPayload = {
+  [ResultTripActionEnum.SetNotificationData]: ResultTripNotification;
+};
+
+export type ResultTripNotificationActions =
+  ActionMap<ResultTripNotificationPayload>[keyof ActionMap<ResultTripNotificationPayload>];

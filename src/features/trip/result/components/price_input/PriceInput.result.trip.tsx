@@ -1,12 +1,15 @@
 import * as React from "react";
 import clsx from "clsx";
+import { InputPrice } from "@/core/components/input_price";
 
 export interface PriceInputResultTripProps {
   currency?: string;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 export const PriceInputResultTrip = ({
   currency = "€",
+  inputProps,
 }: PriceInputResultTripProps) => {
   return (
     <div
@@ -25,15 +28,7 @@ export const PriceInputResultTrip = ({
         <span className={clsx("text-[56px] text-[black] font-bold")}>
           {currency}
         </span>
-        <input
-          type="number"
-          className={clsx(
-            "h-full w-[228px]",
-            "bg-[white]",
-            "outline-none",
-            "text-[56px] text-[black] font-bold"
-          )}
-        />
+        <InputPrice {...inputProps} />
       </div>
     </div>
   );

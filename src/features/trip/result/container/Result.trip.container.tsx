@@ -4,6 +4,7 @@ import { FilterResultTrip } from "../fragments/filter";
 import { CarFacilityFilterResulTrip } from "../fragments/advanced_filter";
 import { RidesResultTrip } from "../fragments/rides";
 import { DetailResultTrip } from "../fragments/detail";
+import { NotificationResultTrip } from "../fragments/notification";
 
 export const ResultTripContainer = () => {
   return (
@@ -28,7 +29,9 @@ export const ResultTripContainer = () => {
               "max-w-container w-full h-full"
             )}
           >
-            <FilterResultTrip />
+            <React.Suspense fallback={<div />}>
+              <FilterResultTrip />
+            </React.Suspense>
 
             <CarFacilityFilterResulTrip />
 
@@ -36,7 +39,12 @@ export const ResultTripContainer = () => {
           </div>
         </div>
       </div>
-      <DetailResultTrip />
+      <React.Suspense fallback={<div />}>
+        <DetailResultTrip />
+      </React.Suspense>
+      <React.Suspense fallback={<div />}>
+        <NotificationResultTrip />
+      </React.Suspense>
     </>
   );
 };
