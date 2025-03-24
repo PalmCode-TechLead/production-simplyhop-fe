@@ -60,6 +60,31 @@ export interface PlanRideTripMap {
 
 export interface PlanRideTripDetail {
   is_open: boolean;
+  form: {
+    plan: {
+      date: {
+        selected: Date;
+      };
+      time: {
+        value: string;
+      };
+      recurring: {
+        selected: null | { id: string; name: string };
+      };
+      umweg: {
+        value: string;
+      };
+      seat: {
+        value: string;
+      };
+      back_seat: {
+        checked: boolean;
+      };
+    };
+    tnc: {
+      checked: boolean;
+    };
+  };
 }
 
 export interface PlanRideTripNotification {

@@ -51,6 +51,31 @@ const initialState: PlanRideTripInitialStateType = {
   },
   detail: {
     is_open: false,
+    form: {
+      plan: {
+        date: {
+          selected: new Date(),
+        },
+        time: {
+          value: "",
+        },
+        umweg: {
+          value: "",
+        },
+        recurring: {
+          selected: null,
+        },
+        seat: {
+          value: "",
+        },
+        back_seat: {
+          checked: false,
+        },
+      },
+      tnc: {
+        checked: false,
+      },
+    },
   },
   notification: {
     is_open: false,

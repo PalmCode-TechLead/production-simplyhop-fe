@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 export const InputContainer = forwardRef<
   HTMLDivElement,
-  React.InputHTMLAttributes<HTMLDivElement>
+  React.HTMLAttributes<HTMLDivElement>
 >((props, ref) => {
   return (
     <div

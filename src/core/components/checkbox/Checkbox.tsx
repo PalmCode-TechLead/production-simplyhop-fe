@@ -34,9 +34,9 @@ export const Checkbox = ({
         className={clsx(
           "outline-none",
           "w-[1.25rem] h-[1.25rem]",
-          otherProps.checked ? "bg-[#FF6201]" : "bg-transparent",
+          otherProps.checked ? "bg-[#5AC53D]" : "bg-transparent",
           otherProps.checked
-            ? "border-[1px] border-[#FF6201]"
+            ? "border-[1px] border-[#5AC53D]"
             : "border-[1px] border-[#98989E]",
           "rounded-[0.25rem]",
           "flex items-center justify-center"

@@ -9,12 +9,14 @@ import { InputLabel, InputLabelProps } from "../input_label";
 export interface DatePickerProps {
   value?: Date;
   labelProps?: InputLabelProps;
+  inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   onSelect?: (data: Date) => void;
 }
 
 export const DatePicker = ({
   value = new Date(),
   labelProps,
+  inputContainerProps,
   onSelect = () => {},
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -72,11 +74,13 @@ export const DatePicker = ({
         ref={ref}
       >
         <InputContainer
+          {...inputContainerProps}
           className={clsx(
             "cursor-pointer",
             "font-medium text-[0.875rem] leading-[1.25rem]",
             "text-[#000000] whitespace-nowrap",
-            "w-full"
+            "w-full",
+            inputContainerProps?.className
           )}
           onClick={handleClickDropdown}
         >

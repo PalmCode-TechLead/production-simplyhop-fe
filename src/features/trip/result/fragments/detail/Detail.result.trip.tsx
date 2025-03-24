@@ -97,6 +97,9 @@ export const DetailResultTrip = () => {
 
         <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
           <TextareafieldNotes
+            inputContainerProps={{
+              className: clsx("!border-[0px]", "!rounded-[0px]"),
+            }}
             inputProps={{
               ...dictionaries.detail.notes.form.input.notes.inputProps,
             }}

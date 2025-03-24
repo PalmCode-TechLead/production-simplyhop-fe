@@ -116,7 +116,88 @@
     }
   },
   "detail": {
-    "title": "Fahrt anbieten",
+    "title": "Mitfahrt anbieten",
+    "plan": {
+      "form": {
+        "title": "Fahrplan",
+        "input": {
+          "date": {
+            "labelProps": {
+              "id": "date",
+              "children": "Datum",
+              "required": false
+            }
+          },
+          "time": {
+            "inputProps": {
+              "id": "time",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "time",
+              "children": "Abfahrtzeit",
+              "required": false
+            }
+          },
+          "recurring": {
+            "inputProps": {
+              "id": "recurring",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "recurring",
+              "children": "Wiederkehrende Fahrt",
+              "required": false
+            },
+            "items": [
+              {
+                "id": "1",
+                "name": "Keine"
+              },
+              {
+                "id": "2",
+                "name": "Täglich"
+              },
+              {
+                "id": "3",
+                "name": "Wöchentlich"
+              },
+              {
+                "id": "4",
+                "name": "Alle 2 Wochen"
+              }
+            ]
+          },
+          "umweg": {
+            "inputProps": {
+              "id": "umweg",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "umweg",
+              "children": "Umweg",
+              "required": false
+            }
+          },
+
+          "seat": {
+            "inputProps": {
+              "id": "seat",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "seat",
+              "children": "Freie Plätze",
+              "required": false
+            }
+          },
+          "back_seat": {
+            "label": "Max. 2 auf der Rückbank"
+          }
+        }
+      }
+    },
+
     "price": {
       "form": {
         "title": "preis",
@@ -132,7 +213,7 @@
     },
     "notes": {
       "form": {
-        "title": "Hinweis",
+        "title": "Sonstige Hinweise",
         "input": {
           "notes": {
             "inputProps": {
@@ -141,12 +222,15 @@
             },
             "labelProps": {
               "id": "notes",
-              "children": "Möchtest du dem Fahrer noch etwas mitteilen?",
+              "children": "Sonstige Hinweise",
               "required": false
             }
           }
         }
       }
+    },
+    "tnc": {
+      "label": "Um deine Fahrt inserieren zu können, bestätige bitte die <a href='' style='color:#5AC53D'>Datenschutzbestimmungen</a> und <a href='' style='color:#5AC53D'>AGB</a> von SimplyHop."
     },
     "cta": {
       "send": {

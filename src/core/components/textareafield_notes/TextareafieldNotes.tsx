@@ -6,11 +6,13 @@ import { Textarea } from "../textarea/Textarea";
 import { TextareaContainer } from "../textarea_container";
 
 export interface TextareafieldNotesProps {
+  inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   inputProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
   labelProps?: InputLabelProps;
 }
 
 export const TextareafieldNotes = ({
+  inputContainerProps,
   inputProps,
   labelProps,
 }: TextareafieldNotesProps) => {
@@ -18,12 +20,12 @@ export const TextareafieldNotes = ({
   const [value, setValue] = React.useState<string>("");
   return (
     <TextareaContainer
+      {...inputContainerProps}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start",
         "relative",
-        "!border-[0px]",
-        "!rounded-[0px]",
-        "!w-full"
+        "!w-full",
+        inputContainerProps?.className
       )}
     >
       <Textarea

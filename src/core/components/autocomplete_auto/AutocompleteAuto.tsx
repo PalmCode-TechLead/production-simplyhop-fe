@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
-
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
-import SVGIcon from "../../icons";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { Input } from "../input";
 import { InputContainer } from "../input_container";

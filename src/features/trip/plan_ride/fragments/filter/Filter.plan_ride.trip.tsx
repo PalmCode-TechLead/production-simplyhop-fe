@@ -9,9 +9,6 @@ import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
 import { DropdownPassenger } from "@/core/components/dropdown_passenger";
 import { useRouter } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
-import { RIDE_FILTER } from "@/core/enums";
-import dayjs from "dayjs";
 import { Button } from "@/core/components/button";
 import {
   fetchAutocompleteCityList,

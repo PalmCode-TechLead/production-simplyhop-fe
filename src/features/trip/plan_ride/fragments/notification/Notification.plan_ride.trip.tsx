@@ -4,7 +4,6 @@ import * as React from "react";
 import clsx from "clsx";
 import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
-import { useRouter } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import { CopyLinkItem } from "@/core/components/copy_link_item";
 
 export const NotificationPlanRideTrip = () => {
   const dictionaries = getDictionaries();
-  const router = useRouter();
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const isOpen = state.notification.is_open;
   const handleClose = () => {

@@ -6,15 +6,23 @@ import clsx from "clsx";
 import { Input } from "../input";
 
 export interface TextfieldProps {
+  inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
 }
 
-export const Textfield = ({ inputProps, labelProps }: TextfieldProps) => {
+export const Textfield = ({
+  inputContainerProps,
+  inputProps,
+  labelProps,
+}: TextfieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const [value, setValue] = React.useState<string>("");
   return (
-    <InputContainer className={clsx("relative")}>
+    <InputContainer
+      {...inputContainerProps}
+      className={clsx("relative", inputContainerProps?.className)}
+    >
       <Input
         ref={inputRef}
         {...inputProps}
@@ -27,7 +35,9 @@ export const Textfield = ({ inputProps, labelProps }: TextfieldProps) => {
       <InputLabel
         {...labelProps}
         className={clsx(
-          !!value.length
+          inputProps?.type === "time"
+            ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
+            : !!value.length
             ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
             : "top-[50%] left-[1.625rem] translate-y-[-50%] text-[0.875rem]",
           "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#5B5B5B] text-[0.75rem]"

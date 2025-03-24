@@ -152,8 +152,7 @@ export const RideDetailCardPlanRideTrip = ({
         "border border-[#EFEFEF]"
       )}
       style={{
-        backdropFilter: "blur(20px)",
-        boxShadow: "0px 0px 25px 0px #969C9640",
+        boxShadow: "0px 0px 25px 0px #9C96961A",
       }}
     >
       {/* car */}
