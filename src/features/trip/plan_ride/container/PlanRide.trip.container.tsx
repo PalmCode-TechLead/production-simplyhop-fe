@@ -1,13 +1,13 @@
 import * as React from "react";
 import clsx from "clsx";
-import { MapFindTrip } from "../fragments/map";
-import { BadgeFindTrip } from "../fragments/badge";
-import { FilterFindTrip } from "../fragments/filter";
+import { MapPlanRideTrip } from "../fragments/map";
+import { BadgePlanRideTrip } from "../fragments/badge";
+import { FilterPlanRideTrip } from "../fragments/filter";
 
-export const FindTripContainer = () => {
+export const PlanRideTripContainer = () => {
   return (
     <div className={clsx("w-full h-full", "relative")}>
-      <MapFindTrip />
+      <MapPlanRideTrip />
       <div
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
@@ -15,9 +15,9 @@ export const FindTripContainer = () => {
         )}
       >
         <div className={clsx("max-w-container", "w-full")}>
-          <BadgeFindTrip />
+          <BadgePlanRideTrip />
 
-          <FilterFindTrip />
+          <FilterPlanRideTrip />
         </div>
       </div>
     </div>

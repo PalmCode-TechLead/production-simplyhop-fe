@@ -1,0 +1,107 @@
+{
+  "top_badge": {
+    "icon": {
+      "name": "CarFront"
+    },
+    "label": "Mitfahrt eintragen"
+  },
+  "map": {
+    "marker": {
+      "origin": {
+        "icon": {
+          "url": "/icons/map/start_point.svg"
+        }
+      },
+      "destination": {
+        "icon": {
+          "url": "/icons/map/end_point.svg"
+        }
+      }
+    },
+    "info_window": {
+      "origin": {
+        "title": "Start"
+      },
+      "destination": {
+        "title": "End"
+      }
+    },
+    "polyline": {
+      "strokeColor": "#5AC53D",
+      "strokeOpacity": 0.8,
+      "strokeWeight": 8
+    }
+  },
+  "filter": {
+    "title": "Mitfahrt anbieten",
+    "form": {
+      "city": {
+        "inputProps": {
+          "id": "city",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "city",
+          "children": "Stadt",
+          "required": false
+        }
+      },
+      "origin": {
+        "inputProps": {
+          "id": "start",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "start",
+          "children": "Start",
+          "required": false
+        }
+      },
+      "destination": {
+        "inputProps": {
+          "id": "end",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "end",
+          "children": "Ziel",
+          "required": false
+        }
+      },
+      "date": {
+        "labelProps": {
+          "id": "date",
+          "children": "Datum",
+          "required": false
+        }
+      },
+      "passenger": {
+        "labelProps": {
+          "id": "passenger",
+          "children": "Passagiere",
+          "required": false
+        },
+        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind",
+        "items": [
+          {
+            "id": "adult",
+            "name": "Erwachsene",
+            "description": "Alter: 18 oder älter",
+            "value": 1
+          },
+          {
+            "id": "children",
+            "name": "Kinder",
+            "description": "Alter: 0-12",
+            "value": 0
+          }
+        ]
+      }
+    },
+    "cta": {
+      "primary": {
+        "children": "Suchen"
+      }
+    }
+  }
+}

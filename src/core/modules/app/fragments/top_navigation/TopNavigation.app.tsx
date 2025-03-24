@@ -55,13 +55,17 @@ export const TopNavigation = () => {
                     "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
                     "h-[90px]",
 
-                    pathname === menu.href
+                    pathname === menu.href && menu.id === "mitfahrt-anbieten"
+                      ? "text-[#333FFF]"
+                      : pathname === menu.href
                       ? "text-green-500"
                       : pathname.includes(menu.id)
                       ? "text-green-500"
                       : "text-neutral-300",
                     "text-[1rem] font-semibold text-inter",
-                    pathname === menu.href
+                    pathname === menu.href && menu.id === "mitfahrt-anbieten"
+                      ? "border-b-[0.25rem] border-b-[#333FFF]"
+                      : pathname === menu.href
                       ? "border-b-[0.25rem] border-b-green-500"
                       : pathname.includes(menu.id)
                       ? "border-b-[0.25rem] border-b-green-500"
@@ -73,7 +77,9 @@ export const TopNavigation = () => {
                     key={`svgIcon.${menuIndex}`}
                     className={clsx(
                       "w-[1rem] h-[1rem]",
-                      pathname === menu.href
+                      pathname === menu.href && menu.id === "mitfahrt-anbieten"
+                        ? "text-[#333FFF]"
+                        : pathname === menu.href
                         ? "text-green-500"
                         : pathname.includes(menu.id)
                         ? "text-green-500"
