@@ -13,6 +13,8 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface PlanRideTripInitialStateType {
   filters: PlanRideTripFilters;
   map: PlanRideTripMap;
+  detail: PlanRideTripDetail;
+  notification: PlanRideTripNotification;
 }
 
 // State Collection Types consist of:
@@ -56,17 +58,31 @@ export interface PlanRideTripMap {
   polyline_path: { lat: number; lng: number }[];
 }
 
+export interface PlanRideTripDetail {
+  is_open: boolean;
+}
+
+export interface PlanRideTripNotification {
+  is_open: boolean;
+}
+
 export enum PlanRideTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
   // Map
   SetMapData = "SetMapData",
+  // Detail
+  SetDetailData = "SetDetailData",
+  // Notification
+  SetNotificationData = "SetNotificationData",
 }
 
 // Action Collection Types
 export type PlanRideTripActions =
   | PlanRideTripFiltersActions
-  | PlanRideTripMapActions;
+  | PlanRideTripMapActions
+  | PlanRideTripDetailActions
+  | PlanRideTripNotificationActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -84,3 +100,19 @@ type PlanRideTripMapPayload = {
 
 export type PlanRideTripMapActions =
   ActionMap<PlanRideTripMapPayload>[keyof ActionMap<PlanRideTripMapPayload>];
+
+// Detail
+type PlanRideTripDetailPayload = {
+  [PlanRideTripActionEnum.SetDetailData]: PlanRideTripDetail;
+};
+
+export type PlanRideTripDetailActions =
+  ActionMap<PlanRideTripDetailPayload>[keyof ActionMap<PlanRideTripDetailPayload>];
+
+// Notification
+type PlanRideTripNotificationPayload = {
+  [PlanRideTripActionEnum.SetNotificationData]: PlanRideTripNotification;
+};
+
+export type PlanRideTripNotificationActions =
+  ActionMap<PlanRideTripNotificationPayload>[keyof ActionMap<PlanRideTripNotificationPayload>];

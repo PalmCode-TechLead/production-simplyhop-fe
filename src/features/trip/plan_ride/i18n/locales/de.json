@@ -114,5 +114,94 @@
         "children": "Suchen"
       }
     }
+  },
+  "detail": {
+    "title": "Fahrt anbieten",
+    "price": {
+      "form": {
+        "title": "preis",
+        "input": {
+          "price": {
+            "inputProps": {
+              "id": "price",
+              "placeholder": " "
+            }
+          }
+        }
+      }
+    },
+    "notes": {
+      "form": {
+        "title": "Hinweis",
+        "input": {
+          "notes": {
+            "inputProps": {
+              "id": "notes",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "notes",
+              "children": "Möchtest du dem Fahrer noch etwas mitteilen?",
+              "required": false
+            }
+          }
+        }
+      }
+    },
+    "cta": {
+      "send": {
+        "children": "Anfrage senden"
+      }
+    }
+  },
+  "notification": {
+    "title": "Dein Mitfahrangebot ist jetzt online",
+    "cta": {
+      "back": {
+        "children": "Zurück zur Startseite",
+        "href": "/"
+      }
+    },
+    "share": {
+      "label": "Teilen auf: ",
+      "example_link": "simplyhop.com/trip/2139rfkdsfns/",
+      "items": [
+        {
+          "id": "whatsapp",
+          "icon": {
+            "name": "Whatsapp"
+          }
+        },
+        {
+          "id": "facebook",
+          "icon": {
+            "name": "Facebook2"
+          }
+        },
+        {
+          "id": "twitter",
+          "icon": {
+            "name": "Twitter"
+          }
+        },
+        {
+          "id": "telegram",
+          "icon": {
+            "name": "Telegram"
+          }
+        },
+        {
+          "id": "thread",
+          "icon": {
+            "name": "Thread"
+          }
+        }
+      ],
+      "cta": {
+        "copy": {
+          "children": "Link kopieren"
+        }
+      }
+    }
   }
 }

@@ -5,14 +5,16 @@ import {
   PlanRideTripInitialStateType,
 } from "./PlanRide.trip.types";
 import {
+  PlanRideTripDetailReducers,
   PlanRideTripFiltersReducers,
   PlanRideTripMapReducers,
+  PlanRideTripNotificationReducers,
 } from "./PlanRide.trip.reducers";
 
 const initialState: PlanRideTripInitialStateType = {
   filters: {
     auto: {
-      query:'',
+      query: "",
       selected: null,
       items: [],
     },
@@ -47,6 +49,12 @@ const initialState: PlanRideTripInitialStateType = {
   map: {
     polyline_path: [],
   },
+  detail: {
+    is_open: false,
+  },
+  notification: {
+    is_open: false,
+  },
 };
 
 const PlanRideTripContext = createContext<{
@@ -58,11 +66,13 @@ const PlanRideTripContext = createContext<{
 });
 
 const mainReducer = (
-  { filters, map }: PlanRideTripInitialStateType,
+  { filters, map, detail, notification }: PlanRideTripInitialStateType,
   action: PlanRideTripActions
 ) => ({
   filters: PlanRideTripFiltersReducers(filters, action),
   map: PlanRideTripMapReducers(map, action),
+  detail: PlanRideTripDetailReducers(detail, action),
+  notification: PlanRideTripNotificationReducers(notification, action),
 });
 
 const PlanRideTripProvider = (props: { children: React.ReactNode }) => {
