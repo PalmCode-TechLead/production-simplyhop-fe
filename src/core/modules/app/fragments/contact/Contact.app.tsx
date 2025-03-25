@@ -19,7 +19,7 @@ export const ContactApp = () => {
         {dictionaries.contact.message}
       </h2>
       <p className={clsx("text-[#606060] text-[0.875rem] font-normal")}>
-        {dictionaries.contact.message}
+        {dictionaries.contact.description}
       </p>
       <Link
         href={dictionaries.contact.cta.contact.href}
