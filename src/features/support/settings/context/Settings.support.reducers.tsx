@@ -1,6 +1,7 @@
 import {
   SettingsSupportActionEnum,
   SettingsSupportActions,
+  SettingsSupportChangePassword,
   SettingsSupportDeactivate,
   SettingsSupportDeactivateConfirmation,
   SettingsSupportDeactivateNotification,
@@ -41,6 +42,20 @@ export const SettingsSupportDeactivateNotificationReducers = (
 ) => {
   switch (action.type) {
     case SettingsSupportActionEnum.SetDeactivateNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// ChangePassword
+export const SettingsSupportChangePasswordReducers = (
+  state: SettingsSupportChangePassword,
+  action: SettingsSupportActions
+) => {
+  switch (action.type) {
+    case SettingsSupportActionEnum.SetChangePasswordData:
       return action.payload;
 
     default:

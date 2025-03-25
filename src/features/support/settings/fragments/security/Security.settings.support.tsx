@@ -1,12 +1,24 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import {
+  SettingsSupportActionEnum,
+  SettingsSupportContext,
+} from "../../context";
 
 export const SecuritySettingsSupport = () => {
   const dictionaries = getDictionaries();
+  const { state, dispatch } = React.useContext(SettingsSupportContext);
 
   const handleClickChangePassword = () => {
-    //
+    dispatch({
+      type: SettingsSupportActionEnum.SetChangePasswordData,
+      payload: {
+        ...state.change_password,
+        is_open: true,
+      },
+    });
   };
   return (
     <div

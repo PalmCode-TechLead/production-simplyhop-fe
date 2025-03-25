@@ -78,5 +78,60 @@
         "children": "Zur Startseite gehen"
       }
     }
+  },
+  "change_password": {
+    "title": "Passwort ändern",
+    "form": {
+      "actual_password": {
+        "password": {
+          "inputProps": {
+            "id": "actual_password",
+            "placeholder": " ",
+            "type": "password"
+          },
+          "labelProps": {
+            "id": "actual_password",
+            "children": "Aktuelles Passwort eingeben",
+            "required": false
+          }
+        }
+      },
+      "new_password": {
+        "password": {
+          "inputProps": {
+            "id": "new_password",
+            "placeholder": " ",
+            "type": "password"
+          },
+          "labelProps": {
+            "id": "new_password",
+            "children": "Neues Passwort",
+            "required": false
+          }
+        }
+      },
+      "confirm_new_password": {
+        "password": {
+          "inputProps": {
+            "id": "confirm_new_password",
+            "placeholder": " ",
+            "type": "password"
+          },
+          "labelProps": {
+            "id": "confirm_new_password",
+            "children": "Neues Passwort bestätigen",
+            "required": false
+          }
+        }
+      }
+    },
+    "tnc": {
+      "label": "Alle Geräte auffordern, sich mit einem neuen Passwort anzumelden"
+    },
+    "cta": {
+      "change_password": {
+        "children": "Passwort ändern"
+      }
+    }
   }
 }
