@@ -14,12 +14,12 @@
   "account": {
     "title": "Konto",
     "detail": {
-      "name": "Deaktivieren dein Konto",
-      "description": "Hier kannst du dein Konto deaktivieren."
+      "name": "Lösche dein Konto",
+      "description": "Hier kannst du dein Konto löschen."
     },
     "cta": {
-      "deactivate_account": {
-        "children": "Konto deaktivieren"
+      "deactivate": {
+        "children": "Konto löschen"
       }
     }
   },

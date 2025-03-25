@@ -2,12 +2,23 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import {
+  SettingsSupportActionEnum,
+  SettingsSupportContext,
+} from "../../context";
 
 export const AccountSettingsSupport = () => {
   const dictionaries = getDictionaries();
+  const { state, dispatch } = React.useContext(SettingsSupportContext);
 
   const handleClickDeactivateAccount = () => {
-    //
+    dispatch({
+      type: SettingsSupportActionEnum.SetDeactivateData,
+      payload: {
+        ...state.deactivate,
+        is_open: true,
+      },
+    });
   };
   return (
     <div
@@ -45,11 +56,12 @@ export const AccountSettingsSupport = () => {
         <button
           className={clsx(
             "px-[1.5rem] py-[1rem]",
-            "text-[#B30606] text-[0.875rem] font-medium"
+            "text-[#B30606] text-[0.875rem] font-medium",
+            "cursor-pointer"
           )}
           onClick={handleClickDeactivateAccount}
         >
-          {dictionaries.account.cta.deactivate_account.children}
+          {dictionaries.account.cta.deactivate.children}
         </button>
       </div>
     </div>
