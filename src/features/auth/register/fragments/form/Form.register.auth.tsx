@@ -7,6 +7,7 @@ import { Textfield } from "@/core/components/textfield";
 import Link from "next/link";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { RegisterAuthActionEnum, RegisterAuthContext } from "../../context";
+import { Passwordfield } from "@/core/components/passwordfield";
 
 export const FormRegisterAuth = () => {
   const dictionaries = getDictionaries();
@@ -72,7 +73,7 @@ export const FormRegisterAuth = () => {
             onChange: handleChangeEmail,
           }}
         />
-        <Textfield
+        <Passwordfield
           labelProps={{ ...dictionaries.form.input.password.labelProps }}
           inputProps={{
             ...dictionaries.form.input.password.inputProps,

@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { AccountSettingsSupport } from "../fragments/account";
 import { SecuritySettingsSupport } from "../fragments/security";
 import { DeactivateSettingsSupport } from "../fragments/deactivate";
+import { DeactivateConfirmationSettingsSupport } from "../fragments/deactivate_confirmation";
+import { DeactivateNotificationSettingsSupport } from "../fragments/deactivate_notification";
 
 export const SettingsSupportContainer = () => {
   return (
@@ -19,6 +21,8 @@ export const SettingsSupportContainer = () => {
         <AccountSettingsSupport />
       </div>
       <DeactivateSettingsSupport />
+      <DeactivateConfirmationSettingsSupport />
+      <DeactivateNotificationSettingsSupport />
     </>
   );
 };

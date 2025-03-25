@@ -22,6 +22,8 @@ import {
   SlidersHorizontal,
   ArrowDownWideNarrow,
   OctagonX,
+  EyeOff,
+  Eye,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -55,6 +57,8 @@ export const svgMap = {
   SlidersHorizontal,
   ArrowDownWideNarrow,
   OctagonX,
+  EyeOff,
+  Eye,
   Facebook,
   Google,
   Whatsapp,

@@ -11,6 +11,7 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { Button } from "@/core/components/button";
+import { Passwordfield } from "@/core/components/passwordfield";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
@@ -81,7 +82,7 @@ export const FormLoginAuth = () => {
             onChange: handleChangeEmail,
           }}
         />
-        <Textfield
+        <Passwordfield
           labelProps={{ ...dictionaries.form.input.password.labelProps }}
           inputProps={{
             ...dictionaries.form.input.password.inputProps,

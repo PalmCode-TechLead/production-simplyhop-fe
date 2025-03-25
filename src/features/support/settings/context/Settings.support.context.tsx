@@ -4,10 +4,25 @@ import {
   SettingsSupportActions,
   SettingsSupportInitialStateType,
 } from "./Settings.support.types";
-import { SettingsSupportDeactivateReducers } from "./Settings.support.reducers";
+import {
+  SettingsSupportDeactivateConfirmationReducers,
+  SettingsSupportDeactivateNotificationReducers,
+  SettingsSupportDeactivateReducers,
+} from "./Settings.support.reducers";
 
 const initialState: SettingsSupportInitialStateType = {
   deactivate: {
+    is_open: false,
+  },
+  deactivate_confirmation: {
+    is_open: false,
+    form: {
+      password: {
+        value: "",
+      },
+    },
+  },
+  deactivate_notification: {
     is_open: false,
   },
 };
@@ -21,10 +36,22 @@ const SettingsSupportContext = createContext<{
 });
 
 const mainReducer = (
-  { deactivate }: SettingsSupportInitialStateType,
+  {
+    deactivate,
+    deactivate_confirmation,
+    deactivate_notification,
+  }: SettingsSupportInitialStateType,
   action: SettingsSupportActions
 ) => ({
   deactivate: SettingsSupportDeactivateReducers(deactivate, action),
+  deactivate_confirmation: SettingsSupportDeactivateConfirmationReducers(
+    deactivate_confirmation,
+    action
+  ),
+  deactivate_notification: SettingsSupportDeactivateNotificationReducers(
+    deactivate_notification,
+    action
+  ),
 });
 
 const SettingsSupportProvider = (props: { children: React.ReactNode }) => {

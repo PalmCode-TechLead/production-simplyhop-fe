@@ -8,34 +8,28 @@ import {
 } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
+import { Button } from "@/core/components/button";
 
-export const DeactivateSettingsSupport = () => {
+export const DeactivateNotificationSettingsSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
-  const isOpen = state.deactivate.is_open;
+  const isOpen = state.deactivate_notification.is_open;
   const handleClose = () => {
     dispatch({
-      type: SettingsSupportActionEnum.SetDeactivateData,
+      type: SettingsSupportActionEnum.SetDeactivateNotificationData,
       payload: {
-        ...state.deactivate,
+        ...state.deactivate_notification,
         is_open: false,
       },
     });
   };
 
-  const handleClickDeactivate = () => {
+  const handleClickGoToHomepage = () => {
     dispatch({
-      type: SettingsSupportActionEnum.SetDeactivateData,
+      type: SettingsSupportActionEnum.SetDeactivateNotificationData,
       payload: {
-        ...state.deactivate,
+        ...state.deactivate_notification,
         is_open: false,
-      },
-    });
-    dispatch({
-      type: SettingsSupportActionEnum.SetDeactivateConfirmationData,
-      payload: {
-        ...state.deactivate_confirmation,
-        is_open: true,
       },
     });
   };
@@ -81,55 +75,18 @@ export const DeactivateSettingsSupport = () => {
         <h1
           className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
         >
-          {dictionaries.deactivate.title}
+          {dictionaries.deactivate_notification.title}
         </h1>
 
         <p
           className={clsx("text-[1rem] text-[#888888] font-normal text-center")}
         >
-          {dictionaries.deactivate.message}
+          {dictionaries.deactivate_notification.message}
         </p>
 
-        <div
-          className={clsx(
-            "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
-            "w-full"
-          )}
-        >
-          <p
-            className={clsx(
-              "text-[1rem] text-[#232323] font-semibold text-left"
-            )}
-          >
-            {dictionaries.deactivate.tnc.title}
-          </p>
-          <ol className={clsx("list-disc", "px-[1rem]")}>
-            {dictionaries.deactivate.tnc.items.map((item, itemIndex) => (
-              <li
-                key={itemIndex}
-                id={item.id}
-                className={clsx(
-                  "text-[1rem] text-[#888888] font-normal text-left"
-                )}
-              >
-                {item.name}
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <button
-          className={clsx(
-            "flex items-center justify-center",
-            "w-full",
-            "py-[1rem]",
-            "text-[1rem] text-[#C50707] font-medium text-left",
-            "cursor-pointer"
-          )}
-          onClick={handleClickDeactivate}
-        >
-          {dictionaries.deactivate.cta.deactivate.children}
-        </button>
+        <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
+          {dictionaries.deactivate_notification.cta.go_to_homepage.children}
+        </Button>
       </div>
     </Modal>
   );

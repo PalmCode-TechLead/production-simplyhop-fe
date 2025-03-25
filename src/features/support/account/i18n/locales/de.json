@@ -96,5 +96,39 @@
         "children": "Bestätige die Löschung"
       }
     }
+  },
+  "deactivate_confirmation": {
+    "title": "Kontolöschung bestätigen",
+    "message": "Der Schutz deines Kontos hat für uns oberste Priorität. Bitte bestätige deine Aktivität, indem Du dein Passwort  eingibst.",
+    "form": {
+      "input": {
+        "password": {
+          "inputProps": {
+            "id": "password",
+            "placeholder": " ",
+            "type": "password"
+          },
+          "labelProps": {
+            "id": "password",
+            "children": "Passwort",
+            "required": false
+          }
+        }
+      }
+    },
+    "cta": {
+      "deactivate": {
+        "children": "Konto löschen"
+      }
+    }
+  },
+  "deactivate_notification": {
+    "title": "Kontolöschung ist bestätigt",
+    "message": "Wir sind traurig, dich gehen zu sehen. Zögere nicht, wiederzukommen.",
+    "cta": {
+      "deactivate": {
+        "children": "Zur Startseite gehen"
+      }
+    }
   }
 }
