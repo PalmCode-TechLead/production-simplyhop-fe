@@ -1,13 +1,10 @@
 import * as React from "react";
 import clsx from "clsx";
-import { InputContainer } from "../input_container";
-import { InputLabel, InputLabelProps } from "../input_label";
 import SVGIcon from "@/core/icons";
 import { useOnClickOutside } from "usehooks-ts";
 import { DropdownSelectButton } from "../dropdown_select_button";
 
 export interface DropdownSelectProps {
-  labelProps?: InputLabelProps;
   selected?: null | { id: string; name: string };
   items?: {
     id: string;
@@ -17,7 +14,6 @@ export interface DropdownSelectProps {
 }
 
 export const DropdownSelect = ({
-  labelProps,
   selected = null,
   items = [],
   onSelect = () => {},
