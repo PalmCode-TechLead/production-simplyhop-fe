@@ -1,0 +1,267 @@
+{
+  "title": "Mein Profil",
+  "tab": {
+    "items": [
+      {
+        "id": "personal-information",
+        "name": "Persönliche Informationen"
+      },
+      {
+        "id": "vehicle-information",
+        "name": "Fahrzeuginformationen"
+      }
+    ]
+  },
+  "personal_information": {
+    "form": {
+      "title": "Persönliche Informationen",
+      "input": {
+        "email": {
+          "inputProps": {
+            "id": "email",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "email",
+            "children": "Email",
+            "required": false
+          }
+        },
+        "first_name": {
+          "inputProps": {
+            "id": "first_name",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "first_name",
+            "children": "Vorname",
+            "required": false
+          }
+        },
+        "last_name": {
+          "inputProps": {
+            "id": "last_name",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "last_name",
+            "children": "Nachname",
+            "required": false
+          }
+        },
+        "phonenumber": {
+          "inputProps": {
+            "id": "phonenumber",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "phonenumber",
+            "children": "Telefon",
+            "required": false
+          }
+        }
+      }
+    }
+  },
+  "vehicle_information": {
+    "general": {
+      "form": {
+        "input": {
+          "offer_trips": {
+            "label": "Möchtest du auch Fahrten über Simply Hop anbieten?",
+            "items": [
+              {
+                "id": "yes",
+                "name": "Ja, ich möchte selbst Fahrten über SimplyHop anbieten."
+              },
+              {
+                "id": "no",
+                "name": "Nein, ich möchte nur bei Fahrten mitfahren."
+              }
+            ]
+          },
+          "car_brand": {
+            "inputProps": {
+              "id": "email",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "email",
+              "children": "Email",
+              "required": false
+            }
+          },
+          "car_model": {
+            "inputProps": {
+              "id": "email",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "email",
+              "children": "Email",
+              "required": false
+            }
+          },
+          "license_plate": {
+            "inputProps": {
+              "id": "email",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "email",
+              "children": "Email",
+              "required": false
+            }
+          }
+        }
+      }
+    },
+    "pictures": {
+      "title": "Fahrzeugbilder",
+      "description": "Laden Sie Bilder hoch, die Ihr Auto repräsentieren",
+      "form": {
+        "message": "Ziehen Sie Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
+        "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
+      }
+    },
+    "capacity": {
+      "title": "Kapazität der Fahrzeuge",
+      "description": "Die Kapazität Ihres Autos für Sitze und Gepäckstücke",
+      "passenger_seats": {
+        "title": "Fahrgastsitze",
+        "form": {
+          "input": {
+            "total_places_available": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            },
+            "child_seat_available": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            },
+            "car_seat_child_available": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "luggage": {
+        "form": {
+          "input": {
+            "luggage": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            },
+            "luggage_size": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "trip_info": {
+        "title": "Infos zur Fahrt",
+        "form": {
+          "input": {
+            "smoking": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            },
+            "music": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            },
+            "pet": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            },
+            "child_seat_number": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            },
+            "free_seat_number": {
+              "inputProps": {
+                "id": "email",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "email",
+                "children": "Email",
+                "required": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "cta": {
+      "save": {
+        "children": "Speichern"
+      }
+    }
+  }
+}

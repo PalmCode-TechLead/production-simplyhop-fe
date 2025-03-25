@@ -5,6 +5,7 @@ import { getDictionaries } from "../../i18n";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { TabButton } from "@/core/components/tab_button";
 
 export const SettingsSidebarApp = () => {
   const dictionaries = getDictionaries();
@@ -48,28 +49,10 @@ export const SettingsSidebarApp = () => {
       >
         {dictionaries.settings.menu.items.map((menu, index) => {
           return (
-            <Link
-              key={index}
-              className={clsx(
-                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
-                "w-full",
-                pathname.includes(menu.href)
-                  ? "bg-[#5AC53D0A]"
-                  : "bg-[transparent]",
-                "rounded-tr-[0.625rem] rounded-br-[0.625rem]",
-                pathname.includes(menu.href)
-                  ? "text-[#232323] text-[1rem] font-semibold"
-                  : "text-[#828282] text-[1rem] font-normal",
-                pathname.includes(menu.href)
-                  ? "border-l border-l-[#5AC53D]"
-                  : "border-l border-l-[white]",
-                "px-[1rem] py-[0.75rem]"
-              )}
-              href={menu.href}
-            >
-              {/* logo */}
-
-              {menu.name}
+            <Link key={index} className={clsx("w-full")} href={menu.href}>
+              <TabButton selected={pathname.includes(menu.href)}>
+                {menu.name}
+              </TabButton>
             </Link>
           );
         })}
