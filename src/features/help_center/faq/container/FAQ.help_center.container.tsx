@@ -1,14 +1,12 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../i18n";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { HeaderHelpCenter } from "@/core/components/header_help_center";
+import { AccordionFAQHelpCenter } from "../components/accordion";
 
 export const FAQHelpCenterContainer = () => {
   const dictionaries = getDictionaries();
-  const router = useRouter();
   return (
     <div
       className={clsx(
@@ -16,21 +14,20 @@ export const FAQHelpCenterContainer = () => {
         "w-full"
       )}
     >
+      <HeaderHelpCenter title={dictionaries.title} />
       <div
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
+          "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[1rem]",
           "w-full"
         )}
       >
-        <Link href="" onClick={() => router.back()}>
-          <SVGIcon
-            name="ArrowLeft"
-            className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+        {dictionaries.items.map((item, itemIndex) => (
+          <AccordionFAQHelpCenter
+            key={itemIndex}
+            question={item.question}
+            answer={item.answer}
           />
-        </Link>
-        <h1 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
-          {dictionaries.title}
-        </h1>
+        ))}
       </div>
     </div>
   );
