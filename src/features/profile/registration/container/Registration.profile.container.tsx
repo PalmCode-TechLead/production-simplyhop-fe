@@ -29,7 +29,8 @@ export const RegistrationProfileContainer = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "w-full"
+            "w-full",
+            "sticky top-[100px]"
           )}
         >
           <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
