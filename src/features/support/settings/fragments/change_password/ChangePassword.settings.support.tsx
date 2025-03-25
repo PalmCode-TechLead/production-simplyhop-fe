@@ -7,7 +7,6 @@ import {
   SettingsSupportContext,
 } from "../../context";
 import { getDictionaries } from "../../i18n";
-import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { Checkbox } from "@/core/components/checkbox";
