@@ -126,7 +126,7 @@
     "title": "Kontolöschung ist bestätigt",
     "message": "Wir sind traurig, dich gehen zu sehen. Zögere nicht, wiederzukommen.",
     "cta": {
-      "deactivate": {
+      "go_to_homepage": {
         "children": "Zur Startseite gehen"
       }
     }
