@@ -58,6 +58,8 @@ export const TopNavigation = () => {
                   href={
                     menu.id === "mitfahrt-anbieten" && !isLogin
                       ? AppCollectionURL.public.login()
+                      : menu.id === "support" && !isLogin
+                      ? AppCollectionURL.public.login()
                       : menu.href
                   }
                   key={menuIndex}
