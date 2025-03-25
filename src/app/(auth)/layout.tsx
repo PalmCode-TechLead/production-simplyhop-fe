@@ -36,7 +36,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
         />
         <div
           className={clsx(
-            "absolute left-[60px] bottom-[0px]",
+            "absolute left-[60px] bottom-[36px]",
             "grid grid-cols-1 place-content-start place-items-start gap-[0rem]"
           )}
         >
@@ -45,8 +45,13 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
               "grid grid-cols-1 place-content-start place-items-start gap-[0rem]"
             )}
           >
-            <h1 className={clsx("text-[#FFFFFF] text-[104.6px] font-bold")}>
-              {"SimplyHop"}
+            <h1
+              className={clsx(
+                "text-[#5AC53D] text-[104.6px] font-bold leading-[96px]"
+              )}
+            >
+              {"Simply"}
+              <span className={clsx("text-[#333FFF]")}>{"Hop"}</span>
             </h1>
             <p className={clsx("text-[#FFFFFF] text-[2rem] font-semibold")}>
               {"Drive Together"}
