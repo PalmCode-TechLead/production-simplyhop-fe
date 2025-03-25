@@ -4,13 +4,11 @@ import {
   SettingsSupportActions,
   SettingsSupportInitialStateType,
 } from "./Settings.support.types";
-import { SettingsSupportFiltersReducers } from "./Settings.support.reducers";
+import { SettingsSupportDeactivateReducers } from "./Settings.support.reducers";
 
 const initialState: SettingsSupportInitialStateType = {
-  filters: {
-    passenger: {
-      value: [],
-    },
+  deactivate: {
+    is_open: false,
   },
 };
 
@@ -23,10 +21,10 @@ const SettingsSupportContext = createContext<{
 });
 
 const mainReducer = (
-  { filters }: SettingsSupportInitialStateType,
+  { deactivate }: SettingsSupportInitialStateType,
   action: SettingsSupportActions
 ) => ({
-  filters: SettingsSupportFiltersReducers(filters, action),
+  deactivate: SettingsSupportDeactivateReducers(deactivate, action),
 });
 
 const SettingsSupportProvider = (props: { children: React.ReactNode }) => {

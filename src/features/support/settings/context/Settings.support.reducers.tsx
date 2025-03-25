@@ -1,16 +1,16 @@
 import {
   SettingsSupportActionEnum,
   SettingsSupportActions,
-  SettingsSupportFilters,
+  SettingsSupportDeactivate,
 } from "./Settings.support.types";
 
-// Filters
-export const SettingsSupportFiltersReducers = (
-  state: SettingsSupportFilters,
+// Deactivate
+export const SettingsSupportDeactivateReducers = (
+  state: SettingsSupportDeactivate,
   action: SettingsSupportActions
 ) => {
   switch (action.type) {
-    case SettingsSupportActionEnum.SetFiltersData:
+    case SettingsSupportActionEnum.SetDeactivateData:
       return action.payload;
 
     default:

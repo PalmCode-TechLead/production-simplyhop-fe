@@ -11,29 +11,27 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface SettingsSupportInitialStateType {
-  filters: SettingsSupportFilters;
+  deactivate: SettingsSupportDeactivate;
 }
 
 // State Collection Types consist of:
-export interface SettingsSupportFilters {
-  passenger: {
-    value: { id: string; value: number }[];
-  };
+export interface SettingsSupportDeactivate {
+  is_open: boolean;
 }
 
 export enum SettingsSupportActionEnum {
-  // Filters
-  SetFiltersData = "SetFiltersData",
+  // Deactivate
+  SetDeactivateData = "SetDeactivateData",
 }
 
 // Action Collection Types
-export type SettingsSupportActions = SettingsSupportFiltersActions;
+export type SettingsSupportActions = SettingsSupportDeactivateActions;
 
 // Action Collection Types consist of:
-// Filters
-type SettingsSupportFiltersPayload = {
-  [SettingsSupportActionEnum.SetFiltersData]: SettingsSupportFilters;
+// Deactivate
+type SettingsSupportDeactivatePayload = {
+  [SettingsSupportActionEnum.SetDeactivateData]: SettingsSupportDeactivate;
 };
 
-export type SettingsSupportFiltersActions =
-  ActionMap<SettingsSupportFiltersPayload>[keyof ActionMap<SettingsSupportFiltersPayload>];
+export type SettingsSupportDeactivateActions =
+  ActionMap<SettingsSupportDeactivatePayload>[keyof ActionMap<SettingsSupportDeactivatePayload>];
