@@ -16,7 +16,7 @@ export const Button = forwardRef<
         "py-[1rem]",
         "rounded-[0.375rem]",
         "text-[1rem] text-[#FFFFFF] font-medium",
-        "hover:opacity-80 disabled:opacity-50 disabled:hover:opacity-50",
+        "hover:bg-[#408C2B] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
         "cursor-pointer disabled:cursor-default",
         props.className
       )}
