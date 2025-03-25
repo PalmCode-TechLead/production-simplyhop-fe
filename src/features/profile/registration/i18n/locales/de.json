@@ -63,23 +63,30 @@
       }
     }
   },
+  "ride_plan": {
+    "form": {
+      "input": {
+        "offer_trip": {
+          "label": "Möchtest du auch Fahrten über Simply Hop anbieten?",
+          "items": [
+            {
+              "id": "yes",
+              "name": "Ja, ich möchte selbst Fahrten über SimplyHop anbieten."
+            },
+            {
+              "id": "no",
+              "name": "Nein, ich möchte nur bei Fahrten mitfahren."
+            }
+          ]
+        }
+      }
+    }
+  },
   "vehicle_information": {
+    "title": "Fahrzeuginformationen",
     "general": {
       "form": {
         "input": {
-          "offer_trips": {
-            "label": "Möchtest du auch Fahrten über Simply Hop anbieten?",
-            "items": [
-              {
-                "id": "yes",
-                "name": "Ja, ich möchte selbst Fahrten über SimplyHop anbieten."
-              },
-              {
-                "id": "no",
-                "name": "Nein, ich möchte nur bei Fahrten mitfahren."
-              }
-            ]
-          },
           "car_brand": {
             "inputProps": {
               "id": "email",

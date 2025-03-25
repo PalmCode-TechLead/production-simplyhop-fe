@@ -2,6 +2,7 @@ import {
   RegistrationProfileActionEnum,
   RegistrationProfileActions,
   RegistrationProfilePersonalInformation,
+  RegistrationProfileRidePlan,
   RegistrationProfileTab,
 } from "./Registration.profile.types";
 
@@ -26,6 +27,20 @@ export const RegistrationProfilePersonalInformationReducers = (
 ) => {
   switch (action.type) {
     case RegistrationProfileActionEnum.SetPersonalInformationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// RidePlan
+export const RegistrationProfileRidePlanReducers = (
+  state: RegistrationProfileRidePlan,
+  action: RegistrationProfileActions
+) => {
+  switch (action.type) {
+    case RegistrationProfileActionEnum.SetRidePlanData:
       return action.payload;
 
     default:

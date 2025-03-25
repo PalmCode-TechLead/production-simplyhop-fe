@@ -13,6 +13,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface RegistrationProfileInitialStateType {
   tab: RegistrationProfileTab;
   personal_information: RegistrationProfilePersonalInformation;
+  ride_plan: RegistrationProfileRidePlan;
 }
 
 // State Collection Types consist of:
@@ -37,17 +38,28 @@ export interface RegistrationProfilePersonalInformation {
   };
 }
 
+export interface RegistrationProfileRidePlan {
+  form: {
+    offer_trip: {
+      selected: null | { id: string; name: string };
+    };
+  };
+}
+
 export enum RegistrationProfileActionEnum {
   // Tab
   SetTabData = "SetTabData",
   // PersonalInformation
   SetPersonalInformationData = "SetPersonalInformationData",
+  // RidePlan
+  SetRidePlanData = "SetRidePlanData",
 }
 
 // Action Collection Types
 export type RegistrationProfileActions =
   | RegistrationProfileTabActions
-  | RegistrationProfilePersonalInformationActions;
+  | RegistrationProfilePersonalInformationActions
+  | RegistrationProfileRidePlanActions;
 
 // Action Collection Types consist of:
 // Tab
@@ -65,3 +77,11 @@ type RegistrationProfilePersonalInformationPayload = {
 
 export type RegistrationProfilePersonalInformationActions =
   ActionMap<RegistrationProfilePersonalInformationPayload>[keyof ActionMap<RegistrationProfilePersonalInformationPayload>];
+
+// RidePlan
+type RegistrationProfileRidePlanPayload = {
+  [RegistrationProfileActionEnum.SetRidePlanData]: RegistrationProfileRidePlan;
+};
+
+export type RegistrationProfileRidePlanActions =
+  ActionMap<RegistrationProfileRidePlanPayload>[keyof ActionMap<RegistrationProfileRidePlanPayload>];

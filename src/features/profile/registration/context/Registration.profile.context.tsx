@@ -6,6 +6,7 @@ import {
 } from "./Registration.profile.types";
 import {
   RegistrationProfilePersonalInformationReducers,
+  RegistrationProfileRidePlanReducers,
   RegistrationProfileTabReducers,
 } from "./Registration.profile.reducers";
 
@@ -29,6 +30,13 @@ const initialState: RegistrationProfileInitialStateType = {
       },
     },
   },
+  ride_plan: {
+    form: {
+      offer_trip: {
+        selected: null,
+      },
+    },
+  },
 };
 
 const RegistrationProfileContext = createContext<{
@@ -40,7 +48,7 @@ const RegistrationProfileContext = createContext<{
 });
 
 const mainReducer = (
-  { tab, personal_information }: RegistrationProfileInitialStateType,
+  { tab, personal_information, ride_plan }: RegistrationProfileInitialStateType,
   action: RegistrationProfileActions
 ) => ({
   tab: RegistrationProfileTabReducers(tab, action),
@@ -48,6 +56,7 @@ const mainReducer = (
     personal_information,
     action
   ),
+  ride_plan: RegistrationProfileRidePlanReducers(ride_plan, action),
 });
 
 const RegistrationProfileProvider = (props: { children: React.ReactNode }) => {

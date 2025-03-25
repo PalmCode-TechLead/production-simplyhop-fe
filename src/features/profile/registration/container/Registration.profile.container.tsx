@@ -1,11 +1,17 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../i18n";
 import { TabRegistrationProfile } from "../fragments/tab";
 import { PersonalInformationFormRegistrationProfile } from "../fragments/personal_information_form";
+import { Divider } from "@/core/components/divider";
+import { RidePlanFormRegistrationProfile } from "../fragments/ride_plan_form";
+import { VehicleInformationFormRegistrationProfile } from "../fragments/vehicle_information_form";
+import { RegistrationProfileContext } from "../context";
 
 export const RegistrationProfileContainer = () => {
   const dictionaries = getDictionaries();
+  const { state } = React.useContext(RegistrationProfileContext);
   return (
     <div
       className={clsx(
@@ -40,6 +46,13 @@ export const RegistrationProfileContainer = () => {
           )}
         >
           <PersonalInformationFormRegistrationProfile />
+          <Divider />
+          <RidePlanFormRegistrationProfile />
+          {state.ride_plan.form.offer_trip.selected?.id === "yes" && (
+            <>
+              <VehicleInformationFormRegistrationProfile />
+            </>
+          )}
         </div>
       </div>
     </div>

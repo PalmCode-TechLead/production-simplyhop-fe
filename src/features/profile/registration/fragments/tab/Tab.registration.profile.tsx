@@ -32,6 +32,12 @@ export const TabRegistrationProfile = () => {
       },
     });
   };
+  const tabItems =
+    state.ride_plan.form.offer_trip.selected?.id === "yes"
+      ? dictionaries.tab.items
+      : dictionaries.tab.items.filter(
+          (item) => item.id === "personal-information"
+        );
   return (
     <div
       className={clsx(
@@ -39,7 +45,7 @@ export const TabRegistrationProfile = () => {
         "w-full"
       )}
     >
-      {dictionaries.tab.items.map((menu, index) => {
+      {tabItems.map((menu, index) => {
         return (
           <TabButton
             key={index}
