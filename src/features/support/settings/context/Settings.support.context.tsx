@@ -38,6 +38,9 @@ const initialState: SettingsSupportInitialStateType = {
       confirm_new_password: {
         value: "",
       },
+      tnc: {
+        checked: false,
+      },
     },
   },
 };

@@ -10,6 +10,7 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
+import { Checkbox } from "@/core/components/checkbox";
 
 export const ChangePasswordSettingsSupport = () => {
   const dictionaries = getDictionaries();
@@ -77,6 +78,22 @@ export const ChangePasswordSettingsSupport = () => {
     });
   };
 
+  const handleChangeTNC = () => {
+    dispatch({
+      type: SettingsSupportActionEnum.SetChangePasswordData,
+      payload: {
+        ...state.change_password,
+        form: {
+          ...state.change_password.form,
+          tnc: {
+            ...state.change_password.form.tnc,
+            checked: !state.change_password.form.tnc.checked,
+          },
+        },
+      },
+    });
+  };
+
   const handleClickChangePassword = () => {
     dispatch({
       type: SettingsSupportActionEnum.SetChangePasswordData,
@@ -112,7 +129,7 @@ export const ChangePasswordSettingsSupport = () => {
 
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "w-full"
           )}
         >
@@ -152,6 +169,23 @@ export const ChangePasswordSettingsSupport = () => {
               onChange: handleChangeConfirmNewPassword,
             }}
           />
+          <div
+            className={clsx(
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
+              "w-full"
+            )}
+          >
+            <Checkbox
+              checked={state.change_password.form.tnc.checked}
+              onChange={handleChangeTNC}
+            />
+            <span
+              className={clsx("text-[#232323] text-[0.75rem] font-light")}
+              dangerouslySetInnerHTML={{
+                __html: dictionaries.change_password.tnc.label,
+              }}
+            />
+          </div>
         </div>
 
         <Button

@@ -47,6 +47,9 @@ export interface SettingsSupportChangePassword {
     confirm_new_password: {
       value: string;
     };
+    tnc: {
+      checked: boolean;
+    };
   };
 }
 
