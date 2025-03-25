@@ -7,7 +7,8 @@
         "name": "AGB’s",
         "description": "Bitte lies dir die Allgemeinen Geschäftsbedingungen sorgfältig durch.",
         "cta": {
-          "children": "Seite öffnen"
+          "children": "Seite öffnen",
+          "href": "/agb"
         }
       },
       {
@@ -15,7 +16,8 @@
         "name": "Datenschutz",
         "description": "Bitte lies dir die Datenschutzbestimmungen sorgfältig durch.",
         "cta": {
-          "children": "Seite öffnen"
+          "children": "Seite öffnen",
+          "href": "/datenschutz"
         }
       },
       {
@@ -23,7 +25,8 @@
         "name": "Frage und Antwort",
         "description": "Hier findest du Antworten auf häufig gestellte Fragen.",
         "cta": {
-          "children": "Seite öffnen"
+          "children": "Seite öffnen",
+          "href": "/faq"
         }
       }
     ]

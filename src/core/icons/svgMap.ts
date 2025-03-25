@@ -24,6 +24,7 @@ import {
   OctagonX,
   EyeOff,
   Eye,
+  ArrowLeft,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -59,6 +60,7 @@ export const svgMap = {
   OctagonX,
   EyeOff,
   Eye,
+  ArrowLeft,
   Facebook,
   Google,
   Whatsapp,

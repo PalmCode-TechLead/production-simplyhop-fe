@@ -7,9 +7,6 @@ import { LegalItemHelpCenterSupport } from "../../components/legal_item";
 export const LegalHelpCenterSupport = () => {
   const dictionaries = getDictionaries();
 
-  const handleClickLegalItem = (data: string) => {
-    console.log(data, "ini data");
-  };
   return (
     <div
       className={clsx(
@@ -31,7 +28,7 @@ export const LegalHelpCenterSupport = () => {
             key={itemIndex}
             cta={{
               children: cta.children,
-              onClick: () => handleClickLegalItem(item.id),
+              href: cta.href,
             }}
           />
         );

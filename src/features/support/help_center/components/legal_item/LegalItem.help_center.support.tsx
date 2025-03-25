@@ -1,5 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
+import Link from "next/link";
 
 export interface LegalItemHelpCenterSupportProps {
   id?: string;
@@ -7,7 +8,7 @@ export interface LegalItemHelpCenterSupportProps {
   description?: string;
   cta?: {
     children: string;
-    onClick: () => void;
+    href: string;
   };
 }
 
@@ -17,7 +18,7 @@ export const LegalItemHelpCenterSupport = ({
   description = "",
   cta = {
     children: "",
-    onClick: () => {},
+    href: "",
   },
 }: LegalItemHelpCenterSupportProps) => {
   return (
@@ -42,15 +43,15 @@ export const LegalItemHelpCenterSupport = ({
         </p>
       </div>
 
-      <button
+      <Link
+        href={cta.href}
         className={clsx(
           "px-[46.5px] py-[1rem]",
           "text-[#5AC53D] text-[0.875rem] font-medium"
         )}
-        onClick={cta.onClick}
       >
         {cta.children}
-      </button>
+      </Link>
     </div>
   );
 };
