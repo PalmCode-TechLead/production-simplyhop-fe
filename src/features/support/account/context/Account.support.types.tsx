@@ -11,29 +11,27 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface AccountSupportInitialStateType {
-  filters: AccountSupportFilters;
+  deactivate: AccountSupportDeactivate;
 }
 
 // State Collection Types consist of:
-export interface AccountSupportFilters {
-  passenger: {
-    value: { id: string; value: number }[];
-  };
+export interface AccountSupportDeactivate {
+  is_open: boolean;
 }
 
 export enum AccountSupportActionEnum {
-  // Filters
-  SetFiltersData = "SetFiltersData",
+  // Deactivate
+  SetDeactivateData = "SetDeactivateData",
 }
 
 // Action Collection Types
-export type AccountSupportActions = AccountSupportFiltersActions;
+export type AccountSupportActions = AccountSupportDeactivateActions;
 
 // Action Collection Types consist of:
-// Filters
-type AccountSupportFiltersPayload = {
-  [AccountSupportActionEnum.SetFiltersData]: AccountSupportFilters;
+// Deactivate
+type AccountSupportDeactivatePayload = {
+  [AccountSupportActionEnum.SetDeactivateData]: AccountSupportDeactivate;
 };
 
-export type AccountSupportFiltersActions =
-  ActionMap<AccountSupportFiltersPayload>[keyof ActionMap<AccountSupportFiltersPayload>];
+export type AccountSupportDeactivateActions =
+  ActionMap<AccountSupportDeactivatePayload>[keyof ActionMap<AccountSupportDeactivatePayload>];

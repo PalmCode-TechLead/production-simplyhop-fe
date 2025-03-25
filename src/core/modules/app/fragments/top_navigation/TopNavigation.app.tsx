@@ -15,6 +15,7 @@ export const TopNavigation = () => {
   const cookie = new Cookie();
   const token = cookie.get("token");
   const isLogin = !!token;
+
   return (
     <nav className={clsx("fixed top-0 left-0 right-0", "w-full", "z-30")}>
       <div

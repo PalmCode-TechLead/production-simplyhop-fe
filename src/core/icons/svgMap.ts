@@ -21,6 +21,7 @@ import {
   FileClock,
   SlidersHorizontal,
   ArrowDownWideNarrow,
+  OctagonX,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -53,6 +54,7 @@ export const svgMap = {
   FileClock,
   SlidersHorizontal,
   ArrowDownWideNarrow,
+  OctagonX,
   Facebook,
   Google,
   Whatsapp,

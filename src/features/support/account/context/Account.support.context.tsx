@@ -4,13 +4,11 @@ import {
   AccountSupportActions,
   AccountSupportInitialStateType,
 } from "./Account.support.types";
-import { AccountSupportFiltersReducers } from "./Account.support.reducers";
+import { AccountSupportDeactivateReducers } from "./Account.support.reducers";
 
 const initialState: AccountSupportInitialStateType = {
-  filters: {
-    passenger: {
-      value: [],
-    },
+  deactivate: {
+    is_open: false,
   },
 };
 
@@ -23,10 +21,10 @@ const AccountSupportContext = createContext<{
 });
 
 const mainReducer = (
-  { filters }: AccountSupportInitialStateType,
+  { deactivate }: AccountSupportInitialStateType,
   action: AccountSupportActions
 ) => ({
-  filters: AccountSupportFiltersReducers(filters, action),
+  deactivate: AccountSupportDeactivateReducers(deactivate, action),
 });
 
 const AccountSupportProvider = (props: { children: React.ReactNode }) => {

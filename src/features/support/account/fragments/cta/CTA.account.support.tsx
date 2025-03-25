@@ -1,9 +1,22 @@
+'use client'
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { AccountSupportActionEnum, AccountSupportContext } from "../../context";
 
 export const CTAAccountSupport = () => {
   const dictionaries = getDictionaries();
+  const { state, dispatch } = React.useContext(AccountSupportContext);
+
+  const handleClickDeactivate = () => {
+    dispatch({
+      type: AccountSupportActionEnum.SetDeactivateData,
+      payload: {
+        ...state.deactivate,
+        is_open: true,
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -12,8 +25,14 @@ export const CTAAccountSupport = () => {
         "py-[1rem]"
       )}
     >
-      <button className={clsx("text-[1rem] text-[#DA2323] font-medium")}>
-        {dictionaries.cta.delete_account.children}
+      <button
+        className={clsx(
+          "text-[1rem] text-[#DA2323] font-medium",
+          "cursor-pointer"
+        )}
+        onClick={handleClickDeactivate}
+      >
+        {dictionaries.cta.deactivate.children}
       </button>
     </div>
   );

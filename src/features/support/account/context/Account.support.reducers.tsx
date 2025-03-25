@@ -1,16 +1,16 @@
 import {
   AccountSupportActionEnum,
   AccountSupportActions,
-  AccountSupportFilters,
+  AccountSupportDeactivate,
 } from "./Account.support.types";
 
-// Filters
-export const AccountSupportFiltersReducers = (
-  state: AccountSupportFilters,
+// Deactivate
+export const AccountSupportDeactivateReducers = (
+  state: AccountSupportDeactivate,
   action: AccountSupportActions
 ) => {
   switch (action.type) {
-    case AccountSupportActionEnum.SetFiltersData:
+    case AccountSupportActionEnum.SetDeactivateData:
       return action.payload;
 
     default:
