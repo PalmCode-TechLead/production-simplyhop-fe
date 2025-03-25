@@ -14,7 +14,14 @@ export const TopNavigation = () => {
   const pathname = usePathname();
   const cookie = new Cookie();
   const token = cookie.get("token");
-  const isLogin = !!token;
+
+  const [isLogin, setIsLogin] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if (token) {
+      setIsLogin(true);
+    }
+  }, [token]);
 
   return (
     <nav className={clsx("fixed top-0 left-0 right-0", "w-full", "z-30")}>
