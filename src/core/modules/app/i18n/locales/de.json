@@ -42,6 +42,14 @@
         "icon": {
           "name": "MessageSquare"
         }
+      },
+      {
+        "id": "support",
+        "name": "Profile",
+        "href": "/support/konto",
+        "icon": {
+          "name": "User"
+        }
       }
     ]
   },

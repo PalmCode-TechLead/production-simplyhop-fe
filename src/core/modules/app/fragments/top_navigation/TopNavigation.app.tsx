@@ -100,21 +100,6 @@ export const TopNavigation = () => {
                 </Link>
               ))}
             </div>
-
-            {/* NOTES: profile */}
-            <div
-              className={clsx(
-                "flex items-center justify-center",
-                "w-[2rem] h-[2rem]",
-                "rounded-[50%]",
-                "bg-[#5AC53D]"
-              )}
-            >
-              <SVGIcon
-                name="User"
-                className={clsx("w-[1.5rem] h-[1.5rem]", "text-white")}
-              />
-            </div>
           </div>
         </div>
       </div>

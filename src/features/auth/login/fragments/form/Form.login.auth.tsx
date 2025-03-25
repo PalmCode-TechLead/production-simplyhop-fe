@@ -7,10 +7,15 @@ import { Textfield } from "@/core/components/textfield";
 import Link from "next/link";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import { Button } from "@/core/components/button";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(LoginAuthContext);
+  const router = useRouter();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
@@ -38,7 +43,11 @@ export const FormLoginAuth = () => {
     });
   };
 
-  const handleClickLogin = () => {};
+  const handleClickLogin = async () => {
+    const cookies = new Cookies();
+    cookies.set("token", "eyety");
+    router.push(AppCollectionURL.public.home());
+  };
   return (
     <div
       className={clsx(
@@ -81,20 +90,12 @@ export const FormLoginAuth = () => {
           }}
         />
 
-        <button
-          className={clsx(
-            "flex items-center justify-center",
-            "w-full",
-            "bg-[#5AC53D]",
-            "border border-[#5AC53D]",
-            "px-[1rem] py-[0.75rem]",
-            "rounded-[0.375rem]",
-            "text-[white] text-[0.875rem] font-medium"
-          )}
+        <Button
+          className={clsx("px-[1rem] py-[0.75rem]")}
           onClick={handleClickLogin}
         >
           {dictionaries.form.cta.login.children}
-        </button>
+        </Button>
 
         {/* NOTES: account */}
         <div className={clsx("flex items-start justify-center", "w-full")}>
