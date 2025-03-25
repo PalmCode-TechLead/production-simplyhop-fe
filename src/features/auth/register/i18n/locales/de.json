@@ -39,8 +39,8 @@
       }
     },
     "cta": {
-      "login": {
-        "children": "Login"
+      "register": {
+        "children": "Nächster Schritt"
       }
     },
     "account": {

@@ -8,6 +8,7 @@ import Link from "next/link";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { RegisterAuthActionEnum, RegisterAuthContext } from "../../context";
 import { Passwordfield } from "@/core/components/passwordfield";
+import { Button } from "@/core/components/button";
 
 export const FormRegisterAuth = () => {
   const dictionaries = getDictionaries();
@@ -39,7 +40,9 @@ export const FormRegisterAuth = () => {
     });
   };
 
-  const handleClickLogin = () => {};
+  const handleClickRegister = () => {
+    
+  };
   return (
     <div
       className={clsx(
@@ -82,20 +85,12 @@ export const FormRegisterAuth = () => {
           }}
         />
 
-        <button
-          className={clsx(
-            "flex items-center justify-center",
-            "w-full",
-            "bg-[#5AC53D]",
-            "border border-[#5AC53D]",
-            "px-[1rem] py-[0.75rem]",
-            "rounded-[0.375rem]",
-            "text-[white] text-[0.875rem] font-medium"
-          )}
-          onClick={handleClickLogin}
+        <Button
+          className={clsx("px-[1rem] py-[0.75rem]")}
+          onClick={handleClickRegister}
         >
-          {dictionaries.form.cta.login.children}
-        </button>
+          {dictionaries.form.cta.register.children}
+        </Button>
 
         {/* NOTES: account */}
         <div className={clsx("flex items-start justify-center", "w-full")}>
