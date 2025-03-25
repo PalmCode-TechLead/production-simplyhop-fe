@@ -6,10 +6,15 @@ import Link from "next/link";
 import { getDictionaries } from "../../i18n";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { usePathname } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import Cookie from "universal-cookie";
 
 export const TopNavigation = () => {
   const dictionaries = getDictionaries();
   const pathname = usePathname();
+  const cookie = new Cookie();
+  const token = cookie.get("token");
+  const isLogin = !!token;
   return (
     <nav className={clsx("fixed top-0 left-0 right-0", "w-full", "z-30")}>
       <div
@@ -50,6 +55,11 @@ export const TopNavigation = () => {
               {dictionaries.menu.items.map((menu, menuIndex) => (
                 <Link
                   {...menu}
+                  href={
+                    menu.id === "mitfahrt-anbieten" && !isLogin
+                      ? AppCollectionURL.public.login()
+                      : menu.href
+                  }
                   key={menuIndex}
                   className={clsx(
                     "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",

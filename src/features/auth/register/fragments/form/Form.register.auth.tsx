@@ -44,15 +44,10 @@ export const FormRegisterAuth = () => {
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
         "bg-[white]",
-        "border border-[#D3E7CE]",
         "px-[3rem] py-[3rem]",
         "rounded-[1.25rem]",
         "max-w-[508px] w-full"
       )}
-      style={{
-        backdropFilter: "blur(20px)",
-        boxShadow: "0px 0px 25px 0px #969C9640",
-      }}
     >
       <Image
         {...dictionaries.form.header.logo}
