@@ -73,6 +73,39 @@ const initialState: RegistrationProfileInitialStateType = {
         },
       },
     },
+    pictures: {
+      files: null,
+    },
+    capacity: {
+      passenger_seats: {
+        form: {
+          available_seat: {
+            selected: null,
+            items: [],
+          },
+          available_child_seat: {
+            selected: null,
+            items: [],
+          },
+          available_car_seat: {
+            selected: null,
+            items: [],
+          },
+        },
+      },
+      luggage: {
+        form: {
+          luggage: {
+            selected: null,
+            items: [],
+          },
+          luggage_size: {
+            selected: null,
+            items: [],
+          },
+        },
+      },
+    },
   },
 };
 

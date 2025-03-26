@@ -9,6 +9,7 @@ import { RidePlanFormRegistrationProfile } from "../fragments/ride_plan_form";
 import { GeneralVehicleInformationFormRegistrationProfile } from "../fragments/general_vehicle_information_form";
 import { RegistrationProfileContext } from "../context";
 import { PictureVehicleInformationFormRegistrationProfile } from "../fragments/picture_vehicle_information_form";
+import { CapacityVehicleInformationFormRegistrationProfile } from "../fragments/capacity_vehicle_information_form";
 
 export const RegistrationProfileContainer = () => {
   const dictionaries = getDictionaries();
@@ -62,6 +63,7 @@ export const RegistrationProfileContainer = () => {
               </h2>
               <GeneralVehicleInformationFormRegistrationProfile />
               <PictureVehicleInformationFormRegistrationProfile />
+              <CapacityVehicleInformationFormRegistrationProfile />
             </div>
           )}
         </div>
