@@ -44,7 +44,6 @@ export const FilterFindTrip = () => {
       // data: null | google.maps.places.AutocompletePrediction[]
       data: null | { description: string; place_id: string }[]
     ) => {
-      console.log(data,'ini data')
       if (!!data) {
         dispatch({
           type: FindTripActionEnum.SetFiltersData,

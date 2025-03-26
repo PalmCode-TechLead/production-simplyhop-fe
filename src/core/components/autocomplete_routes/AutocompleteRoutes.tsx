@@ -10,11 +10,8 @@ import { AutocompleteOption } from "../autocomplete_option";
 import { AutocompleteEmptyBox } from "../autocomplete_empty_box";
 
 export interface AutocompleteRoutesProps {
-  type?: "sync" | "async";
-
   disabled?: boolean;
   emptyMessage?: string;
-  search?: boolean;
   debounceQuery?: boolean;
   origin?: {
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
@@ -45,12 +42,9 @@ export interface AutocompleteRoutesProps {
 }
 
 export const AutocompleteRoutes = ({
-  type = "sync",
-
   disabled = false,
 
   emptyMessage = "No Result",
-  search = true,
 
   origin = {
     autocomplete: {
