@@ -12,9 +12,10 @@ export const CTARegistrationProfile = () => {
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
   const handleClickSave = () => {
     dispatch({
-      type: RegistrationProfileActionEnum.SetPersonalInformationData,
+      type: RegistrationProfileActionEnum.SetNotificationData,
       payload: {
-        ...state.personal_information,
+        ...state.notification,
+        is_open: true,
       },
     });
   };

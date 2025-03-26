@@ -34,6 +34,7 @@ import { Twitter } from "./twitter";
 import { Telegram } from "./telegram";
 import { Thread } from "./thread";
 import { PictureUpload } from "./picture_upload";
+import { ContrastCheckMark } from "./contrast_check_mark";
 
 export const svgMap = {
   Search,
@@ -70,6 +71,7 @@ export const svgMap = {
   Telegram,
   Thread,
   PictureUpload,
+  ContrastCheckMark,
 };
 
 export type SVGName = keyof typeof svgMap;

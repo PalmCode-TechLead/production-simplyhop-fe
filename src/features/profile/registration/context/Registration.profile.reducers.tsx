@@ -1,6 +1,7 @@
 import {
   RegistrationProfileActionEnum,
   RegistrationProfileActions,
+  RegistrationProfileNotification,
   RegistrationProfilePersonalInformation,
   RegistrationProfileRidePlan,
   RegistrationProfileTab,
@@ -56,6 +57,20 @@ export const RegistrationProfileVehicleInformationReducers = (
 ) => {
   switch (action.type) {
     case RegistrationProfileActionEnum.SetVehicleInformationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// Notification
+export const RegistrationProfileNotificationReducers = (
+  state: RegistrationProfileNotification,
+  action: RegistrationProfileActions
+) => {
+  switch (action.type) {
+    case RegistrationProfileActionEnum.SetNotificationData:
       return action.payload;
 
     default:

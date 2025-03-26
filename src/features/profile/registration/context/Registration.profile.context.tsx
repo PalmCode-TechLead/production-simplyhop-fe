@@ -5,6 +5,7 @@ import {
   RegistrationProfileInitialStateType,
 } from "./Registration.profile.types";
 import {
+  RegistrationProfileNotificationReducers,
   RegistrationProfilePersonalInformationReducers,
   RegistrationProfileRidePlanReducers,
   RegistrationProfileTabReducers,
@@ -131,6 +132,9 @@ const initialState: RegistrationProfileInitialStateType = {
       },
     },
   },
+  notification: {
+    is_open: false,
+  },
 };
 
 const RegistrationProfileContext = createContext<{
@@ -147,6 +151,7 @@ const mainReducer = (
     personal_information,
     ride_plan,
     vehicle_information,
+    notification,
   }: RegistrationProfileInitialStateType,
   action: RegistrationProfileActions
 ) => ({
@@ -160,6 +165,7 @@ const mainReducer = (
     vehicle_information,
     action
   ),
+  notification: RegistrationProfileNotificationReducers(notification, action),
 });
 
 const RegistrationProfileProvider = (props: { children: React.ReactNode }) => {

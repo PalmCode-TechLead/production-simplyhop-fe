@@ -282,5 +282,13 @@
     "save": {
       "children": "Speichern"
     }
+  },
+  "notification": {
+    "title": "Kontoregistrierung abgeschlossen",
+    "cta": {
+      "back": {
+        "children": "Zurück zur Startseite"
+      }
+    }
   }
 }

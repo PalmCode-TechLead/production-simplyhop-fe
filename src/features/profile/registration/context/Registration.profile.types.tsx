@@ -15,6 +15,7 @@ export interface RegistrationProfileInitialStateType {
   personal_information: RegistrationProfilePersonalInformation;
   ride_plan: RegistrationProfileRidePlan;
   vehicle_information: RegistrationProfileVehicleInformation;
+  notification: RegistrationProfileNotification;
 }
 
 // State Collection Types consist of:
@@ -124,6 +125,10 @@ export interface RegistrationProfileVehicleInformation {
   };
 }
 
+export interface RegistrationProfileNotification {
+  is_open: boolean;
+}
+
 export enum RegistrationProfileActionEnum {
   // Tab
   SetTabData = "SetTabData",
@@ -133,6 +138,8 @@ export enum RegistrationProfileActionEnum {
   SetRidePlanData = "SetRidePlanData",
   // VehicleInformation
   SetVehicleInformationData = "SetVehicleInformationData",
+  // Notification
+  SetNotificationData = "SetNotificationData",
 }
 
 // Action Collection Types
@@ -140,7 +147,8 @@ export type RegistrationProfileActions =
   | RegistrationProfileTabActions
   | RegistrationProfilePersonalInformationActions
   | RegistrationProfileRidePlanActions
-  | RegistrationProfileVehicleInformationActions;
+  | RegistrationProfileVehicleInformationActions
+  | RegistrationProfileNotificationActions;
 
 // Action Collection Types consist of:
 // Tab
@@ -174,3 +182,11 @@ type RegistrationProfileVehicleInformationPayload = {
 
 export type RegistrationProfileVehicleInformationActions =
   ActionMap<RegistrationProfileVehicleInformationPayload>[keyof ActionMap<RegistrationProfileVehicleInformationPayload>];
+
+// Notification
+type RegistrationProfileNotificationPayload = {
+  [RegistrationProfileActionEnum.SetNotificationData]: RegistrationProfileNotification;
+};
+
+export type RegistrationProfileNotificationActions =
+  ActionMap<RegistrationProfileNotificationPayload>[keyof ActionMap<RegistrationProfileNotificationPayload>];

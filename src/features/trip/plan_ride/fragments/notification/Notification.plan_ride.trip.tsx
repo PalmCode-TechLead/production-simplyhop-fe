@@ -55,7 +55,7 @@ export const NotificationPlanRideTrip = () => {
             )}
           >
             <SVGIcon
-              name="Check"
+              name="ContrastCheckMark"
               className={clsx("w-[5rem] h-[5rem]", "text-[#5AC53D]")}
             />
           </div>
