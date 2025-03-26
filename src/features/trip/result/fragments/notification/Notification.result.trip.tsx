@@ -32,6 +32,14 @@ export const NotificationResultTrip = () => {
       { scroll: false }
     );
   };
+
+  const handleClickShare = (data: { platformUrl: string; url: string }) => {
+    const shareUrl = data.platformUrl.replaceAll(
+      "{{url}}",
+      encodeURIComponent(data.url)
+    );
+    window.open(shareUrl);
+  };
   return (
     <Modal
       className={clsx(
@@ -98,17 +106,24 @@ export const NotificationResultTrip = () => {
             )}
           >
             {dictionaries.notification.share.items.map((item, itemIndex) => (
-              <div
+              <button
                 key={itemIndex}
                 className={clsx(
                   "flex items-center justify-center",
                   "w-[2rem] h-[2rem]",
                   "rounded-[50%]",
-                  "bg-[white]"
+                  "bg-[white]",
+                  "cursor-pointer"
                 )}
+                onClick={() =>
+                  handleClickShare({
+                    platformUrl: item.href,
+                    url: "https://youtu.be/b_6jw22-0oc?si=YbmOT265_QgqU1MA",
+                  })
+                }
               >
                 <SVGIcon name={item.icon.name as SVGIconProps["name"]} />
-              </div>
+              </button>
             ))}
           </div>
         </div>
