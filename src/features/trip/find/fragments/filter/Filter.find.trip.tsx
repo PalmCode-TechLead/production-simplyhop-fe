@@ -41,8 +41,10 @@ export const FilterFindTrip = () => {
     }
 
     const handleResult = (
-      data: null | google.maps.places.AutocompletePrediction[]
+      // data: null | google.maps.places.AutocompletePrediction[]
+      data: null | { description: string; place_id: string }[]
     ) => {
+      console.log(data,'ini data')
       if (!!data) {
         dispatch({
           type: FindTripActionEnum.SetFiltersData,
@@ -116,7 +118,8 @@ export const FilterFindTrip = () => {
     }
 
     const handleResult = (
-      data: null | google.maps.places.AutocompletePrediction[]
+      // data: null | google.maps.places.AutocompletePrediction[]
+      data: null | { description: string; place_id: string }[]
     ) => {
       if (!!data) {
         dispatch({

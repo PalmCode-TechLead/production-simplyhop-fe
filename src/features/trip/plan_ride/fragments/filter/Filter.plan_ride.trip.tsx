@@ -64,7 +64,8 @@ export const FilterPlanRideTrip = () => {
       return;
     }
     const handleResult = (
-      data: null | google.maps.places.AutocompletePrediction[]
+      // data: null | google.maps.places.AutocompletePrediction[]
+      data: null | { description: string; place_id: string }[]
     ) => {
       if (!!data) {
         dispatch({
@@ -157,7 +158,8 @@ export const FilterPlanRideTrip = () => {
     }
 
     const handleResult = (
-      data: null | google.maps.places.AutocompletePrediction[]
+      // data: null | google.maps.places.AutocompletePrediction[]
+      data: null | { description: string; place_id: string }[]
     ) => {
       if (!!data) {
         dispatch({
@@ -232,7 +234,8 @@ export const FilterPlanRideTrip = () => {
     }
 
     const handleResult = (
-      data: null | google.maps.places.AutocompletePrediction[]
+      // data: null | google.maps.places.AutocompletePrediction[]
+      data: null | { description: string; place_id: string }[]
     ) => {
       if (!!data) {
         dispatch({
