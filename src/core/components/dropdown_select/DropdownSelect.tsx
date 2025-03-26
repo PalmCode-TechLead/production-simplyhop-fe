@@ -65,29 +65,23 @@ export const DropdownSelect = ({
             "min-w-[255px]",
             "bg-[white]",
             "rounded-[0.375rem]",
-            "border border-[#E2E2E2]"
+            "border border-[#E2E2E2]",
+            "z-[10]"
           )}
         >
           {items.map((item, itemIndex) => (
-            <div
+            <button
               key={itemIndex}
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-between justify-items-start",
-                "w-full"
+                "w-full",
+                "!text-[#767676] !text-[0.875rem] !font-normal text-left",
+                "py-[0.5rem]",
+                "cursor-pointer disabled:cursor-default"
               )}
+              onClick={() => handleSelect(item)}
             >
-              <button
-                className={clsx(
-                  "w-full",
-                  "!text-[#767676] !text-[0.875rem] !font-normal",
-                  "py-[0.5rem]",
-                  "cursor-pointer disabled:cursor-default"
-                )}
-                onClick={() => handleSelect(item)}
-              >
-                {item.name}
-              </button>
-            </div>
+              {item.name}
+            </button>
           ))}
         </div>
       )}

@@ -6,7 +6,7 @@ import { TabRegistrationProfile } from "../fragments/tab";
 import { PersonalInformationFormRegistrationProfile } from "../fragments/personal_information_form";
 import { Divider } from "@/core/components/divider";
 import { RidePlanFormRegistrationProfile } from "../fragments/ride_plan_form";
-import { VehicleInformationFormRegistrationProfile } from "../fragments/vehicle_information_form";
+import { GeneralVehicleInformationFormRegistrationProfile } from "../fragments/general_vehicle_information_form";
 import { RegistrationProfileContext } from "../context";
 
 export const RegistrationProfileContainer = () => {
@@ -50,9 +50,17 @@ export const RegistrationProfileContainer = () => {
           <Divider />
           <RidePlanFormRegistrationProfile />
           {state.ride_plan.form.offer_trip.selected?.id === "yes" && (
-            <>
-              <VehicleInformationFormRegistrationProfile />
-            </>
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+                "w-full"
+              )}
+            >
+              <h2 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
+                {dictionaries.vehicle_information.title}
+              </h2>
+              <GeneralVehicleInformationFormRegistrationProfile />
+            </div>
           )}
         </div>
       </div>

@@ -14,6 +14,7 @@ export interface RegistrationProfileInitialStateType {
   tab: RegistrationProfileTab;
   personal_information: RegistrationProfilePersonalInformation;
   ride_plan: RegistrationProfileRidePlan;
+  vehicle_information: RegistrationProfileVehicleInformation;
 }
 
 // State Collection Types consist of:
@@ -46,6 +47,26 @@ export interface RegistrationProfileRidePlan {
   };
 }
 
+export interface RegistrationProfileVehicleInformation {
+  general: {
+    form: {
+      car_brand: {
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
+      };
+      car_model: {
+        value: string;
+      };
+      car_color: {
+        value: string;
+      };
+      license_plate: {
+        value: string;
+      };
+    };
+  };
+}
+
 export enum RegistrationProfileActionEnum {
   // Tab
   SetTabData = "SetTabData",
@@ -53,13 +74,16 @@ export enum RegistrationProfileActionEnum {
   SetPersonalInformationData = "SetPersonalInformationData",
   // RidePlan
   SetRidePlanData = "SetRidePlanData",
+  // VehicleInformation
+  SetVehicleInformationData = "SetVehicleInformationData",
 }
 
 // Action Collection Types
 export type RegistrationProfileActions =
   | RegistrationProfileTabActions
   | RegistrationProfilePersonalInformationActions
-  | RegistrationProfileRidePlanActions;
+  | RegistrationProfileRidePlanActions
+  | RegistrationProfileVehicleInformationActions;
 
 // Action Collection Types consist of:
 // Tab
@@ -85,3 +109,11 @@ type RegistrationProfileRidePlanPayload = {
 
 export type RegistrationProfileRidePlanActions =
   ActionMap<RegistrationProfileRidePlanPayload>[keyof ActionMap<RegistrationProfileRidePlanPayload>];
+
+// VehicleInformation
+type RegistrationProfileVehicleInformationPayload = {
+  [RegistrationProfileActionEnum.SetVehicleInformationData]: RegistrationProfileVehicleInformation;
+};
+
+export type RegistrationProfileVehicleInformationActions =
+  ActionMap<RegistrationProfileVehicleInformationPayload>[keyof ActionMap<RegistrationProfileVehicleInformationPayload>];

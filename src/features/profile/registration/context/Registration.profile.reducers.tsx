@@ -4,6 +4,7 @@ import {
   RegistrationProfilePersonalInformation,
   RegistrationProfileRidePlan,
   RegistrationProfileTab,
+  RegistrationProfileVehicleInformation,
 } from "./Registration.profile.types";
 
 // Tab
@@ -41,6 +42,20 @@ export const RegistrationProfileRidePlanReducers = (
 ) => {
   switch (action.type) {
     case RegistrationProfileActionEnum.SetRidePlanData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// VehicleInformation
+export const RegistrationProfileVehicleInformationReducers = (
+  state: RegistrationProfileVehicleInformation,
+  action: RegistrationProfileActions
+) => {
+  switch (action.type) {
+    case RegistrationProfileActionEnum.SetVehicleInformationData:
       return action.payload;
 
     default:

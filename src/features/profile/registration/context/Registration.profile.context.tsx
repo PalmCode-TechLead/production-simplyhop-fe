@@ -8,6 +8,7 @@ import {
   RegistrationProfilePersonalInformationReducers,
   RegistrationProfileRidePlanReducers,
   RegistrationProfileTabReducers,
+  RegistrationProfileVehicleInformationReducers,
 } from "./Registration.profile.reducers";
 
 const initialState: RegistrationProfileInitialStateType = {
@@ -37,6 +38,42 @@ const initialState: RegistrationProfileInitialStateType = {
       },
     },
   },
+  vehicle_information: {
+    general: {
+      form: {
+        car_brand: {
+          selected: null,
+          items: [
+            {
+              id: "mercedes-benz",
+              name: "Mercedes Benz",
+            },
+            {
+              id: "bmw",
+              name: "BMW",
+            },
+            {
+              id: "toyota",
+              name: "Toyota",
+            },
+            {
+              id: "hyundai",
+              name: "Hyundai",
+            },
+          ],
+        },
+        car_model: {
+          value: "",
+        },
+        car_color: {
+          value: "",
+        },
+        license_plate: {
+          value: "",
+        },
+      },
+    },
+  },
 };
 
 const RegistrationProfileContext = createContext<{
@@ -48,7 +85,12 @@ const RegistrationProfileContext = createContext<{
 });
 
 const mainReducer = (
-  { tab, personal_information, ride_plan }: RegistrationProfileInitialStateType,
+  {
+    tab,
+    personal_information,
+    ride_plan,
+    vehicle_information,
+  }: RegistrationProfileInitialStateType,
   action: RegistrationProfileActions
 ) => ({
   tab: RegistrationProfileTabReducers(tab, action),
@@ -57,6 +99,10 @@ const mainReducer = (
     action
   ),
   ride_plan: RegistrationProfileRidePlanReducers(ride_plan, action),
+  vehicle_information: RegistrationProfileVehicleInformationReducers(
+    vehicle_information,
+    action
+  ),
 });
 
 const RegistrationProfileProvider = (props: { children: React.ReactNode }) => {

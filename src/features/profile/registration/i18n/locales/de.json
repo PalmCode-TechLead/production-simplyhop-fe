@@ -89,34 +89,45 @@
         "input": {
           "car_brand": {
             "inputProps": {
-              "id": "email",
+              "id": "car_brand",
               "placeholder": " "
             },
             "labelProps": {
-              "id": "email",
-              "children": "Email",
+              "id": "car_brand",
+              "children": "Automarke",
               "required": false
             }
           },
           "car_model": {
             "inputProps": {
-              "id": "email",
+              "id": "car_model",
               "placeholder": " "
             },
             "labelProps": {
-              "id": "email",
-              "children": "Email",
+              "id": "car_model",
+              "children": "Auto-Modell",
+              "required": false
+            }
+          },
+          "car_color": {
+            "inputProps": {
+              "id": "car_color",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "car_color",
+              "children": "Farbe",
               "required": false
             }
           },
           "license_plate": {
             "inputProps": {
-              "id": "email",
+              "id": "license_plate",
               "placeholder": " "
             },
             "labelProps": {
-              "id": "email",
-              "children": "Email",
+              "id": "license_plate",
+              "children": "Nummernschild",
               "required": false
             }
           }
@@ -138,36 +149,36 @@
         "title": "Fahrgastsitze",
         "form": {
           "input": {
-            "total_places_available": {
+            "available_seat": {
               "inputProps": {
-                "id": "email",
+                "id": "available_seat",
                 "placeholder": " "
               },
               "labelProps": {
-                "id": "email",
-                "children": "Email",
+                "id": "available_seat",
+                "children": "Verfügbare Plätze insgesamt",
                 "required": false
               }
             },
-            "child_seat_available": {
+            "available_child_seat": {
               "inputProps": {
-                "id": "email",
+                "id": "available_child_seat",
                 "placeholder": " "
               },
               "labelProps": {
-                "id": "email",
-                "children": "Email",
+                "id": "available_child_seat",
+                "children": "Verfügbarkeit von Kindersitzen",
                 "required": false
               }
             },
-            "car_seat_child_available": {
+            "available_car_seat": {
               "inputProps": {
-                "id": "email",
+                "id": "available_car_seat",
                 "placeholder": " "
               },
               "labelProps": {
-                "id": "email",
-                "children": "Email",
+                "id": "available_car_seat",
+                "children": "Autokindersitz verfügbar",
                 "required": false
               }
             }
