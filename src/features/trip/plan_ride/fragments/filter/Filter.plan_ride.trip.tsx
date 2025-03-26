@@ -180,7 +180,7 @@ export const FilterPlanRideTrip = () => {
 
     await fetchAutocompletePlace(
       input,
-      state.filters.city.selected.lat_lng,
+      // state.filters.city.selected.lat_lng,
       handleResult
     );
   };
@@ -255,7 +255,7 @@ export const FilterPlanRideTrip = () => {
 
     await fetchAutocompletePlace(
       input,
-      state.filters.city.selected.lat_lng,
+      // state.filters.city.selected.lat_lng,
       handleResult
     );
   };

@@ -17,7 +17,6 @@ export const useRideFilterResultTrip = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
-  const cityId = searchParams.get(RIDE_FILTER.CITY);
   const originId = searchParams.get(RIDE_FILTER.ORIGIN);
   const destinationId = searchParams.get(RIDE_FILTER.DESTINATION);
   const date = searchParams.get(RIDE_FILTER.DATE);

@@ -2,7 +2,6 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { AutocompleteCity } from "@/core/components/autocomplete_city";
 import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import {
   ResultTripActionEnum,
@@ -16,7 +15,6 @@ import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { RIDE_FILTER } from "@/core/enums";
 import dayjs from "dayjs";
 import {
-  fetchAutocompleteCityList,
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
