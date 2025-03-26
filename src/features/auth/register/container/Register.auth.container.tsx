@@ -6,7 +6,7 @@ import { RegisterAuthContext } from "../context";
 import { PasswordSetupRegisterAuth } from "../fragments/password_setup";
 
 export const RegisterAuthContainer = () => {
-  const { state, dispatch } = React.useContext(RegisterAuthContext);
+  const { state } = React.useContext(RegisterAuthContext);
   return (
     <div
       className={clsx(
