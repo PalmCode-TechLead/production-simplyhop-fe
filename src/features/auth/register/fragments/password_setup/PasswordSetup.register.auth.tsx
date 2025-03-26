@@ -167,21 +167,6 @@ export const PasswordSetupRegisterAuth = () => {
           }}
         />
 
-        <Button
-          className={clsx("px-[1rem] py-[0.75rem]")}
-          onClick={handleClickRegister}
-        >
-          {dictionaries.password_setup.form.cta.register.children}
-        </Button>
-      </div>
-
-      {/* privacy_policy */}
-      <div
-        className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
-          "w-full"
-        )}
-      >
         <div
           className={clsx(
             "grid grid-flow-col place-content-start place-items-start gap-[1rem]",
@@ -200,6 +185,21 @@ export const PasswordSetupRegisterAuth = () => {
           />
         </div>
 
+        <Button
+          className={clsx("px-[1rem] py-[0.75rem]")}
+          onClick={handleClickRegister}
+        >
+          {dictionaries.password_setup.form.cta.register.children}
+        </Button>
+      </div>
+
+      {/* privacy_policy */}
+      <div
+        className={clsx(
+          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
+          "w-full"
+        )}
+      >
         <div
           className={clsx(
             "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]"
