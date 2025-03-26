@@ -8,6 +8,7 @@ import { Divider } from "@/core/components/divider";
 import { RidePlanFormRegistrationProfile } from "../fragments/ride_plan_form";
 import { GeneralVehicleInformationFormRegistrationProfile } from "../fragments/general_vehicle_information_form";
 import { RegistrationProfileContext } from "../context";
+import { PictureVehicleInformationFormRegistrationProfile } from "../fragments/picture_vehicle_information_form";
 
 export const RegistrationProfileContainer = () => {
   const dictionaries = getDictionaries();
@@ -60,6 +61,7 @@ export const RegistrationProfileContainer = () => {
                 {dictionaries.vehicle_information.title}
               </h2>
               <GeneralVehicleInformationFormRegistrationProfile />
+              <PictureVehicleInformationFormRegistrationProfile />
             </div>
           )}
         </div>

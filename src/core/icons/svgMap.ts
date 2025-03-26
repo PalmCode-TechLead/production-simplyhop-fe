@@ -33,6 +33,7 @@ import { Whatsapp } from "./whatsapp";
 import { Twitter } from "./twitter";
 import { Telegram } from "./telegram";
 import { Thread } from "./thread";
+import { PictureUpload } from "./picture_upload";
 
 export const svgMap = {
   Search,
@@ -68,6 +69,7 @@ export const svgMap = {
   Twitter,
   Telegram,
   Thread,
+  PictureUpload,
 };
 
 export type SVGName = keyof typeof svgMap;
