@@ -7,7 +7,6 @@ export const AppCollectionURL = {
     register: () => "/register",
   },
   private: {
-    chat: () => "/chat",
-    upload: () => "/upload",
+    profile_registration: () => "/profile-registration",
   },
 };

@@ -9,19 +9,26 @@ export interface TextfieldProps {
   inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
+  disabled?: boolean;
 }
 
 export const Textfield = ({
   inputContainerProps,
   inputProps,
   labelProps,
+  disabled = false,
 }: TextfieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const [value, setValue] = React.useState<string>("");
+
   return (
     <InputContainer
       {...inputContainerProps}
-      className={clsx("relative", inputContainerProps?.className)}
+      className={clsx(
+        "relative",
+        disabled && "!bg-[#F6F6F6]",
+        inputContainerProps?.className
+      )}
     >
       <Input
         ref={inputRef}
@@ -37,7 +44,7 @@ export const Textfield = ({
         className={clsx(
           inputProps?.type === "time"
             ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
-            : !!value.length
+            : !!value.length || !!inputProps?.value
             ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
             : "top-[50%] left-[1.625rem] translate-y-[-50%] text-[0.875rem]",
           "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#5B5B5B] text-[0.75rem]"

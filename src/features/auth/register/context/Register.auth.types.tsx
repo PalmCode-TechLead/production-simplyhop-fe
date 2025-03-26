@@ -11,32 +11,72 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface RegisterAuthInitialStateType {
-  form: RegisterAuthForm;
+  state: RegisterAuthState;
+  general: RegisterAuthGeneral;
+  password_setup: RegisterAuthPasswordSetup;
 }
 
 // State Collection Types consist of:
-export interface RegisterAuthForm {
+export interface RegisterAuthState {
+  step: "general" | "password_setup";
+}
+export interface RegisterAuthGeneral {
+  email: {
+    value: string;
+  };
+}
+
+export interface RegisterAuthPasswordSetup {
   email: {
     value: string;
   };
   password: {
     value: string;
   };
+  confirm_password: {
+    value: string;
+  };
+  tnc: {
+    checked: boolean;
+  };
 }
 
 export enum RegisterAuthActionEnum {
-  // Form
-  SetFormData = "SetFormData",
+  // State
+  SetStateData = "SetStateData",
+  // General
+  SetGeneralData = "SetGeneralData",
+  // PasswordSetup
+  SetPasswordSetupData = "SetPasswordSetupData",
 }
 
 // Action Collection Types
-export type RegisterAuthActions = RegisterAuthFormActions;
+export type RegisterAuthActions =
+  | RegisterAuthStateActions
+  | RegisterAuthGeneralActions
+  | RegisterAuthPasswordSetupActions;
 
 // Action Collection Types consist of:
-// Form
-type RegisterAuthFormPayload = {
-  [RegisterAuthActionEnum.SetFormData]: RegisterAuthForm;
+// State
+type RegisterAuthStatePayload = {
+  [RegisterAuthActionEnum.SetStateData]: RegisterAuthState;
 };
 
-export type RegisterAuthFormActions =
-  ActionMap<RegisterAuthFormPayload>[keyof ActionMap<RegisterAuthFormPayload>];
+export type RegisterAuthStateActions =
+  ActionMap<RegisterAuthStatePayload>[keyof ActionMap<RegisterAuthStatePayload>];
+
+// General
+type RegisterAuthGeneralPayload = {
+  [RegisterAuthActionEnum.SetGeneralData]: RegisterAuthGeneral;
+};
+
+export type RegisterAuthGeneralActions =
+  ActionMap<RegisterAuthGeneralPayload>[keyof ActionMap<RegisterAuthGeneralPayload>];
+
+// PasswordSetup
+type RegisterAuthPasswordSetupPayload = {
+  [RegisterAuthActionEnum.SetPasswordSetupData]: RegisterAuthPasswordSetup;
+};
+
+export type RegisterAuthPasswordSetupActions =
+  ActionMap<RegisterAuthPasswordSetupPayload>[keyof ActionMap<RegisterAuthPasswordSetupPayload>];

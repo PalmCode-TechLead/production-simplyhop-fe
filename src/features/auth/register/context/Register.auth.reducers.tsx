@@ -1,16 +1,46 @@
 import {
   RegisterAuthActionEnum,
   RegisterAuthActions,
-  RegisterAuthForm,
+  RegisterAuthGeneral,
+  RegisterAuthPasswordSetup,
+  RegisterAuthState,
 } from "./Register.auth.types";
 
-// Form
-export const RegisterAuthFormReducers = (
-  state: RegisterAuthForm,
+// State
+export const RegisterAuthStateReducers = (
+  state: RegisterAuthState,
   action: RegisterAuthActions
 ) => {
   switch (action.type) {
-    case RegisterAuthActionEnum.SetFormData:
+    case RegisterAuthActionEnum.SetStateData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// General
+export const RegisterAuthGeneralReducers = (
+  state: RegisterAuthGeneral,
+  action: RegisterAuthActions
+) => {
+  switch (action.type) {
+    case RegisterAuthActionEnum.SetGeneralData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// PasswordSetup
+export const RegisterAuthPasswordSetupReducers = (
+  state: RegisterAuthPasswordSetup,
+  action: RegisterAuthActions
+) => {
+  switch (action.type) {
+    case RegisterAuthActionEnum.SetPasswordSetupData:
       return action.payload;
 
     default:

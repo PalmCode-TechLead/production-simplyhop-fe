@@ -4,15 +4,33 @@ import {
   RegisterAuthActions,
   RegisterAuthInitialStateType,
 } from "./Register.auth.types";
-import { RegisterAuthFormReducers } from "./Register.auth.reducers";
+import {
+  RegisterAuthStateReducers,
+  RegisterAuthGeneralReducers,
+  RegisterAuthPasswordSetupReducers,
+} from "./Register.auth.reducers";
 
 const initialState: RegisterAuthInitialStateType = {
-  form: {
+  state: {
+    step: "password_setup",
+  },
+  general: {
+    email: {
+      value: "",
+    },
+  },
+  password_setup: {
     email: {
       value: "",
     },
     password: {
       value: "",
+    },
+    confirm_password: {
+      value: "",
+    },
+    tnc: {
+      checked: false,
     },
   },
 };
@@ -26,10 +44,12 @@ const RegisterAuthContext = createContext<{
 });
 
 const mainReducer = (
-  { form }: RegisterAuthInitialStateType,
+  { state, general, password_setup }: RegisterAuthInitialStateType,
   action: RegisterAuthActions
 ) => ({
-  form: RegisterAuthFormReducers(form, action),
+  state: RegisterAuthStateReducers(state, action),
+  general: RegisterAuthGeneralReducers(general, action),
+  password_setup: RegisterAuthPasswordSetupReducers(password_setup, action),
 });
 
 const RegisterAuthProvider = (props: { children: React.ReactNode }) => {
