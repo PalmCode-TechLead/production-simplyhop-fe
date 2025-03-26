@@ -170,7 +170,11 @@ export const RideDetailCardResultTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
-          <Image {...car.image} className={clsx("w-[145px]")} />
+          <Image
+            {...car.image}
+            alt={car.image.alt}
+            className={clsx("w-[145px]")}
+          />
         </div>
 
         <div

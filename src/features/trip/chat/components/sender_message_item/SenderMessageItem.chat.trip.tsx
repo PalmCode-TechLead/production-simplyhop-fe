@@ -68,6 +68,7 @@ export default function SenderMessageItemChatTrip({
 
         <Image
           {...image}
+          alt={image.alt}
           className={clsx(
             "w-[2.25rem] h-[2.25rem]",
             "rounded-[50%]",

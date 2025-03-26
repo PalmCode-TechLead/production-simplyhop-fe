@@ -1,6 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
-import { useState, useRef, useContext } from "react";
+import { useRef } from "react";
 import SVGIcon from "@/core/icons";
 
 export interface UploadInputProps {
@@ -21,7 +21,6 @@ export const UploadInput = ({
   description = "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px",
 }: UploadInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [viewUploadArea, setViewUploadArea] = useState<boolean>(true);
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -125,8 +124,7 @@ export const UploadInput = ({
           "relative",
           "grid grid-cols-1 place-content-center place-items-center gap-y-[0.5rem]",
           "border-[#CED4DA] border border-dashed",
-          "w-full rounded-[0.5rem] p-[1.75rem]",
-          viewUploadArea ? "block" : "hidden"
+          "w-full rounded-[0.5rem] p-[1.75rem]"
         )}
         onDragOver={handleDragOver}
         onDrop={handleDrop}

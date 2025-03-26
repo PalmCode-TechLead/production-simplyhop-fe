@@ -106,6 +106,30 @@ const initialState: RegistrationProfileInitialStateType = {
         },
       },
     },
+    trip: {
+      form: {
+        smoking: {
+          selected: null,
+          items: [],
+        },
+        music: {
+          selected: null,
+          items: [],
+        },
+        pet: {
+          selected: null,
+          items: [],
+        },
+        child_seat_number: {
+          selected: null,
+          items: [],
+        },
+        free_seat_number: {
+          selected: null,
+          items: [],
+        },
+      },
+    },
   },
 };
 

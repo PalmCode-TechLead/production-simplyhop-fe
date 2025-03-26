@@ -10,6 +10,8 @@ import { GeneralVehicleInformationFormRegistrationProfile } from "../fragments/g
 import { RegistrationProfileContext } from "../context";
 import { PictureVehicleInformationFormRegistrationProfile } from "../fragments/picture_vehicle_information_form";
 import { CapacityVehicleInformationFormRegistrationProfile } from "../fragments/capacity_vehicle_information_form";
+import { TripVehicleInformationFormRegistrationProfile } from "../fragments/trip_vehicle_information_form";
+import { CTARegistrationProfile } from "../fragments/cta";
 
 export const RegistrationProfileContainer = () => {
   const dictionaries = getDictionaries();
@@ -64,8 +66,10 @@ export const RegistrationProfileContainer = () => {
               <GeneralVehicleInformationFormRegistrationProfile />
               <PictureVehicleInformationFormRegistrationProfile />
               <CapacityVehicleInformationFormRegistrationProfile />
+              <TripVehicleInformationFormRegistrationProfile />
             </div>
           )}
+          <CTARegistrationProfile />
         </div>
       </div>
     </div>

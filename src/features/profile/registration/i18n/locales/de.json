@@ -213,74 +213,74 @@
             }
           }
         }
-      },
-      "trip_info": {
-        "title": "Infos zur Fahrt",
-        "form": {
-          "input": {
-            "smoking": {
-              "inputProps": {
-                "id": "email",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "email",
-                "children": "Email",
-                "required": false
-              }
+      }
+    },
+    "trip": {
+      "title": "Infos zur Fahrt",
+      "form": {
+        "input": {
+          "smoking": {
+            "inputProps": {
+              "id": "smoking",
+              "placeholder": " "
             },
-            "music": {
-              "inputProps": {
-                "id": "email",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "email",
-                "children": "Email",
-                "required": false
-              }
+            "labelProps": {
+              "id": "smoking",
+              "children": "Rauchen",
+              "required": false
+            }
+          },
+          "music": {
+            "inputProps": {
+              "id": "music",
+              "placeholder": " "
             },
-            "pet": {
-              "inputProps": {
-                "id": "email",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "email",
-                "children": "Email",
-                "required": false
-              }
+            "labelProps": {
+              "id": "music",
+              "children": "Musik",
+              "required": false
+            }
+          },
+          "pet": {
+            "inputProps": {
+              "id": "pet",
+              "placeholder": " "
             },
-            "child_seat_number": {
-              "inputProps": {
-                "id": "email",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "email",
-                "children": "Email",
-                "required": false
-              }
+            "labelProps": {
+              "id": "pet",
+              "children": "Haustier",
+              "required": false
+            }
+          },
+          "child_seat_number": {
+            "inputProps": {
+              "id": "child_seat_number",
+              "placeholder": " "
             },
-            "free_seat_number": {
-              "inputProps": {
-                "id": "email",
-                "placeholder": " "
-              },
-              "labelProps": {
-                "id": "email",
-                "children": "Email",
-                "required": false
-              }
+            "labelProps": {
+              "id": "child_seat_number",
+              "children": "Kindersitz",
+              "required": false
+            }
+          },
+          "free_seat_number": {
+            "inputProps": {
+              "id": "free_seat_number",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "free_seat_number",
+              "children": "Anzahl der freien Sitzplätze",
+              "required": false
             }
           }
         }
       }
-    },
-    "cta": {
-      "save": {
-        "children": "Speichern"
-      }
+    }
+  },
+  "cta": {
+    "save": {
+      "children": "Speichern"
     }
   }
 }

@@ -40,9 +40,7 @@ export const FormRegisterAuth = () => {
     });
   };
 
-  const handleClickRegister = () => {
-    
-  };
+  const handleClickRegister = () => {};
   return (
     <div
       className={clsx(
@@ -55,6 +53,7 @@ export const FormRegisterAuth = () => {
     >
       <Image
         {...dictionaries.form.header.logo}
+        alt={dictionaries.form.header.logo.alt}
         className={clsx("w-[148px] h-[40px]", "object-center object-cover")}
       />
 
@@ -173,6 +172,7 @@ export const FormRegisterAuth = () => {
         >
           <Image
             {...dictionaries.form.privacy_policy.credit.logo}
+            alt={dictionaries.form.privacy_policy.credit.logo.alt}
             className={clsx("w-[52px] h-[14px]", "object-center object-cover")}
           />
           <p

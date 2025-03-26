@@ -98,6 +98,30 @@ export interface RegistrationProfileVehicleInformation {
       };
     };
   };
+  trip: {
+    form: {
+      smoking: {
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
+      };
+      music: {
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
+      };
+      pet: {
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
+      };
+      child_seat_number: {
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
+      };
+      free_seat_number: {
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
+      };
+    };
+  };
 }
 
 export enum RegistrationProfileActionEnum {

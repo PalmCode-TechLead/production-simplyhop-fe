@@ -221,7 +221,11 @@ export const DriverOrderCardChatTrip = ({
             "w-full"
           )}
         >
-          <Image {...car.image} className={clsx("w-[145px]")} />
+          <Image
+            {...car.image}
+            alt={car.image.alt}
+            className={clsx("w-[145px]")}
+          />
 
           <div
             className={clsx(
