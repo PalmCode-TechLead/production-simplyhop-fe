@@ -122,33 +122,8 @@ export const AutocompleteRoutes = ({
     });
   });
 
-  const originFilteredItems = !originAutocomplete.query.length
-    ? origin.autocomplete?.items ?? []
-    : type === "async"
-    ? origin.autocomplete?.items ?? []
-    : !search
-    ? origin.autocomplete?.items ?? []
-    : (origin.autocomplete?.items ?? []).filter((item) =>
-        item.name
-          .toLowerCase()
-          .replace(/\s+/g, "")
-          .includes(originAutocomplete.query.toLowerCase().replace(/\s+/g, ""))
-      );
-
-  const destinationFilteredItems = !destinationAutocomplete.query.length
-    ? destination.autocomplete?.items ?? []
-    : type === "async"
-    ? destination.autocomplete?.items ?? []
-    : !search
-    ? destination.autocomplete?.items ?? []
-    : (destination.autocomplete?.items ?? []).filter((item) =>
-        item.name
-          .toLowerCase()
-          .replace(/\s+/g, "")
-          .includes(
-            destinationAutocomplete.query.toLowerCase().replace(/\s+/g, "")
-          )
-      );
+  const originFilteredItems = origin.autocomplete?.items ?? [];
+  const destinationFilteredItems = destination.autocomplete?.items ?? [];
 
   const handleChangeorigin = (data: { id: string; name: string }) => {
     if (origin.autocomplete?.onSelect) {
