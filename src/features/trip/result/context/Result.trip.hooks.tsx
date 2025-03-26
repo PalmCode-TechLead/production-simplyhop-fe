@@ -30,35 +30,6 @@ export const useRideFilterResultTrip = () => {
     libraries: libraries,
   });
 
-  const setCityValueFromParams = async (data: { id: string }) => {
-    let lat_lng: null | { lat: number; lng: number } = null;
-    let name: string = "";
-    try {
-      const response = await getLatLngFromPlaceId(data.id);
-      lat_lng = {
-        lat: response.lat,
-        lng: response.lng,
-      };
-    } catch (err) {
-      throw new Error(`Err get lat lng ${err}`);
-    }
-
-    try {
-      const response = await getPlaceNameFromPlaceId(data.id);
-      name = response.name;
-    } catch (err) {
-      throw new Error(`Err get lat lng ${err}`);
-    }
-
-    return {
-      data: {
-        id: data.id,
-        name: name,
-      },
-      lat_lng: lat_lng,
-    };
-  };
-
   const setOriginRoutesFromParams = async (data: { id: string }) => {
     let lat_lng: null | { lat: number; lng: number } = null;
     let name: string = "";
@@ -118,9 +89,6 @@ export const useRideFilterResultTrip = () => {
   };
 
   const setDefaultData = async () => {
-    let cityData: null | { id: string; name: string } = null;
-    let cityLatLng: null | { lat: number; lng: number } = null;
-
     let originData: null | { id: string; name: string } = null;
     let originLatLng: null | { lat: number; lng: number } = null;
 
@@ -131,16 +99,6 @@ export const useRideFilterResultTrip = () => {
 
     let adultData: null | number = null;
     let childrenData: null | number = null;
-
-    if (cityId) {
-      const { data, lat_lng } = await setCityValueFromParams({
-        id: cityId,
-      });
-      if (!!data && !!lat_lng) {
-        cityData = data;
-        cityLatLng = lat_lng;
-      }
-    }
 
     if (originId) {
       const { data, lat_lng } = await setOriginRoutesFromParams({
@@ -174,19 +132,12 @@ export const useRideFilterResultTrip = () => {
       childrenData = Number(children);
     }
 
-    if (!!cityData && !!originData && !!destinationData) {
+    if (!!originData && !!destinationData) {
       dispatch({
         type: ResultTripActionEnum.SetFiltersData,
         payload: {
           ...state.filters,
-          city: {
-            ...state.filters.city,
-            selected: {
-              ...state.filters.city.selected,
-              item: cityData,
-              lat_lng: cityLatLng,
-            },
-          },
+
           origin: {
             ...state.filters.origin,
             selected: {

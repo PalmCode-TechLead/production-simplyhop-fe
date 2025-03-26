@@ -14,13 +14,6 @@ import {
 
 const initialState: ResultTripInitialStateType = {
   filters: {
-    city: {
-      selected: {
-        item: null,
-        lat_lng: null,
-      },
-      items: [],
-    },
     origin: {
       selected: {
         item: null,

@@ -17,13 +17,6 @@ export interface FindTripInitialStateType {
 
 // State Collection Types consist of:
 export interface FindTripFilters {
-  city: {
-    items: { id: string; name: string }[];
-    selected: {
-      item: null | { id: string; name: string };
-      lat_lng: null | { lat: number; lng: number };
-    };
-  };
   origin: {
     items: { id: string; name: string }[];
     selected: {

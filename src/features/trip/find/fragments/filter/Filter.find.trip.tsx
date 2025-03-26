@@ -27,98 +27,6 @@ export const FilterFindTrip = () => {
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();
 
-  const handleQueryCity = async (input: string) => {
-    if (!input.length) {
-      dispatch({
-        type: FindTripActionEnum.SetFiltersData,
-        payload: {
-          ...state.filters,
-          city: {
-            ...state.filters.city,
-            items: [],
-          },
-        },
-      });
-      return;
-    }
-    const handleResult = (
-      data: null | google.maps.places.AutocompletePrediction[]
-    ) => {
-      if (!!data) {
-        dispatch({
-          type: FindTripActionEnum.SetFiltersData,
-          payload: {
-            ...state.filters,
-            city: {
-              ...state.filters.city,
-              items: data.map((p) => {
-                return {
-                  id: p.place_id,
-                  name: p.description,
-                };
-              }),
-            },
-          },
-        });
-      }
-    };
-    await fetchAutocompleteCityList(input, handleResult);
-  };
-
-  const handleSelectCity = async (data: { id: string; name: string }) => {
-    let lat_lng: null | { lat: number; lng: number } = null;
-    try {
-      const response = await getLatLngFromPlaceId(data.id);
-      lat_lng = {
-        lat: response.lat,
-        lng: response.lng,
-      };
-    } catch (err) {
-      throw new Error(`Err get lat lng ${err}`);
-    }
-
-    await dispatch({
-      type: FindTripActionEnum.SetFiltersData,
-      payload: {
-        ...state.filters,
-        city: {
-          ...state.filters.city,
-          selected: {
-            ...state.filters.city.selected,
-            item: data,
-            lat_lng: lat_lng,
-          },
-        },
-        // NOTES: reset origin and destination
-        origin: {
-          ...state.filters.origin,
-          selected: {
-            ...state.filters.origin.selected,
-            item: null,
-            lat_lng: null,
-          },
-        },
-        destination: {
-          ...state.filters.destination,
-          selected: {
-            ...state.filters.destination.selected,
-            item: null,
-            lat_lng: null,
-          },
-        },
-      },
-    });
-
-    // NOTES: reset polyline
-    await dispatch({
-      type: FindTripActionEnum.SetMapData,
-      payload: {
-        ...state.map,
-        polyline_path: [],
-      },
-    });
-  };
-
   const handleQueryOriginRoutes = async (input: string) => {
     if (!input.length) {
       dispatch({
@@ -158,7 +66,7 @@ export const FilterFindTrip = () => {
 
     await fetchAutocompletePlace(
       input,
-      state.filters.city.selected.lat_lng,
+      // state.filters.city.selected.lat_lng,
       handleResult
     );
   };
@@ -233,7 +141,7 @@ export const FilterFindTrip = () => {
 
     await fetchAutocompletePlace(
       input,
-      state.filters.city.selected.lat_lng,
+      // state.filters.city.selected.lat_lng,
       handleResult
     );
   };
@@ -331,10 +239,6 @@ export const FilterFindTrip = () => {
 
   const handleClickSearch = () => {
     let params = "";
-    if (state.filters.city.selected.item) {
-      const city = `${RIDE_FILTER.CITY}=${state.filters.city.selected.item.id}`;
-      params = params + city;
-    }
     if (state.filters.origin.selected.item) {
       const origin = `&${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item.id}`;
       params = params + origin;
@@ -395,20 +299,11 @@ export const FilterFindTrip = () => {
         {/* form */}
         <div
           className={clsx(
-            "grid grid-cols-[1fr_2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
+            "grid grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
             "w-full"
           )}
         >
-          <AutocompleteCity
-            {...dictionaries.filter.form.city}
-            selected={state.filters.city.selected.item}
-            items={state.filters.city.items}
-            debounceQuery
-            onQuery={handleQueryCity}
-            onSelect={handleSelectCity}
-          />
           <AutocompleteRoutes
-            disabled={!state.filters.city.selected.item}
             origin={{
               autocomplete: {
                 selected: state.filters.origin.selected.item,
@@ -486,7 +381,6 @@ export const FilterFindTrip = () => {
         {/* button */}
         <Button
           disabled={
-            !state.filters.city.selected.item ||
             !state.filters.origin.selected.item ||
             !state.filters.destination.selected.item ||
             !state.filters.date.selected ||

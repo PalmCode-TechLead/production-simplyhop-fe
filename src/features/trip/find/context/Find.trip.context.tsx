@@ -8,13 +8,6 @@ import {
 
 const initialState: FindTripInitialStateType = {
   filters: {
-    city: {
-      selected: {
-        item: null,
-        lat_lng: null,
-      },
-      items: [],
-    },
     origin: {
       selected: {
         item: null,
