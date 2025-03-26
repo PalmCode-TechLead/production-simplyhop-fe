@@ -140,6 +140,11 @@
       "form": {
         "message": "Ziehen Sie Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
         "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
+      },
+      "square_input":{
+        "form":{
+          "label":"+<br/>Weitere hinzufügen"
+        }
       }
     },
     "capacity": {

@@ -4,21 +4,17 @@ import { useRef } from "react";
 import SVGIcon from "@/core/icons";
 
 export interface UploadInputProps {
-  onErrorMaxFileSize?: () => void;
-  onErrorMaxFile?: () => void;
-  onErrorMinFile?: () => void;
-  onUpload?: (data: FileList) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onDrop?: (e: React.DragEvent<HTMLDivElement>) => void;
   message?: string;
   description?: string;
 }
 
 export const UploadInput = ({
-  onErrorMaxFileSize = () => {},
-  onErrorMaxFile = () => {},
-  onErrorMinFile = () => {},
-  onUpload = () => {},
-  message = "Ziehen Sie Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
-  description = "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px",
+  onDrop = () => {},
+  onChange = () => {},
+  message = "",
+  description = "",
 }: UploadInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,87 +26,90 @@ export const UploadInput = ({
   const handleChangeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    if (e.currentTarget.files !== null && e.currentTarget.files!.length < 3) {
-      if (onErrorMinFile) {
-        onErrorMinFile();
-        return;
-      }
-    }
+    onChange(e);
 
-    if (e.currentTarget.files !== null && e.currentTarget.files!.length > 12) {
-      if (onErrorMaxFile) {
-        onErrorMaxFile();
-        return;
-      }
-    }
+    // if (e.currentTarget.files !== null && e.currentTarget.files!.length < 3) {
+    //   if (onErrorMinFile) {
+    //     onErrorMinFile();
+    //     return;
+    //   }
+    // }
 
-    if (
-      e.currentTarget.files !== null &&
-      e.currentTarget.files.length >= 3 &&
-      e.currentTarget.files.length <= 12
-    ) {
-      //looping to check one by one file size & return error if their is files with limit size
-      for (let i = 0; i <= e.currentTarget.files.length - 1; i++) {
-        const fsize = e.currentTarget.files.item(i)!.size;
-        const file = Math.round(fsize / 1024);
-        // Max size of the file 2MB
-        if (file >= 2096) {
-          if (onErrorMaxFileSize) {
-            onErrorMaxFileSize();
-            return;
-          }
-        }
-      }
-      // if not contain max file size uploading
-      if (onUpload) {
-        onUpload(e.currentTarget.files);
-      }
-      e.preventDefault();
-    }
+    // if (e.currentTarget.files !== null && e.currentTarget.files!.length > 12) {
+    //   if (onErrorMaxFile) {
+    //     onErrorMaxFile();
+    //     return;
+    //   }
+    // }
 
-    e.target.value = "";
+    // if (
+    //   e.currentTarget.files !== null &&
+    //   e.currentTarget.files.length >= 3 &&
+    //   e.currentTarget.files.length <= 12
+    // ) {
+    //   //looping to check one by one file size & return error if their is files with limit size
+    //   for (let i = 0; i <= e.currentTarget.files.length - 1; i++) {
+    //     const fsize = e.currentTarget.files.item(i)!.size;
+    //     const file = Math.round(fsize / 1024);
+    //     // Max size of the file 2MB
+    //     if (file >= 2096) {
+    //       if (onErrorMaxFileSize) {
+    //         onErrorMaxFileSize();
+    //         return;
+    //       }
+    //     }
+    //   }
+    //   // if not contain max file size uploading
+    //   if (onUpload) {
+    //     onUpload(e.currentTarget.files);
+    //   }
+    //   e.preventDefault();
+    // }
+
+    // e.target.value = "";
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    onDrop(e);
 
-    if (e.dataTransfer.files !== null && e.dataTransfer.files!.length < 3) {
-      if (onErrorMinFile) {
-        onErrorMinFile();
-        return;
-      }
-    }
+    // if (e.dataTransfer.files !== null && e.dataTransfer.files!.length < 3) {
+    //   if (onErrorMinFile) {
+    //     onErrorMinFile();
+    //     return;
+    //   }
+    // }
 
-    if (e.dataTransfer.files !== null && e.dataTransfer.files!.length > 12) {
-      if (onErrorMaxFile) {
-        onErrorMaxFile();
-        return;
-      }
-    }
+    // if (e.dataTransfer.files !== null && e.dataTransfer.files!.length > 12) {
+    //   if (onErrorMaxFile) {
+    //     onErrorMaxFile();
+    //     return;
+    //   }
+    // }
 
-    if (
-      e.dataTransfer.files !== null &&
-      e.dataTransfer.files.length >= 3 &&
-      e.dataTransfer.files.length <= 12
-    ) {
-      //looping to check one by one file size & return error if their is files with limit size
-      for (let i = 0; i <= e.dataTransfer.files.length - 1; i++) {
-        const fsize = e.dataTransfer.files.item(i)!.size;
-        const file = Math.round(fsize / 1024);
-        // Max size of the file
-        if (file >= 2096) {
-          if (onErrorMaxFileSize) {
-            onErrorMaxFileSize();
-            return;
-          }
-        }
-      }
-      // if not contain max file size uploading
-      if (onUpload) {
-        onUpload(e.dataTransfer.files);
-      }
-      e.preventDefault();
-    }
+    // if (
+    //   e.dataTransfer.files !== null &&
+    //   e.dataTransfer.files.length >= 3 &&
+    //   e.dataTransfer.files.length <= 12
+    // ) {
+    //   //looping to check one by one file size & return error if their is files with limit size
+    //   for (let i = 0; i <= e.dataTransfer.files.length - 1; i++) {
+    //     const fsize = e.dataTransfer.files.item(i)!.size;
+    //     const file = Math.round(fsize / 1024);
+    //     // Max size of the file
+    //     if (file >= 2096) {
+    //       if (onErrorMaxFileSize) {
+    //         onErrorMaxFileSize();
+    //         return;
+    //       }
+    //     }
+    //   }
+    //   // if not contain max file size uploading
+    //   if (onUpload) {
+    //     onUpload(e.dataTransfer.files);
+    //   }
+    //   e.preventDefault();
+    // }
   };
 
   const handleClickUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -135,7 +134,8 @@ export const UploadInput = ({
             "absolute",
             "bottom-0 left-0 right-0 top-0",
             "bg-white opacity-0",
-            "z-10"
+            "z-10",
+            "cursor-pointer"
           )}
           onClick={handleClickUpload}
         />
@@ -152,7 +152,7 @@ export const UploadInput = ({
 
         <div
           className={clsx(
-            "grid grid-flow-col place-content-center place-items-center"
+            "grid grid-flow-col place-content-center place-items-center gap-[0.25rem]"
           )}
         >
           <SVGIcon name="PictureUpload" />

@@ -75,7 +75,7 @@ const initialState: RegistrationProfileInitialStateType = {
       },
     },
     pictures: {
-      files: null,
+      files: [],
     },
     capacity: {
       passenger_seats: {

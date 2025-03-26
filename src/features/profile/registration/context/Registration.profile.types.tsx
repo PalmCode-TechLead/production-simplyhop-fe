@@ -67,7 +67,7 @@ export interface RegistrationProfileVehicleInformation {
     };
   };
   pictures: {
-    files: null;
+    files: File[];
   };
   capacity: {
     passenger_seats: {
