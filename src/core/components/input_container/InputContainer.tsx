@@ -16,7 +16,7 @@ export const InputContainer = forwardRef<
         "overflow-hidden",
         "rounded-[0.375rem]",
         "border border-[#E2E2E2]",
-        "px-[1.625rem] py-[0.5rem]",
+        "px-[0.75rem] sm:px-[1.625rem] py-[0.5rem]",
         "h-[56px]",
         "bg-[white]",
         "grid grid-rows-1 grid-cols-1 justify-between justify-items-start",

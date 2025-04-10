@@ -55,7 +55,7 @@ export const DropdownPassenger = ({
           {...labelProps}
           className={clsx(
             "cursor-pointer",
-            "top-[25%] !left-[26px] translate-y-[-50%] text-[0.75rem]"
+            "top-[25%] !left-[0.75rem] sm:!left-[26px] translate-y-[-50%] text-[0.75rem]"
           )}
         />
       </InputContainer>

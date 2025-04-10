@@ -274,9 +274,9 @@ export const FilterFindTrip = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
         "w-[100vw] lg:max-w-[calc(100vw-2rem)] container:w-full container:max-w-container",
-        "px-[3rem] py-[3rem]",
+        "px-[1rem] py-[1rem] sm:px-[3rem] sm:py-[3rem]",
         "bg-[#FFFFFF]",
         "rounded-[1.25rem]",
         "absolute left-[50%] translate-x-[-50%] bottom-[0px] lg:bottom-[72px]",
@@ -286,7 +286,7 @@ export const FilterFindTrip = () => {
         boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
       }}
     >
-      <p className={clsx("text-[2rem] text-[#292929] font-bold")}>
+      <p className={clsx("text-[0.875rem] sm:text-[2rem] text-[#292929] font-bold")}>
         {dictionaries.filter.title}
       </p>
 
