@@ -15,7 +15,7 @@ export const FindTripContainer = () => {
         )}
       >
         <div className={clsx("max-w-container", "w-full")}>
-          <div className={clsx("w-full", "p-[1rem]")}>
+          <div className={clsx("w-full", "px-[1rem]")}>
             <BadgeFindTrip />
           </div>
 
