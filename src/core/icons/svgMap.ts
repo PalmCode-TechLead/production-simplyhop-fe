@@ -27,6 +27,7 @@ import {
   ArrowLeft,
   Trash,
   Menu,
+  X,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -67,6 +68,7 @@ export const svgMap = {
   ArrowLeft,
   Trash,
   Menu,
+  X,
   Facebook,
   Google,
   Whatsapp,

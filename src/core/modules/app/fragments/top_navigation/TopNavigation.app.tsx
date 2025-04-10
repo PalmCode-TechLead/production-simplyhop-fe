@@ -7,6 +7,7 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { TopNavigationDesktopMenu } from "../top_navigation_desktop_menu";
+import { TopNavigationMobileMenu } from "../top_navigation_mobile_menu";
 
 export const TopNavigation = () => {
   const dictionaries = getDictionaries();
@@ -38,20 +39,8 @@ export const TopNavigation = () => {
             />
           </Link>
 
-          {/* NOTES: Menu Desktop */}
-          {isLg && <TopNavigationDesktopMenu />}
-
-          {/* NOTES: Menu Mobile */}
-          {!isLg && (
-            <div>
-              <button>
-                <SVGIcon
-                  name="Menu"
-                  className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
-                />
-              </button>
-            </div>
-          )}
+          {/* NOTES: Menu */}
+          {isLg ? <TopNavigationDesktopMenu /> : <TopNavigationMobileMenu />}
         </div>
       </div>
     </nav>
