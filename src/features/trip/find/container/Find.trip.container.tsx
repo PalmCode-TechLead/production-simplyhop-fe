@@ -15,7 +15,9 @@ export const FindTripContainer = () => {
         )}
       >
         <div className={clsx("max-w-container", "w-full")}>
-          <BadgeFindTrip />
+          <div className={clsx("w-full", "p-[1rem]")}>
+            <BadgeFindTrip />
+          </div>
 
           <FilterFindTrip />
         </div>

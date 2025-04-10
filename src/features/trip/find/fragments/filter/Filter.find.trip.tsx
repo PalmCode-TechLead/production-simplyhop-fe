@@ -275,11 +275,11 @@ export const FilterFindTrip = () => {
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
-        "w-full max-w-container",
+        "w-[100vw] lg:max-w-[calc(100vw-2rem)] container:w-full container:max-w-container",
         "px-[3rem] py-[3rem]",
         "bg-[#FFFFFF]",
         "rounded-[1.25rem]",
-        "absolute bottom-[72px]",
+        "absolute left-[50%] translate-x-[-50%] bottom-[0px] lg:bottom-[72px]",
         "border border-[#D3E7CE]"
       )}
       style={{
@@ -299,7 +299,7 @@ export const FilterFindTrip = () => {
         {/* form */}
         <div
           className={clsx(
-            "grid grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
+            "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
             "w-full"
           )}
         >

@@ -11,16 +11,16 @@ export const BadgeFindTrip = () => {
       className={clsx(
         "grid grid-flow-col place-items-center place-content-center gap-4",
         "bg-green-500",
-        "rounded-[1.25rem]",
-        "px-4 py-4",
-        "text-xl text-neutral-50 font-bold",
+        "rounded-[0.5rem] lg:rounded-[1.25rem]",
+        "px-[0.5rem] py-[0.5rem] lg:px-4 lg:py-4",
+        "text-[1rem] lg:text-xl text-neutral-50 font-bold",
         "w-fit",
         "absolute top-[1.5rem]"
       )}
     >
       <SVGIcon
         {...(dictionaries.top_badge.icon as { name: SVGIconProps["name"] })}
-        className={clsx("w-6 h-6", "text-neutral-50")}
+        className={clsx("w-[1rem] h-[1rem] lg:w-6 lg:h-6", "text-neutral-50")}
       />
       {dictionaries.top_badge.label}
     </div>
