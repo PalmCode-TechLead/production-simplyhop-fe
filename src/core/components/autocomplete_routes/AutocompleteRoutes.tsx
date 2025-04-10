@@ -292,7 +292,12 @@ export const AutocompleteRoutes = ({
                 </AutocompleteOption>
               ))
             )}
-
+          </AutocompleteOptionsContainer>
+        )}
+        {!destination.autocomplete?.disabled && (
+          <AutocompleteOptionsContainer
+            className={clsx(isOpen ? "inline" : "hidden")}
+          >
             {destinationAutocomplete.isFocus &&
             destinationFilteredItems.length === 0 &&
             destinationAutocomplete.query !== "" ? (
