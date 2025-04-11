@@ -49,99 +49,6 @@ export const FilterPlanRideTrip = () => {
     });
   };
 
-  const handleQueryCity = async (input: string) => {
-    if (!input.length) {
-      dispatch({
-        type: PlanRideTripActionEnum.SetFiltersData,
-        payload: {
-          ...state.filters,
-          city: {
-            ...state.filters.city,
-            items: [],
-          },
-        },
-      });
-      return;
-    }
-    const handleResult = (
-      // data: null | google.maps.places.AutocompletePrediction[]
-      data: null | { description: string; place_id: string }[]
-    ) => {
-      if (!!data) {
-        dispatch({
-          type: PlanRideTripActionEnum.SetFiltersData,
-          payload: {
-            ...state.filters,
-            city: {
-              ...state.filters.city,
-              items: data.map((p) => {
-                return {
-                  id: p.place_id,
-                  name: p.description,
-                };
-              }),
-            },
-          },
-        });
-      }
-    };
-    await fetchAutocompleteCityList(input, handleResult);
-  };
-
-  const handleSelectCity = async (data: { id: string; name: string }) => {
-    let lat_lng: null | { lat: number; lng: number } = null;
-    try {
-      const response = await getLatLngFromPlaceId(data.id);
-      lat_lng = {
-        lat: response.lat,
-        lng: response.lng,
-      };
-    } catch (err) {
-      throw new Error(`Err get lat lng ${err}`);
-    }
-
-    await dispatch({
-      type: PlanRideTripActionEnum.SetFiltersData,
-      payload: {
-        ...state.filters,
-        city: {
-          ...state.filters.city,
-          selected: {
-            ...state.filters.city.selected,
-            item: data,
-            lat_lng: lat_lng,
-          },
-        },
-        // NOTES: reset origin and destination
-        origin: {
-          ...state.filters.origin,
-          selected: {
-            ...state.filters.origin.selected,
-            item: null,
-            lat_lng: null,
-          },
-        },
-        destination: {
-          ...state.filters.destination,
-          selected: {
-            ...state.filters.destination.selected,
-            item: null,
-            lat_lng: null,
-          },
-        },
-      },
-    });
-
-    // NOTES: reset polyline
-    await dispatch({
-      type: PlanRideTripActionEnum.SetMapData,
-      payload: {
-        ...state.map,
-        polyline_path: [],
-      },
-    });
-  };
-
   const handleQueryOriginRoutes = async (input: string) => {
     if (!input.length) {
       dispatch({
@@ -367,12 +274,12 @@ export const FilterPlanRideTrip = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
-        "w-full max-w-container",
-        "px-[3rem] py-[3rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
+        "w-[100vw] lg:max-w-[calc(100vw-2rem)] container:w-full container:max-w-container",
+        "px-[1rem] py-[1rem] sm:px-[3rem] sm:py-[3rem]",
         "bg-[#FFFFFF]",
-        "rounded-[1.25rem]",
-        "absolute bottom-[72px]",
+        "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
+        "absolute left-[50%] translate-x-[-50%] bottom-[0px] lg:bottom-[72px]",
         "border border-[#D3E7CE]"
       )}
       style={{
@@ -381,14 +288,19 @@ export const FilterPlanRideTrip = () => {
     >
       <div
         className={clsx(
-          "grid grid-cols-[1fr_397px] items-center content-center justify-start justify-items-start",
+          "grid grid-cols-1 lg:grid-cols-[1fr_397px] items-center content-center justify-start justify-items-start",
           "w-full",
           "gap-[1rem]"
         )}
       >
-        <p className={clsx("text-[2rem] text-[#292929] font-bold")}>
+        <p
+          className={clsx(
+            "text-[1.125rem] sm:text-[2rem] text-[#292929] font-bold"
+          )}
+        >
           {dictionaries.filter.title}
         </p>
+
         <AutocompleteAuto
           {...dictionaries.filter.form.auto}
           selected={state.filters.auto.selected}
@@ -412,20 +324,11 @@ export const FilterPlanRideTrip = () => {
         {/* form */}
         <div
           className={clsx(
-            "grid grid-cols-[1fr_2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
+            "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
             "w-full"
           )}
         >
-          <AutocompleteCity
-            {...dictionaries.filter.form.city}
-            selected={state.filters.city.selected.item}
-            items={state.filters.city.items}
-            debounceQuery
-            onQuery={handleQueryCity}
-            onSelect={handleSelectCity}
-          />
           <AutocompleteRoutes
-            disabled={!state.filters.city.selected.item}
             origin={{
               autocomplete: {
                 selected: state.filters.origin.selected.item,
@@ -503,7 +406,6 @@ export const FilterPlanRideTrip = () => {
         {/* button */}
         <Button
           disabled={
-            !state.filters.city.selected.item ||
             !state.filters.origin.selected.item ||
             !state.filters.destination.selected.item ||
             !state.filters.date.selected ||

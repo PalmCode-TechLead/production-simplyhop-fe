@@ -24,13 +24,7 @@ export interface PlanRideTripFilters {
     items: { id: string; name: string }[];
     selected: null | { id: string; name: string };
   };
-  city: {
-    items: { id: string; name: string }[];
-    selected: {
-      item: null | { id: string; name: string };
-      lat_lng: null | { lat: number; lng: number };
-    };
-  };
+
   origin: {
     items: { id: string; name: string }[];
     selected: {

@@ -18,13 +18,6 @@ const initialState: PlanRideTripInitialStateType = {
       selected: null,
       items: [],
     },
-    city: {
-      selected: {
-        item: null,
-        lat_lng: null,
-      },
-      items: [],
-    },
     origin: {
       selected: {
         item: null,
