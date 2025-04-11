@@ -16,14 +16,50 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
+import { FullBottomSheet } from "@/core/components/full_bottom_sheet";
+import { BottomSheetRoute } from "@/core/components/bottom_sheet_route";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(FindTripContext);
+  const { isLg } = useTailwindBreakpoint();
 
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();
+
+  const handleClickOriginRoutes = () => {
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          bottom_sheet: {
+            ...state.filters.origin.bottom_sheet,
+            is_open: true,
+          },
+        },
+      },
+    });
+  };
+
+  const handleCloseOriginRoutes = () => {
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          bottom_sheet: {
+            ...state.filters.origin.bottom_sheet,
+            is_open: false,
+          },
+        },
+      },
+    });
+  };
 
   const handleQueryOriginRoutes = async (input: string) => {
     if (!input.length) {
@@ -85,16 +121,52 @@ export const FilterFindTrip = () => {
       throw new Error(`Err get lat lng ${err}`);
     }
 
-    await dispatch({
+    dispatch({
       type: FindTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
         origin: {
           ...state.filters.origin,
+          bottom_sheet: {
+            ...state.filters.origin,
+            is_open: false,
+          },
           selected: {
             ...state.filters.origin.selected,
             item: data,
             lat_lng: lat_lng,
+          },
+        },
+      },
+    });
+  };
+
+  const handleClickDestinationRoutes = () => {
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          bottom_sheet: {
+            ...state.filters.destination.bottom_sheet,
+            is_open: true,
+          },
+        },
+      },
+    });
+  };
+
+  const handleCloseDestinationRoutes = () => {
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          bottom_sheet: {
+            ...state.filters.destination.bottom_sheet,
+            is_open: false,
           },
         },
       },
@@ -167,6 +239,10 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
+          bottom_sheet: {
+            ...state.filters.destination.bottom_sheet,
+            is_open: false,
+          },
           selected: {
             ...state.filters.destination.selected,
             item: data,
@@ -272,125 +348,168 @@ export const FilterFindTrip = () => {
   };
 
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
-        "w-[100vw] lg:max-w-[calc(100vw-2rem)] container:w-full container:max-w-container",
-        "px-[1rem] py-[1rem] sm:px-[3rem] sm:py-[3rem]",
-        "bg-[#FFFFFF]",
-        "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
-        "absolute left-[50%] translate-x-[-50%] bottom-[0px] lg:bottom-[72px]",
-        "border border-[#D3E7CE]"
-      )}
-      style={{
-        boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
-      }}
-    >
-      <p className={clsx("text-[1.125rem] sm:text-[2rem] text-[#292929] font-bold")}>
-        {dictionaries.filter.title}
-      </p>
+    <>
+      <BottomSheetRoute
+        isOpen={state.filters.origin.bottom_sheet.is_open}
+        title={dictionaries.filter.form.origin.title}
+        inputProps={{ ...dictionaries.filter.form.origin.inputProps }}
+        labelProps={{ ...dictionaries.filter.form.origin.labelProps }}
+        selected={state.filters.origin.selected.item}
+        items={state.filters.origin.items}
+        onQuery={(data: string) => handleQueryOriginRoutes(data)}
+        onSelect={(data: { id: string; name: string }) => {
+          handleSelectOriginRoutes(data);
+        }}
+        onClose={handleCloseOriginRoutes}
+      />
 
+      <BottomSheetRoute
+        isOpen={state.filters.destination.bottom_sheet.is_open}
+        title={dictionaries.filter.form.destination.title}
+        inputProps={{ ...dictionaries.filter.form.destination.inputProps }}
+        labelProps={{ ...dictionaries.filter.form.destination.labelProps }}
+        selected={state.filters.destination.selected.item}
+        items={state.filters.destination.items}
+        onQuery={(data: string) => handleQueryDestinationRoutes(data)}
+        onSelect={(data: { id: string; name: string }) => {
+          handleSelectDestinationRoutes(data);
+        }}
+        onClose={handleCloseDestinationRoutes}
+      />
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full"
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
+          "w-[100vw] lg:max-w-[calc(100vw-2rem)] container:w-full container:max-w-container",
+          "px-[1rem] py-[1rem] sm:px-[3rem] sm:py-[3rem]",
+          "bg-[#FFFFFF]",
+          "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
+          "absolute left-[50%] translate-x-[-50%] bottom-[0px] lg:bottom-[72px]",
+          "border border-[#D3E7CE]"
         )}
+        style={{
+          boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
+        }}
       >
-        {/* form */}
+        <p
+          className={clsx(
+            "text-[1.125rem] sm:text-[2rem] text-[#292929] font-bold"
+          )}
+        >
+          {dictionaries.filter.title}
+        </p>
+
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
             "w-full"
           )}
         >
-          <AutocompleteRoutes
-            origin={{
-              autocomplete: {
-                selected: state.filters.origin.selected.item,
-                items: state.filters.origin.items,
-                onQuery: (data: string) => handleQueryOriginRoutes(data),
-                onSelect: (data: { id: string; name: string }) =>
-                  handleSelectOriginRoutes(data),
-              },
-              inputProps: {
-                ...dictionaries.filter.form.origin.inputProps,
-              },
-              labelProps: {
-                ...dictionaries.filter.form.origin.labelProps,
-              },
-            }}
-            destination={{
-              autocomplete: {
-                selected: state.filters.destination.selected.item,
-                items: state.filters.destination.items,
-                onQuery: (data: string) => handleQueryDestinationRoutes(data),
-                onSelect: (data: { id: string; name: string }) =>
-                  handleSelectDestinationRoutes(data),
-              },
-              inputProps: {
-                ...dictionaries.filter.form.destination.inputProps,
-              },
-              labelProps: {
-                ...dictionaries.filter.form.destination.labelProps,
-              },
-            }}
-          />
+          {/* form */}
+          <div
+            className={clsx(
+              "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
+              "w-full"
+            )}
+          >
+            <AutocompleteRoutes
+              origin={{
+                autocomplete: {
+                  selected: state.filters.origin.selected.item,
+                  items: state.filters.origin.items,
+                  onQuery: (data: string) => handleQueryOriginRoutes(data),
+                  onSelect: (data: { id: string; name: string }) =>
+                    handleSelectOriginRoutes(data),
+                  onClick: () => {
+                    if (!isLg) {
+                      handleClickOriginRoutes();
+                    }
+                  },
+                },
+                inputProps: {
+                  ...dictionaries.filter.form.origin.inputProps,
+                },
+                labelProps: {
+                  ...dictionaries.filter.form.origin.labelProps,
+                },
+              }}
+              destination={{
+                autocomplete: {
+                  selected: state.filters.destination.selected.item,
+                  items: state.filters.destination.items,
+                  onQuery: (data: string) => handleQueryDestinationRoutes(data),
+                  onSelect: (data: { id: string; name: string }) =>
+                    handleSelectDestinationRoutes(data),
+                  onClick: () => {
+                    if (!isLg) {
+                      handleClickDestinationRoutes();
+                    }
+                  },
+                },
+                inputProps: {
+                  ...dictionaries.filter.form.destination.inputProps,
+                },
+                labelProps: {
+                  ...dictionaries.filter.form.destination.labelProps,
+                },
+              }}
+            />
 
-          <DatePicker
-            labelProps={{
-              ...dictionaries.filter.form.date.labelProps,
-            }}
-            value={state.filters.date.selected}
-            onSelect={handleSelectDate}
-          />
+            <DatePicker
+              labelProps={{
+                ...dictionaries.filter.form.date.labelProps,
+              }}
+              value={state.filters.date.selected}
+              onSelect={handleSelectDate}
+            />
 
-          <DropdownPassenger
-            labelProps={{
-              ...dictionaries.filter.form.passenger.labelProps,
-            }}
-            maskedValue={dictionaries.filter.form.passenger.maskedValue
-              .replaceAll(
-                "{{adult}}",
-                String(
-                  state.filters.passenger.value.find(
-                    (item) => item.id === "adult"
-                  )?.value ?? 0
+            <DropdownPassenger
+              labelProps={{
+                ...dictionaries.filter.form.passenger.labelProps,
+              }}
+              maskedValue={dictionaries.filter.form.passenger.maskedValue
+                .replaceAll(
+                  "{{adult}}",
+                  String(
+                    state.filters.passenger.value.find(
+                      (item) => item.id === "adult"
+                    )?.value ?? 0
+                  )
                 )
-              )
-              .replaceAll(
-                "{{children}}",
-                String(
-                  state.filters.passenger.value.find(
-                    (item) => item.id === "children"
-                  )?.value ?? 0
-                )
-              )}
-            items={dictionaries.filter.form.passenger.items.map((item) => {
-              return {
-                ...item,
-                value:
-                  state.filters.passenger.value.find(
-                    (passengerItem) => passengerItem.id === item.id
-                  )?.value ?? 0,
-              };
-            })}
-            onChange={handleChangePassenger}
-          />
+                .replaceAll(
+                  "{{children}}",
+                  String(
+                    state.filters.passenger.value.find(
+                      (item) => item.id === "children"
+                    )?.value ?? 0
+                  )
+                )}
+              items={dictionaries.filter.form.passenger.items.map((item) => {
+                return {
+                  ...item,
+                  value:
+                    state.filters.passenger.value.find(
+                      (passengerItem) => passengerItem.id === item.id
+                    )?.value ?? 0,
+                };
+              })}
+              onChange={handleChangePassenger}
+            />
+          </div>
+
+          {/* button */}
+          <Button
+            disabled={
+              !state.filters.origin.selected.item ||
+              !state.filters.destination.selected.item ||
+              !state.filters.date.selected ||
+              !state.filters.passenger.value.length
+            }
+            onClick={handleClickSearch}
+          >
+            {dictionaries.filter.cta.primary.children}
+          </Button>
         </div>
-
-        {/* button */}
-        <Button
-          disabled={
-            !state.filters.origin.selected.item ||
-            !state.filters.destination.selected.item ||
-            !state.filters.date.selected ||
-            !state.filters.passenger.value.length
-          }
-          onClick={handleClickSearch}
-        >
-          {dictionaries.filter.cta.primary.children}
-        </Button>
       </div>
-    </div>
+    </>
   );
 };

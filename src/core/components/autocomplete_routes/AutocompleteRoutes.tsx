@@ -24,6 +24,7 @@ export interface AutocompleteRoutesProps {
       debounceQuery?: boolean;
       onSelect?: (data: { id: string; name: string }) => void;
       onQuery: (data: string) => void;
+      onClick?: () => void;
     };
   };
   destination?: {
@@ -37,6 +38,7 @@ export interface AutocompleteRoutesProps {
       debounceQuery?: boolean;
       onSelect?: (data: { id: string; name: string }) => void;
       onQuery: (data: string) => void;
+      onClick?: () => void;
     };
   };
 }
@@ -55,6 +57,7 @@ export const AutocompleteRoutes = ({
       debounceQuery: false,
       onSelect: () => {},
       onQuery: () => {},
+      onClick: () => {},
     },
     inputProps: {},
     labelProps: {},
@@ -68,6 +71,7 @@ export const AutocompleteRoutes = ({
       debounceQuery: false,
       onSelect: () => {},
       onQuery: () => {},
+      onClick: () => {},
     },
     inputProps: {},
     labelProps: {},
@@ -199,6 +203,7 @@ export const AutocompleteRoutes = ({
                   origin.autocomplete.onQuery(event.target.value);
                 }
               }}
+              onClick={origin.autocomplete?.onClick}
             />
 
             <InputLabel
@@ -250,6 +255,7 @@ export const AutocompleteRoutes = ({
                   destination.autocomplete.onQuery(event.target.value);
                 }
               }}
+              onClick={destination.autocomplete?.onClick}
             />
 
             <InputLabel

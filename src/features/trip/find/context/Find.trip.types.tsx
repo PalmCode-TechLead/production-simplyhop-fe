@@ -18,6 +18,9 @@ export interface FindTripInitialStateType {
 // State Collection Types consist of:
 export interface FindTripFilters {
   origin: {
+    bottom_sheet: {
+      is_open: boolean;
+    };
     items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
@@ -25,6 +28,9 @@ export interface FindTripFilters {
     };
   };
   destination: {
+    bottom_sheet: {
+      is_open: boolean;
+    };
     items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };

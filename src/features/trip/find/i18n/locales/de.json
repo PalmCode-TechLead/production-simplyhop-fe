@@ -47,9 +47,11 @@
         }
       },
       "origin": {
+        "title": "Startpunkt wählen",
         "inputProps": {
           "id": "start",
-          "placeholder": " "
+          "placeholder": " ",
+          "autoComplete": "off"
         },
         "labelProps": {
           "id": "start",
@@ -58,9 +60,11 @@
         }
       },
       "destination": {
+        "title": "Zielunkt wählen",
         "inputProps": {
           "id": "end",
-          "placeholder": " "
+          "placeholder": " ",
+          "autoComplete": "off"
         },
         "labelProps": {
           "id": "end",

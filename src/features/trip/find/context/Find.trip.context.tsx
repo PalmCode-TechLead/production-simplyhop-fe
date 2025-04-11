@@ -9,6 +9,9 @@ import {
 const initialState: FindTripInitialStateType = {
   filters: {
     origin: {
+      bottom_sheet: {
+        is_open: false,
+      },
       selected: {
         item: null,
         lat_lng: null,
@@ -16,6 +19,9 @@ const initialState: FindTripInitialStateType = {
       items: [],
     },
     destination: {
+      bottom_sheet: {
+        is_open: false,
+      },
       selected: {
         item: null,
         lat_lng: null,
