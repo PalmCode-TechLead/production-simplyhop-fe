@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
@@ -18,6 +18,10 @@ export const TopNavigationMobileMenu = () => {
   const handleClickDropdownButton = () => {
     setIsOpen((prev) => !prev);
   };
+
+  useEffect(()=>{
+    setIsOpen(false)
+  },[pathname])
   return (
     <>
       <button
