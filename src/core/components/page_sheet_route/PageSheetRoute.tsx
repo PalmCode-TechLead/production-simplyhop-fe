@@ -47,6 +47,8 @@ export const PageSheetRoute = ({
   useEffect(() => {
     setQuery(selected?.name ?? "");
   }, [selected?.name]);
+
+ 
   return (
     <PageSheet isOpen={isOpen}>
       <div

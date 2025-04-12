@@ -365,33 +365,6 @@ export const FilterFindTrip = () => {
 
   return (
     <>
-      {/* <PageSheetRoute
-        isOpen={state.filters.origin.bottom_sheet.is_open}
-        title={dictionaries.filter.form.origin.title}
-        inputProps={{ ...dictionaries.filter.form.origin.inputProps }}
-        labelProps={{ ...dictionaries.filter.form.origin.labelProps }}
-        selected={state.filters.origin.selected.item}
-        items={state.filters.origin.items}
-        onQuery={(data: string) => handleQueryOriginRoutes(data)}
-        onSelect={(data: { id: string; name: string }) => {
-          handleSelectOriginRoutes(data);
-        }}
-        onClose={handleCloseOriginRoutes}
-      /> */}
-
-      <PageSheetRoute
-        isOpen={state.filters.destination.bottom_sheet.is_open}
-        title={dictionaries.filter.form.destination.title}
-        inputProps={{ ...dictionaries.filter.form.destination.inputProps }}
-        labelProps={{ ...dictionaries.filter.form.destination.labelProps }}
-        selected={state.filters.destination.selected.item}
-        items={state.filters.destination.items}
-        onQuery={(data: string) => handleQueryDestinationRoutes(data)}
-        onSelect={(data: { id: string; name: string }) => {
-          handleSelectDestinationRoutes(data);
-        }}
-        onClose={handleCloseDestinationRoutes}
-      />
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
@@ -430,43 +403,72 @@ export const FilterFindTrip = () => {
           >
             <FormRoutes
               origin={{
+                pageSheet: {
+                  selected: state.filters.origin.selected.item,
+                  items: state.filters.origin.items,
+                  onQuery: (data: string) => handleQueryOriginRoutes(data),
+                  onSelect: (data: { id: string; name: string }) =>
+                    handleSelectOriginRoutes(data),
+                  isOpen: state.filters.origin.bottom_sheet.is_open,
+                  title: dictionaries.filter.form.origin.title,
+                  onClose: handleCloseOriginRoutes,
+                  inputProps: {
+                    ...dictionaries.filter.form.origin.inputProps,
+                  },
+                  labelProps: {
+                    ...dictionaries.filter.form.origin.labelProps,
+                  },
+                },
                 autocomplete: {
                   selected: state.filters.origin.selected.item,
                   items: state.filters.origin.items,
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),
+                },
+                inputProps: {
+                  ...dictionaries.filter.form.origin.inputProps,
                   onClick: () => {
                     if (!isLg) {
                       handleClickOriginRoutes();
                     }
                   },
                 },
-                inputProps: {
-                  ...dictionaries.filter.form.origin.inputProps,
-                },
                 labelProps: {
                   ...dictionaries.filter.form.origin.labelProps,
                 },
-                isOpen: state.filters.origin.bottom_sheet.is_open,
-                title: dictionaries.filter.form.origin.title,
-                onClose: handleCloseOriginRoutes,
               }}
               destination={{
+                pageSheet: {
+                  selected: state.filters.destination.selected.item,
+                  items: state.filters.destination.items,
+                  onQuery: (data: string) => handleQueryDestinationRoutes(data),
+                  onSelect: (data: { id: string; name: string }) =>
+                    handleSelectDestinationRoutes(data),
+                  isOpen: state.filters.destination.bottom_sheet.is_open,
+                  title: dictionaries.filter.form.destination.title,
+                  onClose: handleCloseDestinationRoutes,
+                  inputProps: {
+                    ...dictionaries.filter.form.destination.inputProps,
+                  },
+                  labelProps: {
+                    ...dictionaries.filter.form.destination.labelProps,
+                  },
+                },
                 autocomplete: {
                   selected: state.filters.destination.selected.item,
                   items: state.filters.destination.items,
                   onQuery: (data: string) => handleQueryDestinationRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectDestinationRoutes(data),
+                },
+                inputProps: {
+                  ...dictionaries.filter.form.destination.inputProps,
                   onClick: () => {
                     if (!isLg) {
                       handleClickDestinationRoutes();
                     }
                   },
-                },
-                inputProps: {
-                  ...dictionaries.filter.form.destination.inputProps,
                 },
                 labelProps: {
                   ...dictionaries.filter.form.destination.labelProps,

@@ -11,7 +11,6 @@ import { InputRoute } from "../input_route/InputRoute";
 
 export interface AutocompleteRoutesProps {
   disabled?: boolean;
-  emptyMessage?: string;
   debounceQuery?: boolean;
   origin?: {
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
@@ -24,7 +23,6 @@ export interface AutocompleteRoutesProps {
       debounceQuery?: boolean;
       onSelect?: (data: { id: string; name: string }) => void;
       onQuery: (data: string) => void;
-      onClick?: () => void;
     };
   };
   destination?: {
@@ -38,15 +36,12 @@ export interface AutocompleteRoutesProps {
       debounceQuery?: boolean;
       onSelect?: (data: { id: string; name: string }) => void;
       onQuery: (data: string) => void;
-      onClick?: () => void;
     };
   };
 }
 
 export const AutocompleteRoutes = ({
   disabled = false,
-
-  emptyMessage = "No Result",
   origin = {
     autocomplete: {
       selected: null,
@@ -56,7 +51,6 @@ export const AutocompleteRoutes = ({
       debounceQuery: false,
       onSelect: () => {},
       onQuery: () => {},
-      onClick: () => {},
     },
     inputProps: {},
     labelProps: {},
@@ -70,7 +64,6 @@ export const AutocompleteRoutes = ({
       debounceQuery: false,
       onSelect: () => {},
       onQuery: () => {},
-      onClick: () => {},
     },
     inputProps: {},
     labelProps: {},
@@ -200,7 +193,7 @@ export const AutocompleteRoutes = ({
                     origin.autocomplete.onQuery(event.target.value);
                   }
                 },
-                onClick: origin.autocomplete?.onClick,
+                onClick: origin.inputProps?.onClick,
               }}
               labelProps={{
                 ...origin.labelProps,
@@ -240,7 +233,7 @@ export const AutocompleteRoutes = ({
                     destination.autocomplete.onQuery(event.target.value);
                   }
                 },
-                onClick: destination.autocomplete?.onClick,
+                onClick: destination.inputProps?.onClick,
               }}
               labelProps={{
                 ...destination.labelProps,
@@ -256,7 +249,9 @@ export const AutocompleteRoutes = ({
             {originAutocomplete.isFocus &&
             originFilteredItems.length === 0 &&
             originAutocomplete.query !== "" ? (
-              <AutocompleteEmptyBox>{emptyMessage}</AutocompleteEmptyBox>
+              <AutocompleteEmptyBox>
+                {origin.autocomplete.emptyMessage}
+              </AutocompleteEmptyBox>
             ) : (
               originFilteredItems.map((item, index) => (
                 <AutocompleteOption
@@ -276,7 +271,9 @@ export const AutocompleteRoutes = ({
             {destinationAutocomplete.isFocus &&
             destinationFilteredItems.length === 0 &&
             destinationAutocomplete.query !== "" ? (
-              <AutocompleteEmptyBox>{emptyMessage}</AutocompleteEmptyBox>
+              <AutocompleteEmptyBox>
+                {destination.autocomplete.emptyMessage}
+              </AutocompleteEmptyBox>
             ) : (
               destinationFilteredItems.map((item, index) => (
                 <AutocompleteOption

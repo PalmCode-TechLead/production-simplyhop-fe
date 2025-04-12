@@ -13,7 +13,7 @@ export const InputRoute = ({ inputProps, labelProps }: InputRoute) => {
   return (
     <div
       className={clsx(
-        "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",
+        "grid grid-rows-1 grid-cols-1 gap-[1rem]",
         "items-end content-end",
         "w-full h-full",
         "relative"

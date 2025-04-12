@@ -9,10 +9,10 @@ import { PageSheetRoute, PageSheetRouteProps } from "../page_sheet_route";
 export interface FormRoutesProps
   extends Omit<AutocompleteRoutesProps, "origin"> {
   origin?: AutocompleteRoutesProps["origin"] & {
-    title?: string;
-    isOpen?: boolean;
-    onClose?: () => void;
-    // kamu juga bisa tambah properti lain di level origin kalau perlu
+    pageSheet?: PageSheetRouteProps;
+  };
+  destination?: AutocompleteRoutesProps["destination"] & {
+    pageSheet?: PageSheetRouteProps;
   };
 }
 
@@ -22,16 +22,16 @@ export const FormRoutes = (props: FormRoutesProps) => {
   if (isLg) {
     return <AutocompleteRoutes {...props} />;
   }
-  const { origin, ...restProps } = props;
+  const { origin, destination, ...restProps } = props;
   return (
     <>
-      <AutocompleteRoutes {...restProps} origin={origin} />
-      <PageSheetRoute
+      <AutocompleteRoutes
         {...restProps}
-        title={origin?.title}
-        isOpen={origin?.isOpen}
-        onClose={origin?.onClose}
+        origin={origin}
+        destination={destination}
       />
+      <PageSheetRoute {...origin?.pageSheet} />
+      <PageSheetRoute {...destination?.pageSheet} />
     </>
   );
 };
