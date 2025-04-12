@@ -27,7 +27,7 @@ export const getLatLngFromPlaceId = (
     });
 
     place
-      .fetchFields({ fields: ["name"] })
+      .fetchFields({ fields: ["location"] })
       .then((result) => {
         resolve({
           lat: result.place.location?.lat() ?? 0,

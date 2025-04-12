@@ -23,7 +23,7 @@ export const getPlaceNameFromPlaceId = (
     });
 
     place
-      .fetchFields({ fields: ["name"] })
+      .fetchFields({ fields: ["displayName"] })
       .then((result) => {
         resolve({ name: result.place.displayName ?? "" });
       })
