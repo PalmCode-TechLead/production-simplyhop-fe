@@ -69,6 +69,19 @@ export const FormPassenger = ({
 
   const handleCloseBottomSheet = () => {
     setIsOpen(false);
+    setPassenger((prev) => ({
+      ...prev,
+      car_seat: {
+        checked: detail?.carSeat?.input.checked ?? false,
+      },
+      value:
+        detail?.passenger?.items.map((item) => {
+          return {
+            id: item.id,
+            value: item.value,
+          };
+        }) ?? [],
+    }));
   };
 
   const handleClickNext = () => {
