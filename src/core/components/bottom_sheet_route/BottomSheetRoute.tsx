@@ -135,7 +135,11 @@ export const BottomSheetRoute = ({
                 className={clsx(
                   "grid grid-cols-1 place-content-start place-items-start",
                   "w-full",
-                  "text-[0.875rem] text-[#232323] font-normal text-left"
+                  "cursor-pointer",
+                  "text-[0.875rem] text-left",
+                  item.id === selected?.id
+                    ? "text-[#5AC53D] font-semibold"
+                    : "text-[#232323] font-normal"
                 )}
                 onClick={() => onSelect(item)}
               >
