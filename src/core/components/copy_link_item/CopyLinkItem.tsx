@@ -36,7 +36,11 @@ export const CopyLinkItem = ({
         "h-[52px]"
       )}
     >
-      <span className={clsx("text-[#232323] text-[0.875rem] font-medium")}>
+      <span
+        className={clsx(
+          "text-[#232323] text-[0.875rem] font-medium text-ellipsi truncate"
+        )}
+      >
         {link}
       </span>
       {isCopy ? (
@@ -57,7 +61,7 @@ export const CopyLinkItem = ({
         <button
           className={clsx(
             "flex items-center justify-center",
-            "px-[1rem] py-[10.5px]",
+            "px-[0rem] lg:px-[1rem] py-[10.5px]",
             "text-[#5AC53D] text-[0.75rem] font-medium",
             "cursor-pointer"
           )}

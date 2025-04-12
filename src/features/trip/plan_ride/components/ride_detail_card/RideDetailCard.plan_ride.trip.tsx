@@ -208,8 +208,7 @@ export const RideDetailCardPlanRideTrip = ({
           >
             <div
               className={clsx(
-                "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                "w-full"
+                "flex flex-wrap items-center justify-start gap-[0.75rem]"
               )}
             >
               {car.facility?.top.map((item, index) => (
@@ -223,8 +222,7 @@ export const RideDetailCardPlanRideTrip = ({
 
             <div
               className={clsx(
-                "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                "w-full"
+                "flex flex-wrap items-center justify-start gap-[0.75rem]"
               )}
             >
               {car.facility?.bottom.map((item, Index) => (

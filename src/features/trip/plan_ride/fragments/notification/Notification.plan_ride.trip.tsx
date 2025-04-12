@@ -8,10 +8,12 @@ import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { CopyLinkItem } from "@/core/components/copy_link_item";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const NotificationPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(PlanRideTripContext);
+  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.notification.is_open;
   const handleClose = () => {
     dispatch({
@@ -104,7 +106,11 @@ export const NotificationPlanRideTrip = () => {
         </div>
 
         <CopyLinkItem
-          link={dictionaries.notification.share.example_link}
+          link={
+            isLg
+              ? dictionaries.notification.share.example_link
+              : `${dictionaries.notification.share.example_link.slice(0, 15)}...`
+          }
           cta={{ ...dictionaries.notification.share.cta }}
         />
       </div>
