@@ -4,7 +4,6 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { getDictionaries } from "../../i18n";
-import SVGIcon from "@/core/icons";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { TopNavigationDesktopMenu } from "../top_navigation_desktop_menu";
 import { TopNavigationMobileMenu } from "../top_navigation_mobile_menu";
@@ -40,7 +39,11 @@ export const TopNavigation = () => {
           </Link>
 
           {/* NOTES: Menu */}
-          {isLg ? <TopNavigationDesktopMenu /> : <TopNavigationMobileMenu />}
+          {/* {typeof window === "undefined" ? null : isLg ? (
+            <TopNavigationDesktopMenu />
+          ) : (
+            <TopNavigationMobileMenu />
+          )} */}
         </div>
       </div>
     </nav>

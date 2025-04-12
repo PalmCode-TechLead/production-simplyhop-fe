@@ -2,12 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import clsx from "clsx";
 
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
-import { InputLabel, InputLabelProps } from "../input_label";
-import { Input } from "../input";
+import { InputLabelProps } from "../input_label";
 import { InputContainer } from "../input_container";
 import { AutocompleteOptionsContainer } from "../autocomplete_options_container";
 import { AutocompleteOption } from "../autocomplete_option";
 import { AutocompleteEmptyBox } from "../autocomplete_empty_box";
+import { InputRoute } from "../input_route/InputRoute";
 
 export interface AutocompleteRoutesProps {
   disabled?: boolean;
@@ -47,7 +47,6 @@ export const AutocompleteRoutes = ({
   disabled = false,
 
   emptyMessage = "No Result",
-
   origin = {
     autocomplete: {
       selected: null,
@@ -95,8 +94,7 @@ export const AutocompleteRoutes = ({
     query: "",
     isOpen: false,
   });
-  const originInputRef = useRef<HTMLInputElement | null>(null);
-  const destinationInputRef = useRef<HTMLInputElement | null>(null);
+
   const isOpen = originAutocomplete.isOpen || destinationAutocomplete.isOpen;
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -171,105 +169,81 @@ export const AutocompleteRoutes = ({
               "relative"
             )}
           >
-            <Input
-              ref={originInputRef}
-              {...origin.inputProps}
-              value={originAutocomplete.query}
-              onFocus={() => {
-                if (disabled) {
-                  return;
-                }
-                setOriginAutocomplete({
-                  ...originAutocomplete,
-                  isFocus: true,
-                });
+            <InputRoute
+              inputProps={{
+                ...origin.inputProps,
+                value: originAutocomplete.query,
+                onFocus: () => {
+                  if (disabled) {
+                    return;
+                  }
+                  setOriginAutocomplete({
+                    ...originAutocomplete,
+                    isFocus: true,
+                  });
+                },
+                onBlur: () => {
+                  setOriginAutocomplete({
+                    ...originAutocomplete,
+                    isFocus: false,
+                  });
+                },
+                onChange: (event) => {
+                  setOriginAutocomplete({
+                    ...originAutocomplete,
+                    query: event.target.value,
+                    isOpen: !!event.target.value.length,
+                  });
+                  if (origin.autocomplete?.debounceQuery) {
+                    originDebounced(event.target.value);
+                  } else {
+                    origin.autocomplete.onQuery(event.target.value);
+                  }
+                },
+                onClick: origin.autocomplete?.onClick,
               }}
-              onBlur={() => {
-                // setIsFocus(false);
-                setOriginAutocomplete({
-                  ...originAutocomplete,
-                  isFocus: false,
-                });
-              }}
-              onChange={(event) => {
-                setOriginAutocomplete({
-                  ...originAutocomplete,
-                  query: event.target.value,
-                  isOpen: !!event.target.value.length,
-                });
-                if (origin.autocomplete?.debounceQuery) {
-                  originDebounced(event.target.value);
-                } else {
-                  origin.autocomplete.onQuery(event.target.value);
-                }
-              }}
-              onClick={origin.autocomplete?.onClick}
-            />
-
-            <InputLabel
-              {...origin.labelProps}
-              className={clsx(
-                // !!query
-                !!originAutocomplete.query
-                  ? "top-[25%] translate-y-[-50%] text-[0.75rem]"
-                  : "left-0 top-[50%] translate-y-[-50%] text-[0.75rem]",
-                "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
-              )}
-              onClick={() => {
-                // inputRef.current?.focus();
-                // setIsOpen(true);
-                originInputRef.current?.focus();
+              labelProps={{
+                ...origin.labelProps,
               }}
             />
 
             <div className={clsx("bg-[#E0ECDC]", "w-[1px] h-full")} />
 
-            <Input
-              ref={destinationInputRef}
-              {...destination.inputProps}
-              value={destinationAutocomplete.query}
-              onFocus={() => {
-                if (disabled) {
-                  return;
-                }
-                setDestinationAutocomplete({
-                  ...destinationAutocomplete,
-                  isFocus: true,
-                });
+            <InputRoute
+              inputProps={{
+                ...destination.inputProps,
+                value: destinationAutocomplete.query,
+                onFocus: () => {
+                  if (disabled) {
+                    return;
+                  }
+                  setDestinationAutocomplete({
+                    ...destinationAutocomplete,
+                    isFocus: true,
+                  });
+                },
+                onBlur: () => {
+                  setDestinationAutocomplete({
+                    ...destinationAutocomplete,
+                    isFocus: false,
+                  });
+                },
+                onChange: (event) => {
+                  setDestinationAutocomplete({
+                    ...destinationAutocomplete,
+                    query: event.target.value,
+                    isOpen: !!event.target.value.length,
+                  });
+                  if (destination.autocomplete?.debounceQuery) {
+                    destinationDebounced(event.target.value);
+                  } else {
+                    destination.autocomplete.onQuery(event.target.value);
+                  }
+                },
+                onClick: destination.autocomplete?.onClick,
               }}
-              onBlur={() => {
-                setDestinationAutocomplete({
-                  ...destinationAutocomplete,
-                  isFocus: false,
-                });
-              }}
-              onChange={(event) => {
-                setDestinationAutocomplete({
-                  ...destinationAutocomplete,
-                  query: event.target.value,
-                  isOpen: !!event.target.value.length,
-                });
-                if (destination.autocomplete?.debounceQuery) {
-                  destinationDebounced(event.target.value);
-                } else {
-                  destination.autocomplete.onQuery(event.target.value);
-                }
-              }}
-              onClick={destination.autocomplete?.onClick}
-            />
-
-            <InputLabel
-              {...destination.labelProps}
-              className={clsx(
-                !!destinationAutocomplete.query
-                  ? "top-[25%] left-[calc(50%+1rem)] translate-y-[-50%] text-[0.75rem]"
-                  : "top-[50%] left-[calc(50%+1rem)] translate-y-[-50%] text-[0.75rem]",
-                "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
-              )}
-              onClick={() => {
-                // inputRef.current?.focus();
-                destinationInputRef.current?.focus();
-                // setIsOpen(true);
+              labelProps={{
+                ...destination.labelProps,
               }}
             />
           </div>
@@ -287,11 +261,6 @@ export const AutocompleteRoutes = ({
               originFilteredItems.map((item, index) => (
                 <AutocompleteOption
                   key={index}
-                  // className={clsx(
-                  //   selected?.id === item.id
-                  //     ? "font-bold text-[#FF6201]"
-                  //     : "font-normal text-[#201E2C]"
-                  // )}
                   onClick={() => handleChangeorigin(item)}
                 >
                   {item.name}
@@ -312,11 +281,6 @@ export const AutocompleteRoutes = ({
               destinationFilteredItems.map((item, index) => (
                 <AutocompleteOption
                   key={index}
-                  // className={clsx(
-                  //   selected?.id === item.id
-                  //     ? "font-bold text-[#FF6201]"
-                  //     : "font-normal text-[#201E2C]"
-                  // )}
                   onClick={() => handleChangedestination(item)}
                 >
                   {item.name}

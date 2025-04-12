@@ -2,7 +2,6 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { FindTripActionEnum, FindTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
@@ -18,6 +17,7 @@ import {
 import { BottomSheetRoute } from "@/core/components/bottom_sheet_route";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormPassenger } from "@/core/components/form_passenger";
+import { FormRoutes } from "@/core/components/form_routes";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
@@ -427,7 +427,7 @@ export const FilterFindTrip = () => {
               "w-full"
             )}
           >
-            <AutocompleteRoutes
+            <FormRoutes
               origin={{
                 autocomplete: {
                   selected: state.filters.origin.selected.item,
