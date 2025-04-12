@@ -152,7 +152,7 @@ export const UploadInput = ({
 
         <div
           className={clsx(
-            "grid grid-flow-col place-content-center place-items-center gap-[0.25rem]"
+            "grid grid-cols-1 lg:grid-flow-col place-content-center place-items-center gap-[0.25rem]"
           )}
         >
           <SVGIcon name="PictureUpload" />
@@ -164,14 +164,14 @@ export const UploadInput = ({
           >
             <p
               className={clsx(
-                "text-[black] text-left text-[0.875rem] font-normal"
+                "text-[black] text-[0.875rem] font-normal text-center lg:text-left"
               )}
             >
               {message}
             </p>
             <p
               className={clsx(
-                "text-[#909296] text-left text-[0.625rem] font-normal"
+                "text-[#909296] text-[0.625rem] font-normal text-center lg:text-left"
               )}
             >
               {description}
