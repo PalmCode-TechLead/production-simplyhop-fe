@@ -14,12 +14,18 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <main
       className={clsx(
-        "grid grid-rows-1 grid-cols-2 place-content-center place-items-center",
+        "grid grid-rows-1 grid-cols-1 lg:grid-cols-2 place-content-center place-items-center",
         "w-full h-full min-h-[100vh]",
         "relative"
       )}
     >
-      <div className={clsx("relative", "w-full h-full")}>
+      <div
+        className={clsx(
+          "hidden lg:grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
+          "relative",
+          "w-full h-full"
+        )}
+      >
         <Image
           src={"/images/auth/auth-bg-3.svg"}
           alt="login"
