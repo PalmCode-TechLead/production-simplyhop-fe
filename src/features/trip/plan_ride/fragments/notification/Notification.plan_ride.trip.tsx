@@ -78,7 +78,7 @@ export const NotificationPlanRideTrip = () => {
 
         <div
           className={clsx(
-            "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[1rem]"
+            "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-center justify-items-center gap-[1rem]"
           )}
         >
           <span className={clsx("text-[#98989E] text-[0.875rem] font-normal")}>
