@@ -50,7 +50,7 @@ export const TabRegistrationProfile = () => {
     <React.Suspense fallback={<div />}>
       <div
         className={clsx(
-          "grid grid-flow-col lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
           "w-full",
           "overflow-auto"
         )}

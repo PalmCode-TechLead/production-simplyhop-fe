@@ -23,7 +23,7 @@ export const RegistrationProfileContainer = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full",
-          "pt-[2rem] px-[1rem]",
+          "lg:pt-[2rem] px-[1rem]"
         )}
       >
         <div
@@ -36,10 +36,17 @@ export const RegistrationProfileContainer = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "w-full",
-              "lg:sticky lg:top-[100px]"
+              "pt-[2rem] lg:pt-[0rem]",
+              "sticky top-[90px] lg:top-[calc(90px+2rem)] z-[30]",
+              "bg-[white]",
+              "pb-[1.5rem]"
             )}
           >
-            <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+            <h1
+              className={clsx(
+                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+              )}
+            >
               {dictionaries.title}
             </h1>
             <TabRegistrationProfile />
@@ -75,7 +82,7 @@ export const RegistrationProfileContainer = () => {
           </div>
         </div>
       </div>
-      
+
       <NotificationRegistrationProfile />
     </>
   );

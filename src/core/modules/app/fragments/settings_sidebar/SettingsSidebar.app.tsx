@@ -62,7 +62,8 @@ export const SettingsSidebarApp = () => {
           className={clsx(
             "grid grid-flow-col grid-cols-none lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "w-full max-w-full",
-            "overflow-x-scroll lg:overflow-x-hidden"
+            "overflow-x-auto lg:overflow-x-hidden",
+            "scrollbar-hide"
           )}
         >
           {dictionaries.settings.menu.items.map((menu, index) => {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import Cookies from "universal-cookie";
 import { usePathname } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { useOnClickOutside } from "usehooks-ts";
 
 export const TopNavigationMobileMenu = () => {
   const dictionaries = getDictionaries();
@@ -15,6 +16,10 @@ export const TopNavigationMobileMenu = () => {
   const isLogin = !!token;
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+  useOnClickOutside(ref as any, () => {
+    setIsOpen(false);
+  });
 
   const handleClickDropdownButton = () => {
     setIsOpen((prev) => !prev);
@@ -44,6 +49,7 @@ export const TopNavigationMobileMenu = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={ref}
             key="mobile-menu"
             initial="hidden"
             animate="visible"
