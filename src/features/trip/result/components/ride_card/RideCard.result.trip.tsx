@@ -201,7 +201,7 @@ export const RideCardResultTrip = ({
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[52px]",
+          "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-start content-start justify-between justify-items-start gap-[1rem] lg:gap-[52px]",
           "w-full"
         )}
       >
@@ -214,7 +214,7 @@ export const RideCardResultTrip = ({
           <DriverProfileLabel {...driver.profile} />
           <div
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+              "grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
             )}
           >
             {ride.badge.map((item, itemIndex) => (
@@ -260,8 +260,7 @@ export const RideCardResultTrip = ({
           >
             <div
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                "w-full"
+                "flex flex-wrap items-center justify-start gap-[0.75rem]"
               )}
             >
               {car.facility?.top.map((item, index) => (
@@ -275,8 +274,7 @@ export const RideCardResultTrip = ({
 
             <div
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                "w-full"
+                "flex flex-wrap items-center justify-start gap-[0.75rem]"
               )}
             >
               {car.facility?.bottom.map((item, Index) => (
@@ -290,17 +288,24 @@ export const RideCardResultTrip = ({
           </div>
         </div>
         {/* price */}
-        <CarPriceItem {...price.initial} />
+        <div
+          className={clsx(
+            "flex items-center justify-between gap-[0.5rem] lg:gap-[4rem]",
+            "w-full"
+          )}
+        >
+          <CarPriceItem {...price.initial} />
 
-        {/* cta */}
-        <Link href={cta.ride.href}>
-          <Button
-            className={clsx("!px-[1rem] !py-[0.5rem]")}
-            // onClick={cta.ride.onClick}
-          >
-            {cta.ride.children}
-          </Button>
-        </Link>
+          {/* cta */}
+          <Link href={cta.ride.href}>
+            <Button
+              className={clsx("!px-[1rem] !py-[0.5rem]")}
+              // onClick={cta.ride.onClick}
+            >
+              {cta.ride.children}
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

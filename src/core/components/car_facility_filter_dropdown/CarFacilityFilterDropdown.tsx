@@ -30,7 +30,8 @@ export const CarFacilityFilterDropdown = ({
         className={clsx(
           "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
           "px-[0.5rem] py-[0.25rem]",
-          "bg-[#F0EFEF]",
+          "bg-[white]",
+          "border border-[#E9E6E6]",
           "rounded-[1.25rem]",
           "text-[#636262] text-[0.875rem] font-medium",
           "cursor-pointer"
@@ -39,7 +40,7 @@ export const CarFacilityFilterDropdown = ({
       >
         {!selected ? label : selected.name}
         <SVGIcon
-          name={isOpen? "ChevronUp":"ChevronDown"}
+          name={isOpen ? "ChevronUp" : "ChevronDown"}
           className={clsx("w-[1.25rem] h-[1.25rem]", "text-[#636262]")}
         />
       </button>
@@ -48,8 +49,9 @@ export const CarFacilityFilterDropdown = ({
         <div
           className={clsx(
             "absolute top-[40px] left-0 right-0",
-            "bg-[#F0EFEF]",
-            "rounded-[1.25rem]",
+            "bg-[white]",
+            "border border-[#E9E6E6]",
+            "rounded-[0.75rem]",
             "max-h-[200px]",
             "overflow-auto"
           )}

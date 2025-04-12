@@ -105,31 +105,38 @@ export const CarFacilityFilterResulTrip = () => {
         <CarFacilityFilterCounterBadge
           {...dictionaries.advanced_filter.counter}
         />
-        <CarFacilityFilterDropdown
-          {...dictionaries.advanced_filter.seat}
-          selected={state.advanced_filter.seat.selected}
-          onSelect={handleSelectSeat}
-        />
-        <CarFacilityFilterDropdown
-          {...dictionaries.advanced_filter.luggage}
-          selected={state.advanced_filter.luggage.selected}
-          onSelect={handleSelectLuggage}
-        />
-        <CarFacilityFilterDropdown
-          {...dictionaries.advanced_filter.smoker}
-          selected={state.advanced_filter.smoker.selected}
-          onSelect={handleSelectSmoker}
-        />
-        <CarFacilityFilterDropdown
-          {...dictionaries.advanced_filter.music}
-          selected={state.advanced_filter.music.selected}
-          onSelect={handleSelectMusic}
-        />
-        <CarFacilityFilterDropdown
-          {...dictionaries.advanced_filter.pets}
-          selected={state.advanced_filter.pets.selected}
-          onSelect={handleSelectPets}
-        />
+        <div
+          className={clsx(
+            "hidden lg:grid-flow-col items-center content-center justify-start justify-items-start gap-[1.5rem]",
+            "w-full"
+          )}
+        >
+          <CarFacilityFilterDropdown
+            {...dictionaries.advanced_filter.seat}
+            selected={state.advanced_filter.seat.selected}
+            onSelect={handleSelectSeat}
+          />
+          <CarFacilityFilterDropdown
+            {...dictionaries.advanced_filter.luggage}
+            selected={state.advanced_filter.luggage.selected}
+            onSelect={handleSelectLuggage}
+          />
+          <CarFacilityFilterDropdown
+            {...dictionaries.advanced_filter.smoker}
+            selected={state.advanced_filter.smoker.selected}
+            onSelect={handleSelectSmoker}
+          />
+          <CarFacilityFilterDropdown
+            {...dictionaries.advanced_filter.music}
+            selected={state.advanced_filter.music.selected}
+            onSelect={handleSelectMusic}
+          />
+          <CarFacilityFilterDropdown
+            {...dictionaries.advanced_filter.pets}
+            selected={state.advanced_filter.pets.selected}
+            onSelect={handleSelectPets}
+          />
+        </div>
       </div>
 
       {/* sort */}

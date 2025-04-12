@@ -13,10 +13,10 @@ export const CarPriceItem = ({ label = "", price = "" }: CarPriceItemProps) => {
         "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]"
       )}
     >
-      <p className={clsx("text-[#727272] text-[0.875rem] font-medium")}>
+      <p className={clsx("text-[#727272] text-[0.75rem] lg:text-[0.875rem] font-medium")}>
         {label}
       </p>
-      <p className={clsx("text-[black] text-[1.5rem] font-bold")}>{price}</p>
+      <p className={clsx("text-[black] text-[0.875rem] lg:text-[1.5rem] font-bold")}>{price}</p>
     </div>
   );
 };

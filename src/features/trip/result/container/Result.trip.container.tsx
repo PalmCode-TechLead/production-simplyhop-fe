@@ -13,7 +13,7 @@ export const ResultTripContainer = () => {
         className={clsx(
           "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
           "w-full",
-          "pt-[1.5rem] pb-[0.75rem]",
+          "pt-[1.5rem] pb-[0.75rem] px-[1rem]",
           "relative"
         )}
       >

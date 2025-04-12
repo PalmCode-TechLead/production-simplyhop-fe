@@ -274,7 +274,7 @@ export const FilterResultTrip = () => {
         {/* form */}
         <div
           className={clsx(
-            "grid grid-cols-[2fr_1fr_1fr_auto] place-content-start place-items-start gap-[1rem]",
+            "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_162px] place-content-start place-items-start gap-[1rem]",
             "w-full"
           )}
         >
