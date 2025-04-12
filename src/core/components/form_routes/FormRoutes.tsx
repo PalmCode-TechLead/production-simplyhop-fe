@@ -4,11 +4,17 @@ import {
   AutocompleteRoutes,
   AutocompleteRoutesProps,
 } from "../autocomplete_routes";
-import { BottomSheetRoute, BottomSheetRouteProps } from "../bottom_sheet_route";
+import { PageSheetRoute, PageSheetRouteProps } from "../page_sheet_route";
 
 export interface FormRoutesProps
-  extends AutocompleteRoutesProps,
-    BottomSheetRouteProps {}
+  extends Omit<AutocompleteRoutesProps, "origin"> {
+  origin?: AutocompleteRoutesProps["origin"] & {
+    title?: string;
+    isOpen?: boolean;
+    onClose?: () => void;
+    // kamu juga bisa tambah properti lain di level origin kalau perlu
+  };
+}
 
 export const FormRoutes = (props: FormRoutesProps) => {
   const { isLg } = useTailwindBreakpoint();
@@ -16,25 +22,16 @@ export const FormRoutes = (props: FormRoutesProps) => {
   if (isLg) {
     return <AutocompleteRoutes {...props} />;
   }
-
+  const { origin, ...restProps } = props;
   return (
     <>
-      <AutocompleteRoutes {...props} />
-      <BottomSheetRoute {...props} />
-
-      {/* <BottomSheetRoute
-        isOpen={state.filters.destination.bottom_sheet.is_open}
-        title={dictionaries.filter.form.destination.title}
-        inputProps={{ ...dictionaries.filter.form.destination.inputProps }}
-        labelProps={{ ...dictionaries.filter.form.destination.labelProps }}
-        selected={state.filters.destination.selected.item}
-        items={state.filters.destination.items}
-        onQuery={(data: string) => handleQueryDestinationRoutes(data)}
-        onSelect={(data: { id: string; name: string }) => {
-          handleSelectDestinationRoutes(data);
-        }}
-        onClose={handleCloseDestinationRoutes}
-      /> */}
+      <AutocompleteRoutes {...restProps} origin={origin} />
+      <PageSheetRoute
+        {...restProps}
+        title={origin?.title}
+        isOpen={origin?.isOpen}
+        onClose={origin?.onClose}
+      />
     </>
   );
 };

@@ -14,7 +14,7 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
-import { BottomSheetRoute } from "@/core/components/bottom_sheet_route";
+import { PageSheetRoute } from "@/core/components/page_sheet_route";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormPassenger } from "@/core/components/form_passenger";
 import { FormRoutes } from "@/core/components/form_routes";
@@ -365,7 +365,7 @@ export const FilterFindTrip = () => {
 
   return (
     <>
-      {/* <BottomSheetRoute
+      {/* <PageSheetRoute
         isOpen={state.filters.origin.bottom_sheet.is_open}
         title={dictionaries.filter.form.origin.title}
         inputProps={{ ...dictionaries.filter.form.origin.inputProps }}
@@ -379,7 +379,7 @@ export const FilterFindTrip = () => {
         onClose={handleCloseOriginRoutes}
       /> */}
 
-      <BottomSheetRoute
+      <PageSheetRoute
         isOpen={state.filters.destination.bottom_sheet.is_open}
         title={dictionaries.filter.form.destination.title}
         inputProps={{ ...dictionaries.filter.form.destination.inputProps }}
@@ -448,6 +448,9 @@ export const FilterFindTrip = () => {
                 labelProps: {
                   ...dictionaries.filter.form.origin.labelProps,
                 },
+                isOpen: state.filters.origin.bottom_sheet.is_open,
+                title: dictionaries.filter.form.origin.title,
+                onClose: handleCloseOriginRoutes,
               }}
               destination={{
                 autocomplete: {
@@ -469,9 +472,6 @@ export const FilterFindTrip = () => {
                   ...dictionaries.filter.form.destination.labelProps,
                 },
               }}
-              isOpen={state.filters.origin.bottom_sheet.is_open}
-              title={dictionaries.filter.form.origin.title}
-              onClose={handleCloseOriginRoutes}
             />
 
             <DatePicker

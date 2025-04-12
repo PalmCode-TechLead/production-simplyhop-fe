@@ -7,7 +7,7 @@ import { Input } from "../input";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { useDebounceCallback, useOnClickOutside } from "usehooks-ts";
 
-export interface BottomSheetRouteProps {
+export interface PageSheetRouteProps {
   isOpen?: boolean;
   title?: string;
   selected?: { id: string; name: string } | null;
@@ -21,7 +21,7 @@ export interface BottomSheetRouteProps {
   onClose?: () => void;
 }
 
-export const BottomSheetRoute = ({
+export const PageSheetRoute = ({
   isOpen = false,
   title = "",
   selected = null,
@@ -33,7 +33,7 @@ export const BottomSheetRoute = ({
   onSelect = () => {},
   onQuery = () => {},
   onClose = () => {},
-}: BottomSheetRouteProps) => {
+}: PageSheetRouteProps) => {
   const [query, setQuery] = useState("");
 
   const inputRef = useRef<HTMLInputElement | null>(null);
