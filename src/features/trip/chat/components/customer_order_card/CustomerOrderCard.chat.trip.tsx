@@ -189,7 +189,7 @@ export const CustomerOrderCardChatTrip = ({
         {/* car */}
         <div
           className={clsx(
-            "grid grid-cols-[auto_1fr_auto] items-start content-start justify-start justify-items-start gap-[52px]",
+            "grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-start content-start justify-start justify-items-start gap-[52px]",
             "w-full"
           )}
         >
@@ -231,7 +231,7 @@ export const CustomerOrderCardChatTrip = ({
             >
               <div
                 className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
+                  "flex flex-wrap items-center justify-start gap-[0.75rem]",
                   "w-full"
                 )}
               >
@@ -246,7 +246,7 @@ export const CustomerOrderCardChatTrip = ({
 
               <div
                 className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
+                  "flex flex-wrap items-center justify-start gap-[0.75rem]",
                   "w-full"
                 )}
               >

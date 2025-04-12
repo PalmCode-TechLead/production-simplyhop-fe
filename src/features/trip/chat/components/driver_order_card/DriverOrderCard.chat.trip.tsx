@@ -217,7 +217,7 @@ export const DriverOrderCardChatTrip = ({
         {/* car */}
         <div
           className={clsx(
-            "grid grid-cols-[auto_1fr_auto] items-start content-start justify-start justify-items-start gap-[52px]",
+            "grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-start content-start justify-start justify-items-start gap-[52px]",
             "w-full"
           )}
         >
@@ -259,7 +259,7 @@ export const DriverOrderCardChatTrip = ({
             >
               <div
                 className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
+                  "flex flex-wrap items-center justify-start gap-[0.75rem]",
                   "w-full"
                 )}
               >
@@ -274,7 +274,7 @@ export const DriverOrderCardChatTrip = ({
 
               <div
                 className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
+                  "flex flex-wrap items-center justify-start gap-[0.75rem]",
                   "w-full"
                 )}
               >
@@ -317,7 +317,7 @@ export const DriverOrderCardChatTrip = ({
         {/* cta */}
         <div
           className={clsx(
-            "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1.5rem]",
+            "grid grid-cols-1 items-start content-start justify-start justify-items-start lg:grid-flow-col lg:items-center lg:content-center lg:justify-end lg:justify-items-end gap-[1.5rem]",
             "w-full"
           )}
         >
@@ -328,7 +328,8 @@ export const DriverOrderCardChatTrip = ({
               "border border-[white]",
               "px-[1rem] py-[0.75rem]",
               "rounded-[0.375rem]",
-              "text-[#3B3B3B] text-[0.875rem] font-medium"
+              "text-[#3B3B3B] text-[0.875rem] font-medium",
+              "w-full lg:w-fit"
             )}
             onClick={cta.reject.onClick}
           >
@@ -341,7 +342,8 @@ export const DriverOrderCardChatTrip = ({
               "border border-[#3B3B3B]",
               "px-[1rem] py-[0.75rem]",
               "rounded-[0.375rem]",
-              "text-[#3B3B3B] text-[0.875rem] font-medium"
+              "text-[#3B3B3B] text-[0.875rem] font-medium",
+              "w-full lg:w-fit"
             )}
             onClick={cta.bargain.onClick}
           >
@@ -354,7 +356,8 @@ export const DriverOrderCardChatTrip = ({
               "border border-[#5AC53D]",
               "px-[1rem] py-[0.75rem]",
               "rounded-[0.375rem]",
-              "text-[white] text-[0.875rem] font-medium"
+              "text-[white] text-[0.875rem] font-medium",
+              "w-full lg:w-fit"
             )}
             onClick={cta.accept.onClick}
           >
