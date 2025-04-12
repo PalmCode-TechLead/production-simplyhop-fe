@@ -36,6 +36,9 @@ const initialState: PlanRideTripInitialStateType = {
       selected: new Date(),
     },
     passenger: {
+      car_seat: {
+        checked: false,
+      },
       value: [],
     },
   },

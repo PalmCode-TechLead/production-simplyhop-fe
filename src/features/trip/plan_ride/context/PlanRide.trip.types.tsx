@@ -44,6 +44,9 @@ export interface PlanRideTripFilters {
   };
 
   passenger: {
+    car_seat: {
+      checked: boolean;
+    };
     value: { id: string; value: number }[];
   };
 }

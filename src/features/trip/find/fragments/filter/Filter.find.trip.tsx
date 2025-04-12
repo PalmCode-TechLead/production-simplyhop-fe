@@ -314,7 +314,7 @@ export const FilterFindTrip = () => {
         ...state.filters,
         passenger: {
           ...state.filters.passenger,
-          value: dictionaries.filter.form.passenger.items.map((item) => {
+          value: dictionaries.filter.form.passenger.detail.items.map((item) => {
             return {
               id: item.id,
               value: item.value,
@@ -489,16 +489,17 @@ export const FilterFindTrip = () => {
                 ...dictionaries.filter.form.passenger.labelProps,
               }}
               detail={{
-                title: dictionaries.filter.form.passenger.title,
+                title: dictionaries.filter.form.passenger.detail.title,
                 carSeat: {
                   input: {
-                    ...dictionaries.filter.form.passenger.carSeat.input,
+                    ...dictionaries.filter.form.passenger.detail.carSeat.input,
                     checked: state.filters.passenger.car_seat.checked,
                     onChange: handleChangePassengerCarSeat,
                   },
                 },
+                cta: dictionaries.filter.form.passenger.detail.cta,
                 passenger: {
-                  items: dictionaries.filter.form.passenger.items.map(
+                  items: dictionaries.filter.form.passenger.detail.items.map(
                     (item) => {
                       return {
                         ...item,

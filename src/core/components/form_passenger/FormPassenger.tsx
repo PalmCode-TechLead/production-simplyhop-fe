@@ -15,10 +15,15 @@ import SVGIcon from "@/core/icons";
 
 export interface FormPassengerProps {
   labelProps?: InputLabelProps;
-  position?: "top" | "bottom";
 
   maskedValue?: string;
-  detail?: FormPassengerDetailProps;
+  detail?: FormPassengerDetailProps & {
+    cta: {
+      next: {
+        children: React.ReactNode;
+      };
+    };
+  };
 }
 
 export const FormPassenger = ({
@@ -26,19 +31,93 @@ export const FormPassenger = ({
   maskedValue = "",
   detail,
 }: FormPassengerProps) => {
+  const [passenger, setPassenger] = React.useState<{
+    car_seat: {
+      checked: boolean;
+    };
+    value: { id: string; value: number }[];
+  }>({
+    car_seat: {
+      checked: detail?.carSeat?.input.checked ?? false,
+    },
+    value:
+      detail?.passenger?.items.map((item) => {
+        return {
+          id: item.id,
+          value: item.value,
+        };
+      }) ?? [],
+  });
+
   const { isLg } = useTailwindBreakpoint();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
   useOnClickOutside(ref as any, () => {
-    setIsOpen(false);
+    if (isLg) {
+      setIsOpen(false);
+      detail?.passenger?.onChange(passenger.value);
+      if (!detail?.carSeat?.input?.onChange) return;
+      detail?.carSeat?.input?.onChange(passenger.car_seat.checked);
+    } else {
+      setPassenger((prev) => ({
+        ...prev,
+        car_seat: {
+          checked: detail?.carSeat?.input.checked ?? false,
+        },
+        value:
+          detail?.passenger?.items.map((item) => {
+            return {
+              id: item.id,
+              value: item.value,
+            };
+          }) ?? [],
+      }));
+    }
   });
+
   const handleClick = () => {
     setIsOpen((prev) => !prev);
   };
 
   const handleCloseBottomSheet = () => {
     setIsOpen(false);
+    detail?.passenger?.onChange(passenger.value);
+    if (!detail?.carSeat?.input?.onChange) return;
+    detail?.carSeat?.input?.onChange(passenger.car_seat.checked);
   };
+
+  const handleChangePassenger = (value: { id: string; value: number }[]) => {
+    setPassenger((prev) => ({
+      ...prev,
+      value: value,
+    }));
+  };
+
+  const handleChangePassengerCarSeat = () => {
+    setPassenger((prev) => ({
+      ...prev,
+      car_seat: {
+        ...prev.car_seat,
+        checked: !prev.car_seat.checked,
+      },
+    }));
+  };
+
+  React.useEffect(() => {
+    setPassenger((prev) => ({
+      ...prev,
+      car_seat: {
+        checked: detail?.carSeat?.input.checked ?? false,
+      },
+      value:
+        detail?.passenger?.items.map((item) => {
+          return {
+            id: item.id,
+            value: item.value,
+          };
+        }) ?? [],
+    }));
+  }, [detail?.passenger?.items, detail?.carSeat?.input.checked]);
 
   return (
     <div ref={ref} className={clsx("relative", "w-full")}>
@@ -109,9 +188,31 @@ export const FormPassenger = ({
                 </span>
               </div>
 
-              <FormPassengerDetail {...detail} />
+              <FormPassengerDetail
+                {...detail}
+                passenger={{
+                  items:
+                    detail?.passenger?.items.map((item) => {
+                      return {
+                        ...item,
+                        value:
+                          passenger.value.find(
+                            (passengerItem) => passengerItem.id === item.id
+                          )?.value ?? 0,
+                      };
+                    }) ?? [],
+                  onChange: handleChangePassenger,
+                }}
+                carSeat={{
+                  input: {
+                    ...detail?.carSeat?.input,
+                    checked: passenger.car_seat.checked,
+                    onChange: handleChangePassengerCarSeat,
+                  },
+                }}
+              />
             </div>
-            <Button>{"Spreichen Sie"}</Button>
+            <Button>{detail?.cta.next.children}</Button>
           </div>
         </BottomSheet>
       )}

@@ -2,12 +2,10 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { AutocompleteCity } from "@/core/components/autocomplete_city";
 import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
-import { DropdownPassenger } from "@/core/components/dropdown_passenger";
 import { Button } from "@/core/components/button";
 import {
   fetchAutocompleteCityList,
@@ -15,6 +13,7 @@ import {
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
 import { AutocompleteAuto } from "@/core/components/autocomplete_auto";
+import { FormPassenger } from "@/core/components/form_passenger";
 
 export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -219,7 +218,24 @@ export const FilterPlanRideTrip = () => {
       payload: {
         ...state.filters,
         passenger: {
+          ...state.filters.passenger,
           value: value,
+        },
+      },
+    });
+  };
+
+  const handleChangePassengerCarSeat = () => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        passenger: {
+          ...state.filters.passenger,
+          car_seat: {
+            ...state.filters.passenger.car_seat,
+            checked: !state.filters.passenger.car_seat.checked,
+          },
         },
       },
     });
@@ -246,7 +262,7 @@ export const FilterPlanRideTrip = () => {
         ...state.filters,
         passenger: {
           ...state.filters.passenger,
-          value: dictionaries.filter.form.passenger.items.map((item) => {
+          value: dictionaries.filter.form.passenger.detail.items.map((item) => {
             return {
               id: item.id,
               value: item.value,
@@ -369,9 +385,34 @@ export const FilterPlanRideTrip = () => {
             onSelect={handleSelectDate}
           />
 
-          <DropdownPassenger
+          <FormPassenger
             labelProps={{
               ...dictionaries.filter.form.passenger.labelProps,
+            }}
+            detail={{
+              title: dictionaries.filter.form.passenger.detail.title,
+              carSeat: {
+                input: {
+                  ...dictionaries.filter.form.passenger.detail.carSeat.input,
+                  checked: state.filters.passenger.car_seat.checked,
+                  onChange: handleChangePassengerCarSeat,
+                },
+              },
+              cta: dictionaries.filter.form.passenger.detail.cta,
+              passenger: {
+                items: dictionaries.filter.form.passenger.detail.items.map(
+                  (item) => {
+                    return {
+                      ...item,
+                      value:
+                        state.filters.passenger.value.find(
+                          (passengerItem) => passengerItem.id === item.id
+                        )?.value ?? 0,
+                    };
+                  }
+                ),
+                onChange: handleChangePassenger,
+              },
             }}
             maskedValue={dictionaries.filter.form.passenger.maskedValue
               .replaceAll(
@@ -390,16 +431,6 @@ export const FilterPlanRideTrip = () => {
                   )?.value ?? 0
                 )
               )}
-            items={dictionaries.filter.form.passenger.items.map((item) => {
-              return {
-                ...item,
-                value:
-                  state.filters.passenger.value.find(
-                    (passengerItem) => passengerItem.id === item.id
-                  )?.value ?? 0,
-              };
-            })}
-            onChange={handleChangePassenger}
           />
         </div>
 

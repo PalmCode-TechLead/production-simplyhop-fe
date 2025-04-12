@@ -92,21 +92,35 @@
           "children": "Passagiere",
           "required": false
         },
-        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind",
-        "items": [
-          {
-            "id": "adult",
-            "name": "Erwachsene",
-            "description": "Alter: 18 oder älter",
-            "value": 1
+        "detail": {
+          "title": "Passagiere",
+          "carSeat": {
+            "input": {
+              "label": "Kindersitz erforderlich"
+            }
           },
-          {
-            "id": "children",
-            "name": "Kinder",
-            "description": "Alter: 0-12",
-            "value": 0
+          "items": [
+            {
+              "id": "adult",
+              "name": "Erwachsene",
+              "description": "Alter: 18 oder älter",
+              "value": 1
+            },
+            {
+              "id": "children",
+              "name": "Kinder",
+              "description": "Alter: 0-12",
+              "value": 0
+            }
+          ],
+          "cta": {
+            "next": {
+              "children": "Spreichen Sie"
+            }
           }
-        ]
+        },
+
+        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind"
       }
     },
     "cta": {
