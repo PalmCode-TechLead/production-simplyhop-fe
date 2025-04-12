@@ -34,8 +34,8 @@ export const FilterFindTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          bottom_sheet: {
-            ...state.filters.origin.bottom_sheet,
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
             is_open: true,
           },
         },
@@ -50,8 +50,8 @@ export const FilterFindTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          bottom_sheet: {
-            ...state.filters.origin.bottom_sheet,
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
             is_open: false,
           },
         },
@@ -125,7 +125,7 @@ export const FilterFindTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          bottom_sheet: {
+          page_sheet: {
             ...state.filters.origin,
             is_open: false,
           },
@@ -146,8 +146,8 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
-          bottom_sheet: {
-            ...state.filters.destination.bottom_sheet,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
             is_open: true,
           },
         },
@@ -162,8 +162,8 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
-          bottom_sheet: {
-            ...state.filters.destination.bottom_sheet,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
             is_open: false,
           },
         },
@@ -237,8 +237,8 @@ export const FilterFindTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
-          bottom_sheet: {
-            ...state.filters.destination.bottom_sheet,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
             is_open: false,
           },
           selected: {
@@ -406,7 +406,7 @@ export const FilterFindTrip = () => {
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),
-                  isOpen: state.filters.origin.bottom_sheet.is_open,
+                  isOpen: state.filters.origin.page_sheet.is_open,
                   title: dictionaries.filter.form.origin.title,
                   onClose: handleCloseOriginRoutes,
                   inputProps: {
@@ -442,7 +442,7 @@ export const FilterFindTrip = () => {
                   onQuery: (data: string) => handleQueryDestinationRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectDestinationRoutes(data),
-                  isOpen: state.filters.destination.bottom_sheet.is_open,
+                  isOpen: state.filters.destination.page_sheet.is_open,
                   title: dictionaries.filter.form.destination.title,
                   onClose: handleCloseDestinationRoutes,
                   inputProps: {

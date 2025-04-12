@@ -9,7 +9,7 @@ import {
 const initialState: FindTripInitialStateType = {
   filters: {
     origin: {
-      bottom_sheet: {
+      page_sheet: {
         is_open: false,
       },
       selected: {
@@ -19,7 +19,7 @@ const initialState: FindTripInitialStateType = {
       items: [],
     },
     destination: {
-      bottom_sheet: {
+      page_sheet: {
         is_open: false,
       },
       selected: {

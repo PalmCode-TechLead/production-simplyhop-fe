@@ -2,7 +2,6 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
@@ -11,15 +10,50 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
-import { AutocompleteAuto } from "@/core/components/autocomplete_auto";
 import { FormPassenger } from "@/core/components/form_passenger";
+import { FormAuto } from "@/core/components/form_auto";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { FormRoutes } from "@/core/components/form_routes";
 
 export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(PlanRideTripContext);
+  const { isLg } = useTailwindBreakpoint();
 
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();
+
+  const handleClickAuto = () => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        auto: {
+          ...state.filters.auto,
+          bottom_sheet: {
+            ...state.filters.auto.bottom_sheet,
+            is_open: true,
+          },
+        },
+      },
+    });
+  };
+
+  const handleCloseAuto = () => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        auto: {
+          ...state.filters.auto,
+          bottom_sheet: {
+            ...state.filters.auto.bottom_sheet,
+            is_open: false,
+          },
+        },
+      },
+    });
+  };
 
   const handleQueryAuto = async (input: string) => {
     dispatch({
@@ -42,6 +76,38 @@ export const FilterPlanRideTrip = () => {
         auto: {
           ...state.filters.auto,
           selected: data,
+        },
+      },
+    });
+  };
+
+  const handleClickOriginRoutes = () => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
+            is_open: true,
+          },
+        },
+      },
+    });
+  };
+
+  const handleCloseOriginRoutes = () => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
+            is_open: false,
+          },
         },
       },
     });
@@ -117,6 +183,38 @@ export const FilterPlanRideTrip = () => {
             ...state.filters.origin.selected,
             item: data,
             lat_lng: lat_lng,
+          },
+        },
+      },
+    });
+  };
+
+  const handleClickDestinationRoutes = () => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
+            is_open: true,
+          },
+        },
+      },
+    });
+  };
+
+  const handleCloseDestinationRoutes = () => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
+            is_open: false,
           },
         },
       },
@@ -309,8 +407,34 @@ export const FilterPlanRideTrip = () => {
           {dictionaries.filter.title}
         </p>
 
-        <AutocompleteAuto
-          {...dictionaries.filter.form.auto}
+        <FormAuto
+          bottomSheet={{
+            selected: state.filters.auto.selected,
+            items: state.filters.auto.items,
+            onQuery: (data: string) => handleQueryAuto(data),
+            onSelect: (data: { id: string; name: string }) =>
+              handleSelectAuto(data),
+            isOpen: state.filters.auto.bottom_sheet.is_open,
+            title: dictionaries.filter.form.auto.title,
+            onClose: handleCloseAuto,
+            inputProps: {
+              ...dictionaries.filter.form.auto.inputProps,
+            },
+            labelProps: {
+              ...dictionaries.filter.form.auto.labelProps,
+            },
+          }}
+          inputProps={{
+            ...dictionaries.filter.form.auto.inputProps,
+            onClick: () => {
+              if (!isLg) {
+                handleClickAuto();
+              }
+            },
+          }}
+          labelProps={{
+            ...dictionaries.filter.form.auto.labelProps,
+          }}
           selected={state.filters.auto.selected}
           items={state.filters.auto.items.filter((item) =>
             item.name
@@ -336,8 +460,24 @@ export const FilterPlanRideTrip = () => {
             "w-full"
           )}
         >
-          <AutocompleteRoutes
+          <FormRoutes
             origin={{
+              pageSheet: {
+                selected: state.filters.origin.selected.item,
+                items: state.filters.origin.items,
+                onQuery: (data: string) => handleQueryOriginRoutes(data),
+                onSelect: (data: { id: string; name: string }) =>
+                  handleSelectOriginRoutes(data),
+                isOpen: state.filters.origin.page_sheet.is_open,
+                title: dictionaries.filter.form.origin.title,
+                onClose: handleCloseOriginRoutes,
+                inputProps: {
+                  ...dictionaries.filter.form.origin.inputProps,
+                },
+                labelProps: {
+                  ...dictionaries.filter.form.origin.labelProps,
+                },
+              },
               autocomplete: {
                 selected: state.filters.origin.selected.item,
                 items: state.filters.origin.items,
@@ -347,12 +487,33 @@ export const FilterPlanRideTrip = () => {
               },
               inputProps: {
                 ...dictionaries.filter.form.origin.inputProps,
+                onClick: () => {
+                  if (!isLg) {
+                    handleClickOriginRoutes();
+                  }
+                },
               },
               labelProps: {
                 ...dictionaries.filter.form.origin.labelProps,
               },
             }}
             destination={{
+              pageSheet: {
+                selected: state.filters.destination.selected.item,
+                items: state.filters.destination.items,
+                onQuery: (data: string) => handleQueryDestinationRoutes(data),
+                onSelect: (data: { id: string; name: string }) =>
+                  handleSelectDestinationRoutes(data),
+                isOpen: state.filters.destination.page_sheet.is_open,
+                title: dictionaries.filter.form.destination.title,
+                onClose: handleCloseDestinationRoutes,
+                inputProps: {
+                  ...dictionaries.filter.form.destination.inputProps,
+                },
+                labelProps: {
+                  ...dictionaries.filter.form.destination.labelProps,
+                },
+              },
               autocomplete: {
                 selected: state.filters.destination.selected.item,
                 items: state.filters.destination.items,
@@ -362,6 +523,11 @@ export const FilterPlanRideTrip = () => {
               },
               inputProps: {
                 ...dictionaries.filter.form.destination.inputProps,
+                onClick: () => {
+                  if (!isLg) {
+                    handleClickDestinationRoutes();
+                  }
+                },
               },
               labelProps: {
                 ...dictionaries.filter.form.destination.labelProps,

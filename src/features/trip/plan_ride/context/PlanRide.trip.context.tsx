@@ -14,11 +14,17 @@ import {
 const initialState: PlanRideTripInitialStateType = {
   filters: {
     auto: {
+      bottom_sheet: {
+        is_open: false,
+      },
       query: "",
       selected: null,
       items: [],
     },
     origin: {
+      page_sheet: {
+        is_open: false,
+      },
       selected: {
         item: null,
         lat_lng: null,
@@ -26,6 +32,9 @@ const initialState: PlanRideTripInitialStateType = {
       items: [],
     },
     destination: {
+      page_sheet: {
+        is_open: false,
+      },
       selected: {
         item: null,
         lat_lng: null,

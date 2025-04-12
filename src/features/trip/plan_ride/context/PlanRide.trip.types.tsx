@@ -20,12 +20,18 @@ export interface PlanRideTripInitialStateType {
 // State Collection Types consist of:
 export interface PlanRideTripFilters {
   auto: {
+    bottom_sheet: {
+      is_open: boolean;
+    };
     query: string;
     items: { id: string; name: string }[];
     selected: null | { id: string; name: string };
   };
 
   origin: {
+    page_sheet: {
+      is_open: boolean;
+    };
     items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
@@ -33,6 +39,9 @@ export interface PlanRideTripFilters {
     };
   };
   destination: {
+    page_sheet: {
+      is_open: boolean;
+    };
     items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
