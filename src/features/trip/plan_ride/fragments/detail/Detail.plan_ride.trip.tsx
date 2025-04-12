@@ -158,7 +158,7 @@ export const DetailPlanRideTrip = () => {
         // "!h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
       )}
       open={isOpen}
       onClose={handleClose}
@@ -184,7 +184,7 @@ export const DetailPlanRideTrip = () => {
 
           <Card
             className={clsx(
-              "!pl-[1.5rem] !py-[1.5rem]",
+              "!px-[0rem] !py-[0rem] lg:!pl-[1.5rem] lg:!py-[1.5rem]",
               "overflow-hidden",
               "!border-[0px]"
             )}
@@ -198,7 +198,7 @@ export const DetailPlanRideTrip = () => {
             </p>
             <div
               className={clsx(
-                "grid grid-cols-2 place-content-start place-items-start gap-[1rem]",
+                "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
                 "w-full"
               )}
             >
@@ -242,7 +242,7 @@ export const DetailPlanRideTrip = () => {
             />
             <div
               className={clsx(
-                "grid grid-cols-2 place-content-start place-items-start gap-[1rem]",
+                "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
                 "w-full"
               )}
             >

@@ -158,7 +158,7 @@ export const RideDetailCardPlanRideTrip = ({
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-col items-start content-start justify-start justify-items-start gap-[52px]",
+          "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-start content-start justify-start justify-items-start gap-[52px]",
           "w-full"
         )}
       >
@@ -208,7 +208,7 @@ export const RideDetailCardPlanRideTrip = ({
           >
             <div
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
+                "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
                 "w-full"
               )}
             >
@@ -223,7 +223,7 @@ export const RideDetailCardPlanRideTrip = ({
 
             <div
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
+                "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
                 "w-full"
               )}
             >

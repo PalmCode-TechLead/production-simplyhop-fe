@@ -173,7 +173,7 @@ export const FilterPlanRideTrip = () => {
       throw new Error(`Err get lat lng ${err}`);
     }
 
-    await dispatch({
+    dispatch({
       type: PlanRideTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
@@ -183,6 +183,10 @@ export const FilterPlanRideTrip = () => {
             ...state.filters.origin.selected,
             item: data,
             lat_lng: lat_lng,
+          },
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
+            is_open: false,
           },
         },
       },
@@ -281,7 +285,7 @@ export const FilterPlanRideTrip = () => {
       throw new Error(`Err get lat lng ${err}`);
     }
 
-    await dispatch({
+    dispatch({
       type: PlanRideTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
@@ -291,6 +295,10 @@ export const FilterPlanRideTrip = () => {
             ...state.filters.destination.selected,
             item: data,
             lat_lng: lat_lng,
+          },
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
+            is_open: false,
           },
         },
       },
