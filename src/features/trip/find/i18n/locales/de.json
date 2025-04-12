@@ -80,6 +80,7 @@
         }
       },
       "passenger": {
+        "title": "Passagiere",
         "labelProps": {
           "id": "passenger",
           "children": "Passagiere",
