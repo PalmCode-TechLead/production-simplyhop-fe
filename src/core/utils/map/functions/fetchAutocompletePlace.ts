@@ -16,10 +16,7 @@ export const fetchAutocompletePlace = async (
         types: ["establishment"],
       },
       (businessResults, status) => {
-        if (
-          status === google.maps.places.PlacesServiceStatus.OK &&
-          businessResults
-        ) {
+        if (status === "OK" && businessResults) {
           results = [...results, ...businessResults];
         }
 
@@ -31,10 +28,7 @@ export const fetchAutocompletePlace = async (
             types: ["geocode"],
           },
           (geocodeResults, status) => {
-            if (
-              status === google.maps.places.PlacesServiceStatus.OK &&
-              geocodeResults
-            ) {
+            if (status === "OK" && geocodeResults) {
               results = [...results, ...geocodeResults];
             }
 
@@ -46,10 +40,7 @@ export const fetchAutocompletePlace = async (
                 types: ["address"],
               },
               (addressResults, status) => {
-                if (
-                  status === google.maps.places.PlacesServiceStatus.OK &&
-                  addressResults
-                ) {
+                if (status === "OK" && addressResults) {
                   results = [...results, ...addressResults];
                 }
 

@@ -13,7 +13,7 @@ export const fetchAutocompleteCityList = async (
       },
       (predictions, status) => {
         if (
-          status === google.maps.places.PlacesServiceStatus.OK &&
+          status === "OK" &&
           predictions
         ) {
           callback(predictions);
