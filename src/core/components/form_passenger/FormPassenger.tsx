@@ -19,6 +19,12 @@ export interface FormPassengerProps {
   maskedValue?: string;
   detail?: FormPassengerDetailProps & {
     title?: string;
+    onSelect?: (data: {
+      car_seat: {
+        checked: boolean;
+      };
+      value: { id: string; value: number }[];
+    }) => void;
     cta?: {
       next: {
         children: React.ReactNode;
@@ -42,7 +48,7 @@ export const FormPassenger = ({
       checked: detail?.carSeat?.input.checked ?? false,
     },
     value:
-      detail?.passenger?.items.map((item) => {
+      detail?.passenger?.items?.map((item) => {
         return {
           id: item.id,
           value: item.value,
@@ -57,9 +63,8 @@ export const FormPassenger = ({
   useOnClickOutside(ref as any, () => {
     if (isLg) {
       setIsOpen(false);
-      detail?.passenger?.onChange(passenger.value);
-      if (!detail?.carSeat?.input?.onChange) return;
-      detail?.carSeat?.input?.onChange(passenger.car_seat.checked);
+      if (!detail?.onSelect) return;
+      detail?.onSelect(passenger);
     }
   });
 
@@ -75,7 +80,7 @@ export const FormPassenger = ({
         checked: detail?.carSeat?.input.checked ?? false,
       },
       value:
-        detail?.passenger?.items.map((item) => {
+        detail?.passenger?.items?.map((item) => {
           return {
             id: item.id,
             value: item.value,
@@ -86,9 +91,8 @@ export const FormPassenger = ({
 
   const handleClickNext = () => {
     setIsOpen(false);
-    detail?.passenger?.onChange(passenger.value);
-    if (!detail?.carSeat?.input?.onChange) return;
-    detail?.carSeat?.input?.onChange(passenger.car_seat.checked);
+    if (!detail?.onSelect) return;
+    detail?.onSelect(passenger);
   };
 
   const handleChangePassenger = (value: { id: string; value: number }[]) => {
@@ -113,7 +117,7 @@ export const FormPassenger = ({
       ...prev,
 
       value:
-        detail?.passenger?.items.map((item) => {
+        detail?.passenger?.items?.map((item) => {
           return {
             id: item.id,
             value: item.value,
@@ -203,7 +207,7 @@ export const FormPassenger = ({
                 {...detail}
                 passenger={{
                   items:
-                    detail?.passenger?.items.map((item) => {
+                    detail?.passenger?.items?.map((item) => {
                       return {
                         ...item,
                         value:

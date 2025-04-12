@@ -6,13 +6,13 @@ import SVGIcon from "@/core/icons";
 export interface FormPassengerDetailProps {
   position?: "top" | "bottom";
   passenger?: {
-    items: {
+    items?: {
       id: string;
       name: string;
       description: string;
       value: number;
     }[];
-    onChange: (
+    onChange?: (
       data: {
         id: string;
         value: number;
@@ -85,6 +85,7 @@ export const FormPassengerDetail = ({
                 )}
                 disabled={item.value === 0}
                 onClick={() => {
+                  if (!passenger.onChange) return;
                   passenger.onChange(
                     passenger?.items?.map((childItem) => {
                       return {
@@ -94,7 +95,7 @@ export const FormPassengerDetail = ({
                             ? childItem.value - 1
                             : childItem.value,
                       };
-                    })
+                    }) ?? []
                   );
                 }}
               >
@@ -116,6 +117,7 @@ export const FormPassengerDetail = ({
                   "disabled:opacity-50"
                 )}
                 onClick={() => {
+                  if (!passenger.onChange) return;
                   passenger.onChange(
                     passenger?.items?.map((childItem) => {
                       return {
@@ -125,7 +127,7 @@ export const FormPassengerDetail = ({
                             ? childItem.value + 1
                             : childItem.value,
                       };
-                    })
+                    }) ?? []
                   );
                 }}
               >

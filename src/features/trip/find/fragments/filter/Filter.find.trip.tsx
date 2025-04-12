@@ -263,20 +263,12 @@ export const FilterFindTrip = () => {
     });
   };
 
-  const handleChangePassenger = (value: { id: string; value: number }[]) => {
-    dispatch({
-      type: FindTripActionEnum.SetFiltersData,
-      payload: {
-        ...state.filters,
-        passenger: {
-          ...state.filters.passenger,
-          value: value,
-        },
-      },
-    });
-  };
-
-  const handleChangePassengerCarSeat = () => {
+  const handleSubmitPassenger = (data: {
+    car_seat: {
+      checked: boolean;
+    };
+    value: { id: string; value: number }[];
+  }) => {
     dispatch({
       type: FindTripActionEnum.SetFiltersData,
       payload: {
@@ -285,8 +277,9 @@ export const FilterFindTrip = () => {
           ...state.filters.passenger,
           car_seat: {
             ...state.filters.passenger.car_seat,
-            checked: !state.filters.passenger.car_seat.checked,
+            checked: data.car_seat.checked,
           },
+          value: data.value,
         },
       },
     });
@@ -493,7 +486,6 @@ export const FilterFindTrip = () => {
                   input: {
                     ...dictionaries.filter.form.passenger.detail.carSeat.input,
                     checked: state.filters.passenger.car_seat.checked,
-                    onChange: handleChangePassengerCarSeat,
                   },
                 },
                 cta: dictionaries.filter.form.passenger.detail.cta,
@@ -509,8 +501,8 @@ export const FilterFindTrip = () => {
                       };
                     }
                   ),
-                  onChange: handleChangePassenger,
                 },
+                onSelect: handleSubmitPassenger,
               }}
               maskedValue={dictionaries.filter.form.passenger.maskedValue
                 .replaceAll(
