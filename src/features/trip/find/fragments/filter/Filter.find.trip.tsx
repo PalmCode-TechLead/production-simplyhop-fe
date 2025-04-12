@@ -365,7 +365,7 @@ export const FilterFindTrip = () => {
 
   return (
     <>
-      <BottomSheetRoute
+      {/* <BottomSheetRoute
         isOpen={state.filters.origin.bottom_sheet.is_open}
         title={dictionaries.filter.form.origin.title}
         inputProps={{ ...dictionaries.filter.form.origin.inputProps }}
@@ -377,7 +377,7 @@ export const FilterFindTrip = () => {
           handleSelectOriginRoutes(data);
         }}
         onClose={handleCloseOriginRoutes}
-      />
+      /> */}
 
       <BottomSheetRoute
         isOpen={state.filters.destination.bottom_sheet.is_open}
@@ -424,7 +424,8 @@ export const FilterFindTrip = () => {
           <div
             className={clsx(
               "grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] place-content-start place-items-start gap-[1rem]",
-              "w-full"
+              "w-full",
+              "relative"
             )}
           >
             <FormRoutes
@@ -468,6 +469,9 @@ export const FilterFindTrip = () => {
                   ...dictionaries.filter.form.destination.labelProps,
                 },
               }}
+              isOpen={state.filters.origin.bottom_sheet.is_open}
+              title={dictionaries.filter.form.origin.title}
+              onClose={handleCloseOriginRoutes}
             />
 
             <DatePicker
