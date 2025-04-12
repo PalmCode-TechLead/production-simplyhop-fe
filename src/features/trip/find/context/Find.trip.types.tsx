@@ -42,6 +42,9 @@ export interface FindTripFilters {
   };
 
   passenger: {
+    car_seat: {
+      checked: boolean;
+    };
     value: { id: string; value: number }[];
   };
 }

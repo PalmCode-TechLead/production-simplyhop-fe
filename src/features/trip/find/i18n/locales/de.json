@@ -86,6 +86,11 @@
           "children": "Passagiere",
           "required": false
         },
+        "carSeat": {
+          "input": {
+            "label": "Kindersitz erforderlich"
+          }
+        },
         "maskedValue": "{{adult}} Erwachsene, {{children}} Kind",
         "items": [
           {

@@ -4,6 +4,7 @@ import { InputContainer } from "../input_container";
 import { InputLabel, InputLabelProps } from "../input_label";
 import SVGIcon from "@/core/icons";
 import { useOnClickOutside } from "usehooks-ts";
+import { Checkbox, CheckboxProps } from "../checkbox";
 
 export interface DropdownPassengerProps {
   labelProps?: InputLabelProps;
@@ -16,6 +17,9 @@ export interface DropdownPassengerProps {
     description: string;
     value: number;
   }[];
+  carSeat?: {
+    input: CheckboxProps;
+  };
   onChange?: (
     data: {
       id: string;
@@ -29,6 +33,9 @@ export const DropdownPassenger = ({
 
   maskedValue = "",
   items = [],
+  carSeat = {
+    input: {},
+  },
   onChange = () => {},
 }: DropdownPassengerProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -39,6 +46,8 @@ export const DropdownPassenger = ({
   const handleClick = () => {
     setIsOpen((prev) => !prev);
   };
+
+  const { label, ...carSeatInput } = carSeat?.input;
   return (
     <div ref={ref} className={clsx("relative", "w-full")}>
       <InputContainer
@@ -64,7 +73,7 @@ export const DropdownPassenger = ({
           className={clsx(
             "absolute",
             "top-[-160px] right-0",
-            "grid grid-cols-1 place-content-start place-items-start",
+            "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
             "px-[1rem] py-[0.75rem]",
             "min-w-[255px]",
             "bg-[white]",
@@ -190,6 +199,16 @@ export const DropdownPassenger = ({
           </div>
 
           {/* end options */}
+          <div
+            className={clsx(
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+            )}
+          >
+            <Checkbox {...carSeatInput} />
+            <span className={clsx("text-[#2C2C2E] text-[0.75rem] font-normal")}>
+              {label}
+            </span>
+          </div>
         </div>
       )}
     </div>

@@ -271,7 +271,24 @@ export const FilterFindTrip = () => {
       payload: {
         ...state.filters,
         passenger: {
+          ...state.filters.passenger,
           value: value,
+        },
+      },
+    });
+  };
+
+  const handleChangePassengerCarSeat = () => {
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        passenger: {
+          ...state.filters.passenger,
+          car_seat: {
+            ...state.filters.passenger.car_seat,
+            checked: !state.filters.passenger.car_seat.checked,
+          },
         },
       },
     });
@@ -465,6 +482,13 @@ export const FilterFindTrip = () => {
             <DropdownPassenger
               labelProps={{
                 ...dictionaries.filter.form.passenger.labelProps,
+              }}
+              carSeat={{
+                input: {
+                  ...dictionaries.filter.form.passenger.carSeat.input,
+                  checked: state.filters.passenger.car_seat.checked,
+                  onChange: handleChangePassengerCarSeat,
+                },
               }}
               maskedValue={dictionaries.filter.form.passenger.maskedValue
                 .replaceAll(
