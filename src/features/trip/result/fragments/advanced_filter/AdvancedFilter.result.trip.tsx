@@ -107,7 +107,7 @@ export const CarFacilityFilterResulTrip = () => {
         />
         <div
           className={clsx(
-            "hidden lg:grid-flow-col items-center content-center justify-start justify-items-start gap-[1.5rem]",
+            "hidden lg:grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1.5rem]",
             "w-full"
           )}
         >
