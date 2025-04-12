@@ -214,7 +214,7 @@ export const RideCardResultTrip = ({
           <DriverProfileLabel {...driver.profile} />
           <div
             className={clsx(
-              "grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+              "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
             )}
           >
             {ride.badge.map((item, itemIndex) => (
@@ -222,11 +222,17 @@ export const RideCardResultTrip = ({
             ))}
           </div>
         </div>
-        <Image
-          {...car.image}
-          alt={car.image.alt}
-          className={clsx("w-[145px]")}
-        />
+
+        <div className={clsx('grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]')}>
+          <Image
+            {...car.image}
+            alt={car.image.alt}
+            className={clsx("w-[145px]")}
+          />
+           <div className={clsx("block lg:hidden")}>
+            <CarIdentityItem {...car.identity} number={null} />
+          </div>
+        </div>
 
         <div
           className={clsx(
@@ -235,7 +241,9 @@ export const RideCardResultTrip = ({
           )}
         >
           {/* identity */}
-          <CarIdentityItem {...car.identity} />
+          <div className={clsx("hidden lg:block")}>
+            <CarIdentityItem {...car.identity} />
+          </div>
 
           {/* routes */}
           <div
@@ -286,6 +294,17 @@ export const RideCardResultTrip = ({
               ))}
             </div>
           </div>
+        </div>
+
+        {/* badge */}
+        <div
+          className={clsx(
+            "lg:hidden grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+          )}
+        >
+          {ride.badge.map((item, itemIndex) => (
+            <RideBadge {...item} key={itemIndex} />
+          ))}
         </div>
         {/* price */}
         <div
