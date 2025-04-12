@@ -53,26 +53,13 @@ export const FormPassenger = ({
   const { isLg } = useTailwindBreakpoint();
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
+
   useOnClickOutside(ref as any, () => {
     if (isLg) {
       setIsOpen(false);
       detail?.passenger?.onChange(passenger.value);
       if (!detail?.carSeat?.input?.onChange) return;
       detail?.carSeat?.input?.onChange(passenger.car_seat.checked);
-    } else {
-      setPassenger((prev) => ({
-        ...prev,
-        car_seat: {
-          checked: detail?.carSeat?.input.checked ?? false,
-        },
-        value:
-          detail?.passenger?.items.map((item) => {
-            return {
-              id: item.id,
-              value: item.value,
-            };
-          }) ?? [],
-      }));
     }
   });
 
@@ -81,6 +68,10 @@ export const FormPassenger = ({
   };
 
   const handleCloseBottomSheet = () => {
+    setIsOpen(false);
+  };
+
+  const handleClickNext = () => {
     setIsOpen(false);
     detail?.passenger?.onChange(passenger.value);
     if (!detail?.carSeat?.input?.onChange) return;
@@ -107,9 +98,7 @@ export const FormPassenger = ({
   React.useEffect(() => {
     setPassenger((prev) => ({
       ...prev,
-      car_seat: {
-        checked: detail?.carSeat?.input.checked ?? false,
-      },
+
       value:
         detail?.passenger?.items.map((item) => {
           return {
@@ -118,7 +107,15 @@ export const FormPassenger = ({
           };
         }) ?? [],
     }));
-  }, [detail?.passenger?.items, detail?.carSeat?.input.checked]);
+  }, [detail?.passenger?.items]);
+  React.useEffect(() => {
+    setPassenger((prev) => ({
+      ...prev,
+      car_seat: {
+        checked: detail?.carSeat?.input.checked ?? false,
+      },
+    }));
+  }, [detail?.carSeat?.input.checked]);
 
   return (
     <div ref={ref} className={clsx("relative", "w-full")}>
@@ -213,7 +210,9 @@ export const FormPassenger = ({
                 }}
               />
             </div>
-            <Button>{detail?.cta?.next.children}</Button>
+            <Button onClick={handleClickNext}>
+              {detail?.cta?.next.children}
+            </Button>
           </div>
         </BottomSheet>
       )}
