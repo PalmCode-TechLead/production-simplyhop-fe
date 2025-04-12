@@ -16,7 +16,8 @@ export const TabMyListTrip = () => {
         className={clsx(
           "flex justify-start items-center gap-[2rem]",
           "w-full",
-          "border-b-[0.5px] border-b-[#C2C2C2]"
+          "border-b-[0.5px] border-b-[#C2C2C2]",
+          "overflow-x-auto"
         )}
       >
         {dictionaries.tab.items.map((item, itemIndex) => (
@@ -26,7 +27,8 @@ export const TabMyListTrip = () => {
               "text-[#C2C2C2] data-[selected]:text-[#5AC53D] font-normal data-[selected]:font-semibold text-[1rem] ",
               "outline-none",
               "data-[selected]:border-b data-[selected]:border-b-[#5AC53D]",
-              "cursor-pointer"
+              "cursor-pointer",
+              "whitespace-nowrap"
             )}
           >
             {item.name}
