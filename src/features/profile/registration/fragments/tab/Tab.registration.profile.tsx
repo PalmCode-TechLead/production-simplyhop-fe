@@ -7,11 +7,12 @@ import {
   RegistrationProfileContext,
 } from "../../context";
 import { TabButton } from "@/core/components/tab_button";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const TabRegistrationProfile = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
-
+  const { isLg } = useTailwindBreakpoint();
   React.useEffect(() => {
     dispatch({
       type: RegistrationProfileActionEnum.SetTabData,
@@ -41,14 +42,16 @@ export const TabRegistrationProfile = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-        "w-full"
+        "grid grid-flow-col lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+        "w-full",
+        "overflow-auto"
       )}
     >
       {tabItems.map((menu, index) => {
         return (
           <TabButton
             key={index}
+            variant={isLg ? "vertical" : "horizontal"}
             selected={state.tab.selected?.id === menu.id}
             onClick={() => handleClickTabButton(menu)}
           >
