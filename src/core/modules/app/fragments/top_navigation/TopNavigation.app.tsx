@@ -5,8 +5,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { getDictionaries } from "../../i18n";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { TopNavigationDesktopMenu } from "../top_navigation_desktop_menu";
-import { TopNavigationMobileMenu } from "../top_navigation_mobile_menu";
+import dynamic from "next/dynamic";
+
+const TopNavigationDesktopMenu = dynamic(
+  () =>
+    import("../top_navigation_desktop_menu").then(
+      (mod) => mod.TopNavigationDesktopMenu
+    ),
+  {
+    ssr: false,
+  }
+);
+
+const TopNavigationMobileMenu = dynamic(
+  () =>
+    import("../top_navigation_mobile_menu").then(
+      (mod) => mod.TopNavigationMobileMenu
+    ),
+  {
+    ssr: false,
+  }
+);
 
 export const TopNavigation = () => {
   const dictionaries = getDictionaries();
@@ -39,11 +58,9 @@ export const TopNavigation = () => {
           </Link>
 
           {/* NOTES: Menu */}
-          {/* {typeof window === "undefined" ? null : isLg ? (
-            <TopNavigationDesktopMenu />
-          ) : (
-            <TopNavigationMobileMenu />
-          )} */}
+          <React.Suspense fallback={<div />}>
+            {isLg ? <TopNavigationDesktopMenu /> : <TopNavigationMobileMenu />}
+          </React.Suspense>
         </div>
       </div>
     </nav>
