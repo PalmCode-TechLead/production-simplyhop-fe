@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import clsx from "clsx";
-import { FullBottomSheet } from "../full_bottom_sheet";
+import { PageSheet } from "../page_sheet";
 import SVGIcon from "@/core/icons";
 import { InputContainer } from "../input_container";
 import { Input } from "../input";
@@ -48,7 +48,7 @@ export const BottomSheetRoute = ({
     setQuery(selected?.name ?? "");
   }, [selected?.name]);
   return (
-    <FullBottomSheet isOpen={isOpen}>
+    <PageSheet isOpen={isOpen}>
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
@@ -149,6 +149,6 @@ export const BottomSheetRoute = ({
           </div>
         </div>
       </div>
-    </FullBottomSheet>
+    </PageSheet>
   );
 };

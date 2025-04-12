@@ -6,7 +6,6 @@ import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import { FindTripActionEnum, FindTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
-import { DropdownPassenger } from "@/core/components/dropdown_passenger";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { RIDE_FILTER } from "@/core/enums";
@@ -16,9 +15,9 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
-import { FullBottomSheet } from "@/core/components/full_bottom_sheet";
 import { BottomSheetRoute } from "@/core/components/bottom_sheet_route";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { FormPassenger } from "@/core/components/form_passenger";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
@@ -479,7 +478,7 @@ export const FilterFindTrip = () => {
               onSelect={handleSelectDate}
             />
 
-            <DropdownPassenger
+            <FormPassenger
               labelProps={{
                 ...dictionaries.filter.form.passenger.labelProps,
               }}

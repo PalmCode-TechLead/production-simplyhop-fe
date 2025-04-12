@@ -2,15 +2,12 @@ import * as React from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 
-export interface FullBottomSheetProps {
+export interface PageSheetProps {
   isOpen?: boolean;
   children?: React.ReactNode;
 }
 
-export const FullBottomSheet = ({
-  isOpen = false,
-  children,
-}: FullBottomSheetProps) => {
+export const PageSheet = ({ isOpen = false, children }: PageSheetProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
