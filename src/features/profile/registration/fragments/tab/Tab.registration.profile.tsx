@@ -31,6 +31,11 @@ export const TabRegistrationProfile = () => {
     });
   }, [dictionaries.tab.items]);
 
+  const scrollToElement = (id: string) => {
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const handleClickTabButton = (data: { id: string; name: string }) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetTabData,
@@ -39,6 +44,7 @@ export const TabRegistrationProfile = () => {
         selected: data,
       },
     });
+    scrollToElement(data.id);
   };
   const tabItems =
     state.ride_plan.form.offer_trip.selected?.id === "yes"

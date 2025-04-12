@@ -13,6 +13,7 @@
     ]
   },
   "personal_information": {
+    "id": "personal-information",
     "form": {
       "title": "Persönliche Informationen",
       "input": {
@@ -83,6 +84,7 @@
     }
   },
   "vehicle_information": {
+    "id": "vehicle-information",
     "title": "Fahrzeuginformationen",
     "general": {
       "form": {

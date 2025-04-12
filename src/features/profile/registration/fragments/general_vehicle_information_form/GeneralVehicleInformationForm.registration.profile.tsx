@@ -91,6 +91,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
 
   return (
     <div
+      id={dictionaries.vehicle_information.id}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
         "w-full"

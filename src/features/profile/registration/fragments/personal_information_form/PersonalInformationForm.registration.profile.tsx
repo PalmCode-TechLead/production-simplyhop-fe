@@ -78,6 +78,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
 
   return (
     <div
+      id={dictionaries.personal_information.id}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full"
