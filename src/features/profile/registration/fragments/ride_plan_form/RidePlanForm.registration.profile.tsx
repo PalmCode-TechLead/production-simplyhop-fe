@@ -49,7 +49,7 @@ export const RidePlanFormRegistrationProfile = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-[274px_1fr] items-center content-center justify-items-start justify-start gap-[0.75rem]",
+        "grid grid-cols-1 lg:grid-cols-[274px_1fr] items-center content-center justify-items-start justify-start gap-[0.75rem]",
         "w-full",
         "py-[0.5rem]"
       )}

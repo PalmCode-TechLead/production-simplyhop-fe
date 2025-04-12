@@ -186,7 +186,7 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
           />
           <div
             className={clsx(
-              "grid grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+              "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
               "w-full"
             )}
           >
@@ -245,7 +245,7 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
 
         <div
           className={clsx(
-            "grid grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+            "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
             "w-full"
           )}
         >

@@ -121,14 +121,6 @@ const initialState: RegistrationProfileInitialStateType = {
           selected: null,
           items: [],
         },
-        child_seat_number: {
-          selected: null,
-          items: [],
-        },
-        free_seat_number: {
-          selected: null,
-          items: [],
-        },
       },
     },
   },

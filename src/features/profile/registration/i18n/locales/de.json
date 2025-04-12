@@ -141,9 +141,9 @@
         "message": "Ziehen Sie Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
         "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
       },
-      "square_input":{
-        "form":{
-          "label":"+<br/>Weitere hinzufügen"
+      "square_input": {
+        "form": {
+          "label": "+<br/>Weitere hinzufügen"
         }
       }
     },
@@ -254,28 +254,6 @@
             "labelProps": {
               "id": "pet",
               "children": "Haustier",
-              "required": false
-            }
-          },
-          "child_seat_number": {
-            "inputProps": {
-              "id": "child_seat_number",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "child_seat_number",
-              "children": "Kindersitz",
-              "required": false
-            }
-          },
-          "free_seat_number": {
-            "inputProps": {
-              "id": "free_seat_number",
-              "placeholder": " "
-            },
-            "labelProps": {
-              "id": "free_seat_number",
-              "children": "Anzahl der freien Sitzplätze",
               "required": false
             }
           }

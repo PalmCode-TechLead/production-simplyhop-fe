@@ -23,12 +23,12 @@ export const RegistrationProfileContainer = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full",
-          "pt-[2rem]"
+          "pt-[2rem] px-[1rem]",
         )}
       >
         <div
           className={clsx(
-            "grid grid-cols-[421px_1fr] place-content-start place-items-start gap-[100px]",
+            "grid grid-cols-1 lg:grid-cols-[421px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[100px]",
             "w-full max-w-container"
           )}
         >
@@ -36,7 +36,7 @@ export const RegistrationProfileContainer = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "w-full",
-              "sticky top-[100px]"
+              "lg:sticky lg:top-[100px]"
             )}
           >
             <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
@@ -49,7 +49,7 @@ export const RegistrationProfileContainer = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "w-full",
-              "px-[1.5rem] py-[1.5rem]"
+              "px-[0rem] py-[0rem] lg:px-[1.5rem] lg:py-[1.5rem]"
             )}
           >
             <PersonalInformationFormRegistrationProfile />

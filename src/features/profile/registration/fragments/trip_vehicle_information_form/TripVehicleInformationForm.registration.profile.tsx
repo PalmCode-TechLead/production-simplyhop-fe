@@ -68,43 +68,6 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
     });
   };
 
-  const handleSelectChildSeatNumber = (data: { id: string; name: string }) => {
-    dispatch({
-      type: RegistrationProfileActionEnum.SetVehicleInformationData,
-      payload: {
-        ...state.vehicle_information,
-        trip: {
-          ...state.vehicle_information.trip,
-          form: {
-            ...state.vehicle_information.trip.form,
-            child_seat_number: {
-              ...state.vehicle_information.trip.form.child_seat_number,
-              selected: data,
-            },
-          },
-        },
-      },
-    });
-  };
-
-  const handleSelectFreeSeatNumber = (data: { id: string; name: string }) => {
-    dispatch({
-      type: RegistrationProfileActionEnum.SetVehicleInformationData,
-      payload: {
-        ...state.vehicle_information,
-        trip: {
-          ...state.vehicle_information.trip,
-          form: {
-            ...state.vehicle_information.trip.form,
-            free_seat_number: {
-              ...state.vehicle_information.trip.form.free_seat_number,
-              selected: data,
-            },
-          },
-        },
-      },
-    });
-  };
   return (
     <div
       className={clsx(
@@ -161,44 +124,6 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
           items={state.vehicle_information.trip.form.pet.items}
           onSelect={handleSelectPet}
         />
-
-        <div
-          className={clsx(
-            "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-            "w-full"
-          )}
-        >
-          <Dropdownfield
-            labelProps={{
-              ...dictionaries.vehicle_information.trip.form.input
-                .child_seat_number.labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.vehicle_information.trip.form.input
-                .child_seat_number.inputProps,
-            }}
-            selected={
-              state.vehicle_information.trip.form.child_seat_number.selected
-            }
-            items={state.vehicle_information.trip.form.child_seat_number.items}
-            onSelect={handleSelectChildSeatNumber}
-          />
-          <Dropdownfield
-            labelProps={{
-              ...dictionaries.vehicle_information.trip.form.input
-                .free_seat_number.labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.vehicle_information.trip.form.input
-                .free_seat_number.inputProps,
-            }}
-            selected={
-              state.vehicle_information.trip.form.free_seat_number.selected
-            }
-            items={state.vehicle_information.trip.form.free_seat_number.items}
-            onSelect={handleSelectFreeSeatNumber}
-          />
-        </div>
       </div>
     </div>
   );
