@@ -5,15 +5,18 @@ import { CarFacilityFilterResulTrip } from "../fragments/advanced_filter";
 import { RidesResultTrip } from "../fragments/rides";
 import { DetailResultTrip } from "../fragments/detail";
 import { NotificationResultTrip } from "../fragments/notification";
+import { getDictionaries } from "../i18n";
+import { FilterDetailTrip } from "../fragments/filter_detail";
 
 export const ResultTripContainer = () => {
+  const dictionaries = getDictionaries();
   return (
     <>
       <div
         className={clsx(
           "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
           "w-full",
-          "pt-[1.5rem] pb-[0.75rem] px-[1rem]",
+          "pb-[0.75rem] px-[1rem]",
           "relative"
         )}
       >
@@ -29,11 +32,42 @@ export const ResultTripContainer = () => {
               "max-w-container w-full h-full"
             )}
           >
-            <React.Suspense fallback={<div />}>
-              <FilterResultTrip />
-            </React.Suspense>
+            <div
+              className={clsx(
+                "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+                "w-full",
+                "sticky top-[90px] py-[1.5rem] z-[20]",
+                "bg-[white]"
+              )}
+            >
+              <h2
+                className={clsx(
+                  "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+                )}
+              >
+                {dictionaries.ride.title}
+              </h2>
+              <div
+                className={clsx(
+                  "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[2.5rem]",
+                  "w-full"
+                )}
+              >
+                <div className={clsx("hidden lg:block", "w-full")}>
+                  <React.Suspense fallback={<div />}>
+                    <FilterResultTrip />
+                  </React.Suspense>
+                </div>
 
-            <CarFacilityFilterResulTrip />
+                <div className={clsx("block lg:hidden", "w-full")}>
+                  <React.Suspense fallback={<div />}>
+                    <FilterDetailTrip />
+                  </React.Suspense>
+                </div>
+
+                <CarFacilityFilterResulTrip />
+              </div>
+            </div>
 
             <RidesResultTrip />
           </div>

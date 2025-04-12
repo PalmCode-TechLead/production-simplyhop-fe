@@ -2,10 +2,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-// import Link from "next/link";
 import { usePathname } from "next/navigation";
-// import Image from "next/image";
-// import { TabButton } from "@/core/components/tab_button";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import dynamic from "next/dynamic";
 
@@ -39,12 +36,10 @@ export const SettingsSidebarApp = () => {
       <React.Suspense fallback={<div />}>
         <div
           className={clsx(
-            "grid grid-flow-col items-center content-center justify-end justify-items-end direction lg:grid-cols-1 lg:place-content-start lg:place-items-start gap-[0.75rem]",
+            "flex flex-row-reverse items-end justify-end",
+            "lg:grid lg:grid-cols-1 lg:place-content-start lg:place-items-start gap-[0.75rem]",
             "w-full"
           )}
-          style={{
-            direction: !isLg ? "rtl" : undefined,
-          }}
         >
           <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
             {"Kevin Jordi"}
@@ -52,8 +47,8 @@ export const SettingsSidebarApp = () => {
           <Image
             src={"/images/general/default_avatar.jpeg"}
             alt="avatar"
-            width={isLg ? 100 : 48}
-            height={isLg ? 100 : 48}
+            width={100}
+            height={100}
             className={clsx(
               "w-[3rem] h-[3rem] lg:w-[100px] lg:h-[100px]",
               "rounded-[50%]",
@@ -63,10 +58,9 @@ export const SettingsSidebarApp = () => {
         </div>
 
         {/* menu */}
-
         <div
           className={clsx(
-            "grid grid-flow-col lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+            "grid grid-flow-col grid-cols-none lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "w-full max-w-full",
             "overflow-x-scroll lg:overflow-x-hidden"
           )}
