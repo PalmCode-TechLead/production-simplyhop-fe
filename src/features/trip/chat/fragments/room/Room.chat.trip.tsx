@@ -12,6 +12,9 @@ import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { PageSheet } from "@/core/components/page_sheet";
+import { AppCollectionURL } from "@/core/utils/router/constants/app";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -19,6 +22,7 @@ export const RoomChatTrip = () => {
   const { state, dispatch } = React.useContext(ChatTripContext);
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
+  const { isLg } = useTailwindBreakpoint();
   if (!id) {
     return null;
   }
@@ -71,6 +75,92 @@ export const RoomChatTrip = () => {
   const handleClickSend = () => {
     //
   };
+
+  if (!isLg) {
+    return (
+      <PageSheet isOpen={!!id} direction={"right"}>
+        <div
+          className={clsx(
+            "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
+            "w-full h-full",
+            "bg-[white]"
+          )}
+        >
+          {/* header */}
+
+          <RoomHeaderChatTrip
+            href={AppCollectionURL.private.chat()}
+            image={{ ...dictionaries.chat.room.header.image }}
+            name={dictionaries.chat.room.header.name}
+          />
+
+          {/* chat */}
+
+          <RoomConversationContainerChatTrip>
+            <CustomerOrderCardChatTrip />
+            <DriverOrderCardChatTrip />
+            <ConversationItemChatTrip chats={conversationData} />
+          </RoomConversationContainerChatTrip>
+
+          {/* action commentar */}
+          <div
+            className={clsx(
+              "grid-cols-[1.5rem_1fr_auto]",
+              "grid  items-center content-center justify-start justify-items-start gap-[0.625rem]",
+              "w-full",
+              "px-[2.5rem] py-[1rem]",
+              "border-t border-t-[#DFDFDF]"
+            )}
+          >
+            <div className={clsx("relative")}>
+              <button onClick={handleClickEmoji}>
+                <SVGIcon
+                  name="Smile"
+                  className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#BDBDBD]")}
+                />
+              </button>
+              {isEmojiOpen && (
+                <EmojiPicker
+                  className={clsx(
+                    "!absolute",
+                    "top-[-480px] left-[-175px]",
+                    "z-[10]"
+                  )}
+                  onEmojiClick={handleSelectEmoji}
+                />
+              )}
+            </div>
+
+            <ChatField
+              labelProps={{ ...dictionaries.chat.room.message.labelProps }}
+              inputProps={{
+                ...dictionaries.chat.room.message.inputProps,
+                value: state.room.chat.input.value,
+                onChange: handleChangeChat,
+              }}
+            />
+            <button
+              className={clsx(
+                "grid grid-flow-col place-content-center place-items-center gap-[0.625rem]",
+                "px-[0.75rem] py-[0.625rem]",
+                "bg-[#05912A]",
+                "rounded-[0.375rem]",
+                "text-[0.875rem] text-[white] font-normal"
+              )}
+              onClick={handleClickSend}
+            >
+              {dictionaries.chat.room.cta.send.children}
+              <SVGIcon
+                name="SendHorizonal"
+                className={clsx("w-[1rem] h-[1rem]", "text-[white]")}
+              />
+            </button>
+          </div>
+        </div>
+        );
+      </PageSheet>
+    );
+  }
   return (
     <div
       className={clsx(

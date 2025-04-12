@@ -31,6 +31,7 @@ export const ChatTripContainer = () => {
           {/* NOTES: divider */}
           <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9]")} />
           {/* NOTES: Room */}
+
           <Suspense fallback={<div />}>
             <RoomChatTrip />
           </Suspense>
