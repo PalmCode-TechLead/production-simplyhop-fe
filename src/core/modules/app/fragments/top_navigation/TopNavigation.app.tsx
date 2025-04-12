@@ -33,7 +33,7 @@ export const TopNavigation = () => {
   const { isLg } = useTailwindBreakpoint();
 
   return (
-    <nav className={clsx("fixed top-0 left-0 right-0", "w-full", "z-30")}>
+    <nav className={clsx("fixed top-0 left-0 right-0", "w-full", "z-[200]")}>
       <div
         className={clsx(
           "grid grid-cols-1 items-center content-center justify-center justify-items-center",
