@@ -23,9 +23,9 @@ export const AccountSettingsSupport = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem] lg:gap-[1.5rem]",
         "w-full",
-        "px-[1.5rem] py-[1.5rem]",
+        "px-[1rem] py-[1rem] lg:px-[1.5rem] lg:py-[1.5rem]",
         "border border-[#D3E7CE]",
         "rounded-[1.25rem]"
       )}
@@ -35,7 +35,7 @@ export const AccountSettingsSupport = () => {
       </h2>
       <div
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.25rem]",
+          "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1rem] lg:gap-[0.25rem]",
           "w-full"
         )}
       >
@@ -55,7 +55,7 @@ export const AccountSettingsSupport = () => {
 
         <button
           className={clsx(
-            "px-[1.5rem] py-[1rem]",
+            "px-[0rem] py-[1rem] lg:px-[1.5rem] lg:py-[1rem]",
             "text-[#B30606] text-[0.875rem] font-medium",
             "cursor-pointer"
           )}

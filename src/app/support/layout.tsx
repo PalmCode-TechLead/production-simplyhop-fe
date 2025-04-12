@@ -26,7 +26,7 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
         >
           <div
             className={clsx(
-              "grid grid-cols-1 lg:grid-cols-[334px_1fr] place-content-start place-items-start gap-[54px]",
+              "grid grid-cols-1 lg:grid-cols-[334px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[54px]",
               "w-full max-w-container",
               "pt-[2rem]"
             )}
