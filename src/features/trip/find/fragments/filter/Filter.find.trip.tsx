@@ -352,6 +352,11 @@ export const FilterFindTrip = () => {
       }`;
       params = params + children;
     }
+    if (state.filters.passenger.car_seat.checked) {
+      const carSeat = `&${RIDE_FILTER.CAR_SEAT}=true`;
+      params = params + carSeat;
+    }
+
     router.push(AppCollectionURL.public.tripResult(params));
   };
 

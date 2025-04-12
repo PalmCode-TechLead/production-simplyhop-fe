@@ -22,6 +22,7 @@ export const useRideFilterResultTrip = () => {
   const date = searchParams.get(RIDE_FILTER.DATE);
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
+  const carSeat = searchParams.get(RIDE_FILTER.CAR_SEAT);
 
   const { state, dispatch } = React.useContext(ResultTripContext);
   const { isLoaded } = useLoadScript({
@@ -99,6 +100,8 @@ export const useRideFilterResultTrip = () => {
     let adultData: null | number = null;
     let childrenData: null | number = null;
 
+    let carSeatData: boolean = false;
+
     if (originId) {
       const { data, lat_lng } = await setOriginRoutesFromParams({
         id: originId,
@@ -129,6 +132,10 @@ export const useRideFilterResultTrip = () => {
 
     if (children) {
       childrenData = Number(children);
+    }
+
+    if (carSeat) {
+      carSeatData = true;
     }
 
     if (!!originData && !!destinationData) {
@@ -173,6 +180,10 @@ export const useRideFilterResultTrip = () => {
                 };
               }
             ),
+            car_seat: {
+              ...state.filters.passenger.car_seat,
+              checked: carSeatData,
+            },
           },
         },
       });
