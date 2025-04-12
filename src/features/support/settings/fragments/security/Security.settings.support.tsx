@@ -35,7 +35,7 @@ export const SecuritySettingsSupport = () => {
       </h2>
       <div
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1rem] lg:gap-[0.25rem]",
+          "grid grid-cols-1 lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem] lg:gap-[0.25rem]",
           "w-full"
         )}
       >

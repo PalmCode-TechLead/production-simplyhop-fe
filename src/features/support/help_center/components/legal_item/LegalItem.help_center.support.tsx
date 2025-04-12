@@ -25,7 +25,7 @@ export const LegalItemHelpCenterSupport = ({
     <div
       id={id}
       className={clsx(
-        "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
+        "grid grid-cols-1 lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
         "w-full"
       )}
     >
@@ -46,7 +46,7 @@ export const LegalItemHelpCenterSupport = ({
       <Link
         href={cta.href}
         className={clsx(
-          "px-[46.5px] py-[1rem]",
+          "px-[0rem] py-[1rem] lg:px-[46.5px] lg:py-[1rem]",
           "text-[#5AC53D] text-[0.875rem] font-medium"
         )}
       >
