@@ -488,11 +488,28 @@ export const FilterFindTrip = () => {
               labelProps={{
                 ...dictionaries.filter.form.passenger.labelProps,
               }}
-              carSeat={{
-                input: {
-                  ...dictionaries.filter.form.passenger.carSeat.input,
-                  checked: state.filters.passenger.car_seat.checked,
-                  onChange: handleChangePassengerCarSeat,
+              detail={{
+                title: dictionaries.filter.form.passenger.title,
+                carSeat: {
+                  input: {
+                    ...dictionaries.filter.form.passenger.carSeat.input,
+                    checked: state.filters.passenger.car_seat.checked,
+                    onChange: handleChangePassengerCarSeat,
+                  },
+                },
+                passenger: {
+                  items: dictionaries.filter.form.passenger.items.map(
+                    (item) => {
+                      return {
+                        ...item,
+                        value:
+                          state.filters.passenger.value.find(
+                            (passengerItem) => passengerItem.id === item.id
+                          )?.value ?? 0,
+                      };
+                    }
+                  ),
+                  onChange: handleChangePassenger,
                 },
               }}
               maskedValue={dictionaries.filter.form.passenger.maskedValue
@@ -512,16 +529,6 @@ export const FilterFindTrip = () => {
                     )?.value ?? 0
                   )
                 )}
-              items={dictionaries.filter.form.passenger.items.map((item) => {
-                return {
-                  ...item,
-                  value:
-                    state.filters.passenger.value.find(
-                      (passengerItem) => passengerItem.id === item.id
-                    )?.value ?? 0,
-                };
-              })}
-              onChange={handleChangePassenger}
             />
           </div>
 
