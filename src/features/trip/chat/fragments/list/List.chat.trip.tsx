@@ -66,7 +66,7 @@ export const ListChatTrip = () => {
         "w-full"
       )}
     >
-      <h1 className={clsx("text-[black] text-[1.5rem] font-semibold")}>
+      <h1 className={clsx("text-[black] text-[1.125rem] lg:text-[1.5rem] font-semibold")}>
         {dictionaries.title}
       </h1>
 
