@@ -18,7 +18,8 @@ export interface FormPassengerProps {
 
   maskedValue?: string;
   detail?: FormPassengerDetailProps & {
-    cta: {
+    title?: string;
+    cta?: {
       next: {
         children: React.ReactNode;
       };
@@ -212,7 +213,7 @@ export const FormPassenger = ({
                 }}
               />
             </div>
-            <Button>{detail?.cta.next.children}</Button>
+            <Button>{detail?.cta?.next.children}</Button>
           </div>
         </BottomSheet>
       )}

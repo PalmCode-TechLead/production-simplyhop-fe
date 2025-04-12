@@ -4,4 +4,5 @@ export enum RIDE_FILTER {
   DATE = "date",
   ADULT_PASSENGER = "adult",
   CHILDREN_PASSENGER = "children",
+  CAR_SEAT = "car_seat",
 }

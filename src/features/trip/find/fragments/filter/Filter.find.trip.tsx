@@ -14,7 +14,6 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
-import { PageSheetRoute } from "@/core/components/page_sheet_route";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormPassenger } from "@/core/components/form_passenger";
 import { FormRoutes } from "@/core/components/form_routes";

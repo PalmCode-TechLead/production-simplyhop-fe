@@ -9,7 +9,6 @@ import {
   useRideFilterResultTrip,
 } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
-import { DropdownPassenger } from "@/core/components/dropdown_passenger";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { RIDE_FILTER } from "@/core/enums";
@@ -19,6 +18,7 @@ import {
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
 import { Button } from "@/core/components/button";
+import { FormPassenger } from "@/core/components/form_passenger";
 
 export const FilterResultTrip = () => {
   const router = useRouter();
@@ -197,7 +197,24 @@ export const FilterResultTrip = () => {
       payload: {
         ...state.filters,
         passenger: {
+          ...state.filters.passenger,
           value: value,
+        },
+      },
+    });
+  };
+
+  const handleChangePassengerCarSeat = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        passenger: {
+          ...state.filters.passenger,
+          car_seat: {
+            ...state.filters.passenger.car_seat,
+            checked: !state.filters.passenger.car_seat.checked,
+          },
         },
       },
     });
@@ -305,9 +322,34 @@ export const FilterResultTrip = () => {
             onSelect={handleSelectDate}
           />
 
-          <DropdownPassenger
+          <FormPassenger
             labelProps={{
               ...dictionaries.filter.form.passenger.labelProps,
+            }}
+            detail={{
+              title: dictionaries.filter.form.passenger.detail.title,
+              carSeat: {
+                input: {
+                  ...dictionaries.filter.form.passenger.detail.carSeat.input,
+                  checked: state.filters.passenger.car_seat.checked,
+                  onChange: handleChangePassengerCarSeat,
+                },
+              },
+              cta: dictionaries.filter.form.passenger.detail.cta,
+              passenger: {
+                items: dictionaries.filter.form.passenger.detail.items.map(
+                  (item) => {
+                    return {
+                      ...item,
+                      value:
+                        state.filters.passenger.value.find(
+                          (passengerItem) => passengerItem.id === item.id
+                        )?.value ?? 0,
+                    };
+                  }
+                ),
+                onChange: handleChangePassenger,
+              },
             }}
             maskedValue={dictionaries.filter.form.passenger.maskedValue
               .replaceAll(
@@ -326,16 +368,6 @@ export const FilterResultTrip = () => {
                   )?.value ?? 0
                 )
               )}
-            items={dictionaries.filter.form.passenger.items.map((item) => {
-              return {
-                ...item,
-                value:
-                  state.filters.passenger.value.find(
-                    (passengerItem) => passengerItem.id === item.id
-                  )?.value ?? 0,
-              };
-            })}
-            onChange={handleChangePassenger}
           />
 
           <Button

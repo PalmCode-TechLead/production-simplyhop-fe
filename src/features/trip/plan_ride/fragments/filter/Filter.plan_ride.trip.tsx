@@ -8,7 +8,6 @@ import { DatePicker } from "@/core/components/datepicker";
 import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
 import { Button } from "@/core/components/button";
 import {
-  fetchAutocompleteCityList,
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";

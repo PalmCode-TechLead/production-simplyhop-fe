@@ -160,17 +160,19 @@ export const useRideFilterResultTrip = () => {
 
           passenger: {
             ...state.filters.passenger,
-            value: dictionaries.filter.form.passenger.items.map((item) => {
-              return {
-                ...item,
-                value:
-                  item.id === "adult"
-                    ? adultData ?? 0
-                    : item.id === "children"
-                    ? childrenData ?? 0
-                    : 0,
-              };
-            }),
+            value: dictionaries.filter.form.passenger.detail.items.map(
+              (item) => {
+                return {
+                  ...item,
+                  value:
+                    item.id === "adult"
+                      ? adultData ?? 0
+                      : item.id === "children"
+                      ? childrenData ?? 0
+                      : 0,
+                };
+              }
+            ),
           },
         },
       });

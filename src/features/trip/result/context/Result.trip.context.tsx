@@ -32,6 +32,9 @@ const initialState: ResultTripInitialStateType = {
       selected: new Date(),
     },
     passenger: {
+      car_seat: {
+        checked: false,
+      },
       value: [],
     },
   },

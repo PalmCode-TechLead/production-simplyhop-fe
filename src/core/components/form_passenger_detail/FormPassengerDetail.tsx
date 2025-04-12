@@ -4,9 +4,7 @@ import { Checkbox, CheckboxProps } from "../checkbox";
 import SVGIcon from "@/core/icons";
 
 export interface FormPassengerDetailProps {
-  title?: string;
   position?: "top" | "bottom";
-
   passenger?: {
     items: {
       id: string;
@@ -27,7 +25,6 @@ export interface FormPassengerDetailProps {
 }
 
 export const FormPassengerDetail = ({
-  title = "",
   passenger = { items: [], onChange: () => {} },
   carSeat = {
     input: {},

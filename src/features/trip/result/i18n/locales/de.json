@@ -47,21 +47,35 @@
           "children": "Passagiere",
           "required": false
         },
-        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind",
-        "items": [
-          {
-            "id": "adult",
-            "name": "Erwachsene",
-            "description": "Alter: 18 oder älter",
-            "value": 1
+        "detail": {
+          "title": "Passagiere",
+          "carSeat": {
+            "input": {
+              "label": "Kindersitz erforderlich"
+            }
           },
-          {
-            "id": "children",
-            "name": "Kinder",
-            "description": "Alter: 0-12",
-            "value": 0
+          "items": [
+            {
+              "id": "adult",
+              "name": "Erwachsene",
+              "description": "Alter: 18 oder älter",
+              "value": 1
+            },
+            {
+              "id": "children",
+              "name": "Kinder",
+              "description": "Alter: 0-12",
+              "value": 0
+            }
+          ],
+          "cta": {
+            "next": {
+              "children": "Spreichen Sie"
+            }
           }
-        ]
+        },
+
+        "maskedValue": "{{adult}} Erwachsene, {{children}} Kind"
       }
     },
     "cta": {
@@ -162,35 +176,35 @@
           "icon": {
             "name": "Whatsapp"
           },
-          "href":"https://api.whatsapp.com/send?text={{url}}"
+          "href": "https://api.whatsapp.com/send?text={{url}}"
         },
         {
           "id": "facebook",
           "icon": {
             "name": "Facebook2"
           },
-          "href":"https://www.facebook.com/sharer/sharer.php?u="
+          "href": "https://www.facebook.com/sharer/sharer.php?u="
         },
         {
           "id": "twitter",
           "icon": {
             "name": "Twitter"
           },
-          "href":"https://twitter.com/intent/tweet?url={{url}}"
+          "href": "https://twitter.com/intent/tweet?url={{url}}"
         },
         {
           "id": "telegram",
           "icon": {
             "name": "Telegram"
           },
-          "href":"https://t.me/share/url?url={{url}}"
+          "href": "https://t.me/share/url?url={{url}}"
         },
         {
           "id": "thread",
           "icon": {
             "name": "Thread"
           },
-          "href":"https://www.threads.net/intent/post?url={{url}}"
+          "href": "https://www.threads.net/intent/post?url={{url}}"
         }
       ],
       "cta": {
