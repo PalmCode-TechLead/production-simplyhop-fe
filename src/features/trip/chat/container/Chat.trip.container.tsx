@@ -10,7 +10,7 @@ export const ChatTripContainer = () => {
       className={clsx(
         "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
         "w-full h-[calc(100vh-90px)]",
-        "pt-[1.5rem] pb-[0.75rem]",
+        "pt-[1.5rem] pb-[0.75rem] px-[1rem]",
         "relative"
       )}
     >
@@ -22,7 +22,7 @@ export const ChatTripContainer = () => {
       >
         <div
           className={clsx(
-            "grid grid-rows-1 grid-cols-[420px_auto_1fr] place-content-start place-items-start gap-[2.5rem]",
+            "grid grid-rows-1 grid-cols-1 lg:grid-cols-[420px_auto_1fr] place-content-start place-items-start gap-[2.5rem]",
             "max-w-container w-full h-full"
           )}
         >

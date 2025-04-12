@@ -27,8 +27,15 @@ import {
   TravelStartTimeItemProps,
 } from "@/core/components/travel_start_time_item";
 import { Button } from "@/core/components/button";
+import {
+  DriverProfileLabel,
+  DriverProfileLabelProps,
+} from "@/core/components/driver_profile_label";
 
 export interface OrderCardMyListTripProps {
+  driver?: {
+    profile: DriverProfileLabelProps;
+  };
   car?: {
     image: ImageProps;
     identity?: CarIdentityItemProps;
@@ -53,6 +60,14 @@ export interface OrderCardMyListTripProps {
 }
 
 export const OrderCardMyListTrip = ({
+  driver = {
+    profile: {
+      avatar: {
+        image: undefined,
+      },
+      name: "Kelly",
+    },
+  },
   car = {
     image: {
       src: "/images/general/car.png",
@@ -114,7 +129,7 @@ export const OrderCardMyListTrip = ({
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[52px]",
+          "grid lg:grid-flow-col lg:items-start lg:content-start lg:justify-between lg:justify-items-start gap-[52px]",
           "w-full"
         )}
       >
@@ -124,16 +139,25 @@ export const OrderCardMyListTrip = ({
             "w-full"
           )}
         >
-          {/* routes */}
-          <div
-            className={clsx(
-              "grid grid-flow-col place-content-start place-items-start gap-[1rem]"
-            )}
-          >
-            <TravelDateItem {...routes.date} />
-            <TravelStartTimeItem {...routes.startTime} />
-          </div>
+          {/* driver */}
+          <DriverProfileLabel {...driver.profile} />
+        </div>
 
+        {/* image */}
+        <Image
+          {...car.image}
+          alt={car.image.alt}
+          className={clsx("w-[145px]")}
+        />
+
+        {/* identity */}
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+            "w-full"
+          )}
+        >
+          <CarIdentityItem {...car.identity} />
           <div
             className={clsx(
               "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
@@ -147,16 +171,6 @@ export const OrderCardMyListTrip = ({
             <ArrivalItem {...routes.arrival} />
           </div>
         </div>
-
-        {/* image */}
-        <Image
-          {...car.image}
-          alt={car.image.alt}
-          className={clsx("w-[145px]")}
-        />
-
-        {/* identity */}
-        <CarIdentityItem {...car.identity} />
 
         {/* price */}
         <CarPriceItem {...price.initial} />

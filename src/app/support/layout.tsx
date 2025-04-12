@@ -1,7 +1,9 @@
-import { SettingsSidebarApp } from "@/core/modules/app/fragments/settings_sidebar";
+// import { SettingsSidebarApp } from "@/core/modules/app/fragments/settings_sidebar";
+import { Suspense } from "react";
 import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
 import clsx from "clsx";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -10,6 +12,12 @@ export const metadata: Metadata = {
 type PaymentLayoutProps = {
   children: React.ReactNode;
 };
+
+const SettingsSidebarApp = dynamic(() =>
+  import("@/core/modules/app/fragments/settings_sidebar").then(
+    (mod) => mod.SettingsSidebarApp
+  )
+);
 
 export default function AccountLayout({ children }: PaymentLayoutProps) {
   return (
@@ -31,7 +39,10 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
               "pt-[2rem]"
             )}
           >
-            <SettingsSidebarApp />
+            <Suspense fallback={<div />}>
+              <SettingsSidebarApp />
+            </Suspense>
+
             {children}
           </div>
         </div>

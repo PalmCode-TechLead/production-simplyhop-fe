@@ -2,11 +2,27 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import Link from "next/link";
+// import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
-import { TabButton } from "@/core/components/tab_button";
+// import Image from "next/image";
+// import { TabButton } from "@/core/components/tab_button";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import dynamic from "next/dynamic";
+
+const Image = dynamic(() => import("next/image"), {
+  ssr: false,
+});
+
+const Link = dynamic(() => import("next/link"), {
+  ssr: false,
+});
+
+const TabButton = dynamic(
+  () => import("@/core/components/tab_button").then((mod) => mod.TabButton),
+  {
+    ssr: false,
+  }
+);
 
 export const SettingsSidebarApp = () => {
   const dictionaries = getDictionaries();
@@ -20,52 +36,55 @@ export const SettingsSidebarApp = () => {
       )}
     >
       {/* profile */}
-      <div
-        className={clsx(
-          "grid grid-flow-col items-center content-center justify-end justify-items-end direction lg:grid-cols-1 lg:place-content-start lg:place-items-start gap-[0.75rem]",
-          "w-full"
-        )}
-        style={{
-          direction: !isLg ? "rtl" : undefined,
-        }}
-      >
-        <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
-          {"Kevin Jordi"}
-        </h1>
-        <Image
-          src={"/images/general/default_avatar.jpeg"}
-          alt="avatar"
-          width={isLg ? 100 : 48}
-          height={isLg ? 100 : 48}
+      <React.Suspense fallback={<div />}>
+        <div
           className={clsx(
-            "w-[3rem] h-[3rem] lg:w-[100px] lg:h-[100px]",
-            "rounded-[50%]",
-            "object-center object-cover"
+            "grid grid-flow-col items-center content-center justify-end justify-items-end direction lg:grid-cols-1 lg:place-content-start lg:place-items-start gap-[0.75rem]",
+            "w-full"
           )}
-        />
-      </div>
+          style={{
+            direction: !isLg ? "rtl" : undefined,
+          }}
+        >
+          <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+            {"Kevin Jordi"}
+          </h1>
+          <Image
+            src={"/images/general/default_avatar.jpeg"}
+            alt="avatar"
+            width={isLg ? 100 : 48}
+            height={isLg ? 100 : 48}
+            className={clsx(
+              "w-[3rem] h-[3rem] lg:w-[100px] lg:h-[100px]",
+              "rounded-[50%]",
+              "object-center object-cover"
+            )}
+          />
+        </div>
 
-      {/* menu */}
-      <div
-        className={clsx(
-          "grid grid-flow-col lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-          "w-full max-w-full",
-          "overflow-x-scroll"
-        )}
-      >
-        {dictionaries.settings.menu.items.map((menu, index) => {
-          return (
-            <Link key={index} className={clsx("w-full")} href={menu.href}>
-              <TabButton
-                selected={pathname.includes(menu.href)}
-                variant={isLg ? "vertical" : "horizontal"}
-              >
-                {menu.name}
-              </TabButton>
-            </Link>
-          );
-        })}
-      </div>
+        {/* menu */}
+
+        <div
+          className={clsx(
+            "grid grid-flow-col lg:grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+            "w-full max-w-full",
+            "overflow-x-scroll lg:overflow-x-hidden"
+          )}
+        >
+          {dictionaries.settings.menu.items.map((menu, index) => {
+            return (
+              <Link key={index} className={clsx("w-full")} href={menu.href}>
+                <TabButton
+                  selected={pathname.includes(menu.href)}
+                  variant={isLg ? "vertical" : "horizontal"}
+                >
+                  {menu.name}
+                </TabButton>
+              </Link>
+            );
+          })}
+        </div>
+      </React.Suspense>
     </div>
   );
 };

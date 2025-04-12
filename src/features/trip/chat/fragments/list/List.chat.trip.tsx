@@ -62,7 +62,7 @@ export const ListChatTrip = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-[1rem] lg:gap-[2rem]",
         "w-full"
       )}
     >
@@ -90,7 +90,8 @@ export const ListChatTrip = () => {
           className={clsx(
             "flex justify-between",
             "w-full",
-            "border-b-[0.5px] border-b-[#C2C2C2]"
+            "border-b-[0.5px] border-b-[#C2C2C2]",
+            "overflow-auto"
           )}
         >
           {dictionaries.tab.items.map((item, itemIndex) => (

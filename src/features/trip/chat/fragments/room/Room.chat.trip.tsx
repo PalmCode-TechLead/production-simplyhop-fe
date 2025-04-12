@@ -75,7 +75,8 @@ export const RoomChatTrip = () => {
     <div
       className={clsx(
         "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
-        "w-full h-full"
+        "w-full h-full",
+        "bg-[white]"
       )}
     >
       {/* header */}
