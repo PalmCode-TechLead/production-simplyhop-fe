@@ -174,7 +174,7 @@ export const FormPassenger = ({
             className={clsx(
               "grid grid-cols-1 items-stretch content-between justify-start justify-items-start gap-[1.5rem]",
               "w-full",
-              "min-h-[375px]",
+              "min-h-[480px]",
               "px-[1rem] py-[2rem]"
             )}
           >
