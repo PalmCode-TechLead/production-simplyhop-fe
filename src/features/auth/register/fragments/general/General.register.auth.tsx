@@ -52,7 +52,7 @@ export const GeneralRegisterAuth = () => {
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
         "bg-[white]",
-        "px-[3rem] py-[3rem]",
+        "px-[1rem] lg:px-[3rem] py-[3rem]",
         "rounded-[1.25rem]",
         "max-w-[508px] w-full"
       )}
@@ -60,7 +60,11 @@ export const GeneralRegisterAuth = () => {
       <Image
         {...dictionaries.general.form.header.logo}
         alt={dictionaries.general.form.header.logo.alt}
-        className={clsx("w-[148px] h-[40px]", "object-center object-cover")}
+        className={clsx(
+          "fixed top-[1rem] left-[1rem] lg:static",
+          "w-[148px] h-[40px]",
+          "object-center object-cover"
+        )}
       />
 
       <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
