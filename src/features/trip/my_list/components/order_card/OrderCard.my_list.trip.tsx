@@ -129,7 +129,7 @@ export const OrderCardMyListTrip = ({
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-row place-content-start place-items-start lg:grid-flow-col lg:items-start lg:content-start lg:justify-between lg:justify-items-start gap-[1.5rem] lg:gap-[52px]",
+          "grid grid-flow-row grid-cols-1 lg:grid-cols-none place-content-start place-items-start lg:grid-flow-col lg:items-start lg:content-start lg:justify-between lg:justify-items-start gap-[1.5rem] lg:gap-[52px]",
           "w-full"
         )}
       >
@@ -176,6 +176,7 @@ export const OrderCardMyListTrip = ({
         <CarPriceItem {...price.initial} />
 
         {/* cta */}
+
         <Button
           className={clsx("!px-[0.5rem] !py-[0.5rem]")}
           onClick={cta.detail.onClick}
