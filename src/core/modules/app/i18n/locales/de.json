@@ -79,6 +79,19 @@
       ]
     }
   },
+  "form": {
+    "email": {
+      "validations": {
+        "items": [
+          {
+            "id": "email",
+            "name": "Gültige E-Mail",
+            "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+          }
+        ]
+      }
+    }
+  },
   "car": {
     "facility": {
       "seat": {

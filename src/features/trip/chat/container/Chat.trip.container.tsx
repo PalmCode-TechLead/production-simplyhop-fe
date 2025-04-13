@@ -3,8 +3,12 @@ import clsx from "clsx";
 import { ListChatTrip } from "../fragments/list";
 import { RoomChatTrip } from "../fragments/room";
 import { Suspense } from "react";
+import { PageSheet } from "@/core/components/page_sheet";
+import { useSearchParams } from "next/navigation";
 
 export const ChatTripContainer = () => {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
   return (
     <div
       className={clsx(
@@ -32,9 +36,18 @@ export const ChatTripContainer = () => {
           <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9]")} />
           {/* NOTES: Room */}
 
-          <Suspense fallback={<div />}>
-            <RoomChatTrip />
-          </Suspense>
+          <div className={clsx("block lg:hidden", "w-full")}>
+            <PageSheet isOpen={!!id} direction={"right"}>
+              <Suspense fallback={<div />}>
+                <RoomChatTrip />
+              </Suspense>
+            </PageSheet>
+          </div>
+          <div className={clsx("hidden lg:block", "w-full")}>
+            <Suspense fallback={<div />}>
+              <RoomChatTrip />
+            </Suspense>
+          </div>
         </div>
       </div>
     </div>
