@@ -4,7 +4,22 @@ import {
   AccountSupportDeactivate,
   AccountSupportDeactivateConfirmation,
   AccountSupportDeactivateNotification,
+  AccountSupportInformation,
 } from "./Account.support.types";
+
+// Information
+export const AccountSupportInformationReducers = (
+  state: AccountSupportInformation,
+  action: AccountSupportActions
+) => {
+  switch (action.type) {
+    case AccountSupportActionEnum.SetInformationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
 
 // Deactivate
 export const AccountSupportDeactivateReducers = (

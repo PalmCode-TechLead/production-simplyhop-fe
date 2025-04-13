@@ -1,10 +1,6 @@
 import * as React from "react";
 import clsx from "clsx";
-import { FormAccountSupport } from "../fragments/form";
-import { CTAAccountSupport } from "../fragments/cta/CTA.account.support";
-import { DeactivateAccountSupport } from "../fragments/deactivate";
-import { DeactivateConfirmationAccountSupport } from "../fragments/deactivate_confirmation";
-import { DeactivateNotificationAccountSupport } from "../fragments/deactivate_notification";
+import { InformationAccountSupport } from "../fragments/information";
 
 export const AccountSupportContainer = () => {
   return (
@@ -15,13 +11,8 @@ export const AccountSupportContainer = () => {
           "w-full"
         )}
       >
-        <FormAccountSupport />
-
-        <CTAAccountSupport />
+        <InformationAccountSupport />
       </div>
-      <DeactivateAccountSupport />
-      <DeactivateConfirmationAccountSupport />
-      <DeactivateNotificationAccountSupport />
     </>
   );
 };

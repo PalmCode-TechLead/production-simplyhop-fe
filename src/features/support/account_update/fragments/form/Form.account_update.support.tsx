@@ -4,7 +4,7 @@ import { Textfield } from "@/core/components/textfield";
 import { getDictionaries } from "../../i18n";
 import { Textareafield } from "@/core/components/textareafield";
 
-export const FormAccountSupport = () => {
+export const FormAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
   return (
     <div

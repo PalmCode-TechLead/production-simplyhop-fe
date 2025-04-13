@@ -2,30 +2,57 @@
 import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
-import { AccountSupportActionEnum, AccountSupportContext } from "../../context";
+import {
+  AccountUpdateSupportActionEnum,
+  AccountUpdateSupportContext,
+} from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
+import { Passwordfield } from "@/core/components/passwordfield";
 
-export const DeactivateAccountSupport = () => {
+export const DeactivateConfirmationAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
-  const { state, dispatch } = React.useContext(AccountSupportContext);
-  const isOpen = state.deactivate.is_open;
+  const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
+  const isOpen = state.deactivate_confirmation.is_open;
   const handleClose = () => {
     dispatch({
-      type: AccountSupportActionEnum.SetDeactivateData,
+      type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
       payload: {
-        ...state.deactivate,
+        ...state.deactivate_confirmation,
         is_open: false,
       },
     });
   };
 
-  const handleClickDeactivate = () => {
+  const handleEnterPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
-      type: AccountSupportActionEnum.SetDeactivateData,
+      type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
       payload: {
-        ...state.deactivate,
+        ...state.deactivate_confirmation,
+        form: {
+          ...state.deactivate_confirmation.form,
+          password: {
+            ...state.deactivate_confirmation.form.password,
+            value: e.currentTarget.value,
+          },
+        },
+      },
+    });
+  };
+
+  const handleClickDeactivateConfirmation = () => {
+    dispatch({
+      type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
+      payload: {
+        ...state.deactivate_confirmation,
         is_open: false,
+      },
+    });
+    dispatch({
+      type: AccountUpdateSupportActionEnum.SetDeactivateNotificationData,
+      payload: {
+        ...state.deactivate_notification,
+        is_open: true,
       },
     });
   };
@@ -71,41 +98,33 @@ export const DeactivateAccountSupport = () => {
         <h1
           className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
         >
-          {dictionaries.deactivate.title}
+          {dictionaries.deactivate_confirmation.title}
         </h1>
 
         <p
           className={clsx("text-[1rem] text-[#888888] font-normal text-center")}
         >
-          {dictionaries.deactivate.message}
+          {dictionaries.deactivate_confirmation.message}
         </p>
 
         <div
           className={clsx(
-            "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
             "w-full"
           )}
         >
-          <p
-            className={clsx(
-              "text-[1rem] text-[#232323] font-semibold text-left"
-            )}
-          >
-            {dictionaries.deactivate.tnc.title}
-          </p>
-          <ol className={clsx("list-disc", "px-[1rem]")}>
-            {dictionaries.deactivate.tnc.items.map((item, itemIndex) => (
-              <li
-                key={itemIndex}
-                id={item.id}
-                className={clsx(
-                  "text-[1rem] text-[#888888] font-normal text-left"
-                )}
-              >
-                {item.name}
-              </li>
-            ))}
-          </ol>
+          <Passwordfield
+            labelProps={{
+              ...dictionaries.deactivate_confirmation.form.input.password
+                .labelProps,
+            }}
+            inputProps={{
+              ...dictionaries.deactivate_confirmation.form.input.password
+                .inputProps,
+              value: state.deactivate_confirmation.form.password.value,
+              onChange: handleEnterPassword,
+            }}
+          />
         </div>
 
         <button
@@ -116,9 +135,9 @@ export const DeactivateAccountSupport = () => {
             "text-[1rem] text-[#C50707] font-medium text-left",
             "cursor-pointer"
           )}
-          onClick={handleClickDeactivate}
+          onClick={handleClickDeactivateConfirmation}
         >
-          {dictionaries.deactivate.cta.deactivate.children}
+          {dictionaries.deactivate_confirmation.cta.deactivate.children}
         </button>
       </div>
     </Modal>

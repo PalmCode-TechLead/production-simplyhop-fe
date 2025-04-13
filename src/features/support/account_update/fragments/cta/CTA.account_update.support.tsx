@@ -1,16 +1,19 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { AccountSupportActionEnum, AccountSupportContext } from "../../context";
+import {
+  AccountUpdateSupportActionEnum,
+  AccountUpdateSupportContext,
+} from "../../context";
 
-export const CTAAccountSupport = () => {
+export const CTAAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
-  const { state, dispatch } = React.useContext(AccountSupportContext);
+  const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
 
   const handleClickDeactivate = () => {
     dispatch({
-      type: AccountSupportActionEnum.SetDeactivateData,
+      type: AccountUpdateSupportActionEnum.SetDeactivateData,
       payload: {
         ...state.deactivate,
         is_open: true,

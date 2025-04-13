@@ -3,20 +3,20 @@ import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import {
-  AccountSupportActionEnum,
-  AccountSupportContext,
+  AccountUpdateSupportActionEnum,
+  AccountUpdateSupportContext,
 } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 
-export const DeactivateNotificationAccountSupport = () => {
+export const DeactivateNotificationAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
-  const { state, dispatch } = React.useContext(AccountSupportContext);
+  const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
   const isOpen = state.deactivate_notification.is_open;
   const handleClose = () => {
     dispatch({
-      type: AccountSupportActionEnum.SetDeactivateNotificationData,
+      type: AccountUpdateSupportActionEnum.SetDeactivateNotificationData,
       payload: {
         ...state.deactivate_notification,
         is_open: false,
@@ -26,7 +26,7 @@ export const DeactivateNotificationAccountSupport = () => {
 
   const handleClickGoToHomepage = () => {
     dispatch({
-      type: AccountSupportActionEnum.SetDeactivateNotificationData,
+      type: AccountUpdateSupportActionEnum.SetDeactivateNotificationData,
       payload: {
         ...state.deactivate_notification,
         is_open: false,

@@ -1,5 +1,30 @@
 {
   "title": "Konto",
+  "information": {
+    "email": {
+      "name": "Email"
+    },
+    "first_name": {
+      "name": "Vorname"
+    },
+    "last_name": {
+      "name": "Nachname"
+    },
+    "city": {
+      "name": "Stadt"
+    },
+    "phonenumber": {
+      "name": "Telefon-Nummer"
+    },
+    "about_me": {
+      "name": "Über mich"
+    },
+    "cta": {
+      "edit": {
+        "children": "Edit"
+      }
+    }
+  },
   "form": {
     "input": {
       "email": {
@@ -67,67 +92,6 @@
           "children": "Über mich",
           "required": false
         }
-      }
-    }
-  },
-  "cta": {
-    "deactivate": {
-      "children": "Konto löschen"
-    }
-  },
-  "deactivate": {
-    "title": "Konto löschen",
-    "message": "Du bist dabei, den Prozess zur Deaktivierung deines Simply Hop-Kontos zu starten. Dein Benutzername und dein öffentliches Profil werden nach 30 Tagen nicht mehr auf der Plattform sichtbar sein.",
-    "tnc": {
-      "title": "Was solltest Du sonst noch wissen?",
-      "items": [
-        {
-          "id": "1",
-          "name": "Du kannst dein SimplyHop-Konto wiederherstellen, wenn es versehentlich oder fälschlicherweise innerhalb von 30 Tagen nach der Deaktivierung deaktiviert wurde."
-        },
-        {
-          "id": "2",
-          "name": "Nach 30 Tagen wird dein Konto komplett von Simply Hop gelöscht, einschließlich aller persönlichen Daten und Reisedaten. "
-        }
-      ]
-    },
-    "cta": {
-      "deactivate": {
-        "children": "Bestätige die Löschung"
-      }
-    }
-  },
-  "deactivate_confirmation": {
-    "title": "Kontolöschung bestätigen",
-    "message": "Der Schutz deines Kontos hat für uns oberste Priorität. Bitte bestätige deine Aktivität, indem Du dein Passwort  eingibst.",
-    "form": {
-      "input": {
-        "password": {
-          "inputProps": {
-            "id": "password",
-            "placeholder": " ",
-            "type": "password"
-          },
-          "labelProps": {
-            "id": "password",
-            "children": "Passwort",
-            "required": false
-          }
-        }
-      }
-    },
-    "cta": {
-      "deactivate": {
-        "children": "Konto löschen"
-      }
-    }
-  },
-  "deactivate_notification": {
-    "title": "Kontolöschung ist bestätigt",
-    "message": "Wir sind traurig, dich gehen zu sehen. Zögere nicht, wiederzukommen.",
-    "cta": {
-      "go_to_homepage": {
-        "children": "Zur Startseite gehen"
       }
     }
   }

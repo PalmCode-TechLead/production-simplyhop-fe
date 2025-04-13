@@ -9,5 +9,6 @@ export const AppCollectionURL = {
   private: {
     chat: () => "/chat",
     profile_registration: () => "/profile-registration",
+    support_account_edit: () => "/support/konto/edit",
   },
 };
