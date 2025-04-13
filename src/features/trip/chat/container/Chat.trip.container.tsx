@@ -38,15 +38,11 @@ export const ChatTripContainer = () => {
 
           <div className={clsx("block lg:hidden", "w-full")}>
             <PageSheet isOpen={!!id} direction={"right"}>
-              <Suspense fallback={<div />}>
-                <RoomChatTrip />
-              </Suspense>
+              <RoomChatTrip />
             </PageSheet>
           </div>
           <div className={clsx("hidden lg:block", "w-full")}>
-            <Suspense fallback={<div />}>
-              <RoomChatTrip />
-            </Suspense>
+            <RoomChatTrip />
           </div>
         </div>
       </div>
