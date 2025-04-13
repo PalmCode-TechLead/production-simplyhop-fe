@@ -21,7 +21,8 @@ export const RoomChatTrip = () => {
   const { state, dispatch } = React.useContext(ChatTripContext);
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
-  if (!id) {
+  const { isLg } = useTailwindBreakpoint();
+  if (!id && isLg) {
     return null;
   }
   const conversationData = Array.from({ length: 10 }, (_, i) => i + 1).map(
