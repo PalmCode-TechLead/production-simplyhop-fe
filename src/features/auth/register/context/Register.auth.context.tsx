@@ -12,7 +12,8 @@ import {
 
 const initialState: RegisterAuthInitialStateType = {
   state: {
-    step: "password_setup",
+    step: "general",
+    // step: "password_setup",
   },
   general: {
     email: {

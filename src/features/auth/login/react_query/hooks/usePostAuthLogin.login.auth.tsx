@@ -46,6 +46,7 @@ export const usePostAuthLogin = () => {
           items: [
             ...globalState.alert.items,
             {
+              id: "ERROR_LOGIN",
               variant: "error",
               message: error.message,
             },
