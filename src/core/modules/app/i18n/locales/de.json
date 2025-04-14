@@ -118,8 +118,8 @@
         "items": [
           {
             "id": "invalid_name",
-            "name": "Gültige E-Mail",
-            "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+            "name": "Invalid FirstName",
+            "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
           }
         ]
       }
@@ -129,8 +129,8 @@
         "items": [
           {
             "id": "invalid_name",
-            "name": "Gültige E-Mail",
-            "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+            "name": "Invalid LastName",
+            "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
           }
         ]
       }
@@ -140,8 +140,8 @@
         "items": [
           {
             "id": "invalid_phonenumber",
-            "name": "Gültige E-Mail",
-            "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+            "name": "Invalid Phonenumber",
+            "regex": "^(?:\\+49|0049|0)[1-9][0-9]{1,4}[ \\-]?[0-9]{3,}$"
           }
         ]
       }
