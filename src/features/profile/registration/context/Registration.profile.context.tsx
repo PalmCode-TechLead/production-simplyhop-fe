@@ -20,15 +20,19 @@ const initialState: RegistrationProfileInitialStateType = {
     form: {
       email: {
         value: "",
+        error: null,
       },
       first_name: {
         value: "",
+        error: null,
       },
       last_name: {
         value: "",
+        error: null,
       },
       phonenumber: {
         value: "",
+        error: null,
       },
     },
   },

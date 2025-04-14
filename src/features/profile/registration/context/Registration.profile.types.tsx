@@ -1,3 +1,5 @@
+import { FormError } from "@/core/utils/form";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -27,15 +29,19 @@ export interface RegistrationProfilePersonalInformation {
   form: {
     email: {
       value: string;
+      error: FormError;
     };
     first_name: {
       value: string;
+      error: FormError;
     };
     last_name: {
       value: string;
+      error: FormError;
     };
     phonenumber: {
       value: string;
+      error: FormError;
     };
   };
 }
