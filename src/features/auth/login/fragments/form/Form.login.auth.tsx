@@ -8,18 +8,18 @@ import { Textfield } from "@/core/components/textfield";
 import Link from "next/link";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { LoginAuthActionEnum, LoginAuthContext } from "../../context";
-import Cookies from "universal-cookie";
-import { useRouter } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { getError } from "@/core/utils/form";
+import { MoonLoader } from "@/core/components/moon_loader";
+import { usePostAuthLogin } from "../../react_query/hooks/usePostAuthLogin.login.auth";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(LoginAuthContext);
-  const router = useRouter();
+  const { mutate: postAuthLogin, isPending: isPendingPostAuthLogin } =
+    usePostAuthLogin();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const emailErrorItem = getError({
@@ -54,10 +54,10 @@ export const FormLoginAuth = () => {
   };
 
   const handleClickLogin = async () => {
-    const cookies = new Cookies();
-    cookies.set("token", "eyety");
-    router.push(AppCollectionURL.public.home());
+    postAuthLogin();
   };
+
+  const isSubmitLoading = isPendingPostAuthLogin;
 
   return (
     <div
@@ -105,12 +105,16 @@ export const FormLoginAuth = () => {
             value: state.form.password.value,
             onChange: handleChangePassword,
           }}
+          error={state.form.password.error?.name}
         />
 
         <Button
           className={clsx("px-[1rem] py-[0.75rem]")}
+          disabled={isSubmitLoading}
+          isLoading={isSubmitLoading}
           onClick={handleClickLogin}
         >
+          {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
           {dictionaries.form.cta.login.children}
         </Button>
 

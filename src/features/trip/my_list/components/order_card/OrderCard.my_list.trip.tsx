@@ -18,14 +18,8 @@ import {
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
-import {
-  TravelDateItem,
-  TravelDateItemProps,
-} from "@/core/components/travel_date_item";
-import {
-  TravelStartTimeItem,
-  TravelStartTimeItemProps,
-} from "@/core/components/travel_start_time_item";
+import { TravelDateItemProps } from "@/core/components/travel_date_item";
+import { TravelStartTimeItemProps } from "@/core/components/travel_start_time_item";
 import { Button } from "@/core/components/button";
 import {
   DriverProfileLabel,

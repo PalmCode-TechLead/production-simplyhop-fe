@@ -30,6 +30,9 @@ import {
   X,
   Calendar,
   User2,
+  AlertCircle,
+  CheckCircle2,
+  AlertTriangle,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -73,6 +76,9 @@ export const svgMap = {
   X,
   Calendar,
   User2,
+  AlertCircle,
+  CheckCircle2,
+  AlertTriangle,
   Facebook,
   Google,
   Whatsapp,

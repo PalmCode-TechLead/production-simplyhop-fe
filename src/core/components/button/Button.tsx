@@ -5,29 +5,37 @@ export const Button = forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: "primary" | "secondary";
+    isLoading?: boolean;
   }
 >((props, ref) => {
+  const { variant, isLoading, className, ...restProps } = props;
   return (
     <button
       ref={ref}
-      {...props}
+      {...restProps}
       className={clsx(
-        "grid grid-flow-col place-content-center place-items-center",
+        "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
         "w-full",
-        props.variant === "secondary" ? "bg-[white]" : "bg-[#5AC53D]",
+        variant === "secondary" ? "bg-[white]" : "bg-[#5AC53D]",
         "py-[1rem]",
         "rounded-[0.375rem]",
-        props.variant === "secondary"
+        variant === "secondary"
           ? "text-[1rem] text-[#5AC53D] disabled:text-[#767676] font-medium"
+          : isLoading
+          ? "text-[1rem] text-[#FFFFFF] font-medium"
           : "text-[1rem] text-[#FFFFFF] disabled:text-[#767676] font-medium",
-        props.variant === "secondary"
+        variant === "secondary"
+          ? ""
+          : isLoading
           ? ""
           : "hover:bg-[#408C2B] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
-        props.variant === "secondary"
+        variant === "secondary"
           ? "border border-[#5AC53D]"
-          : "border border-[#5AC53D]",
+          : isLoading
+          ? "border border-[#5AC53D]"
+          : "border border-[#5AC53D] disabled:border disabled:border-[#F6F6F6]",
         "cursor-pointer disabled:cursor-default",
-        props.className
+        className
       )}
     />
   );

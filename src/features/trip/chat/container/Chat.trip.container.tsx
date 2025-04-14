@@ -2,7 +2,6 @@ import * as React from "react";
 import clsx from "clsx";
 import { ListChatTrip } from "../fragments/list";
 import { RoomChatTrip } from "../fragments/room";
-import { Suspense } from "react";
 import { PageSheet } from "@/core/components/page_sheet";
 import { useSearchParams } from "next/navigation";
 

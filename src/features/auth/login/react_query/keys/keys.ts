@@ -1,5 +1,5 @@
 export const LoginAuthReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["LoginAuthReactQueryKey.RestGooglePostRouteDirections"];
+  PostLogin: () => {
+    return ["LoginAuthReactQueryKey.PostLogin"];
   },
 };
