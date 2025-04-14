@@ -24,10 +24,15 @@ export const usePostVehicleCreate = () => {
       const bodyPayload: PostVehicleCreateBodyRequestInterface = {
         user_id: 0,
         category_id: 0,
-        brand_id: 0,
+        brand_id: !state.vehicle_information.general.form.car_brand.selected
+          ? 0
+          : Number(
+              state.vehicle_information.general.form.car_brand.selected.id
+            ),
         model: "",
-        color: "",
-        plate_license: "",
+        color: state.vehicle_information.general.form.car_color.value,
+        plate_license:
+          state.vehicle_information.general.form.license_plate.value,
         total_places: "",
         numb_of_free_seats: 0,
         smoke_allowed: !state.vehicle_information.trip.form.smoking.selected
