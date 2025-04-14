@@ -23,6 +23,10 @@ export interface RegisterAuthState {
 export interface RegisterAuthGeneral {
   email: {
     value: string;
+    error: null | {
+      id: string;
+      name: string;
+    };
   };
 }
 
@@ -32,9 +36,17 @@ export interface RegisterAuthPasswordSetup {
   };
   password: {
     value: string;
+    error: null | {
+      id: string;
+      name: string;
+    };
   };
   confirm_password: {
     value: string;
+    error: null | {
+      id: string;
+      name: string;
+    };
   };
   tnc: {
     checked: boolean;

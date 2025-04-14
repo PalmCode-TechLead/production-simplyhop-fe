@@ -84,9 +84,31 @@
       "validations": {
         "items": [
           {
-            "id": "email",
+            "id": "invalid_email",
             "name": "Gültige E-Mail",
             "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+          }
+        ]
+      }
+    },
+    "password": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_password",
+            "name": "Password minimal 8 karakter, mengandung huruf besar, huruf kecil, angka, dan simbol.",
+            "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+          }
+        ]
+      }
+    },
+    "confirm_password": {
+      "validations": {
+        "items": [
+          {
+            "id": "unmatched_password",
+            "name": "",
+            "regex": ""
           }
         ]
       }

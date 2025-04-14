@@ -1,5 +1,8 @@
 export const RegisterAuthReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["RegisterAuthReactQueryKey.RestGooglePostRouteDirections"];
+  PostRegister: () => {
+    return ["RegisterAuthReactQueryKey.PostRegister"];
+  },
+  PostLogin: () => {
+    return ["RegisterAuthReactQueryKey.PostLogin"];
   },
 };

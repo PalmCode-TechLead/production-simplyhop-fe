@@ -18,6 +18,7 @@ const initialState: RegisterAuthInitialStateType = {
   general: {
     email: {
       value: "",
+      error: null,
     },
   },
   password_setup: {
@@ -26,9 +27,11 @@ const initialState: RegisterAuthInitialStateType = {
     },
     password: {
       value: "",
+      error: null,
     },
     confirm_password: {
       value: "",
+      error: null,
     },
     tnc: {
       checked: false,

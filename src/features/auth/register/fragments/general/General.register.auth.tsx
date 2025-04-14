@@ -3,17 +3,24 @@ import * as React from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Textfield } from "@/core/components/textfield";
 import Link from "next/link";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { RegisterAuthActionEnum, RegisterAuthContext } from "../../context";
 import { Button } from "@/core/components/button";
+import { getError } from "@/core/utils/form";
 
 export const GeneralRegisterAuth = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegisterAuthContext);
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.email.validations.items,
+      value: e.currentTarget.value,
+    });
     dispatch({
       type: RegisterAuthActionEnum.SetGeneralData,
       payload: {
@@ -21,6 +28,7 @@ export const GeneralRegisterAuth = () => {
         email: {
           ...state.general.email,
           value: e.currentTarget.value,
+          error: errorItem,
         },
       },
     });
@@ -46,7 +54,9 @@ export const GeneralRegisterAuth = () => {
     });
   };
 
-  const isRegisterDisabled = !state.general.email.value.length;
+  const isEmailHasNoLength = !state.general.email.value.length;
+  const isEmailInvalid = !!state.general.email.error;
+  const isSubmitDisabled = isEmailHasNoLength || isEmailInvalid;
   return (
     <div
       className={clsx(
@@ -86,11 +96,12 @@ export const GeneralRegisterAuth = () => {
             value: state.general.email.value,
             onChange: handleChangeEmail,
           }}
+          error={state.general.email.error?.name}
         />
 
         <Button
           className={clsx("px-[1rem] py-[0.75rem]")}
-          disabled={isRegisterDisabled}
+          disabled={isSubmitDisabled}
           onClick={handleClickRegister}
         >
           {dictionaries.general.form.cta.register.children}

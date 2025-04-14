@@ -22,7 +22,7 @@ export const FormLoginAuth = () => {
     usePostAuthLogin();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const emailErrorItem = getError({
+    const errorItem = getError({
       errorItems: globalDictionaries.form.email.validations.items,
       value: e.currentTarget.value,
     });
@@ -34,7 +34,7 @@ export const FormLoginAuth = () => {
         email: {
           ...state.form.email,
           value: e.currentTarget.value,
-          error: emailErrorItem,
+          error: errorItem,
         },
       },
     });
@@ -58,14 +58,14 @@ export const FormLoginAuth = () => {
   };
 
   const isSubmitLoading = isPendingPostAuthLogin;
-  const isEmailHasLength = !!state.form.email.value.length;
-  const isEmailValid = !state.form.email.error;
-  const isPasswordHasLength = !!state.form.email.value.length;
+  const isEmailHasNoLength = !state.form.email.value.length;
+  const isEmailInvalid = !!state.form.email.error;
+  const isPasswordHasNoLength = !state.form.email.value.length;
   const isSubmitDisabled =
     isPendingPostAuthLogin ||
-    isEmailHasLength ||
-    isEmailValid ||
-    isPasswordHasLength;
+    isEmailHasNoLength ||
+    isEmailInvalid ||
+    isPasswordHasNoLength;
 
   return (
     <div

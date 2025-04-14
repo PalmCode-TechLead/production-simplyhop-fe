@@ -3,19 +3,27 @@ import * as React from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Textfield } from "@/core/components/textfield";
 import SVGIcon from "@/core/icons";
 import { RegisterAuthActionEnum, RegisterAuthContext } from "../../context";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { Button } from "@/core/components/button";
 import { Checkbox } from "@/core/components/checkbox";
-import { useRouter } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import { getError } from "@/core/utils/form";
+import { MoonLoader } from "@/core/components/moon_loader";
+import { usePostAuthLogin, usePostAuthRegister } from "../../react_query/hooks";
 
 export const PasswordSetupRegisterAuth = () => {
   const dictionaries = getDictionaries();
-  const router = useRouter();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegisterAuthContext);
+  const {
+    mutateAsync: postAuthRegister,
+    isPending: isPendingPostAuthRegister,
+  } = usePostAuthRegister();
+  const { mutateAsync: postAuthLogin, isPending: isPendingPostAuthLogin } =
+    usePostAuthLogin();
 
   const handleClickBack = () => {
     dispatch({
@@ -35,15 +43,15 @@ export const PasswordSetupRegisterAuth = () => {
           value: "",
         },
         password: {
-          ...state.password_setup.email,
+          ...state.password_setup.password,
           value: "",
         },
         confirm_password: {
-          ...state.password_setup.email,
+          ...state.password_setup.confirm_password,
           value: "",
         },
         tnc: {
-          ...state.password_setup.email,
+          ...state.password_setup.tnc,
           checked: false,
         },
       },
@@ -51,6 +59,10 @@ export const PasswordSetupRegisterAuth = () => {
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.email.validations.items,
+      value: e.currentTarget.value,
+    });
     dispatch({
       type: RegisterAuthActionEnum.SetPasswordSetupData,
       payload: {
@@ -58,6 +70,7 @@ export const PasswordSetupRegisterAuth = () => {
         password: {
           ...state.password_setup.password,
           value: e.currentTarget.value,
+          error: errorItem,
         },
       },
     });
@@ -66,6 +79,18 @@ export const PasswordSetupRegisterAuth = () => {
   const handleChangeConfirmPassword = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
+    const emailObj =
+      globalDictionaries.form.confirm_password.validations.items.find(
+        (item) => {
+          return item.id === "unmatched_password";
+        }
+      );
+    const emailErr = !emailObj
+      ? null
+      : {
+          id: emailObj.id,
+          name: emailObj.name,
+        };
     dispatch({
       type: RegisterAuthActionEnum.SetPasswordSetupData,
       payload: {
@@ -73,6 +98,10 @@ export const PasswordSetupRegisterAuth = () => {
         confirm_password: {
           ...state.password_setup.confirm_password,
           value: e.currentTarget.value,
+          error:
+            state.password_setup.password.value !== e.currentTarget.value
+              ? emailErr
+              : null,
         },
       },
     });
@@ -91,9 +120,31 @@ export const PasswordSetupRegisterAuth = () => {
     });
   };
 
-  const handleClickRegister = () => {
-    router.push(AppCollectionURL.private.profile_registration());
+  const handleClickRegister = async () => {
+    const register = await postAuthRegister();
+    if (!register) return;
+    await postAuthLogin();
   };
+
+  const isSubmitLoading = isPendingPostAuthRegister || isPendingPostAuthLogin;
+
+  const isEmailHasNoLength = !state.general.email.value.length;
+  const isEmailInvalid = !!state.general.email.error;
+  const isPasswordHasNoLength = !state.password_setup.password.value.length;
+  const isPasswordInvalid = !!state.password_setup.password.error;
+  const isConfirmPasswordHasNoLength =
+    !state.password_setup.confirm_password.value.length;
+  const isConfirmPasswordInvalid =
+    !!state.password_setup.confirm_password.error;
+  const isSubmitDisabled =
+    isEmailHasNoLength ||
+    isEmailInvalid ||
+    isPasswordHasNoLength ||
+    isPasswordInvalid ||
+    isConfirmPasswordHasNoLength ||
+    isConfirmPasswordInvalid ||
+    isSubmitLoading;
+
   return (
     <div
       className={clsx(
@@ -157,6 +208,7 @@ export const PasswordSetupRegisterAuth = () => {
             value: state.password_setup.password.value,
             onChange: handleChangePassword,
           }}
+          error={state.password_setup.password.error?.name}
         />
         <Passwordfield
           labelProps={{
@@ -169,6 +221,7 @@ export const PasswordSetupRegisterAuth = () => {
             value: state.password_setup.confirm_password.value,
             onChange: handleChangeConfirmPassword,
           }}
+          error={state.password_setup.confirm_password.error?.name}
         />
 
         <div
@@ -191,8 +244,11 @@ export const PasswordSetupRegisterAuth = () => {
 
         <Button
           className={clsx("px-[1rem] py-[0.75rem]")}
+          disabled={isSubmitDisabled}
+          isLoading={isSubmitLoading}
           onClick={handleClickRegister}
         >
+          {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
           {dictionaries.password_setup.form.cta.register.children}
         </Button>
       </div>
