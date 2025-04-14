@@ -17,6 +17,7 @@ export interface GlobalInitialStateType {
 // State Collection Types consist of:
 export interface GlobalAlert {
   items: {
+    id: string;
     variant: "info" | "error" | "warning" | "success";
     message: string;
   }[];
