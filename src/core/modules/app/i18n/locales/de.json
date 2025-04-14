@@ -112,6 +112,39 @@
           }
         ]
       }
+    },
+    "first_name": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_name",
+            "name": "Gültige E-Mail",
+            "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+          }
+        ]
+      }
+    },
+    "last_name": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_name",
+            "name": "Gültige E-Mail",
+            "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+          }
+        ]
+      }
+    },
+    "phonenumber": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_phonenumber",
+            "name": "Gültige E-Mail",
+            "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(?:\\.[a-zA-Z]{2,})*$"
+          }
+        ]
+      }
     }
   },
   "car": {

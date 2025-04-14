@@ -39,7 +39,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
 
   const handleChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
-      errorItems: globalDictionaries.form.email.validations.items,
+      errorItems: globalDictionaries.form.first_name.validations.items,
       value: e.currentTarget.value,
       type: "optional",
     });
@@ -52,6 +52,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
           first_name: {
             ...state.personal_information.form.first_name,
             value: e.currentTarget.value,
+            error: errorItem,
           },
         },
       },
@@ -59,6 +60,11 @@ export const PersonalInformationFormRegistrationProfile = () => {
   };
 
   const handleChangeLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.last_name.validations.items,
+      value: e.currentTarget.value,
+      type: "optional",
+    });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
       payload: {
@@ -68,6 +74,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
           last_name: {
             ...state.personal_information.form.last_name,
             value: e.currentTarget.value,
+            error: errorItem,
           },
         },
       },
@@ -75,6 +82,11 @@ export const PersonalInformationFormRegistrationProfile = () => {
   };
 
   const handleChangePhonenumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.phonenumber.validations.items,
+      value: e.currentTarget.value,
+      type: "optional",
+    });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
       payload: {
@@ -84,6 +96,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
           phonenumber: {
             ...state.personal_information.form.phonenumber,
             value: e.currentTarget.value,
+            error: errorItem,
           },
         },
       },
