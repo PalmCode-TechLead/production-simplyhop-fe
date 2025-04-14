@@ -1,3 +1,5 @@
+import { FormError } from "@/core/utils/form";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -23,10 +25,7 @@ export interface RegisterAuthState {
 export interface RegisterAuthGeneral {
   email: {
     value: string;
-    error: null | {
-      id: string;
-      name: string;
-    };
+    error: FormError;
   };
 }
 
@@ -36,17 +35,11 @@ export interface RegisterAuthPasswordSetup {
   };
   password: {
     value: string;
-    error: null | {
-      id: string;
-      name: string;
-    };
+    error: FormError;
   };
   confirm_password: {
     value: string;
-    error: null | {
-      id: string;
-      name: string;
-    };
+    error: FormError;
   };
   tnc: {
     checked: boolean;

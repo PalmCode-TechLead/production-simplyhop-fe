@@ -117,6 +117,12 @@
   "car": {
     "facility": {
       "seat": {
+        "options": [
+          {
+            "id": "true",
+            "name": "True"
+          }
+        ],
         "available": {
           "id": "available_seat",
           "icon": {

@@ -1,3 +1,5 @@
+import { FormError } from "@/core/utils/form";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -18,17 +20,11 @@ export interface LoginAuthInitialStateType {
 export interface LoginAuthForm {
   email: {
     value: string;
-    error: null | {
-      id: string;
-      name: string;
-    };
+    error: FormError;
   };
   password: {
     value: string;
-    error: null | {
-      id: string;
-      name: string;
-    };
+    error: FormError;
   };
 }
 
