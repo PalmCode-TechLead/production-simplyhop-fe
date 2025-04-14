@@ -10,9 +10,11 @@ const initialState: LoginAuthInitialStateType = {
   form: {
     email: {
       value: "",
+      error: null,
     },
     password: {
       value: "",
+      error: null,
     },
   },
 };

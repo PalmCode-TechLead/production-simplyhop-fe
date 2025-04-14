@@ -3,6 +3,7 @@ import * as React from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Textfield } from "@/core/components/textfield";
 import Link from "next/link";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
@@ -12,13 +13,20 @@ import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
+import { getError } from "@/core/utils/form";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(LoginAuthContext);
   const router = useRouter();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailErrorItem = getError({
+      errorItems: globalDictionaries.form.email.validations.items,
+      value: e.currentTarget.value,
+    });
+
     dispatch({
       type: LoginAuthActionEnum.SetFormData,
       payload: {
@@ -26,6 +34,7 @@ export const FormLoginAuth = () => {
         email: {
           ...state.form.email,
           value: e.currentTarget.value,
+          error: emailErrorItem,
         },
       },
     });
@@ -49,6 +58,7 @@ export const FormLoginAuth = () => {
     cookies.set("token", "eyety");
     router.push(AppCollectionURL.public.home());
   };
+
   return (
     <div
       className={clsx(
@@ -86,6 +96,7 @@ export const FormLoginAuth = () => {
             value: state.form.email.value,
             onChange: handleChangeEmail,
           }}
+          error={state.form.email.error?.name}
         />
         <Passwordfield
           labelProps={{ ...dictionaries.form.input.password.labelProps }}

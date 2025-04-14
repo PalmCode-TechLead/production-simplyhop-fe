@@ -18,9 +18,17 @@ export interface LoginAuthInitialStateType {
 export interface LoginAuthForm {
   email: {
     value: string;
+    error: null | {
+      id: string;
+      name: string;
+    };
   };
   password: {
     value: string;
+    error: null | {
+      id: string;
+      name: string;
+    };
   };
 }
 

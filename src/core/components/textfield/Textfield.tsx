@@ -10,6 +10,7 @@ export interface TextfieldProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
   disabled?: boolean;
+  error?: string;
 }
 
 export const Textfield = ({
@@ -17,42 +18,63 @@ export const Textfield = ({
   inputProps,
   labelProps,
   disabled = false,
+  error,
 }: TextfieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const [value, setValue] = React.useState<string>("");
 
+  const showError = error;
+
   return (
-    <InputContainer
-      {...inputContainerProps}
+    <div
       className={clsx(
-        "relative",
-        disabled && "!bg-[#F6F6F6]",
-        inputContainerProps?.className
+        "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
+        "w-full"
       )}
     >
-      <Input
-        ref={inputRef}
-        {...inputProps}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setValue(e.currentTarget.value);
-          if (!inputProps?.onChange) return;
-          inputProps.onChange(e);
-        }}
-      />
-      <InputLabel
-        {...labelProps}
+      <InputContainer
+        {...inputContainerProps}
         className={clsx(
-          inputProps?.type === "time"
-            ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
-            : !!value.length || !!inputProps?.value
-            ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
-            : "top-[50%] left-[1.625rem] translate-y-[-50%] text-[0.875rem]",
-          "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#5B5B5B] text-[0.75rem]"
+          "relative",
+          disabled && "!bg-[#F6F6F6]",
+          inputContainerProps?.className
         )}
-        onClick={() => {
-          inputRef.current?.focus();
-        }}
-      />
-    </InputContainer>
+      >
+        <Input
+          ref={inputRef}
+          {...inputProps}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setValue(e.currentTarget.value);
+            if (!inputProps?.onChange) return;
+            inputProps.onChange(e);
+          }}
+        />
+
+        <InputLabel
+          {...labelProps}
+          className={clsx(
+            inputProps?.type === "time"
+              ? "top-[25%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
+              : !!value.length || !!inputProps?.value
+              ? "top-[25%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
+              : "top-[50%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.875rem]",
+            "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#5B5B5B] text-[0.75rem]"
+          )}
+          onClick={() => {
+            inputRef.current?.focus();
+          }}
+        />
+      </InputContainer>
+      {showError && (
+        <span
+          className={clsx(
+            "text-[0.625rem] text-[#DA2323] font-normal",
+            "pl-[0.5rem]"
+          )}
+        >
+          {error}
+        </span>
+      )}
+    </div>
   );
 };
