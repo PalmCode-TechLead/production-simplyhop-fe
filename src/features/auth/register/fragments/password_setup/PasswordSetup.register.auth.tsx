@@ -79,17 +79,17 @@ export const PasswordSetupRegisterAuth = () => {
   const handleChangeConfirmPassword = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const emailObj =
+    const errorObj =
       globalDictionaries.form.confirm_password.validations.items.find(
         (item) => {
           return item.id === "unmatched_password";
         }
       );
-    const emailErr = !emailObj
+    const err = !errorObj
       ? null
       : {
-          id: emailObj.id,
-          name: emailObj.name,
+          id: errorObj.id,
+          name: errorObj.name,
         };
     dispatch({
       type: RegisterAuthActionEnum.SetPasswordSetupData,
@@ -100,7 +100,7 @@ export const PasswordSetupRegisterAuth = () => {
           value: e.currentTarget.value,
           error:
             state.password_setup.password.value !== e.currentTarget.value
-              ? emailErr
+              ? err
               : null,
         },
       },
