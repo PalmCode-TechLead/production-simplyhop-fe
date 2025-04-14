@@ -1,6 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Dropdownfield } from "@/core/components/dropdownfield";
 import {
   RegistrationProfileActionEnum,
@@ -9,6 +10,7 @@ import {
 
 export const CapacityVehicleInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
 
   const handleSelectAvailableSeat = (data: { id: string; name: string }) => {
@@ -178,10 +180,11 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
               state.vehicle_information.capacity.passenger_seats.form
                 .available_seat.selected
             }
-            items={
-              state.vehicle_information.capacity.passenger_seats.form
-                .available_seat.items
-            }
+            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+              (item) => {
+                return { id: item, name: item };
+              }
+            )}
             onSelect={handleSelectAvailableSeat}
           />
           <div
@@ -203,10 +206,7 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
                 state.vehicle_information.capacity.passenger_seats.form
                   .available_child_seat.selected
               }
-              items={
-                state.vehicle_information.capacity.passenger_seats.form
-                  .available_child_seat.items
-              }
+              items={globalDictionaries.car.facility.seat.child.options}
               onSelect={handleSelectAvailableChildSeat}
             />
             <Dropdownfield
@@ -222,10 +222,11 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
                 state.vehicle_information.capacity.passenger_seats.form
                   .available_car_seat.selected
               }
-              items={
-                state.vehicle_information.capacity.passenger_seats.form
-                  .available_car_seat.items
-              }
+              items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+                (item) => {
+                  return { id: item, name: item };
+                }
+              )}
               onSelect={handleSelectAvailableCarSeat}
             />
           </div>
@@ -261,9 +262,11 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
             selected={
               state.vehicle_information.capacity.luggage.form.luggage.selected
             }
-            items={
-              state.vehicle_information.capacity.luggage.form.luggage.items
-            }
+            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+              (item) => {
+                return { id: item, name: item };
+              }
+            )}
             onSelect={handleSelectLuggage}
           />
 
@@ -280,9 +283,7 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
               state.vehicle_information.capacity.luggage.form.luggage_size
                 .selected
             }
-            items={
-              state.vehicle_information.capacity.luggage.form.luggage_size.items
-            }
+            items={globalDictionaries.car.facility.seat.luggage.type.options}
             onSelect={handleSelectLuggageSize}
           />
         </div>

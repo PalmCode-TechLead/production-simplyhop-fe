@@ -145,17 +145,34 @@
           }
         ]
       }
+    },
+    "license_plate": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_license_plate",
+            "name": "Invalid License Plate",
+            "regex": "^[A-ZÄÖÜ]{1,3} [A-Z]{1,2} [0-9]{1,4}$"
+          }
+        ]
+      }
     }
   },
   "car": {
     "facility": {
       "seat": {
-        "options": [
-          {
-            "id": "true",
-            "name": "True"
-          }
-        ],
+        "child": {
+          "options": [
+            {
+              "id": "true",
+              "name": "True"
+            },
+            {
+              "id": "false",
+              "name": "False"
+            }
+          ]
+        },
         "available": {
           "id": "available_seat",
           "icon": {
@@ -179,6 +196,22 @@
           }
         },
         "luggage": {
+          "type": {
+            "options": [
+              {
+                "id": "small",
+                "name": "Small"
+              },
+              {
+                "id": "medium",
+                "name": "Medium"
+              },
+              {
+                "id": "large",
+                "name": "Large"
+              }
+            ]
+          },
           "available": {
             "id": "available_luggage",
             "icon": {
@@ -203,6 +236,20 @@
           }
         },
         "smoking": {
+          "type": {
+            "options": {
+              "items": [
+                {
+                  "id": "true",
+                  "name": "True"
+                },
+                {
+                  "id": "false",
+                  "name": "False"
+                }
+              ]
+            }
+          },
           "allowed": {
             "id": "allowed_smoking",
             "icon": {
@@ -227,6 +274,20 @@
           }
         },
         "music": {
+          "type": {
+            "options": {
+              "items": [
+                {
+                  "id": "true",
+                  "name": "True"
+                },
+                {
+                  "id": "false",
+                  "name": "False"
+                }
+              ]
+            }
+          },
           "allowed": {
             "id": "allowed_music",
             "icon": {
@@ -251,6 +312,20 @@
           }
         },
         "pets": {
+          "type": {
+            "options": {
+              "items": [
+                {
+                  "id": "true",
+                  "name": "True"
+                },
+                {
+                  "id": "false",
+                  "name": "False"
+                }
+              ]
+            }
+          },
           "allowed": {
             "id": "allowed-pets",
             "icon": {

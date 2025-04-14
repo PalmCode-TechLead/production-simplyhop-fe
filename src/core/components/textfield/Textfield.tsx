@@ -37,6 +37,7 @@ export const Textfield = ({
         className={clsx(
           "relative",
           disabled && "!bg-[#F6F6F6]",
+          error && "!border-[#DA2323]",
           inputContainerProps?.className
         )}
       >
@@ -58,7 +59,8 @@ export const Textfield = ({
               : !!value.length || !!inputProps?.value
               ? "top-[25%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
               : "top-[50%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.875rem]",
-            "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#5B5B5B] text-[0.75rem]"
+            "peer-focus:top-[25%] peer-focus:text-[0.75rem] text-[0.75rem]",
+            error ? "!text-[#DA2323]" : "!text-[#5B5B5B]"
           )}
           onClick={() => {
             inputRef.current?.focus();

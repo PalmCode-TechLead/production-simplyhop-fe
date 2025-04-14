@@ -66,15 +66,19 @@ const initialState: RegistrationProfileInitialStateType = {
               name: "Hyundai",
             },
           ],
+          error: null,
         },
         car_model: {
           value: "",
+          error: null,
         },
         car_color: {
           value: "",
+          error: null,
         },
         license_plate: {
           value: "",
+          error: null,
         },
       },
     },

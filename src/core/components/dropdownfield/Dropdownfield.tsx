@@ -97,7 +97,7 @@ export const Dropdownfield = ({
               className={clsx(
                 !!selected?.name
                   ? "top-[25%] left-0 translate-y-[-50%] text-[0.75rem]"
-                  : "top-[50%] left-0 translate-y-[-50%] text-[0.75rem]",
+                  : "top-[50%] left-0 translate-y-[-50%] text-[0.875rem]",
                 "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
               )}
               onClick={() => {
@@ -109,14 +109,14 @@ export const Dropdownfield = ({
 
         {!disabled && (
           <AutocompleteOptionsContainer
-            className={clsx(isOpen ? "inline" : "hidden", "bg-[red]")}
+            className={clsx(isOpen ? "inline" : "hidden")}
           >
             {items.map((item, index) => (
               <AutocompleteOption
                 key={index}
                 className={clsx(
                   selected?.id === item.id
-                    ? "font-bold text-[#FF6201]"
+                    ? "font-bold text-[#5AC53D]"
                     : "font-normal text-[#201E2C]"
                 )}
                 onClick={() => handleChange(item)}

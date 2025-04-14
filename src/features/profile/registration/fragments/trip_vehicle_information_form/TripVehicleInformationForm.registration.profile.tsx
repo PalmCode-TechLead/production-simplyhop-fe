@@ -1,6 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Dropdownfield } from "@/core/components/dropdownfield";
 import {
   RegistrationProfileActionEnum,
@@ -9,6 +10,7 @@ import {
 
 export const TripVehicleInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
 
   const handleSelectSmoking = (data: { id: string; name: string }) => {
@@ -97,7 +99,7 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
               .inputProps,
           }}
           selected={state.vehicle_information.trip.form.smoking.selected}
-          items={state.vehicle_information.trip.form.smoking.items}
+          items={globalDictionaries.car.facility.seat.smoking.type.options.items}
           onSelect={handleSelectSmoking}
         />
         <Dropdownfield
@@ -110,7 +112,7 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
               .inputProps,
           }}
           selected={state.vehicle_information.trip.form.music.selected}
-          items={state.vehicle_information.trip.form.music.items}
+          items={globalDictionaries.car.facility.seat.music.type.options.items}
           onSelect={handleSelectMusic}
         />
         <Dropdownfield
@@ -121,7 +123,7 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
             ...dictionaries.vehicle_information.trip.form.input.pet.inputProps,
           }}
           selected={state.vehicle_information.trip.form.pet.selected}
-          items={state.vehicle_information.trip.form.pet.items}
+          items={globalDictionaries.car.facility.seat.pets.type.options.items}
           onSelect={handleSelectPet}
         />
       </div>

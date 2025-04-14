@@ -2,15 +2,18 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Textfield } from "@/core/components/textfield";
 import {
   RegistrationProfileActionEnum,
   RegistrationProfileContext,
 } from "../../context";
 import { Dropdownfield } from "@/core/components/dropdownfield";
+import { getError } from "@/core/utils/form";
 
 export const GeneralVehicleInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
 
   const handleSelectCarBrand = (data: { id: string; name: string }) => {
@@ -71,6 +74,11 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
   };
 
   const handleChangeLicensePlate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.email.validations.items,
+      value: e.currentTarget.value,
+      type: "optional",
+    });
     dispatch({
       type: RegistrationProfileActionEnum.SetVehicleInformationData,
       payload: {
@@ -82,6 +90,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
             license_plate: {
               ...state.vehicle_information.general.form.license_plate,
               value: e.currentTarget.value,
+              error: errorItem,
             },
           },
         },
@@ -153,6 +162,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
           value: state.vehicle_information.general.form.license_plate.value,
           onChange: handleChangeLicensePlate,
         }}
+        error={state.vehicle_information.general.form.license_plate.error?.name}
       />
     </div>
   );

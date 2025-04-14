@@ -60,15 +60,19 @@ export interface RegistrationProfileVehicleInformation {
       car_brand: {
         selected: null | { id: string; name: string };
         items: { id: string; name: string }[];
+        error: FormError;
       };
       car_model: {
         value: string;
+        error: FormError;
       };
       car_color: {
         value: string;
+        error: FormError;
       };
       license_plate: {
         value: string;
+        error: FormError;
       };
     };
   };

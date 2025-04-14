@@ -37,7 +37,11 @@ export const Passwordfield = ({
     >
       <InputContainer
         {...inputContainerProps}
-        className={clsx("relative", inputContainerProps?.className)}
+        className={clsx(
+          "relative",
+          error && "!border-[#DA2323]",
+          inputContainerProps?.className
+        )}
       >
         <Input
           ref={inputRef}
@@ -77,7 +81,8 @@ export const Passwordfield = ({
               : !!value.length
               ? "top-[25%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
               : "top-[50%] left-[0.75rem] sm:left-[1.625rem] translate-y-[-50%] text-[0.875rem]",
-            "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#5B5B5B] text-[0.75rem]"
+            "peer-focus:top-[25%] peer-focus:text-[0.75rem] text-[0.75rem]",
+            error ? "!text-[#DA2323]" : "!text-[#5B5B5B]"
           )}
           onClick={() => {
             inputRef.current?.focus();
