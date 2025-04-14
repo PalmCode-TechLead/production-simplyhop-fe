@@ -12,7 +12,7 @@ import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { getError } from "@/core/utils/form";
 import { MoonLoader } from "@/core/components/moon_loader";
-import { usePostAuthLogin } from "../../react_query/hooks/usePostAuthLogin.login.auth";
+import { usePostAuthLogin } from "../../react_query/hooks";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();

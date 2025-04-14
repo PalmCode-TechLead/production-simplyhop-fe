@@ -1,19 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export interface GetVehicleCategoryListRequestInterface extends NextApiRequest {
-  payload?: GetVehicleCategoryListPayloadRequestInterface;
+export interface GetVehicleBrandListRequestInterface extends NextApiRequest {
+  payload?: GetVehicleBrandListPayloadRequestInterface;
 }
 
-export interface GetVehicleCategoryListPayloadRequestInterface {
-  path: GetVehicleCategoryListPathRequestInterface;
-  params?: GetVehicleCategoryListParamsRequestInterface;
+export interface GetVehicleBrandListPayloadRequestInterface {
+  path: GetVehicleBrandListPathRequestInterface;
+  params?: GetVehicleBrandListParamsRequestInterface;
 }
 
-export type GetVehicleCategoryListPathRequestInterface = {
+export type GetVehicleBrandListPathRequestInterface = {
   id: string;
 };
 
-export type GetVehicleCategoryListParamsRequestInterface = {
+export type GetVehicleBrandListParamsRequestInterface = {
   "filter[search]"?: string;
   "filter[status]"?: string;
   include?: string;
@@ -21,50 +21,29 @@ export type GetVehicleCategoryListParamsRequestInterface = {
   "page[size]"?: number;
 };
 
-export type GetVehicleCategoryListResponseInterface = NextApiResponse<
-  | GetVehicleCategoryListSuccessResponseInterface
-  | GetVehicleCategoryListErrorResponseInterface
+export type GetVehicleBrandListResponseInterface = NextApiResponse<
+  | GetVehicleBrandListSuccessResponseInterface
+  | GetVehicleBrandListErrorResponseInterface
 >;
 
-export interface GetVehicleCategoryListSuccessResponseInterface {
+export interface GetVehicleBrandListSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
   data: {
     id: number;
     title: string;
-    image: string;
+    icon: null | string;
+    deleted_at: null | string;
     created_at: string;
     updated_at: string;
-    deleted_at: null | string;
-    media: {
-      id: number;
-      model_type: string;
-      model_id: string;
-      uuid: string;
-      collection_name: string;
-      name: string;
-      file_name: string;
-      mime_type: string;
-      disk: string;
-      conversions_disk: string;
-      size: number;
-      manipulations: string[];
-      custom_properties: string[];
-      generated_conversions: string[];
-      responsive_images: string[];
-      order_column: number;
-      created_at: string;
-      updated_at: string;
-      original_url: string;
-      preview_url: string;
-    }[];
+    image: string;
+    media: [];
   }[];
-
   redirect: null;
 }
 
-export interface GetVehicleCategoryListErrorResponseInterface {
+export interface GetVehicleBrandListErrorResponseInterface {
   status: number;
   message: string;
   name: string;

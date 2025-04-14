@@ -63,7 +63,8 @@ export interface RegistrationProfileVehicleInformation {
         error: FormError;
       };
       car_model: {
-        value: string;
+        selected: null | { id: string; name: string };
+        items: { id: string; name: string }[];
         error: FormError;
       };
       car_color: {

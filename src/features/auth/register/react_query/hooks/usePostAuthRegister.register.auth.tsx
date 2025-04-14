@@ -7,15 +7,10 @@ import {
   PostAuthRegisterSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/auth";
 import { RegisterAuthContext } from "../../context";
-import Cookies from "universal-cookie";
-import { useRouter } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { fetchPostAuthRegister } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 
 export const usePostAuthRegister = () => {
-  const router = useRouter();
-
   const { state } = React.useContext(RegisterAuthContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
@@ -35,7 +30,7 @@ export const usePostAuthRegister = () => {
       return fetchPostAuthRegister(payload);
     },
     // onSuccess(data) {
-      
+
     // },
     onError(error) {
       dispatchGlobal({

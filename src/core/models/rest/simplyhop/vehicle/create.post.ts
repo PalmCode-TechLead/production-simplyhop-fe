@@ -5,7 +5,7 @@ export interface PostVehicleCreateRequestInterface extends NextApiRequest {
 }
 
 export interface PostVehicleCreatePayloadRequestInterface {
-  body: PostVehicleCreateBodyRequestInterface;
+  body: FormData;
 }
 
 export type PostVehicleCreateBodyRequestInterface = {

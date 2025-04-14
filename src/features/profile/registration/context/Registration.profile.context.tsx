@@ -48,28 +48,12 @@ const initialState: RegistrationProfileInitialStateType = {
       form: {
         car_brand: {
           selected: null,
-          items: [
-            {
-              id: "mercedes-benz",
-              name: "Mercedes Benz",
-            },
-            {
-              id: "bmw",
-              name: "BMW",
-            },
-            {
-              id: "toyota",
-              name: "Toyota",
-            },
-            {
-              id: "hyundai",
-              name: "Hyundai",
-            },
-          ],
+          items: [],
           error: null,
         },
         car_model: {
-          value: "",
+          selected: null,
+          items: [],
           error: null,
         },
         car_color: {

@@ -10,12 +10,17 @@ import {
 } from "../../context";
 import { Dropdownfield } from "@/core/components/dropdownfield";
 import { getError } from "@/core/utils/form";
+import {
+  useGetVehicleBrandList,
+  useGetVehicleCategoryList,
+} from "../../react_query/hooks";
 
 export const GeneralVehicleInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
-
+  useGetVehicleBrandList();
+  useGetVehicleCategoryList();
   const handleSelectCarBrand = (data: { id: string; name: string }) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetVehicleInformationData,
@@ -35,7 +40,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
     });
   };
 
-  const handleChangeCarModel = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSelectCarModel = (data: { id: string; name: string }) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetVehicleInformationData,
       payload: {
@@ -46,7 +51,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
             ...state.vehicle_information.general.form,
             car_model: {
               ...state.vehicle_information.general.form.car_model,
-              value: e.currentTarget.value,
+              selected: data,
             },
           },
         },
@@ -126,7 +131,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
           "w-full"
         )}
       >
-        <Textfield
+        <Dropdownfield
           labelProps={{
             ...dictionaries.vehicle_information.general.form.input.car_model
               .labelProps,
@@ -134,9 +139,10 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
           inputProps={{
             ...dictionaries.vehicle_information.general.form.input.car_model
               .inputProps,
-            value: state.vehicle_information.general.form.car_model.value,
-            onChange: handleChangeCarModel,
           }}
+          selected={state.vehicle_information.general.form.car_model.selected}
+          items={state.vehicle_information.general.form.car_model.items}
+          onSelect={handleSelectCarModel}
         />
         <Textfield
           labelProps={{
