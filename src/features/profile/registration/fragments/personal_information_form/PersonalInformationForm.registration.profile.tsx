@@ -2,17 +2,25 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Textfield } from "@/core/components/textfield";
 import {
   RegistrationProfileActionEnum,
   RegistrationProfileContext,
 } from "../../context";
+import { getError } from "@/core/utils/form";
 
 export const PersonalInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.email.validations.items,
+      value: e.currentTarget.value,
+      type: "optional",
+    });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
       payload: {
@@ -22,6 +30,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
           email: {
             ...state.personal_information.form.email,
             value: e.currentTarget.value,
+            error: errorItem,
           },
         },
       },
@@ -29,6 +38,11 @@ export const PersonalInformationFormRegistrationProfile = () => {
   };
 
   const handleChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.email.validations.items,
+      value: e.currentTarget.value,
+      type: "optional",
+    });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
       payload: {
@@ -102,6 +116,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
             value: state.personal_information.form.email.value,
             onChange: handleChangeEmail,
           }}
+          error={state.personal_information.form.email.error?.name}
         />
 
         <div
@@ -121,6 +136,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
               value: state.personal_information.form.first_name.value,
               onChange: handleChangeFirstName,
             }}
+            error={state.personal_information.form.first_name.error?.name}
           />
           <Textfield
             labelProps={{
@@ -133,6 +149,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
               value: state.personal_information.form.last_name.value,
               onChange: handleChangeLastName,
             }}
+            error={state.personal_information.form.last_name.error?.name}
           />
         </div>
         <Textfield
@@ -146,6 +163,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
             value: state.personal_information.form.phonenumber.value,
             onChange: handleChangePhonenumber,
           }}
+          error={state.personal_information.form.phonenumber.error?.name}
         />
       </div>
     </div>

@@ -1,16 +1,23 @@
 export const getError = (payload: {
   errorItems: { id: string; name: string; regex: string }[];
   value: string;
+  type?: "required" | "optional";
 }) => {
-  const emailObj = payload.errorItems.find((item) => {
-    console.log(new RegExp(item.regex).test(payload.value), "ini apa");
+  const errorObj = payload.errorItems.find((item) => {
     return !new RegExp(item.regex).test(payload.value);
   });
-  return !emailObj
+  return !errorObj
+    ? null
+    : payload.type === "optional" && !!payload.value.length
+    ? {
+        id: errorObj.id,
+        name: errorObj.name,
+      }
+    : payload.type === "optional" && !payload.value.length
     ? null
     : {
-        id: emailObj.id,
-        name: emailObj.name,
+        id: errorObj.id,
+        name: errorObj.name,
       };
 };
 
