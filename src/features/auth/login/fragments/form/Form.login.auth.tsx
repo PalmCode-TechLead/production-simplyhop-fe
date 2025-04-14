@@ -58,6 +58,14 @@ export const FormLoginAuth = () => {
   };
 
   const isSubmitLoading = isPendingPostAuthLogin;
+  const isEmailHasLength = !!state.form.email.value.length;
+  const isEmailValid = !state.form.email.error;
+  const isPasswordHasLength = !!state.form.email.value.length;
+  const isSubmitDisabled =
+    isPendingPostAuthLogin ||
+    isEmailHasLength ||
+    isEmailValid ||
+    isPasswordHasLength;
 
   return (
     <div
@@ -110,7 +118,7 @@ export const FormLoginAuth = () => {
 
         <Button
           className={clsx("px-[1rem] py-[0.75rem]")}
-          disabled={isSubmitLoading}
+          disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}
           onClick={handleClickLogin}
         >
