@@ -1,13 +1,16 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { ListChatTrip } from "../fragments/list";
 import { RoomChatTrip } from "../fragments/room";
 import { PageSheet } from "@/core/components/page_sheet";
 import { useSearchParams } from "next/navigation";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const ChatTripContainer = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const { isLg } = useTailwindBreakpoint();
   return (
     <div
       className={clsx(
@@ -36,7 +39,7 @@ export const ChatTripContainer = () => {
           {/* NOTES: Room */}
 
           <div className={clsx("block lg:hidden", "w-full")}>
-            <PageSheet isOpen={!!id} direction={"right"}>
+            <PageSheet isOpen={!!id && !isLg} direction={"right"}>
               <RoomChatTrip />
             </PageSheet>
           </div>
