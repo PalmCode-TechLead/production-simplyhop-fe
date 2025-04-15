@@ -27,6 +27,7 @@ export const TabButton = forwardRef<
           "px-[1rem] py-[0.75rem]",
           "cursor-pointer",
           "whitespace-nowrap",
+          "outline-none",
           props.className
         )}
       >
@@ -49,6 +50,7 @@ export const TabButton = forwardRef<
         selected ? "border-l border-l-[#5AC53D]" : "border-l border-l-[white]",
         "px-[1rem] py-[0.75rem]",
         "cursor-pointer",
+        "outline-none",
         props.className
       )}
     >

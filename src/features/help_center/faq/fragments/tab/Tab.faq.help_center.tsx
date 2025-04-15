@@ -25,8 +25,9 @@ export const TabFAQHelpCenter = () => {
     >
       <div
         className={clsx(
-          "grid grid-cols-2 place-content-start place-items-start gap-[1rem]",
+          "grid grid-flow-col grid-cols-none lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
           "w-full",
+          "overflow-auto",
           "border-b border-b-[#A6A6A6]"
         )}
       >

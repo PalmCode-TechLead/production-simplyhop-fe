@@ -12,7 +12,8 @@ export const FAQHelpCenterContainer = () => {
     <div
       className={clsx(
         "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[1.5rem]",
-        "w-full"
+        "w-full",
+        'px-[1rem]'
       )}
     >
       <HeaderHelpCenter title={dictionaries.title} />
@@ -32,20 +33,6 @@ export const FAQHelpCenterContainer = () => {
         ))}
       </div>
       <TabFAQHelpCenter />
-      {/* <div
-        className={clsx(
-          "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[1rem]",
-          "w-full"
-        )}
-      >
-        {dictionaries.items.map((item, itemIndex) => (
-          <AccordionFAQHelpCenter
-            key={itemIndex}
-            question={item.question}
-            answer={item.answer}
-          />
-        ))}
-      </div> */}
     </div>
   );
 };
