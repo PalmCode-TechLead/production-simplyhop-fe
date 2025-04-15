@@ -10,14 +10,77 @@ export const DatenschutzHelpCenterContainer = () => {
     <div
       className={clsx(
         "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[1.5rem]",
-        "w-full"
+        "w-full",
+        "px-[1rem]"
       )}
     >
       <HeaderHelpCenter title={dictionaries.title} />
-      <p
-        className={clsx("text-[0.875rem] text-[#606060] font-normal")}
-        dangerouslySetInnerHTML={{ __html: dictionaries.content }}
-      />
+      {dictionaries.contents.map((content, contentIndex) => (
+        <div
+          key={contentIndex}
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start",
+            "w-full"
+          )}
+        >
+          <p
+            className={clsx("text-[1rem] text-[#232323] font-semibold")}
+            dangerouslySetInnerHTML={{ __html: content.title }}
+          />
+          <br />
+          {content.type === "ordered-list" ? (
+            <ol className={clsx("list-decimal", "pl-[1rem]")}>
+              {content.content.map((subContent, subContentIndex) => {
+                return (
+                  <li
+                    key={`${contentIndex}-${subContentIndex}`}
+                    className={clsx(
+                      "text-[0.875rem] text-[#606060] font-normal"
+                    )}
+                    dangerouslySetInnerHTML={{ __html: subContent }}
+                  />
+                );
+              })}
+            </ol>
+          ) : content.type === "unordered-list" ? (
+            <ol>
+              {content.content.map((subContent, subContentIndex) => {
+                return (
+                  <li
+                    key={`${contentIndex}-${subContentIndex}`}
+                    className={clsx(
+                      "text-[0.875rem] text-[#606060] font-normal"
+                    )}
+                    dangerouslySetInnerHTML={{ __html: subContent }}
+                  />
+                );
+              })}
+            </ol>
+          ) : (
+            <>
+              {content.content.map((subContent, subContentIndex) => {
+                return (
+                  <div
+                    key={`${contentIndex}-${subContentIndex}`}
+                    className={clsx(
+                      "grid grid-cols-1 place-content-start place-items-start",
+                      "w-full"
+                    )}
+                  >
+                    <p
+                      className={clsx(
+                        "text-[0.875rem] text-[#606060] font-normal"
+                      )}
+                      dangerouslySetInnerHTML={{ __html: subContent }}
+                    />
+                    <br />
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
