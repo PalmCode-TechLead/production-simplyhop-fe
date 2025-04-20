@@ -13,6 +13,7 @@ import { ResultTripActionEnum, ResultTripContext } from "../context";
 
 export const ResultTripContainer = () => {
   const dictionaries = getDictionaries();
+
   const { state, dispatch } = React.useContext(ResultTripContext);
   const handleCloseFilter = () => {
     dispatch({
@@ -41,7 +42,7 @@ export const ResultTripContainer = () => {
         >
           <div
             className={clsx(
-              "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[2.5rem]",
+              "grid grid-rows-1 grid-cols-1 place-content-start place-items-start lg:gap-[2.5rem]",
               "max-w-container w-full h-full"
             )}
           >
@@ -62,7 +63,7 @@ export const ResultTripContainer = () => {
               </h2>
               <div
                 className={clsx(
-                  "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[2.5rem]",
+                  "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem] lg:gap-[2.5rem]",
                   "w-full"
                 )}
               >
