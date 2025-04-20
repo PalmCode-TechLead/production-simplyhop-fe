@@ -3,7 +3,6 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../i18n";
 import { HeaderHelpCenter } from "@/core/components/header_help_center";
-import { AccordionFAQHelpCenter } from "../components/accordion";
 import { TabFAQHelpCenter } from "../fragments/tab";
 
 export const FAQHelpCenterContainer = () => {
