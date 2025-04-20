@@ -1,14 +1,27 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { ResultTripContext, useRideFilterResultTrip } from "../../context";
+import {
+  ResultTripActionEnum,
+  ResultTripContext,
+  useRideFilterResultTrip,
+} from "../../context";
 import SVGIcon from "@/core/icons";
 import dayjs from "dayjs";
 import { Button } from "@/core/components/button";
 
 export const FilterDetailTrip = () => {
-  const { state } = React.useContext(ResultTripContext);
+  const { state, dispatch } = React.useContext(ResultTripContext);
   useRideFilterResultTrip();
+  const handleClickOpenFilter = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        is_open: true,
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -109,7 +122,11 @@ export const FilterDetailTrip = () => {
             </div>
           </div>
         </div>
-        <Button variant="secondary" className={clsx("!px-[1rem] !py-[0.5rem]")}>
+        <Button
+          variant="secondary"
+          className={clsx("!px-[1rem] !py-[0.5rem]")}
+          onClick={handleClickOpenFilter}
+        >
           {"Andern Sie"}
         </Button>
       </div>

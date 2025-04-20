@@ -1,5 +1,6 @@
 {
   "filter": {
+    "title": "Filter Nach",
     "form": {
       "city": {
         "inputProps": {
@@ -13,6 +14,7 @@
         }
       },
       "origin": {
+        "title": "Startpunkt wählen",
         "inputProps": {
           "id": "start",
           "placeholder": " "
@@ -24,6 +26,7 @@
         }
       },
       "destination": {
+        "title": "Zielunkt wählen",
         "inputProps": {
           "id": "end",
           "placeholder": " "

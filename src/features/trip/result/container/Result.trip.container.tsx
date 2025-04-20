@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { FilterResultTrip } from "../fragments/filter";
@@ -7,9 +8,12 @@ import { DetailResultTrip } from "../fragments/detail";
 import { NotificationResultTrip } from "../fragments/notification";
 import { getDictionaries } from "../i18n";
 import { FilterDetailTrip } from "../fragments/filter_detail";
+import { BottomSheet } from "@/core/components/bottom_sheet";
+import { ResultTripContext } from "../context";
 
 export const ResultTripContainer = () => {
   const dictionaries = getDictionaries();
+  const { state } = React.useContext(ResultTripContext);
   return (
     <>
       <div
@@ -62,6 +66,14 @@ export const ResultTripContainer = () => {
                 <div className={clsx("block lg:hidden", "w-full")}>
                   <React.Suspense fallback={<div />}>
                     <FilterDetailTrip />
+                  </React.Suspense>
+                </div>
+
+                <div className={clsx("block lg:hidden", "w-full")}>
+                  <React.Suspense fallback={<div />}>
+                    <BottomSheet isOpen={state.filters.is_open}>
+                      <FilterResultTrip />
+                    </BottomSheet>
                   </React.Suspense>
                 </div>
 

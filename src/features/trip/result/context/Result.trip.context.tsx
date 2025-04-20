@@ -14,7 +14,11 @@ import {
 
 const initialState: ResultTripInitialStateType = {
   filters: {
+    is_open: false,
     origin: {
+      page_sheet: {
+        is_open: false,
+      },
       selected: {
         item: null,
         lat_lng: null,
@@ -22,6 +26,9 @@ const initialState: ResultTripInitialStateType = {
       items: [],
     },
     destination: {
+      page_sheet: {
+        is_open: false,
+      },
       selected: {
         item: null,
         lat_lng: null,

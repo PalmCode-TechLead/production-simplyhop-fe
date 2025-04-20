@@ -20,7 +20,11 @@ export interface ResultTripInitialStateType {
 
 // State Collection Types consist of:
 export interface ResultTripFilters {
+  is_open: boolean;
   origin: {
+    page_sheet: {
+      is_open: boolean;
+    };
     items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
@@ -28,6 +32,9 @@ export interface ResultTripFilters {
     };
   };
   destination: {
+    page_sheet: {
+      is_open: boolean;
+    };
     items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };

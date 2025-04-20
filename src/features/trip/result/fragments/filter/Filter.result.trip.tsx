@@ -19,13 +19,48 @@ import {
 } from "@/core/utils/map/functions";
 import { Button } from "@/core/components/button";
 import { FormPassenger } from "@/core/components/form_passenger";
+import { FormRoutes } from "@/core/components/form_routes";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const FilterResultTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
+  const { isLg } = useTailwindBreakpoint();
 
   useRideFilterResultTrip();
+
+  const handleClickOriginRoutes = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
+            is_open: true,
+          },
+        },
+      },
+    });
+  };
+
+  const handleCloseOriginRoutes = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
+            is_open: false,
+          },
+        },
+      },
+    });
+  };
 
   const handleQueryOriginRoutes = async (input: string) => {
     if (!input.length) {
@@ -93,10 +128,46 @@ export const FilterResultTrip = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
+          page_sheet: {
+            ...state.filters.origin.page_sheet,
+            is_open: false,
+          },
           selected: {
             ...state.filters.origin.selected,
             item: data,
             lat_lng: lat_lng,
+          },
+        },
+      },
+    });
+  };
+
+  const handleClickDestinationRoutes = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
+            is_open: true,
+          },
+        },
+      },
+    });
+  };
+
+  const handleCloseDestinationRoutes = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
+            is_open: false,
           },
         },
       },
@@ -169,6 +240,10 @@ export const FilterResultTrip = () => {
         ...state.filters,
         destination: {
           ...state.filters.destination,
+          page_sheet: {
+            ...state.filters.destination.page_sheet,
+            is_open: false,
+          },
           selected: {
             ...state.filters.destination.selected,
             item: data,
@@ -254,7 +329,7 @@ export const FilterResultTrip = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
         "w-full max-w-container",
         "px-[1rem] py-[0.75rem]",
         "bg-[#FFFFFF]",
@@ -265,6 +340,13 @@ export const FilterResultTrip = () => {
         boxShadow: "0px 0px 15px 0px #0A31001A",
       }}
     >
+      <p
+        className={clsx(
+          "text-[1.125rem] sm:text-[2rem] lg:hidden text-[#292929] font-bold"
+        )}
+      >
+        {dictionaries.filter.title}
+      </p>
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
@@ -278,8 +360,24 @@ export const FilterResultTrip = () => {
             "w-full"
           )}
         >
-          <AutocompleteRoutes
+          <FormRoutes
             origin={{
+              pageSheet: {
+                selected: state.filters.origin.selected.item,
+                items: state.filters.origin.items,
+                onQuery: (data: string) => handleQueryOriginRoutes(data),
+                onSelect: (data: { id: string; name: string }) =>
+                  handleSelectOriginRoutes(data),
+                isOpen: state.filters.origin.page_sheet.is_open,
+                title: dictionaries.filter.form.origin.title,
+                onClose: handleCloseOriginRoutes,
+                inputProps: {
+                  ...dictionaries.filter.form.origin.inputProps,
+                },
+                labelProps: {
+                  ...dictionaries.filter.form.origin.labelProps,
+                },
+              },
               autocomplete: {
                 selected: state.filters.origin.selected.item,
                 items: state.filters.origin.items,
@@ -289,12 +387,33 @@ export const FilterResultTrip = () => {
               },
               inputProps: {
                 ...dictionaries.filter.form.origin.inputProps,
+                onClick: () => {
+                  if (!isLg) {
+                    handleClickOriginRoutes();
+                  }
+                },
               },
               labelProps: {
                 ...dictionaries.filter.form.origin.labelProps,
               },
             }}
             destination={{
+              pageSheet: {
+                selected: state.filters.destination.selected.item,
+                items: state.filters.destination.items,
+                onQuery: (data: string) => handleQueryDestinationRoutes(data),
+                onSelect: (data: { id: string; name: string }) =>
+                  handleSelectDestinationRoutes(data),
+                isOpen: state.filters.destination.page_sheet.is_open,
+                title: dictionaries.filter.form.destination.title,
+                onClose: handleCloseDestinationRoutes,
+                inputProps: {
+                  ...dictionaries.filter.form.destination.inputProps,
+                },
+                labelProps: {
+                  ...dictionaries.filter.form.destination.labelProps,
+                },
+              },
               autocomplete: {
                 selected: state.filters.destination.selected.item,
                 items: state.filters.destination.items,
@@ -304,6 +423,11 @@ export const FilterResultTrip = () => {
               },
               inputProps: {
                 ...dictionaries.filter.form.destination.inputProps,
+                onClick: () => {
+                  if (!isLg) {
+                    handleClickDestinationRoutes();
+                  }
+                },
               },
               labelProps: {
                 ...dictionaries.filter.form.destination.labelProps,
