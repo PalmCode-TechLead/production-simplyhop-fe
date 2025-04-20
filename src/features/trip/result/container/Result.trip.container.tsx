@@ -9,11 +9,20 @@ import { NotificationResultTrip } from "../fragments/notification";
 import { getDictionaries } from "../i18n";
 import { FilterDetailTrip } from "../fragments/filter_detail";
 import { BottomSheet } from "@/core/components/bottom_sheet";
-import { ResultTripContext } from "../context";
+import { ResultTripActionEnum, ResultTripContext } from "../context";
 
 export const ResultTripContainer = () => {
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(ResultTripContext);
+  const { state, dispatch } = React.useContext(ResultTripContext);
+  const handleCloseFilter = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        is_open: false,
+      },
+    });
+  };
   return (
     <>
       <div
@@ -71,7 +80,10 @@ export const ResultTripContainer = () => {
 
                 <div className={clsx("block lg:hidden", "w-full")}>
                   <React.Suspense fallback={<div />}>
-                    <BottomSheet isOpen={state.filters.is_open}>
+                    <BottomSheet
+                      isOpen={state.filters.is_open}
+                      onClose={handleCloseFilter}
+                    >
                       <FilterResultTrip />
                     </BottomSheet>
                   </React.Suspense>
