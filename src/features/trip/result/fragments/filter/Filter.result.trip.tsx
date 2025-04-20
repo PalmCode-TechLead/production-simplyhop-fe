@@ -2,7 +2,6 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { AutocompleteRoutes } from "@/core/components/autocomplete_routes";
 import {
   ResultTripActionEnum,
   ResultTripContext,
