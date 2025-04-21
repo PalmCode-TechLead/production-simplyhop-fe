@@ -94,7 +94,9 @@ export const ResultTripContainer = () => {
               </div>
             </div>
 
-            <RidesResultTrip />
+            <React.Suspense fallback={<div />}>
+              <RidesResultTrip />
+            </React.Suspense>
           </div>
         </div>
       </div>
