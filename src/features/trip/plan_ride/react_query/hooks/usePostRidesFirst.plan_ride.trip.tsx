@@ -31,7 +31,7 @@ export const usePostRidesFirst = () => {
           destination_long:
             state.filters.destination.selected.lat_lng?.lng ?? 0,
           destination_name: state.filters.destination.selected.item?.name ?? "",
-          eta: 0,
+          eta: state.detail.distance_matrix?.duration.value ?? 0,
           departure_time: "2025-03-31 09:30:00",
         },
       };

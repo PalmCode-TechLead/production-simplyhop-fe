@@ -20,6 +20,10 @@ import {
 } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -213,10 +217,21 @@ export const DetailPlanRideTrip = () => {
     });
   };
 
+  const dur = dayjs.duration(
+    state.detail.distance_matrix?.duration.value ?? 0,
+    "seconds"
+  );
+
+  const hours = String(dur.hours());
+  const minutes = String(dur.minutes());
+
+  const formatted = `${hours}h ${minutes}m`;
+
   const isSubmitDisabled =
     isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
   const isSubmitLoading =
     isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
+
   return (
     <Modal
       className={clsx(
@@ -237,20 +252,19 @@ export const DetailPlanRideTrip = () => {
       >
         <div
           className={clsx(
-            "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1.5rem]",
+            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
             "w-full"
           )}
         >
-          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
-            {dictionaries.detail.title}
-          </h1>
-
           <button className={clsx("block lg:hidden")} onClick={handleClose}>
             <SVGIcon
               name="X"
               className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
             />
           </button>
+          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
+            {dictionaries.detail.title}
+          </h1>
         </div>
         <div
           className={clsx(
@@ -260,7 +274,21 @@ export const DetailPlanRideTrip = () => {
             "overflow-auto"
           )}
         >
-          <RideDetailCardPlanRideTrip />
+          <RideDetailCardPlanRideTrip
+            routes={{
+              departure: {
+                place: state.filters.origin.selected.item?.name ?? "",
+                time: "17.30 Uhr",
+              },
+              travelTime: {
+                time: formatted,
+              },
+              arrival: {
+                place: state.filters.destination.selected.item?.name ?? "",
+                time: "18.30 Uhr",
+              },
+            }}
+          />
 
           <Card
             className={clsx(

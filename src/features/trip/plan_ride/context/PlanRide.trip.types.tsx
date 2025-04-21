@@ -99,6 +99,20 @@ export interface PlanRideTripDetail {
       checked: boolean;
     };
   };
+  distance_matrix: null | {
+    distance: {
+      text: string;
+      value: number;
+    };
+    duration: {
+      text: string;
+      value: number;
+    };
+    duration_in_traffic: {
+      text: string;
+      value: number;
+    };
+  };
 }
 
 export interface PlanRideTripNotification {

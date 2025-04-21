@@ -4,5 +4,6 @@ export const RestGoogleAPICollectionURL = {
   },
   maps: {
     getDistanceMatrix: () => `/maps/api/distancematrix/json`,
+    getLocalDistanceMatrix: () => `/api/distance`,
   },
 };

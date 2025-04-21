@@ -143,20 +143,20 @@ export const DetailResultTrip = () => {
       >
         <div
           className={clsx(
-            "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1.5rem]",
+            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
             "w-full"
           )}
         >
-          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
-            {dictionaries.detail.title}
-          </h1>
-
           <button className={clsx("block lg:hidden")} onClick={handleClose}>
             <SVGIcon
               name="X"
               className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
             />
           </button>
+
+          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
+            {dictionaries.detail.title}
+          </h1>
         </div>
 
         <RideDetailCardResultTrip {...detailData} />

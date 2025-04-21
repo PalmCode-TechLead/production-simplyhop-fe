@@ -6,6 +6,7 @@ import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
 import {
   useGetVehicleMy,
+  useRestGoogleGetDistanceMatrix,
   useRestGooglePostRouteDirections,
 } from "../../react_query/hooks";
 import { Button } from "@/core/components/button";
@@ -26,6 +27,9 @@ export const FilterPlanRideTrip = () => {
 
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();
+
+  const { mutateAsync: fetchRestGoogleGetDistanceMatrix } =
+    useRestGoogleGetDistanceMatrix();
 
   const handleClickAuto = () => {
     dispatch({
@@ -379,12 +383,15 @@ export const FilterPlanRideTrip = () => {
     setDefaultPassenger();
   }, []);
 
-  const handleClickSearch = () => {
+  const handleClickSearch = async () => {
+    const data = await fetchRestGoogleGetDistanceMatrix();
+    if (!data) return;
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
         ...state.detail,
         is_open: true,
+        distance_matrix: data,
       },
     });
   };

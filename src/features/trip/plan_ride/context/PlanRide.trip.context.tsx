@@ -89,6 +89,7 @@ const initialState: PlanRideTripInitialStateType = {
         checked: false,
       },
     },
+    distance_matrix: null,
   },
   notification: {
     is_open: false,

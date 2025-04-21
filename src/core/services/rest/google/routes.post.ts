@@ -27,26 +27,3 @@ export const fetchRestGooglePostRouteDirections = async (
     throw (err as AxiosError)?.response?.data || (err as AxiosError)?.response;
   }
 };
-
-export const fetchRestGoogleGetDistanceMatrix = async (
-  payload?: RestGooglePostRouteDirectionsPayloadRequestInterface
-) => {
-  try {
-    const url = `${
-      ENVIRONMENTS.MAPS_GOOGLE_API_URL
-    }${RestGoogleAPICollectionURL.maps.getDistanceMatrix()}`;
-
-    const res = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Goog-Api-Key": ENVIRONMENTS.GOOGLE_MAP_API_KEY!,
-      },
-      body: JSON.stringify(payload?.body ?? {}),
-    });
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    throw (err as AxiosError)?.response?.data || (err as AxiosError)?.response;
-  }
-};
