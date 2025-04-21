@@ -17,19 +17,23 @@ export const usePutRidesSecond = () => {
     React.useContext(GlobalContext);
   const mutation = useMutation<
     PutRidesSecondSuccessResponseInterface,
-    PutRidesSecondErrorResponseInterface
+    PutRidesSecondErrorResponseInterface,
+    { id: number }
   >({
     mutationKey: PlanRideTripReactQueryKey.PutRidesSecond(),
-    mutationFn: () => {
+    mutationFn: (data: { id: number }) => {
       const payload: PutRidesSecondPayloadRequestInterface = {
         path: {
-          id: 1,
+          id: data.id,
         },
         body: {
-          recurring_ride: "no",
-          waiting_time: "5 minuten",
-          available_seats: 2,
-          additional_info: "my information",
+          // RECurring perlu tanya
+          recurring_ride: state.detail.form.plan.recurring.selected?.id ?? "no",
+          waiting_time: state.detail.form.plan.umweg.value,
+          available_seats: !state.detail.form.plan.seat.value
+            ? 0
+            : Number(state.detail.form.plan.seat),
+          additional_info: state.detail.form.other.notes.value,
         },
       };
       return fetchPutRidesSecond(payload);

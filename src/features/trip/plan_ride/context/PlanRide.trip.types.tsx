@@ -87,6 +87,14 @@ export interface PlanRideTripDetail {
         checked: boolean;
       };
     };
+    other: {
+      price: {
+        value: number;
+      };
+      notes: {
+        value: string;
+      };
+    };
     tnc: {
       checked: boolean;
     };

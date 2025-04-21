@@ -23,11 +23,14 @@ export const usePostRidesFirst = () => {
     mutationFn: () => {
       const payload: PostRidesFirstPayloadRequestInterface = {
         body: {
-          vehicle_id: 8,
-          start_lat: 52.52,
-          start_long: 13.404954,
-          destination_lat: 48.1351253,
-          destination_long: 11.5819804,
+          vehicle_id: Number(state.filters.auto.selected?.id ?? "0"),
+          start_lat: state.filters.origin.selected.lat_lng?.lat ?? 0,
+          start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
+          start_name: state.filters.origin.selected.item?.name ?? "",
+          destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
+          destination_long:
+            state.filters.destination.selected.lat_lng?.lng ?? 0,
+          destination_name: state.filters.destination.selected.item?.name ?? "",
           departure_time: "2025-03-31 09:30:00",
         },
       };

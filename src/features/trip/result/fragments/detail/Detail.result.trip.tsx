@@ -12,7 +12,7 @@ import { PriceInputResultTrip } from "../../components/price_input";
 import { Button } from "@/core/components/button";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
-import { useGetRideId, usePostBookingBook } from "../../react_query/hooks";
+import { usePostBookingBook } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
 import { PassengerCardResultTrip } from "../../components/passenger_card";
@@ -31,8 +31,6 @@ export const DetailResultTrip = () => {
 
   const { mutateAsync: postBookingBook, isPending: isPendingPostBookingBook } =
     usePostBookingBook();
-
-  useGetRideId();
 
   React.useEffect(() => {
     if (rideId) {
@@ -130,7 +128,7 @@ export const DetailResultTrip = () => {
       className={clsx(
         "!max-w-[calc(100vw)] md:!max-w-[872px]",
         "h-fit max-h-[calc(100vh)]",
-        "!rounded-[0.625rem]",
+        "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
         "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
       )}
@@ -193,6 +191,7 @@ export const DetailResultTrip = () => {
             }}
             inputProps={{
               ...dictionaries.detail.notes.form.input.notes.inputProps,
+              value: state.detail.form.notes.value,
               onChange: handleChangeNotes,
             }}
             labelProps={{

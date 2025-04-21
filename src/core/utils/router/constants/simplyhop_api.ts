@@ -10,7 +10,8 @@ export const SimplyHopAPICollectionURL = {
     postRegister: () => `/api/auth/register`,
   },
   vehicle: {
-    postCreate: () => `/api/auth/login`,
+    postCreate: () => `/api/vehicle`,
+    getMy: () => `/api/vehicle`,
   },
   user_profile: {
     postCreate: () => `/api/vehicle`,

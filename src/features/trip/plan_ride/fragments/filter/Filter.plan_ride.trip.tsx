@@ -4,7 +4,10 @@ import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
 import { DatePicker } from "@/core/components/datepicker";
-import { useRestGooglePostRouteDirections } from "../../react_query/hooks";
+import {
+  useGetVehicleMy,
+  useRestGooglePostRouteDirections,
+} from "../../react_query/hooks";
 import { Button } from "@/core/components/button";
 import {
   fetchAutocompletePlace,
@@ -19,6 +22,7 @@ export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const { isLg } = useTailwindBreakpoint();
+  useGetVehicleMy();
 
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();

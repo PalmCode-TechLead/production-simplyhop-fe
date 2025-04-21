@@ -13,11 +13,25 @@ import { Textfield } from "@/core/components/textfield";
 import { DatePicker } from "@/core/components/datepicker";
 import { Checkbox } from "@/core/components/checkbox";
 import { InputContainer } from "@/core/components/input_container";
+import {
+  usePostRidesFirst,
+  usePutRidesSecond,
+  usePutRidesThird,
+} from "../../react_query/hooks";
+import { MoonLoader } from "@/core/components/moon_loader";
+import SVGIcon from "@/core/icons";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const isOpen = state.detail.is_open;
+
+  const { mutateAsync: postRidesFirst, isPending: isPendingRidesFirst } =
+    usePostRidesFirst();
+  const { mutateAsync: postRidesSecond, isPending: isPendingRidesSecond } =
+    usePutRidesSecond();
+  const { mutateAsync: postRidesThird, isPending: isPendingRidesThird } =
+    usePutRidesThird();
 
   const handleClose = () => {
     dispatch({
@@ -119,6 +133,46 @@ export const DetailPlanRideTrip = () => {
     });
   };
 
+  const handleChangePriceOffer = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          other: {
+            ...state.detail.form.other,
+            price: {
+              ...state.detail.form.other.price,
+              value: !e.currentTarget.value.length
+                ? 0
+                : Number(e.currentTarget.value),
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeNotes = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          other: {
+            ...state.detail.form.other,
+            notes: {
+              ...state.detail.form.other.notes,
+              value: e.currentTarget.value,
+            },
+          },
+        },
+      },
+    });
+  };
+
   const handleCheckTNC = () => {
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
@@ -135,7 +189,14 @@ export const DetailPlanRideTrip = () => {
     });
   };
 
-  const handleClickSend = () => {
+  const handleClickSend = async () => {
+    const ridesFirst = await postRidesFirst();
+    if (!ridesFirst) return;
+    const ridesSecond = await postRidesSecond({ id: ridesFirst.data.ride.id });
+    if (!ridesSecond) return;
+    const ridesThird = await postRidesThird({ id: ridesFirst.data.ride.id });
+    if (!ridesThird) return;
+
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
@@ -151,12 +212,17 @@ export const DetailPlanRideTrip = () => {
       },
     });
   };
+
+  const isSubmitDisabled =
+    isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
+  const isSubmitLoading =
+    isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
   return (
     <Modal
       className={clsx(
-        "!max-w-[calc(100vw-3rem)] md:!max-w-[872px]",
-        // "!h-fit",
-        "!rounded-[0.625rem]",
+        "!max-w-[calc(100vw)] md:!max-w-[872px]",
+        "h-[100vh] lg:!h-fit",
+        "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
         "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
       )}
@@ -169,14 +235,28 @@ export const DetailPlanRideTrip = () => {
           "w-full"
         )}
       >
-        <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
-          {dictionaries.detail.title}
-        </h1>
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1.5rem]",
+            "w-full"
+          )}
+        >
+          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
+            {dictionaries.detail.title}
+          </h1>
+
+          <button className={clsx("block lg:hidden")} onClick={handleClose}>
+            <SVGIcon
+              name="X"
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+            />
+          </button>
+        </div>
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
             "w-full",
-            "max-h-[400px]",
+            "lg:max-h-[400px]",
             "overflow-auto"
           )}
         >
@@ -282,13 +362,24 @@ export const DetailPlanRideTrip = () => {
               }}
               inputProps={{
                 ...dictionaries.detail.notes.form.input.notes.inputProps,
+                value: state.detail.form.other.notes.value,
+                onChange: handleChangeNotes,
               }}
               labelProps={{
                 ...dictionaries.detail.notes.form.input.notes.labelProps,
               }}
             />
 
-            <PriceInputPlanRideTrip />
+            <PriceInputPlanRideTrip
+              inputProps={{
+                type: "number",
+                value:
+                  state.detail.form.other.price.value === 0
+                    ? ""
+                    : state.detail.form.other.price.value,
+                onChange: handleChangePriceOffer,
+              }}
+            />
 
             <div
               className={clsx(
@@ -310,7 +401,12 @@ export const DetailPlanRideTrip = () => {
           </Card>
         </div>
 
-        <Button onClick={handleClickSend}>
+        <Button
+          disabled={isSubmitDisabled}
+          isLoading={isSubmitLoading}
+          onClick={handleClickSend}
+        >
+          {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
           {dictionaries.detail.cta.send.children}
         </Button>
       </div>

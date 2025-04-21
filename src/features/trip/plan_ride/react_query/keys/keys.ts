@@ -1,4 +1,7 @@
 export const PlanRideTripReactQueryKey = {
+  GetVehicleMy: () => {
+    return ["PlanRideTripReactQueryKey.GetVehicleMy"];
+  },
   PostRouteDirections: () => {
     return ["PlanRideTripReactQueryKey.PostRouteDirections"];
   },

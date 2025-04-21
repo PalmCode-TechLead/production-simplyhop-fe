@@ -2,29 +2,22 @@ import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ResultTripReactQueryKey } from "../keys";
 
-import { ResultTripActionEnum, ResultTripContext } from "../../context";
-
 import {
   GetRidesIdErrorResponseInterface,
   GetRidesIdPayloadRequestInterface,
   GetRidesIdSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
-import dayjs from "dayjs";
-import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
-import { SVGIconProps } from "@/core/icons";
 import { fetchGetRidesId } from "@/core/services/rest/simplyhop/rides";
 import { useSearchParams } from "next/navigation";
 import { RIDE_FILTER } from "@/core/enums";
 
 export const useGetRideId = () => {
-  const globalDictionaries = getGlobalDictionaries();
   const searchParams = useSearchParams();
   const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
-  const { state, dispatch } = React.useContext(ResultTripContext);
 
   const payload: GetRidesIdPayloadRequestInterface = {
     path: {
-      id: 1,
+      id: Number(String(rideId ?? "0")),
     },
   };
   const query = useQuery<

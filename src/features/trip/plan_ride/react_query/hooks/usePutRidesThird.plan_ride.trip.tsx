@@ -17,17 +17,18 @@ export const usePutRidesThird = () => {
     React.useContext(GlobalContext);
   const mutation = useMutation<
     PutRidesThirdSuccessResponseInterface,
-    PutRidesThirdErrorResponseInterface
+    PutRidesThirdErrorResponseInterface,
+    { id: number }
   >({
     mutationKey: PlanRideTripReactQueryKey.PutRidesThird(),
-    mutationFn: () => {
+    mutationFn: (data: { id: number }) => {
       const payload: PutRidesThirdPayloadRequestInterface = {
         path: {
-          id: 1,
+          id: data.id,
         },
         body: {
-          maxtwo_backseat: false,
-          base_price: 120,
+          maxtwo_backseat: state.detail.form.plan.back_seat.checked,
+          base_price: state.detail.form.other.price.value,
         },
       };
       return fetchPutRidesThird(payload);

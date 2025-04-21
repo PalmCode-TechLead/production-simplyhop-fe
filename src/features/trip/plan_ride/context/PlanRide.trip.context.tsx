@@ -77,6 +77,14 @@ const initialState: PlanRideTripInitialStateType = {
           checked: false,
         },
       },
+      other: {
+        price: {
+          value: 0,
+        },
+        notes: {
+          value: "",
+        },
+      },
       tnc: {
         checked: false,
       },
