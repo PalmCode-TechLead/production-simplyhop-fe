@@ -7,7 +7,7 @@ import { ResultTripContext } from "../../context";
 export const RidesResultTrip = () => {
   const { state } = React.useContext(ResultTripContext);
   useGetRideSearch();
-  console.log(state.rides.data, "ini data");
+
   return (
     <div
       className={clsx(

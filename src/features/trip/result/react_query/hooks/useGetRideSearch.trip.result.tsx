@@ -10,8 +10,12 @@ import {
   GetRidesSearchSuccessResponseInterface,
   GetRidesSearchPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
+import dayjs from "dayjs";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
+import { SVGIconProps } from "@/core/icons";
 
 export const useGetRideSearch = () => {
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
 
   const payload: GetRidesSearchPayloadRequestInterface = {
@@ -37,11 +41,12 @@ export const useGetRideSearch = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
+
       dispatch({
         type: ResultTripActionEnum.SetRidesData,
         payload: {
           ...state.rides,
-          data: data.data.map((item) => {
+          data: data.data.map((item, index) => {
             return {
               driver: {
                 profile: {
@@ -71,63 +76,158 @@ export const useGetRideSearch = () => {
                 },
                 facility: {
                   top: [
-                    {
-                      id: "seat",
-                      icon: {
-                        name: "User",
-                        color: "#D41010",
-                      },
-                      name: {
-                        label: "Letzter Platz für deine Buchung",
-                        color: "#D41010",
-                      },
-                    },
-                    {
-                      id: "luggage",
-                      icon: {
-                        name: "Briefcase",
-                        color: "#D41010",
-                      },
-                      name: {
-                        label: "Kein Gepäck erlaubt",
-                        color: "#D41010",
-                      },
-                    },
+                    ...(!!item.vehicle.numb_free_seats
+                      ? [
+                          {
+                            ...globalDictionaries.car.facility.seat.available,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.available
+                                .icon,
+                              name: globalDictionaries.car.facility.seat
+                                .available.icon.name as SVGIconProps["name"],
+                            },
+                            name: {
+                              ...globalDictionaries.car.facility.seat.available
+                                .name,
+                              label:
+                                globalDictionaries.car.facility.seat.available.name.label.replaceAll(
+                                  "{{number}}",
+                                  item.vehicle.numb_free_seats.toLocaleString(
+                                    "de-DE"
+                                  )
+                                ),
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.car.facility.seat.empty,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.empty
+                                .icon,
+                              name: globalDictionaries.car.facility.seat.empty
+                                .icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+                    ...(!!item.vehicle.numb_of_luggages
+                      ? [
+                          {
+                            ...globalDictionaries.car.facility.seat.luggage
+                              .available,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.luggage
+                                .available.icon,
+                              name: globalDictionaries.car.facility.seat.luggage
+                                .available.icon.name as SVGIconProps["name"],
+                            },
+                            name: {
+                              ...globalDictionaries.car.facility.seat.luggage
+                                .available.name,
+                              label:
+                                globalDictionaries.car.facility.seat.luggage.available.name.label.replaceAll(
+                                  "{{number}}",
+                                  item.vehicle.numb_free_seats.toLocaleString(
+                                    "de-DE"
+                                  )
+                                ),
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.car.facility.seat.luggage
+                              .empty,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.luggage
+                                .empty.icon,
+                              name: globalDictionaries.car.facility.seat.luggage
+                                .empty.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
                   ],
                   bottom: [
-                    {
-                      id: "cigarette-off",
-                      icon: {
-                        name: "CigaretteOff",
-                        color: "#727272",
-                      },
-                      name: {
-                        label: "Nichtraucher",
-                        color: "#727272",
-                      },
-                    },
-                    {
-                      id: "music",
-                      icon: {
-                        name: "Music",
-                        color: "#727272",
-                      },
-                      name: {
-                        label: "Musik erlaubt",
-                        color: "#727272",
-                      },
-                    },
-                    {
-                      id: "dog",
-                      icon: {
-                        name: "Dog",
-                        color: "#727272",
-                      },
-                      name: {
-                        label: "Haustiere erlaubt",
-                        color: "#727272",
-                      },
-                    },
+                    // Smoking
+                    ...(!!item.vehicle.smoke_allowed
+                      ? [
+                          {
+                            ...globalDictionaries.car.facility.seat.smoking
+                              .allowed,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.smoking
+                                .allowed.icon,
+                              name: globalDictionaries.car.facility.seat.smoking
+                                .allowed.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.car.facility.seat.smoking
+                              .prohibited,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.smoking
+                                .prohibited.icon,
+                              name: globalDictionaries.car.facility.seat.smoking
+                                .prohibited.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+
+                    // Music
+                    ...(!!item.vehicle.music_availability
+                      ? [
+                          {
+                            ...globalDictionaries.car.facility.seat.music
+                              .allowed,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.music
+                                .allowed.icon,
+                              name: globalDictionaries.car.facility.seat.music
+                                .allowed.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.car.facility.seat.music
+                              .prohibited,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.music
+                                .prohibited.icon,
+                              name: globalDictionaries.car.facility.seat.music
+                                .prohibited.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
+
+                    // Pet
+                    ...(!!item.vehicle.pet_allowed
+                      ? [
+                          {
+                            ...globalDictionaries.car.facility.seat.pets
+                              .allowed,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.pets
+                                .allowed.icon,
+                              name: globalDictionaries.car.facility.seat.pets
+                                .allowed.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]
+                      : [
+                          {
+                            ...globalDictionaries.car.facility.seat.pets
+                              .prohibited,
+                            icon: {
+                              ...globalDictionaries.car.facility.seat.pets
+                                .prohibited.icon,
+                              name: globalDictionaries.car.facility.seat.pets
+                                .prohibited.icon.name as SVGIconProps["name"],
+                            },
+                          },
+                        ]),
                   ],
                 },
               },
@@ -135,7 +235,11 @@ export const useGetRideSearch = () => {
               routes: {
                 departure: {
                   place: "Munich",
-                  time: "17.30 Uhr",
+                  time: !item.ride_times.length
+                    ? "-"
+                    : dayjs(item.ride_times[0].departure_time).format(
+                        "HH.mm [Uhr]"
+                      ),
                 },
                 travelTime: {
                   time: "1h 15m",
@@ -149,16 +253,21 @@ export const useGetRideSearch = () => {
               price: {
                 initial: {
                   label: "Angebotspreis",
-                  price: "€25.00",
+                  price: `€${item.base_price}`,
                 },
               },
               ride: {
                 badge: [
-                  {
-                    id: "bester_preis",
-                    label: "Bester Preis",
-                    variant: "success",
-                  },
+                  ...(index === 0
+                    ? [
+                        {
+                          id: "bester_preis",
+                          label: "Bester Preis",
+                          variant: "success" as "success" | "danger",
+                        },
+                      ]
+                    : []),
+
                   {
                     id: "fahrerin",
                     label: "Fahrerin (W)",
