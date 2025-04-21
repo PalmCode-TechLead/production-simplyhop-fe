@@ -31,12 +31,13 @@ export const useGetRideSearch = () => {
       // destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
       // destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
       // include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
+      // sort:"-base_price",
       start_lat: 52.5200066,
       start_long: 13.414954,
       destination_lat: 48.1351253,
       destination_long: 11.5819804,
       include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
-      // sort:'-base_price'
+      sort: "-base_price",
     },
   };
   const query = useQuery<
