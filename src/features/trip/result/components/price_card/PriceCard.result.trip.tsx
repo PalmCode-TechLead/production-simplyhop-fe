@@ -17,7 +17,7 @@ export const PriceCardResultTrip = ({
         {label}
       </span>
 
-      <span className={clsx("text-[black] text-[1.5rem] font-bold")}>
+      <span className={clsx("text-[black] text-[0.875rem] lg:text-[1.5rem] font-bold")}>
         {price}
       </span>
     </Card>

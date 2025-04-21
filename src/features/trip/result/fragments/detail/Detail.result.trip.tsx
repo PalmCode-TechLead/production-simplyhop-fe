@@ -15,6 +15,8 @@ import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { useGetRideId, usePostBookingBook } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
+import { PassengerCardResultTrip } from "../../components/passenger_card";
+import { RIDE_FILTER } from "@/core/enums";
 
 export const DetailResultTrip = () => {
   const dictionaries = getDictionaries();
@@ -22,6 +24,9 @@ export const DetailResultTrip = () => {
   const router = useRouter();
   const { state, dispatch } = React.useContext(ResultTripContext);
   const rideId = searchParams.get("ride_id");
+  const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
+  const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
+
   const isOpen = state.detail.is_open;
 
   const { mutateAsync: postBookingBook, isPending: isPendingPostBookingBook } =
@@ -157,6 +162,13 @@ export const DetailResultTrip = () => {
         </div>
 
         <RideDetailCardResultTrip {...detailData} />
+
+        <PassengerCardResultTrip
+          label={dictionaries.detail.passenger.label}
+          passenger={dictionaries.detail.passenger.maskedValue
+            .replaceAll("{{adult}}", String(adult ?? "0"))
+            .replaceAll("{{children}}", String(children ?? "0"))}
+        />
 
         <PriceCardResultTrip
           label={dictionaries.detail.price.form.title}

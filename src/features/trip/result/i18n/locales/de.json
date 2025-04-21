@@ -125,9 +125,13 @@
   },
   "detail": {
     "title": "Fahrt anbieten",
+    "passenger": {
+      "label": "Passagiere",
+      "maskedValue": "{{adult}} Erwachsene, {{children}} Kinder"
+    },
     "price": {
       "form": {
-        "title": "preis",
+        "title": "Preis",
         "input": {
           "price": {
             "inputProps": {
