@@ -4,6 +4,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { RideDetailCardPlanRideTrip } from "../../components/ride_detail_card";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { TextareafieldNotes } from "@/core/components/textareafield_notes";
 import { Card } from "@/core/components/card";
 import { PriceInputPlanRideTrip } from "../../components/price_input";
@@ -22,9 +23,11 @@ import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
 
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
+import { Dropdownfield } from "@/core/components/dropdownfield";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const isOpen = state.detail.is_open;
 
@@ -62,6 +65,7 @@ export const DetailPlanRideTrip = () => {
           plan: {
             ...state.detail.form.plan,
             date: {
+              ...state.detail.form.plan.date,
               selected: date,
             },
           },
@@ -90,7 +94,27 @@ export const DetailPlanRideTrip = () => {
           plan: {
             ...state.detail.form.plan,
             time: {
+              ...state.detail.form.plan.time,
               value: e.currentTarget.value,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleSelectRecurring = (data: { id: string; name: string }) => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          plan: {
+            ...state.detail.form.plan,
+            recurring: {
+              ...state.detail.form.plan.recurring,
+              selected: data,
             },
           },
         },
@@ -108,6 +132,7 @@ export const DetailPlanRideTrip = () => {
           plan: {
             ...state.detail.form.plan,
             umweg: {
+              ...state.detail.form.plan.umweg,
               value: e.currentTarget.value,
             },
           },
@@ -126,6 +151,7 @@ export const DetailPlanRideTrip = () => {
           plan: {
             ...state.detail.form.plan,
             seat: {
+              ...state.detail.form.plan.seat,
               value: e.currentTarget.value,
             },
           },
@@ -144,6 +170,7 @@ export const DetailPlanRideTrip = () => {
           plan: {
             ...state.detail.form.plan,
             back_seat: {
+              ...state.detail.form.plan.back_seat,
               checked: !state.detail.form.plan.back_seat.checked,
             },
           },
@@ -354,19 +381,38 @@ export const DetailPlanRideTrip = () => {
                 }}
               />
             </div>
-            <Textfield
-              inputContainerProps={{
-                className: "!border !border-[#F8F8F8]",
-              }}
-              labelProps={{
-                ...dictionaries.detail.plan.form.input.umweg.labelProps,
-              }}
-              inputProps={{
-                ...dictionaries.detail.plan.form.input.umweg.inputProps,
-                value: state.detail.form.plan.umweg.value,
-                onChange: handleChangeUmweg,
-              }}
-            />
+            <div
+              className={clsx(
+                "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",
+                "w-full"
+              )}
+            >
+              <Dropdownfield
+                labelProps={{
+                  ...dictionaries.detail.plan.form.input.recurring.labelProps,
+                }}
+                inputProps={{
+                  ...dictionaries.detail.plan.form.input.recurring.inputProps,
+                  className: "!border !border-[#F8F8F8]",
+                }}
+                selected={state.detail.form.plan.recurring.selected}
+                items={globalDictionaries.trip.recurring.items}
+                onSelect={handleSelectRecurring}
+              />
+              <Textfield
+                inputContainerProps={{
+                  className: "!border !border-[#F8F8F8]",
+                }}
+                labelProps={{
+                  ...dictionaries.detail.plan.form.input.umweg.labelProps,
+                }}
+                inputProps={{
+                  ...dictionaries.detail.plan.form.input.umweg.inputProps,
+                  value: state.detail.form.plan.umweg.value,
+                  onChange: handleChangeUmweg,
+                }}
+              />
+            </div>
             <div
               className={clsx(
                 "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[1rem]",

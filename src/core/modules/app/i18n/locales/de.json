@@ -290,6 +290,28 @@
       }
     }
   },
+  "trip": {
+    "recurring": {
+      "items": [
+        {
+          "id": "no",
+          "name": "Keine"
+        },
+        {
+          "id": "daily",
+          "name": "Täglich"
+        },
+        {
+          "id": "weekly",
+          "name": "Wöchentlich"
+        },
+        {
+          "id": "biweekly",
+          "name": "Alle 2 Wochen"
+        }
+      ]
+    }
+  },
   "car": {
     "facility": {
       "seat": {
