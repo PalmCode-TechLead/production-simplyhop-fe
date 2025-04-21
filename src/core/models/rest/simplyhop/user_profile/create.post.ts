@@ -5,10 +5,10 @@ export interface PostUserProfileCreateRequestInterface extends NextApiRequest {
 }
 
 export interface PostUserProfileCreatePayloadRequestInterface {
-  body: PostUserProfileCreateBodyRequestInterface;
+  body: PostUserProfileCreateBodyPayloadRequestInterface;
 }
 
-export type PostUserProfileCreateBodyRequestInterface = {
+export type PostUserProfileCreateBodyPayloadRequestInterface = {
   first_name: string;
   last_name: string;
   city: string;

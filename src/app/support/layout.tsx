@@ -4,6 +4,7 @@ import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { FooterApp } from "@/core/modules/app/fragments/footer";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -47,6 +48,7 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
           </div>
         </div>
       </div>
+      <FooterApp />
     </main>
   );
 }

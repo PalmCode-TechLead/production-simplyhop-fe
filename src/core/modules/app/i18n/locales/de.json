@@ -9,6 +9,138 @@
       "priority": true
     }
   },
+  "footer": {
+    "top": {
+      "logo": {
+        "href": "/",
+        "image": {
+          "src": "/logo/simply_hop.png",
+          "width": 170,
+          "height": 62,
+          "alt": "logo",
+          "priority": true
+        }
+      },
+
+      "social_media": {
+        "items": [
+          {
+            "id": "facebook",
+            "href": "",
+            "icon": {
+              "name": "Facebook3"
+            }
+          },
+          {
+            "id": "linkedin",
+            "href": "",
+            "icon": {
+              "name": "Linkedin"
+            }
+          },
+          {
+            "id": "instagram",
+            "href": "",
+            "icon": {
+              "name": "Instagram"
+            }
+          }
+        ]
+      }
+    },
+    "middle": {
+      "contact_center": {
+        "items": [
+          {
+            "id": "simply_hop",
+            "name": "SimplyHop",
+            "description": "Altmarkt 10 B / D01067 Dresden",
+            "image_url": "/images/general/simplyhop.png"
+          },
+          {
+            "id": "call_center",
+            "name": "Callcenter",
+            "description": "+49 / 0172 797 16 66",
+            "image_url": "/images/general/phone_3d.png"
+          },
+          {
+            "id": "email",
+            "name": "E-Mail",
+            "description": "service@simplyhop.com",
+            "image_url": "/images/general/email.png"
+          }
+        ]
+      },
+      "function": {
+        "title": "Funktionen",
+        "items": [
+          {
+            "id": "Mitfahrt suchen",
+            "name": "Mitfahrt suchen",
+            "href": ""
+          },
+          {
+            "id": "Mitfahrt anbieten",
+            "name": "Mitfahrt anbieten",
+            "href": ""
+          },
+          {
+            "id": "Meine Fahrten",
+            "name": "Meine Fahrten",
+            "href": ""
+          }
+        ]
+      },
+      "company": {
+        "title": "Unternehmen",
+        "items": [
+          {
+            "id": "Über uns",
+            "name": "Über uns",
+            "href": ""
+          },
+          {
+            "id": "Häufige Fragen",
+            "name": "Häufige Fragen",
+            "href": ""
+          },
+          {
+            "id": "Blog",
+            "name": "Blog",
+            "href": ""
+          }
+        ]
+      },
+      "legal": {
+        "title": "Rechtliches",
+        "items": [
+          {
+            "id": "Impressum",
+            "name": "Impressum",
+            "href": ""
+          },
+          {
+            "id": "Datenschutz",
+            "name": "Datenschutz",
+            "href": ""
+          },
+          {
+            "id": "AGB",
+            "name": "AGB",
+            "href": ""
+          },
+          {
+            "id": "Nutzungsbedingungen",
+            "name": "Nutzungsbedingungen",
+            "href": ""
+          }
+        ]
+      }
+    },
+    "bottom": {
+      "copyright": "2025 SimplyHop. Alle Rechte vorbehalten."
+    }
+  },
   "menu": {
     "items": [
       {

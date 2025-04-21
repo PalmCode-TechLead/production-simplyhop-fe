@@ -1,5 +1,12 @@
+import { GetRidesSearchPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
+
 export const ResultTripReactQueryKey = {
-  RestSimplyHopGetRideSearch: () => {
-    return ["ResultTripReactQueryKey.RestSimplyHopGetRideSearch"];
+  RestSimplyHopGetRideSearch: (
+    payload?: GetRidesSearchPayloadRequestInterface
+  ) => {
+    return [
+      "ResultTripReactQueryKey.RestSimplyHopGetRideSearch",
+      [payload] as const,
+    ];
   },
 };

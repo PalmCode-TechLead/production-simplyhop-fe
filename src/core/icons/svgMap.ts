@@ -33,6 +33,7 @@ import {
   AlertCircle,
   CheckCircle2,
   AlertTriangle,
+  Copyright,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -43,6 +44,9 @@ import { Telegram } from "./telegram";
 import { Thread } from "./thread";
 import { PictureUpload } from "./picture_upload";
 import { ContrastCheckMark } from "./contrast_check_mark";
+import { Facebook3 } from "./facebook_3";
+import { Linkedin } from "./linkedin";
+import { Instagram } from "./instagram";
 
 export const svgMap = {
   Search,
@@ -79,6 +83,7 @@ export const svgMap = {
   AlertCircle,
   CheckCircle2,
   AlertTriangle,
+  Copyright,
   Facebook,
   Google,
   Whatsapp,
@@ -88,6 +93,9 @@ export const svgMap = {
   Thread,
   PictureUpload,
   ContrastCheckMark,
+  Facebook3,
+  Linkedin,
+  Instagram,
 };
 
 export type SVGName = keyof typeof svgMap;
