@@ -61,6 +61,7 @@ export const useGetRideSearch = () => {
           ...state.rides,
           data: data.data.map((item, index) => {
             return {
+              id: String(item.id),
               driver: {
                 profile: {
                   avatar: {

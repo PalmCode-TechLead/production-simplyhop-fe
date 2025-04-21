@@ -32,6 +32,7 @@ import { Button } from "@/core/components/button";
 import Link from "next/link";
 
 export interface RideCardResultTripProps {
+  id?: string;
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -65,6 +66,7 @@ export interface RideCardResultTripProps {
 }
 
 export const RideCardResultTrip = ({
+  id = "",
   driver = {
     profile: {
       avatar: {
@@ -190,6 +192,7 @@ export const RideCardResultTrip = ({
 }: RideCardResultTripProps) => {
   return (
     <div
+      id={id}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full",

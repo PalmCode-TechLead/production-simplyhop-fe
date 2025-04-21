@@ -82,6 +82,14 @@ export interface ResultTripRides {
 
 export interface ResultTripDetail {
   is_open: boolean;
+  form: {
+    price_offer: {
+      value: number;
+    };
+    notes: {
+      value: string;
+    };
+  };
 }
 
 export interface ResultTripNotification {

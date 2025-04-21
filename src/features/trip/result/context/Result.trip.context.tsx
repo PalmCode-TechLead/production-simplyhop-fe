@@ -70,6 +70,14 @@ const initialState: ResultTripInitialStateType = {
   },
   detail: {
     is_open: false,
+    form: {
+      price_offer: {
+        value: 0,
+      },
+      notes: {
+        value: "",
+      },
+    },
   },
   notification: {
     is_open: false,

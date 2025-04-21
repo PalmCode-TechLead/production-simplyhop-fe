@@ -13,7 +13,7 @@ export type PostBookingBookBodyPayloadRequestInterface = {
   seats: number; //2;
   ride_time_id: number; //2;
   offered_price: number; //120;
-  message: string; //"";
+  message?: string; //"";
 };
 
 export type PostBookingBookResponseInterface = NextApiResponse<

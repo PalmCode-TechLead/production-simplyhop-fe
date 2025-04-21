@@ -41,6 +41,15 @@ export const DetailResultTrip = () => {
     }
   }, [rideId]);
 
+  if (!rideId) {
+    return null;
+  }
+
+  const detailData = state.rides.data.find((item) => item.id === rideId);
+  if (!detailData) {
+    return null;
+  }
+
   const handleClose = () => {
     dispatch({
       type: ResultTripActionEnum.SetDetailData,
@@ -55,6 +64,40 @@ export const DetailResultTrip = () => {
       `${AppCollectionURL.public.tripResult()}?${params.toString()}`,
       { scroll: false }
     );
+  };
+
+  const handleChangePriceOffer = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: ResultTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          price_offer: {
+            ...state.detail.form.price_offer,
+            value: !e.currentTarget.value.length
+              ? 0
+              : Number(e.currentTarget.value),
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeNotes = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch({
+      type: ResultTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          notes: {
+            ...state.detail.form.notes,
+            value: e.currentTarget.value,
+          },
+        },
+      },
+    });
   };
 
   const handleClickSend = async () => {
@@ -113,14 +156,23 @@ export const DetailResultTrip = () => {
           </button>
         </div>
 
-        <RideDetailCardResultTrip />
+        <RideDetailCardResultTrip {...detailData} />
 
         <PriceCardResultTrip
           label={dictionaries.detail.price.form.title}
-          price={"€125.00"}
+          price={detailData.price?.initial?.price}
         />
 
-        <PriceInputResultTrip />
+        <PriceInputResultTrip
+          inputProps={{
+            type: "number",
+            value:
+              state.detail.form.price_offer.value === 0
+                ? ""
+                : state.detail.form.price_offer.value,
+            onChange: handleChangePriceOffer,
+          }}
+        />
 
         <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
           <TextareafieldNotes
@@ -129,6 +181,7 @@ export const DetailResultTrip = () => {
             }}
             inputProps={{
               ...dictionaries.detail.notes.form.input.notes.inputProps,
+              onChange: handleChangeNotes,
             }}
             labelProps={{
               ...dictionaries.detail.notes.form.input.notes.labelProps,

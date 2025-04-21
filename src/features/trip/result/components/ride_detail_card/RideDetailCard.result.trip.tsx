@@ -25,6 +25,7 @@ import {
 } from "@/core/components/driver_profile_label/DriverProfileLabel";
 
 export interface RideDetailCardResultTripProps {
+  id?: string;
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -46,6 +47,7 @@ export interface RideDetailCardResultTripProps {
 }
 
 export const RideDetailCardResultTrip = ({
+  id = "",
   driver = {
     profile: {
       avatar: {
@@ -144,6 +146,7 @@ export const RideDetailCardResultTrip = ({
 }: RideDetailCardResultTripProps) => {
   return (
     <div
+      id={id}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full",
