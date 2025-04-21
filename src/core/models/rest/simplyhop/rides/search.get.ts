@@ -36,8 +36,11 @@ export interface GetRidesSearchSuccessResponseInterface {
     vehicle_id: number; // 10;
     start_lat: number; // 52.5092996;
     start_long: number; // 13.421813;
+    start_name: string | null; // Munich;
     destination_lat: number; // 48.1250433;
     destination_long: number; // 11.6209174;
+    destination_name: string | null; // Munich;
+    eta: number | null;
     recurring_ride: string; // "no";
     waiting_time: string; // "5 mins";
     luggage_allowed: boolean; // true;

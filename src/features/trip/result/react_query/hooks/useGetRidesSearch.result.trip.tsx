@@ -15,6 +15,7 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { SVGIconProps } from "@/core/icons";
 import { usePathname, useSearchParams } from "next/navigation";
 import { RIDE_FILTER } from "@/core/enums";
+import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -248,7 +249,7 @@ export const useGetRideSearch = () => {
 
               routes: {
                 departure: {
-                  place: "Munich",
+                  place: !item.start_name ? "-" : item.start_name,
                   time: !item.ride_times.length
                     ? "-"
                     : dayjs(item.ride_times[0].departure_time).format(
@@ -256,11 +257,18 @@ export const useGetRideSearch = () => {
                       ),
                 },
                 travelTime: {
-                  time: "1h 15m",
+                  time: !item.eta ? "-" : setDurationTime(item.eta),
                 },
                 arrival: {
-                  place: "Berlin",
-                  time: "18.30 Uhr",
+                  place: !item.destination_name ? "-" : item.destination_name,
+                  time: !item.eta
+                    ? "-"
+                    : setArrivalTime(
+                        dayjs(item.ride_times[0].departure_time).format(
+                          "HH:mm"
+                        ),
+                        item.eta
+                      ),
                 },
               },
 
