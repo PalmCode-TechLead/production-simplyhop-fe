@@ -1,9 +1,11 @@
 import * as React from "react";
 import clsx from "clsx";
 import { RideCardResultTrip } from "../../components/ride_card";
+import { useGetRideSearch } from "../../react_query/hooks";
 
 export const RidesResultTrip = () => {
   const data = Array.from({ length: 5 });
+  useGetRideSearch();
   return (
     <div
       className={clsx(

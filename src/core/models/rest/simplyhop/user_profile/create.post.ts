@@ -13,7 +13,7 @@ export type PostUserProfileCreateBodyRequestInterface = {
   last_name: string;
   city: string;
   mobile: string;
-  ride_offer: string;
+  ride_offer: boolean;
   mobile_is_show: boolean;
   bio: string;
   information: string;

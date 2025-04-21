@@ -15,4 +15,8 @@ export const SimplyHopAPICollectionURL = {
   vehicle_category: {
     getList: () => `/api/vehicle-category`,
   },
+  rides: {
+    getSearch: () => `/api/rides/search`,
+    getMy: () => `/api/rides/my`,
+  },
 };

@@ -23,17 +23,17 @@ export const usePostVehicleCreate = () => {
     mutationFn: () => {
       const bodyPayload: PostVehicleCreateBodyRequestInterface = {
         user_id: 0,
-        category_id: 0,
+        category_id: 0, //sedan, suv
         brand_id: !state.vehicle_information.general.form.car_brand.selected
           ? 0
           : Number(
               state.vehicle_information.general.form.car_brand.selected.id
-            ),
-        model: "",
+            ), // toyota
+        model: "", // mazda, agya
         color: state.vehicle_information.general.form.car_color.value,
         plate_license:
           state.vehicle_information.general.form.license_plate.value,
-        total_places: "",
+        total_places: "", // ga di pakai
         numb_of_free_seats: 0,
         smoke_allowed: !state.vehicle_information.trip.form.smoking.selected
           ? false

@@ -1,5 +1,5 @@
 export const ResultTripReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["ResultTripReactQueryKey.RestGooglePostRouteDirections"];
+  RestSimplyHopGetRideSearch: () => {
+    return ["ResultTripReactQueryKey.RestSimplyHopGetRideSearch"];
   },
 };

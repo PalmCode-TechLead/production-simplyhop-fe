@@ -24,11 +24,11 @@ export const usePostUserProfileCreate = () => {
         body: {
           first_name: state.personal_information.form.first_name.value,
           last_name: state.personal_information.form.last_name.value,
-          city: "",
-          mobile: state.personal_information.form.phonenumber.value,
-          ride_offer: "Nein, ich möchte nur mitfahren.",
-          mobile_is_show: true,
-          bio: "",
+          city: "", // ada
+          mobile: state.personal_information.form.phonenumber.value, //nyimpen tanpa plus
+          ride_offer: true,
+          mobile_is_show: true, // true terus karena bakal di show terus
+          bio: "", // -> bio
           information: "",
         },
       };

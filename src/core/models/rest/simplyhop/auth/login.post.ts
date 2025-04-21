@@ -26,10 +26,15 @@ export interface PostAuthLoginSuccessResponseInterface {
     token_type: string;
     user: {
       id: number;
-      name: string;
+      first_name: string;
+      last_name: string;
       email: string;
-      avatar: string;
+      mobile: null | string;
+      city: null | string;
       email_verified_at: string;
+      avatar: null;
+      is_driver: number;
+      deleted_at: null;
       created_at: string;
       updated_at: string;
     };
