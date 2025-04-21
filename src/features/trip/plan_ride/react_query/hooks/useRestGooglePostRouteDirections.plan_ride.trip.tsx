@@ -38,7 +38,7 @@ export const useRestGooglePostRouteDirections = () => {
   };
   const mutation =
     useMutation<RestGooglePostRouteDirectionsSuccessResponseInterface>({
-      mutationKey: PlanRideTripReactQueryKey.RestGooglePostRouteDirections(),
+      mutationKey: PlanRideTripReactQueryKey.PostRouteDirections(),
       mutationFn: () => {
         return fetchRestGooglePostRouteDirections(payload);
       },

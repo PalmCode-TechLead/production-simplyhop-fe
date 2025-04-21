@@ -14,10 +14,8 @@ export type PutRidesThirdPathPayloadRequestInterface = {
 };
 
 export type PutRidesThirdBodyPayloadRequestInterface = {
-  recurring_ride: string; //"no";
-  waiting_time: string; //"5 minuten";
-  available_seats: number; //2;
-  additional_info: string; //"my information";
+  maxtwo_backseat: boolean; //false;
+  base_price: number; //120;
 };
 
 export type PutRidesThirdResponseInterface = NextApiResponse<

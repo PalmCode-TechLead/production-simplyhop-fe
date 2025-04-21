@@ -1,11 +1,11 @@
 import axios, { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
-import { PostVehicleCreatePayloadRequestInterface } from "@/core/models/rest/simplyhop/vehicle";
 import Cookies from "universal-cookie";
+import { PostRidesFirstPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
 
 export const fetchPostRidesFirst = async (
-  payload: PostVehicleCreatePayloadRequestInterface
+  payload: PostRidesFirstPayloadRequestInterface
 ) => {
   try {
     const url = `${

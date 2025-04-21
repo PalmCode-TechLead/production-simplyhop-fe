@@ -37,7 +37,7 @@ export const useGetRideSearch = () => {
     GetRidesSearchSuccessResponseInterface,
     GetRidesSearchErrorResponseInterface
   >({
-    queryKey: ResultTripReactQueryKey.RestSimplyHopGetRideSearch(),
+    queryKey: ResultTripReactQueryKey.GetRideSearch(),
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },

@@ -1,5 +1,14 @@
 export const PlanRideTripReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["PlanRideTripReactQueryKey.RestGooglePostRouteDirections"];
+  PostRouteDirections: () => {
+    return ["PlanRideTripReactQueryKey.PostRouteDirections"];
+  },
+  PostRidesFirst: () => {
+    return ["PlanRideTripReactQueryKey.PostRidesFirst"];
+  },
+  PutRidesSecond: () => {
+    return ["PlanRideTripReactQueryKey.PutRidesSecond"];
+  },
+  PutRidesThird: () => {
+    return ["PlanRideTripReactQueryKey.PutRidesThird"];
   },
 };
