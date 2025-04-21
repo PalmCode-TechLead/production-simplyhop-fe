@@ -10,6 +10,7 @@ import {
 import { fetchPostRidesFirst } from "@/core/services/rest/simplyhop/rides";
 import { PlanRideTripContext } from "../../context";
 import { PlanRideTripReactQueryKey } from "../keys";
+import dayjs from "dayjs";
 
 export const usePostRidesFirst = () => {
   const { state } = React.useContext(PlanRideTripContext);
@@ -32,7 +33,9 @@ export const usePostRidesFirst = () => {
             state.filters.destination.selected.lat_lng?.lng ?? 0,
           destination_name: state.filters.destination.selected.item?.name ?? "",
           eta: state.detail.distance_matrix?.duration.value ?? 0,
-          departure_time: "2025-03-31 09:30:00",
+          departure_time: `${dayjs(state.filters.date.selected).format(
+            "YYYY-MM-DD"
+          )} ${state.filters.time.value}:00`,
         },
       };
       return fetchPostRidesFirst(payload);

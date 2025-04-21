@@ -20,6 +20,7 @@ const initialState: PlanRideTripInitialStateType = {
       query: "",
       selected: null,
       items: [],
+      data: [],
     },
     origin: {
       page_sheet: {
@@ -43,6 +44,9 @@ const initialState: PlanRideTripInitialStateType = {
     },
     date: {
       selected: new Date(),
+    },
+    time: {
+      value: "",
     },
     passenger: {
       car_seat: {

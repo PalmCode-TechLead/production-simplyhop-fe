@@ -16,7 +16,7 @@ export const fetchGetVehicleMy = async (
     const token = cookies.get("token");
     const res = await axios.get(url, {
       headers: {
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       params: payload?.params,
     });

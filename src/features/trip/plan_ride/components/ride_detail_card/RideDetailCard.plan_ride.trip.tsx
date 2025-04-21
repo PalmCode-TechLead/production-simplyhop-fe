@@ -30,6 +30,7 @@ export interface RideDetailCardPlanRideTripProps {
   };
 
   car?: {
+    id: string;
     image: ImageProps;
     identity?: CarIdentityItemProps;
     facility?: {
@@ -55,6 +56,7 @@ export const RideDetailCardPlanRideTrip = ({
     },
   },
   car = {
+    id: "",
     image: {
       src: "/images/general/car.png",
       alt: "car",

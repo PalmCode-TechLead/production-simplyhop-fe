@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { PlanRideTripReactQueryKey } from "../keys";
-import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";
+import { PlanRideTripContext } from "../../context";
 
 import { fetchRestGoogleGetDistanceMatrix } from "@/core/services/rest/google";
 import {
@@ -10,7 +10,7 @@ import {
 } from "@/core/models/rest/google/route";
 
 export const useRestGoogleGetDistanceMatrix = () => {
-  const { state, dispatch } = React.useContext(PlanRideTripContext);
+  const { state } = React.useContext(PlanRideTripContext);
 
   const payload: RestGoogleGetDistanceMatrixPayloadRequestInterface = {
     params: {

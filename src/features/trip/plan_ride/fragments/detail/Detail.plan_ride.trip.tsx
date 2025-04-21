@@ -20,10 +20,8 @@ import {
 } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
 
-dayjs.extend(duration);
+import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -36,6 +34,13 @@ export const DetailPlanRideTrip = () => {
     usePutRidesSecond();
   const { mutateAsync: postRidesThird, isPending: isPendingRidesThird } =
     usePutRidesThird();
+
+  const filteredCar = state.filters.auto.data.find(
+    (item) => item?.id === state.filters.auto.selected?.id
+  );
+  if (!filteredCar) {
+    return null;
+  }
 
   const handleClose = () => {
     dispatch({
@@ -66,6 +71,16 @@ export const DetailPlanRideTrip = () => {
   };
 
   const handleChangeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        time: {
+          ...state.filters.time,
+          value: e.currentTarget.value,
+        },
+      },
+    });
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
@@ -217,16 +232,6 @@ export const DetailPlanRideTrip = () => {
     });
   };
 
-  const dur = dayjs.duration(
-    state.detail.distance_matrix?.duration.value ?? 0,
-    "seconds"
-  );
-
-  const hours = String(dur.hours());
-  const minutes = String(dur.minutes());
-
-  const formatted = `${hours}h ${minutes}m`;
-
   const isSubmitDisabled =
     isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
   const isSubmitLoading =
@@ -275,17 +280,31 @@ export const DetailPlanRideTrip = () => {
           )}
         >
           <RideDetailCardPlanRideTrip
+            driver={{
+              profile: {
+                avatar: {
+                  image: undefined,
+                },
+                name: "Kelly",
+              },
+            }}
+            car={{ ...filteredCar }}
             routes={{
               departure: {
                 place: state.filters.origin.selected.item?.name ?? "",
-                time: "17.30 Uhr",
+                time: `${state.filters.time.value.replace(":", ".")} Uhr`,
               },
               travelTime: {
-                time: formatted,
+                time: setDurationTime(
+                  state.detail.distance_matrix?.duration.value ?? 0
+                ),
               },
               arrival: {
                 place: state.filters.destination.selected.item?.name ?? "",
-                time: "18.30 Uhr",
+                time: setArrivalTime(
+                  state.filters.time.value,
+                  state.detail.distance_matrix?.duration.value ?? 0
+                ),
               },
             }}
           />

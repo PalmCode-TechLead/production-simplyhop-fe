@@ -6,10 +6,7 @@ export interface ArrivalItemProps {
   time?: string;
 }
 
-export const ArrivalItem = ({
-  place = "",
-  time = "",
-}: ArrivalItemProps) => {
+export const ArrivalItem = ({ place = "", time = "" }: ArrivalItemProps) => {
   return (
     <div
       className={clsx(
@@ -17,7 +14,12 @@ export const ArrivalItem = ({
         "w-full"
       )}
     >
-      <p className={clsx("text-[0.75rem] font-normal text-[#8C8D89]")}>
+      <p
+        className={clsx(
+          "text-[0.75rem] font-normal text-[#8C8D89] truncate text-ellipsis",
+          "w-full"
+        )}
+      >
         {place}
       </p>
       <p className={clsx("text-[0.875rem] font-semibold text-[black]")}>

@@ -14,10 +14,12 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
-import { FormPassenger } from "@/core/components/form_passenger";
+// import { FormPassenger } from "@/core/components/form_passenger";
 import { FormAuto } from "@/core/components/form_auto";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormRoutes } from "@/core/components/form_routes";
+import { Textfield } from "@/core/components/textfield";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -28,8 +30,10 @@ export const FilterPlanRideTrip = () => {
   const { mutate: fetchRestGooglePostRouteDirections } =
     useRestGooglePostRouteDirections();
 
-  const { mutateAsync: fetchRestGoogleGetDistanceMatrix } =
-    useRestGoogleGetDistanceMatrix();
+  const {
+    mutateAsync: fetchRestGoogleGetDistanceMatrix,
+    isPending: isPendingFetchRestGoogleGetDistanceMatrix,
+  } = useRestGoogleGetDistanceMatrix();
 
   const handleClickAuto = () => {
     dispatch({
@@ -325,27 +329,55 @@ export const FilterPlanRideTrip = () => {
     });
   };
 
-  const handleSubmitPassenger = (data: {
-    car_seat: {
-      checked: boolean;
-    };
-    value: { id: string; value: number }[];
-  }) => {
+  const handleChangeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: PlanRideTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
-        passenger: {
-          ...state.filters.passenger,
-          car_seat: {
-            ...state.filters.passenger.car_seat,
-            checked: data.car_seat.checked,
+        time: {
+          ...state.filters.time,
+          value: e.currentTarget.value,
+        },
+      },
+    });
+    dispatch({
+      type: PlanRideTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          plan: {
+            ...state.detail.form.plan,
+            time: {
+              value: e.currentTarget.value,
+            },
           },
-          value: data.value,
         },
       },
     });
   };
+
+  // const handleSubmitPassenger = (data: {
+  //   car_seat: {
+  //     checked: boolean;
+  //   };
+  //   value: { id: string; value: number }[];
+  // }) => {
+  //   dispatch({
+  //     type: PlanRideTripActionEnum.SetFiltersData,
+  //     payload: {
+  //       ...state.filters,
+  //       passenger: {
+  //         ...state.filters.passenger,
+  //         car_seat: {
+  //           ...state.filters.passenger.car_seat,
+  //           checked: data.car_seat.checked,
+  //         },
+  //         value: data.value,
+  //       },
+  //     },
+  //   });
+  // };
 
   // NOTES: listen and fetch route directions
   React.useEffect(() => {
@@ -395,6 +427,16 @@ export const FilterPlanRideTrip = () => {
       },
     });
   };
+
+  const isSubmitDisabled =
+    !state.filters.origin.selected.item ||
+    !state.filters.destination.selected.item ||
+    !state.filters.date.selected ||
+    !state.filters.time.value.length ||
+    !state.filters.passenger.value.length ||
+    isPendingFetchRestGoogleGetDistanceMatrix;
+
+  const isSubmitLoading = isPendingFetchRestGoogleGetDistanceMatrix;
 
   return (
     <div
@@ -562,7 +604,19 @@ export const FilterPlanRideTrip = () => {
             onSelect={handleSelectDate}
           />
 
-          <FormPassenger
+          <Textfield
+            labelProps={{
+              ...dictionaries.detail.plan.form.input.time.labelProps,
+            }}
+            inputProps={{
+              ...dictionaries.detail.plan.form.input.time.inputProps,
+              type: "time",
+              value: state.filters.time.value,
+              onChange: handleChangeTime,
+            }}
+          />
+
+          {/* <FormPassenger
             labelProps={{
               ...dictionaries.filter.form.passenger.labelProps,
             }}
@@ -607,19 +661,16 @@ export const FilterPlanRideTrip = () => {
                   )?.value ?? 0
                 )
               )}
-          />
+          /> */}
         </div>
 
         {/* button */}
         <Button
-          disabled={
-            !state.filters.origin.selected.item ||
-            !state.filters.destination.selected.item ||
-            !state.filters.date.selected ||
-            !state.filters.passenger.value.length
-          }
+          disabled={isSubmitDisabled}
+          isLoading={isSubmitLoading}
           onClick={handleClickSearch}
         >
+          {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
           {dictionaries.filter.cta.primary.children}
         </Button>
       </div>

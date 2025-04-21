@@ -1,3 +1,5 @@
+import { RideDetailCardPlanRideTripProps } from "../components/ride_detail_card";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -26,6 +28,7 @@ export interface PlanRideTripFilters {
     query: string;
     items: { id: string; name: string }[];
     selected: null | { id: string; name: string };
+    data: RideDetailCardPlanRideTripProps["car"][];
   };
 
   origin: {
@@ -50,6 +53,10 @@ export interface PlanRideTripFilters {
   };
   date: {
     selected: Date;
+  };
+
+  time: {
+    value: string;
   };
 
   passenger: {
