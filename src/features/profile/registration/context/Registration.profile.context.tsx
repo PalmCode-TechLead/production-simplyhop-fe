@@ -51,9 +51,13 @@ const initialState: RegistrationProfileInitialStateType = {
           items: [],
           error: null,
         },
-        car_model: {
+        car_category: {
           selected: null,
           items: [],
+          error: null,
+        },
+        car_model: {
+          value: "",
           error: null,
         },
         car_color: {

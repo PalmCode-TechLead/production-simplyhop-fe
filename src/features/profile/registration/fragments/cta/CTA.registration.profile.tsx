@@ -6,11 +6,26 @@ import {
   RegistrationProfileActionEnum,
   RegistrationProfileContext,
 } from "../../context";
+import {
+  usePostUserProfileCreate,
+  usePostVehicleCreateMy,
+} from "../../react_query/hooks";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const CTARegistrationProfile = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
-  const handleClickSave = () => {
+  const {
+    mutateAsync: postUserProfileCreate,
+    isPending: isPendingPostUserProfileCreate,
+  } = usePostUserProfileCreate();
+  const {
+    mutateAsync: postVehicleCreateMy,
+    isPending: isPendingPostVehicleCreateMy,
+  } = usePostVehicleCreateMy();
+  const handleClickSave = async () => {
+    await postUserProfileCreate();
+    await postVehicleCreateMy();
     dispatch({
       type: RegistrationProfileActionEnum.SetNotificationData,
       payload: {
@@ -19,8 +34,19 @@ export const CTARegistrationProfile = () => {
       },
     });
   };
+
+  const isSaveDisabled =
+    isPendingPostUserProfileCreate || isPendingPostVehicleCreateMy;
+  const isSaveLoading =
+    isPendingPostUserProfileCreate || isPendingPostVehicleCreateMy;
   return (
-    <Button className={clsx("py-[1rem]")} onClick={handleClickSave}>
+    <Button
+      disabled={isSaveDisabled}
+      isLoading={isSaveLoading}
+      className={clsx("py-[1rem]")}
+      onClick={handleClickSave}
+    >
+      {isSaveLoading && <MoonLoader size={20} color={"white"} />}
       {dictionaries.cta.save.children}
     </Button>
   );

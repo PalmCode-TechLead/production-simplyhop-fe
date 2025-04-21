@@ -1,21 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export interface PostVehicleCreateRequestInterface extends NextApiRequest {
-  payload?: PostVehicleCreatePayloadRequestInterface;
+export interface PostVehicleCreateMyRequestInterface extends NextApiRequest {
+  payload?: PostVehicleCreateMyPayloadRequestInterface;
 }
 
-export interface PostVehicleCreatePayloadRequestInterface {
+export interface PostVehicleCreateMyPayloadRequestInterface {
   body: FormData;
 }
 
-export type PostVehicleCreateBodyRequestInterface = {
-  user_id: number;
+export type PostVehicleCreateMyBodyRequestInterface = {
   category_id: number;
   brand_id: number;
   model: string;
   color: string;
   plate_license: string;
-  total_places: string;
   numb_of_free_seats: number;
   smoke_allowed: boolean;
   pet_allowed: boolean;
@@ -27,12 +25,12 @@ export type PostVehicleCreateBodyRequestInterface = {
   image: File[];
 };
 
-export type PostVehicleCreateResponseInterface = NextApiResponse<
-  | PostVehicleCreateSuccessResponseInterface
-  | PostVehicleCreateErrorResponseInterface
+export type PostVehicleCreateMyResponseInterface = NextApiResponse<
+  | PostVehicleCreateMySuccessResponseInterface
+  | PostVehicleCreateMyErrorResponseInterface
 >;
 
-export interface PostVehicleCreateSuccessResponseInterface {
+export interface PostVehicleCreateMySuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
@@ -52,7 +50,7 @@ export interface PostVehicleCreateSuccessResponseInterface {
   redirect: null;
 }
 
-export interface PostVehicleCreateErrorResponseInterface {
+export interface PostVehicleCreateMyErrorResponseInterface {
   status: number;
   message: string;
   name: string;

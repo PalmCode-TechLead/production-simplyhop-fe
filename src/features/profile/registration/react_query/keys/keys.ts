@@ -8,7 +8,7 @@ export const RegistrationProfileReactQueryKey = {
   PostUserProfileCreate: () => {
     return ["RegistrationProfileReactQueryKey.PostUserProfileCreate"];
   },
-  PostVehicleCreate: () => {
-    return ["RegistrationProfileReactQueryKey.PostVehicleCreate"];
+  PostVehicleCreateMy: () => {
+    return ["RegistrationProfileReactQueryKey.PostVehicleCreateMy"];
   },
 };

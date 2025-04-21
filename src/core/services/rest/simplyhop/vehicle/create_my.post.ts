@@ -1,16 +1,16 @@
 import axios, { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
-import { PostVehicleCreatePayloadRequestInterface } from "@/core/models/rest/simplyhop/vehicle";
+import { PostVehicleCreateMyPayloadRequestInterface } from "@/core/models/rest/simplyhop/vehicle";
 import Cookies from "universal-cookie";
 
-export const fetchPostVehicleCreate = async (
-  payload: PostVehicleCreatePayloadRequestInterface
+export const fetchPostVehicleCreateMy = async (
+  payload: PostVehicleCreateMyPayloadRequestInterface
 ) => {
   try {
     const url = `${
       ENVIRONMENTS.SIMPLY_HOP_API_URL
-    }${SimplyHopAPICollectionURL.vehicle.postCreate()}`;
+    }${SimplyHopAPICollectionURL.vehicle.postCreateMy()}`;
 
     const cookies = new Cookies();
     const token = cookies.get("token");

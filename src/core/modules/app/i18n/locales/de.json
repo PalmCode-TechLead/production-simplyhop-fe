@@ -373,11 +373,11 @@
               "items": [
                 {
                   "id": "true",
-                  "name": "True"
+                  "name": "Rauchen erlaubt"
                 },
                 {
                   "id": "false",
-                  "name": "False"
+                  "name": "Nichtrauchter"
                 }
               ]
             }
@@ -411,11 +411,11 @@
               "items": [
                 {
                   "id": "true",
-                  "name": "True"
+                  "name": "Fahrt mit Musik"
                 },
                 {
                   "id": "false",
-                  "name": "False"
+                  "name": "Fahrten ohne Musik"
                 }
               ]
             }
@@ -449,11 +449,11 @@
               "items": [
                 {
                   "id": "true",
-                  "name": "True"
+                  "name": "Haustier Erlaubt"
                 },
                 {
                   "id": "false",
-                  "name": "False"
+                  "name": "Haustiere nicht erlaubt"
                 }
               ]
             }

@@ -37,8 +37,8 @@ export const useGetVehicleCategoryList = () => {
             ...state.vehicle_information.general,
             form: {
               ...state.vehicle_information.general.form,
-              car_model: {
-                ...state.vehicle_information.general.form.car_model,
+              car_category: {
+                ...state.vehicle_information.general.form.car_category,
                 items: data.data.map((item) => {
                   return {
                     id: String(item.id),

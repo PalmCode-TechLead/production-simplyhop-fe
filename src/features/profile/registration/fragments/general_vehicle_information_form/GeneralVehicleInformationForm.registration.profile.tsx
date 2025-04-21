@@ -40,7 +40,26 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
     });
   };
 
-  const handleSelectCarModel = (data: { id: string; name: string }) => {
+  const handleSelectCarCategory = (data: { id: string; name: string }) => {
+    dispatch({
+      type: RegistrationProfileActionEnum.SetVehicleInformationData,
+      payload: {
+        ...state.vehicle_information,
+        general: {
+          ...state.vehicle_information.general,
+          form: {
+            ...state.vehicle_information.general.form,
+            car_category: {
+              ...state.vehicle_information.general.form.car_category,
+              selected: data,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeCarModel = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetVehicleInformationData,
       payload: {
@@ -51,7 +70,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
             ...state.vehicle_information.general.form,
             car_model: {
               ...state.vehicle_information.general.form.car_model,
-              selected: data,
+              value: e.currentTarget.value,
             },
           },
         },
@@ -111,20 +130,6 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
         "w-full"
       )}
     >
-      <Dropdownfield
-        labelProps={{
-          ...dictionaries.vehicle_information.general.form.input.car_brand
-            .labelProps,
-        }}
-        inputProps={{
-          ...dictionaries.vehicle_information.general.form.input.car_brand
-            .inputProps,
-        }}
-        selected={state.vehicle_information.general.form.car_brand.selected}
-        items={state.vehicle_information.general.form.car_brand.items}
-        onSelect={handleSelectCarBrand}
-      />
-
       <div
         className={clsx(
           "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
@@ -133,16 +138,54 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
       >
         <Dropdownfield
           labelProps={{
+            ...dictionaries.vehicle_information.general.form.input.car_brand
+              .labelProps,
+          }}
+          inputProps={{
+            ...dictionaries.vehicle_information.general.form.input.car_brand
+              .inputProps,
+          }}
+          selected={state.vehicle_information.general.form.car_brand.selected}
+          items={state.vehicle_information.general.form.car_brand.items}
+          onSelect={handleSelectCarBrand}
+        />
+        <Dropdownfield
+          labelProps={{
+            ...dictionaries.vehicle_information.general.form.input.car_category
+              .labelProps,
+          }}
+          inputProps={{
+            ...dictionaries.vehicle_information.general.form.input.car_category
+              .inputProps,
+          }}
+          selected={
+            state.vehicle_information.general.form.car_category.selected
+          }
+          items={state.vehicle_information.general.form.car_category.items}
+          onSelect={handleSelectCarCategory}
+        />
+      </div>
+
+      <div
+        className={clsx(
+          "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+          "w-full"
+        )}
+      >
+        <Textfield
+          labelProps={{
             ...dictionaries.vehicle_information.general.form.input.car_model
               .labelProps,
           }}
           inputProps={{
             ...dictionaries.vehicle_information.general.form.input.car_model
               .inputProps,
+            value: state.vehicle_information.general.form.car_color.value,
+            onChange: handleChangeCarModel,
           }}
-          selected={state.vehicle_information.general.form.car_model.selected}
-          items={state.vehicle_information.general.form.car_model.items}
-          onSelect={handleSelectCarModel}
+          // selected={state.vehicle_information.general.form.car_model.selected}
+          // items={state.vehicle_information.general.form.car_model.items}
+          // onSelect={handleSelectCarModel}
         />
         <Textfield
           labelProps={{

@@ -100,6 +100,17 @@
               "required": false
             }
           },
+          "car_category": {
+            "inputProps": {
+              "id": "car_model",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "car_model",
+              "children": "Auto-Kategorie",
+              "required": false
+            }
+          },
           "car_model": {
             "inputProps": {
               "id": "car_model",

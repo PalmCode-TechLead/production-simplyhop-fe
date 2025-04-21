@@ -1,2 +1,2 @@
-export * from "./create.post";
+export * from "./create_my.post";
 export * from "./my.get";

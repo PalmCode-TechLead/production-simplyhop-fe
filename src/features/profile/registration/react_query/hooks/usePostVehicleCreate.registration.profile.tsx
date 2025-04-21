@@ -2,39 +2,48 @@ import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { RegistrationProfileReactQueryKey } from "../keys";
 import {
-  PostVehicleCreateBodyRequestInterface,
-  PostVehicleCreateErrorResponseInterface,
-  PostVehicleCreatePayloadRequestInterface,
-  PostVehicleCreateSuccessResponseInterface,
+  PostVehicleCreateMyBodyRequestInterface,
+  PostVehicleCreateMyErrorResponseInterface,
+  PostVehicleCreateMyPayloadRequestInterface,
+  PostVehicleCreateMySuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/vehicle";
 import { RegistrationProfileContext } from "../../context";
-import { fetchPostVehicleCreate } from "@/core/services/rest/simplyhop/vehicle";
+import { fetchPostVehicleCreateMy } from "@/core/services/rest/simplyhop/vehicle";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 
-export const usePostVehicleCreate = () => {
+export const usePostVehicleCreateMy = () => {
   const { state } = React.useContext(RegistrationProfileContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const mutation = useMutation<
-    PostVehicleCreateSuccessResponseInterface,
-    PostVehicleCreateErrorResponseInterface
+    PostVehicleCreateMySuccessResponseInterface,
+    PostVehicleCreateMyErrorResponseInterface
   >({
-    mutationKey: RegistrationProfileReactQueryKey.PostVehicleCreate(),
+    mutationKey: RegistrationProfileReactQueryKey.PostVehicleCreateMy(),
     mutationFn: () => {
-      const bodyPayload: PostVehicleCreateBodyRequestInterface = {
-        user_id: 0,
-        category_id: 0, //sedan, suv
+      const bodyPayload: PostVehicleCreateMyBodyRequestInterface = {
+        category_id: !state.vehicle_information.general.form.car_category
+          .selected
+          ? 0
+          : Number(
+              state.vehicle_information.general.form.car_category.selected.id
+            ), //sedan, suv
         brand_id: !state.vehicle_information.general.form.car_brand.selected
           ? 0
           : Number(
               state.vehicle_information.general.form.car_brand.selected.id
             ), // toyota
-        model: "", // mazda, agya
+        model: state.vehicle_information.general.form.car_model.value, // mazda, agya
         color: state.vehicle_information.general.form.car_color.value,
         plate_license:
           state.vehicle_information.general.form.license_plate.value,
-        total_places: "", // ga di pakai
-        numb_of_free_seats: 0,
+        numb_of_free_seats: !state.vehicle_information.capacity.passenger_seats
+          .form.available_seat.selected
+          ? 0
+          : Number(
+              state.vehicle_information.capacity.passenger_seats.form
+                .available_seat
+            ),
         smoke_allowed: !state.vehicle_information.trip.form.smoking.selected
           ? false
           : Boolean(state.vehicle_information.trip.form.smoking.selected.id),
@@ -51,7 +60,13 @@ export const usePostVehicleCreate = () => {
               state.vehicle_information.capacity.passenger_seats.form
                 .available_child_seat.selected.id
             ),
-        numb_of_childseat: 0,
+        numb_of_childseat: !state.vehicle_information.capacity.passenger_seats
+          .form.available_car_seat.selected
+          ? 0
+          : Number(
+              state.vehicle_information.capacity.passenger_seats.form
+                .available_car_seat
+            ),
         numb_of_luggages: !state.vehicle_information.capacity.luggage.form
           .luggage.selected?.id
           ? 0
@@ -62,7 +77,7 @@ export const usePostVehicleCreate = () => {
         size_of_luggages:
           state.vehicle_information.capacity.luggage.form.luggage_size.selected
             ?.id ?? "",
-        image: [],
+        image: state.vehicle_information.pictures.files,
       };
       const formData = new FormData();
       for (const key of Object.keys(bodyPayload)) {
@@ -71,11 +86,11 @@ export const usePostVehicleCreate = () => {
           String((bodyPayload as { [key: string]: any })[key])
         );
       }
-      const payload: PostVehicleCreatePayloadRequestInterface = {
+      const payload: PostVehicleCreateMyPayloadRequestInterface = {
         body: formData,
       };
 
-      return fetchPostVehicleCreate(payload);
+      return fetchPostVehicleCreateMy(payload);
     },
     onError(error) {
       dispatchGlobal({
