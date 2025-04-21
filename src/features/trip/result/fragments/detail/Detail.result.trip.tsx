@@ -12,6 +12,9 @@ import { PriceInputResultTrip } from "../../components/price_input";
 import { Button } from "@/core/components/button";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
+import { useGetRideId, usePostBookingBook } from "../../react_query/hooks";
+import { MoonLoader } from "@/core/components/moon_loader";
+import SVGIcon from "@/core/icons";
 
 export const DetailResultTrip = () => {
   const dictionaries = getDictionaries();
@@ -20,6 +23,11 @@ export const DetailResultTrip = () => {
   const { state, dispatch } = React.useContext(ResultTripContext);
   const rideId = searchParams.get("ride_id");
   const isOpen = state.detail.is_open;
+
+  const { mutateAsync: postBookingBook, isPending: isPendingPostBookingBook } =
+    usePostBookingBook();
+
+  useGetRideId();
 
   React.useEffect(() => {
     if (rideId) {
@@ -49,7 +57,8 @@ export const DetailResultTrip = () => {
     );
   };
 
-  const handleClickSend = () => {
+  const handleClickSend = async () => {
+    await postBookingBook();
     dispatch({
       type: ResultTripActionEnum.SetDetailData,
       payload: {
@@ -65,14 +74,17 @@ export const DetailResultTrip = () => {
       },
     });
   };
+
+  const isSubmitDisabled = isPendingPostBookingBook;
+
   return (
     <Modal
       className={clsx(
-        "!max-w-[calc(100vw-3rem)] md:!max-w-[872px]",
-        "h-fit",
+        "!max-w-[calc(100vw)] md:!max-w-[872px]",
+        "h-fit max-h-[calc(100vh)]",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
       )}
       open={isOpen}
       onClose={handleClose}
@@ -83,9 +95,24 @@ export const DetailResultTrip = () => {
           "w-full"
         )}
       >
-        <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
-          {dictionaries.detail.title}
-        </h1>
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1.5rem]",
+            "w-full"
+          )}
+        >
+          <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
+            {dictionaries.detail.title}
+          </h1>
+
+          <button className={clsx("block lg:hidden")} onClick={handleClose}>
+            <SVGIcon
+              name="X"
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+            />
+          </button>
+        </div>
+
         <RideDetailCardResultTrip />
 
         <PriceCardResultTrip
@@ -109,7 +136,13 @@ export const DetailResultTrip = () => {
           />
         </Card>
 
-        <Button onClick={handleClickSend}>
+        <Button
+          disabled={isSubmitDisabled}
+          isLoading={isPendingPostBookingBook}
+          onClick={handleClickSend}
+        >
+          {isPendingPostBookingBook && <MoonLoader size={20} color={"white"} />}
+
           {dictionaries.detail.cta.send.children}
         </Button>
       </div>

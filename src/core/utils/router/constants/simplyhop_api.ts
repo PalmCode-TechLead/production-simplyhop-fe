@@ -1,4 +1,5 @@
 import {
+  GetRidesIdPathPayloadRequestInterface,
   PutRidesSecondPathPayloadRequestInterface,
   PutRidesThirdPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
@@ -22,6 +23,8 @@ export const SimplyHopAPICollectionURL = {
   },
   rides: {
     getSearch: () => `/api/rides/search`,
+    getId: (path: GetRidesIdPathPayloadRequestInterface) =>
+      `/api/rides/${path.id}`,
     getMy: () => `/api/rides/my`,
     postFirst: () => `/api/rides/first`,
     putSecond: (path: PutRidesSecondPathPayloadRequestInterface) =>

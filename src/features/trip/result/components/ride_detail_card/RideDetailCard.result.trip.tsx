@@ -159,7 +159,7 @@ export const RideDetailCardResultTrip = ({
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-col items-start content-start justify-start justify-items-start gap-[52px]",
+          "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-start content-start justify-between justify-items-start gap-[1rem] lg:gap-[52px]",
           "w-full"
         )}
       >
@@ -170,11 +170,16 @@ export const RideDetailCardResultTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
-          <Image
-            {...car.image}
-            alt={car.image.alt}
-            className={clsx("w-[145px]")}
-          />
+          <div
+            className={clsx(
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+            )}
+          >
+            <Image {...car.image} className={clsx("w-[145px]")} />
+            <div className={clsx("block lg:hidden")}>
+              <CarIdentityItem {...car.identity} number={null} />
+            </div>
+          </div>
         </div>
 
         <div
@@ -184,7 +189,9 @@ export const RideDetailCardResultTrip = ({
           )}
         >
           {/* identity */}
-          <CarIdentityItem {...car.identity} />
+          <div className={clsx("hidden lg:block")}>
+            <CarIdentityItem {...car.identity} />
+          </div>
 
           {/* routes */}
           <div
@@ -209,8 +216,7 @@ export const RideDetailCardResultTrip = ({
           >
             <div
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                "w-full"
+                "flex flex-wrap items-center justify-start gap-[0.75rem]"
               )}
             >
               {car.facility?.top.map((item, index) => (
@@ -224,8 +230,7 @@ export const RideDetailCardResultTrip = ({
 
             <div
               className={clsx(
-                "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.75rem]",
-                "w-full"
+                "flex flex-wrap items-center justify-start gap-[0.75rem]"
               )}
             >
               {car.facility?.bottom.map((item, Index) => (

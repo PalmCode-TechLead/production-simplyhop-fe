@@ -10,11 +10,16 @@ import {
 import { fetchPostBookingBook } from "@/core/services/rest/simplyhop/booking";
 import { ResultTripContext } from "../../context";
 import { ResultTripReactQueryKey } from "../keys";
+import { useSearchParams } from "next/navigation";
+import { RIDE_FILTER } from "@/core/enums";
 
 export const usePostBookingBook = () => {
   const { state } = React.useContext(ResultTripContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
+
+  const searchParams = useSearchParams();
+  const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
   const mutation = useMutation<
     PostBookingBookSuccessResponseInterface,
     PostBookingBookErrorResponseInterface
@@ -23,9 +28,9 @@ export const usePostBookingBook = () => {
     mutationFn: () => {
       const payload: PostBookingBookPayloadRequestInterface = {
         body: {
-          ride_id: 1,
+          ride_id: Number(String(rideId ?? "0")),
           seats: 2,
-          ride_time_id: 2,
+          ride_time_id: Number(String(rideId ?? "0")),
           offered_price: 120,
           message: "",
         },

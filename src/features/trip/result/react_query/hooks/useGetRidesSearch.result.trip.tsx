@@ -4,7 +4,7 @@ import { ResultTripReactQueryKey } from "../keys";
 
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 
-import { fetchGetRidesSearch } from "@/core/services/rest/simplyhop/rides/search.get";
+import { fetchGetRidesSearch } from "@/core/services/rest/simplyhop/rides";
 import {
   GetRidesSearchErrorResponseInterface,
   GetRidesSearchSuccessResponseInterface,
@@ -13,11 +13,16 @@ import {
 import dayjs from "dayjs";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { SVGIconProps } from "@/core/icons";
+import { usePathname, useSearchParams } from "next/navigation";
+import { RIDE_FILTER } from "@/core/enums";
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
+  const fullPath = `${pathname}?${searchParams.toString()}`;
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
       // start_lat: state.filters.origin.selected.lat_lng?.lat ?? 0,
@@ -37,7 +42,7 @@ export const useGetRideSearch = () => {
     GetRidesSearchSuccessResponseInterface,
     GetRidesSearchErrorResponseInterface
   >({
-    queryKey: ResultTripReactQueryKey.GetRideSearch(),
+    queryKey: ResultTripReactQueryKey.GetRidesSearch(payload),
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
@@ -285,7 +290,7 @@ export const useGetRideSearch = () => {
               },
               cta: {
                 ride: {
-                  href: "/mitfahrt-suchen/result?city_id=ChIJ2V-Mo_l1nkcRfZixfUq4DAE&origin_id=ChIJuWG8S2DfnUcRbT-8T9g5EVY&destination_id=ChIJs4qDdmLfnUcRBbJZt1DoAfs&date=2025-03-22&adult=1&children=0&ride_id=1",
+                  href: `${fullPath}&${RIDE_FILTER.RIDE_ID}=${item.id}`,
                   children: "Mitfahren",
                 },
               },
