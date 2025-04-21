@@ -15,7 +15,7 @@ export const Dialog = ({
   onClose = () => {},
 }: DialogProps) => {
   return (
-    <BaseDialog open={open} onClose={onClose} className={clsx("relative z-50")}>
+    <BaseDialog open={open} onClose={onClose} className={clsx("relative z-[9999]")}>
       <DialogBackdrop
         className={clsx("fixed inset-0 ", "bg-[#201E2C4D]", className)}
       />

@@ -2,10 +2,12 @@ import * as React from "react";
 import clsx from "clsx";
 import { RideCardResultTrip } from "../../components/ride_card";
 import { useGetRideSearch } from "../../react_query/hooks";
+import { ResultTripContext } from "../../context";
 
 export const RidesResultTrip = () => {
-  const data = Array.from({ length: 5 });
+  const { state } = React.useContext(ResultTripContext);
   useGetRideSearch();
+  console.log(state.rides.data, "ini data");
   return (
     <div
       className={clsx(
@@ -19,8 +21,8 @@ export const RidesResultTrip = () => {
           "w-full"
         )}
       >
-        {data.map((item, itemIndex) => (
-          <RideCardResultTrip key={itemIndex} />
+        {state.rides.data.map((item, itemIndex) => (
+          <RideCardResultTrip {...item} key={itemIndex} />
         ))}
       </div>
     </div>

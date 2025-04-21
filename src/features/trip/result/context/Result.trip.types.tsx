@@ -1,3 +1,5 @@
+import { RideCardResultTripProps } from "../components/ride_card";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -75,7 +77,7 @@ export interface ResultTripAdvancedFilter {
 }
 
 export interface ResultTripRides {
-  data: any[];
+  data: RideCardResultTripProps[];
 }
 
 export interface ResultTripDetail {

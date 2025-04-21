@@ -223,13 +223,13 @@ export const RideCardResultTrip = ({
           </div>
         </div>
 
-        <div className={clsx('grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]')}>
-          <Image
-            {...car.image}
-            alt={car.image.alt}
-            className={clsx("w-[145px]")}
-          />
-           <div className={clsx("block lg:hidden")}>
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+          )}
+        >
+          <Image {...car.image} className={clsx("w-[145px]")} />
+          <div className={clsx("block lg:hidden")}>
             <CarIdentityItem {...car.identity} number={null} />
           </div>
         </div>
