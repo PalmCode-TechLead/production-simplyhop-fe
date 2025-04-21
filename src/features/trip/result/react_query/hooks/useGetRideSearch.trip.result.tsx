@@ -4,7 +4,7 @@ import { ResultTripReactQueryKey } from "../keys";
 
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 
-import { fetchGetRidesSearch } from "@/core/services/rest/simplyhop/ride/search.get";
+import { fetchGetRidesSearch } from "@/core/services/rest/simplyhop/rides/search.get";
 import {
   GetRidesSearchErrorResponseInterface,
   GetRidesSearchSuccessResponseInterface,
