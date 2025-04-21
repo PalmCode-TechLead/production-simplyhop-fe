@@ -3,7 +3,6 @@ import clsx from "clsx";
 import { RideCardResultTrip } from "../../components/ride_card";
 import { useGetRideSearch } from "../../react_query/hooks";
 import { ResultTripContext } from "../../context";
-import { RIDE_FILTER } from "@/core/enums";
 
 export const RidesResultTrip = () => {
   const { state } = React.useContext(ResultTripContext);

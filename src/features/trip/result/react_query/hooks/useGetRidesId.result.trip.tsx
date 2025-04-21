@@ -33,8 +33,6 @@ export const useGetRideId = () => {
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
-      const data = query.data;
-
       // dispatch({
       //   type: ResultTripActionEnum.SetRidesData,
       //   payload: {
@@ -167,7 +165,6 @@ export const useGetRideId = () => {
       //                       },
       //                     },
       //                   ]),
-
       //               // Music
       //               ...(!!item.vehicle.music_availability
       //                 ? [
@@ -194,7 +191,6 @@ export const useGetRideId = () => {
       //                       },
       //                     },
       //                   ]),
-
       //               // Pet
       //               ...(!!item.vehicle.pet_allowed
       //                 ? [
@@ -224,7 +220,6 @@ export const useGetRideId = () => {
       //             ],
       //           },
       //         },
-
       //         routes: {
       //           departure: {
       //             place: "Munich",
@@ -242,7 +237,6 @@ export const useGetRideId = () => {
       //             time: "18.30 Uhr",
       //           },
       //         },
-
       //         price: {
       //           initial: {
       //             label: "Angebotspreis",
@@ -260,7 +254,6 @@ export const useGetRideId = () => {
       //                   },
       //                 ]
       //               : []),
-
       //             {
       //               id: "fahrerin",
       //               label: "Fahrerin (W)",

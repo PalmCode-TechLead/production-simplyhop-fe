@@ -22,12 +22,12 @@ export const usePostBookingBook = () => {
   const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
-  const carSeat = searchParams.get(RIDE_FILTER.CAR_SEAT);
+  // const carSeat = searchParams.get(RIDE_FILTER.CAR_SEAT);
 
   let adultData: null | number = null;
   let childrenData: null | number = null;
 
-  let carSeatData: boolean = false;
+  // let carSeatData: boolean = false;
   if (adult) {
     adultData = Number(adult);
   }
@@ -36,14 +36,15 @@ export const usePostBookingBook = () => {
     childrenData = Number(children);
   }
 
-  if (carSeat) {
-    carSeatData = true;
-  }
+  // if (carSeat) {
+  //   carSeatData = true;
+  // }
 
   const payload: PostBookingBookPayloadRequestInterface = {
     body: {
       ride_id: Number(String(rideId ?? "0")),
-      seats: 2,
+      // need to adjust seat
+      seats: (adultData ?? 0) + (childrenData ?? 0),
       ride_time_id: Number(String(rideId ?? "0")),
       offered_price: state.detail.form.price_offer.value,
       message: !state.detail.form.notes.value.length

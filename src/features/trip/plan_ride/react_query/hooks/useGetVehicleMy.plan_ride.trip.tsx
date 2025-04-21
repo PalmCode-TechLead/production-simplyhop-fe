@@ -25,7 +25,7 @@ export const useGetVehicleMy = () => {
   >({
     queryKey: PlanRideTripReactQueryKey.GetVehicleMy(),
     queryFn: () => {
-      return fetchGetVehicleMy();
+      return fetchGetVehicleMy(payload);
     },
   });
 

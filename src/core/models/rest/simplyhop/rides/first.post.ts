@@ -16,6 +16,7 @@ export type PostRidesFirstBodyPayloadRequestInterface = {
   destination_lat: number; //48.1351253;
   destination_long: number; //11.5819804;
   destination_name: string; //"Berlin",
+  eta: number;
   departure_time: string; // "2025-03-31 09:30:00";
 };
 
