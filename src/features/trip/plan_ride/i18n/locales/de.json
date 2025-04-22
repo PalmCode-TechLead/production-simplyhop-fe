@@ -128,7 +128,7 @@
     },
     "cta": {
       "primary": {
-        "children": "Suchen"
+        "children": "Nächster Schritt"
       }
     }
   },
@@ -251,7 +251,7 @@
     },
     "cta": {
       "send": {
-        "children": "Anfrage senden"
+        "children": "Fahrt eintragen"
       }
     }
   },
