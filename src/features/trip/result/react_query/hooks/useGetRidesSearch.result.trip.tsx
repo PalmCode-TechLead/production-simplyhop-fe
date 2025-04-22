@@ -81,7 +81,7 @@ export const useGetRideSearch = () => {
                 image: {
                   src: !item.vehicle.image.length
                     ? "/images/general/car.png"
-                    : item.vehicle.image[0] ?? "",
+                    : item.vehicle.image[0] ?? "/images/general/car.png",
                   alt: "car",
                   width: 145,
                   height: 46,

@@ -63,7 +63,7 @@ export const useGetBookingMy = () => {
                 image: {
                   src: !item.ride.vehicle.image.length
                     ? "/images/general/car.png"
-                    : item.ride.vehicle.image[0] ?? "",
+                    : item.ride.vehicle.image[0] ?? "/images/general/car.png",
                   alt: "car",
                   width: 145,
                   height: 46,
