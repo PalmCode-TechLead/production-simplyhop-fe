@@ -4,8 +4,6 @@ import { MyListTripReactQueryKey } from "../keys";
 
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
-import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
-import { SVGIconProps } from "@/core/icons";
 import { fetchGetRidesMy } from "@/core/services/rest/simplyhop/rides";
 import {
   GetRidesMyErrorResponseInterface,
@@ -19,7 +17,6 @@ import dayjs from "dayjs";
 export const useGetRidesMy = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(MyListTripContext);
 
   const payload: GetRidesMyPayloadRequestInterface = {
@@ -115,25 +112,6 @@ export const useGetRidesMy = () => {
                   label: "Angebotspreis",
                   price: `€${item.base_price}`,
                 },
-              },
-              ride: {
-                badge: [
-                  ...(index === 0
-                    ? [
-                        {
-                          id: "bester_preis",
-                          label: "Bester Preis",
-                          variant: "success" as "success" | "danger",
-                        },
-                      ]
-                    : []),
-
-                  {
-                    id: "fahrerin",
-                    label: "Fahrerin (W)",
-                    variant: "danger",
-                  },
-                ],
               },
               cta: {
                 detail: {
