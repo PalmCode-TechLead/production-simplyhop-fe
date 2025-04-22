@@ -165,34 +165,28 @@ export const useGetVehicleId = () => {
               ...state.vehicle_information.trip.form,
               smoking: {
                 ...state.vehicle_information.trip.form.smoking,
-                selected: !data.data.smoke_allowed
-                  ? null
-                  : {
-                      id: String(data.data.smoke_allowed),
-                      name: String(data.data.smoke_allowed),
-                    },
+                selected:
+                  globalDictionaries.car.facility.seat.smoking.type.options.items.find(
+                    (item) => item.id === String(data.data.smoke_allowed)
+                  ) ?? null,
                 // selected: null,
                 // items: [],
               },
               music: {
                 ...state.vehicle_information.trip.form.music,
-                selected: !data.data.music_availability
-                  ? null
-                  : {
-                      id: String(data.data.music_availability),
-                      name: String(data.data.music_availability),
-                    },
+                selected:
+                  globalDictionaries.car.facility.seat.music.type.options.items.find(
+                    (item) => item.id === String(data.data.music_availability)
+                  ) ?? null,
                 // selected: null,
                 // items: [],
               },
               pet: {
                 ...state.vehicle_information.trip.form.pet,
-                selected: !data.data.pet_allowed
-                  ? null
-                  : {
-                      id: String(data.data.pet_allowed),
-                      name: String(data.data.pet_allowed),
-                    },
+                selected:
+                  globalDictionaries.car.facility.seat.pets.type.options.items.find(
+                    (item) => item.id === String(data.data.pet_allowed)
+                  ) ?? null,
                 // selected: null,
                 // items: [],
               },
