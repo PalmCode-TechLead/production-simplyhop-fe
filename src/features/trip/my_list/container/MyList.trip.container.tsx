@@ -1,13 +1,17 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { HeaderMyListTrip } from "../fragments/header";
 import { TabMyListTrip } from "../fragments/tab";
-import { OrderCardMyListTrip } from "../components/order_card";
 import { useGetRidesMy } from "../react_query/hooks";
+import { useSearchParams } from "next/navigation";
+import { BookMyListTrip } from "../fragments/book";
+import { RideMyListTrip } from "../fragments/ride";
 
 export const MyListTripContainer = () => {
-  const data = Array.from({ length: 5 });
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
+
   useGetRidesMy();
   return (
     <div className={clsx("w-full h-full", "py-[3rem]", "relative", "")}>
@@ -26,16 +30,7 @@ export const MyListTripContainer = () => {
         >
           <HeaderMyListTrip />
           <TabMyListTrip />
-          <div
-            className={clsx(
-              "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
-              "w-full"
-            )}
-          >
-            {data.map((_, itemIndex) => (
-              <OrderCardMyListTrip key={itemIndex} />
-            ))}
-          </div>
+          {type === "book" ? <BookMyListTrip /> : <RideMyListTrip />}
         </div>
       </div>
     </div>

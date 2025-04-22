@@ -13,11 +13,11 @@
   "tab": {
     "items": [
       {
-        "id": "the-trips-i-offer",
+        "id": "ride",
         "name": "Meine angebotenen Fahrten"
       },
       {
-        "id": "my-rides-as-passenger",
+        "id": "book",
         "name": "Meine Fahrten als Mitfahrer"
       }
     ]

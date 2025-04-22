@@ -8,6 +8,8 @@ export const AppCollectionURL = {
   },
   private: {
     chat: () => "/chat",
+    myList: (params?: string) =>
+      !params ? `/meine-fahrten` : `/meine-fahrten?${params}`,
     profile_registration: () => "/profile-registration",
     support_account_edit: () => "/support/konto/edit",
   },

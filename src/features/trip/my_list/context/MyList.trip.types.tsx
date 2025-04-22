@@ -1,3 +1,6 @@
+import { BookCardMyListTripProps } from "../components/book_card";
+import { RideCardMyListTripProps } from "../components/ride_card";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -12,6 +15,8 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface MyListTripInitialStateType {
   filters: MyListTripFilters;
+  ride: MyListTripRide;
+  book: MyListTripBook;
 }
 
 // State Collection Types consist of:
@@ -21,13 +26,30 @@ export interface MyListTripFilters {
   };
 }
 
+export interface MyListTripRide {
+  data: RideCardMyListTripProps[];
+}
+
+export interface MyListTripBook {
+  data: BookCardMyListTripProps[];
+}
+
 export enum MyListTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
+
+  // Ride
+  SetRideData = "SetRideData",
+
+  // Book
+  SetBookData = "SetBookData",
 }
 
 // Action Collection Types
-export type MyListTripActions = MyListTripFiltersActions;
+export type MyListTripActions =
+  | MyListTripFiltersActions
+  | MyListTripRideActions
+  | MyListTripBookActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -37,3 +59,19 @@ type MyListTripFiltersPayload = {
 
 export type MyListTripFiltersActions =
   ActionMap<MyListTripFiltersPayload>[keyof ActionMap<MyListTripFiltersPayload>];
+
+// Ride
+type MyListTripRidePayload = {
+  [MyListTripActionEnum.SetRideData]: MyListTripRide;
+};
+
+export type MyListTripRideActions =
+  ActionMap<MyListTripRidePayload>[keyof ActionMap<MyListTripRidePayload>];
+
+// Book
+type MyListTripBookPayload = {
+  [MyListTripActionEnum.SetBookData]: MyListTripBook;
+};
+
+export type MyListTripBookActions =
+  ActionMap<MyListTripBookPayload>[keyof ActionMap<MyListTripBookPayload>];
