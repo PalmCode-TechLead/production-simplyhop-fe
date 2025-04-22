@@ -11,6 +11,8 @@ export const AppCollectionURL = {
     myList: (params?: string) =>
       !params ? `/meine-fahrten` : `/meine-fahrten?${params}`,
     profile_registration: () => "/profile-registration",
+    support_vehicle_detail: (id: string) =>
+      `/support/fahrzeuginformationen/detail/${id}`,
     support_account: () => "/support/konto",
     support_account_edit: () => "/support/konto/edit",
   },
