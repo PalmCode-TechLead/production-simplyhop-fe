@@ -35,7 +35,7 @@ export const usePostUserProfileCreate = () => {
           first_name: state.form.first_name.value,
           last_name: state.form.last_name.value,
           city: state.form.city.value, // ada
-          mobile: state.form.phonenumber.value.replace("+", ""), //nyimpen tanpa plus
+          mobile: state.form.phonenumber.value, //nyimpen tanpa plus
           ride_offer: true,
           mobile_is_show: true, // true terus karena bakal di show terus
           bio: state.form.about_me.value, // -> bio

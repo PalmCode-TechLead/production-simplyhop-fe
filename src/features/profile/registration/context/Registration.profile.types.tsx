@@ -39,7 +39,15 @@ export interface RegistrationProfilePersonalInformation {
       value: string;
       error: FormError;
     };
+    city: {
+      value: string;
+      error: FormError;
+    };
     phonenumber: {
+      value: string;
+      error: FormError;
+    };
+    about_me: {
       value: string;
       error: FormError;
     };

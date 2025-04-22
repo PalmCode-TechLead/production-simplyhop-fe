@@ -30,7 +30,15 @@ const initialState: RegistrationProfileInitialStateType = {
         value: "",
         error: null,
       },
+      city: {
+        value: "",
+        error: null,
+      },
       phonenumber: {
+        value: "",
+        error: null,
+      },
+      about_me: {
         value: "",
         error: null,
       },

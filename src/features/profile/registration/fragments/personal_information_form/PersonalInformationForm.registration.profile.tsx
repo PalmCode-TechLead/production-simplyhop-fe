@@ -9,6 +9,7 @@ import {
   RegistrationProfileContext,
 } from "../../context";
 import { getError } from "@/core/utils/form";
+import { Textareafield } from "@/core/components/textareafield";
 
 export const PersonalInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
@@ -59,6 +60,28 @@ export const PersonalInformationFormRegistrationProfile = () => {
     });
   };
 
+  const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.city.validations.items,
+      value: e.currentTarget.value,
+      type: "optional",
+    });
+    dispatch({
+      type: RegistrationProfileActionEnum.SetPersonalInformationData,
+      payload: {
+        ...state.personal_information,
+        form: {
+          ...state.personal_information.form,
+          city: {
+            ...state.personal_information.form.city,
+            value: e.currentTarget.value,
+            error: errorItem,
+          },
+        },
+      },
+    });
+  };
+
   const handleChangePhonenumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
       errorItems: globalDictionaries.form.phonenumber.validations.items,
@@ -75,6 +98,22 @@ export const PersonalInformationFormRegistrationProfile = () => {
             ...state.personal_information.form.phonenumber,
             value: e.currentTarget.value,
             error: errorItem,
+          },
+        },
+      },
+    });
+  };
+
+  const handleChangeAboutMe = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch({
+      type: RegistrationProfileActionEnum.SetPersonalInformationData,
+      payload: {
+        ...state.personal_information,
+        form: {
+          ...state.personal_information.form,
+          about_me: {
+            ...state.personal_information.form.about_me,
+            value: e.currentTarget.value,
           },
         },
       },
@@ -144,6 +183,17 @@ export const PersonalInformationFormRegistrationProfile = () => {
         </div>
         <Textfield
           labelProps={{
+            ...dictionaries.personal_information.form.input.city.labelProps,
+          }}
+          inputProps={{
+            ...dictionaries.personal_information.form.input.city.inputProps,
+            value: state.personal_information.form.city.value,
+            onChange: handleChangeCity,
+          }}
+          error={state.personal_information.form.city.error?.name}
+        />
+        <Textfield
+          labelProps={{
             ...dictionaries.personal_information.form.input.phonenumber
               .labelProps,
           }}
@@ -154,6 +204,16 @@ export const PersonalInformationFormRegistrationProfile = () => {
             onChange: handleChangePhonenumber,
           }}
           error={state.personal_information.form.phonenumber.error?.name}
+        />
+        <Textareafield
+          labelProps={{
+            ...dictionaries.personal_information.form.input.about_me.labelProps,
+          }}
+          inputProps={{
+            ...dictionaries.personal_information.form.input.about_me.inputProps,
+            value: state.personal_information.form.about_me.value,
+            onChange: handleChangeAboutMe,
+          }}
         />
       </div>
     </div>

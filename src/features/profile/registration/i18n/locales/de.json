@@ -50,6 +50,17 @@
             "required": false
           }
         },
+        "city": {
+          "inputProps": {
+            "id": "city",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "city",
+            "children": "Stadt",
+            "required": false
+          }
+        },
         "phonenumber": {
           "inputProps": {
             "id": "phonenumber",
@@ -58,6 +69,17 @@
           "labelProps": {
             "id": "phonenumber",
             "children": "Telefon",
+            "required": false
+          }
+        },
+        "about_me": {
+          "inputProps": {
+            "id": "about_me",
+            "placeholder": " "
+          },
+          "labelProps": {
+            "id": "about_me",
+            "children": "Über mich",
             "required": false
           }
         }
