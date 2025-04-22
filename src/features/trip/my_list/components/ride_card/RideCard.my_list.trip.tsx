@@ -112,7 +112,6 @@ export const RideCardMyListTrip = ({
     },
   },
 }: RideCardMyListTripProps) => {
-  console.log(car.image.src, "ini image src");
   return (
     <div
       id={id}
