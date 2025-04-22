@@ -3,7 +3,6 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../i18n";
 import { GeneralVehicleInformationFormVehicleUpdateSupport } from "../fragments/general_vehicle_information_form";
-import { VehicleUpdateSupportContext } from "../context";
 import { PictureVehicleInformationFormVehicleUpdateSupport } from "../fragments/picture_vehicle_information_form";
 import { CapacityVehicleInformationFormVehicleUpdateSupport } from "../fragments/capacity_vehicle_information_form";
 import { TripVehicleInformationFormVehicleUpdateSupport } from "../fragments/trip_vehicle_information_form";
@@ -12,7 +11,7 @@ import { NotificationVehicleUpdateSupport } from "../fragments/notification";
 
 export const VehicleUpdateSupportContainer = () => {
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(VehicleUpdateSupportContext);
+
   return (
     <>
       <div

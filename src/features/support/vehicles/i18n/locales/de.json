@@ -5,6 +5,11 @@
     },
     "label": "Fahrt finden"
   },
+  "cta": {
+    "create": {
+      "children": "+ Neues Auto hinzufügen"
+    }
+  },
   "list": {
     "loading": {
       "message": "Einen Moment, wir sind gleich soweit..."
