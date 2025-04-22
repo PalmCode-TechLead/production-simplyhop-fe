@@ -77,11 +77,13 @@ export const useGetBookingMy = () => {
               routes: {
                 date: {
                   label: "Datum",
-                  date: "24.02.25",
+                  date: dayjs(item.ride_time.departure_time).format("DD.MM.YY"),
                 },
                 startTime: {
                   label: "Startzeit",
-                  time: "17:30 Uhr",
+                  time: dayjs(item.ride_time.departure_time).format(
+                    "HH.mm [Uhr]"
+                  ),
                 },
                 departure: {
                   place: !item.ride.start_name ? "-" : item.ride.start_name,
