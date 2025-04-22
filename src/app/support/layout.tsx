@@ -5,6 +5,10 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { FooterApp } from "@/core/modules/app/fragments/footer";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_profile";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -20,7 +24,19 @@ const SettingsSidebarApp = dynamic(() =>
   )
 );
 
-export default function AccountLayout({ children }: PaymentLayoutProps) {
+export default async function AccountLayout({ children }: PaymentLayoutProps) {
+  const cookieStore = await cookies(); // ✅ with await
+  const token = cookieStore.get("token")?.value;
+
+  try {
+    await fetchGetUserProfileData({
+      headers: {
+        token: token ?? "",
+      },
+    });
+  } catch (err) {
+    redirect(AppCollectionURL.public.login());
+  }
   return (
     <main className={clsx("w-full min-h-screen")}>
       <TopNavigation />
