@@ -14,7 +14,8 @@ export const SimplyHopAPICollectionURL = {
     getMy: () => `/api/vehicle`,
   },
   user_profile: {
-    postCreate: () => `/api/vehicle`,
+    postCreate: () => `/api/profile`,
+    getData: () => `/api/profile`,
   },
   vehicle_brand: {
     getList: () => `/api/vehicle-brand`,

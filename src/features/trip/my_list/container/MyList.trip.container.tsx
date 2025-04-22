@@ -1,11 +1,14 @@
+'use client'
 import * as React from "react";
 import clsx from "clsx";
 import { HeaderMyListTrip } from "../fragments/header";
 import { TabMyListTrip } from "../fragments/tab";
 import { OrderCardMyListTrip } from "../components/order_card";
+import { useGetRidesMy } from "../react_query/hooks";
 
 export const MyListTripContainer = () => {
   const data = Array.from({ length: 5 });
+  useGetRidesMy();
   return (
     <div className={clsx("w-full h-full", "py-[3rem]", "relative", "")}>
       <div

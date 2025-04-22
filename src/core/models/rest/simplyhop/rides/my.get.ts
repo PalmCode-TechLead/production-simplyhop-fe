@@ -16,6 +16,7 @@ export type GetRidesMyParamsPayloadRequestInterface = {
   "filter[departure_time]"?: string;
 
   //mandatory
+  include?: string;
   sort?: string;
   "page[number]"?: number;
   "page[size]"?: number;

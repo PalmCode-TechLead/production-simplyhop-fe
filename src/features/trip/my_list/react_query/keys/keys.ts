@@ -1,5 +1,5 @@
 export const MyListTripReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["MyListTripReactQueryKey.RestGooglePostRouteDirections"];
+  GetRidesMy: () => {
+    return ["MyListTripReactQueryKey.GetRidesMy"];
   },
 };

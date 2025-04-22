@@ -11,6 +11,7 @@ export const ChatTripContainer = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
+
   return (
     <div
       className={clsx(
