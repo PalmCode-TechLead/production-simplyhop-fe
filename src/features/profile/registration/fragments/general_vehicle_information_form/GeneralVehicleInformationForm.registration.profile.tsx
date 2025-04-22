@@ -183,9 +183,6 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
             value: state.vehicle_information.general.form.car_color.value,
             onChange: handleChangeCarModel,
           }}
-          // selected={state.vehicle_information.general.form.car_model.selected}
-          // items={state.vehicle_information.general.form.car_model.items}
-          // onSelect={handleSelectCarModel}
         />
         <Textfield
           labelProps={{
