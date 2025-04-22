@@ -34,7 +34,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
         token: token ?? "",
       },
     });
-  } catch (err) {
+  } catch {
     redirect(AppCollectionURL.public.login());
   }
   return (

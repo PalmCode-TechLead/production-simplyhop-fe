@@ -27,7 +27,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
         token: token ?? "",
       },
     });
-  } catch (err) {
+  } catch {
     redirect(AppCollectionURL.public.login());
   }
   return (
