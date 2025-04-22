@@ -8,12 +8,12 @@ import { ListItemChatTrip } from "../../components/list_item";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
-import { useGetMessagesList } from "../../react_query/hooks";
+import { useGetMessageRoomsList } from "../../react_query/hooks";
 
 export const ListChatTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
-  useGetMessagesList();
+  useGetMessageRoomsList();
 
   React.useEffect(() => {
     dispatch({

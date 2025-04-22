@@ -14,7 +14,7 @@ export const fetchPutRidesSecond = async (
 
     const cookies = new Cookies();
     const token = cookies.get("token");
-    const res = await axios.post(url, payload.body, {
+    const res = await axios.put(url, payload.body, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

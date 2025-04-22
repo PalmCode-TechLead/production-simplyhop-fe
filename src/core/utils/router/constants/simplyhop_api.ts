@@ -1,3 +1,4 @@
+import { PutMessageRoomsMakeAsReadPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms/mark_as_read.put";
 import {
   GetRidesIdPathPayloadRequestInterface,
   PutRidesSecondPathPayloadRequestInterface,
@@ -40,5 +41,11 @@ export const SimplyHopAPICollectionURL = {
   },
   messages: {
     getList: () => `/api/messages`,
+  },
+  message_rooms: {
+    getList: () => `/api/message-rooms`,
+    putMakeAsRead: (
+      path: PutMessageRoomsMakeAsReadPathPayloadRequestInterface
+    ) => `/api/message-rooms/${path.roomId}/mark-as-read`,
   },
 };
