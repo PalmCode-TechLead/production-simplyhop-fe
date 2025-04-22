@@ -1,0 +1,207 @@
+{
+  "title": "Mein Profil",
+  "vehicle_information": {
+    "id": "vehicle-information",
+    "title": "Fahrzeuginformationen",
+    "general": {
+      "form": {
+        "input": {
+          "car_brand": {
+            "inputProps": {
+              "id": "car_brand",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "car_brand",
+              "children": "Automarke",
+              "required": false
+            }
+          },
+          "car_category": {
+            "inputProps": {
+              "id": "car_model",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "car_model",
+              "children": "Auto-Kategorie",
+              "required": false
+            }
+          },
+          "car_model": {
+            "inputProps": {
+              "id": "car_model",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "car_model",
+              "children": "Auto-Modell",
+              "required": false
+            }
+          },
+          "car_color": {
+            "inputProps": {
+              "id": "car_color",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "car_color",
+              "children": "Farbe",
+              "required": false
+            }
+          },
+          "license_plate": {
+            "inputProps": {
+              "id": "license_plate",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "license_plate",
+              "children": "Nummernschild",
+              "required": false
+            }
+          }
+        }
+      }
+    },
+    "pictures": {
+      "title": "Fahrzeugbilder",
+      "description": "Laden Sie Bilder hoch, die Ihr Auto repräsentieren",
+      "form": {
+        "message": "Ziehen Sie Ihr Logo hierher oder klicken Sie, um Dateien auszuwählen",
+        "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
+      },
+      "square_input": {
+        "form": {
+          "label": "+<br/>Weitere hinzufügen"
+        }
+      }
+    },
+    "capacity": {
+      "title": "Kapazität der Fahrzeuge",
+      "description": "Die Kapazität Ihres Autos für Sitze und Gepäckstücke",
+      "passenger_seats": {
+        "title": "Fahrgastsitze",
+        "form": {
+          "input": {
+            "available_seat": {
+              "inputProps": {
+                "id": "available_seat",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "available_seat",
+                "children": "Verfügbare Plätze insgesamt",
+                "required": false
+              }
+            },
+            "available_child_seat": {
+              "inputProps": {
+                "id": "available_child_seat",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "available_child_seat",
+                "children": "Verfügbarkeit von Kindersitzen",
+                "required": false
+              }
+            },
+            "available_car_seat": {
+              "inputProps": {
+                "id": "available_car_seat",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "available_car_seat",
+                "children": "Autokindersitz verfügbar",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "luggage": {
+        "title": "Kapazität des Gepäcks",
+        "form": {
+          "input": {
+            "luggage": {
+              "inputProps": {
+                "id": "luggage",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "luggage",
+                "children": "Gepäcks",
+                "required": false
+              }
+            },
+            "luggage_size": {
+              "inputProps": {
+                "id": "luggage_size",
+                "placeholder": " "
+              },
+              "labelProps": {
+                "id": "luggage_size",
+                "children": "Größe des Gepäcks",
+                "required": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "trip": {
+      "title": "Infos zur Fahrt",
+      "form": {
+        "input": {
+          "smoking": {
+            "inputProps": {
+              "id": "smoking",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "smoking",
+              "children": "Rauchen",
+              "required": false
+            }
+          },
+          "music": {
+            "inputProps": {
+              "id": "music",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "music",
+              "children": "Musik",
+              "required": false
+            }
+          },
+          "pet": {
+            "inputProps": {
+              "id": "pet",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "pet",
+              "children": "Haustier",
+              "required": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "cta": {
+    "save": {
+      "children": "Speichern"
+    }
+  },
+  "notification": {
+    "title": "Kontoregistrierung abgeschlossen",
+    "cta": {
+      "back": {
+        "children": "Zurück zur Startseite"
+      }
+    }
+  }
+}
