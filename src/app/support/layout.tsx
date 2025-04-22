@@ -38,13 +38,13 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
     });
     const user = res as GetUserProfileDataSuccessResponseInterface;
     userProfile = {
-      first_name: user.data?.first_name ?? "-",
-      last_name: user.data?.last_name ?? "-",
+      first_name: user.data?.first_name ?? "",
+      last_name: user.data?.last_name ?? "",
       avatar: user.data.avatar,
       email: user.data.email,
-      phonenumber: user.data?.mobile ?? "-",
-      city: user.data?.city ?? "-",
-      about_me: user.data?.profile.bio ?? "-",
+      phonenumber: user.data?.mobile ?? "",
+      city: user.data?.city ?? "",
+      about_me: user.data?.profile.bio ?? "",
     };
   } catch {
     redirect(AppCollectionURL.public.login());

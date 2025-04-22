@@ -71,6 +71,9 @@
     }
   },
   "cta": {
+    "save": {
+      "children": "Speichern"
+    },
     "deactivate": {
       "children": "Konto löschen"
     }
