@@ -429,6 +429,7 @@ export const FilterPlanRideTrip = () => {
   };
 
   const isSubmitDisabled =
+    !state.filters.auto.selected ||
     !state.filters.origin.selected.item ||
     !state.filters.destination.selected.item ||
     !state.filters.date.selected ||
