@@ -93,6 +93,7 @@ export const AutocompleteAuto = ({
                 if (disabled) {
                   return;
                 }
+                setIsOpen(true);
               }}
               onChange={(event) => {
                 setIsOpen(!!event.target.value.length);
