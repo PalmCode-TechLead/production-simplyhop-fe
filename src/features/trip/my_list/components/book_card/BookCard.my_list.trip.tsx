@@ -26,7 +26,8 @@ import {
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
 
-export interface OrderCardMyListTripProps {
+export interface BookCardMyListTripProps {
+  id?: string;
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -53,7 +54,8 @@ export interface OrderCardMyListTripProps {
   };
 }
 
-export const OrderCardMyListTrip = ({
+export const BookCardMyListTrip = ({
+  id = "",
   driver = {
     profile: {
       avatar: {
@@ -109,9 +111,10 @@ export const OrderCardMyListTrip = ({
       onClick: () => {},
     },
   },
-}: OrderCardMyListTripProps) => {
+}: BookCardMyListTripProps) => {
   return (
     <div
+      id={id}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full",
@@ -129,20 +132,21 @@ export const OrderCardMyListTrip = ({
       >
         <div
           className={clsx(
-            "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
-            "w-full"
+            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"
           )}
         >
-          {/* driver */}
           <DriverProfileLabel {...driver.profile} />
+          <div
+            className={clsx(
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+            )}
+          >
+            <Image {...car.image} className={clsx("w-[145px]")} />
+            <div className={clsx("block lg:hidden")}>
+              <CarIdentityItem {...car.identity} number={null} />
+            </div>
+          </div>
         </div>
-
-        {/* image */}
-        <Image
-          {...car.image}
-          alt={car.image.alt}
-          className={clsx("w-[145px]")}
-        />
 
         {/* identity */}
         <div
@@ -151,7 +155,10 @@ export const OrderCardMyListTrip = ({
             "w-full"
           )}
         >
-          <CarIdentityItem {...car.identity} />
+          <div className={clsx("hidden lg:block")}>
+            <CarIdentityItem {...car.identity} />
+          </div>
+
           <div
             className={clsx(
               "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",

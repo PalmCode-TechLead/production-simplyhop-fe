@@ -264,12 +264,12 @@ export const useGetRideSearch = () => {
                   place: !item.destination_name ? "-" : item.destination_name,
                   time: !item.eta
                     ? "-"
-                    : setArrivalTime(
+                    : `${setArrivalTime(
                         dayjs(item.ride_times[0].departure_time).format(
                           "HH:mm"
                         ),
                         item.eta
-                      ),
+                      )} Uhr`,
                 },
               },
 

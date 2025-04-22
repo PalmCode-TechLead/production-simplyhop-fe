@@ -4,13 +4,23 @@ import {
   MyListTripActions,
   MyListTripInitialStateType,
 } from "./MyList.trip.types";
-import { MyListTripFiltersReducers } from "./MyList.trip.reducers";
+import {
+  MyListTripBookReducers,
+  MyListTripFiltersReducers,
+  MyListTripRideReducers,
+} from "./MyList.trip.reducers";
 
 const initialState: MyListTripInitialStateType = {
   filters: {
     passenger: {
       value: [],
     },
+  },
+  ride: {
+    data: [],
+  },
+  book: {
+    data: [],
   },
 };
 
@@ -23,10 +33,12 @@ const MyListTripContext = createContext<{
 });
 
 const mainReducer = (
-  { filters }: MyListTripInitialStateType,
+  { filters, ride, book }: MyListTripInitialStateType,
   action: MyListTripActions
 ) => ({
   filters: MyListTripFiltersReducers(filters, action),
+  ride: MyListTripRideReducers(ride, action),
+  book: MyListTripBookReducers(book, action),
 });
 
 const MyListTripProvider = (props: { children: React.ReactNode }) => {
