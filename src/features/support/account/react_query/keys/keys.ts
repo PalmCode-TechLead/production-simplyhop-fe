@@ -1,5 +1,5 @@
 export const AccountSupportReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["AccountSupportReactQueryKey.RestGooglePostRouteDirections"];
+  GetUserProfileData: () => {
+    return ["AccountSupportReactQueryKey.GetUserProfileData"];
   },
 };

@@ -9,6 +9,8 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_profile";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { UserProfile, UserProvider } from "@/core/modules/app/context";
+import { GetUserProfileDataSuccessResponseInterface } from "@/core/models/rest/simplyhop/user_profile";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -27,13 +29,23 @@ const SettingsSidebarApp = dynamic(() =>
 export default async function AccountLayout({ children }: PaymentLayoutProps) {
   const cookieStore = await cookies(); // ✅ with await
   const token = cookieStore.get("token")?.value;
-
+  let userProfile: UserProfile | null = null;
   try {
-    await fetchGetUserProfileData({
+    const res = await fetchGetUserProfileData({
       headers: {
         token: token ?? "",
       },
     });
+    const user = res as GetUserProfileDataSuccessResponseInterface;
+    userProfile = {
+      first_name: user.data?.first_name ?? "-",
+      last_name: user.data?.last_name ?? "-",
+      avatar: user.data.avatar,
+      email: user.data.email,
+      phonenumber: user.data?.mobile ?? "-",
+      city: user.data?.city ?? "-",
+      about_me: user.data?.profile.bio ?? "-",
+    };
   } catch {
     redirect(AppCollectionURL.public.login());
   }
@@ -57,10 +69,12 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
             )}
           >
             <Suspense fallback={<div />}>
-              <SettingsSidebarApp />
-            </Suspense>
+              <UserProvider profile={!userProfile ? undefined : userProfile}>
+                <SettingsSidebarApp />
 
-            {children}
+                {children}
+              </UserProvider>
+            </Suspense>
           </div>
         </div>
       </div>

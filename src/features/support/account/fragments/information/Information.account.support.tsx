@@ -3,14 +3,16 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { ItemAccountSupport } from "../../components/item";
-import { AccountSupportContext } from "../../context";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import { UserContext } from "@/core/modules/app/context";
 
 export const InformationAccountSupport = () => {
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(AccountSupportContext);
+
+  const { state: userState } = React.useContext(UserContext);
+
   return (
     <div
       className={clsx(
@@ -40,7 +42,7 @@ export const InformationAccountSupport = () => {
 
       <ItemAccountSupport
         name={dictionaries.information.email.name}
-        value={state.information.email}
+        value={userState.profile.email}
       />
       <div
         className={clsx(
@@ -50,24 +52,24 @@ export const InformationAccountSupport = () => {
       >
         <ItemAccountSupport
           name={dictionaries.information.first_name.name}
-          value={state.information.first_name}
+          value={userState.profile.first_name}
         />
         <ItemAccountSupport
           name={dictionaries.information.last_name.name}
-          value={state.information.last_name}
+          value={userState.profile.last_name}
         />
       </div>
       <ItemAccountSupport
         name={dictionaries.information.city.name}
-        value={state.information.city}
+        value={userState.profile.city}
       />
       <ItemAccountSupport
         name={dictionaries.information.phonenumber.name}
-        value={state.information.phonenumber}
+        value={userState.profile.phonenumber}
       />
       <ItemAccountSupport
         name={dictionaries.information.about_me.name}
-        value={state.information.about_me}
+        value={userState.profile.about_me}
       />
     </div>
   );

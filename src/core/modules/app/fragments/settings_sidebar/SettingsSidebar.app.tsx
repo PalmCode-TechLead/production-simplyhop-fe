@@ -5,6 +5,7 @@ import { getDictionaries } from "../../i18n";
 import { usePathname } from "next/navigation";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import dynamic from "next/dynamic";
+import { UserContext } from "../../context";
 
 const Image = dynamic(() => import("next/image"), {
   ssr: false,
@@ -22,9 +23,12 @@ const TabButton = dynamic(
 );
 
 export const SettingsSidebarApp = () => {
+  const { state } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   const pathname = usePathname();
   const { isLg } = useTailwindBreakpoint();
+
+  const name = `${state.profile.first_name} ${state.profile.last_name}`;
   return (
     <div
       className={clsx(
@@ -42,7 +46,7 @@ export const SettingsSidebarApp = () => {
           )}
         >
           <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
-            {"Kevin Jordi"}
+            {name}
           </h1>
           <Image
             src={"/images/general/default_avatar.jpeg"}
