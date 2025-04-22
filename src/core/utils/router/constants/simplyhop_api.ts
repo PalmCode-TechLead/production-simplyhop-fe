@@ -36,5 +36,6 @@ export const SimplyHopAPICollectionURL = {
   },
   booking: {
     postBook: () => `/api/bookings/book`,
+    getMy: () => `/api/bookings/my`,
   },
 };

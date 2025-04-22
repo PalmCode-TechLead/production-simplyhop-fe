@@ -4,35 +4,35 @@ import { MyListTripReactQueryKey } from "../keys";
 
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
-import { fetchGetRidesMy } from "@/core/services/rest/simplyhop/rides";
+import { fetchGetBookingMy } from "@/core/services/rest/simplyhop/booking";
 import {
-  GetRidesMyErrorResponseInterface,
-  GetRidesMyPayloadRequestInterface,
-  GetRidesMySuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/rides";
+  GetBookingMyErrorResponseInterface,
+  GetBookingMyPayloadRequestInterface,
+  GetBookingMySuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/booking";
 import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 
-export const useGetRidesMy = () => {
+export const useGetBookingMy = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const { state, dispatch } = React.useContext(MyListTripContext);
 
-  const payload: GetRidesMyPayloadRequestInterface = {
+  const payload: GetBookingMyPayloadRequestInterface = {
     params: {
-      include: "vehicle.brand,rideTimes,user",
+      include: "ride.vehicle.brand,rideTime,user",
     },
   };
   const query = useQuery<
-    GetRidesMySuccessResponseInterface,
-    GetRidesMyErrorResponseInterface
+    GetBookingMySuccessResponseInterface,
+    GetBookingMyErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetRidesMy(),
+    queryKey: MyListTripReactQueryKey.GetBookingMy(),
     queryFn: () => {
-      return fetchGetRidesMy(payload);
+      return fetchGetBookingMy(payload);
     },
-    enabled: !type,
+    enabled: type === "book",
   });
 
   React.useEffect(() => {
@@ -40,9 +40,9 @@ export const useGetRidesMy = () => {
       const data = query.data;
 
       dispatch({
-        type: MyListTripActionEnum.SetRideData,
+        type: MyListTripActionEnum.SetBookData,
         payload: {
-          ...state.ride,
+          ...state.book,
           data: data.data.map((item) => {
             return {
               id: String(item.id),
@@ -61,16 +61,16 @@ export const useGetRidesMy = () => {
               },
               car: {
                 image: {
-                  src: !item.vehicle.image.length
+                  src: !item.ride.vehicle.image.length
                     ? "/images/general/car.png"
-                    : item.vehicle.image[0] ?? "",
+                    : item.ride.vehicle.image[0] ?? "",
                   alt: "car",
                   width: 145,
                   height: 46,
                 },
                 identity: {
-                  name: `${item.vehicle.brand.title} ${item.vehicle.model}`,
-                  number: item.vehicle.plate_license,
+                  name: `${item.ride.vehicle.brand.title} ${item.ride.vehicle.model}`,
+                  number: item.ride.vehicle.plate_license,
                 },
               },
 
@@ -84,25 +84,23 @@ export const useGetRidesMy = () => {
                   time: "17:30 Uhr",
                 },
                 departure: {
-                  place: !item.start_name ? "-" : item.start_name,
-                  time: !item.ride_times.length
-                    ? "-"
-                    : dayjs(item.ride_times[0].departure_time).format(
-                        "HH.mm [Uhr]"
-                      ),
+                  place: !item.ride.start_name ? "-" : item.ride.start_name,
+                  time: dayjs(item.ride_time.departure_time).format(
+                    "HH.mm [Uhr]"
+                  ),
                 },
                 travelTime: {
-                  time: !item.eta ? "-" : setDurationTime(item.eta),
+                  time: !item.ride.eta ? "-" : setDurationTime(item.ride.eta),
                 },
                 arrival: {
-                  place: !item.destination_name ? "-" : item.destination_name,
-                  time: !item.eta
+                  place: !item.ride.destination_name
+                    ? "-"
+                    : item.ride.destination_name,
+                  time: !item.ride.eta
                     ? "-"
                     : `${setArrivalTime(
-                        dayjs(item.ride_times[0].departure_time).format(
-                          "HH:mm"
-                        ),
-                        item.eta
+                        dayjs(item.ride_time.departure_time).format("HH:mm"),
+                        item.ride.eta
                       )} Uhr`,
                 },
               },
@@ -110,7 +108,7 @@ export const useGetRidesMy = () => {
               price: {
                 initial: {
                   label: "Angebotspreis",
-                  price: `€${item.base_price}`,
+                  price: `€${item.ride.base_price}`,
                 },
               },
               cta: {

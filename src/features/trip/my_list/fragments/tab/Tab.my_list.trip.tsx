@@ -4,9 +4,13 @@ import { TabList, Tab, TabGroup } from "@headlessui/react";
 import { getDictionaries } from "../../i18n";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { useSearchParams } from "next/navigation";
 
 export const TabMyListTrip = () => {
+  const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
+
+  const type = searchParams.get("type");
 
   return (
     <TabGroup
@@ -39,9 +43,13 @@ export const TabMyListTrip = () => {
             >
               <Tab
                 className={clsx(
-                  "text-[#C2C2C2] data-[selected]:text-[#5AC53D] font-normal data-[selected]:font-semibold text-[1rem] ",
+                  !type && itemIndex === 0
+                    ? "text-[#5AC53D] font-semibold border-b-[2px] border-b-[#5AC53D]"
+                    : !!type && item.id === type
+                    ? "text-[#5AC53D] font-semibold border-b-[2px] border-b-[#5AC53D]"
+                    : "text-[#C2C2C2]",
+                  "font-normal text-[1rem] ",
                   "outline-none",
-                  "data-[selected]:border-b data-[selected]:border-b-[#5AC53D]",
                   "cursor-pointer",
                   "whitespace-nowrap"
                 )}

@@ -29,7 +29,10 @@ export const MyListTripContainer = () => {
           )}
         >
           <HeaderMyListTrip />
-          <TabMyListTrip />
+          <React.Suspense fallback={<div />}>
+            <TabMyListTrip />
+          </React.Suspense>
+
           {type === "book" ? <BookMyListTrip /> : <RideMyListTrip />}
         </div>
       </div>
