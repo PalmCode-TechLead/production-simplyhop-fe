@@ -14,8 +14,11 @@ import {
   UserActionEnum,
   UserContext,
 } from "@/core/modules/app/context";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const usePostUserProfileCreate = () => {
+  const router = useRouter();
   const { state: userState, dispatch: dispatchUser } =
     React.useContext(UserContext);
   const { state } = React.useContext(AccountUpdateSupportContext);
@@ -53,6 +56,7 @@ export const usePostUserProfileCreate = () => {
           about_me: state.form.about_me.value,
         },
       });
+      router.push(AppCollectionURL.private.support_account());
     },
     onError(error) {
       dispatchGlobal({
