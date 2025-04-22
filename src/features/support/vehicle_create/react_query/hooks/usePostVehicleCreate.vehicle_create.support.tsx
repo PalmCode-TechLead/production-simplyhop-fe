@@ -60,7 +60,7 @@ export const usePostVehicleCreateMy = () => {
               state.vehicle_information.capacity.passenger_seats.form
                 .available_child_seat.selected.id
             ),
-        numb_of_childseat: !state.vehicle_information.capacity.passenger_seats
+        numb_of_childseats: !state.vehicle_information.capacity.passenger_seats
           .form.available_car_seat.selected
           ? 0
           : Number(

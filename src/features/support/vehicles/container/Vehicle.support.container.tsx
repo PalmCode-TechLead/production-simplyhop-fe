@@ -25,7 +25,7 @@ export const VehiclesSupportContainer = () => {
         >
           <div className={clsx("flex items-center justify-end", "w-full")}>
             <Link href={AppCollectionURL.private.support_vehicle_create()}>
-              <Button className={clsx("px-[1rem] py-[0.25rem]")}>
+              <Button className={clsx("!px-[1rem] !py-[0.5rem]")}>
                 {dictionaries.cta.create.children}
               </Button>
             </Link>

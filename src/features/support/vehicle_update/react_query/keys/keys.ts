@@ -5,6 +5,9 @@ export const VehicleUpdateSupportReactQueryKey = {
   GetVehicleCategoryList: () => {
     return ["VehicleUpdateSupportReactQueryKey.GetVehicleCategoryList"];
   },
+  GetVehicleId: () => {
+    return ["VehicleUpdateSupportReactQueryKey.GetVehicleId"];
+  },
   PostVehicleCreateMy: () => {
     return ["VehicleUpdateSupportReactQueryKey.PostVehicleCreateMy"];
   },

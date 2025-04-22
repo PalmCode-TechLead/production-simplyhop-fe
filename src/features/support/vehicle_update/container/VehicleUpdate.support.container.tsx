@@ -8,10 +8,11 @@ import { CapacityVehicleInformationFormVehicleUpdateSupport } from "../fragments
 import { TripVehicleInformationFormVehicleUpdateSupport } from "../fragments/trip_vehicle_information_form";
 import { CTAVehicleUpdateSupport } from "../fragments/cta";
 import { NotificationVehicleUpdateSupport } from "../fragments/notification";
+import { useGetVehicleId } from "../react_query/hooks/useGetVehicleId.vehicle_update.support";
 
 export const VehicleUpdateSupportContainer = () => {
   const dictionaries = getDictionaries();
-
+  useGetVehicleId();
   return (
     <>
       <div
