@@ -1,24 +1,24 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export interface PutMessageRoomsMakeAsReadRequestInterface
+export interface PutMessageRoomsMarkAsReadRequestInterface
   extends NextApiRequest {
-  payload?: PutMessageRoomsMakeAsReadPayloadRequestInterface;
+  payload?: PutMessageRoomsMarkAsReadPayloadRequestInterface;
 }
 
-export interface PutMessageRoomsMakeAsReadPayloadRequestInterface {
-  path: PutMessageRoomsMakeAsReadPathPayloadRequestInterface;
+export interface PutMessageRoomsMarkAsReadPayloadRequestInterface {
+  path: PutMessageRoomsMarkAsReadPathPayloadRequestInterface;
 }
 
-export type PutMessageRoomsMakeAsReadPathPayloadRequestInterface = {
+export type PutMessageRoomsMarkAsReadPathPayloadRequestInterface = {
   roomId: number;
 };
 
-export type PutMessageRoomsMakeAsReadResponseInterface = NextApiResponse<
-  | PutMessageRoomsMakeAsReadSuccessResponseInterface
-  | PutMessageRoomsMakeAsReadErrorResponseInterface
+export type PutMessageRoomsMarkAsReadResponseInterface = NextApiResponse<
+  | PutMessageRoomsMarkAsReadSuccessResponseInterface
+  | PutMessageRoomsMarkAsReadErrorResponseInterface
 >;
 
-export interface PutMessageRoomsMakeAsReadSuccessResponseInterface {
+export interface PutMessageRoomsMarkAsReadSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
@@ -38,7 +38,7 @@ export interface PutMessageRoomsMakeAsReadSuccessResponseInterface {
   redirect: null;
 }
 
-export interface PutMessageRoomsMakeAsReadErrorResponseInterface {
+export interface PutMessageRoomsMarkAsReadErrorResponseInterface {
   status: number;
   message: string;
   name: string;

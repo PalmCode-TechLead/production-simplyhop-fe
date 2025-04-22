@@ -5,15 +5,20 @@ import { getDictionaries } from "../../i18n";
 import { SearchField } from "@/core/components/searchfield";
 import { TabList, Tab, TabGroup } from "@headlessui/react";
 import { ListItemChatTrip } from "../../components/list_item";
-import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
-import { useGetMessageRoomsList } from "../../react_query/hooks";
+import {
+  useGetMessageRoomsList,
+  usePutMessageRoomsMarkAsRead,
+} from "../../react_query/hooks";
+import { useRouter } from "next/navigation";
 
 export const ListChatTrip = () => {
+  const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
   useGetMessageRoomsList();
+  const { mutate: putMessageRoomsMarkAsRead } = usePutMessageRoomsMarkAsRead();
 
   React.useEffect(() => {
     dispatch({
@@ -59,6 +64,11 @@ export const ListChatTrip = () => {
         },
       },
     });
+  };
+
+  const handleClickList = (data: { id: number }) => {
+    putMessageRoomsMarkAsRead(data);
+    router.push(`${AppCollectionURL.private.chat()}?id=${data.id}`);
   };
 
   return (
@@ -124,13 +134,13 @@ export const ListChatTrip = () => {
           )}
         >
           {state.list.message.items.map((item, itemIndex) => (
-            <Link
+            <button
               key={itemIndex}
               className={clsx("cursor-pointer", "w-full")}
-              href={`${AppCollectionURL.private.chat()}?id=${itemIndex}`}
+              onClick={() => handleClickList({ id: Number(item.id) })}
             >
               <ListItemChatTrip {...item} />
-            </Link>
+            </button>
           ))}
         </div>
       </TabGroup>

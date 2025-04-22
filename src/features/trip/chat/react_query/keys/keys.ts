@@ -9,4 +9,7 @@ export const ChatTripReactQueryKey = {
   ) => {
     return ["ChatTripReactQueryKey.GetMessageRoomsList", [payload] as const];
   },
+  PutMessageRoomsMarkAsRead: () => {
+    return ["ChatTripReactQueryKey.PutMessageRoomsMarkAsRead"];
+  },
 };
