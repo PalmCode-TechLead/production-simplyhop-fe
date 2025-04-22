@@ -7,13 +7,15 @@ import { ChatField } from "@/core/components/chatfield";
 import { RoomHeaderChatTrip } from "../../components/room_header";
 import { useSearchParams } from "next/navigation";
 import { CustomerOrderCardChatTrip } from "../../components/customer_order_card";
-import { ConversationItemChatTrip } from "../../components/conversation_item";
 import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
+import { useGetMessagesList } from "../../react_query/hooks";
+import SenderMessageItemChatTrip from "../../components/sender_message_item/SenderMessageItem.chat.trip";
+import RecipientMessageItemChatTrip from "../../components/recipient_message_item/RecipientMessageItem.chat.trip";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -22,17 +24,20 @@ export const RoomChatTrip = () => {
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
+  useGetMessagesList();
+
   if (!id && isLg) {
     return null;
   }
-  const conversationData = Array.from({ length: 10 }, (_, i) => i + 1).map(
-    (item) => {
-      if (item % 2 === 1) {
-        return dictionaries.chat.room.conversation.chat.sender;
-      }
-      return dictionaries.chat.room.conversation.chat.recipient;
-    }
-  );
+  const conversationData = state.room.message.items;
+  // const conversationData = Array.from({ length: 10 }, (_, i) => i + 1).map(
+  //   (item) => {
+  //     if (item % 2 === 1) {
+  //       return dictionaries.chat.room.conversation.chat.sender;
+  //     }
+  //     return dictionaries.chat.room.conversation.chat.recipient;
+  //   }
+  // );
 
   const handleClickEmoji = () => {
     setIsEmojiOpen((prev) => !prev);
@@ -93,9 +98,36 @@ export const RoomChatTrip = () => {
       {/* chat */}
 
       <RoomConversationContainerChatTrip>
-        <CustomerOrderCardChatTrip />
-        <DriverOrderCardChatTrip />
-        <ConversationItemChatTrip chats={conversationData} />
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+            "w-full"
+          )}
+        >
+          {conversationData.map((chat, chatIndex) => {
+            const { type, role, ...otherChatProps } = chat;
+            if (type === "booking_request") {
+              return <CustomerOrderCardChatTrip key={chatIndex} />;
+            }
+            if (type === "offer_request") {
+              return <DriverOrderCardChatTrip key={chatIndex} />;
+            }
+            if (role === "sender") {
+              return (
+                <SenderMessageItemChatTrip
+                  {...otherChatProps}
+                  key={chatIndex}
+                />
+              );
+            }
+            return (
+              <RecipientMessageItemChatTrip
+                {...otherChatProps}
+                key={chatIndex}
+              />
+            );
+          })}
+        </div>
       </RoomConversationContainerChatTrip>
 
       {/* action commentar */}

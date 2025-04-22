@@ -51,7 +51,8 @@
         "chat": {
           "sender": {
             "id": "sender",
-            "type": "sender",
+            "type": "text",
+            "role": "sender",
             "time": "10:30 AM",
             "name": "Jack Raymonds",
             "image": {
@@ -64,7 +65,8 @@
           },
           "recipient": {
             "id": "recipient",
-            "type": "recipient",
+            "type": "text",
+            "role": "recipient",
             "time": "10:30 AM",
             "name": "Grace Miller",
             "image": {

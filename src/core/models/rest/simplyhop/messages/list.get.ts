@@ -11,6 +11,8 @@ export interface GetMessagesListPayloadRequestInterface {
 export type GetMessagesListParamsPayloadRequestInterface = {
   include?: string; //rideTime, rideTimeCount, rideTimeExists, driver, driverCount, driverExists, passenger, passengerCount, passengerExists
   //mandatory
+  ride_booking_id?: number;
+  message_room_id?: number;
   sort?: string;
   "page[number]"?: number;
   "page[size]"?: number;

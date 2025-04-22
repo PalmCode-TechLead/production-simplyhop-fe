@@ -36,7 +36,20 @@ export interface ChatTripList {
 
 export interface ChatTripRoom {
   message: {
-    items: [];
+    items: {
+      id: string;
+      type: string;
+      role: string;
+      time: string;
+      name: string;
+      image: {
+        src: string;
+        width: number;
+        height: number;
+        alt: string;
+      };
+      message: string;
+    }[];
   };
   chat: {
     input: {
