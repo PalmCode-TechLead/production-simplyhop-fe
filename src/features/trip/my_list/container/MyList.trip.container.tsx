@@ -3,7 +3,6 @@ import * as React from "react";
 import clsx from "clsx";
 import { HeaderMyListTrip } from "../fragments/header";
 import { TabMyListTrip } from "../fragments/tab";
-import { useGetRidesMy } from "../react_query/hooks";
 import { useSearchParams } from "next/navigation";
 import { BookMyListTrip } from "../fragments/book";
 import { RideMyListTrip } from "../fragments/ride";
@@ -12,7 +11,6 @@ export const MyListTripContainer = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  useGetRidesMy();
   return (
     <div className={clsx("w-full h-full", "py-[3rem]", "relative", "")}>
       <div
