@@ -77,11 +77,19 @@ export const useGetRidesMy = () => {
               routes: {
                 date: {
                   label: "Datum",
-                  date: "24.02.25",
+                  date: !item.ride_times.length
+                    ? "-"
+                    : dayjs(item.ride_times[0].departure_time).format(
+                        "DD.MM.YY"
+                      ),
                 },
                 startTime: {
                   label: "Startzeit",
-                  time: "17:30 Uhr",
+                  time: !item.ride_times.length
+                    ? "-"
+                    : dayjs(item.ride_times[0].departure_time).format(
+                        "HH.mm [Uhr]"
+                      ),
                 },
                 departure: {
                   place: !item.start_name ? "-" : item.start_name,
@@ -110,7 +118,7 @@ export const useGetRidesMy = () => {
               price: {
                 initial: {
                   label: "Angebotspreis",
-                  price: `€${item.base_price}`,
+                  price: item.base_price === null ? "-" : `€${item.base_price}`,
                 },
               },
               cta: {
