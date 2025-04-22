@@ -4,7 +4,7 @@ import clsx from "clsx";
 export const Button = forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    variant?: "primary" | "secondary";
+    variant?: "primary" | "secondary" | "tertiary";
     isLoading?: boolean;
   }
 >((props, ref) => {
@@ -16,20 +16,30 @@ export const Button = forwardRef<
       className={clsx(
         "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
         "w-full",
-        variant === "secondary" ? "bg-[white]" : "bg-[#5AC53D]",
+        variant === "tertiary"
+          ? "bg-[#333FFF]"
+          : variant === "secondary"
+          ? "bg-[white]"
+          : "bg-[#5AC53D]",
         "py-[1rem]",
         "rounded-[0.375rem]",
-        variant === "secondary"
+        variant === "tertiary"
+          ? "text-[1rem] text-[#FFFFFF] disabled:text-[#767676] font-medium"
+          : variant === "secondary"
           ? "text-[1rem] text-[#5AC53D] disabled:text-[#767676] font-medium"
           : isLoading
           ? "text-[1rem] text-[#FFFFFF] font-medium"
           : "text-[1rem] text-[#FFFFFF] disabled:text-[#767676] font-medium",
-        variant === "secondary"
+        variant === "tertiary"
+          ? "hover:bg-[#333FFF] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]"
+          : variant === "secondary"
           ? ""
           : isLoading
           ? ""
           : "hover:bg-[#408C2B] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
-        variant === "secondary"
+        variant === "tertiary"
+          ? "border border-[#333FFF]"
+          : variant === "secondary"
           ? "border border-[#5AC53D]"
           : isLoading
           ? "border border-[#5AC53D]"

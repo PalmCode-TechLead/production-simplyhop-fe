@@ -667,6 +667,7 @@ export const FilterPlanRideTrip = () => {
 
         {/* button */}
         <Button
+          variant="tertiary"
           disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}
           onClick={handleClickSearch}
