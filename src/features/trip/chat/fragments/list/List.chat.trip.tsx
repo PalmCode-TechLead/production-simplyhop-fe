@@ -8,10 +8,12 @@ import { ListItemChatTrip } from "../../components/list_item";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
+import { useGetMessagesList } from "../../react_query/hooks";
 
 export const ListChatTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
+  useGetMessagesList();
 
   React.useEffect(() => {
     dispatch({
@@ -66,7 +68,11 @@ export const ListChatTrip = () => {
         "w-full"
       )}
     >
-      <h1 className={clsx("text-[black] text-[1.125rem] lg:text-[1.5rem] font-semibold")}>
+      <h1
+        className={clsx(
+          "text-[black] text-[1.125rem] lg:text-[1.5rem] font-semibold"
+        )}
+      >
         {dictionaries.title}
       </h1>
 

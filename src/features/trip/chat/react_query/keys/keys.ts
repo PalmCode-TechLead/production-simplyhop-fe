@@ -1,5 +1,5 @@
 export const ChatTripReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["ChatTripReactQueryKey.RestGooglePostRouteDirections"];
+  GetMessagesList: () => {
+    return ["ChatTripReactQueryKey.GetMessagesList"];
   },
 };
