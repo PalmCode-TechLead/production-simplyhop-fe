@@ -171,11 +171,16 @@ export const RideDetailCardPlanRideTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
-          <Image
-            {...car.image}
-            alt={car.image.alt}
-            className={clsx("w-[145px]")}
-          />
+          <div
+            className={clsx(
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+            )}
+          >
+            <Image {...car.image} className={clsx("w-[145px]")} />
+            <div className={clsx("block lg:hidden")}>
+              <CarIdentityItem {...car.identity} number={null} />
+            </div>
+          </div>
         </div>
 
         <div
@@ -185,7 +190,9 @@ export const RideDetailCardPlanRideTrip = ({
           )}
         >
           {/* identity */}
-          <CarIdentityItem {...car.identity} />
+          <div className={clsx("hidden lg:block")}>
+            <CarIdentityItem {...car.identity} />
+          </div>
 
           {/* routes */}
           <div
