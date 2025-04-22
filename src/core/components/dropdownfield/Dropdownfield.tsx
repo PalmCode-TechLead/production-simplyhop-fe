@@ -13,6 +13,7 @@ export interface DropdownfieldProps {
   selected?: { id: string; name: string } | null;
   items?: { id: string; name: string }[];
   disabled?: boolean;
+  inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
   onSelect?: (data: { id: string; name: string }) => void;
@@ -24,6 +25,7 @@ export const Dropdownfield = ({
   items = [],
   onSelect = () => {},
   // NOTES: async purpose
+  inputContainerProps,
   inputProps,
   labelProps,
 }: DropdownfieldProps) => {
@@ -46,6 +48,7 @@ export const Dropdownfield = ({
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
         <InputContainer
+          {...inputContainerProps}
           onClick={() => {
             inputRef.current?.focus();
           }}
@@ -63,7 +66,11 @@ export const Dropdownfield = ({
               {...inputProps}
               readOnly
               placeholder={selected?.name}
-              className={clsx("pr-[1.5rem]", "!cursor-pointer")}
+              className={clsx(
+                "pr-[1.5rem]",
+                "!cursor-pointer",
+                inputContainerProps?.className
+              )}
               onFocus={() => {
                 setIsOpen(true);
                 if (disabled) {

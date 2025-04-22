@@ -393,6 +393,8 @@ export const DetailPlanRideTrip = () => {
                 }}
                 inputProps={{
                   ...dictionaries.detail.plan.form.input.recurring.inputProps,
+                }}
+                inputContainerProps={{
                   className: "!border !border-[#F8F8F8]",
                 }}
                 selected={state.detail.form.plan.recurring.selected}
