@@ -7,6 +7,7 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Trip",
@@ -17,8 +18,15 @@ type TripLayoutProps = {
 };
 
 export default async function TripLayout({ children }: TripLayoutProps) {
+  const cookieStore = await cookies(); // ✅ with await
+  const token = cookieStore.get("token")?.value;
+
   try {
-    await fetchGetUserProfileData();
+    await fetchGetUserProfileData({
+      headers: {
+        token: token ?? "",
+      },
+    });
   } catch (err) {
     redirect(AppCollectionURL.public.login());
   }

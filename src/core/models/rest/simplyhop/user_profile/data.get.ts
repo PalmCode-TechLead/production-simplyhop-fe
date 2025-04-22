@@ -1,6 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export type GetUserProfileDataRequestInterface = NextApiRequest;
+export interface GetUserProfileDataRequestInterface extends NextApiRequest {
+  payload: GetUserProfileDataPayloadRequestInterface;
+}
+
+export interface GetUserProfileDataPayloadRequestInterface {
+  headers: GetUserProfileDataHeadersPayloadRequestInterface;
+}
+export interface GetUserProfileDataHeadersPayloadRequestInterface {
+  token: string;
+}
 
 export type GetUserProfileDataResponseInterface = NextApiResponse<
   | GetUserProfileDataSuccessResponseInterface

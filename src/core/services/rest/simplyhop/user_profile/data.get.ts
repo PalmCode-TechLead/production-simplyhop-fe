@@ -2,8 +2,11 @@ import axios, { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
 import Cookies from "universal-cookie";
+import { GetUserProfileDataPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
 
-export const fetchGetUserProfileData = async () => {
+export const fetchGetUserProfileData = async (
+  payload?: GetUserProfileDataPayloadRequestInterface
+) => {
   try {
     const url = `${
       ENVIRONMENTS.SIMPLY_HOP_API_URL
@@ -13,7 +16,7 @@ export const fetchGetUserProfileData = async () => {
     const token = cookies.get("token");
     const res = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${payload?.headers.token ?? token}`,
       },
     });
     return res.data;
