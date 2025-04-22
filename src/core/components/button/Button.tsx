@@ -38,7 +38,7 @@ export const Button = forwardRef<
           ? ""
           : "hover:bg-[#408C2B] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
         variant === "tertiary"
-          ? "border border-[#333FFF]"
+          ? "border border-[#333FFF] disabled:border disabled:border-[#F6F6F6]"
           : variant === "secondary"
           ? "border border-[#5AC53D]"
           : isLoading
