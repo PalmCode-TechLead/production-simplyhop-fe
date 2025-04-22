@@ -23,7 +23,7 @@ export const VehicleCreateSupportContainer = () => {
       >
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-cols-[421px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[100px]",
+            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "w-full max-w-container"
           )}
         >
@@ -32,9 +32,10 @@ export const VehicleCreateSupportContainer = () => {
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "w-full",
               "pt-[2rem] lg:pt-[0rem]",
-              "sticky top-[90px] lg:top-[calc(90px+2rem)] z-[30]",
+              // "sticky top-[90px] z-[30]",
               "bg-[white]",
-              "pb-[1.5rem]"
+              "pb-[1.5rem]",
+              
             )}
           >
             <h1
@@ -42,15 +43,14 @@ export const VehicleCreateSupportContainer = () => {
                 "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
               )}
             >
-              {dictionaries.title}
+              {dictionaries.vehicle_information.title}
             </h1>
           </div>
 
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-              "w-full",
-              "px-[0rem] py-[0rem] lg:px-[1.5rem] lg:py-[1.5rem]"
+              "w-full"
             )}
           >
             <div
@@ -59,9 +59,6 @@ export const VehicleCreateSupportContainer = () => {
                 "w-full"
               )}
             >
-              <h2 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
-                {dictionaries.vehicle_information.title}
-              </h2>
               <GeneralVehicleInformationFormVehicleCreateSupport />
               <PictureVehicleInformationFormVehicleCreateSupport />
               <CapacityVehicleInformationFormVehicleCreateSupport />

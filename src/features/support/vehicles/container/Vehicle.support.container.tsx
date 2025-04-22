@@ -19,13 +19,15 @@ export const VehiclesSupportContainer = () => {
       >
         <div
           className={clsx(
-            "grid grid-rows-1 grid-cols-1 place-content-start place-items-start",
+            "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
             "max-w-container w-full h-full"
           )}
         >
           <div className={clsx("flex items-center justify-end", "w-full")}>
             <Link href={AppCollectionURL.private.support_vehicle_create()}>
-              <Button>{dictionaries.cta.create.children}</Button>
+              <Button className={clsx("px-[1rem] py-[0.25rem]")}>
+                {dictionaries.cta.create.children}
+              </Button>
             </Link>
           </div>
           <ListVehiclesSupport />
