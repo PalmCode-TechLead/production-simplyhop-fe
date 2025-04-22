@@ -4,9 +4,36 @@ import {
   AccountUpdateSupportActions,
   AccountUpdateSupportInitialStateType,
 } from "./AccountUpdate.support.types";
-import { AccountUpdateSupportDeactivateConfirmationReducers, AccountUpdateSupportDeactivateNotificationReducers, AccountUpdateSupportDeactivateReducers } from "./AccountUpdate.support.reducers";
+import {
+  AccountUpdateSupportDeactivateConfirmationReducers,
+  AccountUpdateSupportDeactivateNotificationReducers,
+  AccountUpdateSupportDeactivateReducers,
+  AccountUpdateSupportFormReducers,
+} from "./AccountUpdate.support.reducers";
 
 const initialState: AccountUpdateSupportInitialStateType = {
+  form: {
+    first_name: {
+      value: "",
+      error: null,
+    },
+    last_name: {
+      value: "",
+      error: null,
+    },
+    city: {
+      value: "",
+      error: null,
+    },
+    phonenumber: {
+      value: "",
+      error: null,
+    },
+    about_me: {
+      value: "",
+      error: null,
+    },
+  },
   deactivate: {
     is_open: false,
   },
@@ -33,15 +60,23 @@ const AccountUpdateSupportContext = createContext<{
 
 const mainReducer = (
   {
+    form,
     deactivate,
     deactivate_confirmation,
     deactivate_notification,
   }: AccountUpdateSupportInitialStateType,
   action: AccountUpdateSupportActions
 ) => ({
+  form: AccountUpdateSupportFormReducers(form, action),
   deactivate: AccountUpdateSupportDeactivateReducers(deactivate, action),
-  deactivate_confirmation: AccountUpdateSupportDeactivateConfirmationReducers(deactivate_confirmation, action),
-  deactivate_notification: AccountUpdateSupportDeactivateNotificationReducers(deactivate_notification, action),
+  deactivate_confirmation: AccountUpdateSupportDeactivateConfirmationReducers(
+    deactivate_confirmation,
+    action
+  ),
+  deactivate_notification: AccountUpdateSupportDeactivateNotificationReducers(
+    deactivate_notification,
+    action
+  ),
 });
 
 const AccountUpdateSupportProvider = (props: { children: React.ReactNode }) => {

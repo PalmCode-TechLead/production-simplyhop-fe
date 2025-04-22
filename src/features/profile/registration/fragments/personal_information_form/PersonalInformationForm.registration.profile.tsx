@@ -15,28 +15,6 @@ export const PersonalInformationFormRegistrationProfile = () => {
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const errorItem = getError({
-      errorItems: globalDictionaries.form.email.validations.items,
-      value: e.currentTarget.value,
-      type: "optional",
-    });
-    dispatch({
-      type: RegistrationProfileActionEnum.SetPersonalInformationData,
-      payload: {
-        ...state.personal_information,
-        form: {
-          ...state.personal_information.form,
-          email: {
-            ...state.personal_information.form.email,
-            value: e.currentTarget.value,
-            error: errorItem,
-          },
-        },
-      },
-    });
-  };
-
   const handleChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
       errorItems: globalDictionaries.form.first_name.validations.items,
@@ -127,9 +105,8 @@ export const PersonalInformationFormRegistrationProfile = () => {
           inputProps={{
             ...dictionaries.personal_information.form.input.email.inputProps,
             value: state.personal_information.form.email.value,
-            onChange: handleChangeEmail,
           }}
-          error={state.personal_information.form.email.error?.name}
+          disabled
         />
 
         <div

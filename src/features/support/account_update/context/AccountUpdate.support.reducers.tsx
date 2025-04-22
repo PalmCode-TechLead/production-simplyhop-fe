@@ -4,7 +4,22 @@ import {
   AccountUpdateSupportDeactivate,
   AccountUpdateSupportDeactivateConfirmation,
   AccountUpdateSupportDeactivateNotification,
+  AccountUpdateSupportForm,
 } from "./AccountUpdate.support.types";
+
+// Form
+export const AccountUpdateSupportFormReducers = (
+  state: AccountUpdateSupportForm,
+  action: AccountUpdateSupportActions
+) => {
+  switch (action.type) {
+    case AccountUpdateSupportActionEnum.SetFormData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
 
 // Deactivate
 export const AccountUpdateSupportDeactivateReducers = (

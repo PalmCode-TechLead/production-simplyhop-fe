@@ -267,6 +267,17 @@
         ]
       }
     },
+    "city": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_name",
+            "name": "Invalid LastName",
+            "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
+          }
+        ]
+      }
+    },
     "phonenumber": {
       "validations": {
         "items": [
