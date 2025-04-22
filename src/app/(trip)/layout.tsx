@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { cookies } from "next/headers";
+import { UserProfile, UserProvider } from "@/core/modules/app/context";
 
 export const metadata: Metadata = {
   title: "Trip",
@@ -20,13 +21,23 @@ type TripLayoutProps = {
 export default async function TripLayout({ children }: TripLayoutProps) {
   const cookieStore = await cookies(); // ✅ with await
   const token = cookieStore.get("token")?.value;
-
+  let userProfile: UserProfile | null = null;
   try {
-    await fetchGetUserProfileData({
+    const user = await fetchGetUserProfileData({
       headers: {
         token: token ?? "",
       },
     });
+    userProfile = {
+      id: user.data.id,
+      first_name: user.data?.first_name ?? "",
+      last_name: user.data?.last_name ?? "",
+      avatar: user.data.avatar,
+      email: user.data.email,
+      phonenumber: user.data?.mobile ?? "",
+      city: user.data?.city ?? "",
+      about_me: user.data?.profile.bio ?? "",
+    };
   } catch {
     redirect(AppCollectionURL.public.login());
   }
@@ -35,7 +46,9 @@ export default async function TripLayout({ children }: TripLayoutProps) {
       <main className={clsx("w-full min-h-screen")}>
         <TopNavigation />
         <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
-          {children}
+          <UserProvider profile={!userProfile ? undefined : userProfile}>
+            {children}
+          </UserProvider>
         </div>
         <FooterApp />
       </main>

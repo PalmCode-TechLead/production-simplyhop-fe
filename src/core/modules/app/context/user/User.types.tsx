@@ -16,6 +16,7 @@ export interface UserInitialStateType {
 
 // State Collection Types consist of:
 export interface UserProfile {
+  id: number | null;
   avatar: null | string;
   first_name: string;
   last_name: string;

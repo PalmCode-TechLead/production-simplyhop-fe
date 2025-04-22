@@ -10,6 +10,7 @@ import { UserProfileReducers } from "./User.reducers";
 
 const initialState: UserInitialStateType = {
   profile: {
+    id: null,
     avatar: null,
     first_name: "",
     last_name: "",

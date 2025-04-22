@@ -43,7 +43,7 @@ export const useGetVehicleMy = () => {
         type: VehiclesSupportActionEnum.SetListData,
         payload: {
           ...state.list,
-          data: data.data.map((item, index) => {
+          data: data.data.map((item) => {
             return {
               id: String(item.id),
               car: {

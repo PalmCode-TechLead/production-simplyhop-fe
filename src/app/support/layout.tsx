@@ -38,6 +38,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
     });
     const user = res as GetUserProfileDataSuccessResponseInterface;
     userProfile = {
+      id: user.data.id,
       first_name: user.data?.first_name ?? "",
       last_name: user.data?.last_name ?? "",
       avatar: user.data.avatar,

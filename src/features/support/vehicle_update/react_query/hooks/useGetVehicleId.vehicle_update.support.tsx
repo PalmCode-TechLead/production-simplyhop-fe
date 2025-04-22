@@ -14,8 +14,6 @@ import {
 } from "@/core/models/rest/simplyhop/vehicle";
 import { fetchGetVehicleId } from "@/core/services/rest/simplyhop/vehicle";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
-import { SVGIconProps } from "@/core/icons";
-import { AppCollectionURL } from "@/core/utils/router/constants";
 import { useParams } from "next/navigation";
 
 export const useGetVehicleId = () => {
