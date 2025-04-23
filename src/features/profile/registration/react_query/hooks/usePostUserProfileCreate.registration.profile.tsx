@@ -30,6 +30,10 @@ export const usePostUserProfileCreate = () => {
           mobile_is_show: true, // true terus karena bakal di show terus
           bio: state.personal_information.form.about_me.value, // -> bio
           information: "",
+          is_driver:
+            state.ride_plan.form.offer_trip.selected?.id === "yes"
+              ? true
+              : false,
         },
       };
       return fetchPostUserProfileCreate(payload);

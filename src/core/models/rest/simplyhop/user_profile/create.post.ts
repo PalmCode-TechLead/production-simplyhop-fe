@@ -17,6 +17,8 @@ export type PostUserProfileCreateBodyPayloadRequestInterface = {
   mobile_is_show: boolean;
   bio: string;
   information: string;
+  is_driver: boolean;
+  is_female?: boolean;
 };
 
 export type PostUserProfileCreateResponseInterface = NextApiResponse<
