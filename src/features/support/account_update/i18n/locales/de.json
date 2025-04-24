@@ -67,6 +67,30 @@
           "children": "Über mich",
           "required": false
         }
+      },
+      "gender": {
+        "inputProps": {
+          "id": "gender",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "gender",
+          "children": "Geschlecht",
+          "required": false
+        }
+      },
+      "pictures": {
+        "title": "Profilbilder",
+        "description": "Bilder hochladen, die Ihr Gesicht darstellen",
+        "form": {
+          "message": "Ziehen Sie Ihr Bild hierher oder klicken Sie, um Dateien auszuwählen",
+          "description": "Maximale Dateigröße 2 MB und empfohlene Abmessungen 56px"
+        },
+        "square_input": {
+          "form": {
+            "label": "+<br/>Weitere hinzufügen"
+          }
+        }
       }
     }
   },

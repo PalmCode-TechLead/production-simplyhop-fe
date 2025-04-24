@@ -46,6 +46,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
       phonenumber: user.data?.mobile ?? "",
       city: user.data?.city ?? "",
       about_me: user.data?.profile.bio ?? "",
+      is_driver: user.data?.is_driver === 1 ? true : false,
     };
   } catch {
     redirect(AppCollectionURL.public.login());

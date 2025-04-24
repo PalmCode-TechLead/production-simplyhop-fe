@@ -13,6 +13,7 @@ import { CapacityVehicleInformationFormRegistrationProfile } from "../fragments/
 import { TripVehicleInformationFormRegistrationProfile } from "../fragments/trip_vehicle_information_form";
 import { CTARegistrationProfile } from "../fragments/cta";
 import { NotificationRegistrationProfile } from "../fragments/notification";
+import { PicturePersonalInformationFormRegistrationProfile } from "../fragments/picture_personal_information_form";
 
 export const RegistrationProfileContainer = () => {
   const dictionaries = getDictionaries();
@@ -60,6 +61,7 @@ export const RegistrationProfileContainer = () => {
             )}
           >
             <PersonalInformationFormRegistrationProfile />
+            <PicturePersonalInformationFormRegistrationProfile />
             <Divider />
             <RidePlanFormRegistrationProfile />
             {state.ride_plan.form.offer_trip.selected?.id === "yes" && (

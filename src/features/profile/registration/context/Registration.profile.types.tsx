@@ -51,6 +51,13 @@ export interface RegistrationProfilePersonalInformation {
       value: string;
       error: FormError;
     };
+    gender: {
+      selected: null | { id: string; name: string };
+      error: FormError;
+    };
+    pictures: {
+      files: File[];
+    };
   };
 }
 

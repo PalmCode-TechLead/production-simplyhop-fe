@@ -24,6 +24,7 @@ export interface UserProfile {
   city: string;
   phonenumber: string;
   about_me: string;
+  is_driver: boolean;
 }
 
 export enum UserActionEnum {

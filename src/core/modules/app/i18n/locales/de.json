@@ -323,6 +323,18 @@
       ]
     }
   },
+  "personal_information": {
+    "gender": {
+      "options": {
+        "items": [
+          { "id": "male", "name": "Männlich" },
+          { "id": "female", "name": "Weiblich" },
+          { "id": "diverse", "name": "Divers" },
+          { "id": "unspecified", "name": "Keine Angabe" }
+        ]
+      }
+    }
+  },
   "car": {
     "facility": {
       "seat": {

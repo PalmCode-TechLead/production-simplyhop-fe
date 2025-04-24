@@ -5,6 +5,7 @@ import { CTAAccountUpdateSupport } from "../fragments/cta/CTA.account_update.sup
 import { DeactivateAccountUpdateSupport } from "../fragments/deactivate";
 import { DeactivateConfirmationAccountUpdateSupport } from "../fragments/deactivate_confirmation";
 import { DeactivateNotificationAccountUpdateSupport } from "../fragments/deactivate_notification";
+import { PictureFormAccountUpdateSupport } from "../fragments/picture_form";
 
 export const AccountUpdateSupportContainer = () => {
   return (
@@ -16,7 +17,7 @@ export const AccountUpdateSupportContainer = () => {
         )}
       >
         <FormAccountUpdateSupport />
-
+        <PictureFormAccountUpdateSupport />
         <CTAAccountUpdateSupport />
       </div>
       <DeactivateAccountUpdateSupport />

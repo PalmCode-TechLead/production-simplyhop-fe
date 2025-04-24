@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { cookies } from "next/headers";
 import { UserProfile, UserProvider } from "@/core/modules/app/context";
+import { GetUserProfileDataSuccessResponseInterface } from "@/core/models/rest/simplyhop/user_profile";
 
 export const metadata: Metadata = {
   title: "Trip",
@@ -23,11 +24,12 @@ export default async function TripLayout({ children }: TripLayoutProps) {
   const token = cookieStore.get("token")?.value;
   let userProfile: UserProfile | null = null;
   try {
-    const user = await fetchGetUserProfileData({
+    const user = (await fetchGetUserProfileData({
       headers: {
         token: token ?? "",
       },
-    });
+    })) as GetUserProfileDataSuccessResponseInterface;
+
     userProfile = {
       id: user.data.id,
       first_name: user.data?.first_name ?? "",
@@ -37,6 +39,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
       phonenumber: user.data?.mobile ?? "",
       city: user.data?.city ?? "",
       about_me: user.data?.profile.bio ?? "",
+      is_driver: user.data?.is_driver === 1 ? true : false,
     };
   } catch {
     redirect(AppCollectionURL.public.login());

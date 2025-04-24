@@ -80,11 +80,22 @@ export const usePostVehicleCreateMy = () => {
         image: state.vehicle_information.pictures.files,
       };
       const formData = new FormData();
-      for (const key of Object.keys(bodyPayload)) {
-        formData.append(
-          key,
-          String((bodyPayload as { [key: string]: any })[key])
-        );
+
+      const cleanedObj = Object.fromEntries(
+        Object.entries(bodyPayload).filter(([_, value]) => value !== undefined)
+      );
+
+      for (const key of Object.keys(cleanedObj)) {
+        if (key === "image" && Array.isArray(cleanedObj[key])) {
+          cleanedObj[key].forEach((file: File) => {
+            formData.append(key, file);
+          });
+        } else {
+          formData.append(
+            key,
+            String((cleanedObj as { [key: string]: string })[key])
+          );
+        }
       }
       const payload: PostVehicleCreateMyPayloadRequestInterface = {
         body: formData,

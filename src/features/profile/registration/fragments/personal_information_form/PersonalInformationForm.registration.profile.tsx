@@ -10,6 +10,7 @@ import {
 } from "../../context";
 import { getError } from "@/core/utils/form";
 import { Textareafield } from "@/core/components/textareafield";
+import { Dropdownfield } from "@/core/components/dropdownfield";
 
 export const PersonalInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
@@ -104,6 +105,22 @@ export const PersonalInformationFormRegistrationProfile = () => {
     });
   };
 
+  const handleSelectGender = (data: { id: string; name: string }) => {
+    dispatch({
+      type: RegistrationProfileActionEnum.SetPersonalInformationData,
+      payload: {
+        ...state.personal_information,
+        form: {
+          ...state.personal_information.form,
+          gender: {
+            ...state.personal_information.form.gender,
+            selected: data,
+          },
+        },
+      },
+    });
+  };
+
   const handleChangeAboutMe = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
@@ -181,30 +198,49 @@ export const PersonalInformationFormRegistrationProfile = () => {
             error={state.personal_information.form.last_name.error?.name}
           />
         </div>
-        <Textfield
+        <Dropdownfield
           labelProps={{
-            ...dictionaries.personal_information.form.input.city.labelProps,
+            ...dictionaries.personal_information.form.input.gender.labelProps,
           }}
           inputProps={{
-            ...dictionaries.personal_information.form.input.city.inputProps,
-            value: state.personal_information.form.city.value,
-            onChange: handleChangeCity,
+            ...dictionaries.personal_information.form.input.gender.inputProps,
           }}
-          error={state.personal_information.form.city.error?.name}
+          selected={state.personal_information.form.gender.selected}
+          items={globalDictionaries.personal_information.gender.options.items}
+          onSelect={handleSelectGender}
         />
-        <Textfield
-          labelProps={{
-            ...dictionaries.personal_information.form.input.phonenumber
-              .labelProps,
-          }}
-          inputProps={{
-            ...dictionaries.personal_information.form.input.phonenumber
-              .inputProps,
-            value: state.personal_information.form.phonenumber.value,
-            onChange: handleChangePhonenumber,
-          }}
-          error={state.personal_information.form.phonenumber.error?.name}
-        />
+        <div
+          className={clsx(
+            "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+            "w-full"
+          )}
+        >
+          <Textfield
+            labelProps={{
+              ...dictionaries.personal_information.form.input.city.labelProps,
+            }}
+            inputProps={{
+              ...dictionaries.personal_information.form.input.city.inputProps,
+              value: state.personal_information.form.city.value,
+              onChange: handleChangeCity,
+            }}
+            error={state.personal_information.form.city.error?.name}
+          />
+          <Textfield
+            labelProps={{
+              ...dictionaries.personal_information.form.input.phonenumber
+                .labelProps,
+            }}
+            inputProps={{
+              ...dictionaries.personal_information.form.input.phonenumber
+                .inputProps,
+              value: state.personal_information.form.phonenumber.value,
+              onChange: handleChangePhonenumber,
+            }}
+            error={state.personal_information.form.phonenumber.error?.name}
+          />
+        </div>
+
         <Textareafield
           labelProps={{
             ...dictionaries.personal_information.form.input.about_me.labelProps,

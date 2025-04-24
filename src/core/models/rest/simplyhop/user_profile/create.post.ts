@@ -19,6 +19,7 @@ export type PostUserProfileCreateBodyPayloadRequestInterface = {
   information: string;
   is_driver: boolean;
   is_female?: boolean;
+  profile_picture?: File;
 };
 
 export type PostUserProfileCreateResponseInterface = NextApiResponse<

@@ -42,6 +42,13 @@ const initialState: RegistrationProfileInitialStateType = {
         value: "",
         error: null,
       },
+      gender: {
+        selected: null,
+        error: null,
+      },
+      pictures: {
+        files: [],
+      },
     },
   },
   ride_plan: {

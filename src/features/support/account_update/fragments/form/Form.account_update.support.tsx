@@ -11,6 +11,7 @@ import {
 } from "../../context";
 import { UserContext } from "@/core/modules/app/context";
 import { getError } from "@/core/utils/form";
+import { Dropdownfield } from "@/core/components/dropdownfield";
 
 export const FormAccountUpdateSupport = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -132,6 +133,19 @@ export const FormAccountUpdateSupport = () => {
     });
   };
 
+  const handleSelectGender = (data: { id: string; name: string }) => {
+    dispatch({
+      type: AccountUpdateSupportActionEnum.SetFormData,
+      payload: {
+        ...state.form,
+        gender: {
+          ...state.form.gender,
+          selected: data,
+        },
+      },
+    });
+  };
+
   const handleChangeAboutMe = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch({
       type: AccountUpdateSupportActionEnum.SetFormData,
@@ -192,24 +206,43 @@ export const FormAccountUpdateSupport = () => {
           error={state.form.last_name.error?.name}
         />
       </div>
-      <Textfield
-        labelProps={{ ...dictionaries.form.input.city.labelProps }}
-        inputProps={{
-          ...dictionaries.form.input.city.inputProps,
-          value: state.form.city.value,
-          onChange: handleChangeCity,
+      <Dropdownfield
+        labelProps={{
+          ...dictionaries.form.input.gender.labelProps,
         }}
-        error={state.form.city.error?.name}
-      />
-      <Textfield
-        labelProps={{ ...dictionaries.form.input.phonenumber.labelProps }}
         inputProps={{
-          ...dictionaries.form.input.phonenumber.inputProps,
-          value: state.form.phonenumber.value,
-          onChange: handleChangePhonenumber,
+          ...dictionaries.form.input.gender.inputProps,
         }}
-        error={state.form.phonenumber.error?.name}
+        selected={state.form.gender.selected}
+        items={globalDictionaries.personal_information.gender.options.items}
+        onSelect={handleSelectGender}
       />
+      <div
+        className={clsx(
+          "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+          "w-full"
+        )}
+      >
+        <Textfield
+          labelProps={{ ...dictionaries.form.input.city.labelProps }}
+          inputProps={{
+            ...dictionaries.form.input.city.inputProps,
+            value: state.form.city.value,
+            onChange: handleChangeCity,
+          }}
+          error={state.form.city.error?.name}
+        />
+        <Textfield
+          labelProps={{ ...dictionaries.form.input.phonenumber.labelProps }}
+          inputProps={{
+            ...dictionaries.form.input.phonenumber.inputProps,
+            value: state.form.phonenumber.value,
+            onChange: handleChangePhonenumber,
+          }}
+          error={state.form.phonenumber.error?.name}
+        />
+      </div>
+
       <Textareafield
         labelProps={{ ...dictionaries.form.input.about_me.labelProps }}
         inputProps={{

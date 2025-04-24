@@ -18,6 +18,7 @@ const initialState: UserInitialStateType = {
     phonenumber: "",
     city: "",
     about_me: "",
+    is_driver: false,
   },
 };
 

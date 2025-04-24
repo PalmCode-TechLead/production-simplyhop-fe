@@ -2,6 +2,7 @@ import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { AccountUpdateSupportReactQueryKey } from "../keys";
 import {
+  PostUserProfileCreateBodyPayloadRequestInterface,
   PostUserProfileCreateErrorResponseInterface,
   PostUserProfileCreatePayloadRequestInterface,
   PostUserProfileCreateSuccessResponseInterface,
@@ -30,21 +31,42 @@ export const usePostUserProfileCreate = () => {
   >({
     mutationKey: AccountUpdateSupportReactQueryKey.PostUserProfileCreate(),
     mutationFn: () => {
+      const bodyPayload: PostUserProfileCreateBodyPayloadRequestInterface = {
+        first_name: state.form.first_name.value,
+        last_name: state.form.last_name.value,
+        city: state.form.city.value, // ada
+        mobile: state.form.phonenumber.value, //nyimpen tanpa plus
+        ride_offer: true,
+        mobile_is_show: true, // true terus karena bakal di show terus
+        bio: state.form.about_me.value, // -> bio
+        information: "",
+        is_driver: userState.profile.is_driver,
+        is_female: true,
+        profile_picture: !state.form.pictures.files.length
+          ? undefined
+          : state.form.pictures.files[0],
+      };
+      const formData = new FormData();
+
+      const cleanedObj = Object.fromEntries(
+        Object.entries(bodyPayload).filter(([_, value]) => value !== undefined)
+      );
+
+      formData.append("file", state.form.pictures.files[0]);
+      for (const key of Object.keys(cleanedObj)) {
+        formData.append(
+          key,
+          key === "profile_picture"
+            ? (cleanedObj[key] as Blob)
+            : String((cleanedObj as { [key: string]: string })[key])
+        );
+      }
       const payload: PostUserProfileCreatePayloadRequestInterface = {
-        body: {
-          first_name: state.form.first_name.value,
-          last_name: state.form.last_name.value,
-          city: state.form.city.value, // ada
-          mobile: state.form.phonenumber.value, //nyimpen tanpa plus
-          ride_offer: true,
-          mobile_is_show: true, // true terus karena bakal di show terus
-          bio: state.form.about_me.value, // -> bio
-          information: "",
-          is_driver:state.
-        },
+        body: formData,
       };
       return fetchPostUserProfileCreate(payload);
     },
+
     onSuccess() {
       dispatchUser({
         type: UserActionEnum.SetProfileData,

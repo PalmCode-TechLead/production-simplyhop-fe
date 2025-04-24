@@ -41,7 +41,13 @@ export interface AccountUpdateSupportForm {
     value: string;
     error: FormError;
   };
-  is_driver: boolean;
+  gender: {
+    selected: null | { id: string; name: string };
+    error: FormError;
+  };
+  pictures: {
+    files: File[];
+  };
 }
 export interface AccountUpdateSupportDeactivate {
   is_open: boolean;

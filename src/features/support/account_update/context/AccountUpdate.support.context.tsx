@@ -33,6 +33,13 @@ const initialState: AccountUpdateSupportInitialStateType = {
       value: "",
       error: null,
     },
+    gender: {
+      selected: null,
+      error: null,
+    },
+    pictures: {
+      files: [],
+    },
   },
   deactivate: {
     is_open: false,
