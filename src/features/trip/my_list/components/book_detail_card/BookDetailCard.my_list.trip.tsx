@@ -125,7 +125,7 @@ export const BookDetailCardMyListTrip = ({
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-row grid-cols-1 lg:grid-cols-none place-content-start place-items-start lg:grid-flow-col lg:items-start lg:content-start lg:justify-between lg:justify-items-start gap-[1.5rem] lg:gap-[52px]",
+          "grid grid-flow-row grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
           "w-full"
         )}
       >
