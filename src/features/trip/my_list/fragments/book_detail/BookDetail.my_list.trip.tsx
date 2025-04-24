@@ -67,7 +67,7 @@ export const BookDetailMyListTrip = () => {
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
               />
             </button>
-            <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+            <h2 className={clsx("text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold")}>
               {dictionaries.book_detail.title}
             </h2>
           </div>
