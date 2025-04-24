@@ -11,66 +11,97 @@ export const CarFacilityFilterResulTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
 
+  const setMultipleCheckboxPayload = (
+    data: { id: string; name: string }[],
+    value: { id: string; name: string }
+  ) => {
+    const dataIds = data.map((item) => item.id);
+    const result = dataIds.includes(value.id)
+      ? data.filter((item) => item.id !== value.id)
+      : [...data, value];
+    return result;
+  };
+
   const handleSelectSeat = (data: { id: string; name: string }) => {
+    const selected = setMultipleCheckboxPayload(
+      state.advanced_filter.seat.selected,
+      data
+    );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
         seat: {
           ...state.advanced_filter.seat,
-          selected: data,
+          selected: selected,
         },
       },
     });
   };
 
   const handleSelectLuggage = (data: { id: string; name: string }) => {
+    const selected = setMultipleCheckboxPayload(
+      state.advanced_filter.luggage.selected,
+      data
+    );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
         luggage: {
           ...state.advanced_filter.luggage,
-          selected: data,
+          selected: selected,
         },
       },
     });
   };
 
   const handleSelectSmoker = (data: { id: string; name: string }) => {
+    const selected = setMultipleCheckboxPayload(
+      state.advanced_filter.smoker.selected,
+      data
+    );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
         smoker: {
           ...state.advanced_filter.smoker,
-          selected: data,
+          selected: selected,
         },
       },
     });
   };
 
   const handleSelectMusic = (data: { id: string; name: string }) => {
+    const selected = setMultipleCheckboxPayload(
+      state.advanced_filter.music.selected,
+      data
+    );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
         music: {
           ...state.advanced_filter.music,
-          selected: data,
+          selected: selected,
         },
       },
     });
   };
 
   const handleSelectPets = (data: { id: string; name: string }) => {
+    const selected = setMultipleCheckboxPayload(
+      state.advanced_filter.pets.selected,
+      data
+    );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
         pets: {
           ...state.advanced_filter.pets,
-          selected: data,
+          selected: selected,
         },
       },
     });

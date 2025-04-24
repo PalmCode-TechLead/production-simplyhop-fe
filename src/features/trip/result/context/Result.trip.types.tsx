@@ -57,19 +57,19 @@ export interface ResultTripFilters {
 
 export interface ResultTripAdvancedFilter {
   seat: {
-    selected: null | { id: string; name: string };
+    selected: { id: string; name: string }[];
   };
   luggage: {
-    selected: null | { id: string; name: string };
+    selected: { id: string; name: string }[];
   };
   smoker: {
-    selected: null | { id: string; name: string };
+    selected: { id: string; name: string }[];
   };
   music: {
-    selected: null | { id: string; name: string };
+    selected: { id: string; name: string }[];
   };
   pets: {
-    selected: null | { id: string; name: string };
+    selected: { id: string; name: string }[];
   };
   sort: {
     selected: null | { id: string; name: string };

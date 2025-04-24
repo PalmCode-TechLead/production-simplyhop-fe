@@ -16,6 +16,7 @@ export interface CheckboxProps extends CheckboxComponentProps {
 export const Checkbox = ({
   label = "",
   required = false,
+  className,
   ...otherProps
 }: CheckboxProps) => {
   const ref = useRef<HTMLElement | null>(null);
@@ -39,7 +40,8 @@ export const Checkbox = ({
             ? "border-[1px] border-[#5AC53D]"
             : "border-[1px] border-[#98989E]",
           "rounded-[0.25rem]",
-          "flex items-center justify-center"
+          "flex items-center justify-center",
+          className
         )}
         {...otherProps}
       >

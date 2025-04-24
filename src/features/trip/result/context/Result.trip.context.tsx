@@ -47,19 +47,19 @@ const initialState: ResultTripInitialStateType = {
   },
   advanced_filter: {
     seat: {
-      selected: null,
+      selected: [],
     },
     luggage: {
-      selected: null,
+      selected: [],
     },
     smoker: {
-      selected: null,
+      selected: [],
     },
     music: {
-      selected: null,
+      selected: [],
     },
     pets: {
-      selected: null,
+      selected: [],
     },
     sort: {
       selected: null,
