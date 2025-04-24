@@ -13,9 +13,15 @@ import RoomConversationContainerChatTrip from "../../components/room_conversatio
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
-import { useGetMessagesListByRoom } from "../../react_query/hooks";
+import {
+  useGetMessagesListByRoom,
+  usePostBookingAccept,
+  usePostBookingOffer,
+  usePostBookingReject,
+} from "../../react_query/hooks";
 import SenderMessageItemChatTrip from "../../components/sender_message_item/SenderMessageItem.chat.trip";
 import RecipientMessageItemChatTrip from "../../components/recipient_message_item/RecipientMessageItem.chat.trip";
+import { usePostMessagesChat } from "../../react_query/hooks";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -25,6 +31,10 @@ export const RoomChatTrip = () => {
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
   useGetMessagesListByRoom();
+  const { mutateAsync: postMessagesChat } = usePostMessagesChat();
+  const { mutateAsync: postBookingAccept } = usePostBookingAccept();
+  const { mutateAsync: postBookingOffer } = usePostBookingOffer();
+  const { mutateAsync: postBookingReject } = usePostBookingReject();
 
   if (!id && isLg) {
     return null;
@@ -68,8 +78,34 @@ export const RoomChatTrip = () => {
     setIsEmojiOpen(false);
   };
 
-  const handleClickSend = () => {
-    //
+  const handleClickSend = async () => {
+    const res = await postMessagesChat();
+    if (!res) return;
+    dispatch({
+      type: ChatTripActionEnum.SetRoomData,
+      payload: {
+        ...state.room,
+        chat: {
+          ...state.room.chat,
+          input: {
+            ...state.room.chat.input,
+            value: "",
+          },
+        },
+      },
+    });
+  };
+
+  const handleClickReject = async () => {
+    await postBookingReject();
+  };
+
+  const handleClickOffer = async () => {
+    await postBookingOffer();
+  };
+
+  const handleClickAccept = async () => {
+    await postBookingAccept();
   };
 
   return (
@@ -105,7 +141,24 @@ export const RoomChatTrip = () => {
             }
             if (type === "offer_request") {
               return (
-                <DriverOrderCardChatTrip {...chat.booking} key={chatIndex} />
+                <DriverOrderCardChatTrip
+                  {...chat.booking}
+                  key={chatIndex}
+                  cta={{
+                    reject: {
+                      children: "Angebot ablehnen",
+                      onClick: handleClickReject,
+                    },
+                    bargain: {
+                      children: "Ein weiteres Angebot senden",
+                      onClick: handleClickOffer,
+                    },
+                    accept: {
+                      children: "Angebot annehmen",
+                      onClick: handleClickAccept,
+                    },
+                  }}
+                />
               );
             }
             if (role === "sender") {

@@ -29,6 +29,7 @@ export interface ChatTripList {
   message: {
     items: {
       id: string;
+      booking_id: string;
       image_url: string;
       name: string;
       message: string;

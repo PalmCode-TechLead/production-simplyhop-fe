@@ -3,31 +3,32 @@ import { useMutation } from "@tanstack/react-query";
 
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import {
-  PostMessagesChatErrorResponseInterface,
-  PostMessagesChatPayloadRequestInterface,
-  PostMessagesChatSuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/messages";
-import { fetchPostMessagesChat } from "@/core/services/rest/simplyhop/messages";
+  PostBookingRejectErrorResponseInterface,
+  PostBookingRejectPayloadRequestInterface,
+  PostBookingRejectSuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/booking";
+import { fetchPostBookingReject } from "@/core/services/rest/simplyhop/booking";
 import { ChatTripReactQueryKey } from "../keys";
-import { ChatTripContext } from "../../context";
+import { useSearchParams } from "next/navigation";
 
-export const usePostMessagesChat = () => {
+export const usePostBookingReject = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
-  const { state } = React.useContext(ChatTripContext);
+  const searchParams = useSearchParams();
+  const bookingId = searchParams.get("bookingId");
+
   const mutation = useMutation<
-    PostMessagesChatSuccessResponseInterface,
-    PostMessagesChatErrorResponseInterface
+    PostBookingRejectSuccessResponseInterface,
+    PostBookingRejectErrorResponseInterface
   >({
-    mutationKey: ChatTripReactQueryKey.PostMessagesChat(),
+    mutationKey: ChatTripReactQueryKey.PostBookingReject(),
     mutationFn: () => {
-      const payload: PostMessagesChatPayloadRequestInterface = {
-        body: {
-          message: state.room.chat.input.value,
-          message_room_id: state.room.id ?? 0,
+      const payload: PostBookingRejectPayloadRequestInterface = {
+        path: {
+          id: !bookingId ? "0" : String(bookingId),
         },
       };
-      return fetchPostMessagesChat(payload);
+      return fetchPostBookingReject(payload);
     },
     onError(error) {
       dispatchGlobal({

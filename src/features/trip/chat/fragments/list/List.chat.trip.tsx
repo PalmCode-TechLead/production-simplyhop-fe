@@ -30,12 +30,6 @@ export const ListChatTrip = () => {
           selected:
             dictionaries.tab.items.find((_, index) => index === 0) ?? null,
         },
-        message: {
-          ...state.list.message,
-          items: Array.from({ length: 10 }).map(() => {
-            return dictionaries.chat.list.data;
-          }),
-        },
       },
     });
   }, []);
@@ -66,9 +60,13 @@ export const ListChatTrip = () => {
     });
   };
 
-  const handleClickList = (data: { id: number }) => {
+  const handleClickList = (data: { id: string; booking_id: string }) => {
     putMessageRoomsMarkAsRead(data);
-    router.push(`${AppCollectionURL.private.chat()}?id=${data.id}`);
+    router.push(
+      `${AppCollectionURL.private.chat()}?id=${data.id}&bookingId=${
+        data.booking_id
+      }`
+    );
   };
 
   return (
@@ -139,7 +137,12 @@ export const ListChatTrip = () => {
             <button
               key={itemIndex}
               className={clsx("cursor-pointer", "w-full")}
-              onClick={() => handleClickList({ id: Number(item.id) })}
+              onClick={() =>
+                handleClickList({
+                  id: item.id,
+                  booking_id: item.booking_id,
+                })
+              }
             >
               <ListItemChatTrip {...item} />
             </button>

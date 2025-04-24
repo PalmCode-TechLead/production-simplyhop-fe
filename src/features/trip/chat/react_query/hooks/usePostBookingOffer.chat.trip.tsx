@@ -3,31 +3,35 @@ import { useMutation } from "@tanstack/react-query";
 
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import {
-  PostMessagesChatErrorResponseInterface,
-  PostMessagesChatPayloadRequestInterface,
-  PostMessagesChatSuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/messages";
-import { fetchPostMessagesChat } from "@/core/services/rest/simplyhop/messages";
+  PostBookingOfferErrorResponseInterface,
+  PostBookingOfferPayloadRequestInterface,
+  PostBookingOfferSuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/booking";
+import { fetchPostBookingOffer } from "@/core/services/rest/simplyhop/booking";
 import { ChatTripReactQueryKey } from "../keys";
-import { ChatTripContext } from "../../context";
+import { useSearchParams } from "next/navigation";
 
-export const usePostMessagesChat = () => {
+export const usePostBookingOffer = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
-  const { state } = React.useContext(ChatTripContext);
+  const searchParams = useSearchParams();
+  const bookingId = searchParams.get("bookingId");
+
   const mutation = useMutation<
-    PostMessagesChatSuccessResponseInterface,
-    PostMessagesChatErrorResponseInterface
+    PostBookingOfferSuccessResponseInterface,
+    PostBookingOfferErrorResponseInterface
   >({
-    mutationKey: ChatTripReactQueryKey.PostMessagesChat(),
+    mutationKey: ChatTripReactQueryKey.PostBookingOffer(),
     mutationFn: () => {
-      const payload: PostMessagesChatPayloadRequestInterface = {
+      const payload: PostBookingOfferPayloadRequestInterface = {
+        path: {
+          id: !bookingId ? "0" : String(bookingId),
+        },
         body: {
-          message: state.room.chat.input.value,
-          message_room_id: state.room.id ?? 0,
+          offered_price: 100,
         },
       };
-      return fetchPostMessagesChat(payload);
+      return fetchPostBookingOffer(payload);
     },
     onError(error) {
       dispatchGlobal({

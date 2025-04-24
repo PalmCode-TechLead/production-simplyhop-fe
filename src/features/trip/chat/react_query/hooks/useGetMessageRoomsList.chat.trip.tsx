@@ -101,6 +101,7 @@ export const useGetMessageRoomsList = () => {
                 : dayjs(lastMessage.created_at).format("MMM DD");
               return {
                 id: String(item.id),
+                booking_id: String(item.ride_booking_id),
                 image_url: isPassenger
                   ? item.passenger.avatar ??
                     "/images/general/default_avatar.jpeg"

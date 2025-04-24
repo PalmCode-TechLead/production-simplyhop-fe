@@ -10,7 +10,7 @@ export interface PutMessageRoomsMarkAsReadPayloadRequestInterface {
 }
 
 export type PutMessageRoomsMarkAsReadPathPayloadRequestInterface = {
-  roomId: number;
+  roomId: string;
 };
 
 export type PutMessageRoomsMarkAsReadResponseInterface = NextApiResponse<

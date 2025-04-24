@@ -30,7 +30,7 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
           !!value.length
             ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
             : "top-[50%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
-          "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[1rem]"
+          "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem] lg:text-[1rem]"
         )}
         onClick={() => {
           inputRef.current?.focus();

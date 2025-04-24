@@ -15,4 +15,13 @@ export const ChatTripReactQueryKey = {
   PostMessagesChat: () => {
     return ["ChatTripReactQueryKey.PostMessagesChat"];
   },
+  PostBookingAccept: () => {
+    return ["ChatTripReactQueryKey.PostBookingAccept"];
+  },
+  PostBookingOffer: () => {
+    return ["ChatTripReactQueryKey.PostBookingOffer"];
+  },
+  PostBookingReject: () => {
+    return ["ChatTripReactQueryKey.PostBookingReject"];
+  },
 };

@@ -16,10 +16,10 @@ export const usePutMessageRoomsMarkAsRead = () => {
   const mutation = useMutation<
     PutMessageRoomsMarkAsReadSuccessResponseInterface,
     PutMessageRoomsMarkAsReadErrorResponseInterface,
-    { id: number }
+    { id: string }
   >({
     mutationKey: ChatTripReactQueryKey.PutMessageRoomsMarkAsRead(),
-    mutationFn: (data: { id: number }) => {
+    mutationFn: (data: { id: string }) => {
       const payload: PutMessageRoomsMarkAsReadPayloadRequestInterface = {
         path: {
           roomId: data.id,
