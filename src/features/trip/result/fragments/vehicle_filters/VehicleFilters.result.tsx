@@ -215,12 +215,7 @@ export const VehicleFilters = () => {
               "w-full"
             )}
           >
-            <button
-              className={clsx(
-                "grid grid-flow-col items-center content-center justify-between justify-items-start"
-              )}
-              onClick={handleClose}
-            >
+            <button className={clsx("cursor-pointer")} onClick={handleClose}>
               <SVGIcon
                 name="X"
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
@@ -233,6 +228,7 @@ export const VehicleFilters = () => {
 
           <button
             className={clsx(
+              "cursor-pointer",
               "px-[1rem] py-[1rem]",
               "text-[#5AC53D] text-[1rem] font-medium"
             )}
