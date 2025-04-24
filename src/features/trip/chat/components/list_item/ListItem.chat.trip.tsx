@@ -1,10 +1,10 @@
 import * as React from "react";
 import clsx from "clsx";
-import Image from "next/image";
+import { Avatar, AvatarProps } from "@/core/components/avatar";
 
 export interface ListItemChatTripProps {
   id?: string;
-  image_url?: string;
+  avatar?: AvatarProps;
   name?: string;
   message?: string;
   date?: string;
@@ -12,7 +12,7 @@ export interface ListItemChatTripProps {
 
 export const ListItemChatTrip = ({
   id = "",
-  image_url = "",
+  avatar,
   name = "",
   message = "",
   date = "",
@@ -31,17 +31,8 @@ export const ListItemChatTrip = ({
           "w-full"
         )}
       >
-        <Image
-          src={image_url}
-          alt={name}
-          width={40}
-          height={40}
-          className={clsx(
-            "w-[2.5rem] h-[2.5rem]",
-            "rounded-[50%]",
-            "object-cover object-center"
-          )}
-        />
+        <Avatar {...avatar} className={clsx("w-[2.5rem] h-[2.5rem]")} />
+
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",

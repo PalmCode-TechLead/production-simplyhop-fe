@@ -119,7 +119,7 @@ export const RoomChatTrip = () => {
       {/* header */}
       <RoomHeaderChatTrip
         href={AppCollectionURL.private.chat()}
-        image={{ ...dictionaries.chat.room.header.image }}
+        avatar={state.room.header.avatar}
         name={state.room.header.name}
       />
 

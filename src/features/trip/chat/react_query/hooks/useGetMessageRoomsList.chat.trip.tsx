@@ -61,11 +61,12 @@ export const useGetMessageRoomsList = () => {
               id: roomData.id,
               header: {
                 ...state.room.header,
-                image_url: isPassenger
-                  ? roomData.passenger.avatar ??
-                    "/images/general/default_avatar.jpeg"
-                  : roomData.driver.avatar ??
-                    "/images/general/default_avatar.jpeg",
+                avatar: {
+                  src: isPassenger
+                    ? roomData.passenger.avatar
+                    : roomData.driver.avatar,
+                  alt: isPassenger ? "passenger" : "driver",
+                },
                 name: isPassenger
                   ? `${roomData.passenger.first_name} ${roomData.passenger.last_name}`
                   : `${roomData.driver.first_name} ${roomData.driver.last_name}`,
@@ -102,10 +103,10 @@ export const useGetMessageRoomsList = () => {
               return {
                 id: String(item.id),
                 booking_id: String(item.ride_booking_id),
-                image_url: isPassenger
-                  ? item.passenger.avatar ??
-                    "/images/general/default_avatar.jpeg"
-                  : item.driver.avatar ?? "/images/general/default_avatar.jpeg",
+                avatar: {
+                  src: isPassenger ? item.passenger.avatar : item.driver.avatar,
+                  alt: isPassenger ? "passenger" : "driver",
+                },
                 name: isPassenger
                   ? `${item.passenger.first_name} ${item.passenger.last_name}`
                   : `${item.driver.first_name} ${item.driver.last_name}`,

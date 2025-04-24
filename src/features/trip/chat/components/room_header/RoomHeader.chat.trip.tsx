@@ -1,17 +1,17 @@
 import * as React from "react";
 import clsx from "clsx";
-import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import SVGIcon from "@/core/icons";
+import { Avatar, AvatarProps } from "@/core/components/avatar";
 
 export interface RoomHeaderChatTripProps {
-  image?: ImageProps;
+  avatar?: AvatarProps;
   name?: string;
   href?: string;
 }
 
 export const RoomHeaderChatTrip = ({
-  image,
+  avatar,
   name = "",
   href = "",
 }: RoomHeaderChatTripProps) => {
@@ -30,18 +30,8 @@ export const RoomHeaderChatTrip = ({
           className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
         />
       </Link>
-      <Image
-        {...image}
-        src={image?.src ?? ""}
-        alt={image?.alt ?? ""}
-        width={image?.width ?? 0}
-        height={image?.height ?? 0}
-        className={clsx(
-          "w-[2.25rem] h-[2.25rem]",
-          "rounded-[50%]",
-          "object-center object-cover"
-        )}
-      />
+      <Avatar {...avatar} className={clsx("w-[2.25rem] h-[2.25rem]")} />
+
       <div
         className={clsx(
           "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0rem]"

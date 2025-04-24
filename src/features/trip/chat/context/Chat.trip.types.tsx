@@ -1,3 +1,4 @@
+import { AvatarProps } from "@/core/components/avatar";
 import { CustomerOrderCardChatTripProps } from "../components/customer_order_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -29,7 +30,7 @@ export interface ChatTripList {
     items: {
       id: string;
       booking_id: string;
-      image_url: string;
+      avatar: AvatarProps;
       name: string;
       message: string;
       date: string;
@@ -41,7 +42,7 @@ export interface ChatTripRoom {
   id: number | null;
   header: {
     name: string;
-    image_url: string;
+    avatar: AvatarProps;
   };
   message: {
     items: {
