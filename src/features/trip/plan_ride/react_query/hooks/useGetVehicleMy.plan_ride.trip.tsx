@@ -44,7 +44,7 @@ export const useGetVehicleMy = () => {
             items: data.data.map((item) => {
               return {
                 id: String(item.id),
-                name: `${item.brand.title} ${item.model}`,
+                name: `${item.brand?.title} ${item.model}`,
               };
             }),
             data: data.data.map((item) => {
@@ -59,7 +59,7 @@ export const useGetVehicleMy = () => {
                   height: 46,
                 },
                 identity: {
-                  name: `${item.brand.title} ${item.model}`,
+                  name: `${item.brand?.title} ${item.model}`,
                   number: item.plate_license,
                 },
                 facility: {

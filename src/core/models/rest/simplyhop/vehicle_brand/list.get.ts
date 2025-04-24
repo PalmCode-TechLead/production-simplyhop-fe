@@ -1,3 +1,4 @@
+import { VehicleBrand } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetVehicleBrandListRequestInterface extends NextApiRequest {
@@ -30,16 +31,7 @@ export interface GetVehicleBrandListSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
-  data: {
-    id: number;
-    title: string;
-    icon: null | string;
-    deleted_at: null | string;
-    created_at: string;
-    updated_at: string;
-    image: string;
-    media: [];
-  }[];
+  data: VehicleBrand[];
   redirect: null;
 }
 
