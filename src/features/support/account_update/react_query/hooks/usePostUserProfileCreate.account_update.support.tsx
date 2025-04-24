@@ -40,6 +40,7 @@ export const usePostUserProfileCreate = () => {
           mobile_is_show: true, // true terus karena bakal di show terus
           bio: state.form.about_me.value, // -> bio
           information: "",
+          is_driver:state.
         },
       };
       return fetchPostUserProfileCreate(payload);

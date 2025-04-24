@@ -41,6 +41,7 @@ export interface AccountUpdateSupportForm {
     value: string;
     error: FormError;
   };
+  is_driver: boolean;
 }
 export interface AccountUpdateSupportDeactivate {
   is_open: boolean;

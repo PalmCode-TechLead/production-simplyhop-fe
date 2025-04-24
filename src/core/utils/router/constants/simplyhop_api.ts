@@ -1,3 +1,7 @@
+import {
+  GetAuthSocialCallbackPathPayloadRequestInterface,
+  GetAuthSocialRedirectPathPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/auth";
 import { PutMessageRoomsMarkAsReadPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms/mark_as_read.put";
 import {
   GetRidesIdPathPayloadRequestInterface,
@@ -10,6 +14,14 @@ export const SimplyHopAPICollectionURL = {
   auth: {
     postLogin: () => `/api/auth/login`,
     postRegister: () => `/api/auth/register`,
+    postLogout: () => `/api/auth/logout`,
+    getSocialRedirect: (
+      path: GetAuthSocialRedirectPathPayloadRequestInterface
+    ) => `/api/auth/${path.provider}/redirect`,
+    getSocialCallback: (
+      path: GetAuthSocialCallbackPathPayloadRequestInterface
+    ) => `/api/auth/${path.provider}/callback`,
+    deleteDeactivateAccount: () => `/api/auth/deactivate-account`,
   },
   vehicle: {
     postCreateMy: () => `/api/vehicle/storeMy`,

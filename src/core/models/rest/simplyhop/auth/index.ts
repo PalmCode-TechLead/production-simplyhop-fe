@@ -1,2 +1,6 @@
 export * from "./login.post";
 export * from "./register.post";
+export * from "./logout.post";
+export * from "./social_redirect.get";
+export * from "./social_callback.get";
+export * from "./deactivate_account.delete";

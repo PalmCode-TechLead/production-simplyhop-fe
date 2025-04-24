@@ -5,7 +5,7 @@ export interface PostUserProfileCreateRequestInterface extends NextApiRequest {
 }
 
 export interface PostUserProfileCreatePayloadRequestInterface {
-  body: PostUserProfileCreateBodyPayloadRequestInterface;
+  body: FormData;
 }
 
 export type PostUserProfileCreateBodyPayloadRequestInterface = {

@@ -34,7 +34,10 @@ export const InformationAccountSupport = () => {
           {dictionaries.title}
         </h1>
         <Link href={AppCollectionURL.private.support_account_edit()}>
-          <Button className={clsx("!px-[2.5rem] !py-[0.5rem]")}>
+          <Button
+            variant="secondary"
+            className={clsx("!px-[2.5rem] !py-[0.5rem]")}
+          >
             {dictionaries.information.cta.edit.children}
           </Button>
         </Link>
