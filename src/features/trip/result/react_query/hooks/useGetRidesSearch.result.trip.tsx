@@ -314,12 +314,15 @@ export const useGetRideSearch = () => {
                         },
                       ]
                     : []),
-
-                  {
-                    id: "fahrerin",
-                    label: "Fahrerin (W)",
-                    variant: "danger",
-                  },
+                  ...(item.user.gender === "female"
+                    ? [
+                        {
+                          id: "fahrerin",
+                          label: "Fahrerin (W)",
+                          variant: "danger" as "success" | "danger",
+                        },
+                      ]
+                    : []),
                 ],
               },
               cta: {

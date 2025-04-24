@@ -177,6 +177,7 @@ export interface GetRidesSearchSuccessResponseInterface {
       avatar: null | string;
       is_driver: number; //1;
       deleted_at: null | string;
+      gender: string | null;
       created_at: string; // "2025-04-21 07:22:57";
       updated_at: string; // "2025-04-21 07:24:52";
     };
