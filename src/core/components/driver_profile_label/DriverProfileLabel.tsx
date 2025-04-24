@@ -18,7 +18,7 @@ export const DriverProfileLabel = ({
         "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1.5rem]"
       )}
     >
-      <Avatar {...avatar} />
+      <Avatar {...avatar} className={clsx("w-[2rem] h-[2rem]")} />
       <div
         className={clsx(
           "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.625rem]"

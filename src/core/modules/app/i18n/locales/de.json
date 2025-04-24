@@ -364,7 +364,7 @@
         "empty": {
           "id": "empty_seat",
           "icon": {
-            "name": "User",
+            "name": "SeatUnavailable",
             "color": "#D41010"
           },
           "name": {
@@ -403,7 +403,7 @@
           "empty": {
             "id": "empty_luggage",
             "icon": {
-              "name": "Briefcase",
+              "name": "LuggageUnavailable",
               "color": "#D41010"
             },
             "name": {
@@ -479,11 +479,11 @@
           "prohibited": {
             "id": "prohibited_music",
             "icon": {
-              "name": "Music",
+              "name": "MusicOff",
               "color": "#D41010"
             },
             "name": {
-              "label": "Musik erlaubt",
+              "label": "Musik nicht erlaubt",
               "color": "#D41010"
             }
           }
@@ -517,11 +517,11 @@
           "prohibited": {
             "id": "prohibited_pets",
             "icon": {
-              "name": "Dog",
+              "name": "NoPets",
               "color": "#D41010"
             },
             "name": {
-              "label": "Haustiere erlaubt",
+              "label": "Haustiere nicht erlaubt",
               "color": "#D41010"
             }
           }

@@ -47,6 +47,10 @@ import { ContrastCheckMark } from "./contrast_check_mark";
 import { Facebook3 } from "./facebook_3";
 import { Linkedin } from "./linkedin";
 import { Instagram } from "./instagram";
+import { MusicOff } from "./music_off";
+import { NoPets } from "./no_pets";
+import { LuggageUnavailable } from "./luggage_unavailable";
+import { SeatUnavailable } from "./seat_unavailable";
 
 export const svgMap = {
   Search,
@@ -96,6 +100,10 @@ export const svgMap = {
   Facebook3,
   Linkedin,
   Instagram,
+  MusicOff,
+  NoPets,
+  LuggageUnavailable,
+  SeatUnavailable,
 };
 
 export type SVGName = keyof typeof svgMap;
