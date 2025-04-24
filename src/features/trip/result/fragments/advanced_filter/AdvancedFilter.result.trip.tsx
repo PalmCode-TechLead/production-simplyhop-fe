@@ -3,6 +3,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { CarFacilityFilterCounterBadge } from "@/core/components/car_facility_filter_counter_badge";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { CarFacilityFilterDropdown } from "@/core/components/car_facility_filter_dropdown";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { CarSortDropdown } from "@/core/components/car_sort_dropdown";
@@ -10,6 +11,7 @@ import { CarSortDropdown } from "@/core/components/car_sort_dropdown";
 export const CarFacilityFilterResulTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
+  const globalDictionaries = getGlobalDictionaries();
 
   const setMultipleCheckboxPayload = (
     data: { id: string; name: string }[],
@@ -144,26 +146,43 @@ export const CarFacilityFilterResulTrip = () => {
         >
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.seat}
+            items={Array.from({ length: 6 }, (_, i) => String(i + 1)).map(
+              (item) => {
+                return { id: item, name: item };
+              }
+            )}
             selected={state.advanced_filter.seat.selected}
             onSelect={handleSelectSeat}
           />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.luggage}
+            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+              (item) => {
+                return { id: item, name: item };
+              }
+            )}
             selected={state.advanced_filter.luggage.selected}
             onSelect={handleSelectLuggage}
           />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.smoker}
+            items={
+              globalDictionaries.car.facility.seat.smoking.type.options.items
+            }
             selected={state.advanced_filter.smoker.selected}
             onSelect={handleSelectSmoker}
           />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.music}
+            items={
+              globalDictionaries.car.facility.seat.music.type.options.items
+            }
             selected={state.advanced_filter.music.selected}
             onSelect={handleSelectMusic}
           />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.pets}
+            items={globalDictionaries.car.facility.seat.pets.type.options.items}
             selected={state.advanced_filter.pets.selected}
             onSelect={handleSelectPets}
           />

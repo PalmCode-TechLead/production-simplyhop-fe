@@ -38,6 +38,30 @@ export const useGetRideSearch = () => {
       destination_long: 11.5819804,
       include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
       sort: "-base_price",
+      "filter[rideTimes.available_seats]": !state.advanced_filter.seat.selected
+        .length
+        ? undefined
+        : state.advanced_filter.seat.selected.map((item) => item.id).toString(),
+      "filter[numb_of_luggages]": !state.advanced_filter.luggage.selected.length
+        ? undefined
+        : state.advanced_filter.luggage.selected
+            .map((item) => item.id)
+            .toString(),
+      "filter[music_availability]": !state.advanced_filter.music.selected.length
+        ? undefined
+        : state.advanced_filter.music.selected.length === 1
+        ? Boolean(state.advanced_filter.music.selected[0].id ?? "false")
+        : undefined,
+      "filter[smoke_allowed]": !state.advanced_filter.smoker.selected.length
+        ? undefined
+        : state.advanced_filter.smoker.selected.length === 1
+        ? Boolean(state.advanced_filter.smoker.selected[0].id ?? "false")
+        : undefined,
+      "filter[pet_allowed]": !state.advanced_filter.pets.selected.length
+        ? undefined
+        : state.advanced_filter.pets.selected.length === 1
+        ? Boolean(state.advanced_filter.pets.selected[0].id ?? "false")
+        : undefined,
     },
   };
   const query = useQuery<

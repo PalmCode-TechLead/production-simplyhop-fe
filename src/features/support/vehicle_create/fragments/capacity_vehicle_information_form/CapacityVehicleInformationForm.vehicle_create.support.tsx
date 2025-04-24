@@ -222,7 +222,7 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
                 state.vehicle_information.capacity.passenger_seats.form
                   .available_car_seat.selected
               }
-              items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+              items={Array.from({ length: 6 }, (_, i) => String(i + 1)).map(
                 (item) => {
                   return { id: item, name: item };
                 }

@@ -92,17 +92,7 @@
       "label": "Filter nach"
     },
     "seat": {
-      "label": "Sitze",
-      "items": [
-        {
-          "id": "1",
-          "name": "1"
-        },
-        {
-          "id": "2",
-          "name": "2"
-        }
-      ]
+      "label": "Sitze"
     },
     "luggage": {
       "label": "Gepäck"
