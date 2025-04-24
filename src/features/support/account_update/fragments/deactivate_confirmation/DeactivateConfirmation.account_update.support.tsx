@@ -9,10 +9,16 @@ import {
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Passwordfield } from "@/core/components/passwordfield";
+import { useDeleteDeactivateAccount } from "../../react_query/hooks/useDeleteDeactivateAccount.account_update.support";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const DeactivateConfirmationAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
+  const {
+    mutateAsync: deleteDeactivateAccount,
+    isPending: isPendingDeleteDeactivateAccount,
+  } = useDeleteDeactivateAccount();
   const isOpen = state.deactivate_confirmation.is_open;
   const handleClose = () => {
     dispatch({
@@ -40,7 +46,8 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
     });
   };
 
-  const handleClickDeactivateConfirmation = () => {
+  const handleClickDeactivateConfirmation = async () => {
+    await deleteDeactivateAccount();
     dispatch({
       type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
       payload: {
@@ -56,6 +63,9 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
       },
     });
   };
+
+  const isDeactivateDisabled = isPendingDeleteDeactivateAccount;
+  const isDeactivateLoading = isPendingDeleteDeactivateAccount;
   return (
     <Modal
       className={clsx(
@@ -129,14 +139,16 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
 
         <button
           className={clsx(
-            "flex items-center justify-center",
+            "flex items-center justify-center gap-[0.5rem]",
             "w-full",
             "py-[1rem]",
             "text-[1rem] text-[#C50707] font-medium text-left",
             "cursor-pointer"
           )}
+          disabled={isDeactivateDisabled}
           onClick={handleClickDeactivateConfirmation}
         >
+          {isDeactivateLoading && <MoonLoader size={20} color={"#C50707"} />}
           {dictionaries.deactivate_confirmation.cta.deactivate.children}
         </button>
       </div>
