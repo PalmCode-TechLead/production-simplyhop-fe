@@ -14,6 +14,7 @@ import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import {
+  useGetMessageRoomsId,
   useGetMessagesListByRoom,
   usePostBookingAccept,
   usePostBookingOffer,
@@ -30,6 +31,7 @@ export const RoomChatTrip = () => {
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
+  useGetMessageRoomsId();
   useGetMessagesListByRoom();
   const { mutateAsync: postMessagesChat } = usePostMessagesChat();
   const { mutateAsync: postBookingAccept } = usePostBookingAccept();

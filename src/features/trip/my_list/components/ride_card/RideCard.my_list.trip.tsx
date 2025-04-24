@@ -25,6 +25,7 @@ import {
   DriverProfileLabel,
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
+import Link from "next/link";
 
 export interface RideCardMyListTripProps {
   id?: string;
@@ -49,7 +50,7 @@ export interface RideCardMyListTripProps {
   cta?: {
     detail: {
       children: React.ReactNode;
-      onClick: () => void;
+      href: string;
     };
   };
 }
@@ -106,7 +107,7 @@ export const RideCardMyListTrip = ({
   cta = {
     detail: {
       children: "Siehe Details",
-      onClick: () => {},
+      href: "",
     },
   },
 }: RideCardMyListTripProps) => {
@@ -176,12 +177,11 @@ export const RideCardMyListTrip = ({
 
         {/* cta */}
 
-        <Button
-          className={clsx("!px-[0.5rem] !py-[0.5rem]")}
-          onClick={cta.detail.onClick}
-        >
-          {cta.detail.children}
-        </Button>
+        <Link href={cta.detail.href} className={clsx("w-full")}>
+          <Button className={clsx("!px-[0.5rem] !py-[0.5rem]")}>
+            {cta.detail.children}
+          </Button>
+        </Link>
       </div>
 
       {/* action */}

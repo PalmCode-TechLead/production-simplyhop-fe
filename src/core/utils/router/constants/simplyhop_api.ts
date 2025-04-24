@@ -7,6 +7,7 @@ import {
   PostBookingOfferPathPayloadRequestInterface,
   PostBookingRejectPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/booking";
+import { GetMessageRoomsIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 import { PutMessageRoomsMarkAsReadPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms/mark_as_read.put";
 import {
   DeleteMessagesChatPathPayloadRequestInterface,
@@ -78,6 +79,7 @@ export const SimplyHopAPICollectionURL = {
   },
   message_rooms: {
     getList: () => `/api/message-rooms`,
+    getId: (path:GetMessageRoomsIdPathPayloadRequestInterface) => `/api/message-rooms/${path.id}`,
     putMarkAsRead: (
       path: PutMessageRoomsMarkAsReadPathPayloadRequestInterface
     ) => `/api/message-rooms/${path.roomId}/mark-as-read`,

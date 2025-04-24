@@ -26,13 +26,22 @@ import {
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
 import Link from "next/link";
+import {
+  DepartureDateItem,
+  DepartureDateItemProps,
+} from "@/core/components/departure_date_item";
+import SVGIcon from "@/core/icons";
 
-export interface BookCardMyListTripProps {
+export interface BookDetailCardMyListTripProps {
   id?: string;
+  message?: {
+    link: string;
+  };
   driver?: {
     profile: DriverProfileLabelProps;
   };
   car?: {
+    label?: string;
     image: ImageProps;
     identity?: CarIdentityItemProps;
   };
@@ -41,22 +50,17 @@ export interface BookCardMyListTripProps {
     date?: TravelDateItemProps;
     startTime?: TravelStartTimeItemProps;
     departure?: DepartureItemProps;
+    departure_date_item?: DepartureDateItemProps;
     travelTime?: TravelTimeItemProps;
     arrival?: ArrivalItemProps;
   };
-  price?: {
-    initial?: CarPriceItemProps;
-  };
-  cta?: {
-    detail: {
-      children: React.ReactNode;
-      href: string;
-    };
-  };
 }
 
-export const BookCardMyListTrip = ({
+export const BookDetailCardMyListTrip = ({
   id = "",
+  message = {
+    link: "",
+  },
   driver = {
     profile: {
       avatar: undefined,
@@ -64,6 +68,7 @@ export const BookCardMyListTrip = ({
     },
   },
   car = {
+    label: "Fahrzeug",
     image: {
       src: "/images/general/car.png",
       alt: "car",
@@ -85,6 +90,10 @@ export const BookCardMyListTrip = ({
       label: "Startzeit",
       time: "17:30 Uhr",
     },
+    departure_date_item: {
+      place: "Datum",
+      time: "24.02.25",
+    },
     departure: {
       place: "Munich",
       time: "17.30 Uhr",
@@ -97,20 +106,7 @@ export const BookCardMyListTrip = ({
       time: "18.30 Uhr",
     },
   },
-
-  price = {
-    initial: {
-      label: "Angebotspreis",
-      price: "€25.00",
-    },
-  },
-  cta = {
-    detail: {
-      children: "Siehe Details",
-      href: "",
-    },
-  },
-}: BookCardMyListTripProps) => {
+}: BookDetailCardMyListTripProps) => {
   return (
     <div
       id={id}
@@ -119,8 +115,12 @@ export const BookCardMyListTrip = ({
         "w-full",
         "px-[1.5rem] py-[1rem]",
         "rounded-[0.625rem]",
-        "border border-[#EFEFEF]"
+        "bg-[white]"
       )}
+      style={{
+        backdropFilter: "blur(20px)",
+        boxShadow: "0px 0px 25px 0px #969C9640",
+      }}
     >
       {/* car */}
       <div
@@ -131,36 +131,42 @@ export const BookCardMyListTrip = ({
       >
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"
+            "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[1.5rem]",
+            "w-full"
           )}
         >
-          <DriverProfileLabel {...driver.profile} />
+          <DepartureDateItem {...routes.departure_date_item} />
           <div
             className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+              "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1rem]"
             )}
           >
-            <Image {...car.image} className={clsx("w-[145px]")} />
-            <div className={clsx("block lg:hidden")}>
-              <CarIdentityItem {...car.identity} number={null} />
-            </div>
+            <Link href={message.link}>
+              <SVGIcon
+                name="MessageSquare"
+                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+              />
+            </Link>
+            <DriverProfileLabel
+              {...driver.profile}
+              icon={null}
+              avatar={{
+                ...driver.profile.avatar,
+                className: "!w-[1.5rem] !h-[1.5rem]",
+              }}
+            />
           </div>
         </div>
-
-        {/* identity */}
+        {/* route */}
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
             "w-full"
           )}
         >
-          <div className={clsx("hidden lg:block")}>
-            <CarIdentityItem {...car.identity} />
-          </div>
-
           <div
             className={clsx(
-              "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
+              "grid grid-cols-3 place-content-start place-items-start gap-[2.25rem]",
               "w-full"
             )}
           >
@@ -171,17 +177,28 @@ export const BookCardMyListTrip = ({
             <ArrivalItem {...routes.arrival} />
           </div>
         </div>
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+          )}
+        >
+          <div
+            className={clsx(
+              "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0.25rem]"
+            )}
+          >
+            <span
+              className={clsx("text-[#727272] text-[0.625rem] font-medium")}
+            >
+              {car.label}
+            </span>
+            <Image {...car.image} className={clsx("!w-[76px] h-[46px]")} />
+          </div>
 
-        {/* price */}
-        <CarPriceItem {...price.initial} />
-
-        {/* cta */}
-
-        <Link href={cta.detail.href} className={clsx("w-full")}>
-          <Button className={clsx("!px-[0.5rem] !py-[0.5rem]")}>
-            {cta.detail.children}
-          </Button>
-        </Link>
+          <div className={clsx("block")}>
+            <CarIdentityItem {...car.identity} />
+          </div>
+        </div>
       </div>
 
       {/* action */}

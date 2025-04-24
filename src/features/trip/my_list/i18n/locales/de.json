@@ -32,5 +32,8 @@
     "empty_search": {
       "message": "Ups! Wir konnten keine Daten finden..."
     }
+  },
+  "book_detail": {
+    "title": "Details zur Fahrt"
   }
 }

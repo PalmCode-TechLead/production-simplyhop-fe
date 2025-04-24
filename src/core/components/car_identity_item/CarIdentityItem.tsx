@@ -28,7 +28,13 @@ export default function CarIdentityItem({
           name="Car"
           className={clsx("w-[1rem] h-[1rem]", "text-[black]")}
         />
-        <p className={clsx("text-[black] text-[1rem] font-medium")}>{name}</p>
+        <p
+          className={clsx(
+            "text-[black] text-[0.875rem] lg:text-[1rem] font-medium"
+          )}
+        >
+          {name}
+        </p>
       </div>
       {!!number && (
         <>
@@ -40,7 +46,11 @@ export default function CarIdentityItem({
             )}
           />
 
-          <p className={clsx("text-[black] text-[1rem] font-medium")}>
+          <p
+            className={clsx(
+              "text-[black] text-[0.875rem] lg:text-[1rem] font-medium"
+            )}
+          >
             {number}
           </p>
         </>

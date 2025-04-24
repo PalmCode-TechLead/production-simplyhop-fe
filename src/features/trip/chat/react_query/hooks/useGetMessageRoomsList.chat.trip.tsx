@@ -19,7 +19,6 @@ export const useGetMessageRoomsList = () => {
   const { state, dispatch } = React.useContext(ChatTripContext);
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const messageRoomId = !id ? "0" : String(id);
 
   const payload: GetMessageRoomsListPayloadRequestInterface = {
     params: {
@@ -43,40 +42,13 @@ export const useGetMessageRoomsList = () => {
     queryFn: () => {
       return fetchGetMessageRoomsList(payload);
     },
+    enabled: !id,
   });
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
-      if (id) {
-        const roomData = data.data.find(
-          (item) => String(item.id) === messageRoomId
-        );
-        if (!!roomData) {
-          const isPassenger = userState.profile.id === roomData.passenger_id;
-          dispatch({
-            type: ChatTripActionEnum.SetRoomData,
-            payload: {
-              ...state.room,
-              id: roomData.id,
-              header: {
-                ...state.room.header,
-                avatar: {
-                  src: isPassenger
-                    ? roomData.passenger.avatar
-                    : roomData.driver.avatar,
-                  alt: isPassenger ? "passenger" : "driver",
-                },
-                name: isPassenger
-                  ? `${roomData.passenger.first_name} ${roomData.passenger.last_name}`
-                  : `${roomData.driver.first_name} ${roomData.driver.last_name}`,
-              },
-            },
-          });
-          return;
-        }
-        return;
-      }
+
       dispatch({
         type: ChatTripActionEnum.SetListData,
         payload: {
@@ -85,8 +57,8 @@ export const useGetMessageRoomsList = () => {
             ...state.list.message,
             items: data.data.map((item) => {
               const isPassenger = userState.profile.id === item.passenger_id;
-              const lastMessage = item.messages.find(
-                (_, index) => index === item.messages.length - 1
+              const lastMessage = item.messages?.find(
+                (_, index) => index === (item.messages?.length ?? 1) - 1
               );
 
               const lastMessageObject: { [key: string]: string } = !lastMessage
@@ -106,12 +78,14 @@ export const useGetMessageRoomsList = () => {
                 id: String(item.id),
                 booking_id: String(item.ride_booking_id),
                 avatar: {
-                  src: isPassenger ? item.passenger.avatar : item.driver.avatar,
+                  src: isPassenger
+                    ? item.passenger?.avatar
+                    : item.driver?.avatar,
                   alt: isPassenger ? "passenger" : "driver",
                 },
                 name: isPassenger
-                  ? `${item.passenger.first_name} ${item.passenger.last_name}`
-                  : `${item.driver.first_name} ${item.driver.last_name}`,
+                  ? `${item.passenger?.first_name} ${item.passenger?.last_name}`
+                  : `${item.driver?.first_name} ${item.driver?.last_name}`,
                 message: displayMessage,
                 date: date,
               };
