@@ -55,10 +55,6 @@
         "label": "Oder melde dich über die soziale Medien an",
         "items": [
           {
-            "id": "facebook",
-            "icon": "Facebook"
-          },
-          {
             "id": "google",
             "icon": "Google"
           }

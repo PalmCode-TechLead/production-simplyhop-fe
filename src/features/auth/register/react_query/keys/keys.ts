@@ -5,4 +5,7 @@ export const RegisterAuthReactQueryKey = {
   PostLogin: () => {
     return ["RegisterAuthReactQueryKey.PostLogin"];
   },
+  GetSocialRedirect: () => {
+    return ["RegisterAuthReactQueryKey.GetSocialRedirect"];
+  },
 };

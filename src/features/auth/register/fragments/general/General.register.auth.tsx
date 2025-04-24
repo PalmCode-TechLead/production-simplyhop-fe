@@ -10,11 +10,14 @@ import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { RegisterAuthActionEnum, RegisterAuthContext } from "../../context";
 import { Button } from "@/core/components/button";
 import { getError } from "@/core/utils/form";
+import { useGetSocialRedirect } from "../../react_query/hooks";
 
 export const GeneralRegisterAuth = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(RegisterAuthContext);
+  const { mutate: getSocialRedirect, isPending: isPendingGetSocialRedirect } =
+    useGetSocialRedirect();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
@@ -52,6 +55,10 @@ export const GeneralRegisterAuth = () => {
         },
       },
     });
+  };
+
+  const handleClickLoginSocial = (data: { id: string }) => {
+    getSocialRedirect({ id: data.id });
   };
 
   const isEmailHasNoLength = !state.general.email.value.length;
@@ -156,6 +163,8 @@ export const GeneralRegisterAuth = () => {
                   "border border-[#E9E6E6]",
                   "bg-[white]"
                 )}
+                disabled={isPendingGetSocialRedirect}
+                onClick={() => handleClickLoginSocial(item)}
               >
                 <SVGIcon
                   name={item.icon as SVGIconProps["name"]}

@@ -12,7 +12,10 @@ import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { getError } from "@/core/utils/form";
 import { MoonLoader } from "@/core/components/moon_loader";
-import { usePostAuthLogin } from "../../react_query/hooks";
+import {
+  useGetSocialRedirect,
+  usePostAuthLogin,
+} from "../../react_query/hooks";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
@@ -20,6 +23,8 @@ export const FormLoginAuth = () => {
   const { state, dispatch } = React.useContext(LoginAuthContext);
   const { mutate: postAuthLogin, isPending: isPendingPostAuthLogin } =
     usePostAuthLogin();
+  const { mutate: getSocialRedirect, isPending: isPendingGetSocialRedirect } =
+    useGetSocialRedirect();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
@@ -51,6 +56,10 @@ export const FormLoginAuth = () => {
         },
       },
     });
+  };
+
+  const handleClickLoginSocial = (data: { id: string }) => {
+    getSocialRedirect({ id: data.id });
   };
 
   const handleClickLogin = async () => {
@@ -174,6 +183,8 @@ export const FormLoginAuth = () => {
                 "border border-[#E9E6E6]",
                 "bg-[white]"
               )}
+              disabled={isPendingGetSocialRedirect}
+              onClick={() => handleClickLoginSocial(item)}
             >
               <SVGIcon
                 name={item.icon as SVGIconProps["name"]}
