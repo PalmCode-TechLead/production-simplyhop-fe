@@ -24,7 +24,7 @@ export const usePostAuthLogout = () => {
     mutationFn: () => {
       return fetchPostAuthLogout();
     },
-    onSuccess(data) {
+    onSuccess() {
       const cookies = new Cookies();
       cookies.remove("token", { path: "/" });
       router.push(AppCollectionURL.public.home());
