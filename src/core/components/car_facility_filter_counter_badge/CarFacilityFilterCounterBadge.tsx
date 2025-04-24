@@ -22,7 +22,8 @@ export const CarFacilityFilterCounterBadge = ({
         "px-[0.5rem] py-[0.25rem]",
         "bg-[#FAFFF9]",
         "border border-[#5AC53D]",
-        "rounded-[1.25rem]"
+        "rounded-[1.25rem]",
+        "cursor-pointer"
       )}
       onClick={onClick}
     >

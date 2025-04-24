@@ -12,14 +12,14 @@ export interface BottomSheetAnimationVariant {
 }
 
 export interface BottomSheetProps {
-  isOpen?: boolean;
+  open?: boolean;
   children?: React.ReactNode;
   direction?: BottomSheetDirection;
   onClose?: () => void;
 }
 
 export const BottomSheet = ({
-  isOpen = false,
+  open = false,
   children,
   direction = "bottom",
   onClose = () => {},
@@ -60,7 +60,7 @@ export const BottomSheet = ({
 
   return createPortal(
     <AnimatePresence>
-      {isOpen && (
+      {open && (
         <motion.div
           className={clsx(
             "fixed inset-0 z-[900] flex justify-center items-end"

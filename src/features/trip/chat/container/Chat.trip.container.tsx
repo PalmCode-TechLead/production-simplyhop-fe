@@ -40,7 +40,7 @@ export const ChatTripContainer = () => {
           {/* NOTES: Room */}
 
           <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>
-            <PageSheet isOpen={!!id && !isLg} direction={"right"}>
+            <PageSheet open={!!id && !isLg} direction={"right"}>
               <RoomChatTrip />
             </PageSheet>
           </div>

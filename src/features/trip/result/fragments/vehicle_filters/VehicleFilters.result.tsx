@@ -1,4 +1,3 @@
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
@@ -8,11 +7,14 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { VehicleFilterList } from "@/core/components/vehicle_filter_list";
 import { Divider } from "@/core/components/divider";
 import { Button } from "@/core/components/button";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const VehicleFilters = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
+  const { isLg } = useTailwindBreakpoint();
 
   const handleClose = () => {
     dispatch({
@@ -185,13 +187,14 @@ export const VehicleFilters = () => {
     });
   };
   return (
-    <Modal
+    <AdaptiveModal
+      variant={isLg ? "modal" : "bottom_sheet"}
       className={clsx(
-        "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
+        "!max-w-[524px]",
         "h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={state.vehicle_filters.is_open}
       onClose={handleClose}
@@ -199,7 +202,8 @@ export const VehicleFilters = () => {
       <div
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "w-full",
+          "px-[1rem] py-[1rem] lg:px-[2rem] lg:py-[2rem]"
         )}
       >
         {/* header */}
@@ -300,6 +304,6 @@ export const VehicleFilters = () => {
           {dictionaries.vehicle_filters.cta.apply.children}
         </Button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };

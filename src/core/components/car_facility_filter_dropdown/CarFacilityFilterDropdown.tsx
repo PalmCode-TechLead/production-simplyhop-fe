@@ -26,7 +26,7 @@ export const CarFacilityFilterDropdown = ({
     setIsOpen((prev) => !prev);
   };
   return (
-    <div ref={ref} className={clsx("relative")}>
+    <div ref={ref} className={clsx("relative", "rounded-[1.25rem]")}>
       <button
         className={clsx(
           "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",

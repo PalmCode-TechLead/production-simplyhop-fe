@@ -50,7 +50,7 @@ export const PageSheetRoute = ({
 
  
   return (
-    <PageSheet isOpen={isOpen}>
+    <PageSheet open={isOpen}>
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",

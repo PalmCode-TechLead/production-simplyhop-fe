@@ -12,13 +12,13 @@ export interface PageSheetAnimationVariant {
 }
 
 export interface PageSheetProps {
-  isOpen?: boolean;
+  open?: boolean;
   children?: React.ReactNode;
   direction?: PageSheetDirection;
 }
 
 export const PageSheet = ({
-  isOpen = false,
+  open = false,
   children,
   direction = "bottom",
 }: PageSheetProps) => {
@@ -58,7 +58,7 @@ export const PageSheet = ({
 
   return createPortal(
     <AnimatePresence>
-      {isOpen && (
+      {open && (
         <motion.div
           className={clsx(
             "bg-[rgba(255,255,255)]",

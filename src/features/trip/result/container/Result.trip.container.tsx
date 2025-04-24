@@ -83,7 +83,7 @@ export const ResultTripContainer = () => {
                 <div className={clsx("block lg:hidden", "w-full")}>
                   <React.Suspense fallback={<div />}>
                     <BottomSheet
-                      isOpen={state.filters.is_open}
+                      open={state.filters.is_open}
                       onClose={handleCloseFilter}
                     >
                       <FilterResultTrip />

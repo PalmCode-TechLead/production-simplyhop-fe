@@ -169,7 +169,7 @@ export const FormPassenger = ({
           </div>
         </FormWrapperPassengerDetail>
       ) : (
-        <BottomSheet isOpen={isOpen} onClose={handleCloseBottomSheet}>
+        <BottomSheet open={isOpen} onClose={handleCloseBottomSheet}>
           <div
             className={clsx(
               "grid grid-cols-1 items-stretch content-between justify-start justify-items-start gap-[1.5rem]",
