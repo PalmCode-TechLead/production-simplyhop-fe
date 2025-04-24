@@ -30,14 +30,6 @@ export const RoomChatTrip = () => {
     return null;
   }
   const conversationData = state.room.message.items;
-  // const conversationData = Array.from({ length: 10 }, (_, i) => i + 1).map(
-  //   (item) => {
-  //     if (item % 2 === 1) {
-  //       return dictionaries.chat.room.conversation.chat.sender;
-  //     }
-  //     return dictionaries.chat.room.conversation.chat.recipient;
-  //   }
-  // );
 
   const handleClickEmoji = () => {
     setIsEmojiOpen((prev) => !prev);
@@ -92,7 +84,7 @@ export const RoomChatTrip = () => {
       <RoomHeaderChatTrip
         href={AppCollectionURL.private.chat()}
         image={{ ...dictionaries.chat.room.header.image }}
-        name={dictionaries.chat.room.header.name}
+        name={state.room.header.name}
       />
 
       {/* chat */}

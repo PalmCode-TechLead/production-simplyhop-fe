@@ -12,10 +12,14 @@ import {
 } from "@/core/models/rest/simplyhop/message_rooms";
 import { UserContext } from "@/core/modules/app/context";
 import dayjs from "dayjs";
+import { useSearchParams } from "next/navigation";
 
 export const useGetMessageRoomsList = () => {
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(ChatTripContext);
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  const messageRoomId = !id ? "0" : String(id);
 
   const payload: GetMessageRoomsListPayloadRequestInterface = {
     params: {
@@ -44,6 +48,34 @@ export const useGetMessageRoomsList = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
+      if (id) {
+        const roomData = data.data.find(
+          (item) => String(item.id) === messageRoomId
+        );
+        if (!!roomData) {
+          const isPassenger = userState.profile.id === roomData.passenger_id;
+          dispatch({
+            type: ChatTripActionEnum.SetRoomData,
+            payload: {
+              ...state.room,
+              id: roomData.id,
+              header: {
+                ...state.room.header,
+                image_url: isPassenger
+                  ? roomData.passenger.avatar ??
+                    "/images/general/default_avatar.jpeg"
+                  : roomData.driver.avatar ??
+                    "/images/general/default_avatar.jpeg",
+                name: isPassenger
+                  ? `${roomData.passenger.first_name} ${roomData.passenger.last_name}`
+                  : `${roomData.driver.first_name} ${roomData.driver.last_name}`,
+              },
+            },
+          });
+          return;
+        }
+        return;
+      }
       dispatch({
         type: ChatTripActionEnum.SetListData,
         payload: {

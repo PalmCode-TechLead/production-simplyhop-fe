@@ -61,7 +61,7 @@ export const useGetMessagesListByRoom = () => {
     queryFn: () => {
       return fetchGetMessagesListByRoom(payload);
     },
-    enabled: !!id,
+    enabled: !!id && !!state.room.id,
   });
 
   React.useEffect(() => {

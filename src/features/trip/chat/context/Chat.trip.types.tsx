@@ -38,6 +38,11 @@ export interface ChatTripList {
 }
 
 export interface ChatTripRoom {
+  id: number | null;
+  header: {
+    name: string;
+    image_url: string;
+  };
   message: {
     items: {
       id: string;

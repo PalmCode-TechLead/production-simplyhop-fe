@@ -19,6 +19,11 @@ const initialState: ChatTripInitialStateType = {
     },
   },
   room: {
+    id: null,
+    header: {
+      image_url: "",
+      name: "",
+    },
     message: {
       items: [],
     },
