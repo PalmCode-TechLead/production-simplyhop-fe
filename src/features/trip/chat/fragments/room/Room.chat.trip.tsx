@@ -13,7 +13,7 @@ import RoomConversationContainerChatTrip from "../../components/room_conversatio
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
-import { useGetMessagesList } from "../../react_query/hooks";
+import { useGetMessagesListByRoom } from "../../react_query/hooks";
 import SenderMessageItemChatTrip from "../../components/sender_message_item/SenderMessageItem.chat.trip";
 import RecipientMessageItemChatTrip from "../../components/recipient_message_item/RecipientMessageItem.chat.trip";
 
@@ -24,7 +24,7 @@ export const RoomChatTrip = () => {
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
-  useGetMessagesList();
+  useGetMessagesListByRoom();
 
   if (!id && isLg) {
     return null;

@@ -1,7 +1,7 @@
 import { GetMessageRoomsListPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 
 export const ChatTripReactQueryKey = {
-  GetMessagesList: () => {
+  GetMessagesListByRoom: () => {
     return ["ChatTripReactQueryKey.GetMessagesList"];
   },
   GetMessageRoomsList: (

@@ -1,14 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export interface GetMessagesListRequestInterface extends NextApiRequest {
-  payload?: GetMessagesListPayloadRequestInterface;
+export interface GetMessagesListByRoomRequestInterface extends NextApiRequest {
+  payload?: GetMessagesListByRoomPayloadRequestInterface;
 }
 
-export interface GetMessagesListPayloadRequestInterface {
-  params?: GetMessagesListParamsPayloadRequestInterface;
+export interface GetMessagesListByRoomPayloadRequestInterface {
+  params?: GetMessagesListByRoomParamsPayloadRequestInterface;
+  path: GetMessagesListByRoomPathPayloadRequestInterface;
 }
 
-export type GetMessagesListParamsPayloadRequestInterface = {
+export type GetMessagesListByRoomPathPayloadRequestInterface = {
+  roomId: string;
+};
+
+export type GetMessagesListByRoomParamsPayloadRequestInterface = {
   include?: string; //rideTime, rideTimeCount, rideTimeExists, driver, driverCount, driverExists, passenger, passengerCount, passengerExists
   //mandatory
   ride_booking_id?: number;
@@ -18,12 +23,12 @@ export type GetMessagesListParamsPayloadRequestInterface = {
   "page[size]"?: number;
 };
 
-export type GetMessagesListResponseInterface = NextApiResponse<
-  | GetMessagesListSuccessResponseInterface
-  | GetMessagesListErrorResponseInterface
+export type GetMessagesListByRoomResponseInterface = NextApiResponse<
+  | GetMessagesListByRoomSuccessResponseInterface
+  | GetMessagesListByRoomErrorResponseInterface
 >;
 
-export interface GetMessagesListSuccessResponseInterface {
+export interface GetMessagesListByRoomSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
@@ -50,7 +55,7 @@ export interface GetMessagesListSuccessResponseInterface {
   redirect: null;
 }
 
-export interface GetMessagesListErrorResponseInterface {
+export interface GetMessagesListByRoomErrorResponseInterface {
   status: number;
   message: string;
   name: string;

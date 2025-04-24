@@ -4,11 +4,11 @@ import { ChatTripReactQueryKey } from "../keys";
 
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 
-import { fetchGetMessagesList } from "@/core/services/rest/simplyhop/messages";
+import { fetchGetMessagesListByRoom } from "@/core/services/rest/simplyhop/messages";
 import {
-  GetMessagesListErrorResponseInterface,
-  GetMessagesListPayloadRequestInterface,
-  GetMessagesListSuccessResponseInterface,
+  GetMessagesListByRoomErrorResponseInterface,
+  GetMessagesListByRoomPayloadRequestInterface,
+  GetMessagesListByRoomSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/messages";
 import { useSearchParams } from "next/navigation";
 import { UserContext } from "@/core/modules/app/context";
@@ -32,28 +32,26 @@ function formatChatTime(timestamp: string) {
   }
 }
 
-export const useGetMessagesList = () => {
+export const useGetMessagesListByRoom = () => {
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(ChatTripContext);
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const messageRoomId = !id ? 0 : Number(String(id.split(".")[0]));
-  const rideBookingId = !id ? 0 : Number(String(id.split(".")[1]));
-  const payload: GetMessagesListPayloadRequestInterface = {
-    params: {
-      // include: "passenger",
-      message_room_id: messageRoomId,
-      ride_booking_id: rideBookingId,
+  const messageRoomId = !id ? "0" : String(id);
+
+  const payload: GetMessagesListByRoomPayloadRequestInterface = {
+    path: {
+      roomId: messageRoomId,
     },
   };
 
   const query = useQuery<
-    GetMessagesListSuccessResponseInterface,
-    GetMessagesListErrorResponseInterface
+    GetMessagesListByRoomSuccessResponseInterface,
+    GetMessagesListByRoomErrorResponseInterface
   >({
-    queryKey: ChatTripReactQueryKey.GetMessagesList(),
+    queryKey: ChatTripReactQueryKey.GetMessagesListByRoom(),
     queryFn: () => {
-      return fetchGetMessagesList(payload);
+      return fetchGetMessagesListByRoom(payload);
     },
     enabled: !!id,
   });

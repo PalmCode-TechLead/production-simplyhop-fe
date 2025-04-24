@@ -1,16 +1,16 @@
 import axios, { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
-import { GetMessagesListPayloadRequestInterface } from "@/core/models/rest/simplyhop/messages";
 import Cookies from "universal-cookie";
+import { GetMessagesListByRoomPayloadRequestInterface } from "@/core/models/rest/simplyhop/messages";
 
-export const fetchGetMessagesList = async (
-  payload?: GetMessagesListPayloadRequestInterface
+export const fetchGetMessagesListByRoom = async (
+  payload: GetMessagesListByRoomPayloadRequestInterface
 ) => {
   try {
     const url = `${
       ENVIRONMENTS.SIMPLY_HOP_API_URL
-    }${SimplyHopAPICollectionURL.messages.getList()}`;
+    }${SimplyHopAPICollectionURL.messages.getListByRoom(payload.path)}`;
 
     const cookies = new Cookies();
     const token = cookies.get("token");
