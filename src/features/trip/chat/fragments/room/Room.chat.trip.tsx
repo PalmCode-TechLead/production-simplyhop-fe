@@ -107,10 +107,14 @@ export const RoomChatTrip = () => {
           {conversationData.map((chat, chatIndex) => {
             const { type, role, ...otherChatProps } = chat;
             if (type === "booking_request") {
-              return <CustomerOrderCardChatTrip key={chatIndex} />;
+              return (
+                <CustomerOrderCardChatTrip {...chat.booking} key={chatIndex} />
+              );
             }
             if (type === "offer_request") {
-              return <DriverOrderCardChatTrip key={chatIndex} />;
+              return (
+                <DriverOrderCardChatTrip {...chat.booking} key={chatIndex} />
+              );
             }
             if (role === "sender") {
               return (

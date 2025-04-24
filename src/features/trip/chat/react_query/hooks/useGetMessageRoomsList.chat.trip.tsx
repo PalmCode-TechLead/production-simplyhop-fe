@@ -51,7 +51,7 @@ export const useGetMessageRoomsList = () => {
           message: {
             ...state.list.message,
             items: data.data.map((item) => {
-              const isPassenger = item.id === item.passenger_id;
+              const isPassenger = userState.profile.id === item.passenger_id;
               const lastMessage = item.messages.find(
                 (_, index) => index === item.messages.length - 1
               );
