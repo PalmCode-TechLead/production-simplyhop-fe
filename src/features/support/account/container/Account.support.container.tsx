@@ -1,6 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { InformationAccountSupport } from "../fragments/information";
+import { LogoutAccountSupport } from "../fragments/logout/Logout.account.support";
 
 export const AccountSupportContainer = () => {
   return (
@@ -12,6 +13,7 @@ export const AccountSupportContainer = () => {
         )}
       >
         <InformationAccountSupport />
+        <LogoutAccountSupport />
       </div>
     </>
   );

@@ -75,7 +75,8 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
                 <div
                   className={clsx(
                     "w-full",
-                    "sticky top-[90px] lg:top-[calc(90px+2rem)] z-[30]"
+                    "sticky top-[90px] lg:top-[calc(90px+2rem)] z-[30]",
+                    "bg-[white]"
                   )}
                 >
                   <SettingsSidebarApp />

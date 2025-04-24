@@ -94,5 +94,10 @@
         }
       }
     }
+  },
+  "cta": {
+    "logout": {
+      "children": "Abmeldung"
+    }
   }
 }
