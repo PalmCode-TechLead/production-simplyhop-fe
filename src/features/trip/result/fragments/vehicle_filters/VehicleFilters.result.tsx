@@ -193,7 +193,7 @@ export const VehicleFilters = () => {
         "overflow-auto",
         "!px-[2rem] !py-[2rem]"
       )}
-      open={true}
+      open={state.vehicle_filters.is_open}
       onClose={handleClose}
     >
       <div
