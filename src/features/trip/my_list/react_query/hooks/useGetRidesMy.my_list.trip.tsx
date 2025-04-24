@@ -22,9 +22,7 @@ export const useGetRidesMy = () => {
   const payload: GetRidesMyPayloadRequestInterface = {
     params: {
       include: "vehicle.brand,rideTimes,bookings.user",
-      "filter[departure_time__lte]": dayjs().format(
-        "YYYY-MM-DDTHH:mm:ss"
-      ),
+      "filter[departure_time__lte]": dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
@@ -51,14 +49,12 @@ export const useGetRidesMy = () => {
               id: String(item.id),
               driver: {
                 profile: {
-                  avatar: {
-                    image: !item.user.avatar
-                      ? undefined
-                      : {
-                          src: item.user.avatar,
-                          alt: "photo_profile",
-                        },
-                  },
+                  avatar: !item.user.avatar
+                    ? undefined
+                    : {
+                        src: item.user.avatar,
+                        alt: "photo_profile",
+                      },
                   name: `${item.user.first_name} ${item.user.last_name}`,
                 },
               },

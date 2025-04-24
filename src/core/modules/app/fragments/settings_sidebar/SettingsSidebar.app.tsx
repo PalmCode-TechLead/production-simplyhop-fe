@@ -6,10 +6,7 @@ import { usePathname } from "next/navigation";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import dynamic from "next/dynamic";
 import { UserContext } from "../../context";
-
-const Image = dynamic(() => import("next/image"), {
-  ssr: false,
-});
+import { Avatar } from "@/core/components/avatar";
 
 const Link = dynamic(() => import("next/link"), {
   ssr: false,
@@ -29,6 +26,7 @@ export const SettingsSidebarApp = () => {
   const { isLg } = useTailwindBreakpoint();
 
   const name = `${state.profile.first_name} ${state.profile.last_name}`;
+
   return (
     <div
       className={clsx(
@@ -48,16 +46,11 @@ export const SettingsSidebarApp = () => {
           <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
             {name}
           </h1>
-          <Image
-            src={"/images/general/default_avatar.jpeg"}
-            alt="avatar"
-            width={100}
-            height={100}
-            className={clsx(
-              "w-[3rem] h-[3rem] lg:w-[100px] lg:h-[100px]",
-              "rounded-[50%]",
-              "object-center object-cover"
-            )}
+
+          <Avatar
+            className={clsx("w-[3rem] h-[3rem] lg:w-[100px] lg:h-[100px]")}
+            src={state.profile.avatar}
+            alt={"profile_picture"}
           />
         </div>
 

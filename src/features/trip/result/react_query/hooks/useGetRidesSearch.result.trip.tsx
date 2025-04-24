@@ -96,14 +96,12 @@ export const useGetRideSearch = () => {
               id: String(item.id),
               driver: {
                 profile: {
-                  avatar: {
-                    image: !item.user.avatar
-                      ? undefined
-                      : {
-                          src: item.user.avatar,
-                          alt: "photo_profile",
-                        },
-                  },
+                  avatar: !item.user.avatar
+                    ? undefined
+                    : {
+                        src: item.user.avatar,
+                        alt: "photo_profile",
+                      },
                   name: `${item.user.first_name} ${item.user.last_name}`,
                 },
               },

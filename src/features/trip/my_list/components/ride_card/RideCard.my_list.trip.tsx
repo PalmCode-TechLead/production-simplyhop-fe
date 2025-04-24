@@ -58,9 +58,7 @@ export const RideCardMyListTrip = ({
   id = "",
   driver = {
     profile: {
-      avatar: {
-        image: undefined,
-      },
+      avatar: undefined,
       name: "Kelly",
     },
   },

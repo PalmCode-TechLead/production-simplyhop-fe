@@ -49,9 +49,7 @@ export interface RideDetailCardPlanRideTripProps {
 export const RideDetailCardPlanRideTrip = ({
   driver = {
     profile: {
-      avatar: {
-        image: undefined,
-      },
+      avatar: undefined,
       name: "Kelly",
     },
   },

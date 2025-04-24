@@ -57,7 +57,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
     <main className={clsx("w-full min-h-screen")}>
       <TopNavigation />
 
-      <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
+      <div className={clsx("w-full min-h-screen")}>
         <div
           className={clsx(
             "grid grid-cols-1 items-start content-start justify-center justify-items-center",
@@ -68,8 +68,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
           <div
             className={clsx(
               "grid grid-cols-1 lg:grid-cols-[334px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[54px]",
-              "w-full max-w-container",
-              "pt-[2rem]"
+              "w-full max-w-container min-h-screen"
             )}
           >
             <Suspense fallback={<div />}>
@@ -77,14 +76,18 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
                 <div
                   className={clsx(
                     "w-full",
-                    "sticky top-[90px] lg:top-[calc(90px+2rem)] z-[30]",
+                    "sticky top-[calc(90px)] z-[30]",
                     "bg-[white]"
                   )}
                 >
-                  <SettingsSidebarApp />
+                  <div className={clsx("w-full", "pt-[2rem]")}>
+                    <SettingsSidebarApp />
+                  </div>
                 </div>
 
-                {children}
+                <div className={clsx("w-full", "pt-[calc(90px+2rem)]")}>
+                  {children}
+                </div>
               </UserProvider>
             </Suspense>
           </div>

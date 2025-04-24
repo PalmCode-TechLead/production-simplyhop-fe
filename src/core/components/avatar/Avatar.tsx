@@ -1,31 +1,40 @@
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import * as React from "react";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
 
 export interface AvatarProps {
-  image?: ImageProps;
-  icon?: {
-    size: number;
-  };
+  src?: string | null;
+  alt?: string;
+  className?: string;
 }
 
-export const Avatar = ({ image }: AvatarProps) => {
+export const Avatar = ({
+  src,
+  alt = "User avatar",
+  className,
+}: AvatarProps) => {
   return (
     <div
       className={clsx(
         "flex items-center justify-center",
         "rounded-[50%]",
         "bg-[#5AC53D]",
-        "w-[2rem] h-[2rem]"
+        className
       )}
     >
-      {image ? (
-        <Image {...image} alt={image.alt} />
+      {src ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 10240px) 48px, (min-width: 1024px) 64px, 80px"
+          className="object-cover"
+        />
       ) : (
         <SVGIcon
-          name="User"
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[white]")}
+          name={"User"}
+          className={clsx("w-2/3 h-2/3", "text-[white]")}
         />
       )}
     </div>

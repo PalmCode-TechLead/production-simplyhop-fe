@@ -24,10 +24,12 @@ import SVGIcon from "@/core/icons";
 
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { Dropdownfield } from "@/core/components/dropdownfield";
+import { UserContext } from "@/core/modules/app/context";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
+  const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const isOpen = state.detail.is_open;
 
@@ -310,9 +312,10 @@ export const DetailPlanRideTrip = () => {
             driver={{
               profile: {
                 avatar: {
-                  image: undefined,
+                  src: userState.profile.avatar,
+                  alt: "driver",
                 },
-                name: "Kelly",
+                name: `${userState.profile.first_name} ${userState.profile.last_name}`,
               },
             }}
             car={{ ...filteredCar }}
