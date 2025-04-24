@@ -42,7 +42,6 @@ export const useGetMessageRoomsList = () => {
     queryFn: () => {
       return fetchGetMessageRoomsList(payload);
     },
-    enabled: !id,
   });
 
   React.useEffect(() => {

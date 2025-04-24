@@ -6,8 +6,7 @@ import SVGIcon from "@/core/icons";
 import { ChatField } from "@/core/components/chatfield";
 import { RoomHeaderChatTrip } from "../../components/room_header";
 import { useSearchParams } from "next/navigation";
-import { CustomerOrderCardChatTrip } from "../../components/customer_order_card";
-import { DriverOrderCardChatTrip } from "../../components/driver_order_card";
+import { BookingCardChatTrip } from "../../components/booking_card";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
@@ -136,29 +135,34 @@ export const RoomChatTrip = () => {
         >
           {conversationData.map((chat, chatIndex) => {
             const { type, role, ...otherChatProps } = chat;
-            if (type === "booking_request") {
+
+            if (type === "offer_request" || "booking_request") {
               return (
-                <CustomerOrderCardChatTrip {...chat.booking} key={chatIndex} />
-              );
-            }
-            if (type === "offer_request") {
-              return (
-                <DriverOrderCardChatTrip
+                <BookingCardChatTrip
                   {...chat.booking}
                   key={chatIndex}
                   cta={{
-                    reject: {
-                      children: "Angebot ablehnen",
-                      onClick: handleClickReject,
-                    },
-                    bargain: {
-                      children: "Ein weiteres Angebot senden",
-                      onClick: handleClickOffer,
-                    },
-                    accept: {
-                      children: "Angebot annehmen",
-                      onClick: handleClickAccept,
-                    },
+                    reject:
+                      type === "booking_request" && role === "passenger"
+                        ? null
+                        : {
+                            children: "Angebot ablehnen",
+                            onClick: handleClickReject,
+                          },
+                    bargain:
+                      type === "booking_request"
+                        ? null
+                        : {
+                            children: "Ein weiteres Angebot senden",
+                            onClick: handleClickOffer,
+                          },
+                    accept:
+                      type === "booking_request" && role === "passenger"
+                        ? null
+                        : {
+                            children: "Angebot annehmen",
+                            onClick: handleClickAccept,
+                          },
                   }}
                 />
               );

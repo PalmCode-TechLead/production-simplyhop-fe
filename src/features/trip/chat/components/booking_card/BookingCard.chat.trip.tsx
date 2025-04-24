@@ -31,7 +31,7 @@ import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
 
-export interface CustomerOrderCardChatTripProps {
+export interface BookingCardChatTripProps {
   time?: string;
   car?: {
     image: ImageProps;
@@ -52,9 +52,23 @@ export interface CustomerOrderCardChatTripProps {
     offered?: PriceOfferedItemProps;
   };
   note?: TripNoteItemProps;
+  cta?: {
+    reject: null | {
+      children: React.ReactNode;
+      onClick: () => void;
+    };
+    bargain: null | {
+      children: React.ReactNode;
+      onClick: () => void;
+    };
+    accept: null | {
+      children: React.ReactNode;
+      onClick: () => void;
+    };
+  };
 }
 
-export const CustomerOrderCardChatTrip = ({
+export const BookingCardChatTrip = ({
   time = "10:30 AM",
   car = {
     image: {
@@ -70,7 +84,7 @@ export const CustomerOrderCardChatTrip = ({
     facility: {
       top: [
         {
-          id: "seat",
+          id: "people",
           icon: {
             name: "User",
             color: "#D41010",
@@ -81,7 +95,7 @@ export const CustomerOrderCardChatTrip = ({
           },
         },
         {
-          id: "luggage",
+          id: "briefcase",
           icon: {
             name: "Briefcase",
             color: "#D41010",
@@ -158,7 +172,21 @@ export const CustomerOrderCardChatTrip = ({
     label: "Hinweis",
     note: "Lorem Ipsum",
   },
-}: CustomerOrderCardChatTripProps) => {
+  cta = {
+    reject: {
+      children: "Angebot ablehnen",
+      onClick: () => {},
+    },
+    bargain: {
+      children: "Ein weiteres Angebot senden",
+      onClick: () => {},
+    },
+    accept: {
+      children: "Angebot annehmen",
+      onClick: () => {},
+    },
+  },
+}: BookingCardChatTripProps) => {
   return (
     <div
       className={clsx(
@@ -286,7 +314,63 @@ export const CustomerOrderCardChatTrip = ({
           <TripNoteItem {...note} />
         </div>
 
-        {/* action */}
+        {/* cta */}
+        <div
+          className={clsx(
+            "grid grid-cols-1 items-start content-start justify-start justify-items-start lg:grid-flow-col lg:items-center lg:content-center lg:justify-end lg:justify-items-end gap-[1.5rem]",
+            "w-full"
+          )}
+        >
+          {!!cta.reject && (
+            <button
+              className={clsx(
+                "flex items-center justify-center",
+                "bg-[white]",
+                "border border-[white]",
+                "px-[1rem] py-[0.75rem]",
+                "rounded-[0.375rem]",
+                "text-[#3B3B3B] text-[0.875rem] font-medium",
+                "w-full lg:w-fit"
+              )}
+              onClick={cta.reject.onClick}
+            >
+              {cta.reject.children}
+            </button>
+          )}
+          {!!cta.bargain && (
+            <button
+              className={clsx(
+                "flex items-center justify-center",
+                "bg-[white]",
+                "border border-[#3B3B3B]",
+                "px-[1rem] py-[0.75rem]",
+                "rounded-[0.375rem]",
+                "text-[#3B3B3B] text-[0.875rem] font-medium",
+                "w-full lg:w-fit"
+              )}
+              onClick={cta.bargain.onClick}
+            >
+              {cta.bargain.children}
+            </button>
+          )}
+
+          {!!cta.accept && (
+            <button
+              className={clsx(
+                "flex items-center justify-center",
+                "bg-[#5AC53D]",
+                "border border-[#5AC53D]",
+                "px-[1rem] py-[0.75rem]",
+                "rounded-[0.375rem]",
+                "text-[white] text-[0.875rem] font-medium",
+                "w-full lg:w-fit"
+              )}
+              onClick={cta.accept.onClick}
+            >
+              {cta.accept.children}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

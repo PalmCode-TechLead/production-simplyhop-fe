@@ -1,5 +1,5 @@
 import { AvatarProps } from "@/core/components/avatar";
-import { CustomerOrderCardChatTripProps } from "../components/customer_order_card";
+import { BookingCardChatTripProps } from "../components/booking_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -53,7 +53,7 @@ export interface ChatTripRoom {
       name: string;
       avatar: AvatarProps;
       message: string;
-      booking: CustomerOrderCardChatTripProps | null;
+      booking: BookingCardChatTripProps | null;
     }[];
   };
   chat: {
