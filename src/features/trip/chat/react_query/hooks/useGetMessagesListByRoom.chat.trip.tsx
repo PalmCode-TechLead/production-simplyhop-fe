@@ -43,6 +43,9 @@ export const useGetMessagesListByRoom = () => {
     path: {
       roomId: messageRoomId,
     },
+    params: {
+      include: "test",
+    },
   };
 
   const query = useQuery<
