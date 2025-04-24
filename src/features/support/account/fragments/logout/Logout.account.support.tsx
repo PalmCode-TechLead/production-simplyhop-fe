@@ -24,7 +24,7 @@ export const LogoutAccountSupport = () => {
     >
       <button
         className={clsx(
-          "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
+          "grid grid-flow-col grid-rows-1 grid-cols-none place-content-center place-items-center gap-[0.5rem]",
           "w-full h-full",
           "text-[1rem] text-[#DA2323] font-medium",
           "cursor-pointer"
