@@ -1,5 +1,4 @@
 import { CustomerOrderCardChatTripProps } from "../components/customer_order_card";
-import { DriverOrderCardChatTripProps } from "../components/driver_order_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
