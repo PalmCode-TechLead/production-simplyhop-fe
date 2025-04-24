@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { MyListTripReactQueryKey } from "../keys";
+import { ArchiveTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ArchiveTripActionEnum, ArchiveTripContext } from "../../context";
 
 import { fetchGetBookingMy } from "@/core/services/rest/simplyhop/booking";
 import {
@@ -17,12 +17,12 @@ import dayjs from "dayjs";
 export const useGetBookingMy = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ArchiveTripContext);
 
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
       include: "ride.vehicle.brand,rideTime,user",
-      "filter[rideTime.departure_time__gte]": dayjs().format(
+      "filter[rideTime.departure_time__lte]": dayjs().format(
         "YYYY-MM-DDTHH:mm:ss"
       ),
     },
@@ -31,7 +31,7 @@ export const useGetBookingMy = () => {
     GetBookingMySuccessResponseInterface,
     GetBookingMyErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetBookingMy(),
+    queryKey: ArchiveTripReactQueryKey.GetBookingMy(),
     queryFn: () => {
       return fetchGetBookingMy(payload);
     },
@@ -43,7 +43,7 @@ export const useGetBookingMy = () => {
       const data = query.data;
 
       dispatch({
-        type: MyListTripActionEnum.SetBookData,
+        type: ArchiveTripActionEnum.SetBookData,
         payload: {
           ...state.book,
           data: data.data.map((item) => {
