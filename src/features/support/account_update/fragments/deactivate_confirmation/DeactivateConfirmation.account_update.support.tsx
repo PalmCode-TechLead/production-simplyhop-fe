@@ -47,7 +47,8 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
   };
 
   const handleClickDeactivateConfirmation = async () => {
-    await deleteDeactivateAccount();
+    const res = await deleteDeactivateAccount();
+    if (!res) return;
     dispatch({
       type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
       payload: {
