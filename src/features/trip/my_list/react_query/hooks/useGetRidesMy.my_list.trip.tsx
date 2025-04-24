@@ -21,8 +21,8 @@ export const useGetRidesMy = () => {
 
   const payload: GetRidesMyPayloadRequestInterface = {
     params: {
-      include: "vehicle.brand,rideTimes,booking.user",
-      "filter[rideTime.departure_time__lte]": dayjs().format(
+      include: "vehicle.brand,rideTimes,bookings.user",
+      "filter[departure_time__lte]": dayjs().format(
         "YYYY-MM-DDTHH:mm:ss"
       ),
     },

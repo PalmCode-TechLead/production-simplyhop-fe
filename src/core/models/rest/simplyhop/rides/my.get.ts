@@ -9,8 +9,8 @@ export interface GetRidesMyPayloadRequestInterface {
 }
 
 export type GetRidesMyParamsPayloadRequestInterface = {
-  "filter[rideTime.departure_time__lte]"?: string;
-  "filter[rideTime.departure_time__gte]"?: string;
+  "filter[departure_time__lte]"?: string;
+  "filter[departure_time__gte]"?: string;
   //mandatory
   include?: string; //user, userCount, userExists, user.profile, vehicle, vehicleCount, vehicleExists, vehicle.brand, vehicle.category, rideTimes, rideTimesCount, rideTimesExists, bookings, bookingsCount, bookingsExists, bookings.rideTime, bookings.bargainOffers
   sort?: string;
