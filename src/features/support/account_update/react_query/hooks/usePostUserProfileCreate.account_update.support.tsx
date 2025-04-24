@@ -49,7 +49,9 @@ export const usePostUserProfileCreate = () => {
       const formData = new FormData();
 
       const cleanedObj = Object.fromEntries(
-        Object.entries(bodyPayload).filter(([_, value]) => value !== undefined)
+        Object.entries(bodyPayload).filter(
+          ([, value]) => value !== undefined
+        )
       );
 
       formData.append("file", state.form.pictures.files[0]);

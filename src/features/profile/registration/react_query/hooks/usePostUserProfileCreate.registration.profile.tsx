@@ -44,7 +44,9 @@ export const usePostUserProfileCreate = () => {
       const formData = new FormData();
 
       const cleanedObj = Object.fromEntries(
-        Object.entries(bodyPayload).filter(([_, value]) => value !== undefined)
+        Object.entries(bodyPayload).filter(
+          ([, value]) => value !== undefined
+        )
       );
 
       for (const key of Object.keys(cleanedObj)) {

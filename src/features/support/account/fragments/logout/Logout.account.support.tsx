@@ -1,13 +1,9 @@
 import * as React from "react";
 
-export interface ILogoutAccountSupportProps {}
-
-export default function LogoutAccountSupport(
-  props: ILogoutAccountSupportProps
-) {
+export const LogoutAccountSupport = () => {
   return (
     <div>
       <div></div>
     </div>
   );
-}
+};
