@@ -80,6 +80,12 @@ export const useGetRideSearch = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
+      const totalPassenger = state.filters.passenger.value.reduce(
+        (acc, item) => {
+          return acc + item.value;
+        },
+        0
+      );
 
       dispatch({
         type: ResultTripActionEnum.SetRidesData,
@@ -300,7 +306,7 @@ export const useGetRideSearch = () => {
               price: {
                 initial: {
                   label: "Angebotspreis",
-                  price: `€${item.base_price}`,
+                  price: `€${item.base_price * totalPassenger}`,
                 },
               },
               ride: {
