@@ -23,7 +23,7 @@ export default function RoomConversationContainerChatTrip({
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-        "w-full h-[calc(100vh-90px-14rem)]",
+        "w-full h-full lg:h-[calc(100vh-90px-14rem)]",
         "overflow-auto"
       )}
     >
