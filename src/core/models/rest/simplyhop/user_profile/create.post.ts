@@ -18,7 +18,7 @@ export type PostUserProfileCreateBodyPayloadRequestInterface = {
   bio: string;
   information: string;
   is_driver: boolean;
-  is_female?: boolean;
+  gender?: string;
   profile_picture?: File;
 };
 

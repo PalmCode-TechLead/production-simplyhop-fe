@@ -37,6 +37,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
       },
     });
     const user = res as GetUserProfileDataSuccessResponseInterface;
+
     userProfile = {
       id: user.data.id,
       first_name: user.data?.first_name ?? "",
@@ -47,6 +48,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
       city: user.data?.city ?? "",
       about_me: user.data?.profile.bio ?? "",
       is_driver: user.data?.is_driver === 1 ? true : false,
+      gender: user.data?.gender ?? null,
     };
   } catch {
     redirect(AppCollectionURL.public.login());

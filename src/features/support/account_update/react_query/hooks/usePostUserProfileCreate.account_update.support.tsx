@@ -41,7 +41,7 @@ export const usePostUserProfileCreate = () => {
         bio: state.form.about_me.value, // -> bio
         information: "",
         is_driver: userState.profile.is_driver,
-        is_female: true,
+        gender: state.form.gender.selected?.id,
         profile_picture: !state.form.pictures.files.length
           ? undefined
           : state.form.pictures.files[0],
@@ -49,9 +49,7 @@ export const usePostUserProfileCreate = () => {
       const formData = new FormData();
 
       const cleanedObj = Object.fromEntries(
-        Object.entries(bodyPayload).filter(
-          ([, value]) => value !== undefined
-        )
+        Object.entries(bodyPayload).filter(([, value]) => value !== undefined)
       );
 
       formData.append("file", state.form.pictures.files[0]);
@@ -79,6 +77,7 @@ export const usePostUserProfileCreate = () => {
           city: state.form.city.value,
           phonenumber: state.form.phonenumber.value,
           about_me: state.form.about_me.value,
+          gender: state.form.gender.selected?.id ?? null,
         },
       });
       router.push(AppCollectionURL.private.support_account());

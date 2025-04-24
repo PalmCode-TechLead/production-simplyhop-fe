@@ -19,6 +19,7 @@ const initialState: UserInitialStateType = {
     city: "",
     about_me: "",
     is_driver: false,
+    gender: null,
   },
 };
 

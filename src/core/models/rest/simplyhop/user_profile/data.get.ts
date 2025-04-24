@@ -30,6 +30,7 @@ export interface GetUserProfileDataSuccessResponseInterface {
     email_verified_at: string; //"2025-04-22 10:44:18";
     avatar: string | null;
     is_driver: number; //1;
+    gender: string | null;
     can_share_ride: number; //0;
     deleted_at: string | null;
     created_at: string; //"2025-04-22 03:44:21";

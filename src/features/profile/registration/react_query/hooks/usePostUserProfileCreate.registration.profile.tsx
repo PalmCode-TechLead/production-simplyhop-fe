@@ -32,10 +32,7 @@ export const usePostUserProfileCreate = () => {
         information: "",
         is_driver:
           state.ride_plan.form.offer_trip.selected?.id === "yes" ? true : false,
-        is_female:
-          state.personal_information.form.gender.selected?.id === "female"
-            ? true
-            : false,
+        gender: state.personal_information.form.gender.selected?.id,
         profile_picture: !state.personal_information.form.pictures.files.length
           ? undefined
           : state.personal_information.form.pictures.files[0],
@@ -44,9 +41,7 @@ export const usePostUserProfileCreate = () => {
       const formData = new FormData();
 
       const cleanedObj = Object.fromEntries(
-        Object.entries(bodyPayload).filter(
-          ([, value]) => value !== undefined
-        )
+        Object.entries(bodyPayload).filter(([, value]) => value !== undefined)
       );
 
       for (const key of Object.keys(cleanedObj)) {
