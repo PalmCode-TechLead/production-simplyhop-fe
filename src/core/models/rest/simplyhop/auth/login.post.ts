@@ -1,3 +1,4 @@
+import { User } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface PostAuthLoginRequestInterface extends NextApiRequest {
@@ -24,20 +25,7 @@ export interface PostAuthLoginSuccessResponseInterface {
   data: {
     token: string;
     token_type: string;
-    user: {
-      id: number;
-      first_name: string;
-      last_name: string;
-      email: string;
-      mobile: null | string;
-      city: null | string;
-      email_verified_at: string;
-      avatar: null;
-      is_driver: number;
-      deleted_at: null;
-      created_at: string;
-      updated_at: string;
-    };
+    user: User;
   };
   redirect: null;
 }

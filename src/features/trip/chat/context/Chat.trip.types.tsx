@@ -51,12 +51,7 @@ export interface ChatTripRoom {
       role: string;
       time: string;
       name: string;
-      image: {
-        src: string;
-        width: number;
-        height: number;
-        alt: string;
-      };
+      avatar: AvatarProps;
       message: string;
       booking: CustomerOrderCardChatTripProps | null;
     }[];

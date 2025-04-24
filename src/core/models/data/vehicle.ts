@@ -1,4 +1,5 @@
 import { VehicleBrand } from "./vehicle_brand";
+import { VehicleCategory } from "./vehicle_category";
 import { VehicleMedia } from "./vehicle_media";
 
 export interface Vehicle {
@@ -20,4 +21,5 @@ export interface Vehicle {
   image: string[];
   media?: VehicleMedia[];
   brand?: VehicleBrand;
+  category?: VehicleCategory;
 }

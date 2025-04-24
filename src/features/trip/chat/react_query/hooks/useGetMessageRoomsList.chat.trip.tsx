@@ -91,7 +91,9 @@ export const useGetMessageRoomsList = () => {
 
               const lastMessageObject: { [key: string]: string } = !lastMessage
                 ? {}
-                : JSON.parse(lastMessage.contents);
+                : typeof lastMessage.contents === "string"
+                ? JSON.parse(lastMessage.contents)
+                : lastMessage.contents;
               const displayMessage = !Object.keys(lastMessageObject).length
                 ? ""
                 : lastMessageObject?.type !== "text"

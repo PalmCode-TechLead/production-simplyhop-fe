@@ -1,12 +1,12 @@
 import * as React from "react";
 import clsx from "clsx";
-import Image, { ImageProps } from "next/image";
+import { Avatar, AvatarProps } from "@/core/components/avatar";
 
 export interface SenderMessageItemChatTripProps {
   id?: string;
   time?: string;
   name?: string;
-  image?: ImageProps;
+  avatar?: AvatarProps;
   message?: string;
 }
 
@@ -14,12 +14,7 @@ export default function SenderMessageItemChatTrip({
   id = "",
   time = "",
   name = "",
-  image = {
-    src: "",
-    width: 36,
-    height: 36,
-    alt: "sender",
-  },
+  avatar,
   message = "",
 }: SenderMessageItemChatTripProps) {
   return (
@@ -66,15 +61,7 @@ export default function SenderMessageItemChatTrip({
           </div>
         </div>
 
-        <Image
-          {...image}
-          alt={image.alt}
-          className={clsx(
-            "w-[2.25rem] h-[2.25rem]",
-            "rounded-[50%]",
-            "object-cover object-center"
-          )}
-        />
+        <Avatar {...avatar} className={clsx("w-[2.25rem] h-[2.25rem]")} />
       </div>
     </div>
   );

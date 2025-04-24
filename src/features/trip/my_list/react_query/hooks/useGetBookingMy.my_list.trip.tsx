@@ -51,18 +51,18 @@ export const useGetBookingMy = () => {
               id: String(item.id),
               driver: {
                 profile: {
-                  avatar: !item.user.avatar
+                  avatar: !item.user?.avatar
                     ? undefined
                     : {
                         src: item.user.avatar,
                         alt: "photo_profile",
                       },
-                  name: `${item.user.first_name} ${item.user.last_name}`,
+                  name: `${item.user?.first_name} ${item.user?.last_name}`,
                 },
               },
               car: {
                 image: {
-                  src: !item.ride.vehicle.image.length
+                  src: !item.ride?.vehicle?.image.length
                     ? "/images/general/car.png"
                     : item.ride.vehicle.image[0] ?? "/images/general/car.png",
                   alt: "car",
@@ -70,39 +70,41 @@ export const useGetBookingMy = () => {
                   height: 46,
                 },
                 identity: {
-                  name: `${item.ride.vehicle.brand.title} ${item.ride.vehicle.model}`,
-                  number: item.ride.vehicle.plate_license,
+                  name: `${item.ride?.vehicle?.brand?.title} ${item.ride?.vehicle?.model}`,
+                  number: item.ride?.vehicle?.plate_license,
                 },
               },
 
               routes: {
                 date: {
                   label: "Datum",
-                  date: dayjs(item.ride_time.departure_time).format("DD.MM.YY"),
+                  date: dayjs(item.ride_time?.departure_time).format(
+                    "DD.MM.YY"
+                  ),
                 },
                 startTime: {
                   label: "Startzeit",
-                  time: dayjs(item.ride_time.departure_time).format(
+                  time: dayjs(item.ride_time?.departure_time).format(
                     "HH.mm [Uhr]"
                   ),
                 },
                 departure: {
-                  place: !item.ride.start_name ? "-" : item.ride.start_name,
-                  time: dayjs(item.ride_time.departure_time).format(
+                  place: !item.ride?.start_name ? "-" : item.ride?.start_name,
+                  time: dayjs(item.ride_time?.departure_time).format(
                     "HH.mm [Uhr]"
                   ),
                 },
                 travelTime: {
-                  time: !item.ride.eta ? "-" : setDurationTime(item.ride.eta),
+                  time: !item.ride?.eta ? "-" : setDurationTime(item.ride.eta),
                 },
                 arrival: {
-                  place: !item.ride.destination_name
+                  place: !item.ride?.destination_name
                     ? "-"
                     : item.ride.destination_name,
-                  time: !item.ride.eta
+                  time: !item.ride?.eta
                     ? "-"
                     : `${setArrivalTime(
-                        dayjs(item.ride_time.departure_time).format("HH:mm"),
+                        dayjs(item.ride_time?.departure_time).format("HH:mm"),
                         item.ride.eta
                       )} Uhr`,
                 },
@@ -111,7 +113,7 @@ export const useGetBookingMy = () => {
               price: {
                 initial: {
                   label: "Angebotspreis",
-                  price: `€${item.ride.base_price}`,
+                  price: `€${item.ride?.base_price}`,
                 },
               },
               cta: {

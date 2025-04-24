@@ -25,15 +25,6 @@ export interface PutMessageRoomsMarkAsReadSuccessResponseInterface {
   data: {
     token: string;
     token_type: string;
-    user: {
-      id: number;
-      name: string;
-      email: string;
-      avatar: string;
-      email_verified_at: string;
-      created_at: string;
-      updated_at: string;
-    };
   };
   redirect: null;
 }

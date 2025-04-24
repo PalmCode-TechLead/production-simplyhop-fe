@@ -19,6 +19,7 @@ import "dayjs/locale/de";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
+import { MessageContent } from "@/core/models/data";
 
 dayjs.extend(utc);
 dayjs.extend(isSameOrToday);
@@ -77,43 +78,47 @@ export const useGetMessagesListByRoom = () => {
             items: data.data.map((item) => {
               const isPassenger = userState.profile.id === item.passenger_id;
               const isSender = userState.profile.id === item.sender_id;
+              const content =
+                typeof item.contents === "string"
+                  ? JSON.parse(item.contents)
+                  : (item.contents as MessageContent);
               return {
                 id: String(id),
-                type: item.contents.type,
+                type: content.type,
                 role: isSender ? "sender" : "recipient",
                 // TODO: need rules if more than one day etc2
                 time: formatChatTime(item.created_at),
                 name: isPassenger
-                  ? `${item.passenger.first_name} ${item.passenger.last_name}`
-                  : `${item.driver.first_name} ${item.driver.last_name}`,
-                image: {
+                  ? `${item?.passenger?.first_name} ${item.passenger?.last_name}`
+                  : `${item.driver?.first_name} ${item.driver?.last_name}`,
+                avatar: {
                   src: isPassenger
-                    ? item.passenger.avatar ?? "/images/chat/sender.png"
-                    : item.driver.avatar ?? "/images/chat/sender.png",
+                    ? item.passenger?.avatar
+                    : item.driver?.avatar,
                   width: 36,
                   height: 36,
                   alt: isSender ? "sender" : "recipient",
                 },
-                message: item.contents.message,
+                message: content.message,
                 booking: {
                   time: dayjs(item.created_at).format("hh:mma"),
                   car: {
                     image: {
-                      src: !item.booking.ride.vehicle.image.length
+                      src: !item.booking?.ride?.vehicle?.image.length
                         ? "/images/general/car.png"
-                        : item.booking.ride.vehicle.image[0] ??
+                        : item.booking.ride?.vehicle.image[0] ??
                           "/images/general/car.png",
                       alt: "car",
                       width: 145,
                       height: 46,
                     },
                     identity: {
-                      name: `${item.booking.ride.vehicle.brand.title} ${item.booking.ride.vehicle.model}`,
-                      number: item.booking.ride.vehicle.plate_license,
+                      name: `${item.booking?.ride?.vehicle?.brand?.title} ${item.booking?.ride?.vehicle?.model}`,
+                      number: item.booking?.ride?.vehicle?.plate_license,
                     },
                     facility: {
                       top: [
-                        ...(!!item.booking.ride_time.available_seats
+                        ...(!!item.booking?.ride_time?.available_seats
                           ? [
                               {
                                 ...globalDictionaries.car.facility.seat
@@ -149,7 +154,7 @@ export const useGetMessagesListByRoom = () => {
                                 },
                               },
                             ]),
-                        ...(!!item.booking.ride.vehicle.numb_of_luggages
+                        ...(!!item.booking?.ride?.vehicle?.numb_of_luggages
                           ? [
                               {
                                 ...globalDictionaries.car.facility.seat.luggage
@@ -190,7 +195,7 @@ export const useGetMessagesListByRoom = () => {
                       ],
                       bottom: [
                         // Smoking
-                        ...(!!item.booking.ride.vehicle.smoke_allowed
+                        ...(!!item.booking?.ride?.vehicle?.smoke_allowed
                           ? [
                               {
                                 ...globalDictionaries.car.facility.seat.smoking
@@ -218,7 +223,7 @@ export const useGetMessagesListByRoom = () => {
                               },
                             ]),
                         // Music
-                        ...(!!item.booking.ride.vehicle.music_availability
+                        ...(!!item.booking?.ride?.vehicle?.music_availability
                           ? [
                               {
                                 ...globalDictionaries.car.facility.seat.music
@@ -246,7 +251,7 @@ export const useGetMessagesListByRoom = () => {
                               },
                             ]),
                         // Pet
-                        ...(!!item.booking.ride.vehicle.pet_allowed
+                        ...(!!item.booking?.ride?.vehicle?.pet_allowed
                           ? [
                               {
                                 ...globalDictionaries.car.facility.seat.pets
@@ -279,28 +284,28 @@ export const useGetMessagesListByRoom = () => {
 
                   routes: {
                     departure: {
-                      place: !item.booking.ride.start_name
+                      place: !item.booking?.ride?.start_name
                         ? "-"
                         : item.booking.ride.start_name,
-                      time: dayjs(item.booking.ride_time.departure_time).format(
-                        "HH.mm [Uhr]"
-                      ),
+                      time: dayjs(
+                        item.booking?.ride_time?.departure_time
+                      ).format("HH.mm [Uhr]"),
                     },
                     travelTime: {
-                      time: !item.booking.ride.eta
+                      time: !item.booking?.ride?.eta
                         ? "-"
                         : setDurationTime(item.booking.ride.eta),
                     },
                     arrival: {
-                      place: !item.booking.ride.destination_name
+                      place: !item.booking?.ride?.destination_name
                         ? "-"
                         : item.booking.ride.destination_name,
-                      time: !item.booking.ride.eta
+                      time: !item.booking?.ride?.eta
                         ? "-"
                         : `${setArrivalTime(
-                            dayjs(item.booking.ride_time.departure_time).format(
-                              "HH:mm"
-                            ),
+                            dayjs(
+                              item.booking.ride_time?.departure_time
+                            ).format("HH:mm"),
                             item.booking.ride.eta
                           )} Uhr`,
                     },
@@ -309,18 +314,18 @@ export const useGetMessagesListByRoom = () => {
                   price: {
                     initial: {
                       label: "Angebotspreis",
-                      price: `€${item.booking.ride.base_price}`,
+                      price: `€${item.booking?.ride?.base_price}`,
                     },
                     offered: {
                       label: "Angebotener Preis",
-                      price: !item.booking.offered_price
+                      price: !item.booking?.offered_price
                         ? "-"
                         : `€${item.booking.offered_price}`,
                     },
                   },
                   note: {
                     label: "Hinweis",
-                    note: item.booking.ride.additional_info,
+                    note: item.booking?.ride?.additional_info,
                   },
                 },
                 driver: null,

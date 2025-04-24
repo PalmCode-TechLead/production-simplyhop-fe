@@ -38,7 +38,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
       email: user.data.email,
       phonenumber: user.data?.mobile ?? "",
       city: user.data?.city ?? "",
-      about_me: user.data?.profile.bio ?? "",
+      about_me: user.data?.profile?.bio ?? "",
       is_driver: user.data?.is_driver === 1 ? true : false,
       gender: user.data.gender ?? null,
     };

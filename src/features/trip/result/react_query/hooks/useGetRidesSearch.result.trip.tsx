@@ -115,7 +115,7 @@ export const useGetRideSearch = () => {
                   height: 46,
                 },
                 identity: {
-                  name: `${item.vehicle.brand.title} ${item.vehicle.model}`,
+                  name: `${item.vehicle.brand?.title} ${item.vehicle.model}`,
                   number: item.vehicle.plate_license,
                 },
                 facility: {
