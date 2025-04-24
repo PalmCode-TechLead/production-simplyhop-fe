@@ -17,7 +17,7 @@ export const ChatTripContainer = () => {
       className={clsx(
         "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
         "w-full h-[calc(100vh-90px)]",
-        "pt-[1.5rem] pb-[0.75rem] px-[1rem]",
+        "pb-[0.75rem] px-[1rem]",
         "relative"
       )}
     >
@@ -39,12 +39,12 @@ export const ChatTripContainer = () => {
           <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9]")} />
           {/* NOTES: Room */}
 
-          <div className={clsx("block lg:hidden", "w-full")}>
+          <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>
             <PageSheet isOpen={!!id && !isLg} direction={"right"}>
               <RoomChatTrip />
             </PageSheet>
           </div>
-          <div className={clsx("hidden lg:block", "w-full")}>
+          <div className={clsx("pt-[1.5rem]", "hidden lg:block", "w-full")}>
             <RoomChatTrip />
           </div>
         </div>

@@ -75,7 +75,9 @@ export const ListChatTrip = () => {
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1rem] lg:gap-[2rem]",
-        "w-full"
+        "w-full",
+        "pt-[1.5rem]",
+        "sticky top-[calc(90px+1.5rem)]"
       )}
     >
       <h1
