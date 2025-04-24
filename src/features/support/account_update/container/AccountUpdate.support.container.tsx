@@ -16,8 +16,20 @@ export const AccountUpdateSupportContainer = () => {
           "w-full"
         )}
       >
-        <FormAccountUpdateSupport />
-        <PictureFormAccountUpdateSupport />
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+            "w-full",
+            "px-[1.5rem] py-[1.5rem]",
+            "relative",
+            "border border-[#D3E7CE]",
+            "rounded-[1.25rem]"
+          )}
+        >
+          <FormAccountUpdateSupport />
+          <PictureFormAccountUpdateSupport />
+        </div>
+
         <CTAAccountUpdateSupport />
       </div>
       <DeactivateAccountUpdateSupport />
