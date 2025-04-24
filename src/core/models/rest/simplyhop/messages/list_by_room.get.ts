@@ -101,6 +101,16 @@ export interface GetMessagesListByRoomSuccessResponseInterface {
         created_at: string; //"2025-04-24T08:03:38.000000Z";
         updated_at: string; //"2025-04-24T08:03:38.000000Z";
         vehicle: {
+          brand: {
+            id: number;
+            title: string;
+            icon: null | string;
+            deleted_at: null | string;
+            created_at: string;
+            updated_at: string;
+            image: string;
+            media: [];
+          };
           id: number; //3;
           category_id: number; //1;
           brand_id: number; //4;

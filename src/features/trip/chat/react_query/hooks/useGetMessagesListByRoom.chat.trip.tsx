@@ -49,7 +49,7 @@ export const useGetMessagesListByRoom = () => {
     },
     params: {
       include:
-        "booking,bookingCount,bookingExists,booking.rideTime,booking.ride,booking.ride.vehicle,driver,driverCount,driverExists,driver.profile,passenger,passengerCount,passengerExists,passenger.profile",
+        "booking,bookingCount,bookingExists,booking.rideTime,booking.ride,booking.ride.vehicle,booking.ride.vehicle.brand,driver,driverCount,driverExists,driver.profile,passenger,passengerCount,passengerExists,passenger.profile",
     },
   };
 
@@ -108,8 +108,7 @@ export const useGetMessagesListByRoom = () => {
                       height: 46,
                     },
                     identity: {
-                      name: "",
-                      // name: `${item.booking.ride.vehicle.brand.title} ${item.booking.ride.vehicle.model}`,
+                      name: `${item.booking.ride.vehicle.brand.title} ${item.booking.ride.vehicle.model}`,
                       number: item.booking.ride.vehicle.plate_license,
                     },
                     facility: {
