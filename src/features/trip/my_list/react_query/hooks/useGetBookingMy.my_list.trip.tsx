@@ -22,6 +22,9 @@ export const useGetBookingMy = () => {
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
       include: "ride.vehicle.brand,rideTime,user",
+      "filter[rideTime.departure_time__lte]": dayjs().format(
+        "YYYY-MM-DDTHH:mm:ss"
+      ),
     },
   };
   const query = useQuery<

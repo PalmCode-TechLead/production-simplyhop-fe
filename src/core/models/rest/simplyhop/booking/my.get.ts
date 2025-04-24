@@ -9,11 +9,9 @@ export interface GetBookingMyPayloadRequestInterface {
 }
 
 export type GetBookingMyParamsPayloadRequestInterface = {
-  start_lat?: number;
-  start_long?: number;
-  destination_lat?: number;
-  destination_long?: number;
-  "filter[departure_time]"?: string;
+  "filter[rideTime.departure_time__lte]"?: string;
+  "filter[rideTime.departure_time__gte]"?: string;
+
   include?: string;
   //mandatory
   sort?: string;
