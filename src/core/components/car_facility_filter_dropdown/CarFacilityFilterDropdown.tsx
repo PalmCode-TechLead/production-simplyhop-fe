@@ -2,7 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
 import { useOnClickOutside } from "usehooks-ts";
-import { Checkbox } from "../checkbox";
+import { VehicleFilterCheckbox } from "../vehicle_filter_checkbox";
 
 export interface CarFacilityFilterDropdownProps {
   selected?: { id: string; name: string }[];
@@ -79,24 +79,14 @@ export const CarFacilityFilterDropdown = ({
               )}
             >
               {items.map((item, itemIndex) => (
-                <button
+                <VehicleFilterCheckbox
                   key={itemIndex}
-                  className={clsx(
-                    "grid grid-flow-col items-center content-center justify-between justify-items-start",
-                    "w-full",
-                    "text-[#232323] text-[0.875rem] font-medium"
-                  )}
-                >
-                  {item.name}
-
-                  <Checkbox
-                    className={clsx("!border-[#E9E6E6]", "!cursor-pointer")}
-                    checked={selected
-                      .map((selectedItem) => selectedItem.id)
-                      .includes(item.id)}
-                    onChange={() => onSelect(item)}
-                  />
-                </button>
+                  label={item.name}
+                  checked={selected
+                    .map((selectedItem) => selectedItem.id)
+                    .includes(item.id)}
+                  onChange={() => onSelect(item)}
+                />
               ))}
             </div>
           </div>
