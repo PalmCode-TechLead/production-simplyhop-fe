@@ -87,6 +87,38 @@
       }
     }
   },
+  "vehicle_filters": {
+    "title": "Filter",
+    "cta": {
+      "reset": {
+        "children": "Filter zurücksetzen"
+      },
+      "apply": {
+        "children": "Filter anwenden"
+      }
+    },
+    "counter": {
+      "label": "Filter nach"
+    },
+    "seat": {
+      "label": "Sitze"
+    },
+    "luggage": {
+      "label": "Gepäck"
+    },
+    "smoker": {
+      "label": "Nichtraucher"
+    },
+    "music": {
+      "label": "Musik"
+    },
+    "pets": {
+      "label": "Tiere"
+    },
+    "sort": {
+      "label": "Sortieren"
+    }
+  },
   "advanced_filter": {
     "counter": {
       "label": "Filter nach"

@@ -6,6 +6,7 @@ import {
   ResultTripFilters,
   ResultTripNotification,
   ResultTripRides,
+  ResultTripVehicleFilters,
 } from "./Result.trip.types";
 
 // Filters
@@ -15,6 +16,20 @@ export const ResultTripFiltersReducers = (
 ) => {
   switch (action.type) {
     case ResultTripActionEnum.SetFiltersData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// VehicleFilters
+export const ResultTripVehicleFiltersReducers = (
+  state: ResultTripVehicleFilters,
+  action: ResultTripActions
+) => {
+  switch (action.type) {
+    case ResultTripActionEnum.SetVehicleFiltersData:
       return action.payload;
 
     default:

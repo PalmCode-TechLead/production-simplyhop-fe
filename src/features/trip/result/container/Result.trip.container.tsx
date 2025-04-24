@@ -2,7 +2,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { FilterResultTrip } from "../fragments/filter";
-import { CarFacilityFilterResulTrip } from "../fragments/advanced_filter";
+import { VehicleFilterResulTrip } from "../fragments/vehicle_filter";
 import { RidesResultTrip } from "../fragments/rides";
 import { DetailResultTrip } from "../fragments/detail";
 import { NotificationResultTrip } from "../fragments/notification";
@@ -10,6 +10,7 @@ import { getDictionaries } from "../i18n";
 import { FilterDetailTrip } from "../fragments/filter_detail";
 import { BottomSheet } from "@/core/components/bottom_sheet";
 import { ResultTripActionEnum, ResultTripContext } from "../context";
+import { VehicleFilters } from "../fragments/vehicle_filters";
 
 export const ResultTripContainer = () => {
   const dictionaries = getDictionaries();
@@ -90,7 +91,7 @@ export const ResultTripContainer = () => {
                   </React.Suspense>
                 </div>
 
-                <CarFacilityFilterResulTrip />
+                <VehicleFilterResulTrip />
               </div>
             </div>
 
@@ -105,6 +106,9 @@ export const ResultTripContainer = () => {
       </React.Suspense>
       <React.Suspense fallback={<div />}>
         <NotificationResultTrip />
+      </React.Suspense>
+      <React.Suspense>
+        <VehicleFilters />
       </React.Suspense>
     </>
   );

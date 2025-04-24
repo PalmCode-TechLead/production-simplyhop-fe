@@ -8,7 +8,7 @@ import { CarFacilityFilterDropdown } from "@/core/components/car_facility_filter
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { CarSortDropdown } from "@/core/components/car_sort_dropdown";
 
-export const CarFacilityFilterResulTrip = () => {
+export const VehicleFilterResulTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
   const globalDictionaries = getGlobalDictionaries();
@@ -121,6 +121,16 @@ export const CarFacilityFilterResulTrip = () => {
       },
     });
   };
+
+  const handleClickVehicleFilters = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetVehicleFiltersData,
+      payload: {
+        ...state.vehicle_filters,
+        is_open: true,
+      },
+    });
+  };
   return (
     <div
       className={clsx(
@@ -137,7 +147,9 @@ export const CarFacilityFilterResulTrip = () => {
       >
         <CarFacilityFilterCounterBadge
           {...dictionaries.advanced_filter.counter}
+          onClick={handleClickVehicleFilters}
         />
+
         <div
           className={clsx(
             "hidden lg:grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1.5rem]",

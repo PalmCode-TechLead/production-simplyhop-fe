@@ -10,6 +10,7 @@ import {
   ResultTripFiltersReducers,
   ResultTripNotificationReducers,
   ResultTripRidesReducers,
+  ResultTripVehicleFiltersReducers,
 } from "./Result.trip.reducers";
 
 const initialState: ResultTripInitialStateType = {
@@ -43,6 +44,27 @@ const initialState: ResultTripInitialStateType = {
         checked: false,
       },
       value: [],
+    },
+  },
+  vehicle_filters: {
+    is_open: false,
+    seat: {
+      selected: [],
+    },
+    luggage: {
+      selected: [],
+    },
+    smoker: {
+      selected: [],
+    },
+    music: {
+      selected: [],
+    },
+    pets: {
+      selected: [],
+    },
+    sort: {
+      selected: null,
     },
   },
   advanced_filter: {
@@ -95,6 +117,7 @@ const ResultTripContext = createContext<{
 const mainReducer = (
   {
     filters,
+    vehicle_filters,
     advanced_filter,
     rides,
     detail,
@@ -103,6 +126,7 @@ const mainReducer = (
   action: ResultTripActions
 ) => ({
   filters: ResultTripFiltersReducers(filters, action),
+  vehicle_filters: ResultTripVehicleFiltersReducers(vehicle_filters, action),
   advanced_filter: ResultTripAdvancedFilterReducers(advanced_filter, action),
   rides: ResultTripRidesReducers(rides, action),
   detail: ResultTripDetailReducers(detail, action),

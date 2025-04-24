@@ -6,15 +6,17 @@ export interface CarFacilityFilterCounterBadgeProps {
   icon?: SVGIconProps["name"];
   label?: string;
   count?: number;
+  onClick?: () => void;
 }
 
 export const CarFacilityFilterCounterBadge = ({
   icon = "SlidersHorizontal",
   label = "",
   count = 0,
+  onClick = () => {},
 }: CarFacilityFilterCounterBadgeProps) => {
   return (
-    <div
+    <button
       className={clsx(
         "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
         "px-[0.5rem] py-[0.25rem]",
@@ -22,6 +24,7 @@ export const CarFacilityFilterCounterBadge = ({
         "border border-[#5AC53D]",
         "rounded-[1.25rem]"
       )}
+      onClick={onClick}
     >
       <SVGIcon
         name={icon}
@@ -42,6 +45,6 @@ export const CarFacilityFilterCounterBadge = ({
       >
         {count}
       </div>
-    </div>
+    </button>
   );
 };

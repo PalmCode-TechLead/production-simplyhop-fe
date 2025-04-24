@@ -14,6 +14,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface ResultTripInitialStateType {
   filters: ResultTripFilters;
+  vehicle_filters: ResultTripVehicleFilters;
   advanced_filter: ResultTripAdvancedFilter;
   rides: ResultTripRides;
   detail: ResultTripDetail;
@@ -52,6 +53,28 @@ export interface ResultTripFilters {
       checked: boolean;
     };
     value: { id: string; value: number }[];
+  };
+}
+
+export interface ResultTripVehicleFilters {
+  is_open: boolean;
+  seat: {
+    selected: { id: string; name: string }[];
+  };
+  luggage: {
+    selected: { id: string; name: string }[];
+  };
+  smoker: {
+    selected: { id: string; name: string }[];
+  };
+  music: {
+    selected: { id: string; name: string }[];
+  };
+  pets: {
+    selected: { id: string; name: string }[];
+  };
+  sort: {
+    selected: null | { id: string; name: string };
   };
 }
 
@@ -99,6 +122,8 @@ export interface ResultTripNotification {
 export enum ResultTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
+  // VehicleFilters
+  SetVehicleFiltersData = "SetVehicleFiltersData",
   // AdvancedFilter
   SetAdvancedFilterData = "SetAdvancedFilterData",
   // Rides
@@ -112,6 +137,7 @@ export enum ResultTripActionEnum {
 // Action Collection Types
 export type ResultTripActions =
   | ResultTripFiltersActions
+  | ResultTripVehicleFiltersActions
   | ResultTripAdvancedFilterActions
   | ResultTripRidesActions
   | ResultTripDetailActions
@@ -125,6 +151,14 @@ type ResultTripFiltersPayload = {
 
 export type ResultTripFiltersActions =
   ActionMap<ResultTripFiltersPayload>[keyof ActionMap<ResultTripFiltersPayload>];
+
+// VehicleFilters
+type ResultTripVehicleFiltersPayload = {
+  [ResultTripActionEnum.SetVehicleFiltersData]: ResultTripVehicleFilters;
+};
+
+export type ResultTripVehicleFiltersActions =
+  ActionMap<ResultTripVehicleFiltersPayload>[keyof ActionMap<ResultTripVehicleFiltersPayload>];
 
 // AdvancedFilter
 type ResultTripAdvancedFilterPayload = {
