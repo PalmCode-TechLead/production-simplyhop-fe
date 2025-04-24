@@ -33,9 +33,18 @@ export const RoomChatTrip = () => {
   useGetMessageRoomsId();
   useGetMessagesListByRoom();
   const { mutateAsync: postMessagesChat } = usePostMessagesChat();
-  const { mutateAsync: postBookingAccept } = usePostBookingAccept();
-  const { mutateAsync: postBookingOffer } = usePostBookingOffer();
-  const { mutateAsync: postBookingReject } = usePostBookingReject();
+  const {
+    mutateAsync: postBookingAccept,
+    isPending: isPendingPostBookingAccept,
+  } = usePostBookingAccept();
+  const {
+    mutateAsync: postBookingOffer,
+    isPending: isPendingPostBookingOffer,
+  } = usePostBookingOffer();
+  const {
+    mutateAsync: postBookingReject,
+    isPending: isPendingPostBookingReject,
+  } = usePostBookingReject();
 
   if (!id && isLg) {
     return null;
@@ -147,6 +156,8 @@ export const RoomChatTrip = () => {
                         ? null
                         : {
                             children: "Angebot ablehnen",
+                            disabled: isPendingPostBookingReject,
+                            loading: isPendingPostBookingReject,
                             onClick: handleClickReject,
                           },
                     bargain:
@@ -154,6 +165,8 @@ export const RoomChatTrip = () => {
                         ? null
                         : {
                             children: "Ein weiteres Angebot senden",
+                            disabled: isPendingPostBookingOffer,
+                            loading: isPendingPostBookingOffer,
                             onClick: handleClickOffer,
                           },
                     accept:
@@ -161,6 +174,8 @@ export const RoomChatTrip = () => {
                         ? null
                         : {
                             children: "Angebot annehmen",
+                            disabled: isPendingPostBookingAccept,
+                            loading: isPendingPostBookingAccept,
                             onClick: handleClickAccept,
                           },
                   }}

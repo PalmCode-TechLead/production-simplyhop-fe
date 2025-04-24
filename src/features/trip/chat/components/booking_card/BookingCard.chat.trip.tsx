@@ -30,6 +30,7 @@ import {
 import CarIdentityItem, {
   CarIdentityItemProps,
 } from "@/core/components/car_identity_item/CarIdentityItem";
+import MoonLoader from "react-spinners/MoonLoader";
 
 export interface BookingCardChatTripProps {
   time?: string;
@@ -55,14 +56,20 @@ export interface BookingCardChatTripProps {
   cta?: {
     reject: null | {
       children: React.ReactNode;
+      disabled: boolean;
+      loading: boolean;
       onClick: () => void;
     };
     bargain: null | {
       children: React.ReactNode;
+      disabled: boolean;
+      loading: boolean;
       onClick: () => void;
     };
     accept: null | {
       children: React.ReactNode;
+      disabled: boolean;
+      loading: boolean;
       onClick: () => void;
     };
   };
@@ -175,14 +182,20 @@ export const BookingCardChatTrip = ({
   cta = {
     reject: {
       children: "Angebot ablehnen",
+      disabled: false,
+      loading: false,
       onClick: () => {},
     },
     bargain: {
       children: "Ein weiteres Angebot senden",
+      disabled: false,
+      loading: false,
       onClick: () => {},
     },
     accept: {
       children: "Angebot annehmen",
+      disabled: false,
+      loading: false,
       onClick: () => {},
     },
   },
@@ -324,7 +337,7 @@ export const BookingCardChatTrip = ({
           {!!cta.reject && (
             <button
               className={clsx(
-                "flex items-center justify-center",
+                "flex items-center justify-center gap-[0.5rem]",
                 "bg-[white]",
                 "border border-[white]",
                 "px-[1rem] py-[0.75rem]",
@@ -332,15 +345,17 @@ export const BookingCardChatTrip = ({
                 "text-[#3B3B3B] text-[0.875rem] font-medium",
                 "w-full lg:w-fit"
               )}
+              disabled={cta.reject.disabled}
               onClick={cta.reject.onClick}
             >
+              {cta.reject.loading && <MoonLoader size={20} color={"#3B3B3B"} />}
               {cta.reject.children}
             </button>
           )}
           {!!cta.bargain && (
             <button
               className={clsx(
-                "flex items-center justify-center",
+                "flex items-center justify-center gap-[0.5rem]",
                 "bg-[white]",
                 "border border-[#3B3B3B]",
                 "px-[1rem] py-[0.75rem]",
@@ -348,8 +363,12 @@ export const BookingCardChatTrip = ({
                 "text-[#3B3B3B] text-[0.875rem] font-medium",
                 "w-full lg:w-fit"
               )}
+              disabled={cta.bargain.disabled}
               onClick={cta.bargain.onClick}
             >
+              {cta.bargain.loading && (
+                <MoonLoader size={20} color={"#3B3B3B"} />
+              )}
               {cta.bargain.children}
             </button>
           )}
@@ -357,7 +376,7 @@ export const BookingCardChatTrip = ({
           {!!cta.accept && (
             <button
               className={clsx(
-                "flex items-center justify-center",
+                "flex items-center justify-center gap-[0.5rem]",
                 "bg-[#5AC53D]",
                 "border border-[#5AC53D]",
                 "px-[1rem] py-[0.75rem]",
@@ -365,8 +384,10 @@ export const BookingCardChatTrip = ({
                 "text-[white] text-[0.875rem] font-medium",
                 "w-full lg:w-fit"
               )}
+              disabled={cta.accept.disabled}
               onClick={cta.accept.onClick}
             >
+              {cta.accept.loading && <MoonLoader size={20} color={"white"} />}
               {cta.accept.children}
             </button>
           )}
