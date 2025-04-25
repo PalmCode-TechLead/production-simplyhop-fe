@@ -16,6 +16,8 @@ export const fetchGetAuthSocialCallback = async (
     });
     return res.data;
   } catch (err) {
+    console.error("Error fetchGetAuthSocialCallback", err);
+    console.error("Error fetchGetAuthSocialCallback", String(JSON.stringify(err)));
     throw (err as AxiosError)?.response?.data || (err as AxiosError)?.response;
   }
 };

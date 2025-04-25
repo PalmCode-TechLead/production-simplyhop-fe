@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
       }
     );
   } catch (err) {
-    console.log("ini error", err);
+    console.error("ini error", err);
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }
