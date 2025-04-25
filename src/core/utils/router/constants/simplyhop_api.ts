@@ -35,7 +35,7 @@ export const SimplyHopAPICollectionURL = {
   },
   vehicle: {
     postCreateMy: () => `/api/vehicle/storeMy`,
-    getMy: () => `/api/vehicle`,
+    getMy: () => `/api/vehicle/my`,
     getId: (path: GetVehicleIdPathPayloadRequestInterface) =>
       `/api/vehicle/${path.id}`,
   },

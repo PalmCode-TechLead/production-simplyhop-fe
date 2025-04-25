@@ -1,21 +1,54 @@
+"use client";
 import React, { forwardRef } from "react";
 import clsx from "clsx";
 
 export const FormWrapperPassengerDetail = forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { isOpen?: boolean }
+  React.HTMLAttributes<HTMLDivElement> & {
+    isOpen?: boolean;
+  }
 >((props, ref) => {
   const { isOpen, ...restProps } = props;
+  const [position, setPosition] = React.useState<"above" | "below">("below");
+
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+  const updatePosition = React.useCallback(() => {
+    const dropdownPosition = dropdownRef.current?.offsetTop ?? 0;
+    const viewportHeight = window.innerHeight;
+
+    if (dropdownPosition < viewportHeight / 2) {
+      setPosition("below");
+    } else {
+      setPosition("above");
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      updatePosition();
+      window.addEventListener("resize", updatePosition);
+      window.addEventListener("scroll", updatePosition, true); // true supaya dia bisa detect scroll dalam container juga
+    }
+
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition, true);
+    };
+  }, [isOpen, updatePosition]);
+
   if (!isOpen) {
     return null;
   }
+
   return (
     <div
-      ref={ref}
+      ref={dropdownRef}
       {...restProps}
       className={clsx(
         "absolute",
-        "top-[-200px] right-0",
+        position === "below" ? "top-[4rem]" : "top-[-200px]",
+        "right-0",
         "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
         "px-[1rem] py-[0.75rem]",
         "min-w-[255px]",
