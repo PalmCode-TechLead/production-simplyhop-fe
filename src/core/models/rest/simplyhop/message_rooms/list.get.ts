@@ -1,4 +1,3 @@
-import { User, Message } from "@/core/models/data";
 import { MessageRoom } from "@/core/models/data/message_room";
 
 import { NextApiRequest, NextApiResponse } from "next";

@@ -17,4 +17,3 @@ export interface MessageRoom {
   passenger?: User;
   driver?: User;
 }
-[];

@@ -7,7 +7,7 @@ export const FormWrapperPassengerDetail = forwardRef<
   React.HTMLAttributes<HTMLDivElement> & {
     isOpen?: boolean;
   }
->((props, ref) => {
+>((props) => {
   const { isOpen, ...restProps } = props;
   const [position, setPosition] = React.useState<"above" | "below">("below");
 

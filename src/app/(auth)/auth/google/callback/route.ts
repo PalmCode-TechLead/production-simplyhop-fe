@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
       //   maxAge: 60 * 60 * 24, // 1 day
     });
     return NextResponse.redirect(new URL("/", process.env.NEXT_PUBLIC_APP_URL));
-  } catch (err) {
+  } catch {
     return NextResponse.json(
       {
         message: "Internal Server Error",

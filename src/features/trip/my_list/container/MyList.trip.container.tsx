@@ -51,7 +51,7 @@ export const MyListTripContainer = () => {
 
       <RideDetailMyListTrip />
 
-      {/* <BookDetailMyListTrip /> */}
+      <BookDetailMyListTrip />
     </>
   );
 };

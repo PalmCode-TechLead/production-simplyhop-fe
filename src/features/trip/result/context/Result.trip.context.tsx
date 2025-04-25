@@ -48,9 +48,6 @@ const initialState: ResultTripInitialStateType = {
   },
   vehicle_filters: {
     is_open: false,
-    seat: {
-      selected: [],
-    },
     luggage: {
       selected: [],
     },
@@ -68,9 +65,6 @@ const initialState: ResultTripInitialStateType = {
     },
   },
   advanced_filter: {
-    seat: {
-      selected: [],
-    },
     luggage: {
       selected: [],
     },
