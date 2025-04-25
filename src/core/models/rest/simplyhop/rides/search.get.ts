@@ -15,7 +15,7 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   destination_lat?: number;
   destination_long?: number;
   "filter[departure_time]"?: string;
-  "filter[rideTimes.available_seats]"?: string;
+  "available_seats__gte"?: string;
   "filter[luggage_allowed]"?: boolean;
   "filter[music_availability]"?: boolean;
   "filter[smoke_allowed]"?: boolean;

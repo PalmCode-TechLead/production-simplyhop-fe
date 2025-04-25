@@ -40,7 +40,7 @@ export const useGetRideSearch = () => {
       destination_long: 11.5819804,
       include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
       sort: "-base_price",
-      "filter[rideTimes.available_seats]": String(
+      "available_seats__gte": String(
         Number(String(adult ?? "0")) + Number(String(children ?? "0"))
       ),
       // Need to be integrated

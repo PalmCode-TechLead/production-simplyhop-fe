@@ -20,6 +20,8 @@ export const Avatar = ({
         "flex items-center justify-center",
         "rounded-[50%]",
         "bg-[#5AC53D]",
+        "overflow-clip",
+        "relative",
         className
       )}
     >
@@ -29,7 +31,7 @@ export const Avatar = ({
           alt={alt}
           fill
           sizes="(max-width: 10240px) 48px, (min-width: 1024px) 64px, 80px"
-          className="object-cover"
+          className={clsx("object-cover", "w-full h-full")}
         />
       ) : (
         <SVGIcon
