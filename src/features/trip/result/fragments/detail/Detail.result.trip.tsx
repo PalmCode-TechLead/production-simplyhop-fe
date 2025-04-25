@@ -147,7 +147,10 @@ export const DetailResultTrip = () => {
             "w-full"
           )}
         >
-          <button className={clsx("block lg:hidden")} onClick={handleClose}>
+          <button
+            className={clsx("block lg:hidden", "cursor-pointer")}
+            onClick={handleClose}
+          >
             <SVGIcon
               name="X"
               className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}

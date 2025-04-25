@@ -220,7 +220,7 @@ export const VehicleFilters = () => {
         >
           <div
             className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem] lg:gap-[1rem]",
               "w-full"
             )}
           >
@@ -230,7 +230,7 @@ export const VehicleFilters = () => {
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
               />
             </button>
-            <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+            <h2 className={clsx("text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold")}>
               {dictionaries.vehicle_filters.title}
             </h2>
           </div>
@@ -239,7 +239,7 @@ export const VehicleFilters = () => {
             className={clsx(
               "cursor-pointer",
               "px-[1rem] py-[1rem]",
-              "text-[#5AC53D] text-[1rem] font-medium"
+              "text-[#5AC53D] text-[0.75rem] lg:text-[1rem] font-medium"
             )}
             onClick={handleClickReset}
           >
