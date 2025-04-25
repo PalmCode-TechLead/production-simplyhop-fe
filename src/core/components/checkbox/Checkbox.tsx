@@ -41,6 +41,7 @@ export const Checkbox = ({
             : "border-[1px] border-[#98989E]",
           "rounded-[0.25rem]",
           "flex items-center justify-center",
+          "cursor-pointer disabled:cursor-default",
           className
         )}
         {...otherProps}

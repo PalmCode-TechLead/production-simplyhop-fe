@@ -389,6 +389,20 @@
           }
         ]
       },
+      "filter": {
+        "option": {
+          "items": [
+            {
+              "id": "true",
+              "name": "Gepäck erlaubt"
+            },
+            {
+              "id": "false",
+              "name": "Kein Gepäck erlaubt"
+            }
+          ]
+        }
+      },
       "available": {
         "id": "available_luggage",
         "icon": {

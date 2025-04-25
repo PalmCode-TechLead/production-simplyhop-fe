@@ -157,11 +157,7 @@ export const VehicleFilterResulTrip = () => {
         >
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.luggage}
-            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
-              (item) => {
-                return { id: item, name: item };
-              }
-            )}
+            items={globalDictionaries.vehicle.luggage.filter.option.items}
             selected={state.advanced_filter.luggage.selected}
             onSelect={handleSelectLuggage}
           />

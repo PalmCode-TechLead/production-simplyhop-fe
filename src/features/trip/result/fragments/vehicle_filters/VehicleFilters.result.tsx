@@ -228,29 +228,21 @@ export const VehicleFilters = () => {
         >
           <VehicleFilterList
             {...dictionaries.vehicle_filters.luggage}
-            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
-              (item) => {
-                return { id: item, name: item };
-              }
-            )}
+            items={globalDictionaries.vehicle.luggage.filter.option.items}
             selected={state.vehicle_filters.luggage.selected}
             onSelect={handleSelectLuggage}
           />
           <Divider />
           <VehicleFilterList
             {...dictionaries.vehicle_filters.smoker}
-            items={
-              globalDictionaries.vehicle.smoking.type.options.items
-            }
+            items={globalDictionaries.vehicle.smoking.type.options.items}
             selected={state.vehicle_filters.smoker.selected}
             onSelect={handleSelectSmoker}
           />
           <Divider />
           <VehicleFilterList
             {...dictionaries.vehicle_filters.music}
-            items={
-              globalDictionaries.vehicle.music.type.options.items
-            }
+            items={globalDictionaries.vehicle.music.type.options.items}
             selected={state.vehicle_filters.music.selected}
             onSelect={handleSelectMusic}
           />

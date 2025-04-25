@@ -43,11 +43,11 @@ export const useGetRideSearch = () => {
         Number(String(adult ?? "0")) + Number(String(children ?? "0"))
       ),
       // Need to be integrated
-      // "filter[luggage_allowed]": !state.advanced_filter.music.selected.length
-      //   ? undefined
-      //   : state.advanced_filter.music.selected.length === 1
-      //   ? Boolean(state.advanced_filter.music.selected[0].id ?? "false")
-      //   : undefined,
+      "filter[luggage_allowed]": !state.advanced_filter.luggage.selected.length
+        ? undefined
+        : state.advanced_filter.luggage.selected.length === 1
+        ? Boolean(state.advanced_filter.luggage.selected[0].id ?? "false")
+        : undefined,
       "filter[music_availability]": !state.advanced_filter.music.selected.length
         ? undefined
         : state.advanced_filter.music.selected.length === 1
