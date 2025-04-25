@@ -19,6 +19,5 @@ export const AdaptiveModal = ({
   if (variant === "page_sheet") {
     return <PageSheet {...otherProps}>{children}</PageSheet>;
   }
-
   return <Modal {...otherProps}>{children}</Modal>;
 };

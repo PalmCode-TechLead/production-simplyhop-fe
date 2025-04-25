@@ -1,10 +1,10 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
 
 export const RideDetailMyListTrip = () => {
   const searchParams = useSearchParams();

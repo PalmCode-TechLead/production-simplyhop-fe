@@ -48,12 +48,10 @@ export const MyListTripContainer = () => {
           </div>
         </div>
       </div>
-      <React.Suspense fallback={<div />}>
-        <RideDetailMyListTrip />
-      </React.Suspense>
-      <React.Suspense fallback={<div />}>
-        <BookDetailMyListTrip />
-      </React.Suspense>
+
+      <RideDetailMyListTrip />
+
+      {/* <BookDetailMyListTrip /> */}
     </>
   );
 };
