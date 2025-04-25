@@ -154,6 +154,7 @@ export const RideCardResultTrip = ({
     },
     travelTime: {
       time: "1h 15m",
+      waitingTime: "",
     },
     arrival: {
       place: "Berlin",
@@ -249,7 +250,7 @@ export const RideCardResultTrip = ({
           {/* routes */}
           <div
             className={clsx(
-              "grid grid-cols-[auto_80px_auto] place-content-start place-items-start gap-[2.25rem]",
+              "grid grid-cols-[auto_auto_auto] place-content-start place-items-start gap-[2.25rem]",
               "w-full"
             )}
           >

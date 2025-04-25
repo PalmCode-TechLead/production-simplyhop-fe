@@ -4,9 +4,13 @@ import SVGIcon from "@/core/icons";
 
 export interface TravelTimeItemProps {
   time?: string;
+  waitingTime?: string;
 }
 
-export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
+export const TravelTimeItem = ({
+  time = "",
+  waitingTime = "",
+}: TravelTimeItemProps) => {
   return (
     <div
       className={clsx(
@@ -16,7 +20,7 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
       <div
         className={clsx(
           "grid grid-cols-[6px_1fr_6px] items-center content-center justify-start justify-items-start",
-          "w-[5rem]",
+          "w-full",
           "relative"
         )}
       >
@@ -58,10 +62,40 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
         />
       </div>
 
-      <div className={clsx("flex items-start justify-center", "w-full")}>
-        <p className={clsx("text-[0.75rem] text-[#8C8D89] font-normal text-center")}>
+      <div
+        className={clsx(
+          "flex items-center justify-center gap-[0.25rem]",
+          "w-full"
+        )}
+      >
+        <p
+          className={clsx(
+            "text-[0.75rem] text-[#8C8D89] font-normal text-center whitespace-nowrap"
+          )}
+        >
           {time}
         </p>
+
+        {!!waitingTime.length && (
+          <div
+            className={clsx(
+              "flex items-center justify-center gap-[0.25rem]",
+              "w-full"
+            )}
+          >
+            <SVGIcon
+              name="Hourglass"
+              className={clsx("w-[0.875rem] h-[0.875rem]", "text-[#8C8D89]")}
+            />
+            <p
+              className={clsx(
+                "text-[0.75rem] text-[#8C8D89] font-normal text-center whitespace-nowrap"
+              )}
+            >
+              {waitingTime}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

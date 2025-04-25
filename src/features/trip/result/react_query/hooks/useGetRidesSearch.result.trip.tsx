@@ -276,6 +276,7 @@ export const useGetRideSearch = () => {
                 },
                 travelTime: {
                   time: !item.eta ? "-" : setDurationTime(item.eta),
+                  waitingTime: !item.waiting_time ? "" : item.waiting_time,
                 },
                 arrival: {
                   place: !item.destination_name ? "-" : item.destination_name,

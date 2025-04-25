@@ -23,6 +23,7 @@ import {
   DriverProfileLabel,
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label/DriverProfileLabel";
+import { RideBadge, RideBadgeProps } from "@/core/components/ride_badge";
 
 export interface RideDetailCardResultTripProps {
   id?: string;
@@ -43,6 +44,10 @@ export interface RideDetailCardResultTripProps {
     departure?: DepartureItemProps;
     travelTime?: TravelTimeItemProps;
     arrival?: ArrivalItemProps;
+  };
+
+  ride?: {
+    badge: RideBadgeProps[];
   };
 }
 
@@ -141,6 +146,20 @@ export const RideDetailCardResultTrip = ({
       time: "18.30 Uhr",
     },
   },
+  ride = {
+    badge: [
+      {
+        id: "bester_preis",
+        label: "Bester Preis",
+        variant: "success",
+      },
+      {
+        id: "fahrerin",
+        label: "Fahrerin (W)",
+        variant: "danger",
+      },
+    ],
+  },
 }: RideDetailCardResultTripProps) => {
   return (
     <div
@@ -171,15 +190,26 @@ export const RideDetailCardResultTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
+
           <div
             className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+              "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
             )}
           >
-            <Image {...car.image} className={clsx("w-[145px]")} />
-            <div className={clsx("block lg:hidden")}>
-              <CarIdentityItem {...car.identity} number={null} />
-            </div>
+            {ride.badge.map((item, itemIndex) => (
+              <RideBadge {...item} key={itemIndex} />
+            ))}
+          </div>
+        </div>
+
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]"
+          )}
+        >
+          <Image {...car.image} className={clsx("w-[145px]")} />
+          <div className={clsx("block lg:hidden")}>
+            <CarIdentityItem {...car.identity} />
           </div>
         </div>
 
@@ -242,6 +272,17 @@ export const RideDetailCardResultTrip = ({
                 />
               ))}
             </div>
+          </div>
+
+          {/* badge */}
+          <div
+            className={clsx(
+              "lg:hidden grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+            )}
+          >
+            {ride.badge.map((item, itemIndex) => (
+              <RideBadge {...item} key={itemIndex} />
+            ))}
           </div>
         </div>
       </div>
