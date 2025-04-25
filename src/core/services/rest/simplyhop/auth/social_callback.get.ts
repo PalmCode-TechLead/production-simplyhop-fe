@@ -11,7 +11,9 @@ export const fetchGetAuthSocialCallback = async (
       ENVIRONMENTS.SIMPLY_HOP_API_URL
     }${SimplyHopAPICollectionURL.auth.getSocialCallback(payload.path)}`;
 
-    const res = await axios.get(url);
+    const res = await axios.get(url, {
+      params: payload.params,
+    });
     return res.data;
   } catch (err) {
     throw (err as AxiosError)?.response?.data || (err as AxiosError)?.response;
