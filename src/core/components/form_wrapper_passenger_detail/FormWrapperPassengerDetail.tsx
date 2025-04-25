@@ -2,12 +2,11 @@
 import React, { forwardRef } from "react";
 import clsx from "clsx";
 
-export const FormWrapperPassengerDetail = forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
+export const FormWrapperPassengerDetail = (
+  props: React.HTMLAttributes<HTMLDivElement> & {
     isOpen?: boolean;
   }
->((props) => {
+) => {
   const { isOpen, ...restProps } = props;
   const [position, setPosition] = React.useState<"above" | "below">("below");
 
@@ -62,6 +61,4 @@ export const FormWrapperPassengerDetail = forwardRef<
       {props.children}
     </div>
   );
-});
-
-FormWrapperPassengerDetail.displayName = "FormWrapperPassengerDetail";
+};
