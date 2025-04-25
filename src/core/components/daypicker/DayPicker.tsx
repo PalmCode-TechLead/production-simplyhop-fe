@@ -2,35 +2,17 @@
 import * as React from "react";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
-
-const addYearNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-
-  const month = new Date(date).getMonth();
-
-  const newYear = year + number;
-
-  const day = new Date().getDate();
-  const newDate = new Date(newYear, month, day);
-  return newDate;
-};
-
-const subtractYearNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-
-  const month = new Date(date).getMonth();
-
-  const newYear = year - number;
-
-  const day = new Date().getDate();
-  const newDate = new Date(newYear, month, day);
-  return newDate;
-};
+import dayjs from "dayjs";
+import {
+  checkIsBefore,
+  checkIsToday,
+  weekdaysName,
+} from "@/core/utils/calendar";
 
 const addMonthNumber = (date: Date, number: number): Date => {
   const year = new Date(date).getFullYear();
 
-  const month = new Date(date).getMonth();
+  const month = new Date(date).getMonth() + 1;
   let newMonth = month + number;
   let newYear = year;
   if (newMonth > 12) {
@@ -39,14 +21,18 @@ const addMonthNumber = (date: Date, number: number): Date => {
   }
 
   const day = new Date().getDate();
-  const newDate = new Date(newYear, newMonth, day);
+  const newDate = new Date(
+    `${newYear}-${newMonth < 10 ? `0${newMonth}` : newMonth}-${
+      day < 10 ? `0${day}` : day
+    }`
+  );
   return newDate;
 };
 
 const subtractMonthNumber = (date: Date, number: number): Date => {
   const year = new Date(date).getFullYear();
 
-  const month = new Date(date).getMonth();
+  const month = new Date(date).getMonth() + 1;
   let newMonth = month - number;
   let newYear = year;
   if (newMonth < 1) {
@@ -55,7 +41,11 @@ const subtractMonthNumber = (date: Date, number: number): Date => {
   }
 
   const day = new Date().getDate();
-  const newDate = new Date(newYear, newMonth, day);
+  const newDate = new Date(
+    `${newYear}-${newMonth < 10 ? `0${newMonth}` : newMonth}-${
+      day < 10 ? `0${day}` : day
+    }`
+  );
   return newDate;
 };
 
@@ -104,40 +94,27 @@ const generateCalendarDates = (year: number, month: number): CalendarDate[] => {
     });
   }
 
-  // Fill the dates for the next month
-  const daysInCalendar = dates.length;
-  const totalDaysToFill = 42; // Assuming a 6x7 grid (6 weeks)
-  for (let i = 1; daysInCalendar + i <= totalDaysToFill; i++) {
-    dates.push({
-      date: new Date(year, month, i),
-      isCurrentMonth: false,
-    });
-  }
-
   return dates;
 };
 
-export interface DayPickerActivityMobileProps {
+export interface DayPickerProps {
+  disablePast?: boolean;
+  disableToday?: boolean;
   date?: Date;
+  onClickMonth?: () => void;
   onClickDate?: (date: Date) => void;
-  onClickMonth?: (date: Date) => void;
-  onClickYear?: (date: Date) => void;
 }
 
-export const DayPickerActivityMobile = ({
+export const DayPicker = ({
+  disablePast = false,
+  disableToday = false,
   date = new Date(),
-
-  onClickDate = () => {},
   onClickMonth = () => {},
-  onClickYear = () => {},
-}: DayPickerActivityMobileProps) => {
+  onClickDate = () => {},
+}: DayPickerProps) => {
   const [newDate, setNewDate] = React.useState<Date>(date);
   const monthName = newDate.toLocaleString("en-US", {
     month: "long",
-  });
-
-  const yearName = newDate.toLocaleString("en-US", {
-    year: "numeric",
   });
 
   const calendarDates = generateCalendarDates(
@@ -149,64 +126,22 @@ export const DayPickerActivityMobile = ({
     setNewDate(date);
   }, [date]);
 
-  const handleClickNextYear = () => {
-    onClickYear(addYearNumber(newDate, 1));
-  };
-
-  const handleClickPreviousYear = () => {
-    onClickYear(subtractYearNumber(newDate, 1));
-  };
-
   const handleClickNextMonth = () => {
-    onClickMonth(addMonthNumber(newDate, 1));
+    setNewDate(addMonthNumber(newDate, 1));
   };
 
   const handleClickPreviousMonth = () => {
-    onClickMonth(subtractMonthNumber(newDate, 1));
+    setNewDate(subtractMonthNumber(newDate, 1));
   };
 
   return (
     <div
       className={clsx(
         "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
-        "w-full",
-        "px-[1rem] py-[1rem]"
+        "w-full"
       )}
     >
-      {/* year */}
-      <div
-        className={clsx(
-          "grid grid-cols-[auto_1fr_auto] items-center content-center justify-start justify-items-start",
-          "w-full"
-        )}
-      >
-        <button onClick={handleClickPreviousYear}>
-          <SVGIcon
-            name="ChevronLeft"
-            className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
-          />
-        </button>
-
-        <button
-          className={clsx(
-            "grid grid-cols-1 place-content-center place-items-center",
-            "w-full",
-            "text-[15px] text-[#000000] font-medium"
-          )}
-        >
-          {yearName}
-        </button>
-
-        <button onClick={handleClickNextYear}>
-          <SVGIcon
-            name="ChevronRight"
-            className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
-          />
-        </button>
-      </div>
-      {/* end year */}
-
-      {/* month */}
+      {/* header */}
       <div
         className={clsx(
           "grid grid-cols-[auto_1fr_auto] items-center content-center justify-start justify-items-start",
@@ -216,7 +151,7 @@ export const DayPickerActivityMobile = ({
         <button onClick={handleClickPreviousMonth}>
           <SVGIcon
             name="ChevronLeft"
-            className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
+            className={clsx("w-[1rem] h-[1rem]", "text-[#B5BEC6]")}
           />
         </button>
 
@@ -224,8 +159,9 @@ export const DayPickerActivityMobile = ({
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center",
             "w-full",
-            "text-[15px] text-[#000000] font-medium"
+            "text-[0.875rem] text-[#4A5660] font-medium"
           )}
+          onClick={onClickMonth}
         >
           {monthName}
         </button>
@@ -233,46 +169,81 @@ export const DayPickerActivityMobile = ({
         <button onClick={handleClickNextMonth}>
           <SVGIcon
             name="ChevronRight"
-            className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
+            className={clsx("w-[1rem] h-[1rem]", "text-[#B5BEC6]")}
           />
         </button>
       </div>
-      {/* end month */}
+      {/* end header */}
+      <div
+        className={clsx(
+          "grid grid-cols-7 place-content-start place-items-start gap-[0.5rem]",
+          "w-full"
+        )}
+      >
+        {weekdaysName.map((name, nameIndex) => {
+          return (
+            <div
+              key={nameIndex}
+              className={clsx(
+                "grid grid-cols-1 place-content-center place-items-center",
+                "text-[#B5BEC6] text-[0.75rem] font-medium",
+                "rounded-[50%]",
+                "w-full"
+              )}
+            >
+              {name}
+            </div>
+          );
+        })}
+      </div>
 
       {/* body */}
       <div
         className={clsx(
-          "grid grid-cols-7 place-content-start place-items-start gap-y-[0.5rem]",
+          "grid grid-cols-7 place-content-start place-items-start gap-[0.5rem]",
           "w-full"
         )}
       >
-        {calendarDates.map((calendarItem, calendarIndex) => (
-          <button
-            key={calendarIndex}
-            className={clsx(
-              "grid grid-cols-1 place-content-center place-items-center",
-              "text-[14px] font-semibold",
-              "rounded-[50%]",
-              "w-[2rem] h-[2rem]",
-              datesAreEqual(calendarItem.date, date)
-                ? "bg-green-500"
-                : "bg-transparent",
+        {calendarDates.map((calendarItem, calendarIndex) => {
+          const isBefore = checkIsBefore(calendarItem.date);
+          const isToday = checkIsToday(calendarItem.date);
+          const disabled =
+            !calendarItem.isCurrentMonth ||
+            (disablePast && isBefore) ||
+            (disableToday && isToday);
+          return (
+            <button
+              key={calendarIndex}
+              className={clsx(
+                "grid grid-cols-1 place-content-center place-items-center",
+                "text-[14px] font-medium",
+                "rounded-[50%]",
+                "w-[30px] h-[30px]",
+                datesAreEqual(calendarItem.date, date)
+                  ? "bg-[#5AC53D]"
+                  : "bg-transparent",
 
-              datesAreEqual(calendarItem.date, date)
-                ? "text-[white]"
-                : calendarItem.isCurrentMonth &&
-                  !datesAreEqual(calendarItem.date, date)
-                ? "text-[#000000]"
-                : "text-[#5C5F62]"
-            )}
-            disabled={!calendarItem.isCurrentMonth}
-            onClick={() => onClickDate(calendarItem.date)}
-          >
-            {calendarItem.date.toLocaleString("en-US", {
-              day: "numeric",
-            })}
-          </button>
-        ))}
+                datesAreEqual(calendarItem.date, date)
+                  ? "text-[white]"
+                  : disablePast && isBefore
+                  ? "text-[#E9E6E6]"
+                  : disableToday && isToday
+                  ? "text-[#E9E6E6]"
+                  : calendarItem.isCurrentMonth &&
+                    !datesAreEqual(calendarItem.date, date)
+                  ? "text-[#4A5660]"
+                  : "text-[#E9E6E6]",
+                !calendarItem.isCurrentMonth ? "opacity-0" : "opacity-100"
+              )}
+              disabled={disabled}
+              onClick={() => onClickDate(calendarItem.date)}
+            >
+              {calendarItem.date.toLocaleString("en-US", {
+                day: "numeric",
+              })}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

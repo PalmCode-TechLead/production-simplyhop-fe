@@ -5,6 +5,7 @@ import {
   FindTripFiltersReducers,
   FindTripMapReducers,
 } from "./Find.trip.reducers";
+import dayjs from "dayjs";
 
 const initialState: FindTripInitialStateType = {
   filters: {
@@ -29,7 +30,7 @@ const initialState: FindTripInitialStateType = {
       items: [],
     },
     date: {
-      selected: new Date(),
+      selected: dayjs().add(1, "day").toDate(),
     },
     passenger: {
       car_seat: {

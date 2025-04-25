@@ -2,6 +2,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
+import { checkIsPreviousMonth } from "@/core/utils/calendar";
 
 const subtractYearNumber = (date: Date, number: number): Date => {
   const year = new Date(date).getFullYear();
@@ -57,19 +58,21 @@ const generateMonthList = (year: number): MonthInfo[] => {
   return months;
 };
 
-export interface MonthPickerActivityMobileProps {
+export interface MonthPickerProps {
+  disablePast?: boolean;
   date?: Date;
   onClickYear?: () => void;
 
   onClickMonth?: (date: Date) => void;
 }
 
-export const MonthPickerActivityMobile = ({
+export const MonthPicker = ({
+  disablePast = false,
   date = new Date(),
   onClickYear = () => {},
 
   onClickMonth = () => {},
-}: MonthPickerActivityMobileProps) => {
+}: MonthPickerProps) => {
   const [newDate, setNewDate] = React.useState<Date>(date);
   const yearName = newDate.toLocaleString("en-US", {
     year: "numeric",
@@ -93,8 +96,7 @@ export const MonthPickerActivityMobile = ({
     <div
       className={clsx(
         "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
-        "w-full",
-        "px-[1rem] py-[1rem]"
+        "w-full"
       )}
     >
       {/* header */}
@@ -138,28 +140,35 @@ export const MonthPickerActivityMobile = ({
           "w-full"
         )}
       >
-        {calendarMonths.map((calendarItem, calendarIndex) => (
-          <button
-            key={calendarIndex}
-            className={clsx(
-              "grid grid-cols-1 place-content-center place-items-center",
-              "w-full h-[44px]",
-              "text-[14px] font-semibold",
-              "rounded-[0.625rem]",
-              monthsAreEqual(calendarItem.month, date)
-                ? "bg-[#EEE9FD]"
-                : "bg-transparent",
-              monthsAreEqual(calendarItem.month, date)
-                ? "text-[#6F47EB]"
-                : "text-[#000000]"
-            )}
-            onClick={() => onClickMonth(calendarItem.month)}
-          >
-            {calendarItem.month.toLocaleString("en-US", {
-              month: "short",
-            })}
-          </button>
-        ))}
+        {calendarMonths.map((calendarItem, calendarIndex) => {
+          const isPreviousMonth = checkIsPreviousMonth(calendarItem.month);
+          const disabled = disablePast && isPreviousMonth;
+          return (
+            <button
+              key={calendarIndex}
+              className={clsx(
+                "grid grid-cols-1 place-content-center place-items-center",
+                "w-full h-[44px]",
+                "text-[14px] font-medium",
+                "rounded-[0.625rem]",
+                monthsAreEqual(calendarItem.month, date)
+                  ? "bg-[#5AC53D]"
+                  : "bg-transparent",
+                disabled
+                  ? "text-[#E9E6E6]"
+                  : monthsAreEqual(calendarItem.month, date)
+                  ? "text-[white]"
+                  : "text-[#4A5660]"
+              )}
+              disabled={disabled}
+              onClick={() => onClickMonth(calendarItem.month)}
+            >
+              {calendarItem.month.toLocaleString("en-US", {
+                month: "short",
+              })}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

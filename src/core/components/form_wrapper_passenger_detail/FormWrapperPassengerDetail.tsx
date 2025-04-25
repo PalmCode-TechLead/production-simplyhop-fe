@@ -13,7 +13,7 @@ export const FormWrapperPassengerDetail = (
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   const updatePosition = React.useCallback(() => {
-    const dropdownPosition = dropdownRef.current?.offsetTop ?? 0;
+    const dropdownPosition = dropdownRef.current?.getBoundingClientRect().top ?? 0;
     const viewportHeight = window.innerHeight;
 
     if (dropdownPosition < viewportHeight / 2) {
