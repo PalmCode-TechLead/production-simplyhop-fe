@@ -1,11 +1,12 @@
 import * as React from "react";
 import clsx from "clsx";
-import { VehicleFilterCheckbox } from "../vehicle_filter_checkbox";
+import { VehicleFilterOption } from "../vehicle_filter_checkbox";
 
 export interface VehicleFilterListProps {
   selected?: { id: string; name: string }[];
   label?: string;
   items?: { id: string; name: string }[];
+  variant?: "multiple" | "single";
   onSelect?: (data: { id: string; name: string }) => void;
 }
 
@@ -13,6 +14,7 @@ export const VehicleFilterList = ({
   selected = [],
   label = "",
   items = [],
+  variant = "single",
   onSelect = () => {},
 }: VehicleFilterListProps) => {
   return (
@@ -33,9 +35,10 @@ export const VehicleFilterList = ({
         )}
       >
         {items.map((item, itemIndex) => (
-          <VehicleFilterCheckbox
+          <VehicleFilterOption
             key={itemIndex}
             label={item.name}
+            variant={variant === "multiple" ? "checkbox" : "radio"}
             checked={selected
               .map((selectedItem) => selectedItem.id)
               .includes(item.id)}

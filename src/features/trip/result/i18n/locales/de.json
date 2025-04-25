@@ -100,43 +100,46 @@
     "counter": {
       "label": "Filter nach"
     },
-    "seat": {
-      "label": "Sitze"
-    },
     "luggage": {
-      "label": "Gepäck"
+      "label": "Gepäck",
+      "variant": "single"
     },
     "smoker": {
-      "label": "Nichtraucher"
+      "label": "Nichtraucher",
+      "variant": "single"
     },
     "music": {
-      "label": "Musik"
+      "label": "Musik",
+      "variant": "single"
     },
     "pets": {
-      "label": "Tiere"
+      "label": "Tiere",
+      "variant": "single"
     },
     "sort": {
-      "label": "Sortieren"
+      "label": "Sortieren",
+      "variant": "single"
     }
   },
   "advanced_filter": {
     "counter": {
       "label": "Filter nach"
     },
-    "seat": {
-      "label": "Sitze"
-    },
     "luggage": {
-      "label": "Gepäck"
+      "label": "Gepäck",
+      "variant": "single"
     },
     "smoker": {
-      "label": "Nichtraucher"
+      "label": "Nichtraucher",
+      "variant": "single"
     },
     "music": {
-      "label": "Musik"
+      "label": "Musik",
+      "variant": "single"
     },
     "pets": {
-      "label": "Tiere"
+      "label": "Tiere",
+      "variant": "single"
     },
     "sort": {
       "label": "Sortieren",

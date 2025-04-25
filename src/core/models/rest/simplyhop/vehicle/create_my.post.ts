@@ -22,7 +22,7 @@ export type PostVehicleCreateMyBodyRequestInterface = {
   numb_of_childseats: number;
   numb_of_luggages: number;
   size_of_luggages: string;
-  image: File[];
+  "image[]": File[];
 };
 
 export type PostVehicleCreateMyResponseInterface = NextApiResponse<

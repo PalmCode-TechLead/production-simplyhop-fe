@@ -4,7 +4,10 @@ import clsx from "clsx";
 import { CarFacilityFilterCounterBadge } from "@/core/components/car_facility_filter_counter_badge";
 import { getDictionaries } from "../../i18n";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
-import { CarFacilityFilterDropdown } from "@/core/components/car_facility_filter_dropdown";
+import {
+  CarFacilityFilterDropdown,
+  CarFacilityFilterDropdownProps,
+} from "@/core/components/car_facility_filter_dropdown";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { CarSortDropdown } from "@/core/components/car_sort_dropdown";
 
@@ -31,19 +34,31 @@ export const VehicleFilterResulTrip = () => {
 
   const setMultipleCheckboxPayload = (
     data: { id: string; name: string }[],
-    value: { id: string; name: string }
+    value: { id: string; name: string },
+    type: string
   ) => {
     const dataIds = data.map((item) => item.id);
-    const result = dataIds.includes(value.id)
-      ? data.filter((item) => item.id !== value.id)
-      : [...data, value];
+    let result = [];
+    if (type === "single") {
+      result = [value];
+    } else {
+      result = dataIds.includes(value.id)
+        ? data.filter((item) => item.id !== value.id)
+        : [...data, value];
+    }
+
     return result;
   };
 
-  const handleSelectLuggage = (data: { id: string; name: string }) => {
+  const handleSelectLuggage = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.luggage.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
@@ -57,10 +72,15 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
-  const handleSelectSmoker = (data: { id: string; name: string }) => {
+  const handleSelectSmoker = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.smoker.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
@@ -74,10 +94,15 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
-  const handleSelectMusic = (data: { id: string; name: string }) => {
+  const handleSelectMusic = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.music.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
@@ -91,10 +116,15 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
-  const handleSelectPets = (data: { id: string; name: string }) => {
+  const handleSelectPets = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.pets.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
@@ -130,6 +160,7 @@ export const VehicleFilterResulTrip = () => {
       },
     });
   };
+
   return (
     <div
       className={clsx(
@@ -156,28 +187,52 @@ export const VehicleFilterResulTrip = () => {
           )}
         >
           <CarFacilityFilterDropdown
-            {...dictionaries.advanced_filter.luggage}
+            {...(dictionaries.advanced_filter
+              .luggage as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.luggage.filter.option.items}
             selected={state.advanced_filter.luggage.selected}
-            onSelect={handleSelectLuggage}
+            onSelect={(data) =>
+              handleSelectLuggage({
+                ...data,
+                type: dictionaries.advanced_filter.luggage.variant,
+              })
+            }
           />
           <CarFacilityFilterDropdown
-            {...dictionaries.advanced_filter.smoker}
+            {...(dictionaries.advanced_filter
+              .smoker as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.smoking.type.options.items}
             selected={state.advanced_filter.smoker.selected}
-            onSelect={handleSelectSmoker}
+            onSelect={(data) =>
+              handleSelectSmoker({
+                ...data,
+                type: dictionaries.advanced_filter.smoker.variant,
+              })
+            }
           />
           <CarFacilityFilterDropdown
-            {...dictionaries.advanced_filter.music}
+            {...(dictionaries.advanced_filter
+              .music as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.music.type.options.items}
             selected={state.advanced_filter.music.selected}
-            onSelect={handleSelectMusic}
+            onSelect={(data) =>
+              handleSelectMusic({
+                ...data,
+                type: dictionaries.advanced_filter.music.variant,
+              })
+            }
           />
           <CarFacilityFilterDropdown
-            {...dictionaries.advanced_filter.pets}
+            {...(dictionaries.advanced_filter
+              .pets as CarFacilityFilterDropdownProps)}
             items={globalDictionaries.vehicle.pets.type.options.items}
             selected={state.advanced_filter.pets.selected}
-            onSelect={handleSelectPets}
+            onSelect={(data) =>
+              handleSelectPets({
+                ...data,
+                type: dictionaries.advanced_filter.pets.variant,
+              })
+            }
           />
         </div>
       </div>

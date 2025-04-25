@@ -2,12 +2,13 @@ import * as React from "react";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
 import { useOnClickOutside } from "usehooks-ts";
-import { VehicleFilterCheckbox } from "../vehicle_filter_checkbox";
+import { VehicleFilterOption } from "../vehicle_filter_checkbox";
 
 export interface CarFacilityFilterDropdownProps {
   selected?: { id: string; name: string }[];
   label?: string;
   items?: { id: string; name: string }[];
+  variant?: "multiple" | "single";
   onSelect?: (data: { id: string; name: string }) => void;
 }
 
@@ -15,6 +16,7 @@ export const CarFacilityFilterDropdown = ({
   selected = [],
   label = "",
   items = [],
+  variant = "multiple",
   onSelect = () => {},
 }: CarFacilityFilterDropdownProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -79,12 +81,14 @@ export const CarFacilityFilterDropdown = ({
               )}
             >
               {items.map((item, itemIndex) => (
-                <VehicleFilterCheckbox
+                <VehicleFilterOption
                   key={itemIndex}
                   label={item.name}
+                  variant={variant === "multiple" ? "checkbox" : "radio"}
                   checked={selected
                     .map((selectedItem) => selectedItem.id)
                     .includes(item.id)}
+                  value={item.id}
                   onChange={() => onSelect(item)}
                 />
               ))}

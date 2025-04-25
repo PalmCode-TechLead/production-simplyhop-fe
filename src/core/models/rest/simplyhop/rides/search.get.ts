@@ -17,9 +17,9 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   "filter[departure_time]"?: string;
   "available_seats__gte"?: string;
   "filter[luggage_allowed]"?: boolean;
-  "filter[music_availability]"?: boolean;
-  "filter[smoke_allowed]"?: boolean;
-  "filter[pet_allowed]"?: boolean;
+  "music_availability"?: boolean;
+  "smoke_allowed"?: boolean;
+  "pet_allowed"?: boolean;
   include?: string;
   //mandatory
   sort?: string;

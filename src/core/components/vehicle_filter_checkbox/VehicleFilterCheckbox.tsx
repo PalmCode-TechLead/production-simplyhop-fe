@@ -1,11 +1,15 @@
 import * as React from "react";
 import clsx from "clsx";
 import { Checkbox, CheckboxProps } from "../checkbox";
+import { Radio, RadioProps } from "../radio";
 
-export type VehicleFilterCheckboxProps = CheckboxProps;
+export type VehicleFilterOptionProps = CheckboxProps &
+  RadioProps & {
+    variant?: "checkbox" | "radio";
+  };
 
-export const VehicleFilterCheckbox = (props: VehicleFilterCheckboxProps) => {
-  const { label, ...otherProps } = props;
+export const VehicleFilterOption = (props: VehicleFilterOptionProps) => {
+  const { label, variant = "checkbox", ...otherProps } = props;
   return (
     <div
       className={clsx(
@@ -15,8 +19,11 @@ export const VehicleFilterCheckbox = (props: VehicleFilterCheckboxProps) => {
       )}
     >
       {label}
-
-      <Checkbox {...otherProps} />
+      {variant === "checkbox" ? (
+        <Checkbox {...otherProps} />
+      ) : (
+        <Radio {...otherProps} />
+      )}
     </div>
   );
 };

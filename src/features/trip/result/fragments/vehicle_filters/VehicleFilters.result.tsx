@@ -5,7 +5,10 @@ import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
-import { VehicleFilterList } from "@/core/components/vehicle_filter_list";
+import {
+  VehicleFilterList,
+  VehicleFilterListProps,
+} from "@/core/components/vehicle_filter_list";
 import { Divider } from "@/core/components/divider";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
@@ -29,19 +32,30 @@ export const VehicleFilters = () => {
 
   const setMultipleCheckboxPayload = (
     data: { id: string; name: string }[],
-    value: { id: string; name: string }
+    value: { id: string; name: string },
+    type: string
   ) => {
     const dataIds = data.map((item) => item.id);
-    const result = dataIds.includes(value.id)
-      ? data.filter((item) => item.id !== value.id)
-      : [...data, value];
+    let result = [];
+    if (type === "single") {
+      result = [value];
+    } else {
+      result = dataIds.includes(value.id)
+        ? data.filter((item) => item.id !== value.id)
+        : [...data, value];
+    }
     return result;
   };
 
-  const handleSelectLuggage = (data: { id: string; name: string }) => {
+  const handleSelectLuggage = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.vehicle_filters.luggage.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetVehicleFiltersData,
@@ -55,10 +69,15 @@ export const VehicleFilters = () => {
     });
   };
 
-  const handleSelectSmoker = (data: { id: string; name: string }) => {
+  const handleSelectSmoker = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.vehicle_filters.smoker.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetVehicleFiltersData,
@@ -72,10 +91,15 @@ export const VehicleFilters = () => {
     });
   };
 
-  const handleSelectMusic = (data: { id: string; name: string }) => {
+  const handleSelectMusic = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.vehicle_filters.music.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetVehicleFiltersData,
@@ -89,10 +113,15 @@ export const VehicleFilters = () => {
     });
   };
 
-  const handleSelectPets = (data: { id: string; name: string }) => {
+  const handleSelectPets = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
     const selected = setMultipleCheckboxPayload(
       state.vehicle_filters.pets.selected,
-      data
+      { id: data.id, name: data.name },
+      data.type
     );
     dispatch({
       type: ResultTripActionEnum.SetVehicleFiltersData,
@@ -227,31 +256,52 @@ export const VehicleFilters = () => {
           )}
         >
           <VehicleFilterList
-            {...dictionaries.vehicle_filters.luggage}
+            {...(dictionaries.vehicle_filters
+              .luggage as VehicleFilterListProps)}
             items={globalDictionaries.vehicle.luggage.filter.option.items}
             selected={state.vehicle_filters.luggage.selected}
-            onSelect={handleSelectLuggage}
+            onSelect={(data) =>
+              handleSelectLuggage({
+                ...data,
+                type: dictionaries.vehicle_filters.luggage.variant,
+              })
+            }
           />
           <Divider />
           <VehicleFilterList
-            {...dictionaries.vehicle_filters.smoker}
+            {...(dictionaries.vehicle_filters.smoker as VehicleFilterListProps)}
             items={globalDictionaries.vehicle.smoking.type.options.items}
             selected={state.vehicle_filters.smoker.selected}
-            onSelect={handleSelectSmoker}
+            onSelect={(data) =>
+              handleSelectSmoker({
+                ...data,
+                type: dictionaries.vehicle_filters.smoker.variant,
+              })
+            }
           />
           <Divider />
           <VehicleFilterList
-            {...dictionaries.vehicle_filters.music}
+            {...(dictionaries.vehicle_filters.music as VehicleFilterListProps)}
             items={globalDictionaries.vehicle.music.type.options.items}
             selected={state.vehicle_filters.music.selected}
-            onSelect={handleSelectMusic}
+            onSelect={(data) =>
+              handleSelectMusic({
+                ...data,
+                type: dictionaries.vehicle_filters.music.variant,
+              })
+            }
           />
           <Divider />
           <VehicleFilterList
-            {...dictionaries.vehicle_filters.pets}
+            {...(dictionaries.vehicle_filters.pets as VehicleFilterListProps)}
             items={globalDictionaries.vehicle.pets.type.options.items}
             selected={state.vehicle_filters.pets.selected}
-            onSelect={handleSelectPets}
+            onSelect={(data) =>
+              handleSelectPets({
+                ...data,
+                type: dictionaries.vehicle_filters.pets.variant,
+              })
+            }
           />
         </div>
 

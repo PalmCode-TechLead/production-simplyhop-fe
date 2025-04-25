@@ -42,30 +42,28 @@ export const usePostVehicleCreateMy = () => {
           ? 0
           : Number(
               state.vehicle_information.capacity.passenger_seats.form
-                .available_seat
+                .available_seat.selected.id
             ),
         smoke_allowed: !state.vehicle_information.trip.form.smoking.selected
           ? false
-          : Boolean(state.vehicle_information.trip.form.smoking.selected.id),
+          : state.vehicle_information.trip.form.smoking.selected.id === "true",
         pet_allowed: !state.vehicle_information.trip.form.pet.selected
           ? false
-          : Boolean(state.vehicle_information.trip.form.pet.selected.id),
+          : state.vehicle_information.trip.form.pet.selected.id === "true",
         music_availability: !state.vehicle_information.trip.form.music.selected
           ? false
-          : Boolean(state.vehicle_information.trip.form.music.selected.id),
+          : state.vehicle_information.trip.form.music.selected.id === "true",
         childseat_availability: !state.vehicle_information.capacity
           .passenger_seats.form.available_child_seat.selected
           ? false
-          : Boolean(
-              state.vehicle_information.capacity.passenger_seats.form
-                .available_child_seat.selected.id
-            ),
+          : state.vehicle_information.capacity.passenger_seats.form
+              .available_child_seat.selected.id === "true",
         numb_of_childseats: !state.vehicle_information.capacity.passenger_seats
           .form.available_car_seat.selected
           ? 0
           : Number(
               state.vehicle_information.capacity.passenger_seats.form
-                .available_car_seat
+                .available_car_seat.selected.id
             ),
         numb_of_luggages: !state.vehicle_information.capacity.luggage.form
           .luggage.selected?.id
@@ -77,7 +75,7 @@ export const usePostVehicleCreateMy = () => {
         size_of_luggages:
           state.vehicle_information.capacity.luggage.form.luggage_size.selected
             ?.id ?? "",
-        image: state.vehicle_information.pictures.files,
+        "image[]": state.vehicle_information.pictures.files,
       };
       const formData = new FormData();
 

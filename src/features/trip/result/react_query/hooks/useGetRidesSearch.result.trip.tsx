@@ -46,28 +46,29 @@ export const useGetRideSearch = () => {
       "filter[luggage_allowed]": !state.advanced_filter.luggage.selected.length
         ? undefined
         : state.advanced_filter.luggage.selected.length === 1
-        ? Boolean(state.advanced_filter.luggage.selected[0].id ?? "false")
+        ? state.advanced_filter.luggage.selected[0].id === "true"
         : undefined,
-      "filter[music_availability]": !state.advanced_filter.music.selected.length
+      music_availability: !state.advanced_filter.music.selected.length
         ? undefined
         : state.advanced_filter.music.selected.length === 1
-        ? Boolean(state.advanced_filter.music.selected[0].id ?? "false")
+        ? state.advanced_filter.music.selected[0].id === "true"
         : undefined,
-      "filter[smoke_allowed]": !state.advanced_filter.smoker.selected.length
+      smoke_allowed: !state.advanced_filter.smoker.selected.length
         ? undefined
         : state.advanced_filter.smoker.selected.length === 1
-        ? Boolean(state.advanced_filter.smoker.selected[0].id ?? "false")
+        ? state.advanced_filter.smoker.selected[0].id === "true"
         : undefined,
-      "filter[pet_allowed]": !state.advanced_filter.pets.selected.length
+      pet_allowed: !state.advanced_filter.pets.selected.length
         ? undefined
         : state.advanced_filter.pets.selected.length === 1
-        ? Boolean(state.advanced_filter.pets.selected[0].id ?? "false")
+        ? state.advanced_filter.pets.selected[0].id === "true"
         : undefined,
       sort: !state.advanced_filter.sort.selected?.id
         ? "-base_price"
         : state.advanced_filter.sort.selected.id,
     },
   };
+
   const query = useQuery<
     GetRidesSearchSuccessResponseInterface,
     GetRidesSearchErrorResponseInterface
