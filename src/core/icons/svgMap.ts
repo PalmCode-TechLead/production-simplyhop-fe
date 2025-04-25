@@ -34,6 +34,7 @@ import {
   CheckCircle2,
   AlertTriangle,
   Copyright,
+  Cigarette,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -88,6 +89,7 @@ export const svgMap = {
   CheckCircle2,
   AlertTriangle,
   Copyright,
+  Cigarette,
   Facebook,
   Google,
   Whatsapp,

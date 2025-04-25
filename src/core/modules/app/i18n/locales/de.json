@@ -430,11 +430,11 @@
           "allowed": {
             "id": "allowed_smoking",
             "icon": {
-              "name": "CigaretteOff",
+              "name": "Cigarette",
               "color": "#727272"
             },
             "name": {
-              "label": "Nichtraucher",
+              "label": "Raucher",
               "color": "#727272"
             }
           },
