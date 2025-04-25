@@ -1,3 +1,4 @@
+'use client'
 import * as React from "react";
 import clsx from "clsx";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";

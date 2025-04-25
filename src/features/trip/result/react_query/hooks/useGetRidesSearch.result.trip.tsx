@@ -279,11 +279,9 @@ export const useGetRideSearch = () => {
               routes: {
                 departure: {
                   place: !item.start_name ? "-" : item.start_name,
-                  time: !item.ride_times.length
-                    ? "-"
-                    : dayjs(item.ride_times[0].departure_time).format(
-                        "HH.mm [Uhr]"
-                      ),
+                  time: dayjs(item.ride_time.departure_time).format(
+                    "HH.mm [Uhr]"
+                  ),
                 },
                 travelTime: {
                   time: !item.eta ? "-" : setDurationTime(item.eta),
@@ -293,7 +291,7 @@ export const useGetRideSearch = () => {
                   time: !item.eta
                     ? "-"
                     : `${setArrivalTime(
-                        dayjs(item.ride_times[0].departure_time).format(
+                        dayjs(item.ride_time.departure_time).format(
                           "HH:mm"
                         ),
                         item.eta

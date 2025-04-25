@@ -58,7 +58,7 @@ export interface GetRidesSearchSuccessResponseInterface {
     updated_at: string; // "2025-04-21T07:24:52.000000Z";
     distance_to_start_point: number; //  1.2778371921134954;
     distance_to_destination_point: number; // 3.0995911664307627;
-    ride_times: RideTime[];
+    ride_time: RideTime;
     vehicle: Vehicle;
     user: User;
   }[];
