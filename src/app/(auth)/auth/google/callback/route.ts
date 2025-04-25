@@ -34,10 +34,8 @@ export async function GET(req: NextRequest) {
         status: 200,
       }
     );
-  } catch {
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+  } catch (err) {
+    console.log("ini error", err);
+    return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }
