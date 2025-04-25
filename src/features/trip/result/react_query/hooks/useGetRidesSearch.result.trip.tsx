@@ -22,6 +22,8 @@ export const useGetRideSearch = () => {
   const { state, dispatch } = React.useContext(ResultTripContext);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
+  const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
 
   const fullPath = `${pathname}?${searchParams.toString()}`;
   const payload: GetRidesSearchPayloadRequestInterface = {
@@ -38,10 +40,9 @@ export const useGetRideSearch = () => {
       destination_long: 11.5819804,
       include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
       sort: "-base_price",
-      "filter[rideTimes.available_seats]": !state.advanced_filter.seat.selected
-        .length
-        ? undefined
-        : state.advanced_filter.seat.selected.map((item) => item.id).toString(),
+      "filter[rideTimes.available_seats]": String(
+        Number(String(adult ?? "0")) + Number(String(children ?? "0"))
+      ),
       "filter[numb_of_luggages]": !state.advanced_filter.luggage.selected.length
         ? undefined
         : state.advanced_filter.luggage.selected
@@ -291,9 +292,7 @@ export const useGetRideSearch = () => {
                   time: !item.eta
                     ? "-"
                     : `${setArrivalTime(
-                        dayjs(item.ride_time.departure_time).format(
-                          "HH:mm"
-                        ),
+                        dayjs(item.ride_time.departure_time).format("HH:mm"),
                         item.eta
                       )} Uhr`,
                 },

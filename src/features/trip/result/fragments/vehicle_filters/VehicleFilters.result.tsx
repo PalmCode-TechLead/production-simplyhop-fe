@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
@@ -36,23 +36,6 @@ export const VehicleFilters = () => {
       ? data.filter((item) => item.id !== value.id)
       : [...data, value];
     return result;
-  };
-
-  const handleSelectSeat = (data: { id: string; name: string }) => {
-    const selected = setMultipleCheckboxPayload(
-      state.vehicle_filters.seat.selected,
-      data
-    );
-    dispatch({
-      type: ResultTripActionEnum.SetVehicleFiltersData,
-      payload: {
-        ...state.vehicle_filters,
-        seat: {
-          ...state.vehicle_filters.seat,
-          selected: selected,
-        },
-      },
-    });
   };
 
   const handleSelectLuggage = (data: { id: string; name: string }) => {
@@ -128,10 +111,6 @@ export const VehicleFilters = () => {
       type: ResultTripActionEnum.SetVehicleFiltersData,
       payload: {
         ...state.vehicle_filters,
-        seat: {
-          ...state.vehicle_filters.seat,
-          selected: [],
-        },
         luggage: {
           ...state.vehicle_filters.luggage,
           selected: [],
@@ -164,10 +143,6 @@ export const VehicleFilters = () => {
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
-        seat: {
-          ...state.advanced_filter.seat,
-          selected: state.vehicle_filters.seat.selected,
-        },
         luggage: {
           ...state.advanced_filter.luggage,
           selected: state.vehicle_filters.luggage.selected,
@@ -251,17 +226,6 @@ export const VehicleFilters = () => {
             "overflow-auto"
           )}
         >
-          <VehicleFilterList
-            {...dictionaries.vehicle_filters.seat}
-            items={Array.from({ length: 6 }, (_, i) => String(i + 1)).map(
-              (item) => {
-                return { id: item, name: item };
-              }
-            )}
-            selected={state.vehicle_filters.seat.selected}
-            onSelect={handleSelectSeat}
-          />
-          <Divider />
           <VehicleFilterList
             {...dictionaries.vehicle_filters.luggage}
             items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(

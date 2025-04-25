@@ -58,9 +58,6 @@ export interface ResultTripFilters {
 
 export interface ResultTripVehicleFilters {
   is_open: boolean;
-  seat: {
-    selected: { id: string; name: string }[];
-  };
   luggage: {
     selected: { id: string; name: string }[];
   };
@@ -79,9 +76,6 @@ export interface ResultTripVehicleFilters {
 }
 
 export interface ResultTripAdvancedFilter {
-  seat: {
-    selected: { id: string; name: string }[];
-  };
   luggage: {
     selected: { id: string; name: string }[];
   };

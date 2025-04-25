@@ -24,23 +24,6 @@ export const VehicleFilterResulTrip = () => {
     return result;
   };
 
-  const handleSelectSeat = (data: { id: string; name: string }) => {
-    const selected = setMultipleCheckboxPayload(
-      state.advanced_filter.seat.selected,
-      data
-    );
-    dispatch({
-      type: ResultTripActionEnum.SetAdvancedFilterData,
-      payload: {
-        ...state.advanced_filter,
-        seat: {
-          ...state.advanced_filter.seat,
-          selected: selected,
-        },
-      },
-    });
-  };
-
   const handleSelectLuggage = (data: { id: string; name: string }) => {
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.luggage.selected,
@@ -156,16 +139,6 @@ export const VehicleFilterResulTrip = () => {
             "w-full"
           )}
         >
-          <CarFacilityFilterDropdown
-            {...dictionaries.advanced_filter.seat}
-            items={Array.from({ length: 6 }, (_, i) => String(i + 1)).map(
-              (item) => {
-                return { id: item, name: item };
-              }
-            )}
-            selected={state.advanced_filter.seat.selected}
-            onSelect={handleSelectSeat}
-          />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.luggage}
             items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
