@@ -19,6 +19,7 @@ export interface Vehicle {
   created_at: string; //"2025-04-21T14:33:00.000000Z";
   updated_at: string; //"2025-04-21T14:33:00.000000Z";
   image: string[];
+  can_share_ride: number;
   media?: VehicleMedia[];
   brand?: VehicleBrand;
   category?: VehicleCategory;
