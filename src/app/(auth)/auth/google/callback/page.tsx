@@ -9,7 +9,7 @@ export default function AuthCallbackPage() {
 
   useEffect(() => {
     const code = searchParams.get("code");
-    const state = searchParams.get("state"); // kalau mau pake
+    // const state = searchParams.get("state"); // kalau mau pake
     const oauthError = searchParams.get("error");
 
     if (oauthError) {
