@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 export interface RideBadgeProps {
   id?: string;
-  variant?: "danger" | "success";
+  variant?: "danger" | "success" | "info";
   label?: string;
 }
 
@@ -20,13 +20,25 @@ export const RideBadge = ({
         "px-[0.25rem] py-[0.25rem]",
         "border",
         "rounded-[0.375rem]",
-        variant === "success" ? "border-[#2F8C16]" : "border-[#C53D8A]",
-        variant === "success" ? "bg-[#F0FFEC]" : "bg-[#FFECFB]"
+        variant === "info"
+          ? "border-[#1E90FF]"
+          : variant === "success"
+          ? "border-[#2F8C16]"
+          : "border-[#C53D8A]",
+        variant === "info"
+          ? "bg-[#D9F4FF]"
+          : variant === "success"
+          ? "bg-[#F0FFEC]"
+          : "bg-[#FFECFB]"
       )}
     >
       <span
         className={clsx(
-          variant === "success" ? "text-[#2F8C16]" : "text-[#C53D8A]",
+          variant === "info"
+            ? "text-[#1E90FF]"
+            : variant === "success"
+            ? "text-[#2F8C16]"
+            : "text-[#C53D8A]",
           "text-[0.75rem] font-medium"
         )}
       >
