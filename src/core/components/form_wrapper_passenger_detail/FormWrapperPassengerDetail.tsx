@@ -1,5 +1,5 @@
 "use client";
-import React, { forwardRef } from "react";
+import React from "react";
 import clsx from "clsx";
 
 export const FormWrapperPassengerDetail = (
@@ -13,7 +13,8 @@ export const FormWrapperPassengerDetail = (
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   const updatePosition = React.useCallback(() => {
-    const dropdownPosition = dropdownRef.current?.getBoundingClientRect().top ?? 0;
+    const dropdownPosition =
+      dropdownRef.current?.getBoundingClientRect().top ?? 0;
     const viewportHeight = window.innerHeight;
 
     if (dropdownPosition < viewportHeight / 2) {

@@ -99,7 +99,7 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
               .inputProps,
           }}
           selected={state.vehicle_information.trip.form.smoking.selected}
-          items={globalDictionaries.car.facility.seat.smoking.type.options.items}
+          items={globalDictionaries.vehicle.smoking.type.options.items}
           onSelect={handleSelectSmoking}
         />
         <Dropdownfield
@@ -112,7 +112,7 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
               .inputProps,
           }}
           selected={state.vehicle_information.trip.form.music.selected}
-          items={globalDictionaries.car.facility.seat.music.type.options.items}
+          items={globalDictionaries.vehicle.music.type.options.items}
           onSelect={handleSelectMusic}
         />
         <Dropdownfield
@@ -123,7 +123,7 @@ export const TripVehicleInformationFormRegistrationProfile = () => {
             ...dictionaries.vehicle_information.trip.form.input.pet.inputProps,
           }}
           selected={state.vehicle_information.trip.form.pet.selected}
-          items={globalDictionaries.car.facility.seat.pets.type.options.items}
+          items={globalDictionaries.vehicle.pets.type.options.items}
           onSelect={handleSelectPet}
         />
       </div>

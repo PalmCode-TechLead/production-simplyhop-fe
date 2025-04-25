@@ -59,7 +59,7 @@ export const DatePicker = ({
   }, [isOpen, updatePosition]);
 
   useOnClickOutside(ref as any, () => {
-    setIsOpen((_) => false);
+    setIsOpen(false);
     setIsDayShow(false);
     setIsMonthShow(false);
     setIsYearShow(false);

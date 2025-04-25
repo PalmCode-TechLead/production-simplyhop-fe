@@ -2,7 +2,6 @@
 import * as React from "react";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
-import dayjs from "dayjs";
 import {
   checkIsBefore,
   checkIsToday,

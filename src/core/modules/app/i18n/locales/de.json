@@ -335,196 +335,194 @@
       }
     }
   },
-  "car": {
-    "facility": {
-      "seat": {
-        "child": {
-          "options": [
+  "vehicle": {
+    "seat": {
+      "child": {
+        "options": [
+          {
+            "id": "true",
+            "name": "True"
+          },
+          {
+            "id": "false",
+            "name": "False"
+          }
+        ]
+      },
+      "available": {
+        "id": "available_seat",
+        "icon": {
+          "name": "User",
+          "color": "#727272"
+        },
+        "name": {
+          "label": "{{number}} Sitzplätze verfügbar",
+          "color": "#727272"
+        }
+      },
+      "empty": {
+        "id": "empty_seat",
+        "icon": {
+          "name": "SeatUnavailable",
+          "color": "#D41010"
+        },
+        "name": {
+          "label": "Letzter Platz für deine Buchung",
+          "color": "#D41010"
+        }
+      }
+    },
+    "luggage": {
+      "type": {
+        "options": [
+          {
+            "id": "small",
+            "name": "Small"
+          },
+          {
+            "id": "medium",
+            "name": "Medium"
+          },
+          {
+            "id": "large",
+            "name": "Large"
+          }
+        ]
+      },
+      "available": {
+        "id": "available_luggage",
+        "icon": {
+          "name": "Briefcase",
+          "color": "#727272"
+        },
+        "name": {
+          "label": "Gepäck erlaubt",
+          "color": "#727272"
+        }
+      },
+      "empty": {
+        "id": "empty_luggage",
+        "icon": {
+          "name": "LuggageUnavailable",
+          "color": "#D41010"
+        },
+        "name": {
+          "label": "Kein Gepäck erlaubt",
+          "color": "#D41010"
+        }
+      }
+    },
+    "smoking": {
+      "type": {
+        "options": {
+          "items": [
             {
               "id": "true",
-              "name": "True"
+              "name": "Rauchen erlaubt"
             },
             {
               "id": "false",
-              "name": "False"
+              "name": "Nichtrauchter"
             }
           ]
+        }
+      },
+      "allowed": {
+        "id": "allowed_smoking",
+        "icon": {
+          "name": "Cigarette",
+          "color": "#727272"
         },
-        "available": {
-          "id": "available_seat",
-          "icon": {
-            "name": "User",
-            "color": "#727272"
-          },
-          "name": {
-            "label": "{{number}} Sitzplätze verfügbar",
-            "color": "#727272"
-          }
+        "name": {
+          "label": "Raucher",
+          "color": "#727272"
+        }
+      },
+      "prohibited": {
+        "id": "prohibited_smoking",
+        "icon": {
+          "name": "CigaretteOff",
+          "color": "#D41010"
         },
-        "empty": {
-          "id": "empty_seat",
-          "icon": {
-            "name": "SeatUnavailable",
-            "color": "#D41010"
-          },
-          "name": {
-            "label": "Letzter Platz für deine Buchung",
-            "color": "#D41010"
-          }
+        "name": {
+          "label": "Nichtraucher",
+          "color": "#D41010"
+        }
+      }
+    },
+    "music": {
+      "type": {
+        "options": {
+          "items": [
+            {
+              "id": "true",
+              "name": "Fahrt mit Musik"
+            },
+            {
+              "id": "false",
+              "name": "Fahrten ohne Musik"
+            }
+          ]
+        }
+      },
+      "allowed": {
+        "id": "allowed_music",
+        "icon": {
+          "name": "Music",
+          "color": "#727272"
         },
-        "luggage": {
-          "type": {
-            "options": [
-              {
-                "id": "small",
-                "name": "Small"
-              },
-              {
-                "id": "medium",
-                "name": "Medium"
-              },
-              {
-                "id": "large",
-                "name": "Large"
-              }
-            ]
-          },
-          "available": {
-            "id": "available_luggage",
-            "icon": {
-              "name": "Briefcase",
-              "color": "#727272"
-            },
-            "name": {
-              "label": "{{number}} mittelgroße Gepäckstücke erlaubt",
-              "color": "#727272"
-            }
-          },
-          "empty": {
-            "id": "empty_luggage",
-            "icon": {
-              "name": "LuggageUnavailable",
-              "color": "#D41010"
-            },
-            "name": {
-              "label": "Kein Gepäck erlaubt",
-              "color": "#D41010"
-            }
-          }
+        "name": {
+          "label": "Musik erlaubt",
+          "color": "#727272"
+        }
+      },
+      "prohibited": {
+        "id": "prohibited_music",
+        "icon": {
+          "name": "MusicOff",
+          "color": "#D41010"
         },
-        "smoking": {
-          "type": {
-            "options": {
-              "items": [
-                {
-                  "id": "true",
-                  "name": "Rauchen erlaubt"
-                },
-                {
-                  "id": "false",
-                  "name": "Nichtrauchter"
-                }
-              ]
-            }
-          },
-          "allowed": {
-            "id": "allowed_smoking",
-            "icon": {
-              "name": "Cigarette",
-              "color": "#727272"
+        "name": {
+          "label": "Musik nicht erlaubt",
+          "color": "#D41010"
+        }
+      }
+    },
+    "pets": {
+      "type": {
+        "options": {
+          "items": [
+            {
+              "id": "true",
+              "name": "Haustier Erlaubt"
             },
-            "name": {
-              "label": "Raucher",
-              "color": "#727272"
+            {
+              "id": "false",
+              "name": "Haustiere nicht erlaubt"
             }
-          },
-          "prohibited": {
-            "id": "prohibited_smoking",
-            "icon": {
-              "name": "CigaretteOff",
-              "color": "#D41010"
-            },
-            "name": {
-              "label": "Nichtraucher",
-              "color": "#D41010"
-            }
-          }
+          ]
+        }
+      },
+      "allowed": {
+        "id": "allowed-pets",
+        "icon": {
+          "name": "Dog",
+          "color": "#727272"
         },
-        "music": {
-          "type": {
-            "options": {
-              "items": [
-                {
-                  "id": "true",
-                  "name": "Fahrt mit Musik"
-                },
-                {
-                  "id": "false",
-                  "name": "Fahrten ohne Musik"
-                }
-              ]
-            }
-          },
-          "allowed": {
-            "id": "allowed_music",
-            "icon": {
-              "name": "Music",
-              "color": "#727272"
-            },
-            "name": {
-              "label": "Musik erlaubt",
-              "color": "#727272"
-            }
-          },
-          "prohibited": {
-            "id": "prohibited_music",
-            "icon": {
-              "name": "MusicOff",
-              "color": "#D41010"
-            },
-            "name": {
-              "label": "Musik nicht erlaubt",
-              "color": "#D41010"
-            }
-          }
+        "name": {
+          "label": "Haustiere erlaubt",
+          "color": "#727272"
+        }
+      },
+      "prohibited": {
+        "id": "prohibited_pets",
+        "icon": {
+          "name": "NoPets",
+          "color": "#D41010"
         },
-        "pets": {
-          "type": {
-            "options": {
-              "items": [
-                {
-                  "id": "true",
-                  "name": "Haustier Erlaubt"
-                },
-                {
-                  "id": "false",
-                  "name": "Haustiere nicht erlaubt"
-                }
-              ]
-            }
-          },
-          "allowed": {
-            "id": "allowed-pets",
-            "icon": {
-              "name": "Dog",
-              "color": "#727272"
-            },
-            "name": {
-              "label": "Haustiere erlaubt",
-              "color": "#727272"
-            }
-          },
-          "prohibited": {
-            "id": "prohibited_pets",
-            "icon": {
-              "name": "NoPets",
-              "color": "#D41010"
-            },
-            "name": {
-              "label": "Haustiere nicht erlaubt",
-              "color": "#D41010"
-            }
-          }
+        "name": {
+          "label": "Haustiere nicht erlaubt",
+          "color": "#D41010"
         }
       }
     }

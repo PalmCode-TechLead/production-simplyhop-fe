@@ -240,7 +240,7 @@ export const VehicleFilters = () => {
           <VehicleFilterList
             {...dictionaries.vehicle_filters.smoker}
             items={
-              globalDictionaries.car.facility.seat.smoking.type.options.items
+              globalDictionaries.vehicle.smoking.type.options.items
             }
             selected={state.vehicle_filters.smoker.selected}
             onSelect={handleSelectSmoker}
@@ -249,7 +249,7 @@ export const VehicleFilters = () => {
           <VehicleFilterList
             {...dictionaries.vehicle_filters.music}
             items={
-              globalDictionaries.car.facility.seat.music.type.options.items
+              globalDictionaries.vehicle.music.type.options.items
             }
             selected={state.vehicle_filters.music.selected}
             onSelect={handleSelectMusic}
@@ -257,7 +257,7 @@ export const VehicleFilters = () => {
           <Divider />
           <VehicleFilterList
             {...dictionaries.vehicle_filters.pets}
-            items={globalDictionaries.car.facility.seat.pets.type.options.items}
+            items={globalDictionaries.vehicle.pets.type.options.items}
             selected={state.vehicle_filters.pets.selected}
             onSelect={handleSelectPets}
           />

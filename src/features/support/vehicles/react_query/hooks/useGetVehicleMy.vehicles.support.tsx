@@ -64,18 +64,18 @@ export const useGetVehicleMy = () => {
                     ...(!!item.numb_free_seats
                       ? [
                           {
-                            ...globalDictionaries.car.facility.seat.available,
+                            ...globalDictionaries.vehicle.seat.available,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.available
+                              ...globalDictionaries.vehicle.seat.available
                                 .icon,
-                              name: globalDictionaries.car.facility.seat
+                              name: globalDictionaries.vehicle.seat
                                 .available.icon.name as SVGIconProps["name"],
                             },
                             name: {
-                              ...globalDictionaries.car.facility.seat.available
+                              ...globalDictionaries.vehicle.seat.available
                                 .name,
                               label:
-                                globalDictionaries.car.facility.seat.available.name.label.replaceAll(
+                                globalDictionaries.vehicle.seat.available.name.label.replaceAll(
                                   "{{number}}",
                                   item.numb_free_seats.toLocaleString("de-DE")
                                 ),
@@ -84,11 +84,11 @@ export const useGetVehicleMy = () => {
                         ]
                       : [
                           {
-                            ...globalDictionaries.car.facility.seat.empty,
+                            ...globalDictionaries.vehicle.seat.empty,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.empty
+                              ...globalDictionaries.vehicle.seat.empty
                                 .icon,
-                              name: globalDictionaries.car.facility.seat.empty
+                              name: globalDictionaries.vehicle.seat.empty
                                 .icon.name as SVGIconProps["name"],
                             },
                           },
@@ -96,19 +96,19 @@ export const useGetVehicleMy = () => {
                     ...(!!item.numb_of_luggages
                       ? [
                           {
-                            ...globalDictionaries.car.facility.seat.luggage
+                            ...globalDictionaries.vehicle.luggage
                               .available,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.luggage
+                              ...globalDictionaries.vehicle.luggage
                                 .available.icon,
-                              name: globalDictionaries.car.facility.seat.luggage
+                              name: globalDictionaries.vehicle.luggage
                                 .available.icon.name as SVGIconProps["name"],
                             },
                             name: {
-                              ...globalDictionaries.car.facility.seat.luggage
+                              ...globalDictionaries.vehicle.luggage
                                 .available.name,
                               label:
-                                globalDictionaries.car.facility.seat.luggage.available.name.label.replaceAll(
+                                globalDictionaries.vehicle.luggage.available.name.label.replaceAll(
                                   "{{number}}",
                                   item.numb_free_seats.toLocaleString("de-DE")
                                 ),
@@ -117,12 +117,12 @@ export const useGetVehicleMy = () => {
                         ]
                       : [
                           {
-                            ...globalDictionaries.car.facility.seat.luggage
+                            ...globalDictionaries.vehicle.luggage
                               .empty,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.luggage
+                              ...globalDictionaries.vehicle.luggage
                                 .empty.icon,
-                              name: globalDictionaries.car.facility.seat.luggage
+                              name: globalDictionaries.vehicle.luggage
                                 .empty.icon.name as SVGIconProps["name"],
                             },
                           },
@@ -133,24 +133,24 @@ export const useGetVehicleMy = () => {
                     ...(!!item.smoke_allowed
                       ? [
                           {
-                            ...globalDictionaries.car.facility.seat.smoking
+                            ...globalDictionaries.vehicle.smoking
                               .allowed,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.smoking
+                              ...globalDictionaries.vehicle.smoking
                                 .allowed.icon,
-                              name: globalDictionaries.car.facility.seat.smoking
+                              name: globalDictionaries.vehicle.smoking
                                 .allowed.icon.name as SVGIconProps["name"],
                             },
                           },
                         ]
                       : [
                           {
-                            ...globalDictionaries.car.facility.seat.smoking
+                            ...globalDictionaries.vehicle.smoking
                               .prohibited,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.smoking
+                              ...globalDictionaries.vehicle.smoking
                                 .prohibited.icon,
-                              name: globalDictionaries.car.facility.seat.smoking
+                              name: globalDictionaries.vehicle.smoking
                                 .prohibited.icon.name as SVGIconProps["name"],
                             },
                           },
@@ -160,24 +160,24 @@ export const useGetVehicleMy = () => {
                     ...(!!item.music_availability
                       ? [
                           {
-                            ...globalDictionaries.car.facility.seat.music
+                            ...globalDictionaries.vehicle.music
                               .allowed,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.music
+                              ...globalDictionaries.vehicle.music
                                 .allowed.icon,
-                              name: globalDictionaries.car.facility.seat.music
+                              name: globalDictionaries.vehicle.music
                                 .allowed.icon.name as SVGIconProps["name"],
                             },
                           },
                         ]
                       : [
                           {
-                            ...globalDictionaries.car.facility.seat.music
+                            ...globalDictionaries.vehicle.music
                               .prohibited,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.music
+                              ...globalDictionaries.vehicle.music
                                 .prohibited.icon,
-                              name: globalDictionaries.car.facility.seat.music
+                              name: globalDictionaries.vehicle.music
                                 .prohibited.icon.name as SVGIconProps["name"],
                             },
                           },
@@ -187,24 +187,24 @@ export const useGetVehicleMy = () => {
                     ...(!!item.pet_allowed
                       ? [
                           {
-                            ...globalDictionaries.car.facility.seat.pets
+                            ...globalDictionaries.vehicle.pets
                               .allowed,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.pets
+                              ...globalDictionaries.vehicle.pets
                                 .allowed.icon,
-                              name: globalDictionaries.car.facility.seat.pets
+                              name: globalDictionaries.vehicle.pets
                                 .allowed.icon.name as SVGIconProps["name"],
                             },
                           },
                         ]
                       : [
                           {
-                            ...globalDictionaries.car.facility.seat.pets
+                            ...globalDictionaries.vehicle.pets
                               .prohibited,
                             icon: {
-                              ...globalDictionaries.car.facility.seat.pets
+                              ...globalDictionaries.vehicle.pets
                                 .prohibited.icon,
-                              name: globalDictionaries.car.facility.seat.pets
+                              name: globalDictionaries.vehicle.pets
                                 .prohibited.icon.name as SVGIconProps["name"],
                             },
                           },

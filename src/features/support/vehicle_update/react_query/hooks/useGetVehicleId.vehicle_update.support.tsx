@@ -108,7 +108,7 @@ export const useGetVehicleId = () => {
                   ...state.vehicle_information.capacity.passenger_seats.form
                     .available_child_seat,
                   selected:
-                    globalDictionaries.car.facility.seat.child.options.find(
+                    globalDictionaries.vehicle.seat.child.options.find(
                       (item) =>
                         item.id === String(data.data.childseat_availability)
                     ) ?? null,
@@ -148,7 +148,7 @@ export const useGetVehicleId = () => {
                   ...state.vehicle_information.capacity.luggage.form
                     .luggage_size,
                   selected:
-                    globalDictionaries.car.facility.seat.luggage.type.options.find(
+                    globalDictionaries.vehicle.luggage.type.options.find(
                       (item) => item.id === String(data.data.size_of_luggages)
                     ) ?? null,
                   // selected: null,
@@ -164,7 +164,7 @@ export const useGetVehicleId = () => {
               smoking: {
                 ...state.vehicle_information.trip.form.smoking,
                 selected:
-                  globalDictionaries.car.facility.seat.smoking.type.options.items.find(
+                  globalDictionaries.vehicle.smoking.type.options.items.find(
                     (item) => item.id === String(data.data.smoke_allowed)
                   ) ?? null,
                 // selected: null,
@@ -173,7 +173,7 @@ export const useGetVehicleId = () => {
               music: {
                 ...state.vehicle_information.trip.form.music,
                 selected:
-                  globalDictionaries.car.facility.seat.music.type.options.items.find(
+                  globalDictionaries.vehicle.music.type.options.items.find(
                     (item) => item.id === String(data.data.music_availability)
                   ) ?? null,
                 // selected: null,
@@ -182,7 +182,7 @@ export const useGetVehicleId = () => {
               pet: {
                 ...state.vehicle_information.trip.form.pet,
                 selected:
-                  globalDictionaries.car.facility.seat.pets.type.options.items.find(
+                  globalDictionaries.vehicle.pets.type.options.items.find(
                     (item) => item.id === String(data.data.pet_allowed)
                   ) ?? null,
                 // selected: null,

@@ -151,23 +151,19 @@ export const VehicleFilterResulTrip = () => {
           />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.smoker}
-            items={
-              globalDictionaries.car.facility.seat.smoking.type.options.items
-            }
+            items={globalDictionaries.vehicle.smoking.type.options.items}
             selected={state.advanced_filter.smoker.selected}
             onSelect={handleSelectSmoker}
           />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.music}
-            items={
-              globalDictionaries.car.facility.seat.music.type.options.items
-            }
+            items={globalDictionaries.vehicle.music.type.options.items}
             selected={state.advanced_filter.music.selected}
             onSelect={handleSelectMusic}
           />
           <CarFacilityFilterDropdown
             {...dictionaries.advanced_filter.pets}
-            items={globalDictionaries.car.facility.seat.pets.type.options.items}
+            items={globalDictionaries.vehicle.pets.type.options.items}
             selected={state.advanced_filter.pets.selected}
             onSelect={handleSelectPets}
           />

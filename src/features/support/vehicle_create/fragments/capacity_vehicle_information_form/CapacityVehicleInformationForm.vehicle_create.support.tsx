@@ -206,7 +206,7 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
                 state.vehicle_information.capacity.passenger_seats.form
                   .available_child_seat.selected
               }
-              items={globalDictionaries.car.facility.seat.child.options}
+              items={globalDictionaries.vehicle.seat.child.options}
               onSelect={handleSelectAvailableChildSeat}
             />
             <Dropdownfield
@@ -283,7 +283,7 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
               state.vehicle_information.capacity.luggage.form.luggage_size
                 .selected
             }
-            items={globalDictionaries.car.facility.seat.luggage.type.options}
+            items={globalDictionaries.vehicle.luggage.type.options}
             onSelect={handleSelectLuggageSize}
           />
         </div>
