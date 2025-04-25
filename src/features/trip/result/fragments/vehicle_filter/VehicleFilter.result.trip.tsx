@@ -13,6 +13,22 @@ export const VehicleFilterResulTrip = () => {
   const { state, dispatch } = React.useContext(ResultTripContext);
   const globalDictionaries = getGlobalDictionaries();
 
+  React.useEffect(() => {
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        sort: {
+          ...state.advanced_filter.sort,
+          selected:
+            dictionaries.advanced_filter.sort.option.items.find(
+              (item) => item.id === "-base_price"
+            ) ?? null,
+        },
+      },
+    });
+  }, [dictionaries.advanced_filter.sort.option.items]);
+
   const setMultipleCheckboxPayload = (
     data: { id: string; name: string }[],
     value: { id: string; name: string }
@@ -173,6 +189,7 @@ export const VehicleFilterResulTrip = () => {
       {/* sort */}
       <CarSortDropdown
         {...dictionaries.advanced_filter.sort}
+        items={dictionaries.advanced_filter.sort.option.items}
         selected={state.advanced_filter.sort.selected}
         onSelect={handleSelectSort}
       />

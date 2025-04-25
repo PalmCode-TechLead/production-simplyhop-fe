@@ -167,7 +167,7 @@ export const DatePicker = ({
             className={clsx(
               "absolute",
               position === "below" ? "top-[4rem]" : "top-[-300px]",
-              "z-10",
+              "!z-[30]",
               "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
               "w-full max-w-[306px]",
               "rounded-[0.25rem]",

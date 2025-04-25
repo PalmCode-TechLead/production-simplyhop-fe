@@ -139,7 +139,27 @@
       "label": "Tiere"
     },
     "sort": {
-      "label": "Sortieren"
+      "label": "Sortieren",
+      "option": {
+        "items": [
+          {
+            "id": "-created_at",
+            "name": "Neueste zuerst"
+          },
+          {
+            "id": "created_at",
+            "name": "Älteste zuerst"
+          },
+          {
+            "id": "base_price",
+            "name": "Preis aufsteigend"
+          },
+          {
+            "id": "-base_price",
+            "name": "Preis absteigend"
+          }
+        ]
+      }
     }
   },
   "ride": {
