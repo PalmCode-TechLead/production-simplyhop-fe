@@ -72,6 +72,19 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
+  const handleResetLuggage = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        luggage: {
+          ...state.advanced_filter.luggage,
+          selected: [],
+        },
+      },
+    });
+  };
+
   const handleSelectSmoker = (data: {
     id: string;
     name: string;
@@ -89,6 +102,19 @@ export const VehicleFilterResulTrip = () => {
         smoker: {
           ...state.advanced_filter.smoker,
           selected: selected,
+        },
+      },
+    });
+  };
+
+  const handleResetSmoker = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        smoker: {
+          ...state.advanced_filter.smoker,
+          selected: [],
         },
       },
     });
@@ -116,6 +142,19 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
+  const handleResetMusic = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        music: {
+          ...state.advanced_filter.music,
+          selected: [],
+        },
+      },
+    });
+  };
+
   const handleSelectPets = (data: {
     id: string;
     name: string;
@@ -133,6 +172,19 @@ export const VehicleFilterResulTrip = () => {
         pets: {
           ...state.advanced_filter.pets,
           selected: selected,
+        },
+      },
+    });
+  };
+
+  const handleResetPets = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetAdvancedFilterData,
+      payload: {
+        ...state.advanced_filter,
+        pets: {
+          ...state.advanced_filter.pets,
+          selected: [],
         },
       },
     });
@@ -161,6 +213,20 @@ export const VehicleFilterResulTrip = () => {
     });
   };
 
+  const totalFilterCount = React.useMemo(() => {
+    return (
+      state.advanced_filter.luggage.selected.length +
+      state.advanced_filter.smoker.selected.length +
+      state.advanced_filter.music.selected.length +
+      state.advanced_filter.pets.selected.length
+    );
+  }, [
+    state.advanced_filter.luggage.selected.length,
+    state.advanced_filter.smoker.selected.length,
+    state.advanced_filter.music.selected.length,
+    state.advanced_filter.pets.selected.length,
+  ]);
+
   return (
     <div
       className={clsx(
@@ -177,6 +243,7 @@ export const VehicleFilterResulTrip = () => {
       >
         <CarFacilityFilterCounterBadge
           {...dictionaries.advanced_filter.counter}
+          count={totalFilterCount}
           onClick={handleClickVehicleFilters}
         />
 
@@ -197,6 +264,7 @@ export const VehicleFilterResulTrip = () => {
                 type: dictionaries.advanced_filter.luggage.variant,
               })
             }
+            onReset={handleResetLuggage}
           />
           <CarFacilityFilterDropdown
             {...(dictionaries.advanced_filter
@@ -209,6 +277,7 @@ export const VehicleFilterResulTrip = () => {
                 type: dictionaries.advanced_filter.smoker.variant,
               })
             }
+            onReset={handleResetSmoker}
           />
           <CarFacilityFilterDropdown
             {...(dictionaries.advanced_filter
@@ -221,6 +290,7 @@ export const VehicleFilterResulTrip = () => {
                 type: dictionaries.advanced_filter.music.variant,
               })
             }
+            onReset={handleResetMusic}
           />
           <CarFacilityFilterDropdown
             {...(dictionaries.advanced_filter
@@ -233,6 +303,7 @@ export const VehicleFilterResulTrip = () => {
                 type: dictionaries.advanced_filter.pets.variant,
               })
             }
+            onReset={handleResetPets}
           />
         </div>
       </div>

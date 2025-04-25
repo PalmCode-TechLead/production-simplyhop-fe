@@ -10,6 +10,7 @@ export interface CarFacilityFilterDropdownProps {
   items?: { id: string; name: string }[];
   variant?: "multiple" | "single";
   onSelect?: (data: { id: string; name: string }) => void;
+  onReset?: () => void;
 }
 
 export const CarFacilityFilterDropdown = ({
@@ -18,6 +19,7 @@ export const CarFacilityFilterDropdown = ({
   items = [],
   variant = "multiple",
   onSelect = () => {},
+  onReset = () => {},
 }: CarFacilityFilterDropdownProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
@@ -35,22 +37,56 @@ export const CarFacilityFilterDropdown = ({
           "px-[0.5rem] py-[0.25rem]",
           "bg-[white]",
           "border",
-          isOpen ? "border-[#5AC53D]" : "border-[#E9E6E6]",
+          isOpen
+            ? "border-[#5AC53D]"
+            : !!selected.length
+            ? "border-[#5AC53D]"
+            : "border-[#E9E6E6]",
           "rounded-[1.25rem]",
           "text-[0.875rem] font-medium",
-          isOpen ? "text-[#5AC53D]" : "text-[#636262]",
+          isOpen
+            ? "text-[#5AC53D]"
+            : !!selected.length
+            ? "text-[#5AC53D]"
+            : "text-[#636262]",
           "cursor-pointer"
         )}
         onClick={handleClickDropdownButton}
       >
         {label}
+
         <SVGIcon
           name={isOpen ? "ChevronUp" : "ChevronDown"}
           className={clsx(
             "w-[1.25rem] h-[1.25rem]",
-            isOpen ? "text-[#5AC53D]" : "text-[#636262]"
+            isOpen
+              ? "text-[#5AC53D]"
+              : !!selected.length
+              ? "text-[#5AC53D]"
+              : "text-[#636262]"
           )}
         />
+        {!!selected.length && (
+          <div
+            className={clsx(
+              "flex items-center justify-center",
+              "bg-[#5AC53D]",
+              "w-[1.125rem] h-[1.125rem]",
+              "rounded-[50%]",
+              "cursor-pointer"
+            )}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onReset();
+            }}
+          >
+            <SVGIcon
+              name={"X"}
+              className={clsx("w-[0.875rem] h-[0.875rem]", "text-[white]")}
+            />
+          </div>
+        )}
       </button>
 
       {isOpen && (
@@ -74,6 +110,13 @@ export const CarFacilityFilterDropdown = ({
               "w-full"
             )}
           >
+            {/* <div className={clsx("flex items-center justify-start", "w-full")}>
+              <button
+                className={clsx("text-[#5AC53D] text-[0.875rem] font-semibold")}
+              >
+                {"Reset"}
+              </button>
+            </div> */}
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
