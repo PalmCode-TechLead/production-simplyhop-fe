@@ -20,7 +20,7 @@ const initialState: UserInitialStateType = {
     about_me: "",
     is_driver: false,
     gender: null,
-    is_able_to_ride: false,
+    is_able_to_ride: true,
   },
 };
 

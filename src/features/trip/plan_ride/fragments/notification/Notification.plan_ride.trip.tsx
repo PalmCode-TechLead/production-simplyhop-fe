@@ -9,6 +9,7 @@ import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { CopyLinkItem } from "@/core/components/copy_link_item";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
 
 export const NotificationPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -25,21 +26,23 @@ export const NotificationPlanRideTrip = () => {
     });
   };
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
         "h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
+      variant={isLg ? "modal" : "page_sheet"}
       open={isOpen}
       onClose={handleClose}
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-[100vh] lg:h-fit",
+          "px-[1rem] py-[1rem] lg:px-[2rem] lg:py-[2rem]"
         )}
       >
         <div
@@ -64,17 +67,12 @@ export const NotificationPlanRideTrip = () => {
         </div>
 
         <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          className={clsx(
+            "text-[2rem] lg:text-[1.5rem] text-[black] font-bold text-center"
+          )}
         >
           {dictionaries.notification.title}
         </h1>
-
-        <Link
-          className={clsx("w-full")}
-          href={dictionaries.notification.cta.back.href}
-        >
-          <Button>{dictionaries.notification.cta.back.children}</Button>
-        </Link>
 
         <div
           className={clsx(
@@ -109,11 +107,23 @@ export const NotificationPlanRideTrip = () => {
           link={
             isLg
               ? dictionaries.notification.share.example_link
-              : `${dictionaries.notification.share.example_link.slice(0, 15)}...`
+              : `${dictionaries.notification.share.example_link.slice(
+                  0,
+                  15
+                )}...`
           }
           cta={{ ...dictionaries.notification.share.cta }}
         />
+
+        <Link
+          className={clsx("w-full")}
+          href={dictionaries.notification.cta.back.href}
+        >
+          <Button variant="tertiary">
+            {dictionaries.notification.cta.back.children}
+          </Button>
+        </Link>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };

@@ -5,7 +5,7 @@ import { BadgePlanRideTrip } from "../fragments/badge";
 import { FilterPlanRideTrip } from "../fragments/filter";
 import { DetailPlanRideTrip } from "../fragments/detail";
 import { NotificationPlanRideTrip } from "../fragments/notification";
-import { IncompleteProfilePlaneRideTrip } from "../fragments/inncomplete_profile";
+import { IncompleteProfilePlaneRideTrip } from "../fragments/incomplete_profile";
 
 export const PlanRideTripContainer = () => {
   return (

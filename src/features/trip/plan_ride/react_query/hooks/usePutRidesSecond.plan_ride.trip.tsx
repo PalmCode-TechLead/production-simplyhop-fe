@@ -32,7 +32,7 @@ export const usePutRidesSecond = () => {
           waiting_time: state.detail.form.plan.umweg.value,
           available_seats: !state.detail.form.plan.seat.value
             ? 0
-            : Number(state.detail.form.plan.seat),
+            : Number(state.detail.form.plan.seat.value),
           additional_info: state.detail.form.other.notes.value,
         },
       };

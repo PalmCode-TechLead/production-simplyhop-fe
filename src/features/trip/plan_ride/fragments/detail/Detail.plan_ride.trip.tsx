@@ -261,9 +261,9 @@ export const DetailPlanRideTrip = () => {
   const handleClickSend = async () => {
     const ridesFirst = await postRidesFirst();
     if (!ridesFirst) return;
-    const ridesSecond = await postRidesSecond({ id: ridesFirst.data.ride.id });
+    const ridesSecond = await postRidesSecond({ id: ridesFirst.data.id });
     if (!ridesSecond) return;
-    const ridesThird = await postRidesThird({ id: ridesFirst.data.ride.id });
+    const ridesThird = await postRidesThird({ id: ridesFirst.data.id });
     if (!ridesThird) return;
 
     dispatch({
