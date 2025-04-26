@@ -1,3 +1,4 @@
+import { FormError } from "@/core/utils/form";
 import { RideDetailCardPlanRideTripProps } from "../components/ride_detail_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -28,7 +29,7 @@ export interface PlanRideTripFilters {
     query: string;
     items: { id: string; name: string }[];
     selected: null | { id: string; name: string };
-    data: RideDetailCardPlanRideTripProps["car"][];
+    data: (RideDetailCardPlanRideTripProps["car"] & { seat: number })[];
   };
 
   origin: {
@@ -86,9 +87,11 @@ export interface PlanRideTripDetail {
       };
       umweg: {
         value: string;
+        error: FormError;
       };
       seat: {
         value: string;
+        error: FormError;
       };
       back_seat: {
         checked: boolean;

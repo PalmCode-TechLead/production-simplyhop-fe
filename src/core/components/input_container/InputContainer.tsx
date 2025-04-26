@@ -13,7 +13,7 @@ export const InputContainer = forwardRef<
         "relative",
         "w-full",
         "cursor-default",
-        "overflow-hidden",
+        // "overflow-hidden",
         "rounded-[0.375rem]",
         "border border-[#E2E2E2]",
         "px-[0.75rem] sm:px-[1.625rem] py-[0.5rem]",

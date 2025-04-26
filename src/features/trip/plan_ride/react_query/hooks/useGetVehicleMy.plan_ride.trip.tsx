@@ -60,6 +60,7 @@ export const useGetVehicleMy = () => {
             data: filteredData.map((item) => {
               return {
                 id: String(item.id),
+                seat: item.numb_free_seats,
                 image: {
                   src: !item.image.length
                     ? "/images/general/car.png"

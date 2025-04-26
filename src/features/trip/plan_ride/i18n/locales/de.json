@@ -169,6 +169,7 @@
             }
           },
           "recurring": {
+            "info": "Die Einstellung für wiederkehrende Fahrten gilt nur für einen Monat im Voraus.",
             "inputProps": {
               "id": "recurring",
               "placeholder": " "
@@ -200,11 +201,12 @@
           "umweg": {
             "inputProps": {
               "id": "umweg",
-              "placeholder": " "
+              "placeholder": " ",
+              "type": "number"
             },
             "labelProps": {
               "id": "umweg",
-              "children": "Umweg",
+              "children": "Umweg (Minuten)",
               "required": false
             }
           },
@@ -212,7 +214,8 @@
           "seat": {
             "inputProps": {
               "id": "seat",
-              "placeholder": " "
+              "placeholder": " ",
+              "type": "number"
             },
             "labelProps": {
               "id": "seat",

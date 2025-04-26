@@ -70,12 +70,14 @@ const initialState: PlanRideTripInitialStateType = {
         },
         umweg: {
           value: "",
+          error: null,
         },
         recurring: {
           selected: null,
         },
         seat: {
           value: "",
+          error: null,
         },
         back_seat: {
           checked: false,

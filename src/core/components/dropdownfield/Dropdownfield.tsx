@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import clsx from "clsx";
-
+import { Tooltip as ReactTooltip } from "react-tooltip";
 import { useOnClickOutside } from "usehooks-ts";
 import SVGIcon from "../../icons";
 import { InputLabel, InputLabelProps } from "../input_label";
@@ -17,6 +17,7 @@ export interface DropdownfieldProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
   onSelect?: (data: { id: string; name: string }) => void;
+  info?: string;
 }
 
 export const Dropdownfield = ({
@@ -28,6 +29,7 @@ export const Dropdownfield = ({
   inputContainerProps,
   inputProps,
   labelProps,
+  info,
 }: DropdownfieldProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -49,9 +51,9 @@ export const Dropdownfield = ({
       <div className={clsx("relative w-full")}>
         <InputContainer
           {...inputContainerProps}
-          onClick={() => {
-            inputRef.current?.focus();
-          }}
+          // onClick={() => {
+          //   inputRef.current?.focus();
+          // }}
         >
           <div
             className={clsx(
@@ -87,9 +89,10 @@ export const Dropdownfield = ({
                 "flex items-center justify-center",
                 "w-[1rem] h-[1rem]",
                 "absolute",
+                !!info ? "right-[1rem]" : "right-0",
                 !!selected?.name
-                  ? "top-[75%] right-0 translate-y-[-50%] text-[0.75rem]"
-                  : "top-[50%] right-0 translate-y-[-50%] text-[0.75rem]",
+                  ? "top-[75%] translate-y-[-50%] text-[0.75rem]"
+                  : "top-[50%] translate-y-[-50%] text-[0.75rem]",
                 "peer-focus:top-[75%]"
               )}
             >
@@ -98,6 +101,44 @@ export const Dropdownfield = ({
                 className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
               />
             </div>
+
+            {!!info && (
+              <div
+                className={clsx(
+                  "flex items-center justify-center",
+                  "w-[1rem] h-[1rem]",
+                  "absolute z-[9999]",
+                  !!selected?.name
+                    ? "top-[75%] right-0 translate-y-[-50%] text-[0.75rem]"
+                    : "top-[50%] right-0 translate-y-[-50%] text-[0.75rem]",
+                  "peer-focus:top-[75%]"
+                )}
+              >
+                <SVGIcon
+                  data-tooltip-id={info}
+                  name="Info"
+                  className={clsx(
+                    "w-[0.75rem] h-[0.75rem]",
+                    "stroke-[#667085]",
+                    "inline-block"
+                  )}
+                />
+                <ReactTooltip
+                  id={info}
+                  place="bottom"
+                  variant="info"
+                  className={clsx(
+                    "!bg-[white] !shadow-lg",
+                    "!text-[#212121] !text-[0.75rem] !font-normal",
+                    "!max-w-[250px]",
+                    "!px-[0.75rem] !py-[0.5rem]",
+                    "!rounded",
+                    "!opacity-100"
+                  )}
+                  content={info}
+                />
+              </div>
+            )}
 
             <InputLabel
               {...labelProps}

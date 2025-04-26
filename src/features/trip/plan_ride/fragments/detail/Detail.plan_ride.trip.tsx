@@ -135,7 +135,10 @@ export const DetailPlanRideTrip = () => {
             ...state.detail.form.plan,
             umweg: {
               ...state.detail.form.plan.umweg,
-              value: e.currentTarget.value,
+              value:
+                e.currentTarget.value === ""
+                  ? ""
+                  : String(Number(e.currentTarget.value)),
             },
           },
         },
@@ -144,6 +147,10 @@ export const DetailPlanRideTrip = () => {
   };
 
   const handleChangeSeat = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const invalidSeatDictionary =
+      globalDictionaries.form.available_seat.validations.items.find(
+        (item) => item.id === "invalid_available_seat"
+      );
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
@@ -154,7 +161,21 @@ export const DetailPlanRideTrip = () => {
             ...state.detail.form.plan,
             seat: {
               ...state.detail.form.plan.seat,
-              value: e.currentTarget.value,
+              value:
+                e.currentTarget.value === ""
+                  ? ""
+                  : String(Number(e.currentTarget.value)),
+              error:
+                e.currentTarget.value === ""
+                  ? null
+                  : Number(e.currentTarget.value) > filteredCar.seat
+                  ? !invalidSeatDictionary
+                    ? null
+                    : {
+                        id: invalidSeatDictionary.id,
+                        name: invalidSeatDictionary.name,
+                      }
+                  : null,
             },
           },
         },
@@ -262,7 +283,10 @@ export const DetailPlanRideTrip = () => {
   };
 
   const isSubmitDisabled =
-    isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
+    isPendingRidesFirst ||
+    isPendingRidesSecond ||
+    isPendingRidesThird ||
+    !!state.detail.form.plan.seat.error;
   const isSubmitLoading =
     isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
 
@@ -400,6 +424,7 @@ export const DetailPlanRideTrip = () => {
                 inputContainerProps={{
                   className: "!border !border-[#F8F8F8]",
                 }}
+                info={dictionaries.detail.plan.form.input.recurring.info}
                 selected={state.detail.form.plan.recurring.selected}
                 items={globalDictionaries.trip.recurring.items}
                 onSelect={handleSelectRecurring}
@@ -426,7 +451,9 @@ export const DetailPlanRideTrip = () => {
             >
               <Textfield
                 inputContainerProps={{
-                  className: "!border !border-[#F8F8F8]",
+                  className: state.detail.form.plan.seat.error?.name
+                    ? "!border !border-[#DA2323]"
+                    : "!border !border-[#F8F8F8]",
                 }}
                 labelProps={{
                   ...dictionaries.detail.plan.form.input.seat.labelProps,
@@ -436,6 +463,7 @@ export const DetailPlanRideTrip = () => {
                   value: state.detail.form.plan.seat.value,
                   onChange: handleChangeSeat,
                 }}
+                error={state.detail.form.plan.seat.error?.name}
               />
               <InputContainer
                 className={clsx(
@@ -502,6 +530,7 @@ export const DetailPlanRideTrip = () => {
         <Button
           disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}
+          variant="tertiary"
           onClick={handleClickSend}
         >
           {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
