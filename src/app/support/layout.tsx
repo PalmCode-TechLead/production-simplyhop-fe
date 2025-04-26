@@ -1,10 +1,9 @@
-// import { SettingsSidebarApp } from "@/core/modules/app/fragments/settings_sidebar";
 import { Suspense } from "react";
 import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { FooterApp } from "@/core/modules/app/fragments/footer";
+// import { FooterApp } from "@/core/modules/app/fragments/footer";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_profile";
@@ -49,6 +48,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
       about_me: user.data?.profile?.bio ?? "",
       is_driver: user.data?.is_driver === 1 ? true : false,
       gender: user.data?.gender ?? null,
+      is_able_to_ride: user.data.can_share_ride === 1,
     };
   } catch {
     redirect(AppCollectionURL.public.login());
@@ -93,7 +93,7 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
           </div>
         </div>
       </div>
-      <FooterApp />
+      {/* <FooterApp /> */}
     </main>
   );
 }

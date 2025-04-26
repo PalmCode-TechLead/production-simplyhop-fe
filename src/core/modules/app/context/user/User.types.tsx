@@ -26,6 +26,7 @@ export interface UserProfile {
   about_me: string;
   is_driver: boolean;
   gender: null | string;
+  is_able_to_ride: boolean;
 }
 
 export enum UserActionEnum {

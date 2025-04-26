@@ -166,6 +166,7 @@ export const AutocompleteRoutes = ({
               inputProps={{
                 ...origin.inputProps,
                 value: originAutocomplete.query,
+                disabled: disabled,
                 onFocus: () => {
                   if (disabled) {
                     return;
@@ -193,7 +194,10 @@ export const AutocompleteRoutes = ({
                     origin.autocomplete.onQuery(event.target.value);
                   }
                 },
-                onClick: origin.inputProps?.onClick,
+                onClick: (e) => {
+                  if (disabled) return;
+                  origin.inputProps?.onClick?.(e);
+                },
               }}
               labelProps={{
                 ...origin.labelProps,

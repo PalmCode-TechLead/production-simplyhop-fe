@@ -32,6 +32,18 @@
       "strokeWeight": 8
     }
   },
+  "badge": {
+    "uncompleted": {
+      "title": "Profil vervollständigen",
+      "description": "Um mit der Planung einer Fahrt zu starten, fülle bitte dein Profil und deine Fahrzeuginformationen aus.",
+      "cta": {
+        "link": {
+          "children": "Vollständiges Profil",
+          "href": "/support/konto"
+        }
+      }
+    }
+  },
   "filter": {
     "title": "Mitfahrt anbieten",
     "form": {

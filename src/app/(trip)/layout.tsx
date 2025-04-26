@@ -29,7 +29,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
         token: token ?? "",
       },
     })) as GetUserProfileDataSuccessResponseInterface;
-
+    console.log("ini user", user);
     userProfile = {
       id: user.data.id,
       first_name: user.data?.first_name ?? "",
@@ -41,6 +41,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
       about_me: user.data?.profile?.bio ?? "",
       is_driver: user.data?.is_driver === 1 ? true : false,
       gender: user.data.gender ?? null,
+      is_able_to_ride: user.data.can_share_ride === 1,
     };
   } catch {
     redirect(AppCollectionURL.public.login());

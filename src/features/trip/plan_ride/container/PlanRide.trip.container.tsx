@@ -5,6 +5,7 @@ import { BadgePlanRideTrip } from "../fragments/badge";
 import { FilterPlanRideTrip } from "../fragments/filter";
 import { DetailPlanRideTrip } from "../fragments/detail";
 import { NotificationPlanRideTrip } from "../fragments/notification";
+import { IncompleteProfilePlaneRideTrip } from "../fragments/inncomplete_profile";
 
 export const PlanRideTripContainer = () => {
   return (
@@ -18,8 +19,16 @@ export const PlanRideTripContainer = () => {
           )}
         >
           <div className={clsx("max-w-container", "w-full")}>
-            <div className={clsx("w-full", "px-[1rem]")}>
+            <div
+              className={clsx(
+                "flex items-start justify-between",
+                "w-full",
+                "px-[1rem]"
+              )}
+            >
               <BadgePlanRideTrip />
+
+              <IncompleteProfilePlaneRideTrip />
             </div>
 
             <FilterPlanRideTrip />

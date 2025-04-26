@@ -71,7 +71,7 @@ export const AutocompleteAuto = ({
   useEffect(() => {
     setQuery(selected?.name ?? "");
   }, [selected?.name]);
-
+  console.log(disabled, "ini disabled");
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
@@ -88,6 +88,7 @@ export const AutocompleteAuto = ({
               ref={inputRef}
               {...inputProps}
               value={query}
+              disabled={disabled}
               className={clsx("pr-[1.5rem]")}
               onFocus={() => {
                 if (disabled) {
@@ -96,6 +97,7 @@ export const AutocompleteAuto = ({
                 setIsOpen(true);
               }}
               onChange={(event) => {
+                if (disabled) return;
                 setIsOpen(!!event.target.value.length);
                 setQuery(event.target.value);
                 if (debounceQuery) {
@@ -103,6 +105,10 @@ export const AutocompleteAuto = ({
                 } else {
                   onQuery(event.target.value);
                 }
+              }}
+              onClick={(e) => {
+                if (disabled) return;
+                inputProps?.onClick?.(e);
               }}
             />
 

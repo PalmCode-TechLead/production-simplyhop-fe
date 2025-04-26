@@ -20,9 +20,11 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormRoutes } from "@/core/components/form_routes";
 import { Textfield } from "@/core/components/textfield";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { UserContext } from "@/core/modules/app/context";
 
 export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
+  const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const { isLg } = useTailwindBreakpoint();
   useGetVehicleMy();
@@ -486,6 +488,7 @@ export const FilterPlanRideTrip = () => {
               ...dictionaries.filter.form.auto.labelProps,
             },
           }}
+          disabled={!userState.profile.is_able_to_ride}
           inputProps={{
             ...dictionaries.filter.form.auto.inputProps,
             onClick: () => {
@@ -542,6 +545,7 @@ export const FilterPlanRideTrip = () => {
               },
               autocomplete: {
                 selected: state.filters.origin.selected.item,
+                disabled: !userState.profile.is_able_to_ride,
                 items: state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
@@ -578,6 +582,7 @@ export const FilterPlanRideTrip = () => {
               },
               autocomplete: {
                 selected: state.filters.destination.selected.item,
+                disabled: !userState.profile.is_able_to_ride,
                 items: state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
@@ -601,6 +606,7 @@ export const FilterPlanRideTrip = () => {
             labelProps={{
               ...dictionaries.filter.form.date.labelProps,
             }}
+            disabled={!userState.profile.is_able_to_ride}
             value={state.filters.date.selected}
             onSelect={handleSelectDate}
           />
@@ -611,6 +617,7 @@ export const FilterPlanRideTrip = () => {
             }}
             inputProps={{
               ...dictionaries.detail.plan.form.input.time.inputProps,
+              disabled: !userState.profile.is_able_to_ride,
               type: "time",
               value: state.filters.time.value,
               onChange: handleChangeTime,

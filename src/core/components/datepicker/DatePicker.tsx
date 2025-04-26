@@ -9,6 +9,7 @@ import { MonthPicker } from "../monthpicker";
 import { YearPicker } from "../yearpicker";
 
 export interface DatePickerProps {
+  disabled?: Boolean;
   value?: Date;
   labelProps?: InputLabelProps;
   inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;
@@ -16,6 +17,7 @@ export interface DatePickerProps {
 }
 
 export const DatePicker = ({
+  disabled = false,
   value = new Date(),
   labelProps,
   inputContainerProps,
@@ -149,7 +151,10 @@ export const DatePicker = ({
             "w-full",
             inputContainerProps?.className
           )}
-          onClick={handleClickDropdown}
+          onClick={() => {
+            if (disabled) return;
+            handleClickDropdown();
+          }}
         >
           {formattedValue}
           <InputLabel
