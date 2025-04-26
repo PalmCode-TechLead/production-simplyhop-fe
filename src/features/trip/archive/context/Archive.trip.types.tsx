@@ -1,5 +1,7 @@
+import { CarPriceItemProps } from "@/core/components/car_price_item";
 import { BookCardArchiveTripProps } from "../components/book_card";
 import { RideCardArchiveTripProps } from "../components/ride_card";
+import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -27,11 +29,20 @@ export interface ArchiveTripFilters {
 }
 
 export interface ArchiveTripRide {
-  data: RideCardArchiveTripProps[];
+  data: (RideCardArchiveTripProps & {
+    detail: {
+      booking: RideBookingListItemProps[];
+      price: CarPriceItemProps;
+    };
+  })[];
 }
 
 export interface ArchiveTripBook {
-  data: BookCardArchiveTripProps[];
+  data: (BookCardArchiveTripProps & {
+    detail: {
+      price: CarPriceItemProps;
+    };
+  })[];
 }
 
 export enum ArchiveTripActionEnum {

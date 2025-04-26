@@ -35,13 +35,6 @@ export interface MyListTripRide {
       price: CarPriceItemProps;
     };
   })[];
-  detail:
-    | null
-    | (RideCardMyListTripProps & {
-        detail: {
-          booking: RideBookingListItemProps[];
-        };
-      });
 }
 
 export interface MyListTripBook {

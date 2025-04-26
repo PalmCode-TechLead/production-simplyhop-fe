@@ -13,6 +13,7 @@ import {
 import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetRidesMy = () => {
   const searchParams = useSearchParams();
@@ -21,8 +22,8 @@ export const useGetRidesMy = () => {
 
   const payload: GetRidesMyPayloadRequestInterface = {
     params: {
-      include: "vehicle.brand,rideTimes,bookings.user",
-      "departure_time__lte": dayjs().format("YYYY-MM-DDTHH:mm:ss"),
+      include: "vehicle.brand,rideTimes,bookings,bookings.user",
+      departure_time__lte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
@@ -45,6 +46,10 @@ export const useGetRidesMy = () => {
         payload: {
           ...state.ride,
           data: data.data.map((item) => {
+            const urlSearchParams = new URLSearchParams(
+              searchParams.toString()
+            );
+            urlSearchParams.append("ride_id", String(item.id));
             return {
               id: String(item.id),
               driver: {
@@ -123,7 +128,38 @@ export const useGetRidesMy = () => {
               cta: {
                 detail: {
                   children: "Siehe Details",
-                  onClick: () => {},
+                  href: AppCollectionURL.private.myListArchive(
+                    urlSearchParams.toString()
+                  ),
+                },
+              },
+              detail: {
+                booking: item.bookings.map((bookingItem, index) => {
+                  return {
+                    booking: {
+                      number: String(index + 1),
+                      name: `${bookingItem.user?.first_name} ${bookingItem.user?.last_name}`,
+                    },
+                    route: {
+                      origin: !item.start_name ? "-" : item.start_name,
+                      destination: !item.destination_name
+                        ? "-"
+                        : item.destination_name,
+                    },
+                    passenger: {
+                      adult: (
+                        bookingItem.seats - bookingItem.child_seats
+                      ).toLocaleString("de-DE"),
+                      children: bookingItem.child_seats.toLocaleString("de-DE"),
+                    },
+                    price: {
+                      value: bookingItem.total_amount.toLocaleString("de-DE"),
+                    },
+                  };
+                }),
+                price: {
+                  label: "Angebotspreis",
+                  price: item.base_price.toLocaleString("de-DE"),
                 },
               },
             };

@@ -9,18 +9,16 @@ import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
 import { CarPriceItem } from "@/core/components/car_price_item";
 import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
-import { MyListTripContext } from "../../context";
-import { useGetRidesId } from "../../react_query/hooks";
-import { RideDetailCardMyListTrip } from "../../components/ride_detail_card";
+import { ArchiveTripContext } from "../../context";
+import { RideDetailCardArchiveTrip } from "../../components/ride_detail_card";
 
-export const RideDetailMyListTrip = () => {
+export const RideDetailArchiveTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const rideId = searchParams.get("ride_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
-  const { state } = React.useContext(MyListTripContext);
-  useGetRidesId();
+  const { state } = React.useContext(ArchiveTripContext);
 
   const filteredData = state.ride.data.find((item) => item.id === rideId);
 
@@ -107,7 +105,7 @@ export const RideDetailMyListTrip = () => {
               "px-[1rem]"
             )}
           >
-            <RideDetailCardMyListTrip {...filteredData} />
+            <RideDetailCardArchiveTrip {...filteredData} />
           </div>
           {/* Booking */}
           <div

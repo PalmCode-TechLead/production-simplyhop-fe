@@ -2,37 +2,34 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
-import { AdaptiveModal } from "@/core/components/adaptive_modal";
-import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
+import SVGIcon from "@/core/icons";
+import { BookDetailCardArchiveTrip } from "../../components/book_detail_card";
 import { CarPriceItem } from "@/core/components/car_price_item";
-import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
-import { MyListTripContext } from "../../context";
-import { useGetRidesId } from "../../react_query/hooks";
-import { RideDetailCardMyListTrip } from "../../components/ride_detail_card";
+import { ArchiveTripContext } from "../../context";
 
-export const RideDetailMyListTrip = () => {
+export const BookDetailArchiveTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
-  const rideId = searchParams.get("ride_id");
+  const bookingId = searchParams.get("booking_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
-  const { state } = React.useContext(MyListTripContext);
-  useGetRidesId();
+  const { state } = React.useContext(ArchiveTripContext);
 
-  const filteredData = state.ride.data.find((item) => item.id === rideId);
+  const filteredData = state.book.data.find((item) => item.id === bookingId);
 
   if (!filteredData) {
     return null;
   }
 
-  const isOpen = !!rideId;
+  const isOpen = !!bookingId;
 
   const handleClose = () => {
-    const params = new URLSearchParams(searchParams.toString()); // Ambil semua params
-    params.delete("ride_id");
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("booking_id");
     router.push(AppCollectionURL.private.myList(params.toString()), {
       scroll: false,
     });
@@ -54,8 +51,7 @@ export const RideDetailMyListTrip = () => {
       <div
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full h-[100vh]",
-          "overflow-auto",
+          "w-full",
           "px-[0rem] py-[0rem] lg:px-[2rem] lg:py-[2rem]"
         )}
       >
@@ -107,26 +103,9 @@ export const RideDetailMyListTrip = () => {
               "px-[1rem]"
             )}
           >
-            <RideDetailCardMyListTrip {...filteredData} />
-          </div>
-          {/* Booking */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start",
-              "w-full",
-              "px-[1rem] py-[1rem]",
-              "bg-[white]"
-            )}
-          >
-            <p className={clsx("text-[1.125rem] text-[black] font-bold")}>
-              {dictionaries.ride_detail.title}
-            </p>
-            {filteredData.detail.booking.map((item, index) => (
-              <RideBookingListItem key={index} {...item} />
-            ))}
+            <BookDetailCardArchiveTrip {...filteredData} />
           </div>
 
-          {/* Price */}
           <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start",

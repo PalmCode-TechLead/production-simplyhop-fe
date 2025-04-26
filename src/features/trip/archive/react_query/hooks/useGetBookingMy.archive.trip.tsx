@@ -13,6 +13,7 @@ import {
 import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetBookingMy = () => {
   const searchParams = useSearchParams();
@@ -47,6 +48,10 @@ export const useGetBookingMy = () => {
         payload: {
           ...state.book,
           data: data.data.map((item) => {
+            const urlSearchParams = new URLSearchParams(
+              searchParams.toString()
+            );
+            urlSearchParams.append("booking_id", String(item.id));
             return {
               id: String(item.id),
               driver: {
@@ -119,7 +124,15 @@ export const useGetBookingMy = () => {
               cta: {
                 detail: {
                   children: "Siehe Details",
-                  onClick: () => {},
+                  href: AppCollectionURL.private.myListArchive(
+                    urlSearchParams.toString()
+                  ),
+                },
+              },
+              detail: {
+                price: {
+                  label: "Angebotspreis",
+                  price: item.total_amount.toLocaleString("de-DE"),
                 },
               },
             };
