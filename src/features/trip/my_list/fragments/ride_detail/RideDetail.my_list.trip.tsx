@@ -24,7 +24,6 @@ export const RideDetailMyListTrip = () => {
 
   const filteredData = state.ride.data.find((item) => item.id === rideId);
 
-  console.log(filteredData, "ini filtered data");
   if (!filteredData) {
     return null;
   }
@@ -136,7 +135,7 @@ export const RideDetailMyListTrip = () => {
               "bg-[white]"
             )}
           >
-            <CarPriceItem label={"Angebotspreis"} price={"€25.00"} />
+            <CarPriceItem {...filteredData.detail.price} />
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { BookDetailCardMyListTrip } from "../../components/book_detail_card";
 import { CarPriceItem } from "@/core/components/car_price_item";
+import { MyListTripContext } from "../../context";
 
 export const BookDetailMyListTrip = () => {
   const dictionaries = getDictionaries();
@@ -16,6 +17,13 @@ export const BookDetailMyListTrip = () => {
   const bookingId = searchParams.get("booking_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
+  const { state } = React.useContext(MyListTripContext);
+
+  const filteredData = state.book.data.find((item) => item.id === bookingId);
+
+  if (!filteredData) {
+    return null;
+  }
 
   const isOpen = !!bookingId;
 
@@ -95,7 +103,7 @@ export const BookDetailMyListTrip = () => {
               "px-[1rem]"
             )}
           >
-            <BookDetailCardMyListTrip />
+            <BookDetailCardMyListTrip {...filteredData} />
           </div>
 
           <div
@@ -106,7 +114,7 @@ export const BookDetailMyListTrip = () => {
               "bg-[white]"
             )}
           >
-            <CarPriceItem label={"Angebotspreis"} price={"€25.00"} />
+            <CarPriceItem {...filteredData.detail.price} />
           </div>
         </div>
       </div>
