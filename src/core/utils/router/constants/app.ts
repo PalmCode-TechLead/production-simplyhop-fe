@@ -10,6 +10,8 @@ export const AppCollectionURL = {
     chat: () => "/chat",
     myList: (params?: string) =>
       !params ? `/meine-fahrten` : `/meine-fahrten?${params}`,
+    myListArchive: (params?: string) =>
+      !params ? `/meine-fahrten/archive` : `/meine-fahrten/archive?${params}`,
     profile_registration: () => "/profile-registration",
     support_vehicle_create: () => `/support/fahrzeuginformationen/create/`,
     support_vehicle_detail: (id: string) =>

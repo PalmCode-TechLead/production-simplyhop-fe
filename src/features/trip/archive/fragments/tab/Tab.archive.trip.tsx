@@ -37,7 +37,7 @@ export const TabArchiveTrip = () => {
           return (
             <Link
               key={itemIndex}
-              href={AppCollectionURL.private.myList(
+              href={AppCollectionURL.private.myListArchive(
                 !params ? params : params.toString()
               )}
             >
