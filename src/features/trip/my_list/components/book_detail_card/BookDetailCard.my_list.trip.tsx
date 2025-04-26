@@ -85,10 +85,6 @@ export const BookDetailCardMyListTrip = ({
       label: "Startzeit",
       time: "17:30 Uhr",
     },
-    departure_date_item: {
-      place: "Datum",
-      time: "24.02.25",
-    },
     departure: {
       place: "Munich",
       time: "17.30 Uhr",
@@ -130,7 +126,7 @@ export const BookDetailCardMyListTrip = ({
             "w-full"
           )}
         >
-          <DepartureDateItem {...routes.departure_date_item} />
+          <DepartureDateItem {...routes.date} />
           <div
             className={clsx(
               "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1rem]"

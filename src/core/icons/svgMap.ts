@@ -37,6 +37,9 @@ import {
   Cigarette,
   Hourglass,
   Info,
+  ArrowRight,
+  Baby,
+  BadgeEuro,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -94,6 +97,9 @@ export const svgMap = {
   Cigarette,
   Hourglass,
   Info,
+  ArrowRight,
+  Baby,
+  BadgeEuro,
   Facebook,
   Google,
   Whatsapp,

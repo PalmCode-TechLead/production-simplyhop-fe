@@ -22,8 +22,9 @@ export const useGetRidesMy = () => {
 
   const payload: GetRidesMyPayloadRequestInterface = {
     params: {
-      include: "vehicle.brand,rideTimes,user,bookings.user",
-      "departure_time__gte": dayjs().format("YYYY-MM-DDTHH:mm:ss"),
+      include: "vehicle.brand,rideTimes,user,bookings,bookings.user",
+      booking_status: "accepted",
+      departure_time__gte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
@@ -49,7 +50,7 @@ export const useGetRidesMy = () => {
             const urlSearchParams = new URLSearchParams(
               searchParams.toString()
             );
-            urlSearchParams.append("booking_id", String(item.id));
+            urlSearchParams.append("ride_id", String(item.id));
             return {
               id: String(item.id),
               driver: {
@@ -132,6 +133,31 @@ export const useGetRidesMy = () => {
                     urlSearchParams.toString()
                   ),
                 },
+              },
+              detail: {
+                booking: item.bookings.map((bookingItem, index) => {
+                  return {
+                    booking: {
+                      number: String(index + 1),
+                      name: `${bookingItem.user?.first_name} ${bookingItem.user?.last_name}`,
+                    },
+                    route: {
+                      origin: !item.start_name ? "-" : item.start_name,
+                      destination: !item.destination_name
+                        ? "-"
+                        : item.destination_name,
+                    },
+                    passenger: {
+                      adult: (
+                        bookingItem.seats - bookingItem.child_seats
+                      ).toLocaleString("de-DE"),
+                      children: bookingItem.child_seats.toLocaleString("de-DE"),
+                    },
+                    price: {
+                      value: bookingItem.total_amount.toLocaleString("de-DE"),
+                    },
+                  };
+                }),
               },
             };
           }),

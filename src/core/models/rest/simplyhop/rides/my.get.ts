@@ -1,4 +1,4 @@
-import { Vehicle } from "@/core/models/data";
+import { Booking, RideTime, User, Vehicle } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetRidesMyRequestInterface extends NextApiRequest {
@@ -10,8 +10,9 @@ export interface GetRidesMyPayloadRequestInterface {
 }
 
 export type GetRidesMyParamsPayloadRequestInterface = {
-  "departure_time__lte"?: string;
-  "departure_time__gte"?: string;
+  departure_time__lte?: string;
+  departure_time__gte?: string;
+  booking_status?: string;
   //mandatory
   include?: string; //user, userCount, userExists, user.profile, vehicle, vehicleCount, vehicleExists, vehicle.brand, vehicle.category, rideTimes, rideTimesCount, rideTimesExists, bookings, bookingsCount, bookingsExists, bookings.rideTime, bookings.bargainOffers
   sort?: string;
@@ -48,31 +49,10 @@ export interface GetRidesMySuccessResponseInterface {
     deleted_at: null;
     created_at: "2025-04-22T03:46:39.000000Z";
     updated_at: "2025-04-22T03:46:39.000000Z";
-    user: {
-      id: 1;
-      first_name: "Gracie";
-      last_name: "Effertz";
-      email: "user@example.com";
-      mobile: null;
-      city: null;
-      email_verified_at: "2025-04-22 10:44:18";
-      avatar: null;
-      is_driver: 1;
-      can_share_ride: 0;
-      deleted_at: null;
-      created_at: "2025-04-22 03:44:21";
-      updated_at: "2025-04-22 03:46:39";
-    };
+    bookings: Booking[];
+    user: User;
     vehicle: Vehicle;
-    ride_times: {
-      id: 1;
-      available_seats: 3;
-      available_child_seats: 1;
-      departure_time: "2025-05-01T02:00:00.000000Z";
-      deleted_at: null;
-      created_at: "2025-04-22T03:46:39.000000Z";
-      updated_at: "2025-04-22T03:46:39.000000Z";
-    }[];
+    ride_times: RideTime[];
   }[];
 
   redirect: null;

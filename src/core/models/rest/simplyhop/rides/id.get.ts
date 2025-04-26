@@ -7,10 +7,17 @@ export interface GetRidesIdRequestInterface extends NextApiRequest {
 
 export interface GetRidesIdPayloadRequestInterface {
   path: GetRidesIdPathPayloadRequestInterface;
+  params?: GetRidesIdParamPayloadRequestInterface;
 }
 
 export type GetRidesIdPathPayloadRequestInterface = {
   id: number;
+};
+
+export type GetRidesIdParamPayloadRequestInterface = {
+  booking_status?: string;
+  //mandatory
+  include?: string; //user, userCount, userExists, user.profile, vehicle, vehicleCount, vehicleExists, vehicle.brand, vehicle.category, rideTimes, rideTimesCount, rideTimesExists, bookings, bookingsCount, bookingsExists, bookings.rideTime, bookings.bargainOffers
 };
 
 export type GetRidesIdResponseInterface = NextApiResponse<

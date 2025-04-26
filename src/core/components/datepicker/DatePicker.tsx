@@ -9,7 +9,7 @@ import { MonthPicker } from "../monthpicker";
 import { YearPicker } from "../yearpicker";
 
 export interface DatePickerProps {
-  disabled?: Boolean;
+  disabled?: boolean;
   value?: Date;
   labelProps?: InputLabelProps;
   inputContainerProps?: React.HTMLAttributes<HTMLDivElement>;

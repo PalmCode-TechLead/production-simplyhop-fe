@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import { PlanRideTripActionEnum, PlanRideTripContext } from "../../context";

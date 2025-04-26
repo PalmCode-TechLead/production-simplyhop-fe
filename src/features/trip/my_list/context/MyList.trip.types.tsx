@@ -1,3 +1,4 @@
+import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
 import { BookCardMyListTripProps } from "../components/book_card";
 import { RideCardMyListTripProps } from "../components/ride_card";
 
@@ -27,7 +28,18 @@ export interface MyListTripFilters {
 }
 
 export interface MyListTripRide {
-  data: RideCardMyListTripProps[];
+  data: (RideCardMyListTripProps & {
+    detail: {
+      booking: RideBookingListItemProps[];
+    };
+  })[];
+  detail:
+    | null
+    | (RideCardMyListTripProps & {
+        detail: {
+          booking: RideBookingListItemProps[];
+        };
+      });
 }
 
 export interface MyListTripBook {

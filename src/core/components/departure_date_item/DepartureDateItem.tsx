@@ -2,13 +2,13 @@ import * as React from "react";
 import clsx from "clsx";
 
 export interface DepartureDateItemProps {
-  place?: string;
-  time?: string;
+  label?: string;
+  date?: string;
 }
 
 export const DepartureDateItem = ({
-  place = "",
-  time = "",
+  label = "",
+  date = "",
 }: DepartureDateItemProps) => {
   return (
     <div
@@ -23,10 +23,10 @@ export const DepartureDateItem = ({
           "w-full"
         )}
       >
-        {place}
+        {label}
       </p>
       <p className={clsx("text-[0.875rem] font-semibold text-[black]")}>
-        {time}
+        {date}
       </p>
     </div>
   );

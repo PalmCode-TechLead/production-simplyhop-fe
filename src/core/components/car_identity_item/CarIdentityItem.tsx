@@ -30,7 +30,8 @@ export default function CarIdentityItem({
         />
         <p
           className={clsx(
-            "text-[black] text-[0.875rem] lg:text-[1rem] font-medium"
+            "text-[black] text-[0.875rem] lg:text-[1rem] font-medium truncate text-ellipsis",
+            "w-full"
           )}
         >
           {name}
@@ -48,7 +49,8 @@ export default function CarIdentityItem({
 
           <p
             className={clsx(
-              "text-[black] text-[0.875rem] lg:text-[1rem] font-medium"
+              "text-[black] text-[0.875rem] lg:text-[1rem] font-medium truncate text-ellipsis",
+              "w-full"
             )}
           >
             {number}

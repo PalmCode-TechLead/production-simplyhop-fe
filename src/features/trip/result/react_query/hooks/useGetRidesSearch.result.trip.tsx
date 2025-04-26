@@ -320,7 +320,7 @@ export const useGetRideSearch = () => {
                         {
                           id: "max_two_backseat",
                           label: "Max. 2 auf der Rückbank",
-                          variant: "danger" as "danger",
+                          variant: "danger" as "danger" | "success",
                         },
                       ]
                     : []),

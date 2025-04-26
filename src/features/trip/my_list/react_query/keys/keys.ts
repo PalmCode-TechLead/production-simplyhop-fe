@@ -5,4 +5,7 @@ export const MyListTripReactQueryKey = {
   GetBookingMy: () => {
     return ["MyListTripReactQueryKey.GetBookingMy"];
   },
+  GetRidesId: () => {
+    return ["MyListTripReactQueryKey.GetRidesId"];
+  },
 };

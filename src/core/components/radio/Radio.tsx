@@ -6,7 +6,6 @@ import {
 } from "@headlessui/react";
 import clsx from "clsx";
 import { useRef } from "react";
-import SVGIcon from "../../icons";
 
 export interface RadioProps extends CheckboxComponentProps {
   label?: string;
@@ -16,7 +15,7 @@ export interface RadioProps extends CheckboxComponentProps {
 export const Radio = ({
   label = "",
   required = false,
-  className,
+
   ...otherProps
 }: RadioProps) => {
   const ref = useRef<HTMLElement | null>(null);

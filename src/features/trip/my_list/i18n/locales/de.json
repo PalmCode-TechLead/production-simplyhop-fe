@@ -33,6 +33,12 @@
       "message": "Ups! Wir konnten keine Daten finden..."
     }
   },
+  "ride_detail": {
+    "title": "Details zur Fahrt",
+    "booking": {
+      "title": "Passagier"
+    }
+  },
   "book_detail": {
     "title": "Details zur Fahrt"
   }
