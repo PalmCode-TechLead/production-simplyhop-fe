@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { RideCardResultTrip } from "../../components/ride_card";
@@ -9,11 +9,11 @@ import { getDictionaries } from "../../i18n";
 import { ListErrorItem } from "@/core/components/list_error_item";
 
 export const RidesResultTrip = () => {
-  const dictionaries = getDictionaries()
+  const dictionaries = getDictionaries();
   const { state } = React.useContext(ResultTripContext);
   const { isFetching: isFetchingGetRideSearch } = useGetRideSearch();
   const isLoading = isFetchingGetRideSearch;
-  
+
   if (isLoading) {
     return (
       <div

@@ -17,8 +17,12 @@ import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
 import { PassengerCardResultTrip } from "../../components/passenger_card";
 import { RIDE_FILTER } from "@/core/enums";
+import { UserContext } from "@/core/modules/app/context";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const DetailResultTrip = () => {
+  const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -26,6 +30,7 @@ export const DetailResultTrip = () => {
   const rideId = searchParams.get("ride_id");
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
+  const { isLg } = useTailwindBreakpoint();
 
   const isOpen = state.detail.is_open;
 
@@ -123,22 +128,27 @@ export const DetailResultTrip = () => {
 
   const isSubmitDisabled = isPendingPostBookingBook;
 
+  const isRideByDriver =
+    String(userState.profile.id) === detailData.driver?.profile.id;
+
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw)] md:!max-w-[872px]",
         "h-fit max-h-[calc(100vh)]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
+      variant={isLg ? "modal" : "page_sheet"}
       open={isOpen}
       onClose={handleClose}
     >
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full"
+          "w-full",
+          "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -176,43 +186,51 @@ export const DetailResultTrip = () => {
           price={detailData.price?.initial?.price}
         />
 
-        <PriceInputResultTrip
-          inputProps={{
-            type: "number",
-            value:
-              state.detail.form.price_offer.value === 0
-                ? ""
-                : state.detail.form.price_offer.value,
-            onChange: handleChangePriceOffer,
-          }}
-        />
-
-        <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
-          <TextareafieldNotes
-            inputContainerProps={{
-              className: clsx("!border-[0px]", "!rounded-[0px]"),
-            }}
+        {!isRideByDriver && (
+          <PriceInputResultTrip
             inputProps={{
-              ...dictionaries.detail.notes.form.input.notes.inputProps,
-              value: state.detail.form.notes.value,
-              onChange: handleChangeNotes,
-            }}
-            labelProps={{
-              ...dictionaries.detail.notes.form.input.notes.labelProps,
+              type: "number",
+              value:
+                state.detail.form.price_offer.value === 0
+                  ? ""
+                  : state.detail.form.price_offer.value,
+              onChange: handleChangePriceOffer,
             }}
           />
-        </Card>
+        )}
 
-        <Button
-          disabled={isSubmitDisabled}
-          isLoading={isPendingPostBookingBook}
-          onClick={handleClickSend}
-        >
-          {isPendingPostBookingBook && <MoonLoader size={20} color={"white"} />}
+        {!isRideByDriver && (
+          <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
+            <TextareafieldNotes
+              inputContainerProps={{
+                className: clsx("!border-[0px]", "!rounded-[0px]"),
+              }}
+              inputProps={{
+                ...dictionaries.detail.notes.form.input.notes.inputProps,
+                value: state.detail.form.notes.value,
+                onChange: handleChangeNotes,
+              }}
+              labelProps={{
+                ...dictionaries.detail.notes.form.input.notes.labelProps,
+              }}
+            />
+          </Card>
+        )}
 
-          {dictionaries.detail.cta.send.children}
-        </Button>
+        {!isRideByDriver && (
+          <Button
+            disabled={isSubmitDisabled}
+            isLoading={isPendingPostBookingBook}
+            onClick={handleClickSend}
+          >
+            {isPendingPostBookingBook && (
+              <MoonLoader size={20} color={"white"} />
+            )}
+
+            {dictionaries.detail.cta.send.children}
+          </Button>
+        )}
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };

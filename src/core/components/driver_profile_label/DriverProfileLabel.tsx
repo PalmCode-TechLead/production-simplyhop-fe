@@ -4,12 +4,14 @@ import { Avatar, AvatarProps } from "../avatar";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
 
 export interface DriverProfileLabelProps {
+  id?: string;
   avatar?: AvatarProps;
   name?: string;
   icon?: SVGIconProps | null;
 }
 
 export const DriverProfileLabel = ({
+  id,
   avatar,
   name = "",
   icon = {
@@ -18,6 +20,7 @@ export const DriverProfileLabel = ({
 }: DriverProfileLabelProps) => {
   return (
     <div
+      id={id}
       className={clsx(
         "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem] lg:gap-[1.5rem]"
       )}

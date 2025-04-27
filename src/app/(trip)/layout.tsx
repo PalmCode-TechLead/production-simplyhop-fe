@@ -1,5 +1,5 @@
 import { PageLoader } from "@/core/components/page_loader";
-import { FooterApp } from "@/core/modules/app/fragments/footer";
+// import { FooterApp } from "@/core/modules/app/fragments/footer";
 import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
 import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_profile";
 import { AppCollectionURL } from "@/core/utils/router/constants";
@@ -56,7 +56,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
             {children}
           </UserProvider>
         </div>
-        <FooterApp />
+        {/* <FooterApp /> */}
       </main>
     </Suspense>
   );

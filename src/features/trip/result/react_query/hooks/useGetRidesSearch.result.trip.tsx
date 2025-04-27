@@ -97,10 +97,12 @@ export const useGetRideSearch = () => {
         payload: {
           ...state.rides,
           data: data.data.map((item, index) => {
+            console.log(item.user.id, item.id, "ini apasih");
             return {
               id: String(item.id),
               driver: {
                 profile: {
+                  id: String(item.user.id),
                   avatar: !item.user.avatar
                     ? undefined
                     : {
