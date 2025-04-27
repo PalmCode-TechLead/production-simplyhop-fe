@@ -313,7 +313,7 @@ export const useGetMessagesListByRoom = () => {
                   },
                   note: {
                     label: "Hinweis",
-                    note: item.booking?.ride?.additional_info,
+                    note: content.message,
                   },
                 },
                 driver: null,
