@@ -97,7 +97,6 @@ export const useGetRideSearch = () => {
         payload: {
           ...state.rides,
           data: data.data.map((item, index) => {
-            console.log(item.user.id, item.id, "ini apasih");
             return {
               id: String(item.id),
               driver: {
@@ -127,7 +126,7 @@ export const useGetRideSearch = () => {
                 },
                 facility: {
                   top: [
-                    ...(!!item.vehicle.numb_free_seats
+                    ...(!!item.ride_time.available_seats
                       ? [
                           {
                             ...globalDictionaries.vehicle.seat.available,
@@ -141,7 +140,7 @@ export const useGetRideSearch = () => {
                               label:
                                 globalDictionaries.vehicle.seat.available.name.label.replaceAll(
                                   "{{number}}",
-                                  item.vehicle.numb_free_seats.toLocaleString(
+                                  item.ride_time.available_seats.toLocaleString(
                                     "de-DE"
                                   )
                                 ),
