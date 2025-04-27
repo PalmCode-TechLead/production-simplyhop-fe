@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { LoginAuthReactQueryKey } from "../keys";
 import {
   GetAuthSocialCallbackErrorResponseInterface,
@@ -7,28 +7,24 @@ import {
   GetAuthSocialCallbackSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/auth";
 import { fetchGetAuthSocialCallback } from "@/core/services/rest/simplyhop/auth";
-import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "universal-cookie";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetSocialCallback = () => {
-  const { state: globalState, dispatch: dispatchGlobal } =
-    React.useContext(GlobalContext);
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const code = searchParams.get("code");
-  const mutation = useMutation<
+  const query = useQuery<
     GetAuthSocialCallbackSuccessResponseInterface,
-    GetAuthSocialCallbackErrorResponseInterface,
-    { id: string }
+    GetAuthSocialCallbackErrorResponseInterface
   >({
-    mutationKey: LoginAuthReactQueryKey.GetSocialCallback(),
-    mutationFn: (data: { id: string }) => {
+    queryKey: LoginAuthReactQueryKey.GetSocialCallback(),
+    queryFn: () => {
       const payload: GetAuthSocialCallbackPayloadRequestInterface = {
         path: {
-          provider: data.id,
+          provider: "google",
         },
         params: {
           code: String(code ?? ""),
@@ -36,27 +32,15 @@ export const useGetSocialCallback = () => {
       };
       return fetchGetAuthSocialCallback(payload);
     },
-    onSuccess(data) {
+  });
+
+  React.useEffect(() => {
+    if (!!query.data && !query.isFetching) {
+      const data = query.data;
       const cookies = new Cookies();
       cookies.set("token", data.data.token, { path: "/" });
       router.push(AppCollectionURL.public.home());
-    },
-    onError(error) {
-      dispatchGlobal({
-        type: GlobalActionEnum.SetAlertData,
-        payload: {
-          ...globalState.alert,
-          items: [
-            ...globalState.alert.items,
-            {
-              id: "ERROR_SOCIAL_CALLBACK",
-              variant: "error",
-              message: error.message,
-            },
-          ],
-        },
-      });
-    },
-  });
-  return mutation;
+    }
+  }, [query.data, query.isFetching]);
+  return query;
 };
