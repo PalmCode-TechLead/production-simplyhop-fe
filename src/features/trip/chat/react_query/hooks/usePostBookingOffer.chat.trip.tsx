@@ -10,12 +10,14 @@ import {
 import { fetchPostBookingOffer } from "@/core/services/rest/simplyhop/booking";
 import { ChatTripReactQueryKey } from "../keys";
 import { useSearchParams } from "next/navigation";
+import { ChatTripContext } from "../../context";
 
 export const usePostBookingOffer = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const searchParams = useSearchParams();
   const bookingId = searchParams.get("bookingId");
+  const { state } = React.useContext(ChatTripContext);
 
   const mutation = useMutation<
     PostBookingOfferSuccessResponseInterface,
@@ -28,7 +30,10 @@ export const usePostBookingOffer = () => {
           id: !bookingId ? "0" : String(bookingId),
         },
         body: {
-          offered_price: 100,
+          message: !state.offer.form.notes.value.length
+            ? undefined
+            : state.offer.form.notes.value,
+          offered_price: Number(state.offer.price?.price ?? "0"),
         },
       };
       return fetchPostBookingOffer(payload);

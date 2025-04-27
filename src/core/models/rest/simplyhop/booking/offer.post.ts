@@ -15,6 +15,7 @@ export type PostBookingOfferPathPayloadRequestInterface = {
 
 export interface PostBookingOfferBodyPayloadRequestInterface {
   offered_price: number;
+  message?: string;
 }
 
 export type PostBookingOfferResponseInterface = NextApiResponse<
