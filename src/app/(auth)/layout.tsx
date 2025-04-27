@@ -1,6 +1,10 @@
 import clsx from "clsx";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_profile";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const metadata: Metadata = {
   title: "Simply Hop",
@@ -10,7 +14,23 @@ type AuthLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function AuthLayout({ children }: AuthLayoutProps) {
+export default async function AuthLayout({ children }: AuthLayoutProps) {
+  const cookieStore = await cookies(); // ✅ with await
+  const token = cookieStore.get("token")?.value;
+
+  let res: any = null;
+  try {
+    res = await fetchGetUserProfileData({
+      headers: {
+        token: token ?? "",
+      },
+    });
+  } catch {}
+
+  if (res) {
+    redirect(AppCollectionURL.public.home());
+  }
+
   return (
     <main
       className={clsx(
