@@ -55,21 +55,23 @@ export const useGetVehicleId = () => {
               ...state.vehicle_information.general.form,
               car_brand: {
                 ...state.vehicle_information.general.form.car_brand,
-                selected:
-                  state.vehicle_information.general.form.car_brand.items.find(
-                    (carBrandItem) =>
-                      carBrandItem.id === String(data.data.brand.id)
-                  ) ?? null,
+                selected: !data.data.brand
+                  ? null
+                  : state.vehicle_information.general.form.car_brand.items.find(
+                      (carBrandItem) =>
+                        carBrandItem.id === String(data.data.brand?.id)
+                    ) ?? null,
                 // items: [],
                 // error: null,
               },
               car_category: {
                 ...state.vehicle_information.general.form.car_category,
-                selected:
-                  state.vehicle_information.general.form.car_category.items.find(
-                    (carCategoryItem) =>
-                      carCategoryItem.id === String(data.data.brand.id)
-                  ) ?? null,
+                selected: !data.data.category
+                  ? null
+                  : state.vehicle_information.general.form.car_category.items.find(
+                      (carCategoryItem) =>
+                        carCategoryItem.id === String(data.data.category?.id)
+                    ) ?? null,
                 // items: [],
                 // error: null,
               },
