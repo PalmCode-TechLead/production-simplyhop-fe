@@ -1,6 +1,5 @@
 import { AvatarProps } from "@/core/components/avatar";
 import { BookingCardChatTripProps } from "../components/booking_card";
-import { PassengerCardChatTripProps } from "../components/passenger_card";
 import { RideDetailCardChatTripProps } from "../components/ride_detail_card";
 import { PriceCardChatTripProps } from "../components/price_card";
 

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { RideDetailCardChatTrip } from "../../components/ride_detail_card";
 import { getDictionaries } from "../../i18n";
 import { PriceCardChatTrip } from "../../components/price_card";
@@ -9,12 +9,10 @@ import { TextareafieldNotes } from "@/core/components/textareafield_notes";
 import { Card } from "@/core/components/card";
 import { PriceInputChatTrip } from "../../components/price_input";
 import { Button } from "@/core/components/button";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
 import { PassengerCardChatTrip } from "../../components/passenger_card";
-import { RIDE_FILTER } from "@/core/enums";
 import { UserContext } from "@/core/modules/app/context";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
@@ -27,7 +25,7 @@ export const OfferChatTrip = () => {
   const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
-  const router = useRouter();
+
   const { state, dispatch } = React.useContext(ChatTripContext);
   const id = searchParams.get("id");
   const messageRoomId = !id ? "0" : String(id);

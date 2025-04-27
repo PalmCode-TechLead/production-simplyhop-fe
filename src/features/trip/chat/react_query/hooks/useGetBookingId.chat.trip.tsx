@@ -14,13 +14,11 @@ import { useSearchParams } from "next/navigation";
 import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
-// import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetBookingId = () => {
   const globalDictionaries = getGlobalDictionaries();
   const searchParams = useSearchParams();
 
-  const type = searchParams.get("type");
   const { state, dispatch } = React.useContext(ChatTripContext);
   const id = searchParams.get("bookingId");
 

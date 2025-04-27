@@ -17,7 +17,6 @@ import {
   useGetMessageRoomsId,
   useGetMessagesListByRoom,
   usePostBookingAccept,
-  usePostBookingOffer,
   usePostBookingReject,
 } from "../../react_query/hooks";
 import SenderMessageItemChatTrip from "../../components/sender_message_item/SenderMessageItem.chat.trip";
@@ -46,10 +45,7 @@ export const RoomChatTrip = () => {
     mutateAsync: postBookingAccept,
     isPending: isPendingPostBookingAccept,
   } = usePostBookingAccept();
-  const {
-    mutateAsync: postBookingOffer,
-    isPending: isPendingPostBookingOffer,
-  } = usePostBookingOffer();
+
   const {
     mutateAsync: postBookingReject,
     isPending: isPendingPostBookingReject,
@@ -145,12 +141,6 @@ export const RoomChatTrip = () => {
         is_open: true,
       },
     });
-    // await postBookingOffer();
-    // queryClient.invalidateQueries({
-    //   queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
-    //   type: "all",
-    //   refetchType: "all",
-    // });
   };
 
   const handleClickAccept = async () => {
@@ -212,8 +202,8 @@ export const RoomChatTrip = () => {
                       state.room.booking.status === "pending"
                         ? {
                             children: "Ein weiteres Angebot senden",
-                            disabled: isPendingPostBookingOffer,
-                            loading: isPendingPostBookingOffer,
+                            disabled: false,
+                            loading: false,
                             onClick: handleClickOffer,
                           }
                         : null,
