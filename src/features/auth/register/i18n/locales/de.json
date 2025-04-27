@@ -90,7 +90,8 @@
         "email": {
           "inputProps": {
             "id": "email",
-            "placeholder": " "
+            "placeholder": " ",
+            "disabled": true
           },
           "labelProps": {
             "id": "email",

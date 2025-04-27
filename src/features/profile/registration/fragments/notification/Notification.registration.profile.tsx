@@ -9,9 +9,12 @@ import {
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const NotificationRegistrationProfile = () => {
   const dictionaries = getDictionaries();
+  const router = useRouter();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
   const isOpen = state.notification.is_open;
   const handleClose = () => {
@@ -32,6 +35,7 @@ export const NotificationRegistrationProfile = () => {
         is_open: false,
       },
     });
+    router.push(AppCollectionURL.public.home());
   };
   return (
     <Modal

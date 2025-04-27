@@ -271,8 +271,8 @@
       "validations": {
         "items": [
           {
-            "id": "invalid_name",
-            "name": "Invalid LastName",
+            "id": "invalid_city",
+            "name": "Invalid City",
             "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
           }
         ]

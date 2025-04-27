@@ -44,6 +44,7 @@ export const Textfield = ({
         <Input
           ref={inputRef}
           {...inputProps}
+          disabled={disabled}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setValue(e.currentTarget.value);
             if (!inputProps?.onChange) return;

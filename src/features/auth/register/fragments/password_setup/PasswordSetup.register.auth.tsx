@@ -60,7 +60,7 @@ export const PasswordSetupRegisterAuth = () => {
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
-      errorItems: globalDictionaries.form.email.validations.items,
+      errorItems: globalDictionaries.form.password.validations.items,
       value: e.currentTarget.value,
     });
     dispatch({

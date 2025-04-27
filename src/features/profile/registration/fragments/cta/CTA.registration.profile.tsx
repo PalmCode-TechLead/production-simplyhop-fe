@@ -25,7 +25,11 @@ export const CTARegistrationProfile = () => {
   } = usePostVehicleCreateMy();
   const handleClickSave = async () => {
     await postUserProfileCreate();
-    await postVehicleCreateMy();
+
+    if (state.ride_plan.form.offer_trip.selected?.id === "yes") {
+      await postVehicleCreateMy();
+    }
+
     dispatch({
       type: RegistrationProfileActionEnum.SetNotificationData,
       payload: {

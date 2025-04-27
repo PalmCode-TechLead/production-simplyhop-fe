@@ -11,10 +11,12 @@ import {
 import { getError } from "@/core/utils/form";
 import { Textareafield } from "@/core/components/textareafield";
 import { Dropdownfield } from "@/core/components/dropdownfield";
+import { UserContext } from "@/core/modules/app/context";
 
 export const PersonalInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
+  const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
 
   const handleChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,11 +64,11 @@ export const PersonalInformationFormRegistrationProfile = () => {
   };
 
   const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const errorItem = getError({
-      errorItems: globalDictionaries.form.city.validations.items,
-      value: e.currentTarget.value,
-      type: "optional",
-    });
+    // const errorItem = getError({
+    //   errorItems: globalDictionaries.form.city.validations.items,
+    //   value: e.currentTarget.value,
+    //   type: "optional",
+    // });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
       payload: {
@@ -76,7 +78,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
           city: {
             ...state.personal_information.form.city,
             value: e.currentTarget.value,
-            error: errorItem,
+            // error: errorItem,
           },
         },
       },
@@ -160,7 +162,9 @@ export const PersonalInformationFormRegistrationProfile = () => {
           }}
           inputProps={{
             ...dictionaries.personal_information.form.input.email.inputProps,
-            value: state.personal_information.form.email.value,
+            value: !userState.profile.email.length
+              ? "-"
+              : userState.profile.email,
           }}
           disabled
         />
