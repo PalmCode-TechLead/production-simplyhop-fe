@@ -7,6 +7,7 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import dynamic from "next/dynamic";
 import { UserContext } from "../../context";
 import { Avatar } from "@/core/components/avatar";
+import { Skeleton } from "@/core/components/skeleton";
 
 const Link = dynamic(() => import("next/link"), {
   ssr: false,
@@ -25,7 +26,9 @@ export const SettingsSidebarApp = () => {
   const pathname = usePathname();
   const { isLg } = useTailwindBreakpoint();
 
-  const name = `${state.profile?.first_name} ${state.profile?.last_name}`;
+  const name = `${state.profile?.first_name ?? ""} ${
+    state.profile?.last_name ?? ""
+  }`;
 
   return (
     <div
@@ -38,19 +41,24 @@ export const SettingsSidebarApp = () => {
       <React.Suspense fallback={<div />}>
         <div
           className={clsx(
-            "flex flex-row-reverse items-end justify-end",
+            "flex flex-row-reverse items-center justify-end",
             "lg:grid lg:grid-cols-1 lg:place-content-start lg:place-items-start gap-[0.75rem]",
             "w-full"
           )}
         >
-          <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
-            {name}
-          </h1>
+          {!state.profile ? (
+            <Skeleton width={100} height={24} />
+          ) : (
+            <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+              {name}
+            </h1>
+          )}
 
           <Avatar
             className={clsx("w-[3rem] h-[3rem] lg:w-[100px] lg:h-[100px]")}
             src={state.profile?.avatar}
             alt={"profile_picture"}
+            variant={!state.profile ? "skeleton" : "avatar"}
           />
         </div>
 

@@ -71,6 +71,12 @@ export const InformationAccountSupport = () => {
         />
       </div>
       <ItemAccountSupport
+        name={dictionaries.information.gender.name}
+        value={
+          !userState.profile?.gender?.length ? "-" : userState.profile.gender
+        }
+      />
+      <ItemAccountSupport
         name={dictionaries.information.city.name}
         value={!userState.profile?.city.length ? "-" : userState.profile.city}
       />
