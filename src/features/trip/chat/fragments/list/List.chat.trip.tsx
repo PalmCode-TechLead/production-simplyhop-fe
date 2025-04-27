@@ -12,12 +12,13 @@ import {
   usePutMessageRoomsMarkAsRead,
 } from "../../react_query/hooks";
 import { useRouter } from "next/navigation";
+import SVGIcon from "@/core/icons";
 
 export const ListChatTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
-  useGetMessageRoomsList();
+  // useGetMessageRoomsList();
   const { mutate: putMessageRoomsMarkAsRead } = usePutMessageRoomsMarkAsRead();
 
   React.useEffect(() => {
@@ -129,24 +130,42 @@ export const ListChatTrip = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "w-full max-h-[400px]",
+            "w-full max-h-[360px]",
             "overflow-auto"
           )}
         >
-          {state.list.message.items.map((item, itemIndex) => (
-            <button
-              key={itemIndex}
-              className={clsx("cursor-pointer", "w-full")}
-              onClick={() =>
-                handleClickList({
-                  id: item.id,
-                  booking_id: item.booking_id,
-                })
-              }
+          {!state.list.message.items.length && (
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-center place-items-center",
+                "w-full h-[360px]"
+              )}
             >
-              <ListItemChatTrip {...item} />
-            </button>
-          ))}
+              <SVGIcon
+                name="MessageSquare"
+                className={clsx("w-[3rem] h-[3rem]", "text-[#C2C2C2]")}
+              />
+              <span className={clsx("text-[1rem] text-[#C2C2C2] font-medium")}>
+                {dictionaries.chat.list.empty.message}
+              </span>
+            </div>
+          )}
+
+          {!!state.list.message.items.length &&
+            state.list.message.items.map((item, itemIndex) => (
+              <button
+                key={itemIndex}
+                className={clsx("cursor-pointer", "w-full")}
+                onClick={() =>
+                  handleClickList({
+                    id: item.id,
+                    booking_id: item.booking_id,
+                  })
+                }
+              >
+                <ListItemChatTrip {...item} />
+              </button>
+            ))}
         </div>
       </TabGroup>
     </div>
