@@ -27,6 +27,8 @@ import { UserContext } from "@/core/modules/app/context";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { ENVIRONMENTS } from "@/core/environments";
+import { AppCollectionURL } from "@/core/utils/router/constants";
+import { RIDE_FILTER } from "@/core/enums";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -283,7 +285,9 @@ export const DetailPlanRideTrip = () => {
         is_open: true,
         share: {
           ...state.notification.share,
-          link: `${ENVIRONMENTS.SITE_URL}/mitfahrt-suchen/result?ride_id=${ridesFirst.data.id}`,
+          link: `${ENVIRONMENTS.SITE_URL}${AppCollectionURL.public.tripResult(
+            `${RIDE_FILTER.RIDE_ID}=${ridesFirst.data.id}`
+          )}`,
         },
       },
     });
