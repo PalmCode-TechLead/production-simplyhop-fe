@@ -187,7 +187,7 @@ export const DetailResultTrip = () => {
           price={detailData.price?.initial?.price}
         />
 
-        {(!isRideByDriver || !isLoggedIn) && (
+        {!isRideByDriver && isLoggedIn && (
           <PriceInputResultTrip
             inputProps={{
               type: "number",
@@ -200,7 +200,7 @@ export const DetailResultTrip = () => {
           />
         )}
 
-        {(!isRideByDriver || !isLoggedIn) && (
+        {!isRideByDriver && isLoggedIn && (
           <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
             <TextareafieldNotes
               inputContainerProps={{
@@ -218,7 +218,7 @@ export const DetailResultTrip = () => {
           </Card>
         )}
 
-        {(!isRideByDriver || !isLoggedIn) && (
+        {!isRideByDriver && isLoggedIn && (
           <Button
             disabled={isSubmitDisabled}
             isLoading={isPendingPostBookingBook}

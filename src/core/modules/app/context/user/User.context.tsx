@@ -9,19 +9,7 @@ import {
 import { UserProfileReducers } from "./User.reducers";
 
 const initialState: UserInitialStateType = {
-  profile: {
-    id: null,
-    avatar: null,
-    first_name: "",
-    last_name: "",
-    email: "",
-    phonenumber: "",
-    city: "",
-    about_me: "",
-    is_driver: false,
-    gender: null,
-    is_able_to_ride: true,
-  },
+  profile: null,
 };
 
 const UserContext = createContext<{
