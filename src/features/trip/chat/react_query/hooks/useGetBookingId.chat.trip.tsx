@@ -131,12 +131,8 @@ export const useGetBookingId = () => {
                             ...globalDictionaries.vehicle.luggage.available
                               .name,
                             label:
-                              globalDictionaries.vehicle.luggage.available.name.label.replaceAll(
-                                "{{number}}",
-                                data.data.ride.vehicle.numb_free_seats.toLocaleString(
-                                  "de-DE"
-                                )
-                              ),
+                              globalDictionaries.vehicle.luggage.available.name
+                                .label,
                           },
                         },
                       ]

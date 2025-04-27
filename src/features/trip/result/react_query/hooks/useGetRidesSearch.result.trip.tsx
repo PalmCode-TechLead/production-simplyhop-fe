@@ -170,12 +170,8 @@ export const useGetRideSearch = () => {
                               ...globalDictionaries.vehicle.luggage.available
                                 .name,
                               label:
-                                globalDictionaries.vehicle.luggage.available.name.label.replaceAll(
-                                  "{{number}}",
-                                  item.vehicle.numb_free_seats.toLocaleString(
-                                    "de-DE"
-                                  )
-                                ),
+                                globalDictionaries.vehicle.luggage.available
+                                  .name.label,
                             },
                           },
                         ]

@@ -168,12 +168,8 @@ export const useGetMessagesListByRoom = () => {
                                   ...globalDictionaries.vehicle.luggage
                                     .available.name,
                                   label:
-                                    globalDictionaries.vehicle.luggage.available.name.label.replaceAll(
-                                      "{{number}}",
-                                      item.booking.ride.vehicle.numb_free_seats.toLocaleString(
-                                        "de-DE"
-                                      )
-                                    ),
+                                    globalDictionaries.vehicle.luggage.available
+                                      .name.label,
                                 },
                               },
                             ]

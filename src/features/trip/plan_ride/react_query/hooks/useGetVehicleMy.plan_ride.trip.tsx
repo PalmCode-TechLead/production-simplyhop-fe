@@ -60,7 +60,7 @@ export const useGetVehicleMy = () => {
             data: filteredData.map((item) => {
               return {
                 id: String(item.id),
-                seat: item.numb_free_seats,
+                seat: item.numb_free_seats ?? 0,
                 image: {
                   src: !item.image.length
                     ? "/images/general/car.png"
@@ -118,10 +118,8 @@ export const useGetVehicleMy = () => {
                               ...globalDictionaries.vehicle.luggage.available
                                 .name,
                               label:
-                                globalDictionaries.vehicle.luggage.available.name.label.replaceAll(
-                                  "{{number}}",
-                                  item.numb_free_seats.toLocaleString("de-DE")
-                                ),
+                                globalDictionaries.vehicle.luggage.available
+                                  .name.label,
                             },
                           },
                         ]
