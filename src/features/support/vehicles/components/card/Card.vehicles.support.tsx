@@ -149,9 +149,6 @@ export const CardVehiclesSupport = ({
           )}
         >
           <Image {...car.image} className={clsx("w-[145px]")} />
-          <div className={clsx("block lg:hidden")}>
-            <CarIdentityItem {...car.identity} number={null} />
-          </div>
         </div>
 
         <div
@@ -161,8 +158,8 @@ export const CardVehiclesSupport = ({
           )}
         >
           {/* identity */}
-          <div className={clsx("hidden lg:block")}>
-            <CarIdentityItem {...car.identity} />
+          <div className={clsx("block")}>
+            <CarIdentityItem {...car.identity} number={null} />
           </div>
 
           {/* facility */}

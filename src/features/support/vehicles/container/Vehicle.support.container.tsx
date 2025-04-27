@@ -19,7 +19,7 @@ export const VehiclesSupportContainer = () => {
         className={clsx(
           "grid grid-rows-1 grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full h-full",
-          "px-[1rem]"
+          "px-[1rem] lg:px-[0rem]"
         )}
       >
         <div
