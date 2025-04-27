@@ -129,7 +129,7 @@ export const OfferChatTrip = () => {
     <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw)] md:!max-w-[872px]",
-        "h-fit max-h-[calc(100vh)]",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
         "!px-[0rem] !py-[0rem]"
@@ -192,7 +192,7 @@ export const OfferChatTrip = () => {
           }}
         />
 
-        <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
+        <Card className={clsx("!px-[0rem] !py-[0rem]")}>
           <TextareafieldNotes
             inputContainerProps={{
               className: clsx("!border-[0px]", "!rounded-[0px]"),

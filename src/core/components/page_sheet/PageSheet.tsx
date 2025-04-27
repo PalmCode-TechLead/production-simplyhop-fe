@@ -15,12 +15,14 @@ export interface PageSheetProps {
   open?: boolean;
   children?: React.ReactNode;
   direction?: PageSheetDirection;
+  className?: string;
 }
 
 export const PageSheet = ({
   open = false,
   children,
   direction = "bottom",
+  className,
 }: PageSheetProps) => {
   const [mounted, setMounted] = React.useState(false);
 
@@ -64,7 +66,8 @@ export const PageSheet = ({
             "bg-[rgba(255,255,255)]",
             "inset-0",
             "fixed top-0 bottom-0 left-0 right-0",
-            "h-[100vh] z-[1000]"
+            "h-[100vh] z-[1000]",
+            className
           )}
           initial={animation.initial}
           animate={animation.animate}

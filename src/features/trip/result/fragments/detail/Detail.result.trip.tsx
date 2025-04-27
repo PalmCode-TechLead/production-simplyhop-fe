@@ -137,8 +137,8 @@ export const DetailResultTrip = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-w-[calc(100vw)] md:!max-w-[872px]",
-        "h-fit max-h-[calc(100vh)]",
+        "!max-w-[calc(100vw)] md:!max-w-[872px]", 
+        "h-[100vh] lg:h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
         "!px-[0rem] !py-[0rem]"
