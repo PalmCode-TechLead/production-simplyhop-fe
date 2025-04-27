@@ -8,10 +8,13 @@ import {
 } from "../../context";
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const DeactivateAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
+  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.deactivate.is_open;
   const handleClose = () => {
     dispatch({
@@ -33,21 +36,37 @@ export const DeactivateAccountUpdateSupport = () => {
     });
   };
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
-        "h-fit",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
+      <button
+        className={clsx(
+          "absolute top-[1.5rem] left-[1.5rem]",
+          "block lg:hidden",
+          "cursor-pointer"
+        )}
+        onClick={handleClose}
+      >
+        <SVGIcon
+          name="X"
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+        />
+      </button>
       <div
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -72,13 +91,17 @@ export const DeactivateAccountUpdateSupport = () => {
         </div>
 
         <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          className={clsx(
+            "text-[1.25rem] lg:text-[1.5rem] text-[black] font-bold text-center"
+          )}
         >
           {dictionaries.deactivate.title}
         </h1>
 
         <p
-          className={clsx("text-[1rem] text-[#888888] font-normal text-center")}
+          className={clsx(
+            "text-[0.875rem] lg:text-[1rem] text-[#888888] font-normal text-center"
+          )}
         >
           {dictionaries.deactivate.message}
         </p>
@@ -102,7 +125,7 @@ export const DeactivateAccountUpdateSupport = () => {
                 key={itemIndex}
                 id={item.id}
                 className={clsx(
-                  "text-[1rem] text-[#888888] font-normal text-left"
+                  "text-[0.875rem] lg:text-[1rem] text-[#888888] font-normal text-left"
                 )}
               >
                 {item.name}
@@ -124,6 +147,6 @@ export const DeactivateAccountUpdateSupport = () => {
           {dictionaries.deactivate.cta.deactivate.children}
         </button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };
