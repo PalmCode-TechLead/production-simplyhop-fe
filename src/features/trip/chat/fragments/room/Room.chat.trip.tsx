@@ -22,6 +22,7 @@ import {
 import SenderMessageItemChatTrip from "../../components/sender_message_item/SenderMessageItem.chat.trip";
 import RecipientMessageItemChatTrip from "../../components/recipient_message_item/RecipientMessageItem.chat.trip";
 import { usePostMessagesChat } from "../../react_query/hooks";
+import { queryClient } from "@/core/utils/react_query";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -32,7 +33,8 @@ export const RoomChatTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   useGetMessageRoomsId();
   useGetMessagesListByRoom();
-  const { mutateAsync: postMessagesChat } = usePostMessagesChat();
+  const { mutateAsync: postMessagesChat, isPending: isPendingPostMessageChat } =
+    usePostMessagesChat();
   const {
     mutateAsync: postBookingAccept,
     isPending: isPendingPostBookingAccept,
@@ -90,6 +92,7 @@ export const RoomChatTrip = () => {
 
   const handleClickSend = async () => {
     const res = await postMessagesChat();
+    queryClient.invalidateQueries();
     if (!res) return;
     dispatch({
       type: ChatTripActionEnum.SetRoomData,
@@ -144,8 +147,7 @@ export const RoomChatTrip = () => {
         >
           {conversationData.map((chat, chatIndex) => {
             const { type, role, ...otherChatProps } = chat;
-
-            if (type === "offer_request" || "booking_request") {
+            if (type === "offer_request" || type === "booking_request") {
               return (
                 <BookingCardChatTrip
                   {...chat.booking}
@@ -206,7 +208,7 @@ export const RoomChatTrip = () => {
           "grid-cols-[1.5rem_1fr_auto]",
           "grid  items-center content-center justify-start justify-items-start gap-[0.625rem]",
           "w-full",
-          "px-[2.5rem] py-[1rem]",
+          "px-[1rem] lg:px-[2.5rem] py-[1rem]",
           "border-t border-t-[#DFDFDF]"
         )}
       >
@@ -245,6 +247,7 @@ export const RoomChatTrip = () => {
             "rounded-[0.375rem]",
             "text-[0.875rem] text-[white] font-normal"
           )}
+          disabled={isPendingPostMessageChat}
           onClick={handleClickSend}
         >
           {dictionaries.chat.room.cta.send.children}

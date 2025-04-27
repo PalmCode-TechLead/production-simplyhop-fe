@@ -65,7 +65,7 @@ export const useGetMessageRoomsList = () => {
               const displayMessage = !Object.keys(lastMessageObject).length
                 ? ""
                 : lastMessageObject?.type !== "text"
-                ? lastMessageObject.type
+                ? lastMessageObject.text
                 : lastMessageObject?.message ?? "";
               const date = !lastMessage
                 ? ""
