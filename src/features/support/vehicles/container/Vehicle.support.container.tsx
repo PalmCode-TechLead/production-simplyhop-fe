@@ -43,7 +43,7 @@ export const VehiclesSupportContainer = () => {
             <RidePlanFormVehiclesSupport />
             <div
               className={clsx(
-                "flex items-center justify-between",
+                "grid grid-flow-row grid-cols-1 items-start content-start justify-start justify-items-start lg:grid-cols-none lg:grid-flow-col lg:items-center lg:content-center lg:justify-between lg:justify-items-start gap-[1rem]",
                 "w-full",
                 userState.profile?.is_driver ? "opacity-100" : "opacity-50"
               )}
@@ -81,7 +81,7 @@ export const VehiclesSupportContainer = () => {
               ) : (
                 <Button
                   disabled={!userState.profile?.is_driver}
-                  className={clsx("!px-[1rem] !py-[0.5rem]", "!w-fit")}
+                  className={clsx("!px-[1rem] !py-[0.5rem]", "!w-full lg:!w-fit")}
                 >
                   {dictionaries.cta.create.children}
                 </Button>
