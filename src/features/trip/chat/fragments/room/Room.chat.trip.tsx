@@ -25,16 +25,16 @@ import { usePostMessagesChat } from "../../react_query/hooks";
 import { queryClient } from "@/core/utils/react_query";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { ChatTripReactQueryKey } from "../../react_query/keys";
-import { UserContext } from "@/core/modules/app/context";
-import { GetMessageRoomsListPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
+import { GetMessageRoomsIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 
 export const RoomChatTrip = () => {
-  const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const { state, dispatch } = React.useContext(ChatTripContext);
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const id = searchParams.get("id");
+  const messageRoomId = !id ? "0" : String(id);
+
   const { isLg } = useTailwindBreakpoint();
   useGetMessageRoomsId();
   useGetMessagesListByRoom();
@@ -116,23 +116,17 @@ export const RoomChatTrip = () => {
 
   const handleClickReject = async () => {
     await postBookingReject();
-    const payload: GetMessageRoomsListPayloadRequestInterface = {
+    const payload: GetMessageRoomsIdPayloadRequestInterface = {
+      path: {
+        id: messageRoomId,
+      },
       params: {
         include:
-          "messages,passenger,driver,driverExists,passengerExists,messagesExists",
-        "filter[passenger_id]":
-          state.list.tab.selected?.id === "offered-trips"
-            ? userState.profile.id ?? undefined
-            : undefined,
-        "filter[driver_id]":
-          state.list.tab.selected?.id === "my-rides"
-            ? userState.profile.id ?? undefined
-            : undefined,
-        sort: "-updated_at",
+          "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
       },
     };
     queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsList(payload),
+      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(payload),
       type: "all",
       refetchType: "all",
     });
