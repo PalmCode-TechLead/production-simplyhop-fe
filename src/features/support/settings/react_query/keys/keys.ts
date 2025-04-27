@@ -1,5 +1,5 @@
 export const SettingsSupportReactQueryKey = {
-  RestGooglePostRouteDirections: () => {
-    return ["SettingsSupportReactQueryKey.RestGooglePostRouteDirections"];
+  PostChangePassword: () => {
+    return ["SettingsSupportReactQueryKey.PostChangePassword"];
   },
 };

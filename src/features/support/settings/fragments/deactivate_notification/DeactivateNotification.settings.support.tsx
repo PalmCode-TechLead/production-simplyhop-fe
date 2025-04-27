@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import {
@@ -9,10 +8,13 @@ import {
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
 
 export const DeactivateNotificationSettingsSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
+  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.deactivate_notification.is_open;
   const handleClose = () => {
     dispatch({
@@ -34,21 +36,37 @@ export const DeactivateNotificationSettingsSupport = () => {
     });
   };
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
-        "h-fit",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
+      <button
+        className={clsx(
+          "absolute top-[1.5rem] left-[1.5rem]",
+          "block lg:hidden",
+          "cursor-pointer"
+        )}
+        onClick={handleClose}
+      >
+        <SVGIcon
+          name="X"
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+        />
+      </button>
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -88,6 +106,6 @@ export const DeactivateNotificationSettingsSupport = () => {
           {dictionaries.deactivate_notification.cta.go_to_homepage.children}
         </Button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };

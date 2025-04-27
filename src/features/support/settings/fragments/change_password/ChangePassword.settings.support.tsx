@@ -10,10 +10,16 @@ import { getDictionaries } from "../../i18n";
 import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { Checkbox } from "@/core/components/checkbox";
+import { usePostAuthChangePassword } from "../../react_query/hooks";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import SVGIcon from "@/core/icons";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const ChangePasswordSettingsSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
+  const { isLg } = useTailwindBreakpoint();
+  const { mutateAsync: postChangePassword } = usePostAuthChangePassword();
   const isOpen = state.change_password.is_open;
   const handleClose = () => {
     dispatch({
@@ -93,7 +99,8 @@ export const ChangePasswordSettingsSupport = () => {
     });
   };
 
-  const handleClickChangePassword = () => {
+  const handleClickChangePassword = async () => {
+    await postChangePassword();
     dispatch({
       type: SettingsSupportActionEnum.SetChangePasswordData,
       payload: {
@@ -103,21 +110,37 @@ export const ChangePasswordSettingsSupport = () => {
     });
   };
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
-        "h-fit",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
+      <button
+        className={clsx(
+          "absolute top-[1.5rem] left-[1.5rem]",
+          "block lg:hidden",
+          "cursor-pointer"
+        )}
+        onClick={handleClose}
+      >
+        <SVGIcon
+          name="X"
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+        />
+      </button>
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <h1
@@ -194,6 +217,6 @@ export const ChangePasswordSettingsSupport = () => {
           {dictionaries.change_password.cta.change_password.children}
         </Button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };
