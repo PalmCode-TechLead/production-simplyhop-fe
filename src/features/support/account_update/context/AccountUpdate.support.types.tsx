@@ -14,6 +14,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 // State Collection Types
 export interface AccountUpdateSupportInitialStateType {
   form: AccountUpdateSupportForm;
+  notification: AccountUpdateSupportNotification;
   deactivate: AccountUpdateSupportDeactivate;
   deactivate_confirmation: AccountUpdateSupportDeactivateConfirmation;
   deactivate_notification: AccountUpdateSupportDeactivateNotification;
@@ -49,6 +50,11 @@ export interface AccountUpdateSupportForm {
     files: File[] | string;
   };
 }
+
+export interface AccountUpdateSupportNotification {
+  is_open: boolean;
+}
+
 export interface AccountUpdateSupportDeactivate {
   is_open: boolean;
 }
@@ -69,6 +75,8 @@ export interface AccountUpdateSupportDeactivateNotification {
 export enum AccountUpdateSupportActionEnum {
   // Form
   SetFormData = "SetFormData",
+  // Notification
+  SetNotificationData = "SetNotificationData",
   // Deactivate
   SetDeactivateData = "SetDeactivateData",
   // DeactivateConfirmation
@@ -80,6 +88,7 @@ export enum AccountUpdateSupportActionEnum {
 // Action Collection Types
 export type AccountUpdateSupportActions =
   | AccountUpdateSupportFormActions
+  | AccountUpdateSupportNotificationActions
   | AccountUpdateSupportDeactivateActions
   | AccountUpdateSupportDeactivateConfirmationActions
   | AccountUpdateSupportDeactivateNotificationActions;
@@ -92,6 +101,14 @@ type AccountUpdateSupportFormPayload = {
 
 export type AccountUpdateSupportFormActions =
   ActionMap<AccountUpdateSupportFormPayload>[keyof ActionMap<AccountUpdateSupportFormPayload>];
+
+// Notification
+type AccountUpdateSupportNotificationPayload = {
+  [AccountUpdateSupportActionEnum.SetNotificationData]: AccountUpdateSupportNotification;
+};
+
+export type AccountUpdateSupportNotificationActions =
+  ActionMap<AccountUpdateSupportNotificationPayload>[keyof ActionMap<AccountUpdateSupportNotificationPayload>];
 
 // Deactivate
 type AccountUpdateSupportDeactivatePayload = {

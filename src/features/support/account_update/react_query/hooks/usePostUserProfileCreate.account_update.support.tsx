@@ -9,19 +9,9 @@ import {
 } from "@/core/models/rest/simplyhop/user_profile";
 import { AccountUpdateSupportContext } from "../../context";
 import { fetchPostUserProfileCreate } from "@/core/services/rest/simplyhop/user_profile";
-import {
-  GlobalActionEnum,
-  GlobalContext,
-  UserActionEnum,
-  UserContext,
-} from "@/core/modules/app/context";
-import { useRouter } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants";
+import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 
 export const usePostUserProfileCreate = () => {
-  const router = useRouter();
-  const { state: userState, dispatch: dispatchUser } =
-    React.useContext(UserContext);
   const { state } = React.useContext(AccountUpdateSupportContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
@@ -40,7 +30,6 @@ export const usePostUserProfileCreate = () => {
         mobile_is_show: true, // true terus karena bakal di show terus
         bio: state.form.about_me.value, // -> bio
         information: "",
-        is_driver: userState.profile?.is_driver ?? false,
         gender: state.form.gender.selected?.id,
         profile_picture: !state.form.pictures.files.length
           ? undefined
@@ -69,24 +58,6 @@ export const usePostUserProfileCreate = () => {
       return fetchPostUserProfileCreate(payload);
     },
 
-    onSuccess() {
-      if (userState.profile) {
-        dispatchUser({
-          type: UserActionEnum.SetProfileData,
-          payload: {
-            ...userState.profile,
-            first_name: state.form.first_name.value,
-            last_name: state.form.last_name.value,
-            city: state.form.city.value,
-            phonenumber: state.form.phonenumber.value,
-            about_me: state.form.about_me.value,
-            gender: state.form.gender.selected?.id ?? null,
-          },
-        });
-      }
-
-      router.push(AppCollectionURL.private.support_account());
-    },
     onError(error) {
       dispatchGlobal({
         type: GlobalActionEnum.SetAlertData,

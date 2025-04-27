@@ -7,6 +7,7 @@ import { DeactivateConfirmationAccountUpdateSupport } from "../fragments/deactiv
 import { DeactivateNotificationAccountUpdateSupport } from "../fragments/deactivate_notification";
 import { PictureFormAccountUpdateSupport } from "../fragments/picture_form";
 import { getDictionaries } from "../i18n";
+import { NotificationAccountUpdateSupport } from "../fragments/notification";
 
 export const AccountUpdateSupportContainer = () => {
   const dictionaries = getDictionaries();
@@ -40,6 +41,9 @@ export const AccountUpdateSupportContainer = () => {
       <DeactivateAccountUpdateSupport />
       <DeactivateConfirmationAccountUpdateSupport />
       <DeactivateNotificationAccountUpdateSupport />
+      <React.Suspense fallback={<div />}>
+        <NotificationAccountUpdateSupport />
+      </React.Suspense>
     </>
   );
 };

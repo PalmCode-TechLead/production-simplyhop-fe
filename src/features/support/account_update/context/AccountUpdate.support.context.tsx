@@ -9,6 +9,7 @@ import {
   AccountUpdateSupportDeactivateNotificationReducers,
   AccountUpdateSupportDeactivateReducers,
   AccountUpdateSupportFormReducers,
+  AccountUpdateSupportNotificationReducers,
 } from "./AccountUpdate.support.reducers";
 
 const initialState: AccountUpdateSupportInitialStateType = {
@@ -41,6 +42,9 @@ const initialState: AccountUpdateSupportInitialStateType = {
       files: [],
     },
   },
+  notification: {
+    is_open: false,
+  },
   deactivate: {
     is_open: false,
   },
@@ -68,6 +72,7 @@ const AccountUpdateSupportContext = createContext<{
 const mainReducer = (
   {
     form,
+    notification,
     deactivate,
     deactivate_confirmation,
     deactivate_notification,
@@ -75,6 +80,7 @@ const mainReducer = (
   action: AccountUpdateSupportActions
 ) => ({
   form: AccountUpdateSupportFormReducers(form, action),
+  notification: AccountUpdateSupportNotificationReducers(notification, action),
   deactivate: AccountUpdateSupportDeactivateReducers(deactivate, action),
   deactivate_confirmation: AccountUpdateSupportDeactivateConfirmationReducers(
     deactivate_confirmation,

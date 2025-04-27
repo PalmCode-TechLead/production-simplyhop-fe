@@ -8,12 +8,15 @@ import {
 } from "../../context";
 import { Button } from "@/core/components/button";
 import { usePostUserProfileCreate } from "../../react_query/hooks";
+import { UserActionEnum, UserContext } from "@/core/modules/app/context";
 
 export const CTAAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
+  const { state: userState, dispatch: dispatchUser } =
+    React.useContext(UserContext);
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
   const {
-    mutate: postUserProfileCreate,
+    mutateAsync: postUserProfileCreate,
     isPending: isPendingPostUserProfileCreate,
   } = usePostUserProfileCreate();
 
@@ -25,8 +28,30 @@ export const CTAAccountUpdateSupport = () => {
     isPendingPostUserProfileCreate;
   const isSubmitLoading = isPendingPostUserProfileCreate;
 
-  const handleClickSave = () => {
-    postUserProfileCreate();
+  const handleClickSave = async () => {
+    const res = await postUserProfileCreate();
+    if (!res) return;
+    if (userState.profile) {
+      dispatchUser({
+        type: UserActionEnum.SetProfileData,
+        payload: {
+          ...userState.profile,
+          first_name: state.form.first_name.value,
+          last_name: state.form.last_name.value,
+          city: state.form.city.value,
+          phonenumber: state.form.phonenumber.value,
+          about_me: state.form.about_me.value,
+          gender: state.form.gender.selected?.id ?? null,
+        },
+      });
+    }
+    dispatch({
+      type: AccountUpdateSupportActionEnum.SetNotificationData,
+      payload: {
+        ...state.notification,
+        is_open: true,
+      },
+    });
   };
 
   const handleClickDeactivate = () => {

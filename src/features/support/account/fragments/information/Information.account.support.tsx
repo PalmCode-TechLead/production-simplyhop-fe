@@ -3,10 +3,10 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { ItemAccountSupport } from "../../components/item";
-import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { UserContext } from "@/core/modules/app/context";
+import SVGIcon from "@/core/icons";
 
 export const InformationAccountSupport = () => {
   const dictionaries = getDictionaries();
@@ -34,12 +34,10 @@ export const InformationAccountSupport = () => {
           {dictionaries.title}
         </h1>
         <Link href={AppCollectionURL.private.support_account_edit()}>
-          <Button
-            variant="secondary"
-            className={clsx("!px-[2.5rem] !py-[0.5rem]")}
-          >
-            {dictionaries.information.cta.edit.children}
-          </Button>
+          <SVGIcon
+            name="Pencil"
+            className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5AC53D]")}
+          />
         </Link>
       </div>
 
