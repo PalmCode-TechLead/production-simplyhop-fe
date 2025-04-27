@@ -4,11 +4,21 @@ import {
   VehiclesSupportActions,
   VehiclesSupportInitialStateType,
 } from "./Vehicles.support.types";
-import { VehiclesSupportListReducers } from "./Vehicles.support.reducers";
+import {
+  VehiclesSupportListReducers,
+  VehiclesSupportRidePlanReducers,
+} from "./Vehicles.support.reducers";
 
 const initialState: VehiclesSupportInitialStateType = {
   list: {
     data: [],
+  },
+  ride_plan: {
+    form: {
+      offer_trip: {
+        selected: null,
+      },
+    },
   },
 };
 
@@ -21,10 +31,11 @@ const VehiclesSupportContext = createContext<{
 });
 
 const mainReducer = (
-  { list }: VehiclesSupportInitialStateType,
+  { list, ride_plan }: VehiclesSupportInitialStateType,
   action: VehiclesSupportActions
 ) => ({
   list: VehiclesSupportListReducers(list, action),
+  ride_plan: VehiclesSupportRidePlanReducers(ride_plan, action),
 });
 
 const VehiclesSupportProvider = (props: { children: React.ReactNode }) => {

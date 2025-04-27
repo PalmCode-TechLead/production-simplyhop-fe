@@ -9,15 +9,15 @@ export interface PostUserProfileCreatePayloadRequestInterface {
 }
 
 export type PostUserProfileCreateBodyPayloadRequestInterface = {
-  first_name: string;
-  last_name: string;
-  city: string;
-  mobile: string;
-  ride_offer: boolean;
-  mobile_is_show: boolean;
-  bio: string;
-  information: string;
-  is_driver: boolean;
+  first_name?: string;
+  last_name?: string;
+  city?: string;
+  mobile?: string;
+  ride_offer?: boolean;
+  mobile_is_show?: boolean;
+  bio?: string;
+  information?: string;
+  is_driver?: boolean;
   gender?: string;
   profile_picture?: File;
 };

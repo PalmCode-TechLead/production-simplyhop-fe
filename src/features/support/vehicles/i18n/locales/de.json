@@ -1,9 +1,29 @@
 {
+  "title": "Fahrzeuginformationen",
   "top_badge": {
     "icon": {
       "name": "Search"
     },
     "label": "Fahrt finden"
+  },
+  "ride_plan": {
+    "form": {
+      "input": {
+        "offer_trip": {
+          "label": "Möchtest du auch Fahrten über Simply Hop anbieten?",
+          "items": [
+            {
+              "id": "yes",
+              "name": "Ja, ich möchte selbst Fahrten über SimplyHop anbieten."
+            },
+            {
+              "id": "no",
+              "name": "Nein, ich möchte nur bei Fahrten mitfahren."
+            }
+          ]
+        }
+      }
+    }
   },
   "cta": {
     "create": {
@@ -11,6 +31,8 @@
     }
   },
   "list": {
+    "title": "Dein Auto",
+    "is_not_driver_label": "Noch kein Auto",
     "loading": {
       "message": "Einen Moment, wir sind gleich soweit..."
     },

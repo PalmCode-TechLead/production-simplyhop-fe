@@ -127,9 +127,12 @@ export const CardVehiclesSupport = ({
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full",
         "px-[1.5rem] py-[1rem]",
-        "rounded-[0.625rem]",
-        "border border-[#EFEFEF]"
+        "rounded-[0.625rem]"
       )}
+      style={{
+        backdropFilter: "blur(20px)",
+        boxShadow: "0px 0px 25px 0px #969C9640",
+      }}
     >
       {/* car */}
       <div
@@ -209,7 +212,11 @@ export const CardVehiclesSupport = ({
           {/* cta */}
           <Link href={cta.ride.href}>
             <Button
-              className={clsx("!px-[1rem] !py-[0.5rem]")}
+              className={clsx(
+                "!px-[1rem] !py-[0.5rem]",
+                "!bg-[white] !border-[white]",
+                "!text-[#5AC53D]"
+              )}
               // onClick={cta.ride.onClick}
             >
               {cta.ride.children}
