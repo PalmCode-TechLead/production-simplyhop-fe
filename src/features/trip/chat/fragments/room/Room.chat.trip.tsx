@@ -157,41 +157,38 @@ export const RoomChatTrip = () => {
                   key={chatIndex}
                   cta={{
                     reject:
-                      type === "booking_request" && role === "passenger"
-                        ? null
-                        : type === "offer_request" &&
-                          state.room.booking.status === "accepted"
-                        ? null
-                        : {
+                      type === "offer_request" &&
+                      role === "passenger" &&
+                      state.room.booking.status === "pending"
+                        ? {
                             children: "Angebot ablehnen",
                             disabled: isPendingPostBookingReject,
                             loading: isPendingPostBookingReject,
                             onClick: handleClickReject,
-                          },
+                          }
+                        : null,
                     bargain:
-                      type === "booking_request"
-                        ? null
-                        : type === "offer_request" &&
-                          state.room.booking.status === "accepted"
-                        ? null
-                        : {
+                      type === "offer_request" &&
+                      role === "passenger" &&
+                      state.room.booking.status === "pending"
+                        ? {
                             children: "Ein weiteres Angebot senden",
                             disabled: isPendingPostBookingOffer,
                             loading: isPendingPostBookingOffer,
                             onClick: handleClickOffer,
-                          },
+                          }
+                        : null,
                     accept:
-                      type === "booking_request" && role === "passenger"
-                        ? null
-                        : type === "offer_request" &&
-                          state.room.booking.status === "accepted"
-                        ? null
-                        : {
+                      type === "offer_request" &&
+                      role === "passenger" &&
+                      state.room.booking.status === "pending"
+                        ? {
                             children: "Angebot annehmen",
                             disabled: isPendingPostBookingAccept,
                             loading: isPendingPostBookingAccept,
                             onClick: handleClickAccept,
-                          },
+                          }
+                        : null,
                   }}
                 />
               );
