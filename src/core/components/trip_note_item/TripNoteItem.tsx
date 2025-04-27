@@ -10,7 +10,7 @@ export const TripNoteItem = ({ label = "", note = "" }: TripNoteItemProps) => {
   return (
     <div
       className={clsx(
-        "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
+        "grid grid-cols-1 lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
         "w-full"
       )}
     >

@@ -23,6 +23,7 @@ import SenderMessageItemChatTrip from "../../components/sender_message_item/Send
 import RecipientMessageItemChatTrip from "../../components/recipient_message_item/RecipientMessageItem.chat.trip";
 import { usePostMessagesChat } from "../../react_query/hooks";
 import { queryClient } from "@/core/utils/react_query";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -120,6 +121,8 @@ export const RoomChatTrip = () => {
   const handleClickAccept = async () => {
     await postBookingAccept();
   };
+
+  const isLoadingSendChat = isPendingPostMessageChat;
 
   return (
     <div
@@ -232,7 +235,7 @@ export const RoomChatTrip = () => {
             <EmojiPicker
               className={clsx(
                 "!absolute",
-                "top-[-480px] left-[-175px]",
+                "top-[-480px] lg:left-[-175px] left-[0px]",
                 "z-[10]"
               )}
               onEmojiClick={handleSelectEmoji}
@@ -260,10 +263,14 @@ export const RoomChatTrip = () => {
           onClick={handleClickSend}
         >
           {dictionaries.chat.room.cta.send.children}
-          <SVGIcon
-            name="SendHorizonal"
-            className={clsx("w-[1rem] h-[1rem]", "text-[white]")}
-          />
+          {isLoadingSendChat ? (
+            <MoonLoader size={16} color={"white"} />
+          ) : (
+            <SVGIcon
+              name="SendHorizonal"
+              className={clsx("w-[1rem] h-[1rem]", "text-[white]")}
+            />
+          )}
         </button>
       </div>
     </div>

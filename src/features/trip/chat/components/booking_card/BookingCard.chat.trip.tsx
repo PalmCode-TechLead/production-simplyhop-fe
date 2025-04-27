@@ -309,7 +309,7 @@ export const BookingCardChatTrip = ({
         <div
           className={clsx(
             "w-full",
-            "px-[1rem] py-[0.75rem]",
+            "px-[0rem] lg:px-[1rem] py-[0.75rem]",
             "border-t border-t-[#F8F8F8]"
           )}
         >
@@ -320,7 +320,7 @@ export const BookingCardChatTrip = ({
         <div
           className={clsx(
             "w-full",
-            "px-[1rem] py-[0.75rem]",
+            "px-[0rem] lg:px-[1rem] py-[0.75rem]",
             "border-t border-t-[#F8F8F8]"
           )}
         >

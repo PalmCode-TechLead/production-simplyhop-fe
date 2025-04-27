@@ -63,7 +63,7 @@ export const useGetMessagesListByRoom = () => {
       return fetchGetMessagesListByRoom(payload);
     },
     enabled: !!id && !!state.room.id,
-    refetchInterval: 5 * 1000,
+    refetchInterval: 1 * 1000,
   });
 
   React.useEffect(() => {
