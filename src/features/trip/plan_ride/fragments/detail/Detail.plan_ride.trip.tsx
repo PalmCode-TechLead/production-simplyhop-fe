@@ -26,6 +26,7 @@ import { Dropdownfield } from "@/core/components/dropdownfield";
 import { UserContext } from "@/core/modules/app/context";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { ENVIRONMENTS } from "@/core/environments";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -280,6 +281,10 @@ export const DetailPlanRideTrip = () => {
       payload: {
         ...state.notification,
         is_open: true,
+        share: {
+          ...state.notification.share,
+          link: `${ENVIRONMENTS.SITE_URL}/mitfahrt-suchen/result?ride_id=${ridesFirst.data.id}`,
+        },
       },
     });
   };

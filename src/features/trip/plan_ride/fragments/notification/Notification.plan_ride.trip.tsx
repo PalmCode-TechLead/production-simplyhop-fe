@@ -24,6 +24,7 @@ export const NotificationPlanRideTrip = () => {
       },
     });
   };
+
   return (
     <AdaptiveModal
       className={clsx(
@@ -105,11 +106,8 @@ export const NotificationPlanRideTrip = () => {
         <CopyLinkItem
           link={
             isLg
-              ? dictionaries.notification.share.example_link
-              : `${dictionaries.notification.share.example_link.slice(
-                  0,
-                  15
-                )}...`
+              ? state.notification.share.link
+              : `${state.notification.share.link.slice(0, 15)}...`
           }
           cta={{ ...dictionaries.notification.share.cta }}
         />

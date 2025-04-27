@@ -127,6 +127,9 @@ export interface PlanRideTripDetail {
 
 export interface PlanRideTripNotification {
   is_open: boolean;
+  share: {
+    link: string;
+  };
 }
 
 export enum PlanRideTripActionEnum {

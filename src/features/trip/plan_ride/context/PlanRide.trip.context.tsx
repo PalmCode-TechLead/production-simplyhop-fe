@@ -99,6 +99,9 @@ const initialState: PlanRideTripInitialStateType = {
   },
   notification: {
     is_open: false,
+    share: {
+      link: "",
+    },
   },
 };
 
