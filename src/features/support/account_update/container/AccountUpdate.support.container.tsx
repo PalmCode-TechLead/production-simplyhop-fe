@@ -6,8 +6,10 @@ import { DeactivateAccountUpdateSupport } from "../fragments/deactivate";
 import { DeactivateConfirmationAccountUpdateSupport } from "../fragments/deactivate_confirmation";
 import { DeactivateNotificationAccountUpdateSupport } from "../fragments/deactivate_notification";
 import { PictureFormAccountUpdateSupport } from "../fragments/picture_form";
+import { getDictionaries } from "../i18n";
 
 export const AccountUpdateSupportContainer = () => {
+  const dictionaries = getDictionaries();
   return (
     <>
       <div
@@ -26,8 +28,11 @@ export const AccountUpdateSupportContainer = () => {
             "rounded-[1.25rem]"
           )}
         >
-          <FormAccountUpdateSupport />
+          <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+            {dictionaries.title}
+          </h1>
           <PictureFormAccountUpdateSupport />
+          <FormAccountUpdateSupport />
         </div>
 
         <CTAAccountUpdateSupport />

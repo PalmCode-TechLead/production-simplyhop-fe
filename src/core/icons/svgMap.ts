@@ -40,6 +40,7 @@ import {
   ArrowRight,
   Baby,
   BadgeEuro,
+  Camera,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -100,6 +101,7 @@ export const svgMap = {
   ArrowRight,
   Baby,
   BadgeEuro,
+  Camera,
   Facebook,
   Google,
   Whatsapp,

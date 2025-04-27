@@ -44,6 +44,8 @@ export const usePostUserProfileCreate = () => {
         gender: state.form.gender.selected?.id,
         profile_picture: !state.form.pictures.files.length
           ? undefined
+          : typeof state.form.pictures.files === "string"
+          ? undefined
           : state.form.pictures.files[0],
       };
       const formData = new FormData();

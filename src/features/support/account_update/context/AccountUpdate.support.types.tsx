@@ -46,7 +46,7 @@ export interface AccountUpdateSupportForm {
     error: FormError;
   };
   pictures: {
-    files: File[];
+    files: File[] | string;
   };
 }
 export interface AccountUpdateSupportDeactivate {

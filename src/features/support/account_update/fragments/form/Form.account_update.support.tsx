@@ -45,6 +45,10 @@ export const FormAccountUpdateSupport = () => {
           ...state.form.about_me,
           value: userState.profile?.about_me ?? "",
         },
+        pictures: {
+          ...state.form.pictures,
+          files: userState.profile?.avatar ?? [],
+        },
       },
     });
   }, [
@@ -53,6 +57,7 @@ export const FormAccountUpdateSupport = () => {
     userState.profile?.city,
     userState.profile?.phonenumber,
     userState.profile?.about_me,
+    userState.profile?.avatar,
   ]);
 
   const handleChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,9 +171,6 @@ export const FormAccountUpdateSupport = () => {
         "w-full"
       )}
     >
-      <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
-        {dictionaries.title}
-      </h1>
       <Textfield
         labelProps={{ ...dictionaries.form.input.email.labelProps }}
         inputProps={{
