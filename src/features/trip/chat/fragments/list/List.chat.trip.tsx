@@ -18,7 +18,7 @@ export const ListChatTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
-  // useGetMessageRoomsList();
+  useGetMessageRoomsList();
   const { mutate: putMessageRoomsMarkAsRead } = usePutMessageRoomsMarkAsRead();
 
   React.useEffect(() => {
