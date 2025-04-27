@@ -26,6 +26,7 @@ import { queryClient } from "@/core/utils/react_query";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { ChatTripReactQueryKey } from "../../react_query/keys";
 import { GetMessageRoomsIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
+import { findLastIndexOfferCard } from "@/core/utils/chat/functions";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -182,6 +183,11 @@ export const RoomChatTrip = () => {
           {conversationData.map((chat, chatIndex) => {
             const { type, role, ...otherChatProps } = chat;
             if (type === "offer_request" || type === "booking_request") {
+              const lastOfferCardIndex = findLastIndexOfferCard(
+                conversationData,
+                "type",
+                "text"
+              );
               return (
                 <BookingCardChatTrip
                   {...chat.booking}
@@ -189,7 +195,8 @@ export const RoomChatTrip = () => {
                   cta={{
                     reject:
                       type === "offer_request" &&
-                      state.room.booking.status === "pending"
+                      state.room.booking.status === "pending" &&
+                      chatIndex === lastOfferCardIndex
                         ? {
                             children: "Angebot ablehnen",
                             disabled: isPendingPostBookingReject,
@@ -199,7 +206,8 @@ export const RoomChatTrip = () => {
                         : null,
                     bargain:
                       type === "offer_request" &&
-                      state.room.booking.status === "pending"
+                      state.room.booking.status === "pending" &&
+                      chatIndex === lastOfferCardIndex
                         ? {
                             children: "Ein weiteres Angebot senden",
                             disabled: false,
@@ -209,7 +217,8 @@ export const RoomChatTrip = () => {
                         : null,
                     accept:
                       type === "offer_request" &&
-                      state.room.booking.status === "pending"
+                      state.room.booking.status === "pending" &&
+                      chatIndex === lastOfferCardIndex
                         ? {
                             children: "Angebot annehmen",
                             disabled: isPendingPostBookingAccept,
