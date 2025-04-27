@@ -13,7 +13,6 @@ import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
 import { PassengerCardChatTrip } from "../../components/passenger_card";
-import { UserContext } from "@/core/modules/app/context";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { usePostBookingOffer } from "../../react_query/hooks";
@@ -22,7 +21,6 @@ import { queryClient } from "@/core/utils/react_query";
 import { ChatTripReactQueryKey } from "../../react_query/keys";
 
 export const OfferChatTrip = () => {
-  const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
 
@@ -127,9 +125,6 @@ export const OfferChatTrip = () => {
 
   const isSubmitDisabled = isPendingPostBookingOffer;
 
-  const isRideByDriver =
-    String(userState.profile.id) === detailData.driver?.profile.id;
-
   return (
     <AdaptiveModal
       className={clsx(
@@ -186,50 +181,44 @@ export const OfferChatTrip = () => {
           price={priceData.price}
         />
 
-        {!isRideByDriver && (
-          <PriceInputChatTrip
+        <PriceInputChatTrip
+          inputProps={{
+            type: "number",
+            value:
+              state.offer.form.price_offer.value === 0
+                ? ""
+                : state.offer.form.price_offer.value,
+            onChange: handleChangePriceOffer,
+          }}
+        />
+
+        <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
+          <TextareafieldNotes
+            inputContainerProps={{
+              className: clsx("!border-[0px]", "!rounded-[0px]"),
+            }}
             inputProps={{
-              type: "number",
-              value:
-                state.offer.form.price_offer.value === 0
-                  ? ""
-                  : state.offer.form.price_offer.value,
-              onChange: handleChangePriceOffer,
+              ...dictionaries.offer.notes.form.input.notes.inputProps,
+              value: state.offer.form.notes.value,
+              onChange: handleChangeNotes,
+            }}
+            labelProps={{
+              ...dictionaries.offer.notes.form.input.notes.labelProps,
             }}
           />
-        )}
+        </Card>
 
-        {!isRideByDriver && (
-          <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
-            <TextareafieldNotes
-              inputContainerProps={{
-                className: clsx("!border-[0px]", "!rounded-[0px]"),
-              }}
-              inputProps={{
-                ...dictionaries.offer.notes.form.input.notes.inputProps,
-                value: state.offer.form.notes.value,
-                onChange: handleChangeNotes,
-              }}
-              labelProps={{
-                ...dictionaries.offer.notes.form.input.notes.labelProps,
-              }}
-            />
-          </Card>
-        )}
+        <Button
+          disabled={isSubmitDisabled}
+          isLoading={isPendingPostBookingOffer}
+          onClick={handleClickSend}
+        >
+          {isPendingPostBookingOffer && (
+            <MoonLoader size={20} color={"white"} />
+          )}
 
-        {!isRideByDriver && (
-          <Button
-            disabled={isSubmitDisabled}
-            isLoading={isPendingPostBookingOffer}
-            onClick={handleClickSend}
-          >
-            {isPendingPostBookingOffer && (
-              <MoonLoader size={20} color={"white"} />
-            )}
-
-            {dictionaries.offer.cta.send.children}
-          </Button>
-        )}
+          {dictionaries.offer.cta.send.children}
+        </Button>
       </div>
     </AdaptiveModal>
   );

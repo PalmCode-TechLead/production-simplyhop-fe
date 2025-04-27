@@ -27,32 +27,32 @@ export const FormAccountUpdateSupport = () => {
 
         first_name: {
           ...state.form.first_name,
-          value: userState.profile.first_name,
+          value: userState.profile?.first_name ?? "",
         },
         last_name: {
           ...state.form.last_name,
-          value: userState.profile.last_name,
+          value: userState.profile?.last_name ?? "",
         },
         city: {
           ...state.form.city,
-          value: userState.profile.city,
+          value: userState.profile?.city ?? "",
         },
         phonenumber: {
           ...state.form.phonenumber,
-          value: userState.profile.phonenumber,
+          value: userState.profile?.phonenumber ?? "",
         },
         about_me: {
           ...state.form.about_me,
-          value: userState.profile.about_me,
+          value: userState.profile?.about_me ?? "",
         },
       },
     });
   }, [
-    userState.profile.first_name,
-    userState.profile.last_name,
-    userState.profile.city,
-    userState.profile.phonenumber,
-    userState.profile.about_me,
+    userState.profile?.first_name,
+    userState.profile?.last_name,
+    userState.profile?.city,
+    userState.profile?.phonenumber,
+    userState.profile?.about_me,
   ]);
 
   const handleChangeFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -173,7 +173,7 @@ export const FormAccountUpdateSupport = () => {
         labelProps={{ ...dictionaries.form.input.email.labelProps }}
         inputProps={{
           ...dictionaries.form.input.email.inputProps,
-          value: userState.profile.email,
+          value: userState.profile?.email,
         }}
         disabled
       />

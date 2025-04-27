@@ -26,7 +26,7 @@ export const RidePlanFormVehiclesSupport = () => {
             ...state.ride_plan.form.offer_trip,
             selected:
               dictionaries.ride_plan.form.input.offer_trip.items.find((item) =>
-                userState.profile.is_driver
+                userState.profile?.is_driver
                   ? item.id === "yes"
                   : item.id === "no"
               ) ?? null,
@@ -36,7 +36,7 @@ export const RidePlanFormVehiclesSupport = () => {
     });
   }, [
     dictionaries.ride_plan.form.input.offer_trip.items,
-    userState.profile.is_driver,
+    userState.profile?.is_driver,
   ]);
 
   const handleSelectOfferTrip = (data: { id: string; name: string }) => {

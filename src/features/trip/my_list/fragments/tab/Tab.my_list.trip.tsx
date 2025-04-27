@@ -12,7 +12,7 @@ export const TabMyListTrip = () => {
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
 
-  const tabList = !userState.profile.is_driver
+  const tabList = !userState.profile?.is_driver
     ? dictionaries.tab.items.filter((item) => item.id !== "ride")
     : dictionaries.tab.items;
 

@@ -45,7 +45,7 @@ export const InformationAccountSupport = () => {
 
       <ItemAccountSupport
         name={dictionaries.information.email.name}
-        value={!userState.profile.email.length ? "-" : userState.profile.email}
+        value={!userState.profile?.email.length ? "-" : userState.profile.email}
       />
       <div
         className={clsx(
@@ -56,7 +56,7 @@ export const InformationAccountSupport = () => {
         <ItemAccountSupport
           name={dictionaries.information.first_name.name}
           value={
-            !userState.profile.first_name.length
+            !userState.profile?.first_name.length
               ? "-"
               : userState.profile.first_name
           }
@@ -64,7 +64,7 @@ export const InformationAccountSupport = () => {
         <ItemAccountSupport
           name={dictionaries.information.last_name.name}
           value={
-            !userState.profile.last_name.length
+            !userState.profile?.last_name.length
               ? "-"
               : userState.profile.last_name
           }
@@ -72,12 +72,12 @@ export const InformationAccountSupport = () => {
       </div>
       <ItemAccountSupport
         name={dictionaries.information.city.name}
-        value={!userState.profile.city.length ? "-" : userState.profile.city}
+        value={!userState.profile?.city.length ? "-" : userState.profile.city}
       />
       <ItemAccountSupport
         name={dictionaries.information.phonenumber.name}
         value={
-          !userState.profile.phonenumber.length
+          !userState.profile?.phonenumber.length
             ? "-"
             : userState.profile.phonenumber
         }
@@ -85,7 +85,7 @@ export const InformationAccountSupport = () => {
       <ItemAccountSupport
         name={dictionaries.information.about_me.name}
         value={
-          !userState.profile.about_me.length ? "-" : userState.profile.about_me
+          !userState.profile?.about_me.length ? "-" : userState.profile.about_me
         }
       />
     </div>

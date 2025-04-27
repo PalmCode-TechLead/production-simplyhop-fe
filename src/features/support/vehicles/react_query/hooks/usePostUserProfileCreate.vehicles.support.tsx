@@ -56,13 +56,16 @@ export const usePostUserProfileCreate = () => {
     },
 
     onSuccess() {
-      dispatchUser({
-        type: UserActionEnum.SetProfileData,
-        payload: {
-          ...userState.profile,
-          is_driver: state.ride_plan.form.offer_trip.selected?.id === "yes",
-        },
-      });
+      if (!!userState.profile) {
+        dispatchUser({
+          type: UserActionEnum.SetProfileData,
+          payload: {
+            ...userState.profile,
+            is_driver: state.ride_plan.form.offer_trip.selected?.id === "yes",
+          },
+        });
+      }
+
       router.push(AppCollectionURL.private.support_account());
     },
     onError(error) {

@@ -162,7 +162,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
           }}
           inputProps={{
             ...dictionaries.personal_information.form.input.email.inputProps,
-            value: !userState.profile.email.length
+            value: !userState.profile?.email.length
               ? "-"
               : userState.profile.email,
           }}

@@ -127,8 +127,10 @@ export const DetailResultTrip = () => {
 
   const isSubmitDisabled = isPendingPostBookingBook;
 
+  const isLoggedIn = !!userState.profile;
+
   const isRideByDriver =
-    String(userState.profile.id) === detailData.driver?.profile.id;
+    String(userState.profile?.id) === detailData.driver?.profile.id;
 
   return (
     <AdaptiveModal
@@ -185,7 +187,7 @@ export const DetailResultTrip = () => {
           price={detailData.price?.initial?.price}
         />
 
-        {!isRideByDriver && (
+        {(!isRideByDriver || !isLoggedIn) && (
           <PriceInputResultTrip
             inputProps={{
               type: "number",
@@ -198,7 +200,7 @@ export const DetailResultTrip = () => {
           />
         )}
 
-        {!isRideByDriver && (
+        {(!isRideByDriver || !isLoggedIn) && (
           <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
             <TextareafieldNotes
               inputContainerProps={{
@@ -216,7 +218,7 @@ export const DetailResultTrip = () => {
           </Card>
         )}
 
-        {!isRideByDriver && (
+        {(!isRideByDriver || !isLoggedIn) && (
           <Button
             disabled={isSubmitDisabled}
             isLoading={isPendingPostBookingBook}

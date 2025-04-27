@@ -25,7 +25,7 @@ export const SettingsSidebarApp = () => {
   const pathname = usePathname();
   const { isLg } = useTailwindBreakpoint();
 
-  const name = `${state.profile.first_name} ${state.profile.last_name}`;
+  const name = `${state.profile?.first_name} ${state.profile?.last_name}`;
 
   return (
     <div
@@ -49,7 +49,7 @@ export const SettingsSidebarApp = () => {
 
           <Avatar
             className={clsx("w-[3rem] h-[3rem] lg:w-[100px] lg:h-[100px]")}
-            src={state.profile.avatar}
+            src={state.profile?.avatar}
             alt={"profile_picture"}
           />
         </div>

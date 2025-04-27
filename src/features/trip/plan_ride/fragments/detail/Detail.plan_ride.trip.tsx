@@ -336,10 +336,10 @@ export const DetailPlanRideTrip = () => {
             driver={{
               profile: {
                 avatar: {
-                  src: userState.profile.avatar,
+                  src: userState.profile?.avatar,
                   alt: "driver",
                 },
-                name: `${userState.profile.first_name} ${userState.profile.last_name}`,
+                name: `${userState.profile?.first_name} ${userState.profile?.last_name}`,
               },
             }}
             car={{ ...filteredCar }}

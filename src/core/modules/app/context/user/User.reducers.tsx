@@ -2,7 +2,7 @@ import { UserActionEnum, UserActions, UserProfile } from "./User.types";
 
 // Profile
 export const UserProfileReducers = (
-  state: UserProfile,
+  state: UserProfile | null,
   action: UserActions
 ) => {
   switch (action.type) {

@@ -11,7 +11,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 // State Collection Types
 export interface UserInitialStateType {
-  profile: UserProfile;
+  profile: null | UserProfile;
 }
 
 // State Collection Types consist of:

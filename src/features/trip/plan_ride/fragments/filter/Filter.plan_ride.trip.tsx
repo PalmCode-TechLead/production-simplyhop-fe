@@ -488,7 +488,7 @@ export const FilterPlanRideTrip = () => {
               ...dictionaries.filter.form.auto.labelProps,
             },
           }}
-          disabled={!userState.profile.is_able_to_ride}
+          disabled={!userState.profile?.is_able_to_ride}
           inputProps={{
             ...dictionaries.filter.form.auto.inputProps,
             onClick: () => {
@@ -526,7 +526,7 @@ export const FilterPlanRideTrip = () => {
           )}
         >
           <FormRoutes
-            disabled={!userState.profile.is_able_to_ride}
+            disabled={!userState.profile?.is_able_to_ride}
             origin={{
               pageSheet: {
                 selected: state.filters.origin.selected.item,
@@ -546,7 +546,7 @@ export const FilterPlanRideTrip = () => {
               },
               autocomplete: {
                 selected: state.filters.origin.selected.item,
-                disabled: !userState.profile.is_able_to_ride,
+                disabled: !userState.profile?.is_able_to_ride,
                 items: state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
@@ -583,7 +583,7 @@ export const FilterPlanRideTrip = () => {
               },
               autocomplete: {
                 selected: state.filters.destination.selected.item,
-                disabled: !userState.profile.is_able_to_ride,
+                disabled: !userState.profile?.is_able_to_ride,
                 items: state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
@@ -607,7 +607,7 @@ export const FilterPlanRideTrip = () => {
             labelProps={{
               ...dictionaries.filter.form.date.labelProps,
             }}
-            disabled={!userState.profile.is_able_to_ride}
+            disabled={!userState.profile?.is_able_to_ride}
             value={state.filters.date.selected}
             onSelect={handleSelectDate}
           />
@@ -618,12 +618,12 @@ export const FilterPlanRideTrip = () => {
             }}
             inputProps={{
               ...dictionaries.detail.plan.form.input.time.inputProps,
-              disabled: !userState.profile.is_able_to_ride,
+              disabled: !userState.profile?.is_able_to_ride,
               type: "time",
               value: state.filters.time.value,
               onChange: handleChangeTime,
             }}
-            disabled={!userState.profile.is_able_to_ride}
+            disabled={!userState.profile?.is_able_to_ride}
           />
 
           {/* <FormPassenger

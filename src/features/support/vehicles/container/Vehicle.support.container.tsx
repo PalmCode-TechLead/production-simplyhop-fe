@@ -45,7 +45,7 @@ export const VehiclesSupportContainer = () => {
               className={clsx(
                 "flex items-center justify-between",
                 "w-full",
-                userState.profile.is_driver ? "opacity-100" : "opacity-50"
+                userState.profile?.is_driver ? "opacity-100" : "opacity-50"
               )}
             >
               <div
@@ -58,7 +58,7 @@ export const VehiclesSupportContainer = () => {
                 >
                   {dictionaries.list.title}
                 </h1>
-                {!userState.profile.is_driver && (
+                {!userState.profile?.is_driver && (
                   <p
                     className={clsx(
                       "text-[#606060] text-[0.875rem] font-normal"
@@ -69,7 +69,7 @@ export const VehiclesSupportContainer = () => {
                 )}
               </div>
 
-              {userState.profile.is_driver ? (
+              {userState.profile?.is_driver ? (
                 <Link href={AppCollectionURL.private.support_vehicle_create()}>
                   <Button
                     disabled={!userState.profile.is_driver}
@@ -80,14 +80,14 @@ export const VehiclesSupportContainer = () => {
                 </Link>
               ) : (
                 <Button
-                  disabled={!userState.profile.is_driver}
+                  disabled={!userState.profile?.is_driver}
                   className={clsx("!px-[1rem] !py-[0.5rem]", "!w-fit")}
                 >
                   {dictionaries.cta.create.children}
                 </Button>
               )}
             </div>
-            {userState.profile.is_driver && <ListVehiclesSupport />}
+            {userState.profile?.is_driver && <ListVehiclesSupport />}
           </div>
         </div>
       </div>

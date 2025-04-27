@@ -77,8 +77,8 @@ export const useGetMessagesListByRoom = () => {
           message: {
             ...state.room.message,
             items: data.data.map((item) => {
-              const isPassenger = userState.profile.id === item.passenger_id;
-              const isSender = userState.profile.id === item.sender_id;
+              const isPassenger = userState.profile?.id === item.passenger_id;
+              const isSender = userState.profile?.id === item.sender_id;
               const content =
                 typeof item.contents === "string"
                   ? JSON.parse(item.contents)

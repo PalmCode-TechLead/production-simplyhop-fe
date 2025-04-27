@@ -22,11 +22,11 @@ export const useGetMessageRoomsList = () => {
         "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
       "filter[passenger_id]":
         state.list.tab.selected?.id === "offered-trips"
-          ? userState.profile.id ?? undefined
+          ? userState.profile?.id ?? undefined
           : undefined,
       "filter[driver_id]":
         state.list.tab.selected?.id === "my-rides"
-          ? userState.profile.id ?? undefined
+          ? userState.profile?.id ?? undefined
           : undefined,
       sort: "-updated_at",
     },
@@ -52,7 +52,7 @@ export const useGetMessageRoomsList = () => {
           message: {
             ...state.list.message,
             items: data.data.map((item) => {
-              const isPassenger = userState.profile.id === item.passenger_id;
+              const isPassenger = userState.profile?.id === item.passenger_id;
               const lastMessage = item.messages?.find(
                 (_, index) => index === (item.messages?.length ?? 1) - 1
               );

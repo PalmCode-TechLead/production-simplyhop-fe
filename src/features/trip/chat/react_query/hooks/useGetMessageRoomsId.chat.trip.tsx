@@ -44,7 +44,7 @@ export const useGetMessageRoomsId = () => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
 
-      const isPassenger = userState.profile.id === data.data.passenger_id;
+      const isPassenger = userState.profile?.id === data.data.passenger_id;
       dispatch({
         type: ChatTripActionEnum.SetRoomData,
         payload: {
