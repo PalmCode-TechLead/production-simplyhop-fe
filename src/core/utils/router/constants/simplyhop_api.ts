@@ -3,6 +3,7 @@ import {
   GetAuthSocialRedirectPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/auth";
 import {
+  GetBookingIdPathPayloadRequestInterface,
   PostBookingAcceptPathPayloadRequestInterface,
   PostBookingOfferPathPayloadRequestInterface,
   PostBookingRejectPathPayloadRequestInterface,
@@ -63,6 +64,8 @@ export const SimplyHopAPICollectionURL = {
   booking: {
     postBook: () => `/api/bookings/book`,
     getMy: () => `/api/bookings/my`,
+    getId: (path: GetBookingIdPathPayloadRequestInterface) =>
+      `/api/bookings/${path.id}`,
     postAccept: (path: PostBookingAcceptPathPayloadRequestInterface) =>
       `/api/bookings/${path.id}/accept`,
     postOffer: (path: PostBookingOfferPathPayloadRequestInterface) =>
@@ -79,7 +82,8 @@ export const SimplyHopAPICollectionURL = {
   },
   message_rooms: {
     getList: () => `/api/message-rooms`,
-    getId: (path:GetMessageRoomsIdPathPayloadRequestInterface) => `/api/message-rooms/${path.id}`,
+    getId: (path: GetMessageRoomsIdPathPayloadRequestInterface) =>
+      `/api/message-rooms/${path.id}`,
     putMarkAsRead: (
       path: PutMessageRoomsMarkAsReadPathPayloadRequestInterface
     ) => `/api/message-rooms/${path.roomId}/mark-as-read`,

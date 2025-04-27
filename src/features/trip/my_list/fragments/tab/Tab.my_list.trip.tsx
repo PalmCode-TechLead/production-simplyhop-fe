@@ -5,10 +5,16 @@ import { getDictionaries } from "../../i18n";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { useSearchParams } from "next/navigation";
+import { UserContext } from "@/core/modules/app/context";
 
 export const TabMyListTrip = () => {
+  const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const dictionaries = getDictionaries();
+
+  const tabList = !userState.profile.is_driver
+    ? dictionaries.tab.items.filter((item) => item.id !== "ride")
+    : dictionaries.tab.items;
 
   const type = searchParams.get("type");
 
@@ -27,7 +33,7 @@ export const TabMyListTrip = () => {
           "overflow-x-auto"
         )}
       >
-        {dictionaries.tab.items.map((item, itemIndex) => {
+        {tabList.map((item, itemIndex) => {
           const params =
             itemIndex === 0
               ? undefined

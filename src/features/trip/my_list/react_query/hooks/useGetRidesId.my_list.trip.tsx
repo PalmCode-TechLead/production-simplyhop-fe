@@ -34,11 +34,11 @@ export const useGetRidesId = () => {
     GetRidesIdSuccessResponseInterface,
     GetRidesIdErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetRidesId(),
+    queryKey: MyListTripReactQueryKey.GetRidesId(payload),
     queryFn: () => {
       return fetchGetRidesId(payload);
     },
-    enabled: !type,
+    enabled: !type && !!id,
   });
 
   // React.useEffect(() => {

@@ -160,7 +160,7 @@ export const useGetRidesMy = () => {
                 }),
                 price: {
                   label: "Angebotspreis",
-                  price: item.base_price.toLocaleString("de-DE"),
+                  price: `€${item.base_price.toLocaleString("de-DE")}`,
                 },
               },
             };

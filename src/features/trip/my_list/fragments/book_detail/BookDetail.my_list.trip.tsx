@@ -10,6 +10,7 @@ import SVGIcon from "@/core/icons";
 import { BookDetailCardMyListTrip } from "../../components/book_detail_card";
 import { CarPriceItem } from "@/core/components/car_price_item";
 import { MyListTripContext } from "../../context";
+import { useGetBookingId } from "../../react_query/hooks";
 
 export const BookDetailMyListTrip = () => {
   const dictionaries = getDictionaries();
@@ -18,6 +19,7 @@ export const BookDetailMyListTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
   const { state } = React.useContext(MyListTripContext);
+  useGetBookingId();
 
   const filteredData = state.book.data.find((item) => item.id === bookingId);
 

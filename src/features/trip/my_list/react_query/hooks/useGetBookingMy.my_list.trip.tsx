@@ -132,7 +132,7 @@ export const useGetBookingMy = () => {
               detail: {
                 price: {
                   label: "Angebotspreis",
-                  price: item.total_amount.toLocaleString("de-DE"),
+                  price: `€${item.total_amount.toLocaleString("de-DE")}`,
                 },
               },
             };
