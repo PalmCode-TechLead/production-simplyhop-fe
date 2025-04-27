@@ -1,8 +1,8 @@
-import * as React from "react";
+// import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { MyListTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+// import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
 import { fetchGetBookingId } from "@/core/services/rest/simplyhop/booking";
 import {
@@ -11,14 +11,14 @@ import {
   GetBookingIdSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/booking";
 import { useSearchParams } from "next/navigation";
-import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
-import dayjs from "dayjs";
-import { AppCollectionURL } from "@/core/utils/router/constants";
+// import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
+// import dayjs from "dayjs";
+// import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetBookingId = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  // const { state, dispatch } = React.useContext(MyListTripContext);
   const id = searchParams.get("booking_id");
   console.log("ini kepanggil ga");
   const payload: GetBookingIdPayloadRequestInterface = {
@@ -40,10 +40,10 @@ export const useGetBookingId = () => {
     enabled: type === "book" && !!id,
   });
 
-  React.useEffect(() => {
-    if (!!query.data && !query.isFetching) {
-      const data = query.data;
-    }
-  }, [query.data, query.isFetching]);
+  // React.useEffect(() => {
+  //   if (!!query.data && !query.isFetching) {
+  //     const data = query.data;
+  //   }
+  // }, [query.data, query.isFetching]);
   return query;
 };
