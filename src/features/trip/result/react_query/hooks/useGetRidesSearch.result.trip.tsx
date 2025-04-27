@@ -107,7 +107,9 @@ export const useGetRideSearch = () => {
                         src: item.user.avatar,
                         alt: "photo_profile",
                       },
-                  name: `${item.user.first_name} ${item.user.last_name}`,
+                  name: `${item.user.first_name ?? ""} ${
+                    item.user.last_name ?? ""
+                  }`,
                 },
               },
               car: {
