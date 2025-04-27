@@ -45,6 +45,13 @@ export const FormAccountUpdateSupport = () => {
           ...state.form.about_me,
           value: userState.profile?.about_me ?? "",
         },
+        gender: {
+          ...state.form.gender,
+          selected:
+            globalDictionaries.personal_information.gender.options.items.find(
+              (item) => item.id === userState.profile?.gender
+            ) ?? null,
+        },
         pictures: {
           ...state.form.pictures,
           files: userState.profile?.avatar ?? [],
@@ -57,6 +64,7 @@ export const FormAccountUpdateSupport = () => {
     userState.profile?.city,
     userState.profile?.phonenumber,
     userState.profile?.about_me,
+    userState.profile?.gender,
     userState.profile?.avatar,
   ]);
 
