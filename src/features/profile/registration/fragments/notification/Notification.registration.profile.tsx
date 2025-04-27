@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import {
@@ -11,11 +10,14 @@ import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const NotificationRegistrationProfile = () => {
   const dictionaries = getDictionaries();
   const router = useRouter();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
+  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.notification.is_open;
   const handleClose = () => {
     dispatch({
@@ -38,21 +40,24 @@ export const NotificationRegistrationProfile = () => {
     router.push(AppCollectionURL.public.home());
   };
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
-        "h-fit",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -88,6 +93,6 @@ export const NotificationRegistrationProfile = () => {
           {dictionaries.notification.cta.back.children}
         </Button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };

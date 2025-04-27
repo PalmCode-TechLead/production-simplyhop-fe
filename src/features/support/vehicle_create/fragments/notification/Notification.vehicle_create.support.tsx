@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import {
@@ -9,6 +8,7 @@ import {
 import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
 
 export const NotificationVehicleCreateSupport = () => {
   const dictionaries = getDictionaries();
@@ -34,21 +34,23 @@ export const NotificationVehicleCreateSupport = () => {
     });
   };
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
-        "h-fit",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
       onClose={handleClose}
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -84,6 +86,6 @@ export const NotificationVehicleCreateSupport = () => {
           {dictionaries.notification.cta.back.children}
         </Button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };

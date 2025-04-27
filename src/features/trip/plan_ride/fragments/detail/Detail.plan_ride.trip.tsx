@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import { RideDetailCardPlanRideTrip } from "../../components/ride_detail_card";
@@ -25,12 +24,15 @@ import SVGIcon from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { Dropdownfield } from "@/core/components/dropdownfield";
 import { UserContext } from "@/core/modules/app/context";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const globalDictionaries = getGlobalDictionaries();
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(PlanRideTripContext);
+  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.detail.is_open;
 
   const { mutateAsync: postRidesFirst, isPending: isPendingRidesFirst } =
@@ -291,21 +293,24 @@ export const DetailPlanRideTrip = () => {
     isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
 
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw)] md:!max-w-[872px]",
         "h-[100vh] lg:!h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -537,6 +542,6 @@ export const DetailPlanRideTrip = () => {
           {dictionaries.detail.cta.send.children}
         </Button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };

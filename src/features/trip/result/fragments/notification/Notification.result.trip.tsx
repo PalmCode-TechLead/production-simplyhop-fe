@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
@@ -10,12 +9,15 @@ import SVGIcon, { SVGIconProps } from "@/core/icons";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { CopyLinkItem } from "@/core/components/copy_link_item";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const NotificationResultTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const router = useRouter();
   const { state, dispatch } = React.useContext(ResultTripContext);
+  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.notification.is_open;
   const handleClose = () => {
     dispatch({
@@ -41,21 +43,24 @@ export const NotificationResultTrip = () => {
     window.open(shareUrl);
   };
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
-        "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
-        "h-fit",
+        "!max-w-[calc(100vw-3rem)] sm:!max-w-[824px]",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -133,6 +138,6 @@ export const NotificationResultTrip = () => {
           cta={{ ...dictionaries.notification.share.cta }}
         />
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };
