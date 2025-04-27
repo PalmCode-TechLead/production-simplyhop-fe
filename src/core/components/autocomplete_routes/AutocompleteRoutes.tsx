@@ -153,7 +153,7 @@ export const AutocompleteRoutes = ({
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer className={clsx(disabled && "!opacity-50")}>
+        <InputContainer className={clsx(disabled && "!bg-[#F6F6F6]")}>
           <div
             className={clsx(
               "grid grid-rows-1 grid-cols-[1fr_auto_1fr] gap-[1rem]",
@@ -209,6 +209,7 @@ export const AutocompleteRoutes = ({
             <InputRoute
               inputProps={{
                 ...destination.inputProps,
+                disabled: disabled,
                 value: destinationAutocomplete.query,
                 onFocus: () => {
                   if (disabled) {
@@ -237,7 +238,10 @@ export const AutocompleteRoutes = ({
                     destination.autocomplete.onQuery(event.target.value);
                   }
                 },
-                onClick: destination.inputProps?.onClick,
+                onClick: (e) => {
+                  if (disabled) return;
+                  destination.inputProps?.onClick?.(e);
+                },
               }}
               labelProps={{
                 ...destination.labelProps,

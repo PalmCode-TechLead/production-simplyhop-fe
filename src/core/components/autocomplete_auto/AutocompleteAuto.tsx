@@ -71,11 +71,11 @@ export const AutocompleteAuto = ({
   useEffect(() => {
     setQuery(selected?.name ?? "");
   }, [selected?.name]);
-  console.log(disabled, "ini disabled");
+
   return (
     <div ref={containerRef} className={clsx("w-full")}>
       <div className={clsx("relative w-full")}>
-        <InputContainer>
+        <InputContainer className={clsx(disabled && "!bg-[#F6F6F6]")}>
           <div
             className={clsx(
               "grid grid-cols-1 justify-start justify-items-start gap-[0.5rem]",

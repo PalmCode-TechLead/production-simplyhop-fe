@@ -526,6 +526,7 @@ export const FilterPlanRideTrip = () => {
           )}
         >
           <FormRoutes
+            disabled={!userState.profile.is_able_to_ride}
             origin={{
               pageSheet: {
                 selected: state.filters.origin.selected.item,
@@ -622,6 +623,7 @@ export const FilterPlanRideTrip = () => {
               value: state.filters.time.value,
               onChange: handleChangeTime,
             }}
+            disabled={!userState.profile.is_able_to_ride}
           />
 
           {/* <FormPassenger

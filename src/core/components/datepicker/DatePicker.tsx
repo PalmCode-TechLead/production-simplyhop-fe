@@ -145,10 +145,11 @@ export const DatePicker = ({
         <InputContainer
           {...inputContainerProps}
           className={clsx(
-            "cursor-pointer",
+            disabled ? "cursor-default" : "cursor-pointer",
             "font-medium text-[0.875rem] leading-[1.25rem]",
             "text-[#000000] whitespace-nowrap",
             "w-full",
+            disabled && "!bg-[#F6F6F6]",
             inputContainerProps?.className
           )}
           onClick={() => {
