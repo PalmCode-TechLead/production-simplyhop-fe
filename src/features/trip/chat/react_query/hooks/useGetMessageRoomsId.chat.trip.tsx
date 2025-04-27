@@ -58,7 +58,7 @@ export const useGetMessageRoomsId = () => {
                 : data.data.driver?.avatar,
               alt: isPassenger ? "passenger" : "driver",
             },
-            name: isPassenger
+            name: !isPassenger
               ? `${data.data.passenger?.first_name} ${data.data.passenger?.last_name}`
               : `${data.data.driver?.first_name} ${data.data.driver?.last_name}`,
           },
