@@ -87,11 +87,14 @@ export const useGetMessagesListByRoom = () => {
                 id: String(id),
                 type: content.type,
                 role: isSender ? "sender" : "recipient",
-                // TODO: need rules if more than one day etc2
                 time: formatChatTime(item.created_at),
                 name: isPassenger
-                  ? `${item?.passenger?.first_name} ${item.passenger?.last_name}`
-                  : `${item.driver?.first_name} ${item.driver?.last_name}`,
+                  ? `${item?.passenger?.first_name ?? ""} ${
+                      item.passenger?.last_name ?? ""
+                    }`
+                  : `${item.driver?.first_name ?? ""} ${
+                      item.driver?.last_name ?? ""
+                    }`,
                 avatar: {
                   src: isPassenger
                     ? item.passenger?.avatar

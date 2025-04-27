@@ -14,7 +14,7 @@ export type GetMessageRoomsListParamsPayloadRequestInterface = {
   include?: string; //messages, messagesCount, messagesExists, passenger, passengerCount, passengerExists, driver, driverCount, driverExists, rideBooking, rideBookingCount, rideBookingExists
   "filter[driver_id]"?: number;
   "filter[passenger_id]"?: number;
-
+  search?: string;
   sort?: string;
 
   "page[number]"?: number;

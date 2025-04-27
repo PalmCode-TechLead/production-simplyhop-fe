@@ -28,6 +28,9 @@ export const useGetMessageRoomsList = () => {
         state.list.tab.selected?.id === "my-rides"
           ? userState.profile?.id ?? undefined
           : undefined,
+      search: !state.list.search.value.length
+        ? undefined
+        : state.list.search.value,
       sort: "-updated_at",
     },
   };
