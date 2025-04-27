@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import {
@@ -63,7 +62,7 @@ export const DeactivateAccountUpdateSupport = () => {
       </button>
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-full lg:h-fit",
           "overflow-auto",
           "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"

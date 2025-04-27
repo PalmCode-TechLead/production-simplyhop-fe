@@ -1,5 +1,4 @@
 "use client";
-import { Modal } from "@/core/components/modal";
 import * as React from "react";
 import clsx from "clsx";
 import {
@@ -11,15 +10,19 @@ import SVGIcon from "@/core/icons";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { useDeleteDeactivateAccount } from "../../react_query/hooks/useDeleteDeactivateAccount.account_update.support";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const DeactivateConfirmationAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
+  const { isLg } = useTailwindBreakpoint();
   const {
     mutateAsync: deleteDeactivateAccount,
     isPending: isPendingDeleteDeactivateAccount,
   } = useDeleteDeactivateAccount();
   const isOpen = state.deactivate_confirmation.is_open;
+
   const handleClose = () => {
     dispatch({
       type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
@@ -68,21 +71,37 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
   const isDeactivateDisabled = isPendingDeleteDeactivateAccount;
   const isDeactivateLoading = isPendingDeleteDeactivateAccount;
   return (
-    <Modal
+    <AdaptiveModal
       className={clsx(
         "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
         "h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
-        "!px-[2rem] !py-[2rem]"
+        "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
+      <button
+        className={clsx(
+          "absolute top-[1.5rem] left-[1.5rem]",
+          "block lg:hidden",
+          "cursor-pointer"
+        )}
+        onClick={handleClose}
+      >
+        <SVGIcon
+          name="X"
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+        />
+      </button>
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
+          "w-full h-full lg:h-fit",
+          "overflow-auto",
+          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
@@ -153,6 +172,6 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
           {dictionaries.deactivate_confirmation.cta.deactivate.children}
         </button>
       </div>
-    </Modal>
+    </AdaptiveModal>
   );
 };
