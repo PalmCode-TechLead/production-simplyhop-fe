@@ -73,11 +73,12 @@ export const useGetMessageRoomsList = () => {
               const date = !lastMessage
                 ? ""
                 : dayjs(lastMessage.created_at).format("MMM DD");
+              console.log(item.passenger, item.driver, "ini apa");
               return {
                 id: String(item.id),
                 booking_id: String(item.ride_booking_id),
                 avatar: {
-                  src: isPassenger
+                  src: !isPassenger
                     ? item.passenger?.avatar
                     : item.driver?.avatar,
                   alt: isPassenger ? "passenger" : "driver",

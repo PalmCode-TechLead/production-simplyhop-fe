@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "s3.us-east-005.backblazeb2.com",
         pathname: "/TinyParrot/**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
+      },
     ],
   },
 };

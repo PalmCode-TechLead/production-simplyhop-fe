@@ -53,7 +53,7 @@ export const useGetMessageRoomsId = () => {
           header: {
             ...state.room.header,
             avatar: {
-              src: isPassenger
+              src: !isPassenger
                 ? data.data.passenger?.avatar
                 : data.data.driver?.avatar,
               alt: isPassenger ? "passenger" : "driver",
