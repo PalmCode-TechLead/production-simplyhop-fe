@@ -22,7 +22,7 @@ export const useGetMessageRoomsList = () => {
   const payload: GetMessageRoomsListPayloadRequestInterface = {
     params: {
       include:
-        "messages,passenger,driver,driverExists,passengerExists,messagesExists",
+        "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
       "filter[passenger_id]":
         state.list.tab.selected?.id === "offered-trips"
           ? userState.profile.id ?? undefined
@@ -31,6 +31,7 @@ export const useGetMessageRoomsList = () => {
         state.list.tab.selected?.id === "my-rides"
           ? userState.profile.id ?? undefined
           : undefined,
+      sort: "-updated_at",
     },
   };
   const query = useQuery<
@@ -65,11 +66,14 @@ export const useGetMessageRoomsList = () => {
                 : typeof lastMessage.contents === "string"
                 ? JSON.parse(lastMessage.contents)
                 : lastMessage.contents;
-              const displayMessage = !Object.keys(lastMessageObject).length
-                ? ""
-                : lastMessageObject?.type !== "text"
-                ? lastMessageObject.text
-                : lastMessageObject?.message ?? "";
+              const displayMessage =
+                item.booking?.status === "rejected"
+                  ? "Ihre Buchung wurde abgelehnt."
+                  : !Object.keys(lastMessageObject).length
+                  ? ""
+                  : lastMessageObject?.type !== "text"
+                  ? lastMessageObject.text
+                  : lastMessageObject?.message ?? "";
               const date = !lastMessage
                 ? ""
                 : dayjs(lastMessage.created_at).format("MMM DD");

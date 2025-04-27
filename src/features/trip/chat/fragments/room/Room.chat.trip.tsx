@@ -24,8 +24,12 @@ import RecipientMessageItemChatTrip from "../../components/recipient_message_ite
 import { usePostMessagesChat } from "../../react_query/hooks";
 import { queryClient } from "@/core/utils/react_query";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { ChatTripReactQueryKey } from "../../react_query/keys";
+import { UserContext } from "@/core/modules/app/context";
+import { GetMessageRoomsListPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 
 export const RoomChatTrip = () => {
+  const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const { state, dispatch } = React.useContext(ChatTripContext);
@@ -112,6 +116,25 @@ export const RoomChatTrip = () => {
 
   const handleClickReject = async () => {
     await postBookingReject();
+    const payload: GetMessageRoomsListPayloadRequestInterface = {
+      params: {
+        include:
+          "messages,passenger,driver,driverExists,passengerExists,messagesExists",
+        "filter[passenger_id]":
+          state.list.tab.selected?.id === "offered-trips"
+            ? userState.profile.id ?? undefined
+            : undefined,
+        "filter[driver_id]":
+          state.list.tab.selected?.id === "my-rides"
+            ? userState.profile.id ?? undefined
+            : undefined,
+        sort: "-updated_at",
+      },
+    };
+    queryClient.invalidateQueries({
+      queryKey: ChatTripReactQueryKey.GetMessageRoomsList(payload),
+      type: "all",
+    });
   };
 
   const handleClickOffer = async () => {
@@ -123,7 +146,8 @@ export const RoomChatTrip = () => {
   };
 
   const isLoadingSendChat = isPendingPostMessageChat;
-
+  const isDisabledSendChat =
+    isPendingPostMessageChat || state.room.booking.status !== "accepted";
   return (
     <div
       className={clsx(
@@ -235,7 +259,10 @@ export const RoomChatTrip = () => {
                 "top-[-480px] lg:left-[-175px] left-[0px]",
                 "z-[10]"
               )}
-              onEmojiClick={handleSelectEmoji}
+              onEmojiClick={() => {
+                if (isDisabledSendChat) return;
+                handleClickEmoji;
+              }}
             />
           )}
         </div>
@@ -244,6 +271,7 @@ export const RoomChatTrip = () => {
           labelProps={{ ...dictionaries.chat.room.message.labelProps }}
           inputProps={{
             ...dictionaries.chat.room.message.inputProps,
+            disabled: state.room.booking.status !== "accepted",
             value: state.room.chat.input.value,
             onChange: handleChangeChat,
           }}
@@ -252,11 +280,11 @@ export const RoomChatTrip = () => {
           className={clsx(
             "grid grid-flow-col place-content-center place-items-center gap-[0.625rem]",
             "px-[0.75rem] py-[0.625rem]",
-            "bg-[#05912A]",
+            "bg-[#05912A] disabled:bg-[#F6F6F6]",
             "rounded-[0.375rem]",
-            "text-[0.875rem] text-[white] font-normal"
+            "text-[0.875rem] text-[white] disabled:text-[#767676] font-normal"
           )}
-          disabled={isPendingPostMessageChat}
+          disabled={isDisabledSendChat}
           onClick={handleClickSend}
         >
           {dictionaries.chat.room.cta.send.children}
@@ -265,7 +293,10 @@ export const RoomChatTrip = () => {
           ) : (
             <SVGIcon
               name="SendHorizonal"
-              className={clsx("w-[1rem] h-[1rem]", "text-[white]")}
+              className={clsx(
+                "w-[1rem] h-[1rem]",
+                isDisabledSendChat ? "text-[#767676]" : "text-[white]"
+              )}
             />
           )}
         </button>
