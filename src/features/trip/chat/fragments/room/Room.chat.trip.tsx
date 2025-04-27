@@ -56,6 +56,17 @@ export const RoomChatTrip = () => {
   if (!id && isLg) {
     return null;
   }
+
+  const messageRoomByIdPayload: GetMessageRoomsIdPayloadRequestInterface = {
+    path: {
+      id: messageRoomId,
+    },
+    params: {
+      include:
+        "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
+    },
+  };
+
   const conversationData = state.room.message.items;
 
   const handleClickEmoji = () => {
@@ -116,17 +127,9 @@ export const RoomChatTrip = () => {
 
   const handleClickReject = async () => {
     await postBookingReject();
-    const payload: GetMessageRoomsIdPayloadRequestInterface = {
-      path: {
-        id: messageRoomId,
-      },
-      params: {
-        include:
-          "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
-      },
-    };
+
     queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(payload),
+      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
       type: "all",
       refetchType: "all",
     });
@@ -134,10 +137,20 @@ export const RoomChatTrip = () => {
 
   const handleClickOffer = async () => {
     await postBookingOffer();
+    queryClient.invalidateQueries({
+      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+      type: "all",
+      refetchType: "all",
+    });
   };
 
   const handleClickAccept = async () => {
     await postBookingAccept();
+    queryClient.invalidateQueries({
+      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+      type: "all",
+      refetchType: "all",
+    });
   };
 
   const isLoadingSendChat = isPendingPostMessageChat;
