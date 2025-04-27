@@ -210,7 +210,7 @@ export const CardVehiclesSupport = ({
           )}
         >
           {/* cta */}
-          <Link href={cta.ride.href}>
+          <Link className={clsx("w-full lg:w-fit")} href={cta.ride.href}>
             <Button
               className={clsx(
                 "!px-[1rem] !py-[0.5rem]",

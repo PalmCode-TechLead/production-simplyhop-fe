@@ -70,7 +70,7 @@ export const VehiclesSupportContainer = () => {
               </div>
 
               {userState.profile?.is_driver ? (
-                <Link href={AppCollectionURL.private.support_vehicle_create()}>
+                <Link className={clsx("w-full lg:w-fit")} href={AppCollectionURL.private.support_vehicle_create()}>
                   <Button
                     disabled={!userState.profile.is_driver}
                     className={clsx("!px-[1rem] !py-[0.5rem]")}
