@@ -134,6 +134,7 @@ export const RoomChatTrip = () => {
     queryClient.invalidateQueries({
       queryKey: ChatTripReactQueryKey.GetMessageRoomsList(payload),
       type: "all",
+      refetchType: "all",
     });
   };
 
@@ -182,7 +183,6 @@ export const RoomChatTrip = () => {
                   cta={{
                     reject:
                       type === "offer_request" &&
-                      role === "passenger" &&
                       state.room.booking.status === "pending"
                         ? {
                             children: "Angebot ablehnen",
@@ -193,7 +193,6 @@ export const RoomChatTrip = () => {
                         : null,
                     bargain:
                       type === "offer_request" &&
-                      role === "passenger" &&
                       state.room.booking.status === "pending"
                         ? {
                             children: "Ein weiteres Angebot senden",
@@ -204,7 +203,6 @@ export const RoomChatTrip = () => {
                         : null,
                     accept:
                       type === "offer_request" &&
-                      role === "passenger" &&
                       state.room.booking.status === "pending"
                         ? {
                             children: "Angebot annehmen",
@@ -246,7 +244,12 @@ export const RoomChatTrip = () => {
         )}
       >
         <div className={clsx("relative")}>
-          <button onClick={handleClickEmoji}>
+          <button
+            onClick={() => {
+              if (!isDisabledSendChat) return;
+              handleClickEmoji();
+            }}
+          >
             <SVGIcon
               name="Smile"
               className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#BDBDBD]")}
@@ -259,10 +262,7 @@ export const RoomChatTrip = () => {
                 "top-[-480px] lg:left-[-175px] left-[0px]",
                 "z-[10]"
               )}
-              onEmojiClick={() => {
-                if (isDisabledSendChat) return;
-                handleClickEmoji;
-              }}
+              onEmojiClick={handleSelectEmoji}
             />
           )}
         </div>
