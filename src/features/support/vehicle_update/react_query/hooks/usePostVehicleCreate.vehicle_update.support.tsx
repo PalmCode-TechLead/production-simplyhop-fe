@@ -84,13 +84,14 @@ export const usePostVehicleCreateMy = () => {
       );
 
       for (const key of Object.keys(cleanedObj)) {
-        if (key === "image" && Array.isArray(cleanedObj[key])) {
+        if (key === "image[]" && Array.isArray(cleanedObj[key])) {
           cleanedObj[key].forEach((file: File) => {
             formData.append(key, file);
           });
         } else {
           formData.append(
             key,
+
             String((cleanedObj as { [key: string]: string })[key])
           );
         }
