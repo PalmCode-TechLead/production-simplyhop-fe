@@ -15,6 +15,9 @@ export const ChatTripReactQueryKey = {
   GetMessageRoomsId: (payload?: GetMessageRoomsIdPayloadRequestInterface) => {
     return ["ChatTripReactQueryKey.GetMessageRoomsId", [payload] as const];
   },
+  GetBookingId: () => {
+    return ["ChatTripReactQueryKey.GetBookingId"];
+  },
   PutMessageRoomsMarkAsRead: () => {
     return ["ChatTripReactQueryKey.PutMessageRoomsMarkAsRead"];
   },

@@ -3,6 +3,7 @@ import React, { createContext, useReducer, Dispatch } from "react";
 import { ChatTripActions, ChatTripInitialStateType } from "./Chat.trip.types";
 import {
   ChatTripListReducers,
+  ChatTripOfferReducers,
   ChatTripRoomReducers,
 } from "./Chat.trip.reducers";
 
@@ -40,6 +41,20 @@ const initialState: ChatTripInitialStateType = {
       },
     },
   },
+  offer: {
+    is_open: false,
+    form: {
+      price_offer: {
+        value: 0,
+      },
+      notes: {
+        value: "",
+      },
+    },
+    ride: null,
+    price: null,
+    passenger: null,
+  },
 };
 
 const ChatTripContext = createContext<{
@@ -51,11 +66,12 @@ const ChatTripContext = createContext<{
 });
 
 const mainReducer = (
-  { list, room }: ChatTripInitialStateType,
+  { list, room, offer }: ChatTripInitialStateType,
   action: ChatTripActions
 ) => ({
   list: ChatTripListReducers(list, action),
   room: ChatTripRoomReducers(room, action),
+  offer: ChatTripOfferReducers(offer, action),
 });
 
 const ChatTripProvider = (props: { children: React.ReactNode }) => {

@@ -1,5 +1,8 @@
 import { AvatarProps } from "@/core/components/avatar";
 import { BookingCardChatTripProps } from "../components/booking_card";
+import { PassengerCardChatTripProps } from "../components/passenger_card";
+import { RideDetailCardChatTripProps } from "../components/ride_detail_card";
+import { PriceCardChatTripProps } from "../components/price_card";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -16,6 +19,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface ChatTripInitialStateType {
   list: ChatTripList;
   room: ChatTripRoom;
+  offer: ChatTripOffer;
 }
 
 // State Collection Types consist of:
@@ -66,15 +70,38 @@ export interface ChatTripRoom {
   };
 }
 
+export interface ChatTripOffer {
+  is_open: boolean;
+  form: {
+    price_offer: {
+      value: number;
+    };
+    notes: {
+      value: string;
+    };
+  };
+  ride: null | RideDetailCardChatTripProps;
+  price: null | PriceCardChatTripProps;
+  passenger: null | {
+    adult: number;
+    children: number;
+  };
+}
+
 export enum ChatTripActionEnum {
   // List
   SetListData = "SetListData",
   // Room
   SetRoomData = "SetRoomData",
+  // Offer
+  SetOfferData = "SetOfferData",
 }
 
 // Action Collection Types
-export type ChatTripActions = ChatTripListActions | ChatTripRoomActions;
+export type ChatTripActions =
+  | ChatTripListActions
+  | ChatTripRoomActions
+  | ChatTripOfferActions;
 
 // Action Collection Types consist of:
 // List
@@ -92,3 +119,11 @@ type ChatTripRoomPayload = {
 
 export type ChatTripRoomActions =
   ActionMap<ChatTripRoomPayload>[keyof ActionMap<ChatTripRoomPayload>];
+
+// Offer
+type ChatTripOfferPayload = {
+  [ChatTripActionEnum.SetOfferData]: ChatTripOffer;
+};
+
+export type ChatTripOfferActions =
+  ActionMap<ChatTripOfferPayload>[keyof ActionMap<ChatTripOfferPayload>];

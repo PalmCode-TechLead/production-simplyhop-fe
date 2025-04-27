@@ -13,6 +13,7 @@ import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import {
+  useGetBookingId,
   useGetMessageRoomsId,
   useGetMessagesListByRoom,
   usePostBookingAccept,
@@ -38,6 +39,7 @@ export const RoomChatTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   useGetMessageRoomsId();
   useGetMessagesListByRoom();
+  useGetBookingId();
   const { mutateAsync: postMessagesChat, isPending: isPendingPostMessageChat } =
     usePostMessagesChat();
   const {
@@ -136,12 +138,19 @@ export const RoomChatTrip = () => {
   };
 
   const handleClickOffer = async () => {
-    await postBookingOffer();
-    queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
-      type: "all",
-      refetchType: "all",
+    dispatch({
+      type: ChatTripActionEnum.SetOfferData,
+      payload: {
+        ...state.offer,
+        is_open: true,
+      },
     });
+    // await postBookingOffer();
+    // queryClient.invalidateQueries({
+    //   queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+    //   type: "all",
+    //   refetchType: "all",
+    // });
   };
 
   const handleClickAccept = async () => {

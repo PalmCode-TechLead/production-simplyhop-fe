@@ -26,7 +26,7 @@ export interface GetBookingIdSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
-  data: Booking[];
+  data: Booking;
 
   redirect: null;
 }

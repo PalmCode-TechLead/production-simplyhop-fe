@@ -96,5 +96,48 @@
         }
       }
     }
+  },
+  "offer": {
+    "title": "Fahrt anbieten",
+    "passenger": {
+      "label": "Passagiere",
+      "maskedValue": "{{adult}} Erwachsene, {{children}} Kinder"
+    },
+    "price": {
+      "form": {
+        "title": "Preis",
+        "input": {
+          "price": {
+            "inputProps": {
+              "id": "price",
+              "placeholder": " "
+            }
+          }
+        }
+      }
+    },
+    "notes": {
+      "form": {
+        "title": "Hinweis",
+        "input": {
+          "notes": {
+            "inputProps": {
+              "id": "notes",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "notes",
+              "children": "Möchtest du dem Fahrer noch etwas mitteilen?",
+              "required": false
+            }
+          }
+        }
+      }
+    },
+    "cta": {
+      "send": {
+        "children": "Anfrage senden"
+      }
+    }
   }
 }
