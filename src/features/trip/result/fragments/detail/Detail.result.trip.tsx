@@ -11,7 +11,7 @@ import { PriceInputResultTrip } from "../../components/price_input";
 import { Button } from "@/core/components/button";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
-import { usePostBookingBook } from "../../react_query/hooks";
+import { useGetRidesId, usePostBookingBook } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 import SVGIcon from "@/core/icons";
 import { PassengerCardResultTrip } from "../../components/passenger_card";
@@ -30,6 +30,7 @@ export const DetailResultTrip = () => {
   const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
   const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
   const { isLg } = useTailwindBreakpoint();
+  useGetRidesId();
 
   const isOpen = state.detail.is_open;
 
@@ -52,7 +53,7 @@ export const DetailResultTrip = () => {
     return null;
   }
 
-  const detailData = state.rides.data.find((item) => item.id === rideId);
+  const detailData = state.detail.data;
   if (!detailData) {
     return null;
   }
@@ -63,6 +64,7 @@ export const DetailResultTrip = () => {
       payload: {
         ...state.detail,
         is_open: false,
+        data: null,
       },
     });
     const params = new URLSearchParams(searchParams.toString()); // Ambil semua params

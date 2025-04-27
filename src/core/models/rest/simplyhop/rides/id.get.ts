@@ -1,4 +1,4 @@
-import { Vehicle } from "@/core/models/data";
+import { RideTime, User, Vehicle } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetRidesIdRequestInterface extends NextApiRequest {
@@ -35,8 +35,11 @@ export interface GetRidesIdSuccessResponseInterface {
     vehicle_id: number; // 10;
     start_lat: number; // 52.5092996;
     start_long: number; // 13.421813;
+    start_name: string | null; // Munich;
     destination_lat: number; // 48.1250433;
     destination_long: number; // 11.6209174;
+    destination_name: string | null; // Munich;
+    eta: number | null;
     recurring_ride: string; // "no";
     waiting_time: string; // "5 mins";
     luggage_allowed: boolean; // true;
@@ -48,29 +51,9 @@ export interface GetRidesIdSuccessResponseInterface {
     updated_at: string; // "2025-04-21T07:24:52.000000Z";
     distance_to_start_point: number; //  1.2778371921134954;
     distance_to_destination_point: number; // 3.0995911664307627;
-    ride_times: {
-      id: number; // 10;
-      available_seats: number; // 1;
-      departure_time: string; // "2025-04-22T10:00:00.000000Z";
-      deleted_at: null | string;
-      created_at: string; // "2025-04-21T07:24:52.000000Z";
-      updated_at: string; // "2025-04-21T07:24:52.000000Z";
-    }[];
+    ride_times: RideTime[];
     vehicle: Vehicle;
-    user: {
-      id: number; //10;
-      first_name: string; //"Kari";
-      last_name: string; //"Bauch";
-      email: string; //"user10@example.com";
-      mobile: null | string;
-      city: null | string;
-      email_verified_at: string; //"2025-04-21 14:22:54";
-      avatar: null | string;
-      is_driver: number; //1;
-      deleted_at: null | string;
-      created_at: string; // "2025-04-21 07:22:57";
-      updated_at: string; // "2025-04-21 07:24:52";
-    };
+    user: User;
   };
 
   redirect: null;

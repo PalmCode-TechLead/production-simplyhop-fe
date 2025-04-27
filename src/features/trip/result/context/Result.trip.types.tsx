@@ -99,6 +99,7 @@ export interface ResultTripRides {
 
 export interface ResultTripDetail {
   is_open: boolean;
+  data: RideCardResultTripProps | null;
   form: {
     price_offer: {
       value: number;

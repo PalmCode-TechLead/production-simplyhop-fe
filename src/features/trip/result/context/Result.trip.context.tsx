@@ -86,6 +86,7 @@ const initialState: ResultTripInitialStateType = {
   },
   detail: {
     is_open: false,
+    data: null,
     form: {
       price_offer: {
         value: 0,
