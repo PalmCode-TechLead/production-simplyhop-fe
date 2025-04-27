@@ -20,6 +20,9 @@ const initialState: ChatTripInitialStateType = {
   },
   room: {
     id: null,
+    booking: {
+      status: null,
+    },
     header: {
       avatar: {
         src: undefined,

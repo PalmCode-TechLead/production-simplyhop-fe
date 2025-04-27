@@ -26,7 +26,7 @@ export const useGetMessageRoomsId = () => {
     },
     params: {
       include:
-        "messages,passenger,driver,driverExists,passengerExists,messagesExists",
+        "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
     },
   };
   const query = useQuery<
@@ -61,6 +61,9 @@ export const useGetMessageRoomsId = () => {
             name: isPassenger
               ? `${data.data.passenger?.first_name} ${data.data.passenger?.last_name}`
               : `${data.data.driver?.first_name} ${data.data.driver?.last_name}`,
+          },
+          booking: {
+            status: data.data.booking?.status ?? null,
           },
         },
       });

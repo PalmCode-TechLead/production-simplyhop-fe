@@ -156,6 +156,9 @@ export const RoomChatTrip = () => {
                     reject:
                       type === "booking_request" && role === "passenger"
                         ? null
+                        : type === "offer_request" &&
+                          state.room.booking.status === "accepted"
+                        ? null
                         : {
                             children: "Angebot ablehnen",
                             disabled: isPendingPostBookingReject,
@@ -165,6 +168,9 @@ export const RoomChatTrip = () => {
                     bargain:
                       type === "booking_request"
                         ? null
+                        : type === "offer_request" &&
+                          state.room.booking.status === "accepted"
+                        ? null
                         : {
                             children: "Ein weiteres Angebot senden",
                             disabled: isPendingPostBookingOffer,
@@ -173,6 +179,9 @@ export const RoomChatTrip = () => {
                           },
                     accept:
                       type === "booking_request" && role === "passenger"
+                        ? null
+                        : type === "offer_request" &&
+                          state.room.booking.status === "accepted"
                         ? null
                         : {
                             children: "Angebot annehmen",

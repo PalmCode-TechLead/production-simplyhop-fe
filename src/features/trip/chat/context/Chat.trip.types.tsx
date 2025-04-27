@@ -44,6 +44,9 @@ export interface ChatTripRoom {
     name: string;
     avatar: AvatarProps;
   };
+  booking: {
+    status: string | null;
+  };
   message: {
     items: {
       id: string;

@@ -1,3 +1,4 @@
+import { Booking } from "./booking";
 import { Message } from "./message";
 import { User } from "./user";
 
@@ -16,4 +17,5 @@ export interface MessageRoom {
   messages?: Message[];
   passenger?: User;
   driver?: User;
+  booking?: Booking;
 }

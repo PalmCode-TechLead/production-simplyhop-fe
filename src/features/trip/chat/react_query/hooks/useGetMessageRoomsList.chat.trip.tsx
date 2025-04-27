@@ -12,11 +12,13 @@ import {
 } from "@/core/models/rest/simplyhop/message_rooms";
 import { UserContext } from "@/core/modules/app/context";
 import dayjs from "dayjs";
+import { useSearchParams } from "next/navigation";
 
 export const useGetMessageRoomsList = () => {
   const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(ChatTripContext);
-
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
   const payload: GetMessageRoomsListPayloadRequestInterface = {
     params: {
       include:
@@ -39,6 +41,7 @@ export const useGetMessageRoomsList = () => {
     queryFn: () => {
       return fetchGetMessageRoomsList(payload);
     },
+    enabled: !id,
   });
 
   React.useEffect(() => {
