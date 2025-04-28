@@ -27,7 +27,7 @@ export const useGetRidesSearch = () => {
       "filter[user_id]": !userState.profile?.id
         ? undefined
         : String(userState.profile.id),
-      include: "vehicle.brand,rideTimes,user,bookings,bookings.user",
+      include: "vehicle.brand,user,bookings,bookings.user",
       // booking_status: "accepted",
       departure_time__gte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
@@ -87,25 +87,21 @@ export const useGetRidesSearch = () => {
               routes: {
                 date: {
                   label: "Datum",
-                  date: !item.ride_time
+                  date: !item.departure_time
                     ? "-"
-                    : dayjs(item.ride_time.departure_time).format("DD.MM.YY"),
+                    : dayjs(item.departure_time).format("DD.MM.YY"),
                 },
                 startTime: {
                   label: "Startzeit",
-                  time: !item.ride_time
+                  time: !item.departure_time
                     ? "-"
-                    : dayjs(item.ride_time.departure_time).format(
-                        "HH.mm [Uhr]"
-                      ),
+                    : dayjs(item.departure_time).format("HH.mm [Uhr]"),
                 },
                 departure: {
                   place: !item.start_name ? "-" : item.start_name,
-                  time: !item.ride_time
+                  time: !item.departure_time
                     ? "-"
-                    : dayjs(item.ride_time.departure_time).format(
-                        "HH.mm [Uhr]"
-                      ),
+                    : dayjs(item.departure_time).format("HH.mm [Uhr]"),
                 },
                 travelTime: {
                   time: !item.eta ? "-" : setDurationTime(item.eta),
@@ -115,7 +111,7 @@ export const useGetRidesSearch = () => {
                   time: !item.eta
                     ? "-"
                     : `${setArrivalTime(
-                        dayjs(item.ride_time.departure_time).format("HH:mm"),
+                        dayjs(item.departure_time).format("HH:mm"),
                         item.eta
                       )} Uhr`,
                 },
