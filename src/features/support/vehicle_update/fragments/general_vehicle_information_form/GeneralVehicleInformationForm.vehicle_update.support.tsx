@@ -180,7 +180,7 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
           inputProps={{
             ...dictionaries.vehicle_information.general.form.input.car_model
               .inputProps,
-            value: state.vehicle_information.general.form.car_color.value,
+            value: state.vehicle_information.general.form.car_model.value,
             onChange: handleChangeCarModel,
           }}
         />
