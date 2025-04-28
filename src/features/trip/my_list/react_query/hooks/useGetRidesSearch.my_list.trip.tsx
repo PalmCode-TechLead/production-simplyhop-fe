@@ -28,7 +28,6 @@ export const useGetRidesSearch = () => {
         ? undefined
         : String(userState.profile.id),
       include: "vehicle.brand,user,bookings,bookings.user",
-      // booking_status: "accepted",
       departure_time__gte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
@@ -40,7 +39,7 @@ export const useGetRidesSearch = () => {
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
-    enabled: !type && !!userState.profile?.id,
+    enabled: !type && !!userState.profile?.id && userState.profile.is_driver,
   });
 
   React.useEffect(() => {

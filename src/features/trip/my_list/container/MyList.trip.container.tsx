@@ -8,8 +8,10 @@ import { BookMyListTrip } from "../fragments/book";
 import { RideMyListTrip } from "../fragments/ride";
 import { RideDetailMyListTrip } from "../fragments/ride_detail";
 import { BookDetailMyListTrip } from "../fragments/book_detail";
+import { UserContext } from "@/core/modules/app/context";
 
 export const MyListTripContainer = () => {
+  const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
@@ -44,7 +46,13 @@ export const MyListTripContainer = () => {
               </React.Suspense>
             </div>
 
-            {type === "book" ? <BookMyListTrip /> : <RideMyListTrip />}
+            {type === "book" ? (
+              <BookMyListTrip />
+            ) : !type && userState.profile?.is_driver === false ? (
+              <BookMyListTrip />
+            ) : (
+              <RideMyListTrip />
+            )}
           </div>
         </div>
       </div>

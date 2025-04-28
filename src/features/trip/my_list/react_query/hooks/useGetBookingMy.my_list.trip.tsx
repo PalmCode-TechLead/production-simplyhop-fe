@@ -14,16 +14,18 @@ import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { UserContext } from "@/core/modules/app/context";
 
 export const useGetBookingMy = () => {
+  const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const { state, dispatch } = React.useContext(MyListTripContext);
-
+ 
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
-      include: "ride.vehicle.brand,rideTime,user",
-      "filter[rideTime.departure_time__gte]": dayjs().format(
+      include: "ride.vehicle.brand,user",
+      "filter[ride.departure_time__gte]": dayjs().format(
         "YYYY-MM-DDTHH:mm:ss"
       ),
     },
@@ -36,7 +38,8 @@ export const useGetBookingMy = () => {
     queryFn: () => {
       return fetchGetBookingMy(payload);
     },
-    enabled: type === "book",
+    enabled:
+      type === "book" || (userState.profile?.is_driver === false && !type),
   });
 
   React.useEffect(() => {
