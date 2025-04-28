@@ -203,7 +203,7 @@ export const RideCardResultTrip = ({
       {/* car */}
       <div
         className={clsx(
-          "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-start content-start justify-between justify-items-start gap-[1rem] lg:gap-[52px]",
+          "grid grid-flow-row grid-cols-1 lg:grid-cols-none lg:grid-flow-col items-center content-center justify-between justify-items-start gap-[1rem] lg:gap-[52px]",
           "w-full"
         )}
       >
@@ -214,25 +214,16 @@ export const RideCardResultTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
+
           <div
             className={clsx(
-              "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
           >
-            {ride.badge.map((item, itemIndex) => (
-              <RideBadge {...item} key={itemIndex} />
-            ))}
-          </div>
-        </div>
-
-        <div
-          className={clsx(
-            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
-          )}
-        >
-          <Image {...car.image} className={clsx("w-[145px]")} />
-          <div className={clsx("block lg:hidden")}>
-            <CarIdentityItem {...car.identity} number={null} />
+            <Image {...car.image} className={clsx("w-[145px]")} />
+            <div className={clsx("block lg:hidden")}>
+              <CarIdentityItem {...car.identity} number={null} />
+            </div>
           </div>
         </div>
 
@@ -297,6 +288,15 @@ export const RideCardResultTrip = ({
             </div>
           </div>
         </div>
+        <div
+          className={clsx(
+            "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+          )}
+        >
+          {ride.badge.map((item, itemIndex) => (
+            <RideBadge {...item} key={itemIndex} />
+          ))}
+        </div>
 
         {/* badge */}
         <div
@@ -311,11 +311,15 @@ export const RideCardResultTrip = ({
         {/* price */}
         <div
           className={clsx(
-            "flex items-center justify-between gap-[0.5rem] lg:gap-[4rem]",
+            "flex flex-row lg:flex-col items-center justify-between gap-[0.5rem] lg:gap-[1rem]",
             "w-full"
           )}
         >
-          <CarPriceItem {...price.initial} />
+          <CarPriceItem
+            {...price.initial}
+            label={null}
+            className={clsx("!place-content-center !place-items-center")}
+          />
 
           {/* cta */}
           <Link href={cta.ride.href}>
