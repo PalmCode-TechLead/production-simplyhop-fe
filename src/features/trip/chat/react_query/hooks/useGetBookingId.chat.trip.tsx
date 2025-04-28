@@ -97,12 +97,18 @@ export const useGetBookingId = () => {
                           },
                           name: {
                             ...globalDictionaries.vehicle.seat.available.name,
-                            label:
-                              globalDictionaries.vehicle.seat.available.name.label.replaceAll(
-                                "{{number}}",
-                                data.data.ride_time.available_seats.toLocaleString(
-                                  "de-DE"
+                            label: !data.data.ride?.maxtwo_backseat
+                            ? globalDictionaries.vehicle.seat.available.name.label
+                                .replaceAll(
+                                  "{{number}}",
+                                  (data.data.ride?.available_seats ??0).toLocaleString(
+                                    "de-DE"
+                                  )
                                 )
+                                .replaceAll("(Max. 2 auf der Rückbank)", "")
+                            : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
+                                "{{number}}",
+                                (data.data.ride?.available_seats ??0).toLocaleString("de-DE")
                               ),
                           },
                         },
@@ -234,10 +240,18 @@ export const useGetBookingId = () => {
                 time: !data.data.ride?.eta
                   ? "-"
                   : setDurationTime(data.data.ride?.eta),
-                waitingTime: !data.data.ride?.waiting_time
-                  ? ""
-                  : data.data.ride?.waiting_time,
               },
+              // umWeg: {
+              //   label: globalDictionaries.vehicle.umweg.label.text.replaceAll(
+              //     "{{number}}",
+              //     !item.waiting_time ? "0" : item.waiting_time
+              //   ),
+              //   icon: {
+              //     ...globalDictionaries.vehicle.umweg.label.icon,
+              //     name: globalDictionaries.vehicle.umweg.label.icon
+              //       .name as SVGIconProps["name"],
+              //   },
+              // },
               arrival: {
                 place: !data.data.ride?.destination_name
                   ? "-"
@@ -277,15 +291,6 @@ export const useGetBookingId = () => {
                         id: "fahrerin",
                         label: "Fahrerin (W)",
                         variant: "danger" as "success" | "danger",
-                      },
-                    ]
-                  : []),
-                ...(data.data.ride?.maxtwo_backseat
-                  ? [
-                      {
-                        id: "max_two_backseat",
-                        label: "Max. 2 auf der Rückbank",
-                        variant: "danger" as "danger" | "success",
                       },
                     ]
                   : []),

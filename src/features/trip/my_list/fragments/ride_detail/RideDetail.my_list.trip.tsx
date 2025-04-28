@@ -125,7 +125,7 @@ export const RideDetailMyListTrip = () => {
               "bg-[white]"
             )}
           >
-            <CarPriceItem {...filteredData.price.initial} />
+            <CarPriceItem {...filteredData.price?.initial} />
           </div>
         </AdaptiveModalContent>
       </div>
