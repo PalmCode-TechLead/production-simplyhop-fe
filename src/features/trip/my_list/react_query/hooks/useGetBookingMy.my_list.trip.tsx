@@ -21,13 +21,11 @@ export const useGetBookingMy = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const { state, dispatch } = React.useContext(MyListTripContext);
- 
+
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
       include: "ride.vehicle.brand,user",
-      "filter[ride.departure_time__gte]": dayjs().format(
-        "YYYY-MM-DDTHH:mm:ss"
-      ),
+      "filter[ride.departure_time__gte]": dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
@@ -130,12 +128,6 @@ export const useGetBookingMy = () => {
                   href: AppCollectionURL.private.myList(
                     urlSearchParams.toString()
                   ),
-                },
-              },
-              detail: {
-                price: {
-                  label: "Angebotspreis",
-                  price: `€${item.total_amount.toLocaleString("de-DE")}`,
                 },
               },
             };

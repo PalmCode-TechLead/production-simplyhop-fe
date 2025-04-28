@@ -21,7 +21,7 @@ export const BookDetailMyListTrip = () => {
   const { state } = React.useContext(MyListTripContext);
   useGetBookingId();
 
-  const filteredData = state.book.data.find((item) => item.id === bookingId);
+  const filteredData = state.book.detail;
 
   if (!filteredData) {
     return null;
@@ -41,7 +41,7 @@ export const BookDetailMyListTrip = () => {
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}
       className={clsx(
-        "!max-w-full lg:!max-w-[524px]", 
+        "!max-w-full lg:!max-w-[524px]",
         "h-[100vh] lg:h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
@@ -116,7 +116,7 @@ export const BookDetailMyListTrip = () => {
               "bg-[white]"
             )}
           >
-            <CarPriceItem {...filteredData.detail.price} />
+            <CarPriceItem {...filteredData.price?.initial} />
           </div>
         </div>
       </div>

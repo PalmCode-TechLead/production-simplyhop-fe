@@ -22,6 +22,7 @@ const initialState: MyListTripInitialStateType = {
   },
   book: {
     data: [],
+    detail: null,
   },
 };
 

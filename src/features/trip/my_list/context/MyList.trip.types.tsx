@@ -45,11 +45,8 @@ export interface MyListTripRide {
 }
 
 export interface MyListTripBook {
-  data: (BookCardMyListTripProps & {
-    detail: {
-      price: CarPriceItemProps;
-    };
-  })[];
+  data: BookCardMyListTripProps[];
+  detail: BookCardMyListTripProps | null;
 }
 
 export enum MyListTripActionEnum {
