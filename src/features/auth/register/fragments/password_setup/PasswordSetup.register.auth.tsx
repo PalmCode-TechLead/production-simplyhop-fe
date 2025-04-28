@@ -136,6 +136,7 @@ export const PasswordSetupRegisterAuth = () => {
     !state.password_setup.confirm_password.value.length;
   const isConfirmPasswordInvalid =
     !!state.password_setup.confirm_password.error;
+  const isAgreedTNC = state.password_setup.tnc.checked;
   const isSubmitDisabled =
     isEmailHasNoLength ||
     isEmailInvalid ||
@@ -143,6 +144,7 @@ export const PasswordSetupRegisterAuth = () => {
     isPasswordInvalid ||
     isConfirmPasswordHasNoLength ||
     isConfirmPasswordInvalid ||
+    !isAgreedTNC ||
     isSubmitLoading;
 
   return (
