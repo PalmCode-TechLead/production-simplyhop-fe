@@ -27,7 +27,7 @@ export const useGetBookingId = () => {
       id: !id ? "0" : String(id),
     },
     params: {
-      include: "ride.vehicle.brand,rideTime,user",
+      include: "ride.vehicle.brand,user",
     },
   };
   const query = useQuery<

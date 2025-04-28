@@ -50,7 +50,7 @@ export const useGetMessagesListByRoom = () => {
     },
     params: {
       include:
-        "booking,bookingCount,bookingExists,booking.rideTime,booking.ride,booking.ride.vehicle,booking.ride.vehicle.brand,driver,driverCount,driverExists,driver.profile,passenger,passengerCount,passengerExists,passenger.profile",
+        "booking,bookingCount,bookingExists,booking,booking.ride,booking.ride.vehicle,booking.ride.vehicle.brand,driver,driverCount,driverExists,driver.profile,passenger,passengerCount,passengerExists,passenger.profile",
     },
   };
 
