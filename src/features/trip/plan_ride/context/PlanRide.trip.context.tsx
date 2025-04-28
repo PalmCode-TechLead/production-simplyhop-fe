@@ -64,7 +64,7 @@ const initialState: PlanRideTripInitialStateType = {
     form: {
       plan: {
         date: {
-          selected: new Date(),
+          selected: dayjs().add(1, "day").toDate(),
         },
         time: {
           value: dayjs().format("HH:mm"),
