@@ -128,7 +128,7 @@ export const OfferChatTrip = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-w-[calc(100vw)] md:!max-w-[872px]",
+        "!max-ww-[100vw] lg:!max-w-[872px]",
         "h-[100vh] lg:h-fit",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
