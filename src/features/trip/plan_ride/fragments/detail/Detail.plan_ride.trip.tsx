@@ -433,7 +433,7 @@ export const DetailPlanRideTrip = () => {
           <Card
             className={clsx(
               "!px-[0rem] !py-[0rem] lg:!pl-[1.5rem] lg:!py-[1.5rem]",
-              "overflow-hidden",
+              "!mt-[10rem]",
               "!border-[0px]"
             )}
             style={{
