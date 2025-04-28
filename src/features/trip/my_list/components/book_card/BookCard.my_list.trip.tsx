@@ -140,11 +140,16 @@ export const BookCardMyListTrip = ({
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
           >
-            <Image {...car.image} className={clsx("w-[145px]")} />
             <div className={clsx("block lg:hidden")}>
+              <Image {...car.image} className={clsx("w-[145px]")} />
               <CarIdentityItem {...car.identity} number={null} />
             </div>
           </div>
+        </div>
+
+        {/* image */}
+        <div className={clsx("hidden lg:block")}>
+          <Image {...car.image} className={clsx("w-[192px]")} />
         </div>
 
         {/* identity */}
