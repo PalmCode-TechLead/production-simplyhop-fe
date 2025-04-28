@@ -352,11 +352,11 @@
         "options": [
           {
             "id": "true",
-            "name": "True"
+            "name": "Ja"
           },
           {
             "id": "false",
-            "name": "False"
+            "name": "Nein"
           }
         ]
       },
