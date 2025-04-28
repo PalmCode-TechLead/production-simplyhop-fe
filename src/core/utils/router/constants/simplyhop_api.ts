@@ -19,7 +19,10 @@ import {
   PutRidesSecondPathPayloadRequestInterface,
   PutRidesThirdPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
-import { GetVehicleIdPathPayloadRequestInterface } from "@/core/models/rest/simplyhop/vehicle";
+import {
+  GetVehicleIdPathPayloadRequestInterface,
+  PutVehicleUpdatePathPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/vehicle";
 
 export const SimplyHopAPICollectionURL = {
   auth: {
@@ -37,6 +40,8 @@ export const SimplyHopAPICollectionURL = {
   },
   vehicle: {
     postCreateMy: () => `/api/vehicle/storeMy`,
+    postUpdate: (path: PutVehicleUpdatePathPayloadRequestInterface) =>
+      `/api/vehicle/${path.id}`,
     getMy: () => `/api/vehicle/my`,
     getId: (path: GetVehicleIdPathPayloadRequestInterface) =>
       `/api/vehicle/${path.id}`,

@@ -6,7 +6,7 @@ import {
   VehicleUpdateSupportActionEnum,
   VehicleUpdateSupportContext,
 } from "../../context";
-import { usePostVehicleCreateMy } from "../../react_query/hooks";
+import { usePostVehicleUpdate } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
 
 export const CTAVehicleUpdateSupport = () => {
@@ -14,11 +14,11 @@ export const CTAVehicleUpdateSupport = () => {
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
 
   const {
-    mutateAsync: postVehicleCreateMy,
-    isPending: isPendingPostVehicleCreateMy,
-  } = usePostVehicleCreateMy();
+    mutateAsync: postVehicleUpdate,
+    isPending: isPendingPostVehicleUpdate,
+  } = usePostVehicleUpdate();
   const handleClickSave = async () => {
-    await postVehicleCreateMy();
+    await postVehicleUpdate();
     dispatch({
       type: VehicleUpdateSupportActionEnum.SetNotificationData,
       payload: {
@@ -28,8 +28,8 @@ export const CTAVehicleUpdateSupport = () => {
     });
   };
 
-  const isSaveDisabled = isPendingPostVehicleCreateMy;
-  const isSaveLoading = isPendingPostVehicleCreateMy;
+  const isSaveDisabled = isPendingPostVehicleUpdate;
+  const isSaveLoading = isPendingPostVehicleUpdate;
   return (
     <Button
       disabled={isSaveDisabled}

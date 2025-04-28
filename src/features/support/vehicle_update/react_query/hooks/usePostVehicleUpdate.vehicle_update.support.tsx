@@ -2,26 +2,29 @@ import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { VehicleUpdateSupportReactQueryKey } from "../keys";
 import {
-  PostVehicleCreateMyBodyRequestInterface,
-  PostVehicleCreateMyErrorResponseInterface,
-  PostVehicleCreateMyPayloadRequestInterface,
-  PostVehicleCreateMySuccessResponseInterface,
+  PostVehicleUpdateBodyRequestInterface,
+  PostVehicleUpdateErrorResponseInterface,
+  PostVehicleUpdatePayloadRequestInterface,
+  PostVehicleUpdateSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/vehicle";
 import { VehicleUpdateSupportContext } from "../../context";
-import { fetchPostVehicleCreateMy } from "@/core/services/rest/simplyhop/vehicle";
+import { fetchPostVehicleUpdate } from "@/core/services/rest/simplyhop/vehicle";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { useParams } from "next/navigation";
 
-export const usePostVehicleCreateMy = () => {
+export const usePostVehicleUpdate = () => {
   const { state } = React.useContext(VehicleUpdateSupportContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
+  const { id } = useParams();
+
   const mutation = useMutation<
-    PostVehicleCreateMySuccessResponseInterface,
-    PostVehicleCreateMyErrorResponseInterface
+    PostVehicleUpdateSuccessResponseInterface,
+    PostVehicleUpdateErrorResponseInterface
   >({
-    mutationKey: VehicleUpdateSupportReactQueryKey.PostVehicleCreateMy(),
+    mutationKey: VehicleUpdateSupportReactQueryKey.PostVehicleUpdate(),
     mutationFn: () => {
-      const bodyPayload: PostVehicleCreateMyBodyRequestInterface = {
+      const bodyPayload: PostVehicleUpdateBodyRequestInterface = {
         category_id: !state.vehicle_information.general.form.car_category
           .selected
           ? 0
@@ -97,11 +100,14 @@ export const usePostVehicleCreateMy = () => {
         }
       }
 
-      const payload: PostVehicleCreateMyPayloadRequestInterface = {
+      const payload: PostVehicleUpdatePayloadRequestInterface = {
+        path: {
+          id: String(id),
+        },
         body: formData,
       };
 
-      return fetchPostVehicleCreateMy(payload);
+      return fetchPostVehicleUpdate(payload);
     },
     onError(error) {
       dispatchGlobal({
