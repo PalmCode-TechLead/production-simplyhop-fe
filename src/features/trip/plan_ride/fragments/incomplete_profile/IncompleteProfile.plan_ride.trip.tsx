@@ -44,7 +44,7 @@ export const IncompleteProfilePlaneRideTrip = () => {
         </p>
       </div>
       <Link
-        href={dictionaries.badge.uncompleted.cta.link.children}
+        href={dictionaries.badge.uncompleted.cta.link.href}
         className={clsx("text-[0.875rem] text-[#333FFF] font-medium")}
       >
         {dictionaries.badge.uncompleted.cta.link.children}
