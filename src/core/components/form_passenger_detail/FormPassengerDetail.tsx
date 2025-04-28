@@ -86,7 +86,7 @@ export const FormPassengerDetail = ({
                 disabled={item.value === 0}
                 onClick={() => {
                   if (!passenger.onChange) return;
-                  passenger.onChange(
+                  const payload =
                     passenger?.items?.map((childItem) => {
                       return {
                         id: childItem.id,
@@ -95,8 +95,9 @@ export const FormPassengerDetail = ({
                             ? childItem.value - 1
                             : childItem.value,
                       };
-                    }) ?? []
-                  );
+                    }) ?? [];
+
+                  passenger.onChange(payload);
                 }}
               >
                 <SVGIcon
@@ -118,7 +119,7 @@ export const FormPassengerDetail = ({
                 )}
                 onClick={() => {
                   if (!passenger.onChange) return;
-                  passenger.onChange(
+                  const payload =
                     passenger?.items?.map((childItem) => {
                       return {
                         id: childItem.id,
@@ -127,8 +128,9 @@ export const FormPassengerDetail = ({
                             ? childItem.value + 1
                             : childItem.value,
                       };
-                    }) ?? []
-                  );
+                    }) ?? [];
+                  console.log(payload, "ini payload");
+                  passenger.onChange(payload);
                 }}
               >
                 <SVGIcon
