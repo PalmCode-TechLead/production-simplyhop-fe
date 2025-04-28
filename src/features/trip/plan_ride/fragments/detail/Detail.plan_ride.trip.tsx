@@ -65,6 +65,16 @@ export const DetailPlanRideTrip = () => {
 
   const handleSelectDate = (date: Date) => {
     dispatch({
+      type: PlanRideTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        date: {
+          ...state.filters.date,
+          selected: date,
+        },
+      },
+    });
+    dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
         ...state.detail,

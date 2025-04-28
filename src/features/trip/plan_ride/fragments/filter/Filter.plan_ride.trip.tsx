@@ -329,6 +329,22 @@ export const FilterPlanRideTrip = () => {
         },
       },
     });
+    dispatch({
+      type: PlanRideTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          plan: {
+            ...state.detail.form.plan,
+            date: {
+              ...state.detail.form.plan.date,
+              selected: date,
+            },
+          },
+        },
+      },
+    });
   };
 
   const handleChangeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
