@@ -249,7 +249,7 @@ export const RoomChatTrip = () => {
       </RoomConversationContainerChatTrip>
 
       {/* action commentar */}
-      <div
+      <form
         className={clsx(
           "grid-cols-[1.5rem_1fr_auto]",
           "grid  items-center content-center justify-start justify-items-start gap-[0.625rem]",
@@ -257,6 +257,7 @@ export const RoomChatTrip = () => {
           "px-[1rem] lg:px-[2.5rem] py-[1rem]",
           "border-t border-t-[#DFDFDF]"
         )}
+        onSubmit={handleClickSend}
       >
         <div className={clsx("relative")}>
           <button
@@ -299,8 +300,8 @@ export const RoomChatTrip = () => {
             "rounded-[0.375rem]",
             "text-[0.875rem] text-[white] disabled:text-[#767676] font-normal"
           )}
+          type="submit"
           disabled={isDisabledSendChat}
-          onClick={handleClickSend}
         >
           {dictionaries.chat.room.cta.send.children}
           {isLoadingSendChat ? (
@@ -315,7 +316,7 @@ export const RoomChatTrip = () => {
             />
           )}
         </button>
-      </div>
+      </form>
     </div>
   );
 };
