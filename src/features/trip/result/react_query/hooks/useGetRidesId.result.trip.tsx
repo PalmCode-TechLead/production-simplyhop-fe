@@ -22,6 +22,9 @@ export const useGetRidesId = () => {
   const searchParams = useSearchParams();
   const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
   const { state, dispatch } = React.useContext(ResultTripContext);
+  const adult = searchParams.get(RIDE_FILTER.ADULT_PASSENGER);
+  const children = searchParams.get(RIDE_FILTER.CHILDREN_PASSENGER);
+  const totalPassenger = (Number(adult) ?? 0) + (Number(children) ?? 0);
 
   const payload: GetRidesIdPayloadRequestInterface = {
     path: {
@@ -45,12 +48,7 @@ export const useGetRidesId = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const item = query.data.data;
-      const totalPassenger = state.filters.passenger.value.reduce(
-        (acc, item) => {
-          return acc + item.value;
-        },
-        0
-      );
+
       const fullPath = `${pathname}?${searchParams.toString()}`;
       dispatch({
         type: ResultTripActionEnum.SetDetailData,
@@ -288,6 +286,6 @@ export const useGetRidesId = () => {
         },
       });
     }
-  }, [query.data, query.isFetching]);
+  }, [query.data, query.isFetching, totalPassenger]);
   return query;
 };
