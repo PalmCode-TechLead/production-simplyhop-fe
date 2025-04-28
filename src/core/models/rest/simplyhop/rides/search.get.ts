@@ -15,12 +15,15 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   destination_lat?: number;
   destination_long?: number;
   "filter[departure_time]"?: string;
-  "available_seats__gte"?: string;
+  available_seats__gte?: string;
   "filter[luggage_allowed]"?: boolean;
-  "music_availability"?: boolean;
-  "smoke_allowed"?: boolean;
-  "pet_allowed"?: boolean;
+  music_availability?: boolean;
+  smoke_allowed?: boolean;
+  pet_allowed?: boolean;
   include?: string;
+  "filter[user_id]"?: string;
+  departure_time__gte?: string;
+  departure_time__lte?: string;
   //mandatory
   sort?: string;
   "page[number]"?: number;

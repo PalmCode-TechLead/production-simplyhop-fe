@@ -29,12 +29,17 @@ export interface MyListTripFilters {
 }
 
 export interface MyListTripRide {
-  data: (RideCardMyListTripProps & {
-    detail: {
-      booking: RideBookingListItemProps[];
-      price: CarPriceItemProps;
-    };
-  })[];
+  data: RideCardMyListTripProps[];
+  //   & {
+  //   detail: {
+  //     booking: RideBookingListItemProps[];
+  //     price: CarPriceItemProps;
+  //   };
+  // }
+  detail: RideCardMyListTripProps & {
+    booking: RideBookingListItemProps[];
+    price: CarPriceItemProps;
+  };
 }
 
 export interface MyListTripBook {

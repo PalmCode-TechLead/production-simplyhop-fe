@@ -265,6 +265,19 @@ export const FilterResultTrip = () => {
     });
   };
 
+  const handleChangePassenger = (data: { id: string; value: number }[]) => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        passenger: {
+          ...state.filters.passenger,
+          value: data,
+        },
+      },
+    });
+  };
+
   const handleSubmitPassenger = (data: {
     car_seat: {
       checked: boolean;
@@ -467,6 +480,7 @@ export const FilterResultTrip = () => {
                     };
                   }
                 ),
+                onChange: handleChangePassenger,
               },
               onSelect: handleSubmitPassenger,
             }}

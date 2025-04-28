@@ -4,13 +4,13 @@ import { MyListTripContext } from "../../context";
 import { RideCardMyListTrip } from "../../components/ride_card";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
-import { useGetRidesMy } from "../../react_query/hooks";
+import { useGetRidesSearch } from "../../react_query/hooks";
 import { ListErrorItem } from "@/core/components/list_error_item";
 
 export const RideMyListTrip = () => {
   const dictionaries = getDictionaries();
   const { state } = React.useContext(MyListTripContext);
-  const { isFetching: isFetchingGetRidesMy } = useGetRidesMy();
+  const { isFetching: isFetchingGetRidesMy } = useGetRidesSearch();
 
   const isLoading = isFetchingGetRidesMy;
 

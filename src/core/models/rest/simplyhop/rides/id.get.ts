@@ -1,4 +1,4 @@
-import { RideTime, User, Vehicle } from "@/core/models/data";
+import { Booking, RideTime, User, Vehicle } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetRidesIdRequestInterface extends NextApiRequest {
@@ -54,6 +54,7 @@ export interface GetRidesIdSuccessResponseInterface {
     ride_times: RideTime[];
     vehicle: Vehicle;
     user: User;
+    bookings: Booking[];
   };
 
   redirect: null;

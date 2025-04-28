@@ -4,38 +4,43 @@ import { MyListTripReactQueryKey } from "../keys";
 
 import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
-import { fetchGetRidesMy } from "@/core/services/rest/simplyhop/rides";
+import { fetchGetRidesSearch } from "@/core/services/rest/simplyhop/rides";
 import {
-  GetRidesMyErrorResponseInterface,
-  GetRidesMyPayloadRequestInterface,
-  GetRidesMySuccessResponseInterface,
+  GetRidesSearchErrorResponseInterface,
+  GetRidesSearchPayloadRequestInterface,
+  GetRidesSearchSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { UserContext } from "@/core/modules/app/context";
 
-export const useGetRidesMy = () => {
+export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state: userState } = React.useContext(UserContext);
 
-  const payload: GetRidesMyPayloadRequestInterface = {
+  const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
+      "filter[user_id]": !userState.profile?.id
+        ? undefined
+        : String(userState.profile.id),
       include: "vehicle.brand,rideTimes,user,bookings,bookings.user",
-      booking_status: "accepted",
+      // booking_status: "accepted",
       departure_time__gte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
-    GetRidesMySuccessResponseInterface,
-    GetRidesMyErrorResponseInterface
+    GetRidesSearchSuccessResponseInterface,
+    GetRidesSearchErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetRidesMy(),
+    queryKey: MyListTripReactQueryKey.GetRidesSearch(),
     queryFn: () => {
-      return fetchGetRidesMy(payload);
+      return fetchGetRidesSearch(payload);
     },
-    enabled: !type,
+    enabled: !type && !!userState.profile?.id,
   });
 
   React.useEffect(() => {
@@ -82,25 +87,23 @@ export const useGetRidesMy = () => {
               routes: {
                 date: {
                   label: "Datum",
-                  date: !item.ride_times.length
+                  date: !item.ride_time
                     ? "-"
-                    : dayjs(item.ride_times[0].departure_time).format(
-                        "DD.MM.YY"
-                      ),
+                    : dayjs(item.ride_time.departure_time).format("DD.MM.YY"),
                 },
                 startTime: {
                   label: "Startzeit",
-                  time: !item.ride_times.length
+                  time: !item.ride_time
                     ? "-"
-                    : dayjs(item.ride_times[0].departure_time).format(
+                    : dayjs(item.ride_time.departure_time).format(
                         "HH.mm [Uhr]"
                       ),
                 },
                 departure: {
                   place: !item.start_name ? "-" : item.start_name,
-                  time: !item.ride_times.length
+                  time: !item.ride_time
                     ? "-"
-                    : dayjs(item.ride_times[0].departure_time).format(
+                    : dayjs(item.ride_time.departure_time).format(
                         "HH.mm [Uhr]"
                       ),
                 },
@@ -112,9 +115,7 @@ export const useGetRidesMy = () => {
                   time: !item.eta
                     ? "-"
                     : `${setArrivalTime(
-                        dayjs(item.ride_times[0].departure_time).format(
-                          "HH:mm"
-                        ),
+                        dayjs(item.ride_time.departure_time).format("HH:mm"),
                         item.eta
                       )} Uhr`,
                 },
@@ -134,35 +135,35 @@ export const useGetRidesMy = () => {
                   ),
                 },
               },
-              detail: {
-                booking: item.bookings.map((bookingItem, index) => {
-                  return {
-                    booking: {
-                      number: String(index + 1),
-                      name: `${bookingItem.user?.first_name} ${bookingItem.user?.last_name}`,
-                    },
-                    route: {
-                      origin: !item.start_name ? "-" : item.start_name,
-                      destination: !item.destination_name
-                        ? "-"
-                        : item.destination_name,
-                    },
-                    passenger: {
-                      adult: (
-                        bookingItem.seats - bookingItem.child_seats
-                      ).toLocaleString("de-DE"),
-                      children: bookingItem.child_seats.toLocaleString("de-DE"),
-                    },
-                    price: {
-                      value: bookingItem.total_amount.toLocaleString("de-DE"),
-                    },
-                  };
-                }),
-                price: {
-                  label: "Angebotspreis",
-                  price: `€${item.base_price.toLocaleString("de-DE")}`,
-                },
-              },
+              // detail: {
+              //   booking: item.bookings.map((bookingItem, index) => {
+              //     return {
+              //       booking: {
+              //         number: String(index + 1),
+              //         name: `${bookingItem.user?.first_name} ${bookingItem.user?.last_name}`,
+              //       },
+              //       route: {
+              //         origin: !item.start_name ? "-" : item.start_name,
+              //         destination: !item.destination_name
+              //           ? "-"
+              //           : item.destination_name,
+              //       },
+              //       // passenger: {
+              //       //   adult: (
+              //       //     bookingItem.seats - bookingItem.child_seats
+              //       //   ).toLocaleString("de-DE"),
+              //       //   children: bookingItem.child_seats.toLocaleString("de-DE"),
+              //       // },
+              //       price: {
+              //         value: bookingItem.total_amount.toLocaleString("de-DE"),
+              //       },
+              //     };
+              //   }),
+              //   price: {
+              //     label: "Angebotspreis",
+              //     price: `€${item.base_price.toLocaleString("de-DE")}`,
+              //   },
+              // },
             };
           }),
         },

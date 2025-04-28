@@ -121,13 +121,13 @@ export const RideDetailMyListTrip = () => {
             <p className={clsx("text-[1.125rem] text-[black] font-bold")}>
               {dictionaries.ride_detail.title}
             </p>
-            {filteredData.detail.booking.map((item, index) => (
+            {/* {filteredData.detail.booking.map((item, index) => (
               <RideBookingListItem key={index} {...item} />
-            ))}
+            ))} */}
           </div>
 
           {/* Price */}
-          <div
+          {/* <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start",
               "w-full",
@@ -136,7 +136,7 @@ export const RideDetailMyListTrip = () => {
             )}
           >
             <CarPriceItem {...filteredData.detail.price} />
-          </div>
+          </div> */}
         </div>
       </div>
     </AdaptiveModal>
