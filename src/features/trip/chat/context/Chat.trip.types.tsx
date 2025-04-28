@@ -55,6 +55,7 @@ export interface ChatTripRoom {
       id: string;
       type: string;
       role: string;
+      sender_id: string;
       time: string;
       name: string;
       avatar: AvatarProps;

@@ -87,6 +87,7 @@ export const useGetMessagesListByRoom = () => {
                 id: String(id),
                 type: content.type,
                 role: isSender ? "sender" : "recipient",
+                sender_id: String(item.sender_id),
                 time: formatChatTime(item.created_at),
                 name: isPassenger
                   ? `${item?.passenger?.first_name ?? ""} ${
