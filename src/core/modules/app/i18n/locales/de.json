@@ -310,6 +310,17 @@
           }
         ]
       }
+    },
+    "available_child_seat": {
+      "validations": {
+        "items": [
+          {
+            "id": "invalid_available_child_seat",
+            "name": "Verfügbare Sitzplätze müssen geringer sein als die Gesamtanzahl der Sitzplätze.",
+            "regex": ""
+          }
+        ]
+      }
     }
   },
   "trip": {

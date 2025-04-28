@@ -34,7 +34,10 @@ export const usePutRidesSecond = () => {
             ? 0
             : Number(state.detail.form.plan.seat.value),
           additional_info: state.detail.form.other.notes.value,
-          available_child_seats: 1,
+          available_child_seats: !state.detail.form.plan.available_child_seat
+            .value
+            ? 0
+            : Number(state.detail.form.plan.available_child_seat.value),
         },
       };
       return fetchPutRidesSecond(payload);

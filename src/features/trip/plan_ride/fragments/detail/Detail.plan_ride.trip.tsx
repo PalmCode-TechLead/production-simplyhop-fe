@@ -202,6 +202,45 @@ export const DetailPlanRideTrip = () => {
     });
   };
 
+  const handleChangeAvailableChildSeat = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const invalidSeatDictionary =
+      globalDictionaries.form.available_child_seat.validations.items.find(
+        (item) => item.id === "invalid_available_child_seat"
+      );
+    dispatch({
+      type: PlanRideTripActionEnum.SetDetailData,
+      payload: {
+        ...state.detail,
+        form: {
+          ...state.detail.form,
+          plan: {
+            ...state.detail.form.plan,
+            available_child_seat: {
+              ...state.detail.form.plan.available_child_seat,
+              value:
+                e.currentTarget.value === ""
+                  ? ""
+                  : String(Number(e.currentTarget.value)),
+              error:
+                e.currentTarget.value === ""
+                  ? null
+                  : Number(e.currentTarget.value) > filteredCar.seat
+                  ? !invalidSeatDictionary
+                    ? null
+                    : {
+                        id: invalidSeatDictionary.id,
+                        name: invalidSeatDictionary.name,
+                      }
+                  : null,
+            },
+          },
+        },
+      },
+    });
+  };
+
   const handleCheckBackSeat = () => {
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
@@ -487,6 +526,32 @@ export const DetailPlanRideTrip = () => {
                 }}
                 error={state.detail.form.plan.seat.error?.name}
               />
+              <Textfield
+                inputContainerProps={{
+                  className: state.detail.form.plan.available_child_seat.error
+                    ?.name
+                    ? "!border !border-[#DA2323]"
+                    : "!border !border-[#F8F8F8]",
+                }}
+                labelProps={{
+                  ...dictionaries.detail.plan.form.input.available_child_seat
+                    .labelProps,
+                }}
+                inputProps={{
+                  ...dictionaries.detail.plan.form.input.available_child_seat
+                    .inputProps,
+                  value: state.detail.form.plan.available_child_seat.value,
+                  onChange: handleChangeAvailableChildSeat,
+                }}
+                error={state.detail.form.plan.available_child_seat.error?.name}
+              />
+            </div>
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+                "w-full"
+              )}
+            >
               <InputContainer
                 className={clsx(
                   "!border !border-[#F8F8F8]",

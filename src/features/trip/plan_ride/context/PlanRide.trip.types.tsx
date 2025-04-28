@@ -93,6 +93,10 @@ export interface PlanRideTripDetail {
         value: string;
         error: FormError;
       };
+      available_child_seat: {
+        value: string;
+        error: FormError;
+      };
       back_seat: {
         checked: boolean;
       };

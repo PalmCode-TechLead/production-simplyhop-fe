@@ -223,6 +223,17 @@
               "required": false
             }
           },
+          "available_child_seat": {
+            "inputProps": {
+              "id": "available_child_seat",
+              "placeholder": " "
+            },
+            "labelProps": {
+              "id": "available_child_seat",
+              "children": "Verfügbarkeit von Kindersitzen",
+              "required": false
+            }
+          },
           "back_seat": {
             "label": "Max. 2 auf der Rückbank"
           }

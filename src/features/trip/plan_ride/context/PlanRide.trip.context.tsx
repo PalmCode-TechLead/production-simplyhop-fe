@@ -80,6 +80,10 @@ const initialState: PlanRideTripInitialStateType = {
           value: "",
           error: null,
         },
+        available_child_seat: {
+          value: "",
+          error: null,
+        },
         back_seat: {
           checked: false,
         },
