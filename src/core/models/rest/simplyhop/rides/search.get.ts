@@ -1,4 +1,4 @@
-import { RideTime, User, Vehicle } from "@/core/models/data";
+import { User, Vehicle } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetRidesSearchRequestInterface extends NextApiRequest {
