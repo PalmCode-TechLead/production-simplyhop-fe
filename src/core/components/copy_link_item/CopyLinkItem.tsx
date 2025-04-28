@@ -38,7 +38,7 @@ export const CopyLinkItem = ({
     >
       <span
         className={clsx(
-          "text-[#232323] text-[0.875rem] font-medium text-ellipsi truncate"
+          "text-[#232323] text-[0.875rem] font-medium text-ellipsis truncate"
         )}
       >
         {link}
