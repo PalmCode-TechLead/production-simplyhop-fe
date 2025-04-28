@@ -14,7 +14,7 @@ export type PostVehicleCreateMyBodyRequestInterface = {
   model: string;
   color: string;
   plate_license: string;
-  numb_of_free_seats: number;
+  numb_free_seats: number;
   smoke_allowed: boolean;
   pet_allowed: boolean;
   music_availability: boolean;

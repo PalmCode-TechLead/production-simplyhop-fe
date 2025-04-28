@@ -37,7 +37,7 @@ export const usePostVehicleCreateMy = () => {
         color: state.vehicle_information.general.form.car_color.value,
         plate_license:
           state.vehicle_information.general.form.license_plate.value,
-        numb_of_free_seats: !state.vehicle_information.capacity.passenger_seats
+        numb_free_seats: !state.vehicle_information.capacity.passenger_seats
           .form.available_seat.selected
           ? 0
           : Number(
