@@ -257,7 +257,10 @@ export const RoomChatTrip = () => {
           "px-[1rem] lg:px-[2.5rem] py-[1rem]",
           "border-t border-t-[#DFDFDF]"
         )}
-        onSubmit={handleClickSend}
+        onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          handleClickSend();
+        }}
       >
         <div className={clsx("relative")}>
           <button
