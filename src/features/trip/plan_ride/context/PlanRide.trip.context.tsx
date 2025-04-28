@@ -47,7 +47,7 @@ const initialState: PlanRideTripInitialStateType = {
       selected: dayjs().add(1, "day").toDate(),
     },
     time: {
-      value: "",
+      value: dayjs().format("HH:mm"),
     },
     passenger: {
       car_seat: {
@@ -67,7 +67,7 @@ const initialState: PlanRideTripInitialStateType = {
           selected: new Date(),
         },
         time: {
-          value: "",
+          value: dayjs().format("HH:mm"),
         },
         umweg: {
           value: "",
