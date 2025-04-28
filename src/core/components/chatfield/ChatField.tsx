@@ -13,8 +13,9 @@ export interface ChatFieldProps {
 export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const [value, setValue] = React.useState<string>("");
+
   return (
-    <InputContainer className={clsx("relative", "!border-[0px]","!h-[48px]")}>
+    <InputContainer className={clsx("relative", "!border-[0px]", "!h-[48px]")}>
       <Input
         ref={inputRef}
         {...inputProps}
@@ -27,9 +28,9 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
       <InputLabel
         {...labelProps}
         className={clsx(
-          !!value.length
-            ? "top-[25%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
-            : "top-[50%] left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
+          !!value.length || !!inputProps?.value
+            ? "top-[25%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
+            : "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
           "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem] lg:text-[1rem]"
         )}
         onClick={() => {
