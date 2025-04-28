@@ -30,6 +30,7 @@ import {
 import { RideBadge, RideBadgeProps } from "@/core/components/ride_badge";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
+import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
 
 export interface RideCardResultTripProps {
   id?: string;
@@ -49,6 +50,7 @@ export interface RideCardResultTripProps {
   routes?: {
     departure?: DepartureItemProps;
     travelTime?: TravelTimeItemProps;
+    umWeg?: UmwegBadgeProps;
     arrival?: ArrivalItemProps;
   };
   price?: {
@@ -154,7 +156,9 @@ export const RideCardResultTrip = ({
     },
     travelTime: {
       time: "1h 15m",
-      waitingTime: "",
+    },
+    umWeg: {
+      label: "",
     },
     arrival: {
       place: "Berlin",
@@ -217,12 +221,12 @@ export const RideCardResultTrip = ({
 
           <div
             className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
+              "grid grid-flow-col lg:grid-flow-row items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
           >
             <Image {...car.image} className={clsx("w-[145px]")} />
-            <div className={clsx("block lg:hidden")}>
-              <CarIdentityItem {...car.identity} number={null} />
+            <div className={clsx("block")}>
+              <CarIdentityItem {...car.identity} />
             </div>
           </div>
         </div>
@@ -234,9 +238,6 @@ export const RideCardResultTrip = ({
           )}
         >
           {/* identity */}
-          <div className={clsx("hidden lg:block")}>
-            <CarIdentityItem {...car.identity} />
-          </div>
 
           {/* routes */}
           <div
@@ -251,6 +252,9 @@ export const RideCardResultTrip = ({
 
             <ArrivalItem {...routes.arrival} />
           </div>
+
+          {/* umweg */}
+          <UmwegBadge {...routes.umWeg} />
 
           {/* facility */}
           <div
@@ -319,6 +323,7 @@ export const RideCardResultTrip = ({
             {...price.initial}
             label={null}
             className={clsx("!place-content-center !place-items-center")}
+            priceClassName={clsx("lg:!text-[2rem]")}
           />
 
           {/* cta */}

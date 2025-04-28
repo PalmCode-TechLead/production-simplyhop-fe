@@ -94,11 +94,17 @@ export const useGetRidesId = () => {
                           },
                           name: {
                             ...globalDictionaries.vehicle.seat.available.name,
-                            label:
-                              globalDictionaries.vehicle.seat.available.name.label.replaceAll(
-                                "{{number}}",
-                                item.available_seats.toLocaleString("de-DE")
-                              ),
+                            label: !item.maxtwo_backseat
+                              ? globalDictionaries.vehicle.seat.available.name.label
+                                  .replaceAll(
+                                    "{{number}}",
+                                    item.available_seats.toLocaleString("de-DE")
+                                  )
+                                  .replaceAll("(Max. 2 auf der Rückbank)", "")
+                              : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
+                                  "{{number}}",
+                                  item.available_seats.toLocaleString("de-DE")
+                                ),
                           },
                         },
                       ]
@@ -225,7 +231,17 @@ export const useGetRidesId = () => {
               },
               travelTime: {
                 time: !item.eta ? "-" : setDurationTime(item.eta),
-                waitingTime: !item.waiting_time ? "" : item.waiting_time,
+              },
+              umWeg: {
+                label: globalDictionaries.vehicle.umweg.label.text.replaceAll(
+                  "{{number}}",
+                  !item.waiting_time ? "0" : item.waiting_time
+                ),
+                icon: {
+                  ...globalDictionaries.vehicle.umweg.label.icon,
+                  name: globalDictionaries.vehicle.umweg.label.icon
+                    .name as SVGIconProps["name"],
+                },
               },
               arrival: {
                 place: !item.destination_name ? "-" : item.destination_name,
@@ -262,15 +278,6 @@ export const useGetRidesId = () => {
                         id: "fahrerin",
                         label: "Fahrerin (W)",
                         variant: "danger" as "success" | "danger",
-                      },
-                    ]
-                  : []),
-                ...(item.maxtwo_backseat
-                  ? [
-                      {
-                        id: "max_two_backseat",
-                        label: "Max. 2 auf der Rückbank",
-                        variant: "danger" as "danger" | "success",
                       },
                     ]
                   : []),

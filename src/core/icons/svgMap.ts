@@ -42,6 +42,7 @@ import {
   BadgeEuro,
   Camera,
   Pencil,
+  Timer,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -104,6 +105,7 @@ export const svgMap = {
   BadgeEuro,
   Camera,
   Pencil,
+  Timer,
   Facebook,
   Google,
   Whatsapp,

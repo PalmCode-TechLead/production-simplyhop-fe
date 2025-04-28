@@ -5,12 +5,14 @@ export interface CarPriceItemProps {
   label?: string | null;
   price?: string;
   className?: string;
+  priceClassName?: string;
 }
 
 export const CarPriceItem = ({
   label = null,
   price = "",
   className,
+  priceClassName,
 }: CarPriceItemProps) => {
   return (
     <div
@@ -30,7 +32,10 @@ export const CarPriceItem = ({
       )}
 
       <p
-        className={clsx("text-[black] text-[1rem] lg:text-[1.5rem] font-bold")}
+        className={clsx(
+          "text-[black] text-[1rem] lg:text-[1.5rem] font-bold",
+          priceClassName
+        )}
       >
         {price}
       </p>

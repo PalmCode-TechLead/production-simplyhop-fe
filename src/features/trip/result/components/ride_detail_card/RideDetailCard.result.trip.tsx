@@ -24,6 +24,7 @@ import {
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label/DriverProfileLabel";
 import { RideBadge, RideBadgeProps } from "@/core/components/ride_badge";
+import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
 
 export interface RideDetailCardResultTripProps {
   id?: string;
@@ -43,6 +44,7 @@ export interface RideDetailCardResultTripProps {
   routes?: {
     departure?: DepartureItemProps;
     travelTime?: TravelTimeItemProps;
+    umWeg?: UmwegBadgeProps;
     arrival?: ArrivalItemProps;
   };
 
@@ -190,7 +192,16 @@ export const RideDetailCardResultTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
-
+          <div
+            className={clsx(
+              "grid grid-flow-row items-start content-start justify-start justify-items-start gap-[0.5rem]"
+            )}
+          >
+            <Image {...car.image} className={clsx("w-[145px]")} />
+            <div className={clsx("block")}>
+              <CarIdentityItem {...car.identity} />
+            </div>
+          </div>
           <div
             className={clsx(
               "hidden lg:grid grid-flow-col lg:grid-flow-row lg:grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
@@ -204,26 +215,10 @@ export const RideDetailCardResultTrip = ({
 
         <div
           className={clsx(
-            "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]"
-          )}
-        >
-          <Image {...car.image} className={clsx("w-[145px]")} />
-          <div className={clsx("block lg:hidden")}>
-            <CarIdentityItem {...car.identity} />
-          </div>
-        </div>
-
-        <div
-          className={clsx(
             "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[1rem]",
             "w-full"
           )}
         >
-          {/* identity */}
-          <div className={clsx("hidden lg:block")}>
-            <CarIdentityItem {...car.identity} />
-          </div>
-
           {/* routes */}
           <div
             className={clsx(
@@ -237,6 +232,9 @@ export const RideDetailCardResultTrip = ({
 
             <ArrivalItem {...routes.arrival} />
           </div>
+
+          {/* umweg */}
+          <UmwegBadge {...routes.umWeg} />
 
           {/* facility */}
           <div

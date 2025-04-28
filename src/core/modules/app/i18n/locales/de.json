@@ -228,7 +228,7 @@
         "items": [
           {
             "id": "invalid_password",
-            "name": "Password minimal 8 karakter, mengandung huruf besar, huruf kecil, angka, dan simbol.",
+            "name": "Mindestens 8 Zeichen, einschließlich Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen.",
             "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
           }
         ]
@@ -239,7 +239,7 @@
         "items": [
           {
             "id": "unmatched_password",
-            "name": "",
+            "name": "Passwörter stimmen nicht überein.",
             "regex": ""
           }
         ]
@@ -250,7 +250,7 @@
         "items": [
           {
             "id": "invalid_name",
-            "name": "Invalid FirstName",
+            "name": "Ungültiger Name.",
             "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
           }
         ]
@@ -261,7 +261,7 @@
         "items": [
           {
             "id": "invalid_name",
-            "name": "Invalid LastName",
+            "name": "Ungültiger Name.",
             "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
           }
         ]
@@ -272,8 +272,8 @@
         "items": [
           {
             "id": "invalid_city",
-            "name": "Invalid City",
-            "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
+            "name": "Bitte geben Sie eine gültige Stadt ein.",
+            "regex": "^[A-Za-z]+(?:[ ,][A-Za-z]+)*$"
           }
         ]
       }
@@ -283,7 +283,7 @@
         "items": [
           {
             "id": "invalid_phonenumber",
-            "name": "Invalid Phonenumber",
+            "name": "Bitte geben Sie eine gültige Telefonnummer ein.",
             "regex": "^(?:\\+49|0049|0)[1-9][0-9]{1,4}[ \\-]?[0-9]{3,}$"
           }
         ]
@@ -294,7 +294,7 @@
         "items": [
           {
             "id": "invalid_license_plate",
-            "name": "Invalid License Plate",
+            "name": "Bitte geben Sie ein gültiges Kennzeichen ein.",
             "regex": "^[A-ZÄÖÜ]{1,3}-\\s?[A-Z]{1,2} [0-9]{1,4}$"
           }
         ]
@@ -347,6 +347,15 @@
     }
   },
   "vehicle": {
+    "umweg": {
+      "label": {
+        "text": "Umweg: {{number}} minuten",
+        "icon": {
+          "name": "Timer",
+          "color": "#767676"
+        }
+      }
+    },
     "seat": {
       "child": {
         "options": [
@@ -367,7 +376,7 @@
           "color": "#727272"
         },
         "name": {
-          "label": "{{number}} Sitzplätze verfügbar",
+          "label": "{{number}} Plätze frei (Max. 2 auf der Rückbank)",
           "color": "#727272"
         }
       },
