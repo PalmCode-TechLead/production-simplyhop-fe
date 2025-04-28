@@ -9,10 +9,12 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
+import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
 export const NotificationVehicleCreateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(VehicleCreateSupportContext);
+  const { isLg } = useTailwindBreakpoint();
   const isOpen = state.notification.is_open;
   const handleClose = () => {
     dispatch({
@@ -36,21 +38,21 @@ export const NotificationVehicleCreateSupport = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
+        "!max-w-full lg:!max-w-[524px]",
         "h-[100vh] lg:h-fit",
-        "!rounded-[0.625rem]",
+        "!rounded-[0rem] lg:!rounded-[0.625rem]",
         "overflow-auto",
         "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
+      variant={isLg ? "page_sheet" : "modal"}
       onClose={handleClose}
     >
       <div
         className={clsx(
           "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-full lg:h-fit",
-          "overflow-auto",
-          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+          "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         <div
