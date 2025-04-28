@@ -30,6 +30,9 @@ import { ENVIRONMENTS } from "@/core/environments";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { RIDE_FILTER } from "@/core/enums";
 import dayjs from "dayjs";
+import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
+import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
+import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -323,11 +326,10 @@ export const DetailPlanRideTrip = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-w-[calc(100vw)] md:!max-w-[872px]",
-        "h-[100vh] lg:!h-fit",
+        "!max-w-[100vw] lg:!max-w-[872px]",
+        "h-[100vh] lg:!h-full !max-h-[100vh] lg:!max-h-[80vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "overflow-hidden"
       )}
       open={isOpen}
       variant={isLg ? "modal" : "page_sheet"}
@@ -335,17 +337,11 @@ export const DetailPlanRideTrip = () => {
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center gap-[2rem]",
-          "w-full",
-          "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+          "grid grid-cols-1 items-center content-center lg:items-start lg:content-start justify-center justify-items-center",
+          "w-full h-full"
         )}
       >
-        <div
-          className={clsx(
-            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-            "w-full"
-          )}
-        >
+        <AdaptiveModalHeader>
           <button className={clsx("block lg:hidden")} onClick={handleClose}>
             <SVGIcon
               name="X"
@@ -355,15 +351,9 @@ export const DetailPlanRideTrip = () => {
           <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
             {dictionaries.detail.title}
           </h1>
-        </div>
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-            "w-full",
-            "lg:max-h-[400px]",
-            "overflow-auto"
-          )}
-        >
+        </AdaptiveModalHeader>
+
+        <AdaptiveModalContent>
           <RideDetailCardPlanRideTrip
             driver={{
               profile: {
@@ -557,17 +547,19 @@ export const DetailPlanRideTrip = () => {
               />
             </div>
           </Card>
-        </div>
+        </AdaptiveModalContent>
 
-        <Button
-          disabled={isSubmitDisabled}
-          isLoading={isSubmitLoading}
-          variant="tertiary"
-          onClick={handleClickSend}
-        >
-          {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
-          {dictionaries.detail.cta.send.children}
-        </Button>
+        <AdaptiveModalFooter>
+          <Button
+            disabled={isSubmitDisabled}
+            isLoading={isSubmitLoading}
+            variant="tertiary"
+            onClick={handleClickSend}
+          >
+            {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
+            {dictionaries.detail.cta.send.children}
+          </Button>
+        </AdaptiveModalFooter>
       </div>
     </AdaptiveModal>
   );
