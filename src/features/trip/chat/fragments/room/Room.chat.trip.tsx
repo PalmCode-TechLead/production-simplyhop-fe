@@ -199,6 +199,7 @@ export const RoomChatTrip = () => {
                       type === "offer_request" &&
                       state.room.booking.status === "pending" &&
                       chatIndex === lastOfferCardIndex &&
+                      !!userState.profile?.id &&
                       String(userState.profile?.id) !== sender_id
                         ? {
                             children: "Angebot ablehnen",
@@ -211,6 +212,7 @@ export const RoomChatTrip = () => {
                       type === "offer_request" &&
                       state.room.booking.status === "pending" &&
                       chatIndex === lastOfferCardIndex &&
+                      !!userState.profile?.id &&
                       String(userState.profile?.id) !== sender_id
                         ? {
                             children: "Ein weiteres Angebot senden",
@@ -223,6 +225,7 @@ export const RoomChatTrip = () => {
                       type === "offer_request" &&
                       state.room.booking.status === "pending" &&
                       chatIndex === lastOfferCardIndex &&
+                      !!userState.profile?.id &&
                       String(userState.profile?.id) !== sender_id
                         ? {
                             children: "Angebot annehmen",

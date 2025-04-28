@@ -99,7 +99,7 @@ export const GeneralVehicleInformationFormVehicleCreateSupport = () => {
 
   const handleChangeLicensePlate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
-      errorItems: globalDictionaries.form.email.validations.items,
+      errorItems: globalDictionaries.form.license_plate.validations.items,
       value: e.currentTarget.value,
       type: "optional",
     });
