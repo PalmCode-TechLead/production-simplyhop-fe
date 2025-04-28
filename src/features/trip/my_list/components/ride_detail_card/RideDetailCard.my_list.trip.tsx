@@ -157,7 +157,7 @@ export const RideDetailCardMyListTrip = ({
         >
           <div
             className={clsx(
-              "grid grid-cols-3 place-content-start place-items-start gap-[2.25rem]",
+              "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[2.25rem]",
               "w-full"
             )}
           >
@@ -183,7 +183,13 @@ export const RideDetailCardMyListTrip = ({
             >
               {car.label}
             </span>
-            <Image {...car.image} className={clsx("!w-[76px] h-[46px]")} />
+            <Image
+              {...car.image}
+              className={clsx(
+                "!w-[76px] h-[46px]",
+                "object-cover object-center"
+              )}
+            />
           </div>
 
           <div className={clsx("block")}>

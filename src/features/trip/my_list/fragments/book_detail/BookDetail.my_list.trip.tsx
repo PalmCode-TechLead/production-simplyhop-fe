@@ -43,8 +43,8 @@ export const BookDetailMyListTrip = () => {
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}
       className={clsx(
-        "!max-w-[100vw] lg:!max-w-[872px]",
-        "h-[100vh] lg:!h-full !max-h-[100vh] lg:!max-h-[80vh]",
+        "!max-w-[100vw] lg:!max-w-[584px]",
+        "h-[100vh] lg:!h-full !max-h-[100vh] lg:!max-h-[60vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-hidden"
       )}
@@ -53,7 +53,7 @@ export const BookDetailMyListTrip = () => {
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
+          "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full h-full"
         )}
       >
