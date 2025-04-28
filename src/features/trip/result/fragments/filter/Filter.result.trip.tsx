@@ -335,6 +335,13 @@ export const FilterResultTrip = () => {
       const carSeat = `&${RIDE_FILTER.CAR_SEAT}=true`;
       params = params + carSeat;
     }
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        is_open: false,
+      },
+    });
     router.push(AppCollectionURL.public.tripResult(params));
   };
 

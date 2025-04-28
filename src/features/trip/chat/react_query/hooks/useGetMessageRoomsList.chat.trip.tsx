@@ -87,8 +87,12 @@ export const useGetMessageRoomsList = () => {
                   alt: isPassenger ? "passenger" : "driver",
                 },
                 name: !isPassenger
-                  ? `${item.passenger?.first_name} ${item.passenger?.last_name}`
-                  : `${item.driver?.first_name} ${item.driver?.last_name}`,
+                  ? `${item.passenger?.first_name ?? ""} ${
+                      item.passenger?.last_name ?? ""
+                    }`
+                  : `${item.driver?.first_name ?? ""} ${
+                      item.driver?.last_name ?? ""
+                    }`,
                 message: displayMessage,
                 date: date,
               };
