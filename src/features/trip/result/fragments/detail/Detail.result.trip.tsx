@@ -19,6 +19,9 @@ import { RIDE_FILTER } from "@/core/enums";
 import { UserContext } from "@/core/modules/app/context";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
+import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
+import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
 
 export const DetailResultTrip = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -137,11 +140,10 @@ export const DetailResultTrip = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-w-full lg:!max-w-[872px]", 
-        "h-[100vh] lg:h-fit",
+        "!max-w-[100vw] lg:!max-w-[872px]",
+        "h-[100vh] lg:!h-fit !max-h-[100vh] lg:!max-h-[80vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "overflow-hidden"
       )}
       variant={isLg ? "modal" : "page_sheet"}
       open={isOpen}
@@ -149,17 +151,11 @@ export const DetailResultTrip = () => {
     >
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full",
-          "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full h-full"
         )}
       >
-        <div
-          className={clsx(
-            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-            "w-full"
-          )}
-        >
+        <AdaptiveModalHeader>
           <button
             className={clsx("block lg:hidden", "cursor-pointer")}
             onClick={handleClose}
@@ -173,66 +169,69 @@ export const DetailResultTrip = () => {
           <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
             {dictionaries.detail.title}
           </h1>
-        </div>
+        </AdaptiveModalHeader>
+        <AdaptiveModalContent className={clsx("lg:!py-[1rem]")}>
+          <RideDetailCardResultTrip {...detailData} />
 
-        <RideDetailCardResultTrip {...detailData} />
-
-        <PassengerCardResultTrip
-          label={dictionaries.detail.passenger.label}
-          passenger={dictionaries.detail.passenger.maskedValue
-            .replaceAll("{{adult}}", String(adult ?? "0"))
-            .replaceAll("{{children}}", String(children ?? "0"))}
-        />
-
-        <PriceCardResultTrip
-          label={dictionaries.detail.price.form.title}
-          price={detailData.price?.initial?.price}
-        />
-
-        {!isRideByDriver && isLoggedIn && (
-          <PriceInputResultTrip
-            inputProps={{
-              type: "number",
-              value:
-                state.detail.form.price_offer.value === 0
-                  ? ""
-                  : state.detail.form.price_offer.value,
-              onChange: handleChangePriceOffer,
-            }}
+          <PassengerCardResultTrip
+            label={dictionaries.detail.passenger.label}
+            passenger={dictionaries.detail.passenger.maskedValue
+              .replaceAll("{{adult}}", String(adult ?? "0"))
+              .replaceAll("{{children}}", String(children ?? "0"))}
           />
-        )}
 
-        {!isRideByDriver && isLoggedIn && (
-          <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
-            <TextareafieldNotes
-              inputContainerProps={{
-                className: clsx("!border-[0px]", "!rounded-[0px]"),
-              }}
+          <PriceCardResultTrip
+            label={dictionaries.detail.price.form.title}
+            price={detailData.price?.initial?.price}
+          />
+
+          {!isRideByDriver && isLoggedIn && (
+            <PriceInputResultTrip
               inputProps={{
-                ...dictionaries.detail.notes.form.input.notes.inputProps,
-                value: state.detail.form.notes.value,
-                onChange: handleChangeNotes,
-              }}
-              labelProps={{
-                ...dictionaries.detail.notes.form.input.notes.labelProps,
+                type: "number",
+                value:
+                  state.detail.form.price_offer.value === 0
+                    ? ""
+                    : state.detail.form.price_offer.value,
+                onChange: handleChangePriceOffer,
               }}
             />
-          </Card>
-        )}
+          )}
 
-        {!isRideByDriver && isLoggedIn && (
-          <Button
-            disabled={isSubmitDisabled}
-            isLoading={isPendingPostBookingBook}
-            onClick={handleClickSend}
-          >
-            {isPendingPostBookingBook && (
-              <MoonLoader size={20} color={"white"} />
-            )}
+          {!isRideByDriver && isLoggedIn && (
+            <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
+              <TextareafieldNotes
+                inputContainerProps={{
+                  className: clsx("!border-[0px]", "!rounded-[0px]"),
+                }}
+                inputProps={{
+                  ...dictionaries.detail.notes.form.input.notes.inputProps,
+                  value: state.detail.form.notes.value,
+                  onChange: handleChangeNotes,
+                }}
+                labelProps={{
+                  ...dictionaries.detail.notes.form.input.notes.labelProps,
+                }}
+              />
+            </Card>
+          )}
+        </AdaptiveModalContent>
 
-            {dictionaries.detail.cta.send.children}
-          </Button>
-        )}
+        <AdaptiveModalFooter>
+          {!isRideByDriver && isLoggedIn && (
+            <Button
+              disabled={isSubmitDisabled}
+              isLoading={isPendingPostBookingBook}
+              onClick={handleClickSend}
+            >
+              {isPendingPostBookingBook && (
+                <MoonLoader size={20} color={"white"} />
+              )}
+
+              {dictionaries.detail.cta.send.children}
+            </Button>
+          )}
+        </AdaptiveModalFooter>
       </div>
     </AdaptiveModal>
   );

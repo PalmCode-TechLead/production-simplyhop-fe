@@ -10,7 +10,7 @@ export const AdaptiveModalContent = forwardRef<
       ref={ref}
       {...props}
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+        "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
         "w-full h-full",
         "px-[1rem] py-[2rem] lg:px-[2rem] lg:py-[0rem]",
         "overflow-auto",
