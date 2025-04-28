@@ -10,6 +10,7 @@ import {
   PlanRideTripMapReducers,
   PlanRideTripNotificationReducers,
 } from "./PlanRide.trip.reducers";
+import dayjs from "dayjs";
 
 const initialState: PlanRideTripInitialStateType = {
   filters: {
@@ -63,7 +64,7 @@ const initialState: PlanRideTripInitialStateType = {
     form: {
       plan: {
         date: {
-          selected: new Date(),
+          selected: dayjs().add(1, "day").toDate(),
         },
         time: {
           value: "",
