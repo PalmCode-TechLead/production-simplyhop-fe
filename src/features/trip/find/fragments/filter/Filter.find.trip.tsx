@@ -382,7 +382,6 @@ export const FilterFindTrip = () => {
           "px-[1rem] py-[1rem] sm:px-[3rem] sm:py-[3rem]",
           "bg-[#FFFFFF]",
           "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
-          "absolute left-[50%] translate-x-[-50%] bottom-[0px] lg:bottom-[72px]",
           "border border-[#D3E7CE]"
         )}
         style={{

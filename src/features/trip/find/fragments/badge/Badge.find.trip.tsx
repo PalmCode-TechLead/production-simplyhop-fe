@@ -14,8 +14,7 @@ export const BadgeFindTrip = () => {
         "rounded-[0.5rem] lg:rounded-[1.25rem]",
         "px-[0.5rem] py-[0.5rem] lg:px-4 lg:py-4",
         "text-[1rem] lg:text-xl text-neutral-50 font-bold",
-        "w-fit",
-        "absolute top-[1.5rem]"
+        "w-fit"
       )}
     >
       <SVGIcon
