@@ -30,16 +30,10 @@ export interface MyListTripFilters {
 
 export interface MyListTripRide {
   data: RideCardMyListTripProps[];
-  //   & {
-  //   detail: {
-  //     booking: RideBookingListItemProps[];
-  //     price: CarPriceItemProps;
-  //   };
-  // }
+
   detail:
     | (RideCardMyListTripProps & {
         booking: RideBookingListItemProps[];
-        price: CarPriceItemProps;
       })
     | null;
 }

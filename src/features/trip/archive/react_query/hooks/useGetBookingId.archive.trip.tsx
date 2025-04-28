@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { MyListTripReactQueryKey } from "../keys";
+import { ArchiveTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+import { ArchiveTripActionEnum, ArchiveTripContext } from "../../context";
 
 import { fetchGetBookingId } from "@/core/services/rest/simplyhop/booking";
 import {
@@ -17,7 +17,7 @@ import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetBookingId = () => {
   const searchParams = useSearchParams();
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(ArchiveTripContext);
   const id = searchParams.get("booking_id");
 
   const payload: GetBookingIdPayloadRequestInterface = {
@@ -32,7 +32,7 @@ export const useGetBookingId = () => {
     GetBookingIdSuccessResponseInterface,
     GetBookingIdErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetBookingId(),
+    queryKey: ArchiveTripReactQueryKey.GetBookingId(),
     queryFn: () => {
       return fetchGetBookingId(payload);
     },
@@ -46,7 +46,7 @@ export const useGetBookingId = () => {
       const urlSearchParams = new URLSearchParams(searchParams.toString());
       urlSearchParams.append("booking_id", String(item.id));
       dispatch({
-        type: MyListTripActionEnum.SetBookData,
+        type: ArchiveTripActionEnum.SetBookData,
         payload: {
           ...state.book,
           detail: {

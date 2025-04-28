@@ -6,8 +6,10 @@ import { TabArchiveTrip } from "../fragments/tab";
 import { useSearchParams } from "next/navigation";
 import { BookArchiveTrip } from "../fragments/book";
 import { RideArchiveTrip } from "../fragments/ride";
+import { UserContext } from "@/core/modules/app/context";
 
 export const ArchiveTripContainer = () => {
+  const { state: userState } = React.useContext(UserContext);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
@@ -41,7 +43,13 @@ export const ArchiveTripContainer = () => {
             </React.Suspense>
           </div>
 
-          {type === "book" ? <BookArchiveTrip /> : <RideArchiveTrip />}
+          {type === "book" ? (
+            <BookArchiveTrip />
+          ) : !type && userState.profile?.is_driver === false ? (
+            <BookArchiveTrip />
+          ) : (
+            <RideArchiveTrip />
+          )}
         </div>
       </div>
     </div>

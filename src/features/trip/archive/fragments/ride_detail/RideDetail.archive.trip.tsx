@@ -11,6 +11,9 @@ import { CarPriceItem } from "@/core/components/car_price_item";
 import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
 import { ArchiveTripContext } from "../../context";
 import { RideDetailCardArchiveTrip } from "../../components/ride_detail_card";
+import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
+import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
+import { useGetRidesId } from "../../react_query/hooks";
 
 export const RideDetailArchiveTrip = () => {
   const dictionaries = getDictionaries();
@@ -19,8 +22,8 @@ export const RideDetailArchiveTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
   const { state } = React.useContext(ArchiveTripContext);
-
-  const filteredData = state.ride.data.find((item) => item.id === rideId);
+  useGetRidesId();
+  const filteredData = state.ride.detail;
 
   if (!filteredData) {
     return null;
@@ -40,39 +43,32 @@ export const RideDetailArchiveTrip = () => {
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}
       className={clsx(
-        "!max-w-[524px]",
-        "h-fit",
-        "!rounded-[0.625rem]",
-        "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "!max-w-[100vw] lg:!max-w-[584px]",
+        "h-[100vh] lg:!h-full !max-h-[100vh] lg:!max-h-[60vh]",
+        "!rounded-[0px] lg:!rounded-[0.625rem]",
+        "overflow-hidden"
       )}
       open={isOpen}
       onClose={handleClose}
     >
       <div
         className={clsx(
-          "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full h-[100vh]",
-          "overflow-auto",
-          "px-[0rem] py-[0rem] lg:px-[2rem] lg:py-[2rem]"
+          "grid grid-cols-1 items-start content-start justify-center justify-items-center",
+          "w-full h-full"
         )}
       >
         {/* header */}
-        <div
-          className={clsx(
-            "grid grid-flow-col items-center content-center justify-between justify-items-start",
-            "w-full",
-            "bg-[white]",
-            "px-[1rem] py-[1rem] lg:px-[0rem] lg:py-[0rem]"
-          )}
-        >
+        <AdaptiveModalHeader>
           <div
             className={clsx(
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
               "w-full"
             )}
           >
-            <button className={clsx("cursor-pointer")} onClick={handleClose}>
+            <button
+              className={clsx("cursor-pointer", "block lg:hidden")}
+              onClick={handleClose}
+            >
               <SVGIcon
                 name="ArrowLeft"
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
@@ -86,16 +82,11 @@ export const RideDetailArchiveTrip = () => {
               {dictionaries.book_detail.title}
             </h2>
           </div>
-        </div>
+        </AdaptiveModalHeader>
 
         {/* body */}
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-            "w-full",
-            "bg-[#FAFDF9]",
-            "py-[1rem]"
-          )}
+        <AdaptiveModalContent
+          className={clsx("!bg-[#FAFDF9]", "!px-[0rem] !py-[1rem]")}
         >
           <div
             className={clsx(
@@ -119,7 +110,7 @@ export const RideDetailArchiveTrip = () => {
             <p className={clsx("text-[1.125rem] text-[black] font-bold")}>
               {dictionaries.ride_detail.title}
             </p>
-            {filteredData.detail.booking.map((item, index) => (
+            {filteredData.booking.map((item, index) => (
               <RideBookingListItem key={index} {...item} />
             ))}
           </div>
@@ -133,9 +124,9 @@ export const RideDetailArchiveTrip = () => {
               "bg-[white]"
             )}
           >
-            <CarPriceItem {...filteredData.detail.price} />
+            <CarPriceItem {...filteredData.price?.initial} />
           </div>
-        </div>
+        </AdaptiveModalContent>
       </div>
     </AdaptiveModal>
   );

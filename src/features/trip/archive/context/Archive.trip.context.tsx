@@ -18,9 +18,11 @@ const initialState: ArchiveTripInitialStateType = {
   },
   ride: {
     data: [],
+    detail: null,
   },
   book: {
     data: [],
+    detail: null,
   },
 };
 

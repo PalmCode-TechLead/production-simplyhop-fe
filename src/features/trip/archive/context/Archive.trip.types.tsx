@@ -29,20 +29,18 @@ export interface ArchiveTripFilters {
 }
 
 export interface ArchiveTripRide {
-  data: (RideCardArchiveTripProps & {
-    detail: {
-      booking: RideBookingListItemProps[];
-      price: CarPriceItemProps;
-    };
-  })[];
+  data: RideCardArchiveTripProps[];
+
+  detail:
+    | (RideCardArchiveTripProps & {
+        booking: RideBookingListItemProps[];
+      })
+    | null;
 }
 
 export interface ArchiveTripBook {
-  data: (BookCardArchiveTripProps & {
-    detail: {
-      price: CarPriceItemProps;
-    };
-  })[];
+  data: BookCardArchiveTripProps[];
+  detail: BookCardArchiveTripProps | null;
 }
 
 export enum ArchiveTripActionEnum {

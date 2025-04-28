@@ -22,10 +22,8 @@ export const useGetBookingMy = () => {
 
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
-      include: "ride.vehicle.brand,rideTime,user",
-      "filter[rideTime.departure_time__lte]": dayjs().format(
-        "YYYY-MM-DDTHH:mm:ss"
-      ),
+      include: "ride.vehicle.brand,user",
+      "filter[ride.departure_time__lte]": dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
@@ -127,12 +125,6 @@ export const useGetBookingMy = () => {
                   href: AppCollectionURL.private.myListArchive(
                     urlSearchParams.toString()
                   ),
-                },
-              },
-              detail: {
-                price: {
-                  label: "Angebotspreis",
-                  price: item.total_amount.toLocaleString("de-DE"),
                 },
               },
             };

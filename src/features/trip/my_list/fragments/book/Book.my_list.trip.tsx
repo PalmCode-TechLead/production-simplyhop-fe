@@ -2,7 +2,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { MyListTripContext } from "../../context";
 import { BookCardMyListTrip } from "../../components/book_card";
-import { useGetBookingMy } from "../../react_query/hooks/useGetBookingMy.my_list.trip";
+import { useGetBookingMy } from "../../react_query/hooks";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { ListErrorItem } from "@/core/components/list_error_item";

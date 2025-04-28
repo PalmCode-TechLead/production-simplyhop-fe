@@ -22,7 +22,7 @@ export const useGetRidesMy = () => {
 
   const payload: GetRidesMyPayloadRequestInterface = {
     params: {
-      include: "vehicle.brand,rideTimes,bookings,bookings.user",
+      include: "vehicle.brand,bookings,bookings.user",
       departure_time__lte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
