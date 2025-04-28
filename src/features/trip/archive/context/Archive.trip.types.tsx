@@ -1,4 +1,3 @@
-import { CarPriceItemProps } from "@/core/components/car_price_item";
 import { BookCardArchiveTripProps } from "../components/book_card";
 import { RideCardArchiveTripProps } from "../components/ride_card";
 import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
