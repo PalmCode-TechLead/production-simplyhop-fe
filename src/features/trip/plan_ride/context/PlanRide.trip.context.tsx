@@ -44,7 +44,7 @@ const initialState: PlanRideTripInitialStateType = {
       items: [],
     },
     date: {
-      selected: new Date(),
+      selected: dayjs().add(1, "day").toDate(),
     },
     time: {
       value: "",
@@ -64,7 +64,7 @@ const initialState: PlanRideTripInitialStateType = {
     form: {
       plan: {
         date: {
-          selected: dayjs().add(1, "day").toDate(),
+          selected: new Date(),
         },
         time: {
           value: "",
