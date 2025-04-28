@@ -1,5 +1,4 @@
 import { Ride } from "./ride";
-import { RideTime } from "./ride_times";
 import { User } from "./user";
 
 export interface Booking {
@@ -16,7 +15,6 @@ export interface Booking {
   deleted_at: null | string;
   created_at: string; // "2025-04-24T08:04:22.000000Z";
   updated_at: string; //"2025-04-24T08:04:22.000000Z";
-  ride_time?: RideTime;
   ride?: Ride;
   user?: User;
 }

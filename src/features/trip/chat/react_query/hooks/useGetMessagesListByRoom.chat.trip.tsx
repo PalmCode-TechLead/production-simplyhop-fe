@@ -123,7 +123,7 @@ export const useGetMessagesListByRoom = () => {
                     },
                     facility: {
                       top: [
-                        ...(!!item.booking?.ride_time?.available_seats
+                        ...(!!item.booking?.ride?.available_seats
                           ? [
                               {
                                 ...globalDictionaries.vehicle.seat.available,
@@ -140,7 +140,7 @@ export const useGetMessagesListByRoom = () => {
                                   label:
                                     globalDictionaries.vehicle.seat.available.name.label.replaceAll(
                                       "{{number}}",
-                                      item.booking.ride_time.available_seats.toLocaleString(
+                                      item.booking.ride.available_seats.toLocaleString(
                                         "de-DE"
                                       )
                                     ),
@@ -275,9 +275,11 @@ export const useGetMessagesListByRoom = () => {
                       place: !item.booking?.ride?.start_name
                         ? "-"
                         : item.booking.ride.start_name,
-                      time: dayjs(
-                        item.booking?.ride_time?.departure_time
-                      ).format("HH.mm [Uhr]"),
+                      time: !item.booking?.ride?.departure_time
+                        ? "-"
+                        : dayjs(item.booking?.ride?.departure_time).format(
+                            "HH.mm [Uhr]"
+                          ),
                     },
                     travelTime: {
                       time: !item.booking?.ride?.eta
@@ -288,14 +290,16 @@ export const useGetMessagesListByRoom = () => {
                       place: !item.booking?.ride?.destination_name
                         ? "-"
                         : item.booking.ride.destination_name,
-                      time: !item.booking?.ride?.eta
-                        ? "-"
-                        : `${setArrivalTime(
-                            dayjs(
-                              item.booking.ride_time?.departure_time
-                            ).format("HH:mm"),
-                            item.booking.ride.eta
-                          )} Uhr`,
+                      time:
+                        !item.booking?.ride?.eta ||
+                        !item.booking.ride?.departure_time
+                          ? "-"
+                          : `${setArrivalTime(
+                              dayjs(item.booking.ride?.departure_time).format(
+                                "HH:mm"
+                              ),
+                              item.booking.ride.eta
+                            )} Uhr`,
                     },
                   },
 

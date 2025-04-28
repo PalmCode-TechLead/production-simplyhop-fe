@@ -84,21 +84,21 @@ export const useGetBookingMy = () => {
               routes: {
                 date: {
                   label: "Datum",
-                  date: dayjs(item.ride_time?.departure_time).format(
-                    "DD.MM.YY"
-                  ),
+                  date: !item.ride?.departure_time
+                    ? "-"
+                    : dayjs(item.ride?.departure_time).format("DD.MM.YY"),
                 },
                 startTime: {
                   label: "Startzeit",
-                  time: dayjs(item.ride_time?.departure_time).format(
-                    "HH.mm [Uhr]"
-                  ),
+                  time: !item.ride?.departure_time
+                    ? "-"
+                    : dayjs(item.ride?.departure_time).format("HH.mm [Uhr]"),
                 },
                 departure: {
                   place: !item.ride?.start_name ? "-" : item.ride?.start_name,
-                  time: dayjs(item.ride_time?.departure_time).format(
-                    "HH.mm [Uhr]"
-                  ),
+                  time: !item.ride?.departure_time
+                    ? "-"
+                    : dayjs(item.ride?.departure_time).format("HH.mm [Uhr]"),
                 },
                 travelTime: {
                   time: !item.ride?.eta ? "-" : setDurationTime(item.ride.eta),
@@ -107,12 +107,13 @@ export const useGetBookingMy = () => {
                   place: !item.ride?.destination_name
                     ? "-"
                     : item.ride.destination_name,
-                  time: !item.ride?.eta
-                    ? "-"
-                    : `${setArrivalTime(
-                        dayjs(item.ride_time?.departure_time).format("HH:mm"),
-                        item.ride.eta
-                      )} Uhr`,
+                  time:
+                    !item.ride?.eta || !item.ride?.departure_time
+                      ? "-"
+                      : `${setArrivalTime(
+                          dayjs(item.ride?.departure_time).format("HH:mm"),
+                          item.ride.eta
+                        )} Uhr`,
                 },
               },
 

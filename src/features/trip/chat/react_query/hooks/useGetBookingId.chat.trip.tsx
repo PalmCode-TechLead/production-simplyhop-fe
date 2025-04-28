@@ -86,7 +86,7 @@ export const useGetBookingId = () => {
               },
               facility: {
                 top: [
-                  ...(!!data.data.ride_time?.available_seats
+                  ...(!!data.data.ride?.available_seats
                     ? [
                         {
                           ...globalDictionaries.vehicle.seat.available,
@@ -98,18 +98,20 @@ export const useGetBookingId = () => {
                           name: {
                             ...globalDictionaries.vehicle.seat.available.name,
                             label: !data.data.ride?.maxtwo_backseat
-                            ? globalDictionaries.vehicle.seat.available.name.label
-                                .replaceAll(
-                                  "{{number}}",
-                                  (data.data.ride?.available_seats ??0).toLocaleString(
-                                    "de-DE"
+                              ? globalDictionaries.vehicle.seat.available.name.label
+                                  .replaceAll(
+                                    "{{number}}",
+                                    (
+                                      data.data.ride?.available_seats ?? 0
+                                    ).toLocaleString("de-DE")
                                   )
-                                )
-                                .replaceAll("(Max. 2 auf der Rückbank)", "")
-                            : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
-                                "{{number}}",
-                                (data.data.ride?.available_seats ??0).toLocaleString("de-DE")
-                              ),
+                                  .replaceAll("(Max. 2 auf der Rückbank)", "")
+                              : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
+                                  "{{number}}",
+                                  (
+                                    data.data.ride?.available_seats ?? 0
+                                  ).toLocaleString("de-DE")
+                                ),
                           },
                         },
                       ]
@@ -232,9 +234,9 @@ export const useGetBookingId = () => {
                 place: !data.data.ride?.start_name
                   ? "-"
                   : data.data.ride?.start_name,
-                time: dayjs(data.data.ride_time?.departure_time).format(
-                  "HH.mm [Uhr]"
-                ),
+                time: !data.data.ride?.departure_time
+                  ? "-"
+                  : dayjs(data.data.ride?.departure_time).format("HH.mm [Uhr]"),
               },
               travelTime: {
                 time: !data.data.ride?.eta
@@ -256,14 +258,13 @@ export const useGetBookingId = () => {
                 place: !data.data.ride?.destination_name
                   ? "-"
                   : data.data.ride?.destination_name,
-                time: !data.data.ride?.eta
-                  ? "-"
-                  : `${setArrivalTime(
-                      dayjs(data.data.ride_time?.departure_time).format(
-                        "HH:mm"
-                      ),
-                      data.data.ride?.eta
-                    )} Uhr`,
+                time:
+                  !data.data.ride?.eta || !data.data.ride.departure_time
+                    ? "-"
+                    : `${setArrivalTime(
+                        dayjs(data.data.ride?.departure_time).format("HH:mm"),
+                        data.data.ride?.eta
+                      )} Uhr`,
               },
             },
 

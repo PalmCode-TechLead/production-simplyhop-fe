@@ -6,7 +6,6 @@ export * from "./vehicle";
 export * from "./vehicle_media";
 export * from "./user_profile";
 export * from "./user";
-export * from "./ride_times";
 export * from "./ride";
 export * from "./booking";
 export * from "./message";
