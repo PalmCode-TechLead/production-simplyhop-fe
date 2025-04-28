@@ -22,7 +22,7 @@ export const IncompleteProfilePlaneRideTrip = () => {
         "px-[0.5rem] py-[0.5rem] lg:px-4 lg:py-4",
         "text-[1rem] lg:text-xl text-neutral-50 font-bold",
         "sm:w-full sm:max-w-[409px]",
-        "absolute sm:left-[calc(100vw-409px-1.5rem)] left-[1rem] top-[5rem] sm:top-[1.5rem] right-[1.5rem]",
+        // "absolute sm:left-auto left-[1rem] top-[5rem] sm:top-[1.5rem] ",
         "border border-[#D3E7CE]"
       )}
       style={{

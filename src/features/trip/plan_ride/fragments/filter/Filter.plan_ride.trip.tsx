@@ -461,11 +461,10 @@ export const FilterPlanRideTrip = () => {
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem] sm:gap-[2rem]",
-        "w-[100vw] lg:max-w-[calc(100vw-2rem)] container:w-full container:max-w-container",
+        "w-[100vw] lg:w-[calc(100vw-2rem)] container:w-full container:max-w-container",
         "px-[1rem] py-[1rem] sm:px-[3rem] sm:py-[3rem]",
         "bg-[#FFFFFF]",
         "rounded-tr-[1.25rem] rounded-tl-[1.25rem] lg:rounded-[1.25rem]",
-        "absolute left-[50%] translate-x-[-50%] bottom-[0px] lg:bottom-[72px]",
         "border border-[#D3E7CE]"
       )}
       style={{
