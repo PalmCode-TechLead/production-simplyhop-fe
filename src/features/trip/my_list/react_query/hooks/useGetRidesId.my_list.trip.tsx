@@ -1,8 +1,8 @@
-import * as React from "react";
+// import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { MyListTripReactQueryKey } from "../keys";
 
-import { MyListTripActionEnum, MyListTripContext } from "../../context";
+// import { MyListTripActionEnum, MyListTripContext } from "../../context";
 
 import { fetchGetRidesId } from "@/core/services/rest/simplyhop/rides";
 import {
@@ -11,14 +11,14 @@ import {
   GetRidesIdSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import { useSearchParams } from "next/navigation";
-import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
-import dayjs from "dayjs";
-import { AppCollectionURL } from "@/core/utils/router/constants";
+// import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
+// import dayjs from "dayjs";
+// import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetRidesId = () => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const { state, dispatch } = React.useContext(MyListTripContext);
+  // const { state, dispatch } = React.useContext(MyListTripContext);
   const id = searchParams.get("ride_id");
 
   const payload: GetRidesIdPayloadRequestInterface = {

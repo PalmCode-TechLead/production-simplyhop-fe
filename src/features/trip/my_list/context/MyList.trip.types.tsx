@@ -36,10 +36,12 @@ export interface MyListTripRide {
   //     price: CarPriceItemProps;
   //   };
   // }
-  detail: RideCardMyListTripProps & {
-    booking: RideBookingListItemProps[];
-    price: CarPriceItemProps;
-  };
+  detail:
+    | (RideCardMyListTripProps & {
+        booking: RideBookingListItemProps[];
+        price: CarPriceItemProps;
+      })
+    | null;
 }
 
 export interface MyListTripBook {

@@ -18,6 +18,7 @@ const initialState: MyListTripInitialStateType = {
   },
   ride: {
     data: [],
+    detail: null,
   },
   book: {
     data: [],
