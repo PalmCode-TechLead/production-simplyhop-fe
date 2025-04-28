@@ -20,7 +20,7 @@ export const useGetBookingId = () => {
   const type = searchParams.get("type");
   // const { state, dispatch } = React.useContext(MyListTripContext);
   const id = searchParams.get("booking_id");
-  console.log("ini kepanggil ga");
+
   const payload: GetBookingIdPayloadRequestInterface = {
     path: {
       id: !id ? "0" : String(id),

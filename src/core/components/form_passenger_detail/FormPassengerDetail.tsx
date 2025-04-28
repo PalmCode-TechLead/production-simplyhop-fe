@@ -129,7 +129,6 @@ export const FormPassengerDetail = ({
                             : childItem.value,
                       };
                     }) ?? [];
-                  console.log(payload, "ini payload");
                   passenger.onChange(payload);
                 }}
               >
