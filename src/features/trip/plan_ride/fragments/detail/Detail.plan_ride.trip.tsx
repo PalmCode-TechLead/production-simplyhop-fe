@@ -29,6 +29,7 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { ENVIRONMENTS } from "@/core/environments";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { RIDE_FILTER } from "@/core/enums";
+import dayjs from "dayjs";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -286,7 +287,15 @@ export const DetailPlanRideTrip = () => {
         share: {
           ...state.notification.share,
           link: `${ENVIRONMENTS.SITE_URL}${AppCollectionURL.public.tripResult(
-            `${RIDE_FILTER.RIDE_ID}=${ridesFirst.data.id}`
+            `${RIDE_FILTER.ORIGIN}=${
+              state.filters.origin.selected.item?.id ?? ""
+            }&${RIDE_FILTER.DESTINATION}=${
+              state.filters.destination.selected.item?.id ?? ""
+            }&${RIDE_FILTER.DATE}=${dayjs(
+              state.detail.form.plan.date.selected
+            ).format("YYYY-MM-DD")}&${RIDE_FILTER.ADULT_PASSENGER}=${1}&${
+              RIDE_FILTER.CHILDREN_PASSENGER
+            }=${0}&${RIDE_FILTER.RIDE_ID}=${ridesFirst.data.id}`
           )}`,
         },
       },
