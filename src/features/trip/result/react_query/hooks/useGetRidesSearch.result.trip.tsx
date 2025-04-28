@@ -36,7 +36,7 @@ export const useGetRideSearch = () => {
       // start_long: 13.414954,
       // destination_lat: 48.1351253,
       // destination_long: 11.5819804,
-      include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
+      include: "vehicle,user,vehicle.brand,vehicle.category",
       available_seats__gte: String(
         Number(String(adult ?? "0")) + Number(String(children ?? "0"))
       ),

@@ -28,7 +28,7 @@ export const useGetRidesId = () => {
       id: Number(String(rideId ?? "0")),
     },
     params: {
-      include: "vehicle.brand,rideTimes,user,bookings,bookings.user",
+      include: "vehicle.brand,user,bookings,bookings.user",
     },
   };
   const query = useQuery<
