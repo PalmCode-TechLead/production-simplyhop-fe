@@ -5,10 +5,9 @@ import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { getDictionaries } from "../../i18n";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
-import SVGIcon, { SVGIconProps } from "@/core/icons";
+import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
-import { CopyLinkItem } from "@/core/components/copy_link_item";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
@@ -35,13 +34,6 @@ export const NotificationResultTrip = () => {
     );
   };
 
-  const handleClickShare = (data: { platformUrl: string; url: string }) => {
-    const shareUrl = data.platformUrl.replaceAll(
-      "{{url}}",
-      encodeURIComponent(data.url)
-    );
-    window.open(shareUrl);
-  };
   return (
     <AdaptiveModal
       className={clsx(
@@ -96,47 +88,6 @@ export const NotificationResultTrip = () => {
         >
           <Button>{dictionaries.notification.cta.back.children}</Button>
         </Link>
-
-        <div
-          className={clsx(
-            "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[1rem]"
-          )}
-        >
-          <span className={clsx("text-[#98989E] text-[0.875rem] font-normal")}>
-            {dictionaries.notification.share.label}
-          </span>
-          <div
-            className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]"
-            )}
-          >
-            {dictionaries.notification.share.items.map((item, itemIndex) => (
-              <button
-                key={itemIndex}
-                className={clsx(
-                  "flex items-center justify-center",
-                  "w-[2rem] h-[2rem]",
-                  "rounded-[50%]",
-                  "bg-[white]",
-                  "cursor-pointer"
-                )}
-                onClick={() =>
-                  handleClickShare({
-                    platformUrl: item.href,
-                    url: "https://youtu.be/b_6jw22-0oc?si=YbmOT265_QgqU1MA",
-                  })
-                }
-              >
-                <SVGIcon name={item.icon.name as SVGIconProps["name"]} />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <CopyLinkItem
-          link={dictionaries.notification.share.example_link}
-          cta={{ ...dictionaries.notification.share.cta }}
-        />
       </div>
     </AdaptiveModal>
   );
