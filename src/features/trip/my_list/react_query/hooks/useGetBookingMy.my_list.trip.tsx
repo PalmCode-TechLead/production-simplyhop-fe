@@ -25,7 +25,10 @@ export const useGetBookingMy = () => {
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
       include: "ride.vehicle.brand,user",
-      "filter[ride.departure_time__gte]": dayjs().format("YYYY-MM-DDTHH:mm:ss"),
+      "filter[ride.departure_time__gte]": dayjs()
+        .add(1, "day")
+        .startOf("day")
+        .format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
@@ -107,12 +110,13 @@ export const useGetBookingMy = () => {
                   place: !item.ride?.destination_name
                     ? "-"
                     : item.ride.destination_name,
-                  time: !item.ride?.eta || !item.ride.departure_time
-                    ? "-"
-                    : `${setArrivalTime(
-                        dayjs(item.ride?.departure_time).format("HH:mm"),
-                        item.ride.eta
-                      )} Uhr`,
+                  time:
+                    !item.ride?.eta || !item.ride.departure_time
+                      ? "-"
+                      : `${setArrivalTime(
+                          dayjs(item.ride?.departure_time).format("HH:mm"),
+                          item.ride.eta
+                        )} Uhr`,
                 },
               },
 

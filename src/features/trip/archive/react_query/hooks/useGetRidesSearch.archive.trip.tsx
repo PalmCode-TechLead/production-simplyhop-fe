@@ -28,7 +28,10 @@ export const useGetRidesSearch = () => {
         ? undefined
         : String(userState.profile.id),
       include: "vehicle.brand,user,bookings,bookings.user",
-      departure_time__lte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
+      departure_time__lte: dayjs()
+        .add(1, "day")
+        .startOf("day")
+        .format("YYYY-MM-DDTHH:mm:ss"),
     },
   };
   const query = useQuery<
