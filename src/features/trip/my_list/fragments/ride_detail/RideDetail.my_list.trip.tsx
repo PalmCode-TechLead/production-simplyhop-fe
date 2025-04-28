@@ -38,8 +38,6 @@ export const RideDetailMyListTrip = () => {
     });
   };
 
-  console.log(filteredData, "ini filtered data");
-
   return (
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}

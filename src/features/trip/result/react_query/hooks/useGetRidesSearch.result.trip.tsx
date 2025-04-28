@@ -126,7 +126,7 @@ export const useGetRideSearch = () => {
                 },
                 facility: {
                   top: [
-                    ...(!!item.ride_time.available_seats
+                    ...(!!item.available_seats
                       ? [
                           {
                             ...globalDictionaries.vehicle.seat.available,
@@ -140,9 +140,7 @@ export const useGetRideSearch = () => {
                               label:
                                 globalDictionaries.vehicle.seat.available.name.label.replaceAll(
                                   "{{number}}",
-                                  item.ride_time.available_seats.toLocaleString(
-                                    "de-DE"
-                                  )
+                                  item.available_seats.toLocaleString("de-DE")
                                 ),
                             },
                           },
@@ -267,9 +265,9 @@ export const useGetRideSearch = () => {
               routes: {
                 departure: {
                   place: !item.start_name ? "-" : item.start_name,
-                  time: dayjs(item.ride_time.departure_time).format(
-                    "HH.mm [Uhr]"
-                  ),
+                  time: !item.departure_time
+                    ? "-"
+                    : dayjs(item.departure_time).format("HH.mm [Uhr]"),
                 },
                 travelTime: {
                   time: !item.eta ? "-" : setDurationTime(item.eta),
@@ -277,12 +275,13 @@ export const useGetRideSearch = () => {
                 },
                 arrival: {
                   place: !item.destination_name ? "-" : item.destination_name,
-                  time: !item.eta
-                    ? "-"
-                    : `${setArrivalTime(
-                        dayjs(item.ride_time.departure_time).format("HH:mm"),
-                        item.eta
-                      )} Uhr`,
+                  time:
+                    !item.eta || !item.departure_time
+                      ? "-"
+                      : `${setArrivalTime(
+                          dayjs(item.departure_time).format("HH:mm"),
+                          item.eta
+                        )} Uhr`,
                 },
               },
 
