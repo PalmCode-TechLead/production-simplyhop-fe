@@ -11,6 +11,8 @@ import { BookDetailCardMyListTrip } from "../../components/book_detail_card";
 import { CarPriceItem } from "@/core/components/car_price_item";
 import { MyListTripContext } from "../../context";
 import { useGetBookingId } from "../../react_query/hooks";
+import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
+import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 
 export const BookDetailMyListTrip = () => {
   const dictionaries = getDictionaries();
@@ -41,11 +43,10 @@ export const BookDetailMyListTrip = () => {
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}
       className={clsx(
-        "!max-w-full lg:!max-w-[524px]",
-        "h-[100vh] lg:h-fit",
+        "!max-w-[100vw] lg:!max-w-[872px]",
+        "h-[100vh] lg:!h-full !max-h-[100vh] lg:!max-h-[80vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "overflow-hidden"
       )}
       open={isOpen}
       onClose={handleClose}
@@ -53,26 +54,21 @@ export const BookDetailMyListTrip = () => {
       <div
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
-          "w-full",
-          "px-[1rem] py-[1rem] lg:px-[2rem] lg:py-[2rem]"
+          "w-full h-full"
         )}
       >
         {/* header */}
-        <div
-          className={clsx(
-            "grid grid-flow-col items-center content-center justify-between justify-items-start",
-            "w-full",
-            "bg-[white]",
-            "px-[1rem] py-[1rem] lg:px-[0rem] lg:py-[0rem]"
-          )}
-        >
+        <AdaptiveModalHeader>
           <div
             className={clsx(
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]",
               "w-full"
             )}
           >
-            <button className={clsx("cursor-pointer")} onClick={handleClose}>
+            <button
+              className={clsx("cursor-pointer", "block lg:hidden")}
+              onClick={handleClose}
+            >
               <SVGIcon
                 name="ArrowLeft"
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
@@ -86,16 +82,11 @@ export const BookDetailMyListTrip = () => {
               {dictionaries.book_detail.title}
             </h2>
           </div>
-        </div>
+        </AdaptiveModalHeader>
 
         {/* body */}
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-            "w-full",
-            "bg-[#FAFDF9]",
-            "py-[1rem]"
-          )}
+        <AdaptiveModalContent
+          className={clsx("!bg-[#FAFDF9]", "!px-[0rem] !py-[1rem]")}
         >
           <div
             className={clsx(
@@ -118,7 +109,7 @@ export const BookDetailMyListTrip = () => {
           >
             <CarPriceItem {...filteredData.price?.initial} />
           </div>
-        </div>
+        </AdaptiveModalContent>
       </div>
     </AdaptiveModal>
   );

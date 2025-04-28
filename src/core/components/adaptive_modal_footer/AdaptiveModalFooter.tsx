@@ -14,7 +14,7 @@ export const AdaptiveModalFooter = forwardRef<
         "w-full",
         "bg-[white]",
         "sticky bottom-[0px] z-[10]",
-        "px-[1rem] py-[1rem] lg:!px-[2rem] lg:!py-[2rem]",
+        "px-[1rem] py-[1rem] lg:px-[2rem] lg:py-[2rem]",
         props.className
       )}
     >
