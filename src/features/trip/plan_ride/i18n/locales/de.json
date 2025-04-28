@@ -136,6 +136,17 @@
         },
 
         "maskedValue": "{{adult}} Erwachsene, {{children}} Kind"
+      },
+      "time": {
+        "inputProps": {
+          "id": "time",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "time",
+          "children": "Abfahrtzeit",
+          "required": false
+        }
       }
     },
     "cta": {
@@ -154,7 +165,7 @@
             "labelProps": {
               "id": "date",
               "children": "Datum",
-              "required": false
+              "required": true
             }
           },
           "time": {
@@ -165,7 +176,7 @@
             "labelProps": {
               "id": "time",
               "children": "Abfahrtzeit",
-              "required": false
+              "required": true
             }
           },
           "recurring": {
@@ -177,7 +188,7 @@
             "labelProps": {
               "id": "recurring",
               "children": "Wiederkehrende Fahrt",
-              "required": false
+              "required": true
             },
             "items": [
               {
@@ -207,7 +218,7 @@
             "labelProps": {
               "id": "umweg",
               "children": "Umweg (Minuten)",
-              "required": false
+              "required": true
             }
           },
 
@@ -220,7 +231,7 @@
             "labelProps": {
               "id": "seat",
               "children": "Freie Plätze",
-              "required": false
+              "required": true
             }
           },
           "available_child_seat": {
@@ -231,7 +242,7 @@
             "labelProps": {
               "id": "available_child_seat",
               "children": "Verfügbarkeit von Kindersitzen",
-              "required": false
+              "required": true
             }
           },
           "back_seat": {

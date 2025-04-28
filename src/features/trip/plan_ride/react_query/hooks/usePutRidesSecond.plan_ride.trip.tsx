@@ -27,7 +27,6 @@ export const usePutRidesSecond = () => {
           id: data.id,
         },
         body: {
-          // RECurring perlu tanya
           recurring_ride: state.detail.form.plan.recurring.selected?.id ?? "no",
           waiting_time: state.detail.form.plan.umweg.value,
           available_seats: !state.detail.form.plan.seat.value

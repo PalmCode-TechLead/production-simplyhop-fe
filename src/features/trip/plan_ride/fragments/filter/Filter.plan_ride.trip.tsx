@@ -629,10 +629,10 @@ export const FilterPlanRideTrip = () => {
 
           <Textfield
             labelProps={{
-              ...dictionaries.detail.plan.form.input.time.labelProps,
+              ...dictionaries.filter.form.time.labelProps,
             }}
             inputProps={{
-              ...dictionaries.detail.plan.form.input.time.inputProps,
+              ...dictionaries.filter.form.time.inputProps,
               disabled: !userState.profile?.is_able_to_ride,
               type: "time",
               value: state.filters.time.value,
