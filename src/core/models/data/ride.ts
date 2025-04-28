@@ -21,5 +21,7 @@ export interface Ride {
   deleted_at: string | null;
   created_at: string; //"2025-04-24T08:03:38.000000Z";
   updated_at: string; //"2025-04-24T08:03:38.000000Z";
+  available_seats: number; // 1;
+  departure_time: string; // "2025-04-22T10:00:00.000000Z";
   vehicle?: Vehicle;
 }

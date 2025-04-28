@@ -7,8 +7,8 @@ import { AppCollectionURL } from "@/core/utils/router/constants";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
-// import { CarPriceItem } from "@/core/components/car_price_item";
-// import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
+import { CarPriceItem } from "@/core/components/car_price_item";
+import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
 import { MyListTripContext } from "../../context";
 import { useGetRidesId } from "../../react_query/hooks";
 import { RideDetailCardMyListTrip } from "../../components/ride_detail_card";
@@ -22,7 +22,7 @@ export const RideDetailMyListTrip = () => {
   const { state } = React.useContext(MyListTripContext);
   useGetRidesId();
 
-  const filteredData = state.ride.data.find((item) => item.id === rideId);
+  const filteredData = state.ride.detail;
 
   if (!filteredData) {
     return null;
@@ -38,13 +38,15 @@ export const RideDetailMyListTrip = () => {
     });
   };
 
+  console.log(filteredData, "ini filtered data");
+
   return (
     <AdaptiveModal
       variant={isLg ? "modal" : "page_sheet"}
       className={clsx(
-        "!max-w-[524px]",
-        "h-fit",
-        "!rounded-[0.625rem]",
+        "!max-w-full lg:!max-w-[524px]",
+        "h-[100vh] lg:h-fit",
+        "!rounded-[0px] lg:!rounded-[0.625rem]",
         "overflow-auto",
         "!px-[0rem] !py-[0rem]"
       )}
@@ -56,7 +58,7 @@ export const RideDetailMyListTrip = () => {
           "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
           "w-full h-[100vh]",
           "overflow-auto",
-          "px-[0rem] py-[0rem] lg:px-[2rem] lg:py-[2rem]"
+          "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
         )}
       >
         {/* header */}
@@ -64,8 +66,7 @@ export const RideDetailMyListTrip = () => {
           className={clsx(
             "grid grid-flow-col items-center content-center justify-between justify-items-start",
             "w-full",
-            "bg-[white]",
-            "px-[1rem] py-[1rem] lg:px-[0rem] lg:py-[0rem]"
+            "bg-[white]"
           )}
         >
           <div
@@ -121,13 +122,13 @@ export const RideDetailMyListTrip = () => {
             <p className={clsx("text-[1.125rem] text-[black] font-bold")}>
               {dictionaries.ride_detail.title}
             </p>
-            {/* {filteredData.detail.booking.map((item, index) => (
+            {filteredData.booking.map((item, index) => (
               <RideBookingListItem key={index} {...item} />
-            ))} */}
+            ))}
           </div>
 
           {/* Price */}
-          {/* <div
+          <div
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start",
               "w-full",
@@ -135,8 +136,8 @@ export const RideDetailMyListTrip = () => {
               "bg-[white]"
             )}
           >
-            <CarPriceItem {...filteredData.detail.price} />
-          </div> */}
+            <CarPriceItem {...filteredData.price.initial} />
+          </div>
         </div>
       </div>
     </AdaptiveModal>
