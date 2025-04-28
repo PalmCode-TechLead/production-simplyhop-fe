@@ -28,15 +28,14 @@ export const useGetRideSearch = () => {
   const fullPath = `${pathname}?${searchParams.toString()}`;
   const payload: GetRidesSearchPayloadRequestInterface = {
     params: {
-      // start_lat: state.filters.origin.selected.lat_lng?.lat ?? 0,
-      // start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
-      // destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
-      // destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
-      // include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
-      start_lat: 52.5200066,
-      start_long: 13.414954,
-      destination_lat: 48.1351253,
-      destination_long: 11.5819804,
+      start_lat: state.filters.origin.selected.lat_lng?.lat ?? 0,
+      start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
+      destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
+      destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
+      // start_lat: 52.5200066,
+      // start_long: 13.414954,
+      // destination_lat: 48.1351253,
+      // destination_long: 11.5819804,
       include: "rideTimes,vehicle,user,vehicle.brand,vehicle.category",
       available_seats__gte: String(
         Number(String(adult ?? "0")) + Number(String(children ?? "0"))
