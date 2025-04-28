@@ -62,6 +62,23 @@ export const ListChatTrip = () => {
   };
 
   const handleClickList = (data: { id: string; booking_id: string }) => {
+    dispatch({
+      type: ChatTripActionEnum.SetRoomData,
+      payload: {
+        ...state.room,
+        message: {
+          ...state.room.message,
+          items: [],
+        },
+        chat: {
+          ...state.room.chat,
+          input: {
+            ...state.room.chat.input,
+            value: "",
+          },
+        },
+      },
+    });
     putMessageRoomsMarkAsRead(data);
     router.push(
       `${AppCollectionURL.private.chat()}?id=${data.id}&bookingId=${
