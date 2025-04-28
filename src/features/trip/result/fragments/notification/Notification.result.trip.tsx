@@ -37,7 +37,7 @@ export const NotificationResultTrip = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-w-[calc(100vw-3rem)] sm:!max-w-[824px]",
+        "!max-w-[100vw] lg:!max-w-[824px]",
         "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
