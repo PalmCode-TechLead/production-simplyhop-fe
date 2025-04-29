@@ -199,7 +199,7 @@ export const DetailResultTrip = () => {
           )}
 
           {!isRideByDriver && isLoggedIn && (
-            <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-hidden")}>
+            <Card className={clsx("!px-[0rem] !py-[0rem]","overflow-clip")}>
               <TextareafieldNotes
                 inputContainerProps={{
                   className: clsx("!border-[0px]", "!rounded-[0px]"),
