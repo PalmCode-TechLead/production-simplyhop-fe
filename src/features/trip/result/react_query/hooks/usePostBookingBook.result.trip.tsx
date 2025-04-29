@@ -12,6 +12,7 @@ import { ResultTripContext } from "../../context";
 import { ResultTripReactQueryKey } from "../keys";
 import { useSearchParams } from "next/navigation";
 import { RIDE_FILTER } from "@/core/enums";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostBookingBook = () => {
   const { state } = React.useContext(ResultTripContext);
@@ -68,7 +69,7 @@ export const usePostBookingBook = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_POST_BOOKING_BOOK",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

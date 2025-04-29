@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { fetchPostAuthLogout } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostAuthLogout = () => {
   const router = useRouter();
@@ -37,7 +38,7 @@ export const usePostAuthLogout = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_LOGOUT",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

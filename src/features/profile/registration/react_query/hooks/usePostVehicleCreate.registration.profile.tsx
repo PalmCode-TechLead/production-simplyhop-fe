@@ -10,6 +10,7 @@ import {
 import { RegistrationProfileContext } from "../../context";
 import { fetchPostVehicleCreateMy } from "@/core/services/rest/simplyhop/vehicle";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostVehicleCreateMy = () => {
   const { state } = React.useContext(RegistrationProfileContext);
@@ -111,7 +112,7 @@ export const usePostVehicleCreateMy = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_CREATE_USER_PROFILE",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

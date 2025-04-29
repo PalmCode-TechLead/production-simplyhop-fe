@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { fetchPostAuthLogin } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostAuthLogin = () => {
   const router = useRouter();
@@ -46,7 +47,7 @@ export const usePostAuthLogin = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_LOGIN",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

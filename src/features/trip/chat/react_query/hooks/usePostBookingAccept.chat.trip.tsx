@@ -10,6 +10,7 @@ import {
 import { fetchPostBookingAccept } from "@/core/services/rest/simplyhop/booking";
 import { ChatTripReactQueryKey } from "../keys";
 import { useSearchParams } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostBookingAccept = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
@@ -38,7 +39,7 @@ export const usePostBookingAccept = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_POST_RIDE_SECOND",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

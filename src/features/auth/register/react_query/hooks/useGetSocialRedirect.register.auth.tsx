@@ -8,6 +8,7 @@ import {
 } from "@/core/models/rest/simplyhop/auth";
 import { fetchGetAuthSocialRedirect } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const useGetSocialRedirect = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
@@ -37,7 +38,7 @@ export const useGetSocialRedirect = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_SOCIAL_REDIRECT",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

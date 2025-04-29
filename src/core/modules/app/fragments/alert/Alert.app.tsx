@@ -21,15 +21,21 @@ export const AlertApp = () => {
     });
   };
   return (
-    <div className={clsx("fixed top-[90px]", "z-[2000]")}>
+    <div
+      className={clsx(
+        "fixed top-[90px]",
+        "z-[2000]",
+        "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]"
+      )}
+    >
       {globalState.alert.items.map((item, itemIndex) => {
         return (
           <Alert
             key={itemIndex}
             variant={item.variant}
             message={item.message}
-            cta={
-              <button onClick={() => handleClickClose(item)}>
+            cta={{
+              children: (
                 <SVGIcon
                   name={"X"}
                   className={clsx(
@@ -43,8 +49,9 @@ export const AlertApp = () => {
                       : "text-[#6A6872]"
                   )}
                 />
-              </button>
-            }
+              ),
+              onClick: () => handleClickClose(item),
+            }}
           />
         );
       })}

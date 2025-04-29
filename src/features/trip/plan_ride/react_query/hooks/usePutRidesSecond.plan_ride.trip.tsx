@@ -10,6 +10,7 @@ import {
 import { fetchPutRidesSecond } from "@/core/services/rest/simplyhop/rides";
 import { PlanRideTripContext } from "../../context";
 import { PlanRideTripReactQueryKey } from "../keys";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePutRidesSecond = () => {
   const { state } = React.useContext(PlanRideTripContext);
@@ -49,7 +50,7 @@ export const usePutRidesSecond = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_POST_RIDE_SECOND",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

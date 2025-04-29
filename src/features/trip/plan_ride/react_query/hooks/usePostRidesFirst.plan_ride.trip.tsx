@@ -11,6 +11,7 @@ import { fetchPostRidesFirst } from "@/core/services/rest/simplyhop/rides";
 import { PlanRideTripContext } from "../../context";
 import { PlanRideTripReactQueryKey } from "../keys";
 import dayjs from "dayjs";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostRidesFirst = () => {
   const { state } = React.useContext(PlanRideTripContext);
@@ -48,7 +49,7 @@ export const usePostRidesFirst = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_POST_RIDE_FIRST",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

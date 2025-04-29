@@ -10,6 +10,7 @@ import {
 import { fetchPostMessagesChat } from "@/core/services/rest/simplyhop/messages";
 import { ChatTripReactQueryKey } from "../keys";
 import { ChatTripContext } from "../../context";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostMessagesChat = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
@@ -37,7 +38,7 @@ export const usePostMessagesChat = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_POST_RIDE_SECOND",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

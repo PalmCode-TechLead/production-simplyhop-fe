@@ -5,10 +5,29 @@ import SVGIcon from "../../icons";
 export interface AlertProps {
   variant?: "error" | "success" | "info" | "warning";
   message?: React.ReactNode;
-  cta?: React.ReactNode;
+  cta?: {
+    children: React.ReactNode;
+    onClick: () => void;
+  };
+  autoClose?: boolean;
+  timeToClose?: number; //in ms
 }
 
-export const Alert = ({ variant = "info", message, cta }: AlertProps) => {
+export const Alert = ({
+  variant = "info",
+  message,
+  cta,
+  autoClose = true,
+  timeToClose = 7000,
+}: AlertProps) => {
+  React.useEffect(() => {
+    if (!autoClose) return;
+    const timeout = setTimeout(() => {
+      cta?.onClick();
+    }, timeToClose);
+
+    return () => clearTimeout(timeout);
+  }, [autoClose]);
   return (
     <div
       className={clsx(
@@ -74,7 +93,24 @@ export const Alert = ({ variant = "info", message, cta }: AlertProps) => {
           {message}
         </span>
       </div>
-      {cta}
+      {cta && (
+        <button onClick={cta.onClick}>
+          {cta.children}
+          <SVGIcon
+            name={"X"}
+            className={clsx(
+              "w-[1rem] h-[1rem]",
+              variant === "error"
+                ? "text-[#FF0066]"
+                : variant === "success"
+                ? "text-[#67A981]"
+                : variant === "warning"
+                ? "text-[#DA9D03]"
+                : "text-[#6A6872]"
+            )}
+          />
+        </button>
+      )}
     </div>
   );
 };

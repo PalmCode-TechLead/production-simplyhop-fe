@@ -9,6 +9,7 @@ import {
 import { fetchDeleteAuthDeactivateAccount } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import { AccountUpdateSupportContext } from "../../context";
+import { v4 as uuidv4 } from "uuid";
 
 export const useDeleteDeactivateAccount = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
@@ -36,7 +37,7 @@ export const useDeleteDeactivateAccount = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_SOCIAL_REDIRECT",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

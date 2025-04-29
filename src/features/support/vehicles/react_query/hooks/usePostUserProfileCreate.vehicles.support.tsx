@@ -15,6 +15,7 @@ import {
   UserActionEnum,
   UserContext,
 } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostUserProfileCreate = () => {
   const { state: userState, dispatch: dispatchUser } =
@@ -71,7 +72,7 @@ export const usePostUserProfileCreate = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_CREATE_USER_PROFILE",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

@@ -9,6 +9,7 @@ import {
 import { SettingsSupportContext } from "../../context";
 import { fetchPostAuthChangePassword } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostAuthChangePassword = () => {
   const { state } = React.useContext(SettingsSupportContext);
@@ -39,7 +40,7 @@ export const usePostAuthChangePassword = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_CHANGE_PASSWORD",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

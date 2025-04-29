@@ -9,6 +9,7 @@ import {
 } from "@/core/models/rest/simplyhop/message_rooms";
 import { fetchPutMessageRoomsMarkAsRead } from "@/core/services/rest/simplyhop/message_rooms";
 import { ChatTripReactQueryKey } from "../keys";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePutMessageRoomsMarkAsRead = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
@@ -35,7 +36,7 @@ export const usePutMessageRoomsMarkAsRead = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_POST_RIDE_SECOND",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },

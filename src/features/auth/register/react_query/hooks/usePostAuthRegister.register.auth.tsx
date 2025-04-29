@@ -9,6 +9,7 @@ import {
 import { RegisterAuthContext } from "../../context";
 import { fetchPostAuthRegister } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePostAuthRegister = () => {
   const { state } = React.useContext(RegisterAuthContext);
@@ -40,7 +41,7 @@ export const usePostAuthRegister = () => {
           items: [
             ...globalState.alert.items,
             {
-              id: "ERROR_REGISTER",
+              id: uuidv4(),
               variant: "error",
               message: error.message,
             },
