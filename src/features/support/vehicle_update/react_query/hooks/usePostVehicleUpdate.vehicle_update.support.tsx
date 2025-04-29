@@ -25,6 +25,7 @@ export const usePostVehicleUpdate = () => {
     mutationKey: VehicleUpdateSupportReactQueryKey.PostVehicleUpdate(),
     mutationFn: () => {
       const bodyPayload: PostVehicleUpdateBodyRequestInterface = {
+        _method: "PUT",
         category_id: !state.vehicle_information.general.form.car_category
           .selected
           ? 0

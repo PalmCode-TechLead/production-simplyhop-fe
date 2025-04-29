@@ -14,6 +14,7 @@ export interface PutVehicleUpdatePathPayloadRequestInterface {
 }
 
 export type PostVehicleUpdateBodyRequestInterface = {
+  _method: string;
   category_id: number;
   brand_id: number;
   model: string;
