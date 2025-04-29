@@ -31,7 +31,10 @@ export interface ArchiveTripFilters {
 
 export interface ArchiveTripRide {
   data: RideCardArchiveTripProps[];
-
+  pagination: {
+    number: number;
+    is_end_reached: boolean;
+  };
   detail:
     | (RideCardArchiveTripProps & {
         booking: RideBookingListItemProps[];
@@ -41,8 +44,8 @@ export interface ArchiveTripRide {
 
 export interface ArchiveTripBook {
   data: BookCardArchiveTripProps[];
-  list: {
-    page_number: number;
+  pagination: {
+    number: number;
     is_end_reached: boolean;
   };
   detail:

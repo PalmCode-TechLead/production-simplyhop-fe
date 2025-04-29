@@ -15,6 +15,7 @@ import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { UserContext } from "@/core/modules/app/context";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const useGetBookingMy = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -29,8 +30,8 @@ export const useGetBookingMy = () => {
         .add(1, "day")
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
-      "page[number]": state.book.list.page_number,
-      "page[size]": 2,
+      "page[number]": state.book.pagination.number,
+      "page[size]": PAGINATION.SIZE,
     },
   };
   const query = useQuery<
@@ -139,8 +140,8 @@ export const useGetBookingMy = () => {
           data: !newPayload.length
             ? state.book.data
             : [...state.book.data, ...newPayload],
-          list: {
-            ...state.book.list,
+          pagination: {
+            ...state.book.pagination,
             is_end_reached: !newPayload.length,
           },
         },

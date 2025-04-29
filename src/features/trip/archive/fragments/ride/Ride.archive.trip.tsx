@@ -1,20 +1,22 @@
 import * as React from "react";
 import clsx from "clsx";
-import { ArchiveTripContext } from "../../context";
+import { ArchiveTripActionEnum, ArchiveTripContext } from "../../context";
 import { RideCardArchiveTrip } from "../../components/ride_card";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { useGetRidesSearch } from "../../react_query/hooks";
 import { ListErrorItem } from "@/core/components/list_error_item";
+import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const RideArchiveTrip = () => {
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(ArchiveTripContext);
+  const { state, dispatch } = React.useContext(ArchiveTripContext);
   const { isFetching: isFetchingGetRidesMy } = useGetRidesSearch();
 
   const isLoading = isFetchingGetRidesMy;
 
-  if (isLoading) {
+  if (isLoading && state.ride.pagination.number === PAGINATION.NUMBER) {
     return (
       <div
         className={clsx(
@@ -40,16 +42,40 @@ export const RideArchiveTrip = () => {
     );
   }
 
+  const handleLoadMore = () => {
+    if (isLoading) return;
+    if (state.ride.pagination.is_end_reached) return;
+    dispatch({
+      type: ArchiveTripActionEnum.SetRideData,
+      payload: {
+        ...state.ride,
+        pagination: {
+          ...state.ride.pagination,
+          number: state.ride.pagination.number + 1,
+        },
+      },
+    });
+  };
+
   return (
-    <div
-      className={clsx(
-        "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
-        "w-full"
-      )}
+    <InfiniteScrollWrapper
+      loader={{
+        message: dictionaries.list.loading.message,
+      }}
+      isPaused={isLoading}
+      isEndReached={state.book.pagination.is_end_reached}
+      onLoadMore={handleLoadMore}
     >
-      {state.ride.data.map((item, itemIndex) => (
-        <RideCardArchiveTrip key={itemIndex} {...item} />
-      ))}
-    </div>
+      <div
+        className={clsx(
+          "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
+          "w-full"
+        )}
+      >
+        {state.ride.data.map((item, itemIndex) => (
+          <RideCardArchiveTrip key={itemIndex} {...item} />
+        ))}
+      </div>
+    </InfiniteScrollWrapper>
   );
 };

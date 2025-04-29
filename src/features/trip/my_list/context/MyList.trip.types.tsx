@@ -31,7 +31,10 @@ export interface MyListTripFilters {
 
 export interface MyListTripRide {
   data: RideCardMyListTripProps[];
-
+  pagination: {
+    number: number;
+    is_end_reached: boolean;
+  };
   detail:
     | (RideCardMyListTripProps & {
         booking: RideBookingListItemProps[];
@@ -41,6 +44,10 @@ export interface MyListTripRide {
 
 export interface MyListTripBook {
   data: BookCardMyListTripProps[];
+  pagination: {
+    number: number;
+    is_end_reached: boolean;
+  };
   detail: (BookDetailCardMyListTripProps & { price: CarPriceItemProps }) | null;
 }
 

@@ -12,6 +12,7 @@ import {
   ResultTripRidesReducers,
   ResultTripVehicleFiltersReducers,
 } from "./Result.trip.reducers";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 const initialState: ResultTripInitialStateType = {
   filters: {
@@ -83,6 +84,10 @@ const initialState: ResultTripInitialStateType = {
   },
   rides: {
     data: [],
+    pagination: {
+      number: PAGINATION.NUMBER,
+      is_end_reached: false,
+    },
   },
   detail: {
     is_open: false,

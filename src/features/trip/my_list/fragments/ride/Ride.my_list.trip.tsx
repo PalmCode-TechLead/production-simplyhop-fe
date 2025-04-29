@@ -1,21 +1,22 @@
 import * as React from "react";
 import clsx from "clsx";
-import { MyListTripContext } from "../../context";
+import { MyListTripActionEnum, MyListTripContext } from "../../context";
 import { RideCardMyListTrip } from "../../components/ride_card";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { useGetRidesSearch } from "../../react_query/hooks";
 import { ListErrorItem } from "@/core/components/list_error_item";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const RideMyListTrip = () => {
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(MyListTripContext);
   const { isFetching: isFetchingGetRidesMy } = useGetRidesSearch();
 
   const isLoading = isFetchingGetRidesMy;
 
-  if (isLoading) {
+  if (isLoading && state.ride.pagination.number === PAGINATION.NUMBER) {
     return (
       <div
         className={clsx(
@@ -28,7 +29,7 @@ export const RideMyListTrip = () => {
     );
   }
 
-  if (!state.ride.data.length) {
+  if (!state.ride.data.length && !isLoading) {
     return (
       <div
         className={clsx(
@@ -42,24 +43,39 @@ export const RideMyListTrip = () => {
   }
 
   const handleLoadMore = () => {
-    //
+    if (isLoading) return;
+    if (state.ride.pagination.is_end_reached) return;
+    dispatch({
+      type: MyListTripActionEnum.SetRideData,
+      payload: {
+        ...state.ride,
+        pagination: {
+          ...state.ride.pagination,
+          number: state.ride.pagination.number + 1,
+        },
+      },
+    });
   };
 
   return (
-    <div
-      className={clsx(
-        "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
-        "w-full"
-      )}
+    <InfiniteScrollWrapper
+      loader={{
+        message: dictionaries.list.loading.message,
+      }}
+      isPaused={isLoading}
+      isEndReached={state.book.pagination.is_end_reached}
+      onLoadMore={handleLoadMore}
     >
-      <InfiniteScrollWrapper
-        loader={{ message: dictionaries.list.loading.message }}
-        onLoadMore={handleLoadMore}
+      <div
+        className={clsx(
+          "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
+          "w-full"
+        )}
       >
         {state.ride.data.map((item, itemIndex) => (
           <RideCardMyListTrip key={itemIndex} {...item} />
         ))}
-      </InfiniteScrollWrapper>
-    </div>
+      </div>
+    </InfiniteScrollWrapper>
   );
 };

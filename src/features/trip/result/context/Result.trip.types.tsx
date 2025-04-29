@@ -95,6 +95,10 @@ export interface ResultTripAdvancedFilter {
 
 export interface ResultTripRides {
   data: RideCardResultTripProps[];
+  pagination: {
+    number: number;
+    is_end_reached: boolean;
+  };
 }
 
 export interface ResultTripDetail {

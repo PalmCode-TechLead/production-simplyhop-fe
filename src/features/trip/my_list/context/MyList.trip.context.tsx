@@ -9,6 +9,7 @@ import {
   MyListTripFiltersReducers,
   MyListTripRideReducers,
 } from "./MyList.trip.reducers";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 const initialState: MyListTripInitialStateType = {
   filters: {
@@ -18,10 +19,18 @@ const initialState: MyListTripInitialStateType = {
   },
   ride: {
     data: [],
+    pagination: {
+      number: PAGINATION.NUMBER,
+      is_end_reached: false,
+    },
     detail: null,
   },
   book: {
     data: [],
+    pagination: {
+      number: PAGINATION.NUMBER,
+      is_end_reached: false,
+    },
     detail: null,
   },
 };

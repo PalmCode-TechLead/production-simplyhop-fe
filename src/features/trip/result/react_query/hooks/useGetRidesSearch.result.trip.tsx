@@ -18,6 +18,7 @@ import { RIDE_FILTER } from "@/core/enums";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { UserContext } from "@/core/modules/app/context";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const useGetRideSearch = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -68,6 +69,8 @@ export const useGetRideSearch = () => {
       sort: !state.advanced_filter.sort.selected?.id
         ? "-base_price"
         : state.advanced_filter.sort.selected.id,
+      "page[number]": state.rides.pagination.number,
+      "page[size]": PAGINATION.SIZE,
     },
   };
 
@@ -94,257 +97,257 @@ export const useGetRideSearch = () => {
         0
       );
 
+      const newPayload = data.data.map((item, index) => {
+        return {
+          id: String(item.id),
+          driver: {
+            profile: {
+              id: String(item.user.id),
+              avatar: !item.user.avatar
+                ? undefined
+                : {
+                    src: item.user.avatar,
+                    alt: "photo_profile",
+                  },
+              name: `${item.user.first_name ?? ""} ${
+                item.user.last_name ?? ""
+              }`,
+            },
+          },
+          car: {
+            image: {
+              src: !item.vehicle.image.length
+                ? "/images/general/car.png"
+                : item.vehicle.image[0] ?? "/images/general/car.png",
+              alt: "car",
+              width: 145,
+              height: 46,
+            },
+            identity: {
+              name: `${item.vehicle.brand?.title} ${item.vehicle.model}`,
+              number: item.vehicle.plate_license,
+            },
+            facility: {
+              top: [
+                ...(!!item.available_seats
+                  ? [
+                      {
+                        ...globalDictionaries.vehicle.seat.available,
+                        icon: {
+                          ...globalDictionaries.vehicle.seat.available.icon,
+                          name: globalDictionaries.vehicle.seat.available.icon
+                            .name as SVGIconProps["name"],
+                        },
+                        name: {
+                          ...globalDictionaries.vehicle.seat.available.name,
+                          label: !item.maxtwo_backseat
+                            ? globalDictionaries.vehicle.seat.available.name.label
+                                .replaceAll(
+                                  "{{number}}",
+                                  item.available_seats.toLocaleString("de-DE")
+                                )
+                                .replaceAll("(Max. 2 auf der Rückbank)", "")
+                            : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
+                                "{{number}}",
+                                item.available_seats.toLocaleString("de-DE")
+                              ),
+                        },
+                      },
+                    ]
+                  : [
+                      {
+                        ...globalDictionaries.vehicle.seat.empty,
+                        icon: {
+                          ...globalDictionaries.vehicle.seat.empty.icon,
+                          name: globalDictionaries.vehicle.seat.empty.icon
+                            .name as SVGIconProps["name"],
+                        },
+                      },
+                    ]),
+                ...(!!item.vehicle.numb_of_luggages
+                  ? [
+                      {
+                        ...globalDictionaries.vehicle.luggage.available,
+                        icon: {
+                          ...globalDictionaries.vehicle.luggage.available.icon,
+                          name: globalDictionaries.vehicle.luggage.available
+                            .icon.name as SVGIconProps["name"],
+                        },
+                        name: {
+                          ...globalDictionaries.vehicle.luggage.available.name,
+                          label:
+                            globalDictionaries.vehicle.luggage.available.name
+                              .label,
+                        },
+                      },
+                    ]
+                  : [
+                      {
+                        ...globalDictionaries.vehicle.luggage.empty,
+                        icon: {
+                          ...globalDictionaries.vehicle.luggage.empty.icon,
+                          name: globalDictionaries.vehicle.luggage.empty.icon
+                            .name as SVGIconProps["name"],
+                        },
+                      },
+                    ]),
+              ],
+              bottom: [
+                // Smoking
+                ...(!!item.vehicle.smoke_allowed
+                  ? [
+                      {
+                        ...globalDictionaries.vehicle.smoking.allowed,
+                        icon: {
+                          ...globalDictionaries.vehicle.smoking.allowed.icon,
+                          name: globalDictionaries.vehicle.smoking.allowed.icon
+                            .name as SVGIconProps["name"],
+                        },
+                      },
+                    ]
+                  : [
+                      {
+                        ...globalDictionaries.vehicle.smoking.prohibited,
+                        icon: {
+                          ...globalDictionaries.vehicle.smoking.prohibited.icon,
+                          name: globalDictionaries.vehicle.smoking.prohibited
+                            .icon.name as SVGIconProps["name"],
+                        },
+                      },
+                    ]),
+
+                // Music
+                ...(!!item.vehicle.music_availability
+                  ? [
+                      {
+                        ...globalDictionaries.vehicle.music.allowed,
+                        icon: {
+                          ...globalDictionaries.vehicle.music.allowed.icon,
+                          name: globalDictionaries.vehicle.music.allowed.icon
+                            .name as SVGIconProps["name"],
+                        },
+                      },
+                    ]
+                  : [
+                      {
+                        ...globalDictionaries.vehicle.music.prohibited,
+                        icon: {
+                          ...globalDictionaries.vehicle.music.prohibited.icon,
+                          name: globalDictionaries.vehicle.music.prohibited.icon
+                            .name as SVGIconProps["name"],
+                        },
+                      },
+                    ]),
+
+                // Pet
+                ...(!!item.vehicle.pet_allowed
+                  ? [
+                      {
+                        ...globalDictionaries.vehicle.pets.allowed,
+                        icon: {
+                          ...globalDictionaries.vehicle.pets.allowed.icon,
+                          name: globalDictionaries.vehicle.pets.allowed.icon
+                            .name as SVGIconProps["name"],
+                        },
+                      },
+                    ]
+                  : [
+                      {
+                        ...globalDictionaries.vehicle.pets.prohibited,
+                        icon: {
+                          ...globalDictionaries.vehicle.pets.prohibited.icon,
+                          name: globalDictionaries.vehicle.pets.prohibited.icon
+                            .name as SVGIconProps["name"],
+                        },
+                      },
+                    ]),
+              ],
+            },
+          },
+
+          routes: {
+            departure: {
+              place: !item.start_name ? "-" : item.start_name,
+              time: !item.departure_time
+                ? "-"
+                : dayjs(item.departure_time).format("HH.mm [Uhr]"),
+            },
+            travelTime: {
+              time: !item.eta ? "-" : setDurationTime(item.eta),
+            },
+            umWeg: {
+              label: globalDictionaries.vehicle.umweg.label.text.replaceAll(
+                "{{number}}",
+                !item.waiting_time ? "0" : item.waiting_time
+              ),
+              icon: {
+                ...globalDictionaries.vehicle.umweg.label.icon,
+                name: globalDictionaries.vehicle.umweg.label.icon
+                  .name as SVGIconProps["name"],
+              },
+            },
+            arrival: {
+              place: !item.destination_name ? "-" : item.destination_name,
+              time:
+                !item.eta || !item.departure_time
+                  ? "-"
+                  : `${setArrivalTime(
+                      dayjs(item.departure_time).format("HH:mm"),
+                      item.eta
+                    )} Uhr`,
+            },
+          },
+
+          price: {
+            initial: {
+              label: "Angebotspreis",
+              price: `€${item.base_price * totalPassenger}`,
+            },
+          },
+          ride: {
+            badge: [
+              ...(index === 0
+                ? [
+                    {
+                      id: "bester_preis",
+                      label: "Bester Preis",
+                      variant: "success" as "success" | "danger",
+                    },
+                  ]
+                : []),
+              ...(item.user.gender === "female"
+                ? [
+                    {
+                      id: "fahrerin",
+                      label: "Fahrerin (W)",
+                      variant: "danger" as "success" | "danger",
+                    },
+                  ]
+                : []),
+            ],
+          },
+          cta: {
+            ride: {
+              href: !userState.profile
+                ? AppCollectionURL.public.login()
+                : `${fullPath}&${RIDE_FILTER.RIDE_ID}=${item.id}`,
+              children: "Mitfahren",
+            },
+          },
+        };
+      });
+
       dispatch({
         type: ResultTripActionEnum.SetRidesData,
         payload: {
           ...state.rides,
-          data: data.data.map((item, index) => {
-            return {
-              id: String(item.id),
-              driver: {
-                profile: {
-                  id: String(item.user.id),
-                  avatar: !item.user.avatar
-                    ? undefined
-                    : {
-                        src: item.user.avatar,
-                        alt: "photo_profile",
-                      },
-                  name: `${item.user.first_name ?? ""} ${
-                    item.user.last_name ?? ""
-                  }`,
-                },
-              },
-              car: {
-                image: {
-                  src: !item.vehicle.image.length
-                    ? "/images/general/car.png"
-                    : item.vehicle.image[0] ?? "/images/general/car.png",
-                  alt: "car",
-                  width: 145,
-                  height: 46,
-                },
-                identity: {
-                  name: `${item.vehicle.brand?.title} ${item.vehicle.model}`,
-                  number: item.vehicle.plate_license,
-                },
-                facility: {
-                  top: [
-                    ...(!!item.available_seats
-                      ? [
-                          {
-                            ...globalDictionaries.vehicle.seat.available,
-                            icon: {
-                              ...globalDictionaries.vehicle.seat.available.icon,
-                              name: globalDictionaries.vehicle.seat.available
-                                .icon.name as SVGIconProps["name"],
-                            },
-                            name: {
-                              ...globalDictionaries.vehicle.seat.available.name,
-                              label: !item.maxtwo_backseat
-                                ? globalDictionaries.vehicle.seat.available.name.label
-                                    .replaceAll(
-                                      "{{number}}",
-                                      item.available_seats.toLocaleString(
-                                        "de-DE"
-                                      )
-                                    )
-                                    .replaceAll("(Max. 2 auf der Rückbank)", "")
-                                : globalDictionaries.vehicle.seat.available.name.label.replaceAll(
-                                    "{{number}}",
-                                    item.available_seats.toLocaleString("de-DE")
-                                  ),
-                            },
-                          },
-                        ]
-                      : [
-                          {
-                            ...globalDictionaries.vehicle.seat.empty,
-                            icon: {
-                              ...globalDictionaries.vehicle.seat.empty.icon,
-                              name: globalDictionaries.vehicle.seat.empty.icon
-                                .name as SVGIconProps["name"],
-                            },
-                          },
-                        ]),
-                    ...(!!item.vehicle.numb_of_luggages
-                      ? [
-                          {
-                            ...globalDictionaries.vehicle.luggage.available,
-                            icon: {
-                              ...globalDictionaries.vehicle.luggage.available
-                                .icon,
-                              name: globalDictionaries.vehicle.luggage.available
-                                .icon.name as SVGIconProps["name"],
-                            },
-                            name: {
-                              ...globalDictionaries.vehicle.luggage.available
-                                .name,
-                              label:
-                                globalDictionaries.vehicle.luggage.available
-                                  .name.label,
-                            },
-                          },
-                        ]
-                      : [
-                          {
-                            ...globalDictionaries.vehicle.luggage.empty,
-                            icon: {
-                              ...globalDictionaries.vehicle.luggage.empty.icon,
-                              name: globalDictionaries.vehicle.luggage.empty
-                                .icon.name as SVGIconProps["name"],
-                            },
-                          },
-                        ]),
-                  ],
-                  bottom: [
-                    // Smoking
-                    ...(!!item.vehicle.smoke_allowed
-                      ? [
-                          {
-                            ...globalDictionaries.vehicle.smoking.allowed,
-                            icon: {
-                              ...globalDictionaries.vehicle.smoking.allowed
-                                .icon,
-                              name: globalDictionaries.vehicle.smoking.allowed
-                                .icon.name as SVGIconProps["name"],
-                            },
-                          },
-                        ]
-                      : [
-                          {
-                            ...globalDictionaries.vehicle.smoking.prohibited,
-                            icon: {
-                              ...globalDictionaries.vehicle.smoking.prohibited
-                                .icon,
-                              name: globalDictionaries.vehicle.smoking
-                                .prohibited.icon.name as SVGIconProps["name"],
-                            },
-                          },
-                        ]),
-
-                    // Music
-                    ...(!!item.vehicle.music_availability
-                      ? [
-                          {
-                            ...globalDictionaries.vehicle.music.allowed,
-                            icon: {
-                              ...globalDictionaries.vehicle.music.allowed.icon,
-                              name: globalDictionaries.vehicle.music.allowed
-                                .icon.name as SVGIconProps["name"],
-                            },
-                          },
-                        ]
-                      : [
-                          {
-                            ...globalDictionaries.vehicle.music.prohibited,
-                            icon: {
-                              ...globalDictionaries.vehicle.music.prohibited
-                                .icon,
-                              name: globalDictionaries.vehicle.music.prohibited
-                                .icon.name as SVGIconProps["name"],
-                            },
-                          },
-                        ]),
-
-                    // Pet
-                    ...(!!item.vehicle.pet_allowed
-                      ? [
-                          {
-                            ...globalDictionaries.vehicle.pets.allowed,
-                            icon: {
-                              ...globalDictionaries.vehicle.pets.allowed.icon,
-                              name: globalDictionaries.vehicle.pets.allowed.icon
-                                .name as SVGIconProps["name"],
-                            },
-                          },
-                        ]
-                      : [
-                          {
-                            ...globalDictionaries.vehicle.pets.prohibited,
-                            icon: {
-                              ...globalDictionaries.vehicle.pets.prohibited
-                                .icon,
-                              name: globalDictionaries.vehicle.pets.prohibited
-                                .icon.name as SVGIconProps["name"],
-                            },
-                          },
-                        ]),
-                  ],
-                },
-              },
-
-              routes: {
-                departure: {
-                  place: !item.start_name ? "-" : item.start_name,
-                  time: !item.departure_time
-                    ? "-"
-                    : dayjs(item.departure_time).format("HH.mm [Uhr]"),
-                },
-                travelTime: {
-                  time: !item.eta ? "-" : setDurationTime(item.eta),
-                },
-                umWeg: {
-                  label: globalDictionaries.vehicle.umweg.label.text.replaceAll(
-                    "{{number}}",
-                    !item.waiting_time ? "0" : item.waiting_time
-                  ),
-                  icon: {
-                    ...globalDictionaries.vehicle.umweg.label.icon,
-                    name: globalDictionaries.vehicle.umweg.label.icon
-                      .name as SVGIconProps["name"],
-                  },
-                },
-                arrival: {
-                  place: !item.destination_name ? "-" : item.destination_name,
-                  time:
-                    !item.eta || !item.departure_time
-                      ? "-"
-                      : `${setArrivalTime(
-                          dayjs(item.departure_time).format("HH:mm"),
-                          item.eta
-                        )} Uhr`,
-                },
-              },
-
-              price: {
-                initial: {
-                  label: "Angebotspreis",
-                  price: `€${item.base_price * totalPassenger}`,
-                },
-              },
-              ride: {
-                badge: [
-                  ...(index === 0
-                    ? [
-                        {
-                          id: "bester_preis",
-                          label: "Bester Preis",
-                          variant: "success" as "success" | "danger",
-                        },
-                      ]
-                    : []),
-                  ...(item.user.gender === "female"
-                    ? [
-                        {
-                          id: "fahrerin",
-                          label: "Fahrerin (W)",
-                          variant: "danger" as "success" | "danger",
-                        },
-                      ]
-                    : []),
-                ],
-              },
-              cta: {
-                ride: {
-                  href: !userState.profile
-                    ? AppCollectionURL.public.login()
-                    : `${fullPath}&${RIDE_FILTER.RIDE_ID}=${item.id}`,
-                  children: "Mitfahren",
-                },
-              },
-            };
-          }),
+          data: !newPayload.length
+            ? state.rides.data
+            : [...state.rides.data, ...newPayload],
+          pagination: {
+            ...state.rides.pagination,
+            is_end_reached: !newPayload.length,
+          },
         },
       });
     }

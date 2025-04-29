@@ -9,6 +9,7 @@ import {
   ArchiveTripFiltersReducers,
   ArchiveTripRideReducers,
 } from "./Archive.trip.reducers";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 const initialState: ArchiveTripInitialStateType = {
   filters: {
@@ -18,12 +19,16 @@ const initialState: ArchiveTripInitialStateType = {
   },
   ride: {
     data: [],
+    pagination: {
+      number: PAGINATION.NUMBER,
+      is_end_reached: false,
+    },
     detail: null,
   },
   book: {
     data: [],
-    list: {
-      page_number: 1,
+    pagination: {
+      number: PAGINATION.NUMBER,
       is_end_reached: false,
     },
     detail: null,
