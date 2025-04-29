@@ -13,6 +13,7 @@ import { Divider } from "@/core/components/divider";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const VehicleFilters = () => {
   const dictionaries = getDictionaries();
@@ -162,6 +163,17 @@ export const VehicleFilters = () => {
 
   const handleClickApply = () => {
     dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
+    dispatch({
       type: ResultTripActionEnum.SetVehicleFiltersData,
       payload: {
         ...state.vehicle_filters,
@@ -230,7 +242,11 @@ export const VehicleFilters = () => {
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
               />
             </button>
-            <h2 className={clsx("text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold")}>
+            <h2
+              className={clsx(
+                "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
+              )}
+            >
               {dictionaries.vehicle_filters.title}
             </h2>
           </div>

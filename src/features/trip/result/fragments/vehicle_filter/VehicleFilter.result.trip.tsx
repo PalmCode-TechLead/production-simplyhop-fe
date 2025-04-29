@@ -10,6 +10,7 @@ import {
 } from "@/core/components/car_facility_filter_dropdown";
 import { ResultTripActionEnum, ResultTripContext } from "../../context";
 import { CarSortDropdown } from "@/core/components/car_sort_dropdown";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const VehicleFilterResulTrip = () => {
   const dictionaries = getDictionaries();
@@ -27,6 +28,17 @@ export const VehicleFilterResulTrip = () => {
             dictionaries.advanced_filter.sort.option.items.find(
               (item) => item.id === "-base_price"
             ) ?? null,
+        },
+      },
+    });
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
         },
       },
     });
@@ -61,6 +73,17 @@ export const VehicleFilterResulTrip = () => {
       data.type
     );
     dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
+    dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
@@ -73,6 +96,17 @@ export const VehicleFilterResulTrip = () => {
   };
 
   const handleResetLuggage = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
@@ -90,6 +124,17 @@ export const VehicleFilterResulTrip = () => {
     name: string;
     type: string;
   }) => {
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.smoker.selected,
       { id: data.id, name: data.name },
@@ -109,6 +154,17 @@ export const VehicleFilterResulTrip = () => {
 
   const handleResetSmoker = () => {
     dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
+    dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
@@ -125,6 +181,17 @@ export const VehicleFilterResulTrip = () => {
     name: string;
     type: string;
   }) => {
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.music.selected,
       { id: data.id, name: data.name },
@@ -144,6 +211,17 @@ export const VehicleFilterResulTrip = () => {
 
   const handleResetMusic = () => {
     dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
+    dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
@@ -160,6 +238,17 @@ export const VehicleFilterResulTrip = () => {
     name: string;
     type: string;
   }) => {
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
     const selected = setMultipleCheckboxPayload(
       state.advanced_filter.pets.selected,
       { id: data.id, name: data.name },
@@ -179,6 +268,17 @@ export const VehicleFilterResulTrip = () => {
 
   const handleResetPets = () => {
     dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
+    dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
         ...state.advanced_filter,
@@ -191,6 +291,17 @@ export const VehicleFilterResulTrip = () => {
   };
 
   const handleSelectSort = (data: { id: string; name: string }) => {
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        pagination: {
+          ...state.rides.pagination,
+          number: PAGINATION.NUMBER,
+          is_end_reached: false,
+        },
+      },
+    });
     dispatch({
       type: ResultTripActionEnum.SetAdvancedFilterData,
       payload: {
