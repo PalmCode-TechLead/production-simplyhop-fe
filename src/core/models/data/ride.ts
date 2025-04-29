@@ -1,3 +1,4 @@
+import { User } from "./user";
 import { Vehicle } from "./vehicle";
 
 export interface Ride {
@@ -24,4 +25,5 @@ export interface Ride {
   available_seats: number; // 1;
   departure_time: string; // "2025-04-22T10:00:00.000000Z";
   vehicle?: Vehicle;
+  user?: User;
 }

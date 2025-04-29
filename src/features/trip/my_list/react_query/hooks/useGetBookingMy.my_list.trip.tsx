@@ -24,7 +24,7 @@ export const useGetBookingMy = () => {
 
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
-      include: "ride.vehicle.brand,user",
+      include: "ride.vehicle.brand,user,ride.user",
       "filter[ride.departure_time__gte]": dayjs()
         .add(1, "day")
         .startOf("day")
@@ -63,10 +63,10 @@ export const useGetBookingMy = () => {
                   avatar: !item.user?.avatar
                     ? undefined
                     : {
-                        src: item.user.avatar,
+                        src: item.ride?.user?.avatar,
                         alt: "photo_profile",
                       },
-                  name: `${item.user?.first_name} ${item.user?.last_name}`,
+                  name: `${item.ride?.user?.first_name} ${item.ride?.user?.last_name}`,
                 },
               },
               car: {

@@ -25,7 +25,7 @@ export const useGetBookingId = () => {
       id: !id ? "0" : String(id),
     },
     params: {
-      include: "ride.vehicle.brand,user",
+      include: "ride.vehicle.brand,user,ride.user",
     },
   };
   const query = useQuery<
@@ -53,13 +53,13 @@ export const useGetBookingId = () => {
             id: String(item.id),
             driver: {
               profile: {
-                avatar: !item.user?.avatar
+                avatar: !item.ride?.user?.avatar
                   ? undefined
                   : {
-                      src: item.user.avatar,
+                      src: item.ride.user.avatar,
                       alt: "photo_profile",
                     },
-                name: `${item.user?.first_name} ${item.user?.last_name}`,
+                name: `${item.ride?.user?.first_name} ${item.ride?.user?.last_name}`,
               },
             },
             car: {
