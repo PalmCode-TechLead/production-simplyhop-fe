@@ -7,7 +7,8 @@ export const AppCollectionURL = {
     register: () => "/register",
   },
   private: {
-    chat: () => "/chat",
+    chat: (params?: string) => (!params ? "/chat" : `/chat?${params}`),
+
     myList: (params?: string) =>
       !params ? `/meine-fahrten` : `/meine-fahrten?${params}`,
     myListArchive: (params?: string) =>

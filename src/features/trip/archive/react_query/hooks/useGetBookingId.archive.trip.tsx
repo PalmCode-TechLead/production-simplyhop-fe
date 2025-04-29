@@ -51,6 +51,11 @@ export const useGetBookingId = () => {
           ...state.book,
           detail: {
             id: String(item.id),
+            message: {
+              link: AppCollectionURL.private.chat(
+                `id=${item.message_room?.id}&bookingId=${item.id}`
+              ),
+            },
             driver: {
               profile: {
                 avatar: !item.ride?.user?.avatar
@@ -114,18 +119,8 @@ export const useGetBookingId = () => {
             },
 
             price: {
-              initial: {
-                label: "Angebotspreis",
-                price: `€${item.ride?.base_price}`,
-              },
-            },
-            cta: {
-              detail: {
-                children: "Siehe Details",
-                href: AppCollectionURL.private.myList(
-                  urlSearchParams.toString()
-                ),
-              },
+              label: "Angebotspreis",
+              price: `€${item.ride?.base_price}`,
             },
           },
         },

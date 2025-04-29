@@ -1,3 +1,4 @@
+import { MessageRoom } from "./message_room";
 import { Ride } from "./ride";
 import { User } from "./user";
 
@@ -17,4 +18,5 @@ export interface Booking {
   updated_at: string; //"2025-04-24T08:04:22.000000Z";
   ride?: Ride;
   user?: User;
+  message_room?: MessageRoom;
 }

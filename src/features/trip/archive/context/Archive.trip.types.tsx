@@ -1,4 +1,6 @@
+import { CarPriceItemProps } from "@/core/components/car_price_item";
 import { BookCardArchiveTripProps } from "../components/book_card";
+import { BookDetailCardArchiveTripProps } from "../components/book_detail_card";
 import { RideCardArchiveTripProps } from "../components/ride_card";
 import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
 
@@ -39,7 +41,9 @@ export interface ArchiveTripRide {
 
 export interface ArchiveTripBook {
   data: BookCardArchiveTripProps[];
-  detail: BookCardArchiveTripProps | null;
+  detail:
+    | (BookDetailCardArchiveTripProps & { price: CarPriceItemProps })
+    | null;
 }
 
 export enum ArchiveTripActionEnum {

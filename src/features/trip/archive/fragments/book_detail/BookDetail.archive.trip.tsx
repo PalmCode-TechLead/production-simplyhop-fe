@@ -106,7 +106,7 @@ export const BookDetailArchiveTrip = () => {
               "bg-[white]"
             )}
           >
-            <CarPriceItem {...filteredData.price?.initial} />
+            <CarPriceItem {...filteredData.price} />
           </div>
         </AdaptiveModalContent>
       </div>

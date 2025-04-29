@@ -1,6 +1,8 @@
 import { RideBookingListItemProps } from "@/core/components/ride_booking_list_item";
 import { BookCardMyListTripProps } from "../components/book_card";
 import { RideCardMyListTripProps } from "../components/ride_card";
+import { BookDetailCardMyListTripProps } from "../components/book_detail_card";
+import { CarPriceItemProps } from "@/core/components/car_price_item";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -39,7 +41,7 @@ export interface MyListTripRide {
 
 export interface MyListTripBook {
   data: BookCardMyListTripProps[];
-  detail: BookCardMyListTripProps | null;
+  detail: (BookDetailCardMyListTripProps & { price: CarPriceItemProps }) | null;
 }
 
 export enum MyListTripActionEnum {
