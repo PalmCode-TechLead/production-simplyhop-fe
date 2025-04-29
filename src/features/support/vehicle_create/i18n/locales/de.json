@@ -19,11 +19,11 @@
           },
           "car_category": {
             "inputProps": {
-              "id": "car_model",
+              "id": "car_category",
               "placeholder": " "
             },
             "labelProps": {
-              "id": "car_model",
+              "id": "car_category",
               "children": "Auto-Kategorie",
               "required": false
             }
