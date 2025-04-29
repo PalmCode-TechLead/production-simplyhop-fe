@@ -10,8 +10,11 @@ import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const NotificationVehicleCreateSupport = () => {
+  const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(VehicleCreateSupportContext);
   const { isLg } = useTailwindBreakpoint();
@@ -34,6 +37,7 @@ export const NotificationVehicleCreateSupport = () => {
         is_open: false,
       },
     });
+    router.push(AppCollectionURL.private.support_vehicles());
   };
   return (
     <AdaptiveModal
