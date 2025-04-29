@@ -129,7 +129,7 @@ export const ProfileUploadInput = ({
           !src.length
             ? "border-[#CED4DA] border border-dashed"
             : "border-[2px] border-[#DFDFDF]",
-          "w-[64px] h-[64px] rounded-[50%]"
+          "w-[120px] h-[120px] rounded-[50%]"
         )}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
@@ -147,7 +147,7 @@ export const ProfileUploadInput = ({
         />
 
         {!!src.length && (
-          <Avatar src={src} className={clsx("w-[64px] h-[64px]")} />
+          <Avatar src={src} className={clsx("w-[120px] h-[120px]")} />
         )}
 
         <input
@@ -166,7 +166,7 @@ export const ProfileUploadInput = ({
               "absolute",
               "bottom-[-0.375rem] right-[-0.375rem]",
               "z-[10]",
-              "w-[1.5rem] h-[1.5rem]",
+              "w-[2.5rem] h-[2.5rem]",
               "rounded-[50%]",
               "flex items-center justify-center",
               "bg-[#F6F6F6]"
@@ -174,7 +174,7 @@ export const ProfileUploadInput = ({
           >
             <SVGIcon
               name="Camera"
-              className={clsx("w-[0.625rem] h-[0.625rem]", "text-[#767676]")}
+              className={clsx("w-[1.25rem] h-[1.25rem]", "text-[#767676]")}
             />
           </div>
         )}
@@ -187,7 +187,7 @@ export const ProfileUploadInput = ({
           >
             <SVGIcon
               name="Camera"
-              className={clsx("w-[1rem] h-[1rem]", "text-[#5AC53D]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5AC53D]")}
             />
           </div>
         )}
