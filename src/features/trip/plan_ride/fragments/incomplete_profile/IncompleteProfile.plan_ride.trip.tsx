@@ -9,9 +9,9 @@ export const IncompleteProfilePlaneRideTrip = () => {
   const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
 
-  // if (!userState.profile || userState.profile?.is_able_to_ride) {
-  //   return null;
-  // }
+  if (!userState.profile || userState.profile?.is_able_to_ride) {
+    return null;
+  }
 
   return (
     <div
@@ -22,7 +22,6 @@ export const IncompleteProfilePlaneRideTrip = () => {
         "px-[0.5rem] py-[0.5rem] lg:px-4 lg:py-4",
         "text-[1rem] lg:text-xl text-neutral-50 font-bold",
         "sm:w-full sm:max-w-[409px]",
-        // "absolute sm:left-auto left-[1rem] top-[5rem] sm:top-[1.5rem] ",
         "border border-[#D3E7CE]"
       )}
       style={{
