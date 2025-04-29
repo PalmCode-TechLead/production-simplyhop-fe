@@ -53,25 +53,25 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
     redirect(AppCollectionURL.public.login());
   }
   return (
-    <main className={clsx("w-full min-h-screen")}>
-      <TopNavigation />
+    <UserProvider profile={!userProfile ? undefined : userProfile}>
+      <main className={clsx("w-full min-h-screen")}>
+        <TopNavigation />
 
-      <div className={clsx("w-full min-h-screen")}>
-        <div
-          className={clsx(
-            "grid grid-cols-1 items-start content-start justify-center justify-items-center",
-            "w-full",
-            "px-[1rem]"
-          )}
-        >
+        <div className={clsx("w-full min-h-screen")}>
           <div
             className={clsx(
-              "grid grid-cols-1 lg:grid-cols-[334px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[54px]",
-              "w-full max-w-container min-h-screen"
+              "grid grid-cols-1 items-start content-start justify-center justify-items-center",
+              "w-full",
+              "px-[1rem]"
             )}
           >
-            <Suspense fallback={<div />}>
-              <UserProvider profile={!userProfile ? undefined : userProfile}>
+            <div
+              className={clsx(
+                "grid grid-cols-1 lg:grid-cols-[334px_1fr] place-content-start place-items-start gap-[1.5rem] lg:gap-[54px]",
+                "w-full max-w-container min-h-screen"
+              )}
+            >
+              <Suspense fallback={<div />}>
                 <div
                   className={clsx(
                     "w-full",
@@ -87,12 +87,12 @@ export default async function AccountLayout({ children }: PaymentLayoutProps) {
                 <div className={clsx("w-full", "pt-[calc(90px+2rem)]")}>
                   {children}
                 </div>
-              </UserProvider>
-            </Suspense>
+              </Suspense>
+            </div>
           </div>
         </div>
-      </div>
-      {/* <FooterApp /> */}
-    </main>
+        {/* <FooterApp /> */}
+      </main>
+    </UserProvider>
   );
 }

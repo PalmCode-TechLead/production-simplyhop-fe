@@ -1,11 +1,14 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import { getDictionaries } from "../../i18n";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
+import { UserContext } from "../../context";
 
 export const FooterApp = () => {
+  const { state } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
   return (
     <div
@@ -67,7 +70,7 @@ export const FooterApp = () => {
         {/* link */}
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-cols-4 place-content-start place-items-start gap-[2.5rem]",
+            "grid grid-cols-1 lg:grid-cols-3 place-content-start place-items-start gap-[2.5rem]",
             "w-full"
           )}
         >
@@ -134,48 +137,25 @@ export const FooterApp = () => {
               )}
             >
               {dictionaries.footer.middle.function.items.map(
-                (item, itemIndex) => (
-                  <Link
-                    key={itemIndex}
-                    href={item.href}
-                    className={clsx(
-                      "text-[#767676] text-[0.875rem] font-normal"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              )}
-            </div>
-          </div>
-
-          {/* company */}
-          <div
-            className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
-              "w-full"
-            )}
-          >
-            <span className={clsx("text-[#232323] text-[1.125rem] font-bold")}>
-              {dictionaries.footer.middle.company.title}
-            </span>
-            <div
-              className={clsx(
-                "grid grid-col-1 place-content-start place-items-start gap-[1.5rem]"
-              )}
-            >
-              {dictionaries.footer.middle.company.items.map(
-                (item, itemIndex) => (
-                  <Link
-                    key={itemIndex}
-                    href={item.href}
-                    className={clsx(
-                      "text-[#767676] text-[0.875rem] font-normal"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                )
+                (item, itemIndex) => {
+                  const link =
+                    item.id === "Mitfahrt suchen"
+                      ? item.href
+                      : !state.profile
+                      ? "/login"
+                      : item.href;
+                  return (
+                    <Link
+                      key={itemIndex}
+                      href={link}
+                      className={clsx(
+                        "text-[#767676] text-[0.875rem] font-normal"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                }
               )}
             </div>
           </div>

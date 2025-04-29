@@ -48,16 +48,16 @@ export default async function TripLayout({ children }: TripLayoutProps) {
   }
 
   return (
-    <Suspense fallback={<PageLoader />}>
-      <main className={clsx("w-full min-h-screen")}>
-        <TopNavigation />
-        <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
-          <UserProvider profile={!userProfile ? undefined : userProfile}>
+    <UserProvider profile={!userProfile ? undefined : userProfile}>
+      <Suspense fallback={<PageLoader />}>
+        <main className={clsx("w-full min-h-screen")}>
+          <TopNavigation />
+          <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
             {children}
-          </UserProvider>
-        </div>
-        {/* <FooterApp /> */}
-      </main>
-    </Suspense>
+          </div>
+          {/* <FooterApp /> */}
+        </main>
+      </Suspense>
+    </UserProvider>
   );
 }

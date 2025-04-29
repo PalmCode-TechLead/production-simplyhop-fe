@@ -45,14 +45,16 @@ export default async function ProfileLayout({ children }: ProfileLayoutProps) {
     redirect(AppCollectionURL.public.login());
   }
   return (
-    <main className={clsx("w-full min-h-screen")}>
-      <TopNavigation />
-      <UserProvider profile={!userProfile ? undefined : userProfile}>
+    <UserProvider profile={!userProfile ? undefined : userProfile}>
+      <main className={clsx("w-full min-h-screen")}>
+        <TopNavigation />
+
         <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
           {children}
         </div>
-      </UserProvider>
-      <FooterApp />
-    </main>
+
+        <FooterApp />
+      </main>
+    </UserProvider>
   );
 }

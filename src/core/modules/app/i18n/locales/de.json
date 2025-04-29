@@ -77,17 +77,17 @@
           {
             "id": "Mitfahrt suchen",
             "name": "Mitfahrt suchen",
-            "href": ""
+            "href": "/"
           },
           {
             "id": "Mitfahrt anbieten",
             "name": "Mitfahrt anbieten",
-            "href": ""
+            "href": "/mitfahrt-anbieten"
           },
           {
             "id": "Meine Fahrten",
             "name": "Meine Fahrten",
-            "href": ""
+            "href": "/meine-fahrten"
           }
         ]
       },
@@ -115,24 +115,19 @@
         "title": "Rechtliches",
         "items": [
           {
-            "id": "Impressum",
-            "name": "Impressum",
-            "href": ""
+            "id": "FAQ",
+            "name": "FAQ",
+            "href": "/faq"
           },
           {
             "id": "Datenschutz",
             "name": "Datenschutz",
-            "href": ""
+            "href": "/datenschutz"
           },
           {
             "id": "AGB",
             "name": "AGB",
-            "href": ""
-          },
-          {
-            "id": "Nutzungsbedingungen",
-            "name": "Nutzungsbedingungen",
-            "href": ""
+            "href": "/agb"
           }
         ]
       }
