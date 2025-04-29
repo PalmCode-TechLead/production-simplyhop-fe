@@ -7,6 +7,7 @@ import { DeactivateSettingsSupport } from "../fragments/deactivate";
 import { DeactivateConfirmationSettingsSupport } from "../fragments/deactivate_confirmation";
 import { DeactivateNotificationSettingsSupport } from "../fragments/deactivate_notification";
 import { ChangePasswordSettingsSupport } from "../fragments/change_password";
+import { ChangePasswordNotificationSettingsSupport } from "../fragments/change_password_notification";
 
 export const SettingsSupportContainer = () => {
   return (
@@ -25,6 +26,7 @@ export const SettingsSupportContainer = () => {
       <DeactivateConfirmationSettingsSupport />
       <DeactivateNotificationSettingsSupport />
       <ChangePasswordSettingsSupport />
+      <ChangePasswordNotificationSettingsSupport />
     </>
   );
 };

@@ -133,5 +133,13 @@
         "children": "Passwort ändern"
       }
     }
+  },
+  "change_password_notification": {
+    "title": "Passwort erfolgreich geändert",
+    "cta": {
+      "go_to_homepage": {
+        "children": "Zurück"
+      }
+    }
   }
 }

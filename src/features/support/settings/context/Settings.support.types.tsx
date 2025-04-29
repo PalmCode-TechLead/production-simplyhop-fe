@@ -17,6 +17,7 @@ export interface SettingsSupportInitialStateType {
   deactivate_confirmation: SettingsSupportDeactivateConfirmation;
   deactivate_notification: SettingsSupportDeactivateNotification;
   change_password: SettingsSupportChangePassword;
+  change_password_notification: SettingsSupportChangePasswordNotification;
 }
 
 // State Collection Types consist of:
@@ -58,6 +59,10 @@ export interface SettingsSupportChangePassword {
   };
 }
 
+export interface SettingsSupportChangePasswordNotification {
+  is_open: boolean;
+}
+
 export enum SettingsSupportActionEnum {
   // Deactivate
   SetDeactivateData = "SetDeactivateData",
@@ -67,6 +72,8 @@ export enum SettingsSupportActionEnum {
   SetDeactivateNotificationData = "SetDeactivateNotificationData",
   // ChangePassword
   SetChangePasswordData = "SetChangePasswordData",
+  // ChangePasswordNotification
+  SetChangePasswordNotificationData = "SetChangePasswordNotificationData",
 }
 
 // Action Collection Types
@@ -74,7 +81,8 @@ export type SettingsSupportActions =
   | SettingsSupportDeactivateActions
   | SettingsSupportDeactivateConfirmationActions
   | SettingsSupportDeactivateNotificationActions
-  | SettingsSupportChangePasswordActions;
+  | SettingsSupportChangePasswordActions
+  | SettingsSupportChangePasswordNotificationActions;
 
 // Action Collection Types consist of:
 // Deactivate
@@ -108,3 +116,11 @@ type SettingsSupportChangePasswordPayload = {
 
 export type SettingsSupportChangePasswordActions =
   ActionMap<SettingsSupportChangePasswordPayload>[keyof ActionMap<SettingsSupportChangePasswordPayload>];
+
+// ChangePasswordNotification
+type SettingsSupportChangePasswordNotificationPayload = {
+  [SettingsSupportActionEnum.SetChangePasswordNotificationData]: SettingsSupportChangePasswordNotification;
+};
+
+export type SettingsSupportChangePasswordNotificationActions =
+  ActionMap<SettingsSupportChangePasswordNotificationPayload>[keyof ActionMap<SettingsSupportChangePasswordNotificationPayload>];

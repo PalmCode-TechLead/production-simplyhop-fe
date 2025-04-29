@@ -141,6 +141,13 @@ export const ChangePasswordSettingsSupport = () => {
         is_open: false,
       },
     });
+    dispatch({
+      type: SettingsSupportActionEnum.SetChangePasswordNotificationData,
+      payload: {
+        ...state.change_password_notification,
+        is_open: true,
+      },
+    });
   };
 
   const isSubmitDisabled =

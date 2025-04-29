@@ -5,6 +5,7 @@ import {
   SettingsSupportInitialStateType,
 } from "./Settings.support.types";
 import {
+  SettingsSupportChangePasswordNotificationReducers,
   SettingsSupportChangePasswordReducers,
   SettingsSupportDeactivateConfirmationReducers,
   SettingsSupportDeactivateNotificationReducers,
@@ -46,6 +47,9 @@ const initialState: SettingsSupportInitialStateType = {
       },
     },
   },
+  change_password_notification: {
+    is_open: false,
+  },
 };
 
 const SettingsSupportContext = createContext<{
@@ -62,6 +66,7 @@ const mainReducer = (
     deactivate_confirmation,
     deactivate_notification,
     change_password,
+    change_password_notification,
   }: SettingsSupportInitialStateType,
   action: SettingsSupportActions
 ) => ({
@@ -78,6 +83,11 @@ const mainReducer = (
     change_password,
     action
   ),
+  change_password_notification:
+    SettingsSupportChangePasswordNotificationReducers(
+      change_password_notification,
+      action
+    ),
 });
 
 const SettingsSupportProvider = (props: { children: React.ReactNode }) => {
