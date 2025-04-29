@@ -9,12 +9,10 @@ import { AutocompleteOption } from "../autocomplete_option";
 import { AutocompleteEmptyBox } from "../autocomplete_empty_box";
 
 export interface AutocompleteAutoProps {
-  type?: "sync" | "async";
   selected?: { id: string; name: string } | null;
   items?: { id: string; name: string }[];
   disabled?: boolean;
   emptyMessage?: string;
-  search?: boolean;
   debounceQuery?: boolean;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
@@ -23,12 +21,10 @@ export interface AutocompleteAutoProps {
 }
 
 export const AutocompleteAuto = ({
-  type = "sync",
   selected = null,
   disabled = false,
   items = [],
   emptyMessage = "No Result",
-  search = true,
   onSelect = () => {},
   // NOTES: async purpose
   debounceQuery = false,
