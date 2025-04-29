@@ -29,9 +29,6 @@ import SVGIcon from "@/core/icons";
 
 export interface RideDetailCardArchiveTripProps {
   id?: string;
-  message?: {
-    link: string;
-  };
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -53,9 +50,6 @@ export interface RideDetailCardArchiveTripProps {
 
 export const RideDetailCardArchiveTrip = ({
   id = "",
-  message = {
-    link: "",
-  },
   driver = {
     profile: {
       avatar: undefined,
@@ -132,12 +126,6 @@ export const RideDetailCardArchiveTrip = ({
               "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1rem]"
             )}
           >
-            <Link href={message.link}>
-              <SVGIcon
-                name="MessageSquare"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
-              />
-            </Link>
             <DriverProfileLabel
               {...driver.profile}
               icon={null}

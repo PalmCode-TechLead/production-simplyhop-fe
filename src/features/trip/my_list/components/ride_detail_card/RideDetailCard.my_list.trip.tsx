@@ -25,13 +25,9 @@ import {
   DepartureDateItem,
   DepartureDateItemProps,
 } from "@/core/components/departure_date_item";
-import SVGIcon from "@/core/icons";
 
 export interface RideDetailCardMyListTripProps {
   id?: string;
-  message?: {
-    link: string;
-  };
   driver?: {
     profile: DriverProfileLabelProps;
   };
@@ -53,9 +49,6 @@ export interface RideDetailCardMyListTripProps {
 
 export const RideDetailCardMyListTrip = ({
   id = "",
-  message = {
-    link: "",
-  },
   driver = {
     profile: {
       avatar: undefined,
@@ -132,12 +125,6 @@ export const RideDetailCardMyListTrip = ({
               "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1rem]"
             )}
           >
-            <Link href={message.link}>
-              <SVGIcon
-                name="MessageSquare"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
-              />
-            </Link>
             <DriverProfileLabel
               {...driver.profile}
               icon={null}
