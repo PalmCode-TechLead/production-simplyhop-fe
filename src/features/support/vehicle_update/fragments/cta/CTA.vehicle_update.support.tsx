@@ -17,6 +17,17 @@ export const CTAVehicleUpdateSupport = () => {
     mutateAsync: postVehicleUpdate,
     isPending: isPendingPostVehicleUpdate,
   } = usePostVehicleUpdate();
+
+  const handleClickDelete = () => {
+    dispatch({
+      type: VehicleUpdateSupportActionEnum.SetDeleteNotificationData,
+      payload: {
+        ...state.delete_notification,
+        is_open: true,
+      },
+    });
+  };
+
   const handleClickSave = async () => {
     await postVehicleUpdate();
     dispatch({
@@ -33,14 +44,27 @@ export const CTAVehicleUpdateSupport = () => {
   return (
     <div
       className={clsx(
-        "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[0.5rem]",
+        "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1rem]",
         "w-full"
       )}
     >
+      <button
+        className={clsx(
+          "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
+          "w-full h-full",
+          "text-[1rem] text-[#DA2323] font-medium",
+          "cursor-pointer",
+          "px-[1rem] py-[1rem]"
+        )}
+        onClick={handleClickDelete}
+      >
+        {dictionaries.cta.delete.children}
+      </button>
+
       <Button
         disabled={isSaveDisabled}
         isLoading={isSaveLoading}
-        className={clsx("py-[1rem]")}
+        className={clsx("px-[1rem] py-[1rem]")}
         onClick={handleClickSave}
       >
         {isSaveLoading && <MoonLoader size={20} color={"white"} />}

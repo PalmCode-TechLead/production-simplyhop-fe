@@ -194,6 +194,9 @@
   "cta": {
     "save": {
       "children": "Speichern"
+    },
+    "delete": {
+      "children": "Löschen"
     }
   },
   "notification": {
