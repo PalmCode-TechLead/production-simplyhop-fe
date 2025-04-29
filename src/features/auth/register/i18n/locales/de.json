@@ -45,10 +45,10 @@
         }
       },
       "account": {
-        "label": "Du hast noch kein Konto? ",
+        "label": "Du hast bereits ein Konto? ",
         "cta": {
-          "children": "Jetzt registrieren",
-          "href": "/register"
+          "children": "Login",
+          "href": "/login"
         }
       },
       "social_media": {
