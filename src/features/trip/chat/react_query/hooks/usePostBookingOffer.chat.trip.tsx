@@ -33,7 +33,7 @@ export const usePostBookingOffer = () => {
           message: !state.offer.form.notes.value.length
             ? undefined
             : state.offer.form.notes.value,
-          offered_price: Number(state.offer.price?.price ?? "0"),
+          offered_price: Number(state.offer.form.price_offer.value ?? "0"),
         },
       };
       return fetchPostBookingOffer(payload);

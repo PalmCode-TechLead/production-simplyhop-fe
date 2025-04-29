@@ -19,6 +19,9 @@ import { usePostBookingOffer } from "../../react_query/hooks";
 import { GetMessageRoomsIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 import { queryClient } from "@/core/utils/react_query";
 import { ChatTripReactQueryKey } from "../../react_query/keys";
+import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
+import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
+import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
 
 export const OfferChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -128,11 +131,10 @@ export const OfferChatTrip = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-ww-[100vw] lg:!max-w-[872px]",
-        "h-[100vh] lg:h-fit",
+        "!max-w-[100vw] lg:!max-w-[872px]",
+        "h-[100vh] lg:!h-fit !max-h-[100vh] lg:!max-h-[80vh]",
         "!rounded-[0px] lg:!rounded-[0.625rem]",
-        "overflow-auto",
-        "!px-[0rem] !py-[0rem]"
+        "overflow-hidden"
       )}
       variant={isLg ? "modal" : "page_sheet"}
       open={isOpen}
@@ -140,12 +142,11 @@ export const OfferChatTrip = () => {
     >
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full",
-          "!px-[1rem] !py-[1rem] lg:!px-[2rem] lg:!py-[2rem]"
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full h-full"
         )}
       >
-        <div
+        <AdaptiveModalHeader
           className={clsx(
             "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
             "w-full"
@@ -164,61 +165,67 @@ export const OfferChatTrip = () => {
           <h1 className={clsx("text-[1.5rem] text-[black] font-bold")}>
             {dictionaries.offer.title}
           </h1>
-        </div>
+        </AdaptiveModalHeader>
+        <AdaptiveModalContent className={clsx("lg:!py-[1rem]")}>
+          <RideDetailCardChatTrip {...detailData} />
 
-        <RideDetailCardChatTrip {...detailData} />
+          <PassengerCardChatTrip
+            label={dictionaries.offer.passenger.label}
+            passenger={dictionaries.offer.passenger.maskedValue
+              .replaceAll("{{adult}}", String(passengerData.adult ?? "0"))
+              .replaceAll(
+                "{{children}}",
+                String(passengerData.children ?? "0")
+              )}
+          />
 
-        <PassengerCardChatTrip
-          label={dictionaries.offer.passenger.label}
-          passenger={dictionaries.offer.passenger.maskedValue
-            .replaceAll("{{adult}}", String(passengerData.adult ?? "0"))
-            .replaceAll("{{children}}", String(passengerData.children ?? "0"))}
-        />
+          <PriceCardChatTrip
+            label={dictionaries.offer.price.form.title}
+            // price={detailData.price?.initial?.price}
+            price={priceData.price}
+          />
 
-        <PriceCardChatTrip
-          label={dictionaries.offer.price.form.title}
-          // price={detailData.price?.initial?.price}
-          price={priceData.price}
-        />
-
-        <PriceInputChatTrip
-          inputProps={{
-            type: "number",
-            value:
-              state.offer.form.price_offer.value === 0
-                ? ""
-                : state.offer.form.price_offer.value,
-            onChange: handleChangePriceOffer,
-          }}
-        />
-
-        <Card className={clsx("!px-[0rem] !py-[0rem]")}>
-          <TextareafieldNotes
-            inputContainerProps={{
-              className: clsx("!border-[0px]", "!rounded-[0px]"),
-            }}
+          <PriceInputChatTrip
             inputProps={{
-              ...dictionaries.offer.notes.form.input.notes.inputProps,
-              value: state.offer.form.notes.value,
-              onChange: handleChangeNotes,
-            }}
-            labelProps={{
-              ...dictionaries.offer.notes.form.input.notes.labelProps,
+              type: "number",
+              value:
+                state.offer.form.price_offer.value === 0
+                  ? ""
+                  : state.offer.form.price_offer.value,
+              onChange: handleChangePriceOffer,
             }}
           />
-        </Card>
 
-        <Button
-          disabled={isSubmitDisabled}
-          isLoading={isPendingPostBookingOffer}
-          onClick={handleClickSend}
-        >
-          {isPendingPostBookingOffer && (
-            <MoonLoader size={20} color={"white"} />
-          )}
+          <Card className={clsx("!px-[0rem] !py-[0rem]")}>
+            <TextareafieldNotes
+              inputContainerProps={{
+                className: clsx("!border-[0px]", "!rounded-[0px]"),
+              }}
+              inputProps={{
+                ...dictionaries.offer.notes.form.input.notes.inputProps,
+                value: state.offer.form.notes.value,
+                onChange: handleChangeNotes,
+              }}
+              labelProps={{
+                ...dictionaries.offer.notes.form.input.notes.labelProps,
+              }}
+            />
+          </Card>
+        </AdaptiveModalContent>
 
-          {dictionaries.offer.cta.send.children}
-        </Button>
+        <AdaptiveModalFooter>
+          <Button
+            disabled={isSubmitDisabled}
+            isLoading={isPendingPostBookingOffer}
+            onClick={handleClickSend}
+          >
+            {isPendingPostBookingOffer && (
+              <MoonLoader size={20} color={"white"} />
+            )}
+
+            {dictionaries.offer.cta.send.children}
+          </Button>
+        </AdaptiveModalFooter>
       </div>
     </AdaptiveModal>
   );

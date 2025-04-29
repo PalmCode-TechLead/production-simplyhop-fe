@@ -14,7 +14,7 @@ export const AdaptiveModalContent = forwardRef<
         "w-full h-full",
         "px-[1rem] py-[2rem] lg:px-[2rem] lg:py-[0rem]",
         "overflow-auto",
-        "max-h-[400px]",
+        "lg:max-h-[400px]",
         props.className
       )}
     >
