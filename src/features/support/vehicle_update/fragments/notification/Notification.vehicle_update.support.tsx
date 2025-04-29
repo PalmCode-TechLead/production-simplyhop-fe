@@ -27,7 +27,6 @@ export const NotificationVehicleUpdateSupport = () => {
         is_open: false,
       },
     });
-    router.push(AppCollectionURL.private.support_vehicles());
   };
 
   const handleClickGoToHomepage = () => {
@@ -38,6 +37,7 @@ export const NotificationVehicleUpdateSupport = () => {
         is_open: false,
       },
     });
+    router.push(AppCollectionURL.private.support_vehicles());
   };
   return (
     <AdaptiveModal
