@@ -51,47 +51,23 @@ export const PicturePersonalInformationFormRegistrationProfile = () => {
     });
   };
 
-  const handleChangeAddUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newFiles = !e.currentTarget.files
-      ? []
-      : !e.currentTarget.files.length
-      ? []
-      : Array.from(e.currentTarget.files).map((item) => item);
-    dispatch({
-      type: RegistrationProfileActionEnum.SetPersonalInformationData,
-      payload: {
-        ...state.personal_information,
-        form: {
-          ...state.personal_information.form,
-          pictures: {
-            ...state.personal_information.form.pictures,
-            files: [
-              ...state.personal_information.form.pictures.files,
-              ...newFiles,
-            ],
-          },
-        },
-      },
-    });
-  };
-
-  const handleDeletePicture = (dataIndex: number) => {
-    dispatch({
-      type: RegistrationProfileActionEnum.SetPersonalInformationData,
-      payload: {
-        ...state.personal_information,
-        form: {
-          ...state.personal_information.form,
-          pictures: {
-            ...state.personal_information.form.pictures,
-            files: state.personal_information.form.pictures.files.filter(
-              (_, index) => index !== dataIndex
-            ),
-          },
-        },
-      },
-    });
-  };
+  // const handleDeletePicture = (dataIndex: number) => {
+  //   dispatch({
+  //     type: RegistrationProfileActionEnum.SetPersonalInformationData,
+  //     payload: {
+  //       ...state.personal_information,
+  //       form: {
+  //         ...state.personal_information.form,
+  //         pictures: {
+  //           ...state.personal_information.form.pictures,
+  //           files: state.personal_information.form.pictures.files.filter(
+  //             (_, index) => index !== dataIndex
+  //           ),
+  //         },
+  //       },
+  //     },
+  //   });
+  // };
   return (
     <div
       className={clsx(

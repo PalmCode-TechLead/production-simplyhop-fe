@@ -56,7 +56,7 @@ export interface RegistrationProfilePersonalInformation {
       error: FormError;
     };
     pictures: {
-      files: File[];
+      files: File[] | string;
     };
   };
 }
@@ -97,7 +97,7 @@ export interface RegistrationProfileVehicleInformation {
     };
   };
   pictures: {
-    files: File[];
+    files: ({ id: string; image_url: string } | File)[];
   };
   capacity: {
     passenger_seats: {
