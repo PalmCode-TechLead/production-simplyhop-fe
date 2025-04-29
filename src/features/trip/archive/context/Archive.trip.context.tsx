@@ -22,6 +22,10 @@ const initialState: ArchiveTripInitialStateType = {
   },
   book: {
     data: [],
+    list: {
+      page_number: 1,
+      is_end_reached: false,
+    },
     detail: null,
   },
 };

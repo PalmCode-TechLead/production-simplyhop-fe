@@ -1,12 +1,15 @@
-import { GetBookingIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
+import {
+  GetBookingIdPayloadRequestInterface,
+  GetBookingMyPayloadRequestInterface,
+} from "@/core/models/rest/simplyhop/booking";
 import { GetRidesIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
 
 export const ArchiveTripReactQueryKey = {
   GetRidesSearch: () => {
     return ["ArchiveTripReactQueryKey.GetRidesSearch"];
   },
-  GetBookingMy: () => {
-    return ["ArchiveTripReactQueryKey.GetBookingMy"];
+  GetBookingMy: (payload?: GetBookingMyPayloadRequestInterface) => {
+    return ["ArchiveTripReactQueryKey.GetBookingMy", [payload] as const];
   },
   GetRidesId: (payload?: GetRidesIdPayloadRequestInterface) => {
     return ["MyListTripReactQueryKey.GetRidesId", [payload] as const];

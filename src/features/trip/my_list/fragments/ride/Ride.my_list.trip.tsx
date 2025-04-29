@@ -6,6 +6,7 @@ import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { useGetRidesSearch } from "../../react_query/hooks";
 import { ListErrorItem } from "@/core/components/list_error_item";
+import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 
 export const RideMyListTrip = () => {
   const dictionaries = getDictionaries();
@@ -40,6 +41,10 @@ export const RideMyListTrip = () => {
     );
   }
 
+  const handleLoadMore = () => {
+    //
+  };
+
   return (
     <div
       className={clsx(
@@ -47,9 +52,14 @@ export const RideMyListTrip = () => {
         "w-full"
       )}
     >
-      {state.ride.data.map((item, itemIndex) => (
-        <RideCardMyListTrip key={itemIndex} {...item} />
-      ))}
+      <InfiniteScrollWrapper
+        loader={{ message: dictionaries.list.loading.message }}
+        onLoadMore={handleLoadMore}
+      >
+        {state.ride.data.map((item, itemIndex) => (
+          <RideCardMyListTrip key={itemIndex} {...item} />
+        ))}
+      </InfiniteScrollWrapper>
     </div>
   );
 };

@@ -1,15 +1,16 @@
 import * as React from "react";
 import clsx from "clsx";
-import { ArchiveTripContext } from "../../context";
+import { ArchiveTripActionEnum, ArchiveTripContext } from "../../context";
 import { BookCardArchiveTrip } from "../../components/book_card";
 import { useGetBookingMy } from "../../react_query/hooks";
 import { ListLoader } from "@/core/components/list_loader";
 import { getDictionaries } from "../../i18n";
 import { ListErrorItem } from "@/core/components/list_error_item";
+import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 
 export const BookArchiveTrip = () => {
   const dictionaries = getDictionaries();
-  const { state } = React.useContext(ArchiveTripContext);
+  const { state, dispatch } = React.useContext(ArchiveTripContext);
 
   const { isFetching: isFetchingGetBookingMy } = useGetBookingMy();
   const isLoading = isFetchingGetBookingMy;
@@ -40,16 +41,40 @@ export const BookArchiveTrip = () => {
     );
   }
 
+  const handleLoadMore = () => {
+    if (isLoading) return;
+    if (state.book.list.is_end_reached) return;
+    dispatch({
+      type: ArchiveTripActionEnum.SetBookData,
+      payload: {
+        ...state.book,
+        list: {
+          ...state.book.list,
+          page_number: state.book.list.page_number + 1,
+        },
+      },
+    });
+  };
+
   return (
-    <div
-      className={clsx(
-        "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
-        "w-full"
-      )}
+    <InfiniteScrollWrapper
+      loader={{
+        message: dictionaries.list.loading.message,
+      }}
+      isPaused={isLoading}
+      isEndReached={state.book.list.is_end_reached}
+      onLoadMore={handleLoadMore}
     >
-      {state.book.data.map((item, itemIndex) => (
-        <BookCardArchiveTrip key={itemIndex} {...item} />
-      ))}
-    </div>
+      <div
+        className={clsx(
+          "grid grid-rows-1 grid-cols-1 place-content-start place-items-start gap-[1rem]",
+          "w-full"
+        )}
+      >
+        {state.book.data.map((item, itemIndex) => (
+          <BookCardArchiveTrip key={itemIndex} {...item} />
+        ))}
+      </div>
+    </InfiniteScrollWrapper>
   );
 };

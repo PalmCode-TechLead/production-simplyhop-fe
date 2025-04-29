@@ -41,6 +41,10 @@ export interface ArchiveTripRide {
 
 export interface ArchiveTripBook {
   data: BookCardArchiveTripProps[];
+  list: {
+    page_number: number;
+    is_end_reached: boolean;
+  };
   detail:
     | (BookDetailCardArchiveTripProps & { price: CarPriceItemProps })
     | null;
