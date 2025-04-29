@@ -363,7 +363,7 @@ export const DetailPlanRideTrip = () => {
     !state.detail.form.plan.seat.value.length ||
     !state.detail.form.plan.available_child_seat.value ||
     !state.detail.form.other.price.value ||
-    !!state.detail.form.tnc.checked ||
+    !state.detail.form.tnc.checked ||
     !!state.detail.form.plan.available_child_seat.error;
   const isSubmitLoading =
     isPendingRidesFirst || isPendingRidesSecond || isPendingRidesThird;
