@@ -6,6 +6,7 @@ import {
   SettingsSupportContext,
 } from "../../context";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { Button } from "@/core/components/button";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { Checkbox } from "@/core/components/checkbox";
@@ -13,12 +14,18 @@ import { usePostAuthChangePassword } from "../../react_query/hooks";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import SVGIcon from "@/core/icons";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { getError } from "@/core/utils/form";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const ChangePasswordSettingsSupport = () => {
   const dictionaries = getDictionaries();
+  const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
   const { isLg } = useTailwindBreakpoint();
-  const { mutateAsync: postChangePassword } = usePostAuthChangePassword();
+  const {
+    mutateAsync: postChangePassword,
+    isPending: isPendingPostChangePassword,
+  } = usePostAuthChangePassword();
   const isOpen = state.change_password.is_open;
   const handleClose = () => {
     dispatch({
@@ -33,6 +40,10 @@ export const ChangePasswordSettingsSupport = () => {
   const handleChangeActualPassword = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.password.validations.items,
+      value: e.currentTarget.value,
+    });
     dispatch({
       type: SettingsSupportActionEnum.SetChangePasswordData,
       payload: {
@@ -42,6 +53,7 @@ export const ChangePasswordSettingsSupport = () => {
           actual_password: {
             ...state.change_password.form.actual_password,
             value: e.currentTarget.value,
+            error: errorItem,
           },
         },
       },
@@ -49,6 +61,10 @@ export const ChangePasswordSettingsSupport = () => {
   };
 
   const handleChangeNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const errorItem = getError({
+      errorItems: globalDictionaries.form.password.validations.items,
+      value: e.currentTarget.value,
+    });
     dispatch({
       type: SettingsSupportActionEnum.SetChangePasswordData,
       payload: {
@@ -58,6 +74,7 @@ export const ChangePasswordSettingsSupport = () => {
           new_password: {
             ...state.change_password.form.new_password,
             value: e.currentTarget.value,
+            error: errorItem,
           },
         },
       },
@@ -67,6 +84,18 @@ export const ChangePasswordSettingsSupport = () => {
   const handleChangeConfirmNewPassword = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
+    const errorObj =
+      globalDictionaries.form.confirm_password.validations.items.find(
+        (item) => {
+          return item.id === "unmatched_password";
+        }
+      );
+    const err = !errorObj
+      ? null
+      : {
+          id: errorObj.id,
+          name: errorObj.name,
+        };
     dispatch({
       type: SettingsSupportActionEnum.SetChangePasswordData,
       payload: {
@@ -76,6 +105,11 @@ export const ChangePasswordSettingsSupport = () => {
           confirm_new_password: {
             ...state.change_password.form.confirm_new_password,
             value: e.currentTarget.value,
+            error:
+              state.change_password.form.new_password.value !==
+              e.currentTarget.value
+                ? err
+                : null,
           },
         },
       },
@@ -108,6 +142,17 @@ export const ChangePasswordSettingsSupport = () => {
       },
     });
   };
+
+  const isSubmitDisabled =
+    !state.change_password.form.actual_password.value.length ||
+    !state.change_password.form.new_password.value.length ||
+    !state.change_password.form.confirm_new_password.value.length ||
+    !state.change_password.form.tnc.checked ||
+    !!state.change_password.form.actual_password.error ||
+    !!state.change_password.form.new_password.error ||
+    !!state.change_password.form.confirm_new_password.error ||
+    isPendingPostChangePassword;
+  const isSubmitLoading = isPendingPostChangePassword;
   return (
     <AdaptiveModal
       className={clsx(
@@ -165,6 +210,7 @@ export const ChangePasswordSettingsSupport = () => {
               value: state.change_password.form.actual_password.value,
               onChange: handleChangeActualPassword,
             }}
+            error={state.change_password.form.actual_password.error?.name}
           />
           <Passwordfield
             labelProps={{
@@ -177,6 +223,7 @@ export const ChangePasswordSettingsSupport = () => {
               value: state.change_password.form.new_password.value,
               onChange: handleChangeNewPassword,
             }}
+            error={state.change_password.form.new_password.error?.name}
           />
           <Passwordfield
             labelProps={{
@@ -189,6 +236,7 @@ export const ChangePasswordSettingsSupport = () => {
               value: state.change_password.form.confirm_new_password.value,
               onChange: handleChangeConfirmNewPassword,
             }}
+            error={state.change_password.form.confirm_new_password.error?.name}
           />
           <div
             className={clsx(
@@ -211,8 +259,11 @@ export const ChangePasswordSettingsSupport = () => {
 
         <Button
           className={clsx("py-[1rem]")}
+          disabled={isSubmitDisabled}
+          isLoading={isSubmitLoading}
           onClick={handleClickChangePassword}
         >
+          {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
           {dictionaries.change_password.cta.change_password.children}
         </Button>
       </div>

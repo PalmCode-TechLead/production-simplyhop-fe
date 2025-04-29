@@ -1,3 +1,5 @@
+import { FormError } from "@/core/utils/form";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -40,12 +42,15 @@ export interface SettingsSupportChangePassword {
   form: {
     actual_password: {
       value: string;
+      error: FormError;
     };
     new_password: {
       value: string;
+      error: FormError;
     };
     confirm_new_password: {
       value: string;
+      error: FormError;
     };
     tnc: {
       checked: boolean;

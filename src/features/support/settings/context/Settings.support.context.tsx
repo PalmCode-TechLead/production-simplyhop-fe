@@ -31,12 +31,15 @@ const initialState: SettingsSupportInitialStateType = {
     form: {
       actual_password: {
         value: "",
+        error: null,
       },
       new_password: {
         value: "",
+        error: null,
       },
       confirm_new_password: {
         value: "",
+        error: null,
       },
       tnc: {
         checked: false,
