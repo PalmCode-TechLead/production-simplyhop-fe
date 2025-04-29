@@ -45,7 +45,7 @@ export const NotificationVehicleCreateSupport = () => {
         "!px-[0rem] !py-[0rem]"
       )}
       open={isOpen}
-      variant={isLg ? "page_sheet" : "modal"}
+      variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
       <div
