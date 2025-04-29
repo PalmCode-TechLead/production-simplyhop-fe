@@ -20,7 +20,6 @@ import {
   DriverProfileLabel,
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
-import Link from "next/link";
 import {
   DepartureDateItem,
   DepartureDateItemProps,

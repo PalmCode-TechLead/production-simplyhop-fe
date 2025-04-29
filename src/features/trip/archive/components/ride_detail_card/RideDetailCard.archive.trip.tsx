@@ -20,12 +20,10 @@ import {
   DriverProfileLabel,
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
-import Link from "next/link";
 import {
   DepartureDateItem,
   DepartureDateItemProps,
 } from "@/core/components/departure_date_item";
-import SVGIcon from "@/core/icons";
 
 export interface RideDetailCardArchiveTripProps {
   id?: string;
