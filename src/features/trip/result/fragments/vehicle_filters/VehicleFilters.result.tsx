@@ -166,6 +166,7 @@ export const VehicleFilters = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,

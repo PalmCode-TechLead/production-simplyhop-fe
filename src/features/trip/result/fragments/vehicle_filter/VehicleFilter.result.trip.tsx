@@ -35,6 +35,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -76,6 +77,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -100,6 +102,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -128,6 +131,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -157,6 +161,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -185,6 +190,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -214,6 +220,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -242,6 +249,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -271,6 +279,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
@@ -295,6 +304,7 @@ export const VehicleFilterResulTrip = () => {
       type: ResultTripActionEnum.SetRidesData,
       payload: {
         ...state.rides,
+        data: [],
         pagination: {
           ...state.rides.pagination,
           number: PAGINATION.NUMBER,
