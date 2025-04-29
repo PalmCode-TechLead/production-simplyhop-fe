@@ -69,28 +69,18 @@ export const PictureFormAccountUpdateSupport = () => {
       )}
     >
       {/* form */}
-      {!state.form.pictures.files.length ? (
-        <ProfileUploadInput
-          onChange={handleChangeUpload}
-          onDrop={handleDropUpload}
-        />
-      ) : (
-        <div
-          className={clsx(
-            "flex items-start justify-center gap-[0.75rem] flex-wrap",
-            "w-full"
-          )}
-        >
-          <Avatar
-            src={
-              typeof state.form.pictures.files === "string"
-                ? state.form.pictures.files
-                : URL.createObjectURL(state.form.pictures.files[0])
-            }
-            className={clsx("w-[130px] h-[130px]")}
-          />
-        </div>
-      )}
+
+      <ProfileUploadInput
+        src={
+          typeof state.form.pictures.files === "string"
+            ? state.form.pictures.files
+            : !state.form.pictures.files.length
+            ? ""
+            : URL.createObjectURL(state.form.pictures.files[0])
+        }
+        onChange={handleChangeUpload}
+        onDrop={handleDropUpload}
+      />
 
       <div
         className={clsx(

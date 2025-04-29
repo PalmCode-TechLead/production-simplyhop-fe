@@ -2,13 +2,16 @@ import * as React from "react";
 import clsx from "clsx";
 import { useRef } from "react";
 import SVGIcon from "@/core/icons";
+import { Avatar } from "../avatar";
 
 export interface ProfileUploadInputProps {
+  src?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDrop?: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
 export const ProfileUploadInput = ({
+  src = "",
   onDrop = () => {},
   onChange = () => {},
 }: ProfileUploadInputProps) => {
@@ -123,8 +126,10 @@ export const ProfileUploadInput = ({
         className={clsx(
           "relative",
           "grid grid-cols-1 place-content-center place-items-center gap-y-[0.5rem]",
-          "border-[#CED4DA] border border-dashed",
-          "w-[120px] h-[120px] rounded-[50%]"
+          !src.length
+            ? "border-[#CED4DA] border border-dashed"
+            : "border-[2px] border-[#DFDFDF]",
+          "w-[64px] h-[64px] rounded-[50%]"
         )}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
@@ -141,6 +146,10 @@ export const ProfileUploadInput = ({
           onClick={handleClickUpload}
         />
 
+        {!!src.length && (
+          <Avatar src={src} className={clsx("w-[64px] h-[64px]")} />
+        )}
+
         <input
           ref={inputRef}
           type="file"
@@ -151,13 +160,34 @@ export const ProfileUploadInput = ({
           onChange={handleChangeUpload}
         />
 
-        <div
-          className={clsx(
-            "grid grid-cols-1 lg:grid-flow-col place-content-center place-items-center gap-[0.25rem]"
-          )}
-        >
-          <SVGIcon name="Camera" className={clsx("text-[#5AC53D]")} />
-        </div>
+        {!!src.length && (
+          <div
+            className={clsx(
+              "absolute",
+              "bottom-[-0.375rem] right-[-0.375rem]",
+              "z-[10]",
+              "w-[1.5rem] h-[1.5rem]",
+              "rounded-[50%]",
+              "flex items-center justify-center",
+              "bg-[#F6F6F6]"
+            )}
+          >
+            <SVGIcon
+              name="Camera"
+              className={clsx("w-[0.625rem] h-[0.625rem]", "text-[#767676]")}
+            />
+          </div>
+        )}
+
+        {!src.length && (
+          <div
+            className={clsx(
+              "grid grid-cols-1 lg:grid-flow-col place-content-center place-items-center gap-[0.25rem]"
+            )}
+          >
+            <SVGIcon name="Camera" className={clsx("text-[#5AC53D]")} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -76,30 +76,20 @@ export const PicturePersonalInformationFormRegistrationProfile = () => {
       )}
     >
       {/* form */}
-      {!state.personal_information.form.pictures.files.length ? (
-        <ProfileUploadInput
-          onChange={handleChangeUpload}
-          onDrop={handleDropUpload}
-        />
-      ) : (
-        <div
-          className={clsx(
-            "flex items-start justify-center gap-[0.75rem] flex-wrap",
-            "w-full"
-          )}
-        >
-          <Avatar
-            src={
-              typeof state.personal_information.form.pictures.files === "string"
-                ? state.personal_information.form.pictures.files
-                : URL.createObjectURL(
-                    state.personal_information.form.pictures.files[0]
-                  )
-            }
-            className={clsx("w-[130px] h-[130px]")}
-          />
-        </div>
-      )}
+      <ProfileUploadInput
+        src={
+          typeof state.personal_information.form.pictures.files === "string"
+            ? state.personal_information.form.pictures.files
+            : !state.personal_information.form.pictures.files.length
+            ? ""
+            : URL.createObjectURL(
+                state.personal_information.form.pictures.files[0]
+              )
+        }
+        onChange={handleChangeUpload}
+        onDrop={handleDropUpload}
+      />
+
       <div
         className={clsx(
           "grid grid-cols-1 place-content-center place-items-center gap-[0.25rem]",
