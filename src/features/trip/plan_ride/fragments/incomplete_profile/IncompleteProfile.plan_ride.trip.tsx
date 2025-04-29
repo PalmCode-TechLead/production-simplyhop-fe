@@ -9,9 +9,9 @@ export const IncompleteProfilePlaneRideTrip = () => {
   const { state: userState } = React.useContext(UserContext);
   const dictionaries = getDictionaries();
 
-  if (!userState.profile || userState.profile?.is_able_to_ride) {
-    return null;
-  }
+  // if (!userState.profile || userState.profile?.is_able_to_ride) {
+  //   return null;
+  // }
 
   return (
     <div

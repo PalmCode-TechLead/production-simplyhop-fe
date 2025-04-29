@@ -12,8 +12,7 @@ export const FindTripContainer = () => {
       <div
         className={clsx(
           "absolute top-[1.5rem] left-[0px] translate-x-[1.5rem] lg:translate-x-[calc(1*(100vw-1344px)/2)] z-[10]",
-          "rounded-[0.5rem] lg:rounded-[1.25rem]",
-          "bg-[blue]"
+          "rounded-[0.5rem] lg:rounded-[1.25rem]"
         )}
       >
         <BadgeFindTrip />
