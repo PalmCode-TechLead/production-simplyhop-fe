@@ -73,8 +73,9 @@ export const PictureVehicleInformationFormVehicleUpdateSupport = () => {
 
   const handleDeletePicture = async (dataIndex: number) => {
     const file = state.vehicle_information.pictures.files.find(
-      (_, index) => index !== dataIndex
+      (_, index) => index === dataIndex
     );
+
     if (!!file) {
       if (!(file instanceof File)) {
         await deleteVehicleMedia({ id: file.id });

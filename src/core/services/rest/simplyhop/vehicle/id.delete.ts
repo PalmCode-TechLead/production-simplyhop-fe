@@ -14,7 +14,7 @@ export const fetchDeleteVehicleId = async (
 
     const cookies = new Cookies();
     const token = cookies.get("token");
-    const res = await axios.get(url, {
+    const res = await axios.delete(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
