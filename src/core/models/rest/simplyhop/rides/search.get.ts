@@ -14,7 +14,6 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   start_long?: number;
   destination_lat?: number;
   destination_long?: number;
-  "filter[departure_time]"?: string;
   available_seats__gte?: string;
   "filter[luggage_allowed]"?: boolean;
   music_availability?: boolean;
@@ -24,6 +23,7 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   "filter[user_id]"?: string;
   departure_time__gte?: string;
   departure_time__lte?: string;
+  departure_date?:string;
   //mandatory
   sort?: string;
   "page[number]"?: number;

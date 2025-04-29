@@ -35,6 +35,7 @@ export const useGetRideSearch = () => {
       start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
       destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
       destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
+      departure_date: dayjs(state.filters.date.selected).format("YYYY-MM-DD"),
       // start_lat: 52.5200066,
       // start_long: 13.414954,
       // destination_lat: 48.1351253,
