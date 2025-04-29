@@ -127,7 +127,7 @@ export const CarFacilityFilterDropdown = ({
                 <VehicleFilterOption
                   key={itemIndex}
                   label={item.name}
-                  variant={variant === "multiple" ? "checkbox" : "radio"}
+                  optionVariant={variant === "multiple" ? "checkbox" : "radio"}
                   checked={selected
                     .map((selectedItem) => selectedItem.id)
                     .includes(item.id)}

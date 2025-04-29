@@ -5,11 +5,11 @@ import { Radio, RadioProps } from "../radio";
 
 export type VehicleFilterOptionProps = CheckboxProps &
   RadioProps & {
-    variant?: "checkbox" | "radio";
+    optionVariant?: "checkbox" | "radio";
   };
 
 export const VehicleFilterOption = (props: VehicleFilterOptionProps) => {
-  const { label, variant = "checkbox", ...otherProps } = props;
+  const { label, optionVariant = "checkbox", ...otherProps } = props;
   return (
     <div
       className={clsx(
@@ -19,7 +19,7 @@ export const VehicleFilterOption = (props: VehicleFilterOptionProps) => {
       )}
     >
       {label}
-      {variant === "checkbox" ? (
+      {optionVariant === "checkbox" ? (
         <Checkbox {...otherProps} />
       ) : (
         <Radio {...otherProps} />
