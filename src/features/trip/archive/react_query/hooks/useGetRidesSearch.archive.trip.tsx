@@ -32,6 +32,7 @@ export const useGetRidesSearch = () => {
         .add(1, "day")
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
+      sort: "-departure_time",
     },
   };
   const query = useQuery<
