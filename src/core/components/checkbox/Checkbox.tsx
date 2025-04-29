@@ -11,12 +11,14 @@ import SVGIcon from "../../icons";
 export interface CheckboxProps extends CheckboxComponentProps {
   label?: string;
   required?: boolean;
+  variant?: "primary" | "secondary";
 }
 
 export const Checkbox = ({
   label = "",
   required = false,
   className,
+  variant = "primary",
   ...otherProps
 }: CheckboxProps) => {
   const ref = useRef<HTMLElement | null>(null);
@@ -35,9 +37,15 @@ export const Checkbox = ({
         className={clsx(
           "outline-none",
           "w-[1.25rem] h-[1.25rem]",
-          otherProps.checked ? "bg-[#5AC53D]" : "bg-transparent",
           otherProps.checked
-            ? "border-[1px] border-[#5AC53D]"
+            ? variant === "secondary"
+              ? "bg-[#333FFF]"
+              : "bg-[#5AC53D]"
+            : "bg-transparent",
+          otherProps.checked
+            ? variant === "secondary"
+              ? "border-[1px] border-[#333FFF]"
+              : "border-[1px] border-[#5AC53D]"
             : "border-[1px] border-[#98989E]",
           "rounded-[0.25rem]",
           "flex items-center justify-center",

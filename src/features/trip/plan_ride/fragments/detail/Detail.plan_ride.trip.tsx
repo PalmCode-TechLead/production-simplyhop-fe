@@ -606,6 +606,7 @@ export const DetailPlanRideTrip = () => {
               )}
             >
               <Checkbox
+                variant="secondary"
                 checked={state.detail.form.tnc.checked}
                 onChange={handleCheckTNC}
               />
