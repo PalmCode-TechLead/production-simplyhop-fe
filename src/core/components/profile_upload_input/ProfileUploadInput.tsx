@@ -185,7 +185,10 @@ export const ProfileUploadInput = ({
               "grid grid-cols-1 lg:grid-flow-col place-content-center place-items-center gap-[0.25rem]"
             )}
           >
-            <SVGIcon name="Camera" className={clsx("text-[#5AC53D]")} />
+            <SVGIcon
+              name="Camera"
+              className={clsx("w-[1rem] h-[1rem]", "text-[#5AC53D]")}
+            />
           </div>
         )}
       </div>
