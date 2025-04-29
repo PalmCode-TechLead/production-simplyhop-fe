@@ -26,6 +26,7 @@ export const useGetVehicleId = () => {
     },
     params: {
       include: "brand",
+      append: "image",
     },
   };
   const query = useQuery<

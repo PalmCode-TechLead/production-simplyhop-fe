@@ -16,6 +16,7 @@ export interface GetVehicleIdPathPayloadRequestInterface {
 
 export type GetVehicleIdParamsPayloadRequestInterface = {
   include?: string;
+  append?: string;
 };
 
 export type GetVehicleIdResponseInterface = NextApiResponse<
