@@ -141,121 +141,110 @@ export const PersonalInformationFormRegistrationProfile = () => {
 
   return (
     <div
-      id={dictionaries.personal_information.id}
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
         "w-full"
       )}
     >
-      <h2 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
-        {dictionaries.personal_information.form.title}
-      </h2>
+      <Textfield
+        labelProps={{
+          ...dictionaries.personal_information.form.input.email.labelProps,
+        }}
+        inputProps={{
+          ...dictionaries.personal_information.form.input.email.inputProps,
+          value: !userState.profile?.email.length
+            ? "-"
+            : userState.profile.email,
+        }}
+        disabled
+      />
+
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
+          "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
           "w-full"
         )}
       >
         <Textfield
           labelProps={{
-            ...dictionaries.personal_information.form.input.email.labelProps,
+            ...dictionaries.personal_information.form.input.first_name
+              .labelProps,
           }}
           inputProps={{
-            ...dictionaries.personal_information.form.input.email.inputProps,
-            value: !userState.profile?.email.length
-              ? "-"
-              : userState.profile.email,
+            ...dictionaries.personal_information.form.input.first_name
+              .inputProps,
+            value: state.personal_information.form.first_name.value,
+            onChange: handleChangeFirstName,
           }}
-          disabled
+          error={state.personal_information.form.first_name.error?.name}
         />
-
-        <div
-          className={clsx(
-            "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-            "w-full"
-          )}
-        >
-          <Textfield
-            labelProps={{
-              ...dictionaries.personal_information.form.input.first_name
-                .labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.personal_information.form.input.first_name
-                .inputProps,
-              value: state.personal_information.form.first_name.value,
-              onChange: handleChangeFirstName,
-            }}
-            error={state.personal_information.form.first_name.error?.name}
-          />
-          <Textfield
-            labelProps={{
-              ...dictionaries.personal_information.form.input.last_name
-                .labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.personal_information.form.input.last_name
-                .inputProps,
-              value: state.personal_information.form.last_name.value,
-              onChange: handleChangeLastName,
-            }}
-            error={state.personal_information.form.last_name.error?.name}
-          />
-        </div>
-        <Dropdownfield
+        <Textfield
           labelProps={{
-            ...dictionaries.personal_information.form.input.gender.labelProps,
+            ...dictionaries.personal_information.form.input.last_name
+              .labelProps,
           }}
           inputProps={{
-            ...dictionaries.personal_information.form.input.gender.inputProps,
+            ...dictionaries.personal_information.form.input.last_name
+              .inputProps,
+            value: state.personal_information.form.last_name.value,
+            onChange: handleChangeLastName,
           }}
-          selected={state.personal_information.form.gender.selected}
-          items={globalDictionaries.personal_information.gender.options.items}
-          onSelect={handleSelectGender}
-        />
-        <div
-          className={clsx(
-            "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
-            "w-full"
-          )}
-        >
-          <Textfield
-            labelProps={{
-              ...dictionaries.personal_information.form.input.city.labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.personal_information.form.input.city.inputProps,
-              value: state.personal_information.form.city.value,
-              onChange: handleChangeCity,
-            }}
-            error={state.personal_information.form.city.error?.name}
-          />
-          <Textfield
-            labelProps={{
-              ...dictionaries.personal_information.form.input.phonenumber
-                .labelProps,
-            }}
-            inputProps={{
-              ...dictionaries.personal_information.form.input.phonenumber
-                .inputProps,
-              value: state.personal_information.form.phonenumber.value,
-              onChange: handleChangePhonenumber,
-            }}
-            error={state.personal_information.form.phonenumber.error?.name}
-          />
-        </div>
-
-        <Textareafield
-          labelProps={{
-            ...dictionaries.personal_information.form.input.about_me.labelProps,
-          }}
-          inputProps={{
-            ...dictionaries.personal_information.form.input.about_me.inputProps,
-            value: state.personal_information.form.about_me.value,
-            onChange: handleChangeAboutMe,
-          }}
+          error={state.personal_information.form.last_name.error?.name}
         />
       </div>
+      <Dropdownfield
+        labelProps={{
+          ...dictionaries.personal_information.form.input.gender.labelProps,
+        }}
+        inputProps={{
+          ...dictionaries.personal_information.form.input.gender.inputProps,
+        }}
+        selected={state.personal_information.form.gender.selected}
+        items={globalDictionaries.personal_information.gender.options.items}
+        onSelect={handleSelectGender}
+      />
+      <div
+        className={clsx(
+          "grid grid-cols-1 md:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+          "w-full"
+        )}
+      >
+        <Textfield
+          labelProps={{
+            ...dictionaries.personal_information.form.input.city.labelProps,
+          }}
+          inputProps={{
+            ...dictionaries.personal_information.form.input.city.inputProps,
+            value: state.personal_information.form.city.value,
+            onChange: handleChangeCity,
+          }}
+          error={state.personal_information.form.city.error?.name}
+        />
+        <Textfield
+          labelProps={{
+            ...dictionaries.personal_information.form.input.phonenumber
+              .labelProps,
+          }}
+          inputProps={{
+            ...dictionaries.personal_information.form.input.phonenumber
+              .inputProps,
+            value: state.personal_information.form.phonenumber.value,
+            onChange: handleChangePhonenumber,
+          }}
+          error={state.personal_information.form.phonenumber.error?.name}
+        />
+      </div>
+
+      <Textareafield
+        labelProps={{
+          ...dictionaries.personal_information.form.input.about_me.labelProps,
+        }}
+        inputProps={{
+          ...dictionaries.personal_information.form.input.about_me.inputProps,
+          value: state.personal_information.form.about_me.value,
+          onChange: handleChangeAboutMe,
+        }}
+      />
     </div>
   );
 };

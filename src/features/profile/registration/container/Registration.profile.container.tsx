@@ -60,8 +60,19 @@ export const RegistrationProfileContainer = () => {
               "px-[0rem] py-[0rem] lg:px-[1.5rem] lg:py-[1.5rem]"
             )}
           >
-            <PersonalInformationFormRegistrationProfile />
-            <PicturePersonalInformationFormRegistrationProfile />
+            <div
+              id={dictionaries.personal_information.id}
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+                "w-full"
+              )}
+            >
+              <h2 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>
+                {dictionaries.personal_information.form.title}
+              </h2>
+              <PicturePersonalInformationFormRegistrationProfile />
+              <PersonalInformationFormRegistrationProfile />
+            </div>
             <Divider />
             <RidePlanFormRegistrationProfile />
             {state.ride_plan.form.offer_trip.selected?.id === "yes" && (

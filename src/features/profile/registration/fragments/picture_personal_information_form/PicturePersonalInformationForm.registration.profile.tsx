@@ -1,13 +1,12 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
-import { UploadInput } from "@/core/components/upload_input";
 import {
   RegistrationProfileActionEnum,
   RegistrationProfileContext,
 } from "../../context";
-import { UploadImagePreview } from "@/core/components/upload_image_preview/UploadImagePreview";
-import { SquareUploadInput } from "@/core/components/square_upload_input";
+import { ProfileUploadInput } from "@/core/components/profile_upload_input";
+import { Avatar } from "@/core/components/avatar";
 
 export const PicturePersonalInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
@@ -100,9 +99,34 @@ export const PicturePersonalInformationFormRegistrationProfile = () => {
         "w-full"
       )}
     >
+      {/* form */}
+      {!state.personal_information.form.pictures.files.length ? (
+        <ProfileUploadInput
+          onChange={handleChangeUpload}
+          onDrop={handleDropUpload}
+        />
+      ) : (
+        <div
+          className={clsx(
+            "flex items-start justify-center gap-[0.75rem] flex-wrap",
+            "w-full"
+          )}
+        >
+          <Avatar
+            src={
+              typeof state.personal_information.form.pictures.files === "string"
+                ? state.personal_information.form.pictures.files
+                : URL.createObjectURL(
+                    state.personal_information.form.pictures.files[0]
+                  )
+            }
+            className={clsx("w-[130px] h-[130px]")}
+          />
+        </div>
+      )}
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
+          "grid grid-cols-1 place-content-center place-items-center gap-[0.25rem]",
           "w-full"
         )}
       >
@@ -113,46 +137,6 @@ export const PicturePersonalInformationFormRegistrationProfile = () => {
           {dictionaries.personal_information.form.input.pictures.description}
         </p>
       </div>
-
-      {/* form */}
-      {!state.personal_information.form.pictures.files.length ? (
-        <UploadInput
-          message={
-            dictionaries.personal_information.form.input.pictures.form.message
-          }
-          description={
-            dictionaries.personal_information.form.input.pictures.form
-              .description
-          }
-          onChange={handleChangeUpload}
-          onDrop={handleDropUpload}
-        />
-      ) : (
-        <div
-          className={clsx(
-            "flex items-start justify-start gap-[0.75rem] flex-wrap",
-            "w-full"
-          )}
-        >
-          {state.personal_information.form.pictures.files.map(
-            (item, itemIndex) => (
-              <UploadImagePreview
-                key={itemIndex}
-                id={String(itemIndex)}
-                blob={item}
-                onDelete={() => handleDeletePicture(itemIndex)}
-              />
-            )
-          )}
-          <SquareUploadInput
-            label={
-              dictionaries.personal_information.form.input.pictures.square_input
-                .form.label
-            }
-            onChange={handleChangeAddUpload}
-          />
-        </div>
-      )}
     </div>
   );
 };
