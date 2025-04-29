@@ -7,7 +7,7 @@
     },
     "labelProps": {
       "id": "search",
-      "children": "Search people or message",
+      "children": "Personen oder Nachricht suchen",
       "required": false
     }
   },
