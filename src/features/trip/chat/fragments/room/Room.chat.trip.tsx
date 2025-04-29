@@ -257,23 +257,19 @@ export const RoomChatTrip = () => {
       </RoomConversationContainerChatTrip>
 
       {/* action commentar */}
-      <form
+      <div
         className={clsx(
           "grid-cols-[1.5rem_1fr_auto]",
-          "grid  items-center content-center justify-start justify-items-start gap-[0.625rem]",
+          "grid items-center content-center justify-start justify-items-start gap-[0.625rem]",
           "w-full",
           "px-[1rem] lg:px-[2.5rem] py-[1rem]",
           "border-t border-t-[#DFDFDF]"
         )}
-        onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          handleClickSend();
-        }}
       >
         <div className={clsx("relative")}>
           <button
             onClick={() => {
-              if (!isDisabledSendChat) return;
+              if (isDisabledSendChat) return;
               handleClickEmoji();
             }}
           >
@@ -301,6 +297,11 @@ export const RoomChatTrip = () => {
             disabled: state.room.booking.status !== "accepted",
             value: state.room.chat.input.value,
             onChange: handleChangeChat,
+            onKeyDown: (e) => {
+              if (e.key === "Enter") {
+                handleClickSend();
+              }
+            },
           }}
         />
         <button
@@ -327,7 +328,7 @@ export const RoomChatTrip = () => {
             />
           )}
         </button>
-      </form>
+      </div>
     </div>
   );
 };
