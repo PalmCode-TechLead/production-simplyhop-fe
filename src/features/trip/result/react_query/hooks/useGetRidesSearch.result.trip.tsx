@@ -16,8 +16,11 @@ import { SVGIconProps } from "@/core/icons";
 import { usePathname, useSearchParams } from "next/navigation";
 import { RIDE_FILTER } from "@/core/enums";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
+import { UserContext } from "@/core/modules/app/context";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const useGetRideSearch = () => {
+  const { state: userState } = React.useContext(UserContext);
   const globalDictionaries = getGlobalDictionaries();
   const { state, dispatch } = React.useContext(ResultTripContext);
   const pathname = usePathname();
@@ -333,7 +336,9 @@ export const useGetRideSearch = () => {
               },
               cta: {
                 ride: {
-                  href: `${fullPath}&${RIDE_FILTER.RIDE_ID}=${item.id}`,
+                  href: !userState.profile
+                    ? AppCollectionURL.public.login()
+                    : `${fullPath}&${RIDE_FILTER.RIDE_ID}=${item.id}`,
                   children: "Mitfahren",
                 },
               },
