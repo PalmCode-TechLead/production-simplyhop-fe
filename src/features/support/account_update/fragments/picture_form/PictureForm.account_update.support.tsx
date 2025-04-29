@@ -7,7 +7,6 @@ import {
   AccountUpdateSupportContext,
 } from "../../context";
 import { ProfileUploadInput } from "@/core/components/profile_upload_input";
-import { Avatar } from "@/core/components/avatar";
 
 export const PictureFormAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();

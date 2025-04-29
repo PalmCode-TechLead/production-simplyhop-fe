@@ -6,7 +6,6 @@ import {
   RegistrationProfileContext,
 } from "../../context";
 import { ProfileUploadInput } from "@/core/components/profile_upload_input";
-import { Avatar } from "@/core/components/avatar";
 
 export const PicturePersonalInformationFormRegistrationProfile = () => {
   const dictionaries = getDictionaries();
