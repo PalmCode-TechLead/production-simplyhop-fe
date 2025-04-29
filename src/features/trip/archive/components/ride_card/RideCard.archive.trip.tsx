@@ -26,6 +26,7 @@ import {
   DriverProfileLabelProps,
 } from "@/core/components/driver_profile_label";
 import Link from "next/link";
+import { DepartureDateItem } from "@/core/components/departure_date_item";
 
 export interface RideCardArchiveTripProps {
   id?: string;
@@ -135,6 +136,7 @@ export const RideCardArchiveTrip = ({
           )}
         >
           <DriverProfileLabel {...driver.profile} />
+          <DepartureDateItem {...routes.date} />
           <div
             className={clsx(
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
