@@ -51,9 +51,7 @@ export const AutocompleteAuto = ({
 
   const filteredItems = !query.length
     ? items
-    : type === "async"
-    ? items
-    : !search
+    : !!selected && query === selected.name
     ? items
     : items.filter((item) =>
         item.name
@@ -98,7 +96,7 @@ export const AutocompleteAuto = ({
               }}
               onChange={(event) => {
                 if (disabled) return;
-                setIsOpen(!!event.target.value.length);
+
                 setQuery(event.target.value);
                 if (debounceQuery) {
                   debounced(event.target.value);
@@ -139,7 +137,7 @@ export const AutocompleteAuto = ({
                   key={index}
                   className={clsx(
                     selected?.id === item.id
-                      ? "font-bold text-[#FF6201]"
+                      ? "font-bold text-[#333FFF]"
                       : "font-normal text-[#201E2C]"
                   )}
                   onClick={() => handleChange(item)}
