@@ -11,4 +11,10 @@ export const VehicleUpdateSupportReactQueryKey = {
   PostVehicleUpdate: () => {
     return ["VehicleUpdateSupportReactQueryKey.PostVehicleUpdate"];
   },
+  DeleteVehicleId: () => {
+    return ["VehicleUpdateSupportReactQueryKey.DeleteVehicleId"];
+  },
+  DeleteVehicleMedia: () => {
+    return ["VehicleUpdateSupportReactQueryKey.DeleteVehicleMedia"];
+  },
 };

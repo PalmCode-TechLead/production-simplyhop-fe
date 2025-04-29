@@ -9,6 +9,8 @@ import { TripVehicleInformationFormVehicleUpdateSupport } from "../fragments/tri
 import { CTAVehicleUpdateSupport } from "../fragments/cta";
 import { NotificationVehicleUpdateSupport } from "../fragments/notification";
 import { useGetVehicleId } from "../react_query/hooks/useGetVehicleId.vehicle_update.support";
+import { DeleteNotificationVehicleUpdateSupport } from "../fragments/delete_notification";
+import { SuccessDeleteNotificationVehicleUpdateSupport } from "../fragments/success_delete_notification";
 
 export const VehicleUpdateSupportContainer = () => {
   const dictionaries = getDictionaries();
@@ -71,6 +73,8 @@ export const VehicleUpdateSupportContainer = () => {
       </div>
 
       <NotificationVehicleUpdateSupport />
+      <DeleteNotificationVehicleUpdateSupport />
+      <SuccessDeleteNotificationVehicleUpdateSupport />
     </>
   );
 };

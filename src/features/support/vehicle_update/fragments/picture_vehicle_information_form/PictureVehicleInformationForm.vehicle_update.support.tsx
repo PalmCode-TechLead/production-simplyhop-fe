@@ -8,10 +8,17 @@ import {
 } from "../../context";
 import { UploadImagePreview } from "@/core/components/upload_image_preview/UploadImagePreview";
 import { SquareUploadInput } from "@/core/components/square_upload_input";
+import { useDeleteVehicleMedia } from "../../react_query/hooks";
 
 export const PictureVehicleInformationFormVehicleUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
+
+  const {
+    mutateAsync: deleteVehicleMedia,
+    isPending: isPendingDeleteVehicleMedia,
+  } = useDeleteVehicleMedia();
+
   const handleChangeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
@@ -64,19 +71,27 @@ export const PictureVehicleInformationFormVehicleUpdateSupport = () => {
     });
   };
 
-  const handleDeletePicture = (dataIndex: number) => {
-    dispatch({
-      type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
-      payload: {
-        ...state.vehicle_information,
-        pictures: {
-          ...state.vehicle_information.pictures,
-          files: state.vehicle_information.pictures.files.filter(
-            (_, index) => index !== dataIndex
-          ),
+  const handleDeletePicture = async (dataIndex: number) => {
+    const file = state.vehicle_information.pictures.files.find(
+      (_, index) => index !== dataIndex
+    );
+    if (!!file) {
+      if (!(file instanceof File)) {
+        await deleteVehicleMedia({ id: file.id });
+      }
+      dispatch({
+        type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
+        payload: {
+          ...state.vehicle_information,
+          pictures: {
+            ...state.vehicle_information.pictures,
+            files: state.vehicle_information.pictures.files.filter(
+              (_, index) => index !== dataIndex
+            ),
+          },
         },
-      },
-    });
+      });
+    }
   };
   return (
     <div
@@ -120,8 +135,15 @@ export const PictureVehicleInformationFormVehicleUpdateSupport = () => {
             <UploadImagePreview
               key={itemIndex}
               id={String(itemIndex)}
-              blob={item}
-              onDelete={() => handleDeletePicture(itemIndex)}
+              src={
+                item instanceof File
+                  ? window.URL.createObjectURL(item as Blob)
+                  : item.image_url
+              }
+              cta={{
+                disabled: isPendingDeleteVehicleMedia,
+                onDelete: () => handleDeletePicture(itemIndex),
+              }}
             />
           ))}
           <SquareUploadInput

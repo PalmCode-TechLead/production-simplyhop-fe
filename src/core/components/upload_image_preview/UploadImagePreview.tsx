@@ -4,14 +4,20 @@ import SVGIcon from "@/core/icons";
 
 export interface UploadImagePreviewProps {
   id?: string;
-  blob?: Blob;
-  onDelete?: () => void;
+  src?: string;
+  cta?: {
+    disabled: boolean;
+    onDelete?: () => void;
+  };
 }
 
 export const UploadImagePreview = ({
   id = "",
-  blob,
-  onDelete = () => {},
+  src,
+  cta = {
+    disabled: false,
+    onDelete: () => {},
+  },
 }: UploadImagePreviewProps) => {
   return (
     <div
@@ -26,10 +32,14 @@ export const UploadImagePreview = ({
           "object-cover object-center",
           "rounded-[0.625rem]"
         )}
-        src={window.URL.createObjectURL(blob as Blob)}
+        src={src}
         alt={`image-${id}`}
       />
-      <button className={clsx('cursor-pointer')} onClick={onDelete}>
+      <button
+        disabled={cta.disabled}
+        className={clsx("cursor-pointer")}
+        onClick={cta.onDelete}
+      >
         <SVGIcon
           name="Trash"
           className={clsx("w-[1rem] h-[1rem]", "text-[#C50707]")}

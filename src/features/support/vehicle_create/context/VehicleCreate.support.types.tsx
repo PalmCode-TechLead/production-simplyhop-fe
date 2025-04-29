@@ -47,7 +47,7 @@ export interface VehicleCreateSupportVehicleInformation {
     };
   };
   pictures: {
-    files: File[];
+    files: ({ id: string; image_url: string } | File)[];
   };
   capacity: {
     passenger_seats: {

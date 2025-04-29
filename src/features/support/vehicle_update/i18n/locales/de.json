@@ -197,10 +197,29 @@
     }
   },
   "notification": {
-    "title": "Kontoregistrierung abgeschlossen",
+    "title": "Fahrzeuginformationen update is complete",
     "cta": {
       "back": {
-        "children": "Zurück zur Startseite"
+        "children": "Zurück"
+      }
+    }
+  },
+  "delete_notification": {
+    "title": "Bist du sicher, dass du das Fahrzeug löschen möchtest?",
+    "cta": {
+      "back": {
+        "children": "Zurück"
+      },
+      "confirm": {
+        "children": "Löschen"
+      }
+    }
+  },
+  "success_delete_notification": {
+    "title": "Dein Fahrzeug wurde erfolgreich gelöscht.",
+    "cta": {
+      "back": {
+        "children": "Zurück"
       }
     }
   }

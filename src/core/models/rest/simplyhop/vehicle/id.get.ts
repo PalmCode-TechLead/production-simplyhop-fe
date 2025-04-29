@@ -29,6 +29,7 @@ export interface GetVehicleIdSuccessResponseInterface {
   message: string;
   data: {
     id: number; // 1;
+    category_id: number; // 1;
     model: string; //"qui";
     color: string; //"purple";
     plate_license: string; //"SA317CO";

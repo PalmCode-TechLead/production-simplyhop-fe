@@ -25,7 +25,7 @@ export const useGetVehicleId = () => {
       id: Number(String(params.id)),
     },
     params: {
-      include: "brand",
+      include: "brand,category",
       append: "image",
     },
   };
@@ -95,7 +95,12 @@ export const useGetVehicleId = () => {
           },
           pictures: {
             ...state.vehicle_information.pictures,
-            // files: [],
+            files: data.data.media.map((item) => {
+              return {
+                id: String(item.id),
+                image_url: item.original_url,
+              };
+            }),
           },
           capacity: {
             ...state.vehicle_information.capacity,

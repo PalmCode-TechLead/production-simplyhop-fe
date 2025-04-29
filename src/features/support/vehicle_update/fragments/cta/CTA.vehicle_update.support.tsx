@@ -31,14 +31,21 @@ export const CTAVehicleUpdateSupport = () => {
   const isSaveDisabled = isPendingPostVehicleUpdate;
   const isSaveLoading = isPendingPostVehicleUpdate;
   return (
-    <Button
-      disabled={isSaveDisabled}
-      isLoading={isSaveLoading}
-      className={clsx("py-[1rem]")}
-      onClick={handleClickSave}
+    <div
+      className={clsx(
+        "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[0.5rem]",
+        "w-full"
+      )}
     >
-      {isSaveLoading && <MoonLoader size={20} color={"white"} />}
-      {dictionaries.cta.save.children}
-    </Button>
+      <Button
+        disabled={isSaveDisabled}
+        isLoading={isSaveLoading}
+        className={clsx("py-[1rem]")}
+        onClick={handleClickSave}
+      >
+        {isSaveLoading && <MoonLoader size={20} color={"white"} />}
+        {dictionaries.cta.save.children}
+      </Button>
+    </div>
   );
 };

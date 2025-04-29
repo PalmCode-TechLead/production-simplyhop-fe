@@ -12,18 +12,22 @@ import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { useDeleteVehicleId } from "../../react_query/hooks";
 
-export const NotificationVehicleUpdateSupport = () => {
+export const DeleteNotificationVehicleUpdateSupport = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
   const { isLg } = useTailwindBreakpoint();
-  const isOpen = state.notification.is_open;
+
+  const { mutateAsync: deleteVehicleId } = useDeleteVehicleId();
+
+  const isOpen = state.delete_notification.is_open;
   const handleClose = () => {
     dispatch({
-      type: VehicleUpdateSupportActionEnum.SetNotificationData,
+      type: VehicleUpdateSupportActionEnum.SetDeleteNotificationData,
       payload: {
-        ...state.notification,
+        ...state.delete_notification,
         is_open: false,
       },
     });
@@ -31,13 +35,32 @@ export const NotificationVehicleUpdateSupport = () => {
 
   const handleClickGoToHomepage = () => {
     dispatch({
-      type: VehicleUpdateSupportActionEnum.SetNotificationData,
+      type: VehicleUpdateSupportActionEnum.SetDeleteNotificationData,
       payload: {
-        ...state.notification,
+        ...state.delete_notification,
         is_open: false,
       },
     });
     router.push(AppCollectionURL.private.support_vehicles());
+  };
+
+  const handleClickDelete = async () => {
+    const res = await deleteVehicleId();
+    if (!res) return;
+    dispatch({
+      type: VehicleUpdateSupportActionEnum.SetDeleteNotificationData,
+      payload: {
+        ...state.delete_notification,
+        is_open: false,
+      },
+    });
+    dispatch({
+      type: VehicleUpdateSupportActionEnum.SetSuccessDeleteNotificationData,
+      payload: {
+        ...state.success_delete_notification,
+        is_open: true,
+      },
+    });
   };
   return (
     <AdaptiveModal
@@ -84,14 +107,32 @@ export const NotificationVehicleUpdateSupport = () => {
         <h1
           className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
         >
-          {dictionaries.notification.title}
+          {dictionaries.delete_notification.title}
         </h1>
 
         <div className={clsx("w-full h-[1.25rem]")} />
 
-        <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
-          {dictionaries.notification.cta.back.children}
-        </Button>
+        <div
+          className={clsx(
+            "grid grid-cols-1 lg:grid-cols-2 place-content-center place-items-center gap-[1rem]",
+            "w-full"
+          )}
+        >
+          <Button className={clsx("py-[1rem]")} onClick={handleClose}>
+            {dictionaries.delete_notification.cta.back.children}
+          </Button>
+          <button
+            className={clsx(
+              "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
+              "w-full h-full",
+              "text-[1rem] text-[#DA2323] font-medium",
+              "cursor-pointer"
+            )}
+            onClick={handleClickDelete}
+          >
+            {dictionaries.delete_notification.cta.confirm.children}
+          </button>
+        </div>
       </div>
     </AdaptiveModal>
   );

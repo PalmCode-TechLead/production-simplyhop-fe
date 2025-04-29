@@ -79,7 +79,9 @@ export const usePostVehicleUpdate = () => {
         size_of_luggages:
           state.vehicle_information.capacity.luggage.form.luggage_size.selected
             ?.id ?? "",
-        "image[]": state.vehicle_information.pictures.files,
+        "image[]": state.vehicle_information.pictures.files.filter(
+          (item) => item instanceof File
+        ),
       };
       const formData = new FormData();
 

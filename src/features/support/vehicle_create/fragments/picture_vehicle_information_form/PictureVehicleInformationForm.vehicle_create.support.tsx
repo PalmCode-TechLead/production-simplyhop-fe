@@ -120,8 +120,15 @@ export const PictureVehicleInformationFormVehicleCreateSupport = () => {
             <UploadImagePreview
               key={itemIndex}
               id={String(itemIndex)}
-              blob={item}
-              onDelete={() => handleDeletePicture(itemIndex)}
+              src={
+                item instanceof File
+                  ? window.URL.createObjectURL(item as Blob)
+                  : item.image_url
+              }
+              cta={{
+                disabled: false,
+                onDelete: () => handleDeletePicture(itemIndex),
+              }}
             />
           ))}
           <SquareUploadInput

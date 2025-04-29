@@ -5,7 +5,9 @@ import {
   VehicleUpdateSupportInitialStateType,
 } from "./VehicleUpdate.support.types";
 import {
+  VehicleUpdateSupportDeleteNotificationReducers,
   VehicleUpdateSupportNotificationReducers,
+  VehicleUpdateSupportSuccessDeleteNotificationReducers,
   VehicleUpdateSupportVehicleInformationReducers,
 } from "./VehicleUpdate.support.reducers";
 
@@ -90,6 +92,12 @@ const initialState: VehicleUpdateSupportInitialStateType = {
   notification: {
     is_open: false,
   },
+  delete_notification: {
+    is_open: false,
+  },
+  success_delete_notification: {
+    is_open: false,
+  },
 };
 
 const VehicleUpdateSupportContext = createContext<{
@@ -101,7 +109,12 @@ const VehicleUpdateSupportContext = createContext<{
 });
 
 const mainReducer = (
-  { vehicle_information, notification }: VehicleUpdateSupportInitialStateType,
+  {
+    vehicle_information,
+    notification,
+    delete_notification,
+    success_delete_notification,
+  }: VehicleUpdateSupportInitialStateType,
   action: VehicleUpdateSupportActions
 ) => ({
   vehicle_information: VehicleUpdateSupportVehicleInformationReducers(
@@ -109,6 +122,15 @@ const mainReducer = (
     action
   ),
   notification: VehicleUpdateSupportNotificationReducers(notification, action),
+  delete_notification: VehicleUpdateSupportDeleteNotificationReducers(
+    delete_notification,
+    action
+  ),
+  success_delete_notification:
+    VehicleUpdateSupportSuccessDeleteNotificationReducers(
+      success_delete_notification,
+      action
+    ),
 });
 
 const VehicleUpdateSupportProvider = (props: { children: React.ReactNode }) => {

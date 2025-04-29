@@ -15,6 +15,8 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface VehicleUpdateSupportInitialStateType {
   vehicle_information: VehicleUpdateSupportVehicleInformation;
   notification: VehicleUpdateSupportNotification;
+  delete_notification: VehicleUpdateSupportDeleteNotification;
+  success_delete_notification: VehicleUpdateSupportSuccessDeleteNotification;
 }
 
 // State Collection Types consist of:
@@ -47,7 +49,7 @@ export interface VehicleUpdateSupportVehicleInformation {
     };
   };
   pictures: {
-    files: File[];
+    files: ({ id: string; image_url: string } | File)[];
   };
   capacity: {
     passenger_seats: {
@@ -101,17 +103,31 @@ export interface VehicleUpdateSupportNotification {
   is_open: boolean;
 }
 
+export interface VehicleUpdateSupportDeleteNotification {
+  is_open: boolean;
+}
+
+export interface VehicleUpdateSupportSuccessDeleteNotification {
+  is_open: boolean;
+}
+
 export enum VehicleUpdateSupportActionEnum {
   // VehicleInformation
   SetVehicleInformationData = "SetVehicleInformationData",
   // Notification
   SetNotificationData = "SetNotificationData",
+  // DeleteNotification
+  SetDeleteNotificationData = "SetDeleteNotificationData",
+  // SuccessDeleteNotification
+  SetSuccessDeleteNotificationData = "SetSuccessDeleteNotificationData",
 }
 
 // Action Collection Types
 export type VehicleUpdateSupportActions =
   | VehicleUpdateSupportVehicleInformationActions
-  | VehicleUpdateSupportNotificationActions;
+  | VehicleUpdateSupportNotificationActions
+  | VehicleUpdateSupportDeleteNotificationActions
+  | VehicleUpdateSupportSuccessDeleteNotificationActions;
 
 // Action Collection Types consist of:
 
@@ -130,3 +146,19 @@ type VehicleUpdateSupportNotificationPayload = {
 
 export type VehicleUpdateSupportNotificationActions =
   ActionMap<VehicleUpdateSupportNotificationPayload>[keyof ActionMap<VehicleUpdateSupportNotificationPayload>];
+
+// DeleteNotification
+type VehicleUpdateSupportDeleteNotificationPayload = {
+  [VehicleUpdateSupportActionEnum.SetDeleteNotificationData]: VehicleUpdateSupportDeleteNotification;
+};
+
+export type VehicleUpdateSupportDeleteNotificationActions =
+  ActionMap<VehicleUpdateSupportDeleteNotificationPayload>[keyof ActionMap<VehicleUpdateSupportDeleteNotificationPayload>];
+
+// SuccessDeleteNotification
+type VehicleUpdateSupportSuccessDeleteNotificationPayload = {
+  [VehicleUpdateSupportActionEnum.SetSuccessDeleteNotificationData]: VehicleUpdateSupportSuccessDeleteNotification;
+};
+
+export type VehicleUpdateSupportSuccessDeleteNotificationActions =
+  ActionMap<VehicleUpdateSupportSuccessDeleteNotificationPayload>[keyof ActionMap<VehicleUpdateSupportSuccessDeleteNotificationPayload>];

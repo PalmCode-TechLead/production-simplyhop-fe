@@ -13,27 +13,28 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 
-export const NotificationVehicleUpdateSupport = () => {
+export const SuccessDeleteNotificationVehicleUpdateSupport = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
   const { isLg } = useTailwindBreakpoint();
-  const isOpen = state.notification.is_open;
+  const isOpen = state.success_delete_notification.is_open;
   const handleClose = () => {
     dispatch({
-      type: VehicleUpdateSupportActionEnum.SetNotificationData,
+      type: VehicleUpdateSupportActionEnum.SetSuccessDeleteNotificationData,
       payload: {
-        ...state.notification,
+        ...state.success_delete_notification,
         is_open: false,
       },
     });
+    router.push(AppCollectionURL.private.support_vehicles());
   };
 
   const handleClickGoToHomepage = () => {
     dispatch({
-      type: VehicleUpdateSupportActionEnum.SetNotificationData,
+      type: VehicleUpdateSupportActionEnum.SetSuccessDeleteNotificationData,
       payload: {
-        ...state.notification,
+        ...state.success_delete_notification,
         is_open: false,
       },
     });
@@ -84,13 +85,13 @@ export const NotificationVehicleUpdateSupport = () => {
         <h1
           className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
         >
-          {dictionaries.notification.title}
+          {dictionaries.success_delete_notification.title}
         </h1>
 
         <div className={clsx("w-full h-[1.25rem]")} />
 
         <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
-          {dictionaries.notification.cta.back.children}
+          {dictionaries.success_delete_notification.cta.back.children}
         </Button>
       </div>
     </AdaptiveModal>
