@@ -93,24 +93,7 @@ export const Alert = ({
           {message}
         </span>
       </div>
-      {cta && (
-        <button onClick={cta.onClick}>
-          {cta.children}
-          <SVGIcon
-            name={"X"}
-            className={clsx(
-              "w-[1rem] h-[1rem]",
-              variant === "error"
-                ? "text-[#FF0066]"
-                : variant === "success"
-                ? "text-[#67A981]"
-                : variant === "warning"
-                ? "text-[#DA9D03]"
-                : "text-[#6A6872]"
-            )}
-          />
-        </button>
-      )}
+      {cta && <button onClick={cta.onClick}>{cta.children}</button>}
     </div>
   );
 };
