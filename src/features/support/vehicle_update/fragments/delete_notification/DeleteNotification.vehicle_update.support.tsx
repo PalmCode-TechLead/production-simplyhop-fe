@@ -10,12 +10,9 @@ import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { useRouter } from "next/navigation";
-import { AppCollectionURL } from "@/core/utils/router/constants";
 import { useDeleteVehicleId } from "../../react_query/hooks";
 
 export const DeleteNotificationVehicleUpdateSupport = () => {
-  const router = useRouter();
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
   const { isLg } = useTailwindBreakpoint();
@@ -31,17 +28,6 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
         is_open: false,
       },
     });
-  };
-
-  const handleClickGoToHomepage = () => {
-    dispatch({
-      type: VehicleUpdateSupportActionEnum.SetDeleteNotificationData,
-      payload: {
-        ...state.delete_notification,
-        is_open: false,
-      },
-    });
-    router.push(AppCollectionURL.private.support_vehicles());
   };
 
   const handleClickDelete = async () => {
