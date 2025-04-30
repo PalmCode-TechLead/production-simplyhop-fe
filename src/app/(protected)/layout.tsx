@@ -17,7 +17,9 @@ type ProfileLayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function ProfileLayout({ children }: ProfileLayoutProps) {
+export default async function ProtectedLayout({
+  children,
+}: ProfileLayoutProps) {
   const cookieStore = await cookies(); // ✅ with await
   const token = cookieStore.get("token")?.value;
   let userProfile: UserProfile | null = null;
@@ -46,15 +48,7 @@ export default async function ProfileLayout({ children }: ProfileLayoutProps) {
   }
   return (
     <UserProvider profile={!userProfile ? undefined : userProfile}>
-      <main className={clsx("w-full min-h-screen")}>
-        <TopNavigation />
-
-        <div className={clsx("pt-[90px]", "w-full min-h-screen")}>
-          {children}
-        </div>
-
-        <FooterApp />
-      </main>
+      {children}
     </UserProvider>
   );
 }
