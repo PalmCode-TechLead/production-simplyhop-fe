@@ -38,7 +38,7 @@ export const useGetBookingMy = () => {
     GetBookingMySuccessResponseInterface,
     GetBookingMyErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetBookingMy(),
+    queryKey: MyListTripReactQueryKey.GetBookingMy(payload),
     queryFn: () => {
       return fetchGetBookingMy(payload);
     },

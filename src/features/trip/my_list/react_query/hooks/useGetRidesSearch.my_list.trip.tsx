@@ -42,7 +42,7 @@ export const useGetRidesSearch = () => {
     GetRidesSearchSuccessResponseInterface,
     GetRidesSearchErrorResponseInterface
   >({
-    queryKey: MyListTripReactQueryKey.GetRidesSearch(),
+    queryKey: MyListTripReactQueryKey.GetRidesSearch(payload),
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
