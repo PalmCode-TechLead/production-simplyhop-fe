@@ -127,7 +127,7 @@ export const FilterDetailTrip = () => {
           className={clsx("!px-[1rem] !py-[0.5rem]")}
           onClick={handleClickOpenFilter}
         >
-          {"Andern Sie"}
+          {"Ändern"}
         </Button>
       </div>
     </div>
