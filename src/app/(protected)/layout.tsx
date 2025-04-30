@@ -20,12 +20,14 @@ export default async function ProtectedLayout({
   const cookieStore = await cookies(); // ✅ with await
   const token = cookieStore.get("token")?.value;
   let userProfile: UserProfile | null = null;
+
   try {
     const res = await fetchGetUserProfileData({
       headers: {
         token: token ?? "",
       },
     });
+    console.log(res, "ini user from server");
     const user = res as GetUserProfileDataSuccessResponseInterface;
     userProfile = {
       id: user.data.id,

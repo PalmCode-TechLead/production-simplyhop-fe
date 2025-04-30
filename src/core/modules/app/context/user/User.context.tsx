@@ -1,5 +1,11 @@
 "use client";
-import React, { createContext, useReducer, Dispatch, useEffect } from "react";
+import React, {
+  createContext,
+  useReducer,
+  Dispatch,
+  useEffect,
+  useRef,
+} from "react";
 import {
   UserActionEnum,
   UserActions,
@@ -31,10 +37,13 @@ const UserProvider = (props: {
   children: React.ReactNode;
   profile?: UserProfile;
 }) => {
+  // ✅ Simpan initialProfile hanya sekali
+  const didInitialize = useRef(false);
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
   useEffect(() => {
-    if (!!props.profile) {
+    if (!didInitialize.current && !!props.profile) {
+      console.log(props.profile, "ini kepanggil berapa kali");
       dispatch({
         type: UserActionEnum.SetProfileData,
         payload: {
@@ -42,8 +51,9 @@ const UserProvider = (props: {
           ...props.profile,
         },
       });
+      didInitialize.current = true;
     }
-  }, [props?.profile]);
+  }, []);
 
   return (
     <UserContext.Provider value={{ state, dispatch }}>

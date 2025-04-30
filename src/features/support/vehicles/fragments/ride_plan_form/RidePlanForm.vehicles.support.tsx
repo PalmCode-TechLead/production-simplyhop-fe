@@ -44,13 +44,16 @@ export const RidePlanFormVehiclesSupport = () => {
     const res = await postUserProfileCreate(data);
     if (!res.data) return;
     if (!userState.profile) return;
+    console.log("this is update vehicle inside", data.id, data.id === "yes");
     dispatchUser({
       type: UserActionEnum.SetProfileData,
       payload: {
         ...userState.profile,
-        is_driver: data.id === "yes",
+        is_driver: res.data.is_driver === 1,
+        is_able_to_ride: res.data.can_share_ride === 1,
       },
     });
+
     dispatch({
       type: VehiclesSupportActionEnum.SetRidePlanData,
       payload: {
@@ -65,6 +68,8 @@ export const RidePlanFormVehiclesSupport = () => {
       },
     });
   };
+
+  console.log("this is userprofile vehicles outside", userState.profile);
   return (
     <div
       className={clsx(
