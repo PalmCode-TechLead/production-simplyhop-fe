@@ -4,7 +4,10 @@ import clsx from "clsx";
 import SVGIcon from "@/core/icons";
 
 export interface CopyLinkItemProps {
-  link?: string;
+  link?: {
+    displayLink: string;
+    fullLink: string;
+  };
   cta?: {
     copy: {
       children: React.ReactNode;
@@ -13,7 +16,10 @@ export interface CopyLinkItemProps {
 }
 
 export const CopyLinkItem = ({
-  link = "",
+  link = {
+    displayLink: "",
+    fullLink: "",
+  },
   cta = {
     copy: {
       children: "",
@@ -22,7 +28,7 @@ export const CopyLinkItem = ({
 }: CopyLinkItemProps) => {
   const [isCopy, setIsCopy] = React.useState<boolean>(false);
   const handleClickCopy = () => {
-    navigator.clipboard.writeText(link);
+    navigator.clipboard.writeText(link.fullLink);
     setIsCopy(true);
   };
   return (
@@ -42,7 +48,7 @@ export const CopyLinkItem = ({
           "w-full"
         )}
       >
-        {link}
+        {link.displayLink}
       </span>
       {isCopy ? (
         <div

@@ -104,11 +104,12 @@ export const NotificationPlanRideTrip = () => {
         </div>
 
         <CopyLinkItem
-          link={
-            isLg
+          link={{
+            displayLink: isLg
               ? state.notification.share.link
-              : `${state.notification.share.link.slice(0, 15)}...`
-          }
+              : `${state.notification.share.link.slice(0, 15)}...`,
+            fullLink: state.notification.share.link,
+          }}
           cta={{ ...dictionaries.notification.share.cta }}
         />
 
