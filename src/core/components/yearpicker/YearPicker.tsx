@@ -158,7 +158,7 @@ export const YearPicker = ({
               disabled={disabled}
               onClick={() => onClickYear(calendarItem.year)}
             >
-              {calendarItem.year.toLocaleString("en-US", {
+              {calendarItem.year.toLocaleString("de-DE", {
                 year: "numeric",
               })}
             </button>

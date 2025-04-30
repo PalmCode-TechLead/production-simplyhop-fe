@@ -112,7 +112,7 @@ export const DayPicker = ({
   onClickDate = () => {},
 }: DayPickerProps) => {
   const [newDate, setNewDate] = React.useState<Date>(date);
-  const monthName = newDate.toLocaleString("en-US", {
+  const monthName = newDate.toLocaleString("de-DE", {
     month: "long",
   });
 
@@ -237,7 +237,7 @@ export const DayPicker = ({
               disabled={disabled}
               onClick={() => onClickDate(calendarItem.date)}
             >
-              {calendarItem.date.toLocaleString("en-US", {
+              {calendarItem.date.toLocaleString("de-DE", {
                 day: "numeric",
               })}
             </button>

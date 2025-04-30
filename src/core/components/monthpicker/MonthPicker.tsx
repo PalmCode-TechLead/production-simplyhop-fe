@@ -74,7 +74,7 @@ export const MonthPicker = ({
   onClickMonth = () => {},
 }: MonthPickerProps) => {
   const [newDate, setNewDate] = React.useState<Date>(date);
-  const yearName = newDate.toLocaleString("en-US", {
+  const yearName = newDate.toLocaleString("de-DE", {
     year: "numeric",
   });
 

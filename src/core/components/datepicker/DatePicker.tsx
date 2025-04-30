@@ -121,7 +121,7 @@ export const DatePicker = ({
     onSelect(newDate);
   };
 
-  const formattedValue = new Date(value).toLocaleString("en-US", {
+  const formattedValue = new Date(value).toLocaleString("de-DE", {
     day: "2-digit",
     month: "long",
     year: "numeric",
