@@ -163,7 +163,7 @@ export const MonthPicker = ({
               disabled={disabled}
               onClick={() => onClickMonth(calendarItem.month)}
             >
-              {calendarItem.month.toLocaleString("en-US", {
+              {calendarItem.month.toLocaleString("de-DE", {
                 month: "short",
               })}
             </button>
