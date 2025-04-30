@@ -19,29 +19,32 @@ export default async function TripLayout({ children }: TripLayoutProps) {
   const cookieStore = await cookies(); // ✅ with await
   const token = cookieStore.get("token")?.value;
   let userProfile: UserProfile | null = null;
-  try {
-    const res = await fetchGetUserProfileData({
-      headers: {
-        token: token ?? "",
-      },
-    });
-    const user = res as GetUserProfileDataSuccessResponseInterface;
-    userProfile = {
-      id: user.data.id,
-      first_name: user.data?.first_name ?? "",
-      last_name: user.data?.last_name ?? "",
-      avatar: user.data.avatar,
-      email: user.data.email,
-      phonenumber: user.data?.mobile ?? "",
-      city: user.data?.city ?? "",
-      about_me: user.data?.profile?.bio ?? "",
-      is_driver: user.data?.is_driver === 1 ? true : false,
-      gender: user.data?.gender ?? null,
-      is_able_to_ride: user.data.can_share_ride === 1,
-    };
-  } catch {
-    userProfile = null;
+  if (!!token) {
+    try {
+      const res = await fetchGetUserProfileData({
+        headers: {
+          token: token ?? "",
+        },
+      });
+      const user = res as GetUserProfileDataSuccessResponseInterface;
+      userProfile = {
+        id: user.data.id,
+        first_name: user.data?.first_name ?? "",
+        last_name: user.data?.last_name ?? "",
+        avatar: user.data.avatar,
+        email: user.data.email,
+        phonenumber: user.data?.mobile ?? "",
+        city: user.data?.city ?? "",
+        about_me: user.data?.profile?.bio ?? "",
+        is_driver: user.data?.is_driver === 1 ? true : false,
+        gender: user.data?.gender ?? null,
+        is_able_to_ride: user.data.can_share_ride === 1,
+      };
+    } catch {
+      userProfile = null;
+    }
   }
+
   return (
     <UserProvider profile={!userProfile ? undefined : userProfile}>
       <main className={clsx("w-full min-h-screen")}>
