@@ -109,6 +109,14 @@ export const CapacityVehicleInformationFormVehicleUpdateSupport = () => {
                 ...state.vehicle_information.capacity.luggage.form.luggage,
                 selected: data,
               },
+              luggage_size: {
+                ...state.vehicle_information.capacity.luggage.form.luggage_size,
+                selected:
+                  data.id === "0"
+                    ? null
+                    : state.vehicle_information.capacity.luggage.form
+                        .luggage_size.selected,
+              },
             },
           },
         },
@@ -292,6 +300,10 @@ export const CapacityVehicleInformationFormVehicleUpdateSupport = () => {
               ...dictionaries.vehicle_information.capacity.luggage.form.input
                 .luggage_size.inputProps,
             }}
+            disabled={
+              state.vehicle_information.capacity.luggage.form.luggage.selected
+                ?.id === "0"
+            }
             selected={
               state.vehicle_information.capacity.luggage.form.luggage_size
                 .selected

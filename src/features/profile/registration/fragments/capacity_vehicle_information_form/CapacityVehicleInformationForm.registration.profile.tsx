@@ -109,6 +109,14 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
                 ...state.vehicle_information.capacity.luggage.form.luggage,
                 selected: data,
               },
+              luggage_size: {
+                ...state.vehicle_information.capacity.luggage.form.luggage_size,
+                selected:
+                  data.id === "0"
+                    ? null
+                    : state.vehicle_information.capacity.luggage.form
+                        .luggage_size.selected,
+              },
             },
           },
         },
@@ -275,7 +283,7 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
             selected={
               state.vehicle_information.capacity.luggage.form.luggage.selected
             }
-            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+            items={Array.from({ length: 5 }, (_, i) => String(i)).map(
               (item) => {
                 return { id: item, name: item };
               }
@@ -292,6 +300,10 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
               ...dictionaries.vehicle_information.capacity.luggage.form.input
                 .luggage_size.inputProps,
             }}
+            disabled={
+              state.vehicle_information.capacity.luggage.form.luggage.selected
+                ?.id === "0"
+            }
             selected={
               state.vehicle_information.capacity.luggage.form.luggage_size
                 .selected
