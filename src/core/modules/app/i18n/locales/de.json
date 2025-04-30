@@ -268,7 +268,7 @@
           {
             "id": "invalid_city",
             "name": "Bitte geben Sie eine gültige Stadt ein.",
-            "regex": "^[A-Za-z]+(?:[ ,][A-Za-z]+)*$"
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-,][A-ZÄÖÜa-zäöüß]+)*$"
           }
         ]
       }
