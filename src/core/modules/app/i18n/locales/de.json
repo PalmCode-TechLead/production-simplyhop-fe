@@ -172,7 +172,7 @@
       },
       {
         "id": "support",
-        "name": "Profile",
+        "name": "Mein Profil",
         "href": "/support/konto",
         "icon": {
           "name": "User"
