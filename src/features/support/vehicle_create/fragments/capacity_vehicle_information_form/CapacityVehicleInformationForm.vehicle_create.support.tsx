@@ -283,7 +283,7 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
             selected={
               state.vehicle_information.capacity.luggage.form.luggage.selected
             }
-            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+            items={Array.from({ length: 5 }, (_, i) => String(i)).map(
               (item) => {
                 return { id: item, name: item };
               }
