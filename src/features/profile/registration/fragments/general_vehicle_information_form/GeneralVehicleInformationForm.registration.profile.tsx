@@ -99,7 +99,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
 
   const handleChangeLicensePlate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const errorItem = getError({
-      errorItems: globalDictionaries.form.email.validations.items,
+      errorItems: globalDictionaries.form.license_plate.validations.items,
       value: e.currentTarget.value,
       type: "optional",
     });
@@ -180,7 +180,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
           inputProps={{
             ...dictionaries.vehicle_information.general.form.input.car_model
               .inputProps,
-            value: state.vehicle_information.general.form.car_color.value,
+            value: state.vehicle_information.general.form.car_model.value,
             onChange: handleChangeCarModel,
           }}
         />
