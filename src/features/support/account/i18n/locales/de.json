@@ -100,7 +100,7 @@
   },
   "cta": {
     "logout": {
-      "children": "Abmeldung"
+      "children": "Abmelden"
     }
   }
 }
