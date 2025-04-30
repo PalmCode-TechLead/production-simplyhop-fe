@@ -212,7 +212,7 @@
     }
   },
   "notification": {
-    "title": "Dein Mitfahrangebot ist jetzt online",
+    "title": "Deine Anfrage wurde versendet",
     "cta": {
       "back": {
         "children": "Zurück zur Startseite",
