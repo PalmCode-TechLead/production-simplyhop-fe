@@ -67,7 +67,7 @@ export const useGetRideSearch = () => {
         ? state.advanced_filter.pets.selected[0].id === "true"
         : undefined,
       sort: !state.advanced_filter.sort.selected?.id
-        ? "-base_price"
+        ? "average_distance"
         : state.advanced_filter.sort.selected.id,
       "page[number]": state.rides.pagination.number,
       "page[size]": PAGINATION.SIZE,
