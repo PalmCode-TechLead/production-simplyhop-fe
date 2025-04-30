@@ -278,6 +278,22 @@ export const FilterResultTrip = () => {
     });
   };
 
+  const handleChangeCarSeat = () => {
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        passenger: {
+          ...state.filters.passenger,
+          car_seat: {
+            ...state.filters.passenger.car_seat,
+            checked: !state.filters.passenger.car_seat.checked,
+          },
+        },
+      },
+    });
+  };
+
   const handleSubmitPassenger = (data: {
     car_seat: {
       checked: boolean;
@@ -472,6 +488,7 @@ export const FilterResultTrip = () => {
                 input: {
                   ...dictionaries.filter.form.passenger.detail.carSeat.input,
                   checked: state.filters.passenger.car_seat.checked,
+                  onChange: handleChangeCarSeat,
                 },
               },
               cta: dictionaries.filter.form.passenger.detail.cta,

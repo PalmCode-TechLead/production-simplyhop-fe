@@ -277,7 +277,6 @@ export const FilterFindTrip = () => {
   };
 
   const handleChangeCarSeat = () => {
-    console.log("ini apa kepanggi ga");
     dispatch({
       type: FindTripActionEnum.SetFiltersData,
       payload: {
