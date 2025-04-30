@@ -314,6 +314,7 @@ export const RoomChatTrip = () => {
           )}
           type="submit"
           disabled={isDisabledSendChat}
+          onClick={handleClickSend}
         >
           {dictionaries.chat.room.cta.send.children}
           {isLoadingSendChat ? (
