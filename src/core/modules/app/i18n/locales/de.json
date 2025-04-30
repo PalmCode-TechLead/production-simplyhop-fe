@@ -246,7 +246,7 @@
           {
             "id": "invalid_name",
             "name": "Ungültiger Name.",
-            "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*$"
           }
         ]
       }
@@ -257,7 +257,7 @@
           {
             "id": "invalid_name",
             "name": "Ungültiger Name.",
-            "regex": "^[A-Za-z]+(?: [A-Za-z]+)*$"
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*$"
           }
         ]
       }
