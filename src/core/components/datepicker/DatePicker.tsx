@@ -7,7 +7,6 @@ import { InputContainer } from "../input_container";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { MonthPicker } from "../monthpicker";
 import { YearPicker } from "../yearpicker";
-import dayjs from "dayjs";
 
 export interface DatePickerProps {
   disabled?: boolean;

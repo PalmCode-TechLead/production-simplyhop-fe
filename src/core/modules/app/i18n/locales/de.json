@@ -290,7 +290,7 @@
           {
             "id": "invalid_license_plate",
             "name": "Bitte geben Sie ein gültiges Kennzeichen ein.",
-            "regex": "^[A-ZÄÖÜ]{1,3}-?\\s?[A-Z]{1,2} [0-9]{1,4}$"
+            "regex": "^[A-ZÄÖÜ]{1,3}[-: ]?[A-ZÄÖÜ]{1,2}[-: ]?[0-9]{1,4}$"
           }
         ]
       }
