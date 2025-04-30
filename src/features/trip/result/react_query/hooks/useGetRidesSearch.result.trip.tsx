@@ -306,15 +306,15 @@ export const useGetRideSearch = () => {
           },
           ride: {
             badge: [
-              ...(index === 0
-                ? [
-                    {
-                      id: "bester_preis",
-                      label: "Bester Preis",
-                      variant: "success" as "success" | "danger",
-                    },
-                  ]
-                : []),
+              // ...(index === 0
+              //   ? [
+              //       {
+              //         id: "bester_preis",
+              //         label: "Bester Preis",
+              //         variant: "success" as "success" | "danger",
+              //       },
+              //     ]
+              //   : []),
               ...(item.user.gender === "female"
                 ? [
                     {
