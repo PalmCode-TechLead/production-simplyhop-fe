@@ -1,3 +1,4 @@
+import { User } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface PostUserProfileCreateRequestInterface extends NextApiRequest {
@@ -31,19 +32,7 @@ export interface PostUserProfileCreateSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
-  data: {
-    token: string;
-    token_type: string;
-    user: {
-      id: number;
-      name: string;
-      email: string;
-      avatar: string;
-      email_verified_at: string;
-      created_at: string;
-      updated_at: string;
-    };
-  };
+  data: User;
   redirect: null;
 }
 

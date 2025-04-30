@@ -7,7 +7,6 @@ import {
   PostUserProfileCreatePayloadRequestInterface,
   PostUserProfileCreateSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/user_profile";
-import { VehiclesSupportContext } from "../../context";
 import { fetchPostUserProfileCreate } from "@/core/services/rest/simplyhop/user_profile";
 import {
   GlobalActionEnum,
@@ -20,7 +19,6 @@ import { v4 as uuidv4 } from "uuid";
 export const usePostUserProfileCreate = () => {
   const { state: userState, dispatch: dispatchUser } =
     React.useContext(UserContext);
-  const { state } = React.useContext(VehiclesSupportContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const mutation = useMutation<
@@ -53,13 +51,13 @@ export const usePostUserProfileCreate = () => {
       return fetchPostUserProfileCreate(payload);
     },
 
-    onSuccess() {
+    onSuccess(data) {
       if (!!userState.profile) {
         dispatchUser({
           type: UserActionEnum.SetProfileData,
           payload: {
             ...userState.profile,
-            is_driver: state.ride_plan.form.offer_trip.selected?.id === "yes",
+            is_driver: data.data.is_driver === 1,
           },
         });
       }
