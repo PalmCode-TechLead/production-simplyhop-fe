@@ -1,6 +1,3 @@
-import { FooterApp } from "@/core/modules/app/fragments/footer";
-import { TopNavigation } from "@/core/modules/app/fragments/top_navigation";
-import clsx from "clsx";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
