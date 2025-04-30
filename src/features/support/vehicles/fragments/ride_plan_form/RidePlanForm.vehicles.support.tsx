@@ -7,14 +7,15 @@ import {
 } from "../../context";
 import { getDictionaries } from "../../i18n";
 import { DropdownSelect } from "@/core/components/dropdown_select";
-import { UserContext } from "@/core/modules/app/context";
+import { UserActionEnum, UserContext } from "@/core/modules/app/context";
 import { usePostUserProfileCreate } from "../../react_query/hooks";
 
 export const RidePlanFormVehiclesSupport = () => {
   const dictionaries = getDictionaries();
-  const { state: userState } = React.useContext(UserContext);
+  const { state: userState, dispatch: dispatchUser } =
+    React.useContext(UserContext);
   const { state, dispatch } = React.useContext(VehiclesSupportContext);
-  const { mutate: postUserProfileCreate } = usePostUserProfileCreate();
+  const { mutateAsync: postUserProfileCreate } = usePostUserProfileCreate();
   React.useEffect(() => {
     dispatch({
       type: VehiclesSupportActionEnum.SetRidePlanData,
@@ -39,8 +40,17 @@ export const RidePlanFormVehiclesSupport = () => {
     userState.profile?.is_driver,
   ]);
 
-  const handleSelectOfferTrip = (data: { id: string; name: string }) => {
-    postUserProfileCreate(data);
+  const handleSelectOfferTrip = async (data: { id: string; name: string }) => {
+    const res = await postUserProfileCreate(data);
+    if (!res.data) return;
+    if (!userState.profile) return;
+    dispatchUser({
+      type: UserActionEnum.SetProfileData,
+      payload: {
+        ...userState.profile,
+        is_driver: data.id === "yes",
+      },
+    });
     dispatch({
       type: VehiclesSupportActionEnum.SetRidePlanData,
       payload: {

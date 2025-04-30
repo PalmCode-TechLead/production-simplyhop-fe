@@ -8,17 +8,10 @@ import {
   PostUserProfileCreateSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/user_profile";
 import { fetchPostUserProfileCreate } from "@/core/services/rest/simplyhop/user_profile";
-import {
-  GlobalActionEnum,
-  GlobalContext,
-  UserActionEnum,
-  UserContext,
-} from "@/core/modules/app/context";
+import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
 
 export const usePostUserProfileCreate = () => {
-  const { state: userState, dispatch: dispatchUser } =
-    React.useContext(UserContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const mutation = useMutation<
@@ -51,19 +44,6 @@ export const usePostUserProfileCreate = () => {
       return fetchPostUserProfileCreate(payload);
     },
 
-    onSuccess(data) {
-      console.log("this is data", data);
-      console.log("this is userprofile", userState.profile);
-      if (!!userState.profile) {
-        dispatchUser({
-          type: UserActionEnum.SetProfileData,
-          payload: {
-            ...userState.profile,
-            is_driver: data.data.is_driver === 1,
-          },
-        });
-      }
-    },
     onError(error) {
       dispatchGlobal({
         type: GlobalActionEnum.SetAlertData,
