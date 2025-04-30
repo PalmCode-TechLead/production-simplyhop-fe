@@ -63,7 +63,7 @@ export const RideArchiveTrip = () => {
         message: dictionaries.list.loading.message,
       }}
       isPaused={isLoading}
-      isEndReached={state.book.pagination.is_end_reached}
+      isEndReached={state.ride.pagination.is_end_reached}
       onLoadMore={handleLoadMore}
     >
       <div
