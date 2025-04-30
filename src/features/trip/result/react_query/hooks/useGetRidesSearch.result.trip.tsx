@@ -97,7 +97,7 @@ export const useGetRideSearch = () => {
         0
       );
 
-      const newPayload = data.data.map((item, index) => {
+      const newPayload = data.data.map((item) => {
         return {
           id: String(item.id),
           driver: {
