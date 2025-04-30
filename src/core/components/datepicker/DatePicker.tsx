@@ -7,6 +7,7 @@ import { InputContainer } from "../input_container";
 import { InputLabel, InputLabelProps } from "../input_label";
 import { MonthPicker } from "../monthpicker";
 import { YearPicker } from "../yearpicker";
+import dayjs from "dayjs";
 
 export interface DatePickerProps {
   disabled?: boolean;
@@ -86,7 +87,8 @@ export const DatePicker = ({
   const handleSelectDate = (data: Date) => {
     setDate(data);
     setIsDayShow(false);
-    setIsMonthShow(true);
+    setIsOpen(false);
+    onSelect(data);
   };
 
   const handleClickYear = () => {
@@ -104,7 +106,8 @@ export const DatePicker = ({
     );
     setDate(newDate);
     setIsMonthShow(false);
-    setIsYearShow(true);
+    setIsOpen(false);
+    onSelect(newDate);
   };
 
   const handleSelectYear = (data: Date) => {
