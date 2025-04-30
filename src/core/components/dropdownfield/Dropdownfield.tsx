@@ -51,6 +51,7 @@ export const Dropdownfield = ({
       <div className={clsx("relative w-full")}>
         <InputContainer
           {...inputContainerProps}
+          className={clsx(disabled && "!bg-[#F6F6F6]")}
           // onClick={() => {
           //   inputRef.current?.focus();
           // }}
@@ -66,6 +67,7 @@ export const Dropdownfield = ({
             <Input
               ref={inputRef}
               {...inputProps}
+              disabled={disabled}
               readOnly
               placeholder={selected?.name}
               className={clsx(

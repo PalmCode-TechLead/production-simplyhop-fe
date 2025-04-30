@@ -55,6 +55,15 @@ export const CapacityVehicleInformationFormVehicleUpdateSupport = () => {
                   .available_child_seat,
                 selected: data,
               },
+              available_car_seat: {
+                ...state.vehicle_information.capacity.passenger_seats.form
+                  .available_car_seat,
+                selected:
+                  data.id === "false"
+                    ? null
+                    : state.vehicle_information.capacity.passenger_seats.form
+                        .available_car_seat.selected,
+              },
             },
           },
         },
@@ -180,7 +189,7 @@ export const CapacityVehicleInformationFormVehicleUpdateSupport = () => {
               state.vehicle_information.capacity.passenger_seats.form
                 .available_seat.selected
             }
-            items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
+            items={Array.from({ length: 6 }, (_, i) => String(i + 1)).map(
               (item) => {
                 return { id: item, name: item };
               }
@@ -218,11 +227,15 @@ export const CapacityVehicleInformationFormVehicleUpdateSupport = () => {
                 ...dictionaries.vehicle_information.capacity.passenger_seats
                   .form.input.available_car_seat.inputProps,
               }}
+              disabled={
+                state.vehicle_information.capacity.passenger_seats.form
+                  .available_child_seat.selected?.id === "false"
+              }
               selected={
                 state.vehicle_information.capacity.passenger_seats.form
                   .available_car_seat.selected
               }
-              items={Array.from({ length: 6 }, (_, i) => String(i + 1)).map(
+              items={Array.from({ length: 4 }, (_, i) => String(i + 1)).map(
                 (item) => {
                   return { id: item, name: item };
                 }

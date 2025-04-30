@@ -55,6 +55,15 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
                   .available_child_seat,
                 selected: data,
               },
+              available_car_seat: {
+                ...state.vehicle_information.capacity.passenger_seats.form
+                  .available_car_seat,
+                selected:
+                  data.id === "false"
+                    ? null
+                    : state.vehicle_information.capacity.passenger_seats.form
+                        .available_car_seat.selected,
+              },
             },
           },
         },
@@ -218,6 +227,10 @@ export const CapacityVehicleInformationFormVehicleCreateSupport = () => {
                 ...dictionaries.vehicle_information.capacity.passenger_seats
                   .form.input.available_car_seat.inputProps,
               }}
+              disabled={
+                state.vehicle_information.capacity.passenger_seats.form
+                  .available_child_seat.selected?.id === "false"
+              }
               selected={
                 state.vehicle_information.capacity.passenger_seats.form
                   .available_car_seat.selected
