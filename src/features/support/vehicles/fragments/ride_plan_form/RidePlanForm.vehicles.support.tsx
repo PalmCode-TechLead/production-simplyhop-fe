@@ -50,7 +50,7 @@ export const RidePlanFormVehiclesSupport = () => {
       payload: {
         ...userState.profile,
         is_driver: res.data.is_driver === 1,
-        is_able_to_ride: res.data.can_share_ride === 1,
+        is_able_to_ride: res.data.can_share_ride,
       },
     });
 

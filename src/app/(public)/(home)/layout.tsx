@@ -38,7 +38,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
         about_me: user.data?.profile?.bio ?? "",
         is_driver: user.data?.is_driver === 1 ? true : false,
         gender: user.data?.gender ?? null,
-        is_able_to_ride: user.data.can_share_ride === 1,
+        is_able_to_ride: user.data.can_share_ride,
       };
     } catch {
       userProfile = null;

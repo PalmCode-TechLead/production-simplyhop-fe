@@ -11,7 +11,7 @@ export interface User {
   avatar: string | null;
   is_driver: number; //1;
   gender: string | null;
-  can_share_ride: number; //0;
+  can_share_ride: boolean; //0;
   deleted_at: string | null;
   created_at: string; //"2025-04-22 03:44:21";
   updated_at: string; //"2025-04-22 03:46:39";
