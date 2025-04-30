@@ -23,7 +23,7 @@ export const ListLoader = ({ message = "" }: ListLoaderProps) => {
         <PulseLoader size={16} color={"#5AC53D"} />
       </div>
 
-      <p className={clsx("text-[1rem] text-[#5AC53D] font-normal")}>
+      <p className={clsx("text-[1rem] text-[#5AC53D] font-normal text-center")}>
         {message}
       </p>
     </div>

@@ -18,7 +18,7 @@ export const ListErrorItem = ({ message = "" }: ListErrorItemProps) => {
         className={clsx("w-[6rem] h-[6rem]", "text-[#5AC53D]")}
       />
 
-      <p className={clsx("text-[1rem] text-[#5AC53D] font-normal")}>
+      <p className={clsx("text-[1rem] text-[#5AC53D] font-normal text-center")}>
         {message}
       </p>
     </div>
