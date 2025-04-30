@@ -251,7 +251,7 @@
         }
       },
       "luggage": {
-        "title": "Kapazität des Gepäcks",
+        "title": "Anzahl der Gepäckstücke",
         "form": {
           "input": {
             "luggage": {
@@ -261,7 +261,7 @@
               },
               "labelProps": {
                 "id": "luggage",
-                "children": "Gepäcks",
+                "children": "Gepäck",
                 "required": false
               }
             },
