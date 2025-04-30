@@ -52,6 +52,8 @@ export const usePostUserProfileCreate = () => {
     },
 
     onSuccess(data) {
+      console.log("this is data", data);
+      console.log("this is userprofile", userState.profile);
       if (!!userState.profile) {
         dispatchUser({
           type: UserActionEnum.SetProfileData,
