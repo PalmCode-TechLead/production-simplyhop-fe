@@ -3,8 +3,9 @@ export const AppCollectionURL = {
     home: () => "/",
     tripResult: (params?: string) =>
       !params ? `/mitfahrt-suchen/result` : `/mitfahrt-suchen/result?${params}`,
-    login: () => "/login",
-    register: () => "/register",
+    login: (params?: string) => (!params ? "/login" : `/login?${params}`),
+    register: (params?: string) =>
+      !params ? "/register" : `/register?${params}`,
   },
   private: {
     chat: (params?: string) => (!params ? "/chat" : `/chat?${params}`),

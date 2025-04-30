@@ -8,15 +8,17 @@ import {
 } from "@/core/models/rest/simplyhop/auth";
 import { LoginAuthContext } from "../../context";
 import Cookies from "universal-cookie";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { fetchPostAuthLogin } from "@/core/services/rest/simplyhop/auth";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
+import { RIDE_FILTER } from "@/core/enums";
 
 export const usePostAuthLogin = () => {
   const router = useRouter();
-
+  const searchParams = useSearchParams();
+  const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
   const { state } = React.useContext(LoginAuthContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
@@ -37,7 +39,13 @@ export const usePostAuthLogin = () => {
     onSuccess(data) {
       const cookies = new Cookies();
       cookies.set("token", data.data.token, { path: "/" });
-      router.push(AppCollectionURL.public.home());
+      if (!rideId) {
+        router.push(AppCollectionURL.public.home());
+      } else {
+        router.push(
+          AppCollectionURL.public.tripResult(searchParams.toString())
+        );
+      }
     },
     onError(error) {
       dispatchGlobal({

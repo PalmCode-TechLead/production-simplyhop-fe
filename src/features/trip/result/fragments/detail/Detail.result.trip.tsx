@@ -35,10 +35,17 @@ export const DetailResultTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   useGetRidesId();
 
-  const isOpen = state.detail.is_open;
-
   const { mutateAsync: postBookingBook, isPending: isPendingPostBookingBook } =
     usePostBookingBook();
+
+  const isOpen = state.detail.is_open;
+
+  const isSubmitDisabled = isPendingPostBookingBook;
+
+  const isLoggedIn = !!userState.profile;
+  const detailData = state.detail.data;
+  const isRideByDriver =
+    String(userState.profile?.id) === detailData?.driver?.profile.id;
 
   React.useEffect(() => {
     if (rideId) {
@@ -56,7 +63,6 @@ export const DetailResultTrip = () => {
     return null;
   }
 
-  const detailData = state.detail.data;
   if (!detailData) {
     return null;
   }
@@ -113,6 +119,11 @@ export const DetailResultTrip = () => {
   };
 
   const handleClickSend = async () => {
+    if (!isLoggedIn) {
+      router.push(AppCollectionURL.public.login(searchParams.toString()));
+      return;
+    }
+
     await postBookingBook();
     dispatch({
       type: ResultTripActionEnum.SetDetailData,
@@ -129,13 +140,6 @@ export const DetailResultTrip = () => {
       },
     });
   };
-
-  const isSubmitDisabled = isPendingPostBookingBook;
-
-  const isLoggedIn = !!userState.profile;
-
-  const isRideByDriver =
-    String(userState.profile?.id) === detailData.driver?.profile.id;
 
   return (
     <AdaptiveModal
@@ -185,7 +189,7 @@ export const DetailResultTrip = () => {
             price={detailData.price?.initial?.price}
           />
 
-          {!isRideByDriver && isLoggedIn && (
+          {!isRideByDriver && (
             <PriceInputResultTrip
               inputProps={{
                 type: "number",
@@ -198,7 +202,7 @@ export const DetailResultTrip = () => {
             />
           )}
 
-          {!isRideByDriver && isLoggedIn && (
+          {!isRideByDriver && (
             <Card className={clsx("!px-[0rem] !py-[0rem]", "overflow-clip")}>
               <TextareafieldNotes
                 inputContainerProps={{
@@ -218,7 +222,7 @@ export const DetailResultTrip = () => {
         </AdaptiveModalContent>
 
         <AdaptiveModalFooter>
-          {!isRideByDriver && isLoggedIn && (
+          {!isRideByDriver && (
             <Button
               disabled={isSubmitDisabled}
               isLoading={isPendingPostBookingBook}
