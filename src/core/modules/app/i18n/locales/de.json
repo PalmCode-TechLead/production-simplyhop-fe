@@ -403,15 +403,15 @@
         "options": [
           {
             "id": "small",
-            "name": "Small"
+            "name": "Klein"
           },
           {
             "id": "medium",
-            "name": "Medium"
+            "name": "Mittel"
           },
           {
             "id": "large",
-            "name": "Large"
+            "name": "Groß"
           }
         ]
       },
