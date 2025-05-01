@@ -15,6 +15,13 @@
               "id": "car_brand",
               "children": "Automarke",
               "required": false
+            },
+            "option": {
+              "cta": {
+                "add": {
+                  "children": "Automarke hinzufügen"
+                }
+              }
             }
           },
           "car_category": {

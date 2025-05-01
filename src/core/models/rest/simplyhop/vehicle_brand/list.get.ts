@@ -6,17 +6,10 @@ export interface GetVehicleBrandListRequestInterface extends NextApiRequest {
 }
 
 export interface GetVehicleBrandListPayloadRequestInterface {
-  path: GetVehicleBrandListPathRequestInterface;
   params?: GetVehicleBrandListParamsRequestInterface;
 }
 
-export type GetVehicleBrandListPathRequestInterface = {
-  id: string;
-};
-
 export type GetVehicleBrandListParamsRequestInterface = {
-  "filter[search]"?: string;
-  "filter[status]"?: string;
   include?: string;
   "page[number]"?: number;
   "page[size]"?: number;

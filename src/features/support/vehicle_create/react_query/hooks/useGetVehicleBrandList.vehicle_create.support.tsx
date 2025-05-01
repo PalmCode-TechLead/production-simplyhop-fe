@@ -9,6 +9,7 @@ import {
 import { fetchGetVehicleBrandList } from "@/core/services/rest/simplyhop/vehicle_brand";
 import {
   GetVehicleBrandListErrorResponseInterface,
+  GetVehicleBrandListPayloadRequestInterface,
   GetVehicleBrandListSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/vehicle_brand";
 
@@ -21,7 +22,13 @@ export const useGetVehicleBrandList = () => {
   >({
     queryKey: VehicleCreateSupportReactQueryKey.GetVehicleBrandList(),
     queryFn: () => {
-      return fetchGetVehicleBrandList();
+      const payload: GetVehicleBrandListPayloadRequestInterface = {
+        params: {
+          "page[number]": 1,
+          "page[size]": 1000,
+        },
+      };
+      return fetchGetVehicleBrandList(payload);
     },
   });
 
