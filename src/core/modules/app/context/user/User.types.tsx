@@ -40,7 +40,7 @@ export type UserActions = UserProfileActions;
 // Action Collection Types consist of:
 // Profile
 type UserProfilePayload = {
-  [UserActionEnum.SetProfileData]: UserProfile;
+  [UserActionEnum.SetProfileData]: UserProfile | null;
 };
 
 export type UserProfileActions =

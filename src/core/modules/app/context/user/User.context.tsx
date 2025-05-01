@@ -4,7 +4,7 @@ import React, {
   useReducer,
   Dispatch,
   useEffect,
-  useRef,
+  // useRef,
 } from "react";
 import {
   UserActionEnum,
@@ -35,24 +35,27 @@ const mainReducer = (
 
 const UserProvider = (props: {
   children: React.ReactNode;
-  profile?: UserProfile;
+  profile?: UserProfile | null;
 }) => {
   // ✅ Simpan initialProfile hanya sekali
-  const didInitialize = useRef(false);
+  // const didInitialize = useRef(false);
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
+  // useEffect(() => {
+  //   if (!didInitialize.current) {
+  //     dispatch({
+  //       type: UserActionEnum.SetProfileData,
+  //       payload: props.profile ?? null,
+  //     });
+  //     didInitialize.current = true;
+  //   }
+  // }, []);
   useEffect(() => {
-    if (!didInitialize.current && !!props.profile) {
-      dispatch({
-        type: UserActionEnum.SetProfileData,
-        payload: {
-          ...state.profile,
-          ...props.profile,
-        },
-      });
-      didInitialize.current = true;
-    }
-  }, []);
+    dispatch({
+      type: UserActionEnum.SetProfileData,
+      payload: props.profile ?? null,
+    });
+  }, [props.profile]);
 
   return (
     <UserContext.Provider value={{ state, dispatch }}>

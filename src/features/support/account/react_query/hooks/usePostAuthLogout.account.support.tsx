@@ -9,12 +9,17 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { fetchPostAuthLogout } from "@/core/services/rest/simplyhop/auth";
-import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import {
+  GlobalActionEnum,
+  GlobalContext,
+  UserActionEnum,
+  UserContext,
+} from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
 
 export const usePostAuthLogout = () => {
   const router = useRouter();
-
+  const { dispatch: dispatchUser } = React.useContext(UserContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const mutation = useMutation<
@@ -26,6 +31,10 @@ export const usePostAuthLogout = () => {
       return fetchPostAuthLogout();
     },
     onSuccess() {
+      dispatchUser({
+        type: UserActionEnum.SetProfileData,
+        payload: null,
+      });
       const cookies = new Cookies();
       cookies.remove("token", { path: "/" });
       router.push(AppCollectionURL.public.home());
