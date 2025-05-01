@@ -33,6 +33,13 @@
               "id": "car_category",
               "children": "Auto-Kategorie",
               "required": false
+            },
+            "option": {
+              "cta": {
+                "add": {
+                  "children": "Auto-Kategorie hinzufügen"
+                }
+              }
             }
           },
           "car_model": {

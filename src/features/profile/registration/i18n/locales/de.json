@@ -145,6 +145,13 @@
               "id": "car_brand",
               "children": "Automarke",
               "required": false
+            },
+            "option": {
+              "cta": {
+                "add": {
+                  "children": "Automarke hinzufügen"
+                }
+              }
             }
           },
           "car_category": {
@@ -156,6 +163,13 @@
               "id": "car_category",
               "children": "Auto-Kategorie",
               "required": false
+            },
+            "option": {
+              "cta": {
+                "add": {
+                  "children": "Auto-Kategorie hinzufügen"
+                }
+              }
             }
           },
           "car_model": {

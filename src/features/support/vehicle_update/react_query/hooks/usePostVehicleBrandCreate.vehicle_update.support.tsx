@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
-import { VehicleCreateSupportReactQueryKey } from "../keys";
+import { VehicleUpdateSupportReactQueryKey } from "../keys";
 import {
   PostVehicleBrandCreateBodyRequestInterface,
   PostVehicleBrandCreateErrorResponseInterface,
@@ -19,7 +19,7 @@ export const usePostVehicleBrandCreate = () => {
     PostVehicleBrandCreateErrorResponseInterface,
     { title: string }
   >({
-    mutationKey: VehicleCreateSupportReactQueryKey.PostVehicleBrandCreate(),
+    mutationKey: VehicleUpdateSupportReactQueryKey.PostVehicleBrandCreate(),
     mutationFn: (data: { title: string }) => {
       const bodyPayload: PostVehicleBrandCreateBodyRequestInterface = {
         title: data.title,

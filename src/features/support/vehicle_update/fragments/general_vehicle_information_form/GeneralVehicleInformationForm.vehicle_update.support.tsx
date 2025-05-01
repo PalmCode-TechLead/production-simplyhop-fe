@@ -8,12 +8,14 @@ import {
   VehicleUpdateSupportActionEnum,
   VehicleUpdateSupportContext,
 } from "../../context";
-import { Dropdownfield } from "@/core/components/dropdownfield";
 import { getError } from "@/core/utils/form";
 import {
   useGetVehicleBrandList,
   useGetVehicleCategoryList,
+  usePostVehicleBrandCreate,
+  usePostVehicleCategoryCreate,
 } from "../../react_query/hooks";
+import { Autocomplete } from "@/core/components/autocomplete";
 
 export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
   const dictionaries = getDictionaries();
@@ -21,6 +23,11 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
   useGetVehicleBrandList();
   useGetVehicleCategoryList();
+
+  const { mutateAsync: postVehicleBrandCreate } = usePostVehicleBrandCreate();
+  const { mutateAsync: postVehicleCategoryCreate } =
+    usePostVehicleCategoryCreate();
+
   const handleSelectCarBrand = (data: { id: string; name: string }) => {
     dispatch({
       type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
@@ -40,6 +47,37 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
     });
   };
 
+  const handleClickAddCarBrand = async (data: string) => {
+    const res = await postVehicleBrandCreate({
+      title: data,
+    });
+    if (!res.data) return;
+    const payload = {
+      id: String(res.data.id),
+      name: res.data.title,
+    };
+    dispatch({
+      type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
+      payload: {
+        ...state.vehicle_information,
+        general: {
+          ...state.vehicle_information.general,
+          form: {
+            ...state.vehicle_information.general.form,
+            car_brand: {
+              ...state.vehicle_information.general.form.car_brand,
+              selected: payload,
+              items: [
+                ...state.vehicle_information.general.form.car_brand.items,
+                payload,
+              ],
+            },
+          },
+        },
+      },
+    });
+  };
+
   const handleSelectCarCategory = (data: { id: string; name: string }) => {
     dispatch({
       type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
@@ -52,6 +90,37 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
             car_category: {
               ...state.vehicle_information.general.form.car_category,
               selected: data,
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleClickAddCarCategory = async (data: string) => {
+    const res = await postVehicleCategoryCreate({
+      title: data,
+    });
+    if (!res.data) return;
+    const payload = {
+      id: String(res.data.id),
+      name: res.data.title,
+    };
+    dispatch({
+      type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
+      payload: {
+        ...state.vehicle_information,
+        general: {
+          ...state.vehicle_information.general,
+          form: {
+            ...state.vehicle_information.general.form,
+            car_category: {
+              ...state.vehicle_information.general.form.car_category,
+              selected: payload,
+              items: [
+                ...state.vehicle_information.general.form.car_category.items,
+                payload,
+              ],
             },
           },
         },
@@ -136,7 +205,7 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
           "w-full"
         )}
       >
-        <Dropdownfield
+        <Autocomplete
           labelProps={{
             ...dictionaries.vehicle_information.general.form.input.car_brand
               .labelProps,
@@ -147,9 +216,16 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
           }}
           selected={state.vehicle_information.general.form.car_brand.selected}
           items={state.vehicle_information.general.form.car_brand.items}
+          option={{
+            add: {
+              ...dictionaries.vehicle_information.general.form.input.car_brand
+                .option.cta.add,
+              onClick: handleClickAddCarBrand,
+            },
+          }}
           onSelect={handleSelectCarBrand}
         />
-        <Dropdownfield
+        <Autocomplete
           labelProps={{
             ...dictionaries.vehicle_information.general.form.input.car_category
               .labelProps,
@@ -162,6 +238,13 @@ export const GeneralVehicleInformationFormVehicleUpdateSupport = () => {
             state.vehicle_information.general.form.car_category.selected
           }
           items={state.vehicle_information.general.form.car_category.items}
+          option={{
+            add: {
+              ...dictionaries.vehicle_information.general.form.input
+                .car_category.option.cta.add,
+              onClick: handleClickAddCarCategory,
+            },
+          }}
           onSelect={handleSelectCarCategory}
         />
       </div>

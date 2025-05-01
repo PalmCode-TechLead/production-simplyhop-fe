@@ -1,3 +1,4 @@
+import { VehicleCategory } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface PostVehicleCategoryCreateRequestInterface
@@ -23,7 +24,7 @@ export interface PostVehicleCategoryCreateSuccessResponseInterface {
   response_code: number;
   response_status: string;
   message: string;
-  data: Object;
+  data: VehicleCategory;
   redirect: null;
 }
 

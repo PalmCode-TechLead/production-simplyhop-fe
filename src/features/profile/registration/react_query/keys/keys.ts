@@ -11,4 +11,10 @@ export const RegistrationProfileReactQueryKey = {
   PostVehicleCreateMy: () => {
     return ["RegistrationProfileReactQueryKey.PostVehicleCreateMy"];
   },
+  PostVehicleBrandCreate: () => {
+    return ["RegistrationProfileReactQueryKey.PostVehicleBrandCreate"];
+  },
+  PostVehicleCategoryCreate: () => {
+    return ["RegistrationProfileReactQueryKey.PostVehicleCategoryCreate"];
+  },
 };

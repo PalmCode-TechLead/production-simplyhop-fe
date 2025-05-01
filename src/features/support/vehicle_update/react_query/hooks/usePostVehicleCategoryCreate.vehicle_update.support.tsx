@@ -1,27 +1,27 @@
 import * as React from "react";
 import { useMutation } from "@tanstack/react-query";
-import { VehicleCreateSupportReactQueryKey } from "../keys";
+import { VehicleUpdateSupportReactQueryKey } from "../keys";
 import {
-  PostVehicleBrandCreateBodyRequestInterface,
-  PostVehicleBrandCreateErrorResponseInterface,
-  PostVehicleBrandCreatePayloadRequestInterface,
-  PostVehicleBrandCreateSuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/vehicle_brand";
-import { fetchPostVehicleBrandCreate } from "@/core/services/rest/simplyhop/vehicle_brand";
+  PostVehicleCategoryCreateBodyRequestInterface,
+  PostVehicleCategoryCreateErrorResponseInterface,
+  PostVehicleCategoryCreatePayloadRequestInterface,
+  PostVehicleCategoryCreateSuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/vehicle_category";
+import { fetchPostVehicleCategoryCreate } from "@/core/services/rest/simplyhop/vehicle_category";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
 
-export const usePostVehicleBrandCreate = () => {
+export const usePostVehicleCategoryCreate = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const mutation = useMutation<
-    PostVehicleBrandCreateSuccessResponseInterface,
-    PostVehicleBrandCreateErrorResponseInterface,
+    PostVehicleCategoryCreateSuccessResponseInterface,
+    PostVehicleCategoryCreateErrorResponseInterface,
     { title: string }
   >({
-    mutationKey: VehicleCreateSupportReactQueryKey.PostVehicleBrandCreate(),
+    mutationKey: VehicleUpdateSupportReactQueryKey.PostVehicleCategoryCreate(),
     mutationFn: (data: { title: string }) => {
-      const bodyPayload: PostVehicleBrandCreateBodyRequestInterface = {
+      const bodyPayload: PostVehicleCategoryCreateBodyRequestInterface = {
         title: data.title,
       };
       const formData = new FormData();
@@ -37,11 +37,11 @@ export const usePostVehicleBrandCreate = () => {
         );
       }
 
-      const payload: PostVehicleBrandCreatePayloadRequestInterface = {
+      const payload: PostVehicleCategoryCreatePayloadRequestInterface = {
         body: formData,
       };
 
-      return fetchPostVehicleBrandCreate(payload);
+      return fetchPostVehicleCategoryCreate(payload);
     },
     onError(error) {
       dispatchGlobal({
