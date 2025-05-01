@@ -37,6 +37,7 @@ export const usePostAuthLogin = () => {
     onSuccess(data) {
       const cookies = new Cookies();
       cookies.set("token", data.data.token, { path: "/" });
+      const user = data.data.user;
       router.push(AppCollectionURL.private.profile_registration());
     },
     onError(error) {

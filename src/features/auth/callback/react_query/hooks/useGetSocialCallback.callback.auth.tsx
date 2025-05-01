@@ -10,11 +10,12 @@ import { fetchGetAuthSocialCallback } from "@/core/services/rest/simplyhop/auth"
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "universal-cookie";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { UserActionEnum, UserContext } from "@/core/modules/app/context";
 
 export const useGetSocialCallback = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
+  const { dispatch: dispatchUser } = React.useContext(UserContext);
   const code = searchParams.get("code");
   const query = useQuery<
     GetAuthSocialCallbackSuccessResponseInterface,
@@ -39,6 +40,23 @@ export const useGetSocialCallback = () => {
       const data = query.data;
       const cookies = new Cookies();
       cookies.set("token", data.data.token, { path: "/" });
+      const user = query.data.data.user;
+      dispatchUser({
+        type: UserActionEnum.SetProfileData,
+        payload: {
+          id: user.id,
+          first_name: user.first_name ?? "",
+          last_name: user.last_name ?? "",
+          avatar: user.avatar,
+          email: user.email,
+          phonenumber: user.mobile ?? "",
+          city: user.city ?? "",
+          about_me: user.profile?.bio ?? "",
+          is_driver: user.is_driver === 1 ? true : false,
+          gender: user.gender ?? null,
+          is_able_to_ride: user.can_share_ride,
+        },
+      });
       router.push(AppCollectionURL.public.home());
     }
   }, [query.data, query.isFetching]);
