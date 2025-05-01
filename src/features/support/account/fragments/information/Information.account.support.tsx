@@ -13,6 +13,7 @@ export const InformationAccountSupport = () => {
 
   const { state: userState } = React.useContext(UserContext);
 
+  console.log("ini user state di profile information", userState);
   return (
     <div
       className={clsx(

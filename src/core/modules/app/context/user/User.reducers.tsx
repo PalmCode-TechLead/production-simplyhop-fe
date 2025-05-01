@@ -6,8 +6,10 @@ export const UserProfileReducers = (
   action: UserActions
 ) => {
   switch (action.type) {
-    case UserActionEnum.SetProfileData:
+    case UserActionEnum.SetProfileData: {
+      console.log(action.payload, "ini payload");
       return action.payload;
+    }
 
     default:
       return state;
