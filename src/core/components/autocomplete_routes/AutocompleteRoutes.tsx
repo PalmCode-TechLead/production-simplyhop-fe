@@ -46,7 +46,7 @@ export const AutocompleteRoutes = ({
     autocomplete: {
       selected: null,
       items: [],
-      disabled: false,
+      // disabled: false,
       emptyMessage: "",
       debounceQuery: false,
       onSelect: () => {},
@@ -59,7 +59,7 @@ export const AutocompleteRoutes = ({
     autocomplete: {
       selected: null,
       items: [],
-      disabled: false,
+      // disabled: false,
       emptyMessage: "",
       debounceQuery: false,
       onSelect: () => {},

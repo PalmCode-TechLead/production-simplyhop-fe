@@ -27,6 +27,7 @@ export const FormRoutes = (props: FormRoutesProps) => {
     <>
       <AutocompleteRoutes
         {...restProps}
+        disabled={origin?.pageSheet?.isOpen || destination?.pageSheet?.isOpen}
         origin={origin}
         destination={destination}
       />

@@ -18,7 +18,7 @@ export const FormAuto = (props: FormAutoProps) => {
   }
   return (
     <>
-      <AutocompleteAuto {...restProps} />
+      <AutocompleteAuto {...restProps} disabled={bottomSheet?.isOpen} />
       <BottomSheetAuto {...bottomSheet} />
     </>
   );
