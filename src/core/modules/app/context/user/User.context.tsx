@@ -43,7 +43,12 @@ const UserProvider = (props: {
 
   useEffect(() => {
     if (!didInitialize.current) {
-      console.log("ini state initialization", props.profile, didInitialize.current);
+      console.log("ini pathname", window.location.pathname);
+      console.log(
+        "ini state initialization",
+        props.profile,
+        didInitialize.current
+      );
       dispatch({
         type: UserActionEnum.SetProfileData,
         payload: props.profile ?? null,

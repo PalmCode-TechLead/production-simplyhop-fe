@@ -30,13 +30,15 @@ export const usePostAuthLogout = () => {
     mutationFn: () => {
       return fetchPostAuthLogout();
     },
-    onSuccess() {
+    async onSuccess() {
       dispatchUser({
         type: UserActionEnum.SetProfileData,
         payload: null,
       });
       const cookies = new Cookies();
       cookies.remove("token", { path: "/" });
+      await fetch("/api/logout", { method: "POST" }); // Trigger hapus cookie
+      router.refresh(); // Biar layout re-fetch cookie baru (yang sudah kosong)
       router.push(AppCollectionURL.public.home());
     },
     onError(error) {
