@@ -131,11 +131,16 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
               "w-full"
             )}
           >
-            {dictionaries.delete_notification.information.items.map((item) => (
-              <li className={clsx("text-[#888888] text-[1rem] font-normal")}>
-                {item.name}
-              </li>
-            ))}
+            {dictionaries.delete_notification.information.items.map(
+              (item, index) => (
+                <li
+                  key={index}
+                  className={clsx("text-[#888888] text-[1rem] font-normal")}
+                >
+                  {item.name}
+                </li>
+              )
+            )}
           </ol>
         </div>
 
