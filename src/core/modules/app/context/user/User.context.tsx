@@ -4,7 +4,7 @@ import React, {
   useReducer,
   Dispatch,
   useEffect,
-  // useRef,
+  useRef,
 } from "react";
 import {
   UserActionEnum,
@@ -38,24 +38,26 @@ const UserProvider = (props: {
   profile?: UserProfile | null;
 }) => {
   // ✅ Simpan initialProfile hanya sekali
-  // const didInitialize = useRef(false);
+  const didInitialize = useRef(false);
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
-  // useEffect(() => {
-  //   if (!didInitialize.current) {
-  //     dispatch({
-  //       type: UserActionEnum.SetProfileData,
-  //       payload: props.profile ?? null,
-  //     });
-  //     didInitialize.current = true;
-  //   }
-  // }, []);
   useEffect(() => {
-    dispatch({
-      type: UserActionEnum.SetProfileData,
-      payload: props.profile ?? null,
-    });
-  }, [props.profile]);
+    if (!didInitialize.current) {
+      console.log("ini state initialization", props.profile, didInitialize.current);
+      dispatch({
+        type: UserActionEnum.SetProfileData,
+        payload: props.profile ?? null,
+      });
+      didInitialize.current = true;
+    }
+  }, []);
+  // useEffect(() => {
+  //   console.log(props.profile, "ini props profile");
+  //   dispatch({
+  //     type: UserActionEnum.SetProfileData,
+  //     payload: props.profile ?? null,
+  //   });
+  // }, [props.profile]);
 
   return (
     <UserContext.Provider value={{ state, dispatch }}>

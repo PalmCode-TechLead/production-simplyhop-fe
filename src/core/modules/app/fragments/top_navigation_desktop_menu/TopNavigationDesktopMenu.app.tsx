@@ -30,9 +30,7 @@ export const TopNavigationDesktopMenu = () => {
           <Link
             {...menu}
             href={
-              menu.id === "mitfahrt-anbieten" && !isLogin
-                ? AppCollectionURL.public.login()
-                : menu.id === "support" && !isLogin
+              menu.id !== "mitfahrt-suchen" && !isLogin
                 ? AppCollectionURL.public.login()
                 : menu.href
             }

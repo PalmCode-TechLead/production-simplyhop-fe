@@ -44,7 +44,7 @@ export const RidePlanFormVehiclesSupport = () => {
     const res = await postUserProfileCreate(data);
     if (!res.data) return;
     if (!userState.profile) return;
-    console.log("this is update vehicle inside", data.id, data.id === "yes");
+
     dispatchUser({
       type: UserActionEnum.SetProfileData,
       payload: {
