@@ -11,7 +11,12 @@ import Cookies from "universal-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import { fetchPostAuthLogin } from "@/core/services/rest/simplyhop/auth";
-import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
+import {
+  GlobalActionEnum,
+  GlobalContext,
+  UserActionEnum,
+  UserContext,
+} from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
 import { RIDE_FILTER } from "@/core/enums";
 
@@ -20,6 +25,7 @@ export const usePostAuthLogin = () => {
   const searchParams = useSearchParams();
   const rideId = searchParams.get(RIDE_FILTER.RIDE_ID);
   const { state } = React.useContext(LoginAuthContext);
+  const { dispatch: dispatchUser } = React.useContext(UserContext);
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const mutation = useMutation<
@@ -39,6 +45,23 @@ export const usePostAuthLogin = () => {
     onSuccess(data) {
       const cookies = new Cookies();
       cookies.set("token", data.data.token, { path: "/" });
+      const user = data.data.user;
+      dispatchUser({
+        type: UserActionEnum.SetProfileData,
+        payload: {
+          id: user.id,
+          first_name: user.first_name ?? "",
+          last_name: user.last_name ?? "",
+          avatar: user.avatar,
+          email: user.email,
+          phonenumber: user.mobile ?? "",
+          city: user.city ?? "",
+          about_me: user.profile?.bio ?? "",
+          is_driver: user.is_driver === 1 ? true : false,
+          gender: user.gender ?? null,
+          is_able_to_ride: user.can_share_ride,
+        },
+      });
       if (!rideId) {
         router.push(AppCollectionURL.public.home());
       } else {
