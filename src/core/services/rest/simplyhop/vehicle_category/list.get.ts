@@ -1,7 +1,8 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
 import { GetVehicleCategoryListPayloadRequestInterface } from "@/core/models/rest/simplyhop/vehicle_category";
+import axios from "@/core/utils/axios/functions/base";
 
 export const fetchGetVehicleCategoryList = async (
   payload?: GetVehicleCategoryListPayloadRequestInterface

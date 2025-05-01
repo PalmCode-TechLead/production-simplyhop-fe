@@ -1,8 +1,9 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
 import Cookies from "universal-cookie";
 import { GetUserProfileDataPayloadRequestInterface } from "@/core/models/rest/simplyhop/user_profile";
+import axios from "@/core/utils/axios/functions/base";
 
 export const fetchGetUserProfileData = async (
   payload?: GetUserProfileDataPayloadRequestInterface

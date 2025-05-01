@@ -1,7 +1,8 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
 import { GetAuthSocialCallbackPayloadRequestInterface } from "@/core/models/rest/simplyhop/auth";
+import axios from "@/core/utils/axios/functions/base";
 
 export const fetchGetAuthSocialCallback = async (
   payload: GetAuthSocialCallbackPayloadRequestInterface
@@ -17,7 +18,10 @@ export const fetchGetAuthSocialCallback = async (
     return res.data;
   } catch (err) {
     console.error("Error fetchGetAuthSocialCallback", err);
-    console.error("Error fetchGetAuthSocialCallback", String(JSON.stringify(err)));
+    console.error(
+      "Error fetchGetAuthSocialCallback",
+      String(JSON.stringify(err))
+    );
     throw (err as AxiosError)?.response?.data || (err as AxiosError)?.response;
   }
 };

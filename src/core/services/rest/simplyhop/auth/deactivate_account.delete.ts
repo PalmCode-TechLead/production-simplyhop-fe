@@ -1,8 +1,9 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
 import { DeleteAuthDeactivateAccountPayloadRequestInterface } from "@/core/models/rest/simplyhop/auth";
 import Cookies from "universal-cookie";
+import axios from "@/core/utils/axios/functions/base";
 
 export const fetchDeleteAuthDeactivateAccount = async (
   payload: DeleteAuthDeactivateAccountPayloadRequestInterface

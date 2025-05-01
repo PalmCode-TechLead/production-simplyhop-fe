@@ -1,8 +1,9 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
 import Cookies from "universal-cookie";
 import { DeleteMessagesChatPayloadRequestInterface } from "@/core/models/rest/simplyhop/messages";
+import axios from "@/core/utils/axios/functions/base";
 
 export const fetchDeleteMessagesChat = async (
   payload: DeleteMessagesChatPayloadRequestInterface

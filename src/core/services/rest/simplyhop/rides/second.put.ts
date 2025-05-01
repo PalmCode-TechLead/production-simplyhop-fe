@@ -1,8 +1,9 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { ENVIRONMENTS } from "@/core/environments";
 import { SimplyHopAPICollectionURL } from "@/core/utils/router/constants/simplyhop_api";
 import Cookies from "universal-cookie";
 import { PutRidesSecondPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
+import axios from "@/core/utils/axios/functions/base";
 
 export const fetchPutRidesSecond = async (
   payload: PutRidesSecondPayloadRequestInterface
