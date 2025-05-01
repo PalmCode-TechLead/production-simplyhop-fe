@@ -19,8 +19,7 @@ export const MapPlanRideTrip = () => {
   const apiKey = ENVIRONMENTS.GOOGLE_MAP_API_KEY;
   const dictionaries = getDictionaries();
   const { state } = useContext(PlanRideTripContext);
-  const { location: userLocation } = useGeolocation();
-  console.log(userLocation, "ini user location");
+  useGeolocation();
 
   if (!apiKey) {
     console.error(
@@ -84,7 +83,7 @@ export const MapPlanRideTrip = () => {
         }
 
         const data = await response.json();
-        console.log("🚀 Routes API Response:", data);
+
         const encodedPolyline = data.routes[0].polyline.encodedPolyline;
         const decodedPolyline = decode(encodedPolyline).map(([lat, lng]) => ({
           lat,

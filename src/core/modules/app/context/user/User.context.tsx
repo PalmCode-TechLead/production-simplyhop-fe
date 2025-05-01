@@ -43,12 +43,6 @@ const UserProvider = (props: {
 
   useEffect(() => {
     if (!didInitialize.current) {
-      console.log("ini pathname", window.location.pathname);
-      console.log(
-        "ini state initialization",
-        props.profile,
-        didInitialize.current
-      );
       dispatch({
         type: UserActionEnum.SetProfileData,
         payload: props.profile ?? null,
@@ -56,13 +50,6 @@ const UserProvider = (props: {
       didInitialize.current = true;
     }
   }, []);
-  // useEffect(() => {
-  //   console.log(props.profile, "ini props profile");
-  //   dispatch({
-  //     type: UserActionEnum.SetProfileData,
-  //     payload: props.profile ?? null,
-  //   });
-  // }, [props.profile]);
 
   return (
     <UserContext.Provider value={{ state, dispatch }}>

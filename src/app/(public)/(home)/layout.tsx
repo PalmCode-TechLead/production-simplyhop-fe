@@ -19,7 +19,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
   const cookieStore = await cookies(); // ✅ with await
   const token = cookieStore.get("token")?.value;
   let userProfile: UserProfile | null = null;
-  console.log(token, "ini token");
+
   if (!!token) {
     try {
       const res = await fetchGetUserProfileData({
@@ -28,7 +28,7 @@ export default async function TripLayout({ children }: TripLayoutProps) {
         },
       });
       const user = res as GetUserProfileDataSuccessResponseInterface;
-      console.log(user.data, "ini di layout home");
+
       if (!!user.data) {
         userProfile = {
           id: user.data.id,

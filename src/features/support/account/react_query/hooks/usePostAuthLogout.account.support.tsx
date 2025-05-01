@@ -16,6 +16,7 @@ import {
   UserContext,
 } from "@/core/modules/app/context";
 import { v4 as uuidv4 } from "uuid";
+import { removeToken } from "@/app/actions";
 
 export const usePostAuthLogout = () => {
   const router = useRouter();
@@ -37,8 +38,8 @@ export const usePostAuthLogout = () => {
       });
       const cookies = new Cookies();
       cookies.remove("token", { path: "/" });
-      await fetch("/api/logout", { method: "POST" }); // Trigger hapus cookie
-      router.refresh(); // Biar layout re-fetch cookie baru (yang sudah kosong)
+      await removeToken();
+      router.refresh();
       router.push(AppCollectionURL.public.home());
     },
     onError(error) {

@@ -25,7 +25,7 @@ import { UserContext } from "@/core/modules/app/context";
 export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
   const { state: userState } = React.useContext(UserContext);
-  console.log("this is userprofile plan ride", userState.profile);
+
   const { state, dispatch } = React.useContext(PlanRideTripContext);
   const { isLg } = useTailwindBreakpoint();
   useGetVehicleMy();

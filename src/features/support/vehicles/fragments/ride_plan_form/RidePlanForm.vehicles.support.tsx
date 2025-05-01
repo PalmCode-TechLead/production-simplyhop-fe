@@ -68,8 +68,6 @@ export const RidePlanFormVehiclesSupport = () => {
       },
     });
   };
-
-  console.log("this is userprofile vehicles outside", userState.profile);
   return (
     <div
       className={clsx(

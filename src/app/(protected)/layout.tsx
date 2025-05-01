@@ -27,7 +27,6 @@ export default async function ProtectedLayout({
         token: token ?? "",
       },
     });
-    console.log(res, "ini user from server");
     const user = res as GetUserProfileDataSuccessResponseInterface;
     userProfile = {
       id: user.data.id,
