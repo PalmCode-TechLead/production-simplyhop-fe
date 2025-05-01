@@ -208,13 +208,26 @@
     }
   },
   "delete_notification": {
-    "title": "Bist du sicher, dass du das Fahrzeug löschen möchtest?",
+    "title": "Auto löschen?",
+    "message": "Sie werden den <span style='color:black;font-weight:bold;'>{{type}}</span> löschen",
+    "information": {
+      "items": [
+        {
+          "id": "1",
+          "name": "Wir werden alle Fahrten, die bereits mit diesem Auto geplant sind, beibehalten."
+        },
+        {
+          "id": "2",
+          "name": "Sie können dieses Auto nicht mehr für den nächsten Fahrplan verwenden."
+        }
+      ]
+    },
     "cta": {
       "back": {
-        "children": "Zurück"
+        "children": "Löschung verwerfen"
       },
       "confirm": {
-        "children": "Löschen"
+        "children": "Bestätige die Löschung"
       }
     }
   },

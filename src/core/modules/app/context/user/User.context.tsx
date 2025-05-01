@@ -43,7 +43,6 @@ const UserProvider = (props: {
 
   useEffect(() => {
     if (!didInitialize.current && !!props.profile) {
-      console.log(props.profile, "ini kepanggil berapa kali");
       dispatch({
         type: UserActionEnum.SetProfileData,
         payload: {

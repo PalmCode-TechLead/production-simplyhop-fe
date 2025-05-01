@@ -57,7 +57,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
         "overflow-auto",
         "!px-[0rem] !py-[0rem]"
       )}
-      open={isOpen}
+      open={true}
       variant={isLg ? "modal" : "page_sheet"}
       onClose={handleClose}
     >
@@ -80,44 +80,92 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#EFF9EC]"
+              "bg-[#F5F5F5]"
             )}
           >
             <SVGIcon
-              name="ContrastCheckMark"
-              className={clsx("w-[5rem] h-[5rem]", "text-[#5AC53D]")}
+              name="OctagonX"
+              className={clsx("w-[5rem] h-[5rem]", "text-[black]")}
             />
           </div>
         </div>
 
-        <h1
-          className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
-        >
-          {dictionaries.delete_notification.title}
-        </h1>
-
-        <div className={clsx("w-full h-[1.25rem]")} />
-
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-cols-2 place-content-center place-items-center gap-[1rem]",
+            "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[2rem]",
             "w-full"
           )}
         >
-          <Button className={clsx("py-[1rem]")} onClick={handleClose}>
-            {dictionaries.delete_notification.cta.back.children}
-          </Button>
+          <h1
+            className={clsx("text-[1.5rem] text-[black] font-bold text-center")}
+          >
+            {dictionaries.delete_notification.title}
+          </h1>
+          <h2
+            className={clsx(
+              "text-[1rem] text-[#888888] font-normal text-center"
+            )}
+            dangerouslySetInnerHTML={{
+              __html: dictionaries.delete_notification.message.replace(
+                "{{type}}",
+                `${state.vehicle_information.general.form.car_model.value}`
+              ),
+            }}
+          />
+        </div>
+
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+            "w-full"
+          )}
+        >
+          <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
+            {dictionaries.delete_notification.title}
+          </p>
+          <ol
+            className={clsx(
+              "list-disc",
+              "pl-[1rem]",
+              "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+              "w-full"
+            )}
+          >
+            {dictionaries.delete_notification.information.items.map((item) => (
+              <li className={clsx("text-[#888888] text-[1rem] font-normal")}>
+                {item.name}
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-center place-items-center gap-[1rem]",
+            "w-full"
+          )}
+        >
           <button
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
-              "text-[1rem] text-[#DA2323] font-medium",
+              "text-[1rem] text-[#5AC53D] font-medium",
               "cursor-pointer"
+            )}
+            onClick={handleClose}
+          >
+            {dictionaries.delete_notification.cta.back.children}
+          </button>
+          <Button
+            className={clsx(
+              "py-[1rem]",
+              "!bg-[#C50707]",
+              "border border-[#C50707]"
             )}
             onClick={handleClickDelete}
           >
             {dictionaries.delete_notification.cta.confirm.children}
-          </button>
+          </Button>
         </div>
       </div>
     </AdaptiveModal>
