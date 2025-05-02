@@ -221,12 +221,12 @@ export const RideCardResultTrip = ({
 
           <div
             className={clsx(
-              "grid grid-flow-col lg:grid-flow-row items-center content-center justify-start justify-items-start gap-[0.5rem]"
+              "grid lg:grid-flow-row grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
             )}
           >
-            <Image {...car.image} className={clsx("w-[145px]")} />
+            <Image {...car.image} className={clsx("lg:w-[145px] w-[75px]")} />
             <div className={clsx("block")}>
-              <CarIdentityItem {...car.identity} />
+              <CarIdentityItem {...car.identity} number={null} />
             </div>
           </div>
         </div>
@@ -240,17 +240,62 @@ export const RideCardResultTrip = ({
           {/* identity */}
 
           {/* routes */}
-          <div
-            className={clsx(
-              "grid grid-cols-[auto_auto_auto] place-content-start place-items-start gap-[2.25rem]",
-              "w-full"
-            )}
-          >
-            <DepartureItem {...routes.departure} />
+          <div className={clsx("w-full grid grid-cols-[auto_1fr] gap-2")}>
+            <div className={clsx("grid grid-cols-1 h-full")}>
+              <div
+                className={clsx(
+                  "lg:hidden h-[82%] grid grid-cols-1 items-start justify-start justify-items-start",
+                  "w-full",
+                  "relative"
+                )}
+              >
+                <div
+                  className={clsx(
+                    "flex items-center justify-center",
+                    "w-3 h-3 p-[3px] relative z-1",
+                    "bg-[#5AC53D]",
+                    "rounded-[50%]"
+                  )}
+                >
+                  <div
+                    className={clsx(
+                      "flex items-center justify-center",
+                      "w-full h-full",
+                      "bg-[white]",
+                      "rounded-[50%]"
+                    )}
+                  />
+                </div>
 
-            <TravelTimeItem {...routes.travelTime} />
+                <div
+                  className={clsx(
+                    "w-[1px] h-full absolute inset-0 left-1/2 -translate-x-1/2 z-0",
+                    "bg-[#EEF0EB]"
+                  )}
+                />
 
-            <ArrivalItem {...routes.arrival} />
+                <div
+                  className={clsx(
+                    "flex items-center justify-center mt-auto",
+                    "w-3 h-3 relative z-[1]",
+                    "bg-[#5AC53D]",
+                    "rounded-[50%]"
+                  )}
+                />
+              </div>
+            </div>
+            <div
+              className={clsx(
+                "grid lg:grid-cols-[auto_auto_auto] grid-cols-1 place-content-start place-items-start lg:gap-[2.25rem] gap-4",
+                "w-full"
+              )}
+            >
+              <DepartureItem {...routes.departure} />
+
+              <TravelTimeItem {...routes.travelTime} />
+
+              <ArrivalItem {...routes.arrival} />
+            </div>
           </div>
 
           {/* umweg */}

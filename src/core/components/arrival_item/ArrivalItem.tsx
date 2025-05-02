@@ -16,7 +16,7 @@ export const ArrivalItem = ({ place = "", time = "" }: ArrivalItemProps) => {
     >
       <p
         className={clsx(
-          "text-[0.75rem] font-normal text-[#8C8D89] truncate text-ellipsis",
+          "text-[0.75rem] font-normal text-[#8C8D89] lg:truncate lg:text-ellipsis max-lg:line-clamp-2",
           "w-full"
         )}
       >

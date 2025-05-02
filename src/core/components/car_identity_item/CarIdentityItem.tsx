@@ -20,7 +20,7 @@ export default function CarIdentityItem({
     >
       <div
         className={clsx(
-          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.375rem]",
+          "grid grid-flow-col items-start content-center justify-start justify-items-start gap-[0.375rem]",
           "w-full"
         )}
       >
@@ -30,7 +30,7 @@ export default function CarIdentityItem({
         />
         <p
           className={clsx(
-            "text-[black] text-[0.875rem] lg:text-[1rem] font-medium truncate text-ellipsis",
+            "text-[black] text-[0.875rem] lg:text-[1rem] font-medium line-clamp-2",
             "w-full"
           )}
         >

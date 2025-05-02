@@ -15,7 +15,7 @@ export const TravelTimeItem = ({ time = "" }: TravelTimeItemProps) => {
     >
       <div
         className={clsx(
-          "grid grid-cols-[6px_1fr_6px] items-center content-center justify-start justify-items-start",
+          "max-lg:hidden grid grid-cols-[6px_1fr_6px] items-center content-center justify-start justify-items-start",
           "w-full",
           "relative"
         )}
