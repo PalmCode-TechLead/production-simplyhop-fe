@@ -26,7 +26,7 @@ export const VehicleFilterResulTrip = () => {
           ...state.advanced_filter.sort,
           selected:
             dictionaries.advanced_filter.sort.option.items.find(
-              (item) => item.id === "-base_price"
+              (item) => item.id === "average_distance"
             ) ?? null,
         },
       },
