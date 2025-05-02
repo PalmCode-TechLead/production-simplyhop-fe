@@ -23,6 +23,7 @@ export const ContactApp = () => {
       </p>
       <Link
         href={dictionaries.contact.cta.contact.href}
+        target="_blank"
         className={clsx(
           "flex items-center justify-center",
           "px-[1.5rem] py-[1rem]",

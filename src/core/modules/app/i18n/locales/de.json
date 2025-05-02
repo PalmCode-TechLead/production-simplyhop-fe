@@ -572,7 +572,7 @@
     "description": "Schreib uns eine E-Mail an service@simplyhop.com – wir melden uns so schnell wie möglich bei dir.",
     "cta": {
       "contact": {
-        "href": "",
+        "href": "mailto:service@simplyhop.com",
         "children": "Kontakt"
       }
     }
