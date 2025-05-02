@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "Simply Hop",
 };
 
-export const viewPort: Viewport = {
+export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
 };

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import { getDictionaries } from "../../i18n";
-import SVGIcon, { SVGIconProps } from "@/core/icons";
+import SVGIcon from "@/core/icons";
 import { UserContext } from "../../context";
 
 export const FooterApp = () => {
