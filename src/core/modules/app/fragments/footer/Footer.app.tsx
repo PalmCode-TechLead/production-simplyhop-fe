@@ -45,7 +45,7 @@ export const FooterApp = () => {
               "grid grid-flow-col items-center content-center justify-end justify-items-end gap-[1.5rem]"
             )}
           >
-            {dictionaries.footer.top.social_media.items.map(
+            {/* {dictionaries.footer.top.social_media.items.map(
               (item, itemIndex) => (
                 <Link
                   key={itemIndex}
@@ -63,7 +63,7 @@ export const FooterApp = () => {
                   />
                 </Link>
               )
-            )}
+            )} */}
           </div>
         </div>
 
