@@ -11,6 +11,7 @@ export interface GetVehicleBrandListPayloadRequestInterface {
 
 export type GetVehicleBrandListParamsRequestInterface = {
   include?: string;
+  search?: string;
   "page[number]"?: number;
   "page[size]"?: number;
 };

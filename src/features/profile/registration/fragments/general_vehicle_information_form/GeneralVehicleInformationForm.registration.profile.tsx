@@ -76,6 +76,25 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
     });
   };
 
+  const handleQueryCarBrand = (data: string) => {
+    dispatch({
+      type: RegistrationProfileActionEnum.SetVehicleInformationData,
+      payload: {
+        ...state.vehicle_information,
+        general: {
+          ...state.vehicle_information.general,
+          form: {
+            ...state.vehicle_information.general.form,
+            car_brand: {
+              ...state.vehicle_information.general.form.car_brand,
+              query: data,
+            },
+          },
+        },
+      },
+    });
+  };
+
   const handleSelectCarCategory = (data: { id: string; name: string }) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetVehicleInformationData,
@@ -119,6 +138,25 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
                 ...state.vehicle_information.general.form.car_category.items,
                 payload,
               ],
+            },
+          },
+        },
+      },
+    });
+  };
+
+  const handleQueryCarCategory = (data: string) => {
+    dispatch({
+      type: RegistrationProfileActionEnum.SetVehicleInformationData,
+      payload: {
+        ...state.vehicle_information,
+        general: {
+          ...state.vehicle_information.general,
+          form: {
+            ...state.vehicle_information.general.form,
+            car_category: {
+              ...state.vehicle_information.general.form.car_category,
+              query: data,
             },
           },
         },
@@ -222,6 +260,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
             },
           }}
           onSelect={handleSelectCarBrand}
+          onQuery={handleQueryCarBrand}
         />
         <Autocomplete
           labelProps={{
@@ -244,6 +283,7 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
             },
           }}
           onSelect={handleSelectCarCategory}
+          onQuery={handleQueryCarCategory}
         />
       </div>
 

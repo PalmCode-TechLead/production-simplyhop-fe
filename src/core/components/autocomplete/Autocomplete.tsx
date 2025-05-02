@@ -52,16 +52,7 @@ export const Autocomplete = ({
     setIsOpen(false);
   });
 
-  const filteredItems = !query.length
-    ? items
-    : !!selected && query === selected.name
-    ? items
-    : items.filter((item) =>
-        item.name
-          .toLowerCase()
-          .replace(/\s+/g, "")
-          .includes(query.toLowerCase().replace(/\s+/g, ""))
-      );
+  const filteredItems = items;
 
   const handleChange = (data: { id: string; name: string }) => {
     onSelect(data);

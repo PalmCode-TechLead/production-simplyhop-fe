@@ -6,17 +6,11 @@ export interface GetVehicleCategoryListRequestInterface extends NextApiRequest {
 }
 
 export interface GetVehicleCategoryListPayloadRequestInterface {
-  path: GetVehicleCategoryListPathRequestInterface;
   params?: GetVehicleCategoryListParamsRequestInterface;
 }
 
-export type GetVehicleCategoryListPathRequestInterface = {
-  id: string;
-};
-
 export type GetVehicleCategoryListParamsRequestInterface = {
-  "filter[search]"?: string;
-  "filter[status]"?: string;
+  search?: string;
   include?: string;
   "page[number]"?: number;
   "page[size]"?: number;

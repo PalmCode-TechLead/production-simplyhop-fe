@@ -16,18 +16,22 @@ import {
 export const useGetVehicleBrandList = () => {
   const { state, dispatch } = React.useContext(VehicleCreateSupportContext);
 
+  const payload: GetVehicleBrandListPayloadRequestInterface = {
+    params: {
+      search: !state.vehicle_information.general.form.car_brand.query
+        ? undefined
+        : state.vehicle_information.general.form.car_brand.query,
+      "page[number]": 1,
+      "page[size]": 30,
+    },
+  };
+
   const query = useQuery<
     GetVehicleBrandListSuccessResponseInterface,
     GetVehicleBrandListErrorResponseInterface
   >({
-    queryKey: VehicleCreateSupportReactQueryKey.GetVehicleBrandList(),
+    queryKey: VehicleCreateSupportReactQueryKey.GetVehicleBrandList(payload),
     queryFn: () => {
-      const payload: GetVehicleBrandListPayloadRequestInterface = {
-        params: {
-          "page[number]": 1,
-          "page[size]": 1000,
-        },
-      };
       return fetchGetVehicleBrandList(payload);
     },
   });
