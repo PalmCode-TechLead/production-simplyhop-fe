@@ -160,6 +160,10 @@
           {
             "id": "-base_price",
             "name": "Preis absteigend"
+          },
+          {
+            "id": "average_distance",
+            "name": "Empfohlen"
           }
         ]
       }
