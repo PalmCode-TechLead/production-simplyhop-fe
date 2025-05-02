@@ -146,6 +146,10 @@
       "option": {
         "items": [
           {
+            "id": "average_distance",
+            "name": "Empfohlen"
+          },
+          {
             "id": "-created_at",
             "name": "Neueste zuerst"
           },
@@ -160,10 +164,6 @@
           {
             "id": "-base_price",
             "name": "Preis absteigend"
-          },
-          {
-            "id": "average_distance",
-            "name": "Empfohlen"
           }
         ]
       }
