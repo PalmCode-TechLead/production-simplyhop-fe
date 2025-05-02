@@ -9,19 +9,30 @@ import {
 import { fetchGetVehicleBrandList } from "@/core/services/rest/simplyhop/vehicle_brand";
 import {
   GetVehicleBrandListErrorResponseInterface,
+  GetVehicleBrandListPayloadRequestInterface,
   GetVehicleBrandListSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/vehicle_brand";
 
 export const useGetVehicleBrandList = () => {
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
 
+  const payload: GetVehicleBrandListPayloadRequestInterface = {
+    params: {
+      search: !state.vehicle_information.general.form.car_brand.query
+        ? undefined
+        : state.vehicle_information.general.form.car_brand.query,
+      "page[number]": 1,
+      "page[size]": 30,
+    },
+  };
+
   const query = useQuery<
     GetVehicleBrandListSuccessResponseInterface,
     GetVehicleBrandListErrorResponseInterface
   >({
-    queryKey: VehicleUpdateSupportReactQueryKey.GetVehicleBrandList(),
+    queryKey: VehicleUpdateSupportReactQueryKey.GetVehicleBrandList(payload),
     queryFn: () => {
-      return fetchGetVehicleBrandList();
+      return fetchGetVehicleBrandList(payload);
     },
   });
 

@@ -76,11 +76,13 @@ export interface RegistrationProfileVehicleInformation {
         selected: null | { id: string; name: string };
         items: { id: string; name: string }[];
         error: FormError;
+        query: string;
       };
       car_category: {
         selected: null | { id: string; name: string };
         items: { id: string; name: string }[];
         error: FormError;
+        query: string;
       };
       car_model: {
         value: string;

@@ -1,9 +1,22 @@
+import { GetVehicleBrandListPayloadRequestInterface } from "@/core/models/rest/simplyhop/vehicle_brand";
+import { GetVehicleCategoryListPayloadRequestInterface } from "@/core/models/rest/simplyhop/vehicle_category";
+
 export const VehicleUpdateSupportReactQueryKey = {
-  GetVehicleBrandList: () => {
-    return ["VehicleUpdateSupportReactQueryKey.GetVehicleBrandList"];
+  GetVehicleBrandList: (
+    payload?: GetVehicleBrandListPayloadRequestInterface
+  ) => {
+    return [
+      "VehicleUpdateSupportReactQueryKey.GetVehicleBrandList",
+      [payload] as const,
+    ];
   },
-  GetVehicleCategoryList: () => {
-    return ["VehicleUpdateSupportReactQueryKey.GetVehicleCategoryList"];
+  GetVehicleCategoryList: (
+    payload?: GetVehicleCategoryListPayloadRequestInterface
+  ) => {
+    return [
+      "VehicleUpdateSupportReactQueryKey.GetVehicleCategoryList",
+      [payload] as const,
+    ];
   },
   GetVehicleId: () => {
     return ["VehicleUpdateSupportReactQueryKey.GetVehicleId"];
@@ -16,5 +29,11 @@ export const VehicleUpdateSupportReactQueryKey = {
   },
   DeleteVehicleMedia: () => {
     return ["VehicleUpdateSupportReactQueryKey.DeleteVehicleMedia"];
+  },
+  PostVehicleBrandCreate: () => {
+    return ["VehicleUpdateSupportReactQueryKey.PostVehicleBrandCreate"];
+  },
+  PostVehicleCategoryCreate: () => {
+    return ["VehicleUpdateSupportReactQueryKey.PostVehicleCategoryCreate"];
   },
 };

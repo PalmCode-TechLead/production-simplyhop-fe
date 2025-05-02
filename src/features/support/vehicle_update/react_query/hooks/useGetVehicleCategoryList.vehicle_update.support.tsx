@@ -8,6 +8,7 @@ import {
 } from "../../context";
 import {
   GetVehicleCategoryListErrorResponseInterface,
+  GetVehicleCategoryListPayloadRequestInterface,
   GetVehicleCategoryListSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/vehicle_category";
 import { fetchGetVehicleCategoryList } from "@/core/services/rest/simplyhop/vehicle_category";
@@ -15,13 +16,23 @@ import { fetchGetVehicleCategoryList } from "@/core/services/rest/simplyhop/vehi
 export const useGetVehicleCategoryList = () => {
   const { state, dispatch } = React.useContext(VehicleUpdateSupportContext);
 
+  const payload: GetVehicleCategoryListPayloadRequestInterface = {
+    params: {
+      search: !state.vehicle_information.general.form.car_brand.query
+        ? undefined
+        : state.vehicle_information.general.form.car_brand.query,
+      "page[number]": 1,
+      "page[size]": 30,
+    },
+  };
+
   const query = useQuery<
     GetVehicleCategoryListSuccessResponseInterface,
     GetVehicleCategoryListErrorResponseInterface
   >({
-    queryKey: VehicleUpdateSupportReactQueryKey.GetVehicleCategoryList(),
+    queryKey: VehicleUpdateSupportReactQueryKey.GetVehicleCategoryList(payload),
     queryFn: () => {
-      return fetchGetVehicleCategoryList();
+      return fetchGetVehicleCategoryList(payload);
     },
     enabled: !!state.vehicle_information.general.form.car_brand.items.length,
   });
