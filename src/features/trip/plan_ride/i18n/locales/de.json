@@ -308,31 +308,36 @@
           "id": "whatsapp",
           "icon": {
             "name": "Whatsapp"
-          }
+          },
+          "href": "https://api.whatsapp.com/send/?text={{link}}&type=custom_url&app_absent=0"
         },
         {
           "id": "facebook",
           "icon": {
             "name": "Facebook2"
-          }
+          },
+          "href": "https://www.facebook.com/share_channel/?type=reshare&link={{link}}&source_surface=external_reshare&display=popup&hashtag"
         },
         {
           "id": "twitter",
           "icon": {
             "name": "Twitter"
-          }
+          },
+          "href": "https://twitter.com/intent/tweet?url={{link}}"
         },
         {
           "id": "telegram",
           "icon": {
             "name": "Telegram"
-          }
+          },
+          "href": "https://telegram.me/share/url?url={{link}}"
         },
         {
           "id": "thread",
           "icon": {
             "name": "Thread"
-          }
+          },
+          "href": "https://threads.net/intent/post?text={{link}}"
         }
       ],
       "cta": {

@@ -88,8 +88,13 @@ export const NotificationPlanRideTrip = () => {
             )}
           >
             {dictionaries.notification.share.items.map((item, itemIndex) => (
-              <div
+              <Link
                 key={itemIndex}
+                href={item.href.replace(
+                  "{{link}}",
+                  state.notification.share.link
+                )}
+                target="_blank"
                 className={clsx(
                   "flex items-center justify-center",
                   "w-[2rem] h-[2rem]",
@@ -98,7 +103,7 @@ export const NotificationPlanRideTrip = () => {
                 )}
               >
                 <SVGIcon name={item.icon.name as SVGIconProps["name"]} />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
