@@ -85,8 +85,8 @@ const initialState: ResultTripInitialStateType = {
   rides: {
     data: [],
     pagination: {
-      number: PAGINATION.NUMBER,
-      is_end_reached: false,
+      current: PAGINATION.NUMBER,
+      last: null,
     },
   },
   detail: {

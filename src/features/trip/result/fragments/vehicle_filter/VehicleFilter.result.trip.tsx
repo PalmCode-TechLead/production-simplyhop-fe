@@ -38,8 +38,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -80,8 +80,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -105,8 +105,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -134,8 +134,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -164,8 +164,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -193,8 +193,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -223,8 +223,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -252,8 +252,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -282,8 +282,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
@@ -307,8 +307,8 @@ export const VehicleFilterResulTrip = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });

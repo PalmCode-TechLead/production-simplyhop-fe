@@ -169,8 +169,8 @@ export const VehicleFilters = () => {
         data: [],
         pagination: {
           ...state.rides.pagination,
-          number: PAGINATION.NUMBER,
-          is_end_reached: false,
+          current: PAGINATION.NUMBER,
+          last: null,
         },
       },
     });
