@@ -46,14 +46,8 @@ export const RideArchiveTrip = () => {
     if (isLoading) return;
 
     dispatch({
-      type: ArchiveTripActionEnum.SetRideData,
-      payload: {
-        ...state.ride,
-        pagination: {
-          ...state.ride.pagination,
-          current: state.ride.pagination.current + 1,
-        },
-      },
+      type: ArchiveTripActionEnum.SetRideDataPaginationCurrent,
+      payload: state.ride.pagination.current + 1,
     });
   };
 

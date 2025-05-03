@@ -21,7 +21,7 @@ const initialState: ArchiveTripInitialStateType = {
     data: [],
     pagination: {
       current: PAGINATION.NUMBER,
-      last: null,
+      last: 3,
     },
     detail: null,
   },

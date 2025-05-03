@@ -30,13 +30,12 @@ export const InfiniteScrollWrapper = ({
     }
   }, [ref]);
 
- 
   React.useEffect(() => {
     if (isIntersecting && !isPaused && !isEndReached) {
       if (!onLoadMore) return;
       onLoadMore();
     }
-  }, [isIntersecting]);
+  }, [isIntersecting, isPaused, isEndReached]);
 
   return (
     <div className={clsx("w-full")}>

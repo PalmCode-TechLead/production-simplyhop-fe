@@ -59,6 +59,9 @@ export enum ArchiveTripActionEnum {
 
   // Ride
   SetRideData = "SetRideData",
+  SetRideDataData = "SetRideDataData",
+  SetRideDataPaginationCurrent = "SetRideDataPaginationCurrent",
+  SetRideDataPaginationLast = "SetRideDataPaginationLast",
 
   // Book
   SetBookData = "SetBookData",
@@ -82,6 +85,9 @@ export type ArchiveTripFiltersActions =
 // Ride
 type ArchiveTripRidePayload = {
   [ArchiveTripActionEnum.SetRideData]: ArchiveTripRide;
+  [ArchiveTripActionEnum.SetRideDataData]: ArchiveTripRide["data"];
+  [ArchiveTripActionEnum.SetRideDataPaginationCurrent]: ArchiveTripRide["pagination"]["current"];
+  [ArchiveTripActionEnum.SetRideDataPaginationLast]: ArchiveTripRide["pagination"]["last"];
 };
 
 export type ArchiveTripRideActions =

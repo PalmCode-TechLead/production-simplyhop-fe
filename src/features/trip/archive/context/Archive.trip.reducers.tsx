@@ -28,6 +28,27 @@ export const ArchiveTripRideReducers = (
   switch (action.type) {
     case ArchiveTripActionEnum.SetRideData:
       return action.payload;
+    case ArchiveTripActionEnum.SetRideDataData:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case ArchiveTripActionEnum.SetRideDataPaginationCurrent:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          current: action.payload,
+        },
+      };
+    case ArchiveTripActionEnum.SetRideDataPaginationLast:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          last: action.payload,
+        },
+      };
 
     default:
       return state;

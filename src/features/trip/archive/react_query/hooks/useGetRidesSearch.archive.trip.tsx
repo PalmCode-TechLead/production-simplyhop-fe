@@ -162,17 +162,14 @@ export const useGetRidesSearch = () => {
       });
 
       dispatch({
-        type: ArchiveTripActionEnum.SetRideData,
-        payload: {
-          ...state.ride,
-          data: !newPayload.length
-            ? state.book.data
-            : [...state.ride.data, ...newPayload],
-          pagination: {
-            ...state.ride.pagination,
-            last: data.meta.last_page,
-          },
-        },
+        type: ArchiveTripActionEnum.SetRideDataData,
+        payload: !newPayload.length
+          ? state.ride.data
+          : [...state.ride.data, ...newPayload],
+      });
+      dispatch({
+        type: ArchiveTripActionEnum.SetRideDataPaginationLast,
+        payload: data.meta.last_page,
       });
     }
   }, [query.data, query.isFetching]);
