@@ -167,9 +167,9 @@ export const useGetRidesSearch = () => {
           ...state.ride,
           data: !newPayload.length
             ? state.book.data
-            : [...state.book.data, ...newPayload],
+            : [...state.ride.data, ...newPayload],
           pagination: {
-            ...state.book.pagination,
+            ...state.ride.pagination,
             is_end_reached: !newPayload.length,
           },
         },
