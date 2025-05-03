@@ -32,8 +32,8 @@ export interface MyListTripFilters {
 export interface MyListTripRide {
   data: RideCardMyListTripProps[];
   pagination: {
-    number: number;
-    is_end_reached: boolean;
+    current: number;
+    last: null | number;
   };
   detail:
     | (RideCardMyListTripProps & {
@@ -45,8 +45,8 @@ export interface MyListTripRide {
 export interface MyListTripBook {
   data: BookCardMyListTripProps[];
   pagination: {
-    number: number;
-    is_end_reached: boolean;
+    current: number;
+    last: null | number;
   };
   detail: (BookDetailCardMyListTripProps & { price: CarPriceItemProps }) | null;
 }
@@ -57,9 +57,15 @@ export enum MyListTripActionEnum {
 
   // Ride
   SetRideData = "SetRideData",
+  SetRideDataData = "SetRideDataData",
+  SetRideDataPaginationCurrent = "SetRideDataPaginationCurrent",
+  SetRideDataPaginationLast = "SetRideDataPaginationLast",
 
   // Book
   SetBookData = "SetBookData",
+  SetBookDataData = "SetBookDataData",
+  SetBookDataPaginationCurrent = "SetBookDataPaginationCurrent",
+  SetBookDataPaginationLast = "SetBookDataPaginationLast",
 }
 
 // Action Collection Types
@@ -80,6 +86,9 @@ export type MyListTripFiltersActions =
 // Ride
 type MyListTripRidePayload = {
   [MyListTripActionEnum.SetRideData]: MyListTripRide;
+  [MyListTripActionEnum.SetRideDataData]: MyListTripRide["data"];
+  [MyListTripActionEnum.SetRideDataPaginationCurrent]: MyListTripRide["pagination"]["current"];
+  [MyListTripActionEnum.SetRideDataPaginationLast]: MyListTripRide["pagination"]["last"];
 };
 
 export type MyListTripRideActions =
@@ -88,6 +97,9 @@ export type MyListTripRideActions =
 // Book
 type MyListTripBookPayload = {
   [MyListTripActionEnum.SetBookData]: MyListTripBook;
+  [MyListTripActionEnum.SetBookDataData]: MyListTripBook["data"];
+  [MyListTripActionEnum.SetBookDataPaginationCurrent]: MyListTripBook["pagination"]["current"];
+  [MyListTripActionEnum.SetBookDataPaginationLast]: MyListTripBook["pagination"]["last"];
 };
 
 export type MyListTripBookActions =

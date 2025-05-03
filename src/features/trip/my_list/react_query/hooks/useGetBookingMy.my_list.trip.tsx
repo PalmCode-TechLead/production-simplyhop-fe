@@ -30,7 +30,7 @@ export const useGetBookingMy = () => {
         .add(1, "day")
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
-      "page[number]": state.book.pagination.number,
+      "page[number]": state.book.pagination.current,
       "page[size]": PAGINATION.SIZE,
     },
   };
@@ -131,17 +131,14 @@ export const useGetBookingMy = () => {
         };
       });
       dispatch({
-        type: MyListTripActionEnum.SetBookData,
-        payload: {
-          ...state.book,
-          data: !newPayload.length
-            ? state.book.data
-            : [...state.book.data, ...newPayload],
-          pagination: {
-            ...state.book.pagination,
-            is_end_reached: !newPayload.length,
-          },
-        },
+        type: MyListTripActionEnum.SetBookDataData,
+        payload: !newPayload.length
+          ? state.book.data
+          : [...state.book.data, ...newPayload],
+      });
+      dispatch({
+        type: MyListTripActionEnum.SetBookDataPaginationLast,
+        payload: data.meta.last_page,
       });
     }
   }, [query.data, query.isFetching]);

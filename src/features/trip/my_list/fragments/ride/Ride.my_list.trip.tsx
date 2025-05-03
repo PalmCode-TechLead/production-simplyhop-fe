@@ -16,7 +16,7 @@ export const RideMyListTrip = () => {
 
   const isLoading = isFetchingGetRidesMy;
 
-  if (isLoading && state.ride.pagination.number === PAGINATION.NUMBER) {
+  if (isLoading && state.ride.pagination.current === PAGINATION.NUMBER) {
     return (
       <div
         className={clsx(
@@ -44,26 +44,21 @@ export const RideMyListTrip = () => {
 
   const handleLoadMore = () => {
     if (isLoading) return;
-    if (state.ride.pagination.is_end_reached) return;
+
     dispatch({
-      type: MyListTripActionEnum.SetRideData,
-      payload: {
-        ...state.ride,
-        pagination: {
-          ...state.ride.pagination,
-          number: state.ride.pagination.number + 1,
-        },
-      },
+      type: MyListTripActionEnum.SetRideDataPaginationCurrent,
+      payload: state.ride.pagination.current + 1,
     });
   };
-
+  const isEndReached =
+    state.ride.pagination.last === state.ride.pagination.current;
   return (
     <InfiniteScrollWrapper
       loader={{
         message: dictionaries.list.loading.message,
       }}
       isPaused={isLoading}
-      isEndReached={state.ride.pagination.is_end_reached}
+      isEndReached={isEndReached}
       onLoadMore={handleLoadMore}
     >
       <div

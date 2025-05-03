@@ -34,7 +34,7 @@ export const useGetRidesSearch = () => {
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
       sort: "departure_time",
-      "page[number]": state.ride.pagination.number,
+      "page[number]": state.ride.pagination.current,
       "page[size]": PAGINATION.SIZE,
     },
   };
@@ -160,17 +160,14 @@ export const useGetRidesSearch = () => {
         };
       });
       dispatch({
-        type: MyListTripActionEnum.SetRideData,
-        payload: {
-          ...state.ride,
-          data: !newPayload.length
-            ? state.ride.data
-            : [...state.ride.data, ...newPayload],
-          pagination: {
-            ...state.ride.pagination,
-            is_end_reached: !newPayload.length,
-          },
-        },
+        type: MyListTripActionEnum.SetRideDataData,
+        payload: !newPayload.length
+          ? state.ride.data
+          : [...state.ride.data, ...newPayload],
+      });
+      dispatch({
+        type: MyListTripActionEnum.SetRideDataPaginationLast,
+        payload: data.meta.last_page,
       });
     }
   }, [query.data, query.isFetching]);

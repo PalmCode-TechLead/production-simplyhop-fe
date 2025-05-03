@@ -16,7 +16,7 @@ export const BookMyListTrip = () => {
   const { isFetching: isFetchingGetBookingMy } = useGetBookingMy();
   const isLoading = isFetchingGetBookingMy;
 
-  if (isLoading && state.book.pagination.number === PAGINATION.NUMBER) {
+  if (isLoading && state.book.pagination.current === PAGINATION.NUMBER) {
     return (
       <div
         className={clsx(
@@ -44,26 +44,22 @@ export const BookMyListTrip = () => {
 
   const handleLoadMore = () => {
     if (isLoading) return;
-    if (state.ride.pagination.is_end_reached) return;
+
     dispatch({
-      type: MyListTripActionEnum.SetBookData,
-      payload: {
-        ...state.book,
-        pagination: {
-          ...state.book.pagination,
-          number: state.book.pagination.number + 1,
-        },
-      },
+      type: MyListTripActionEnum.SetBookDataPaginationCurrent,
+      payload: state.book.pagination.current + 1,
     });
   };
 
+  const isEndReached =
+    state.book.pagination.last === state.book.pagination.current;
   return (
     <InfiniteScrollWrapper
       loader={{
         message: dictionaries.list.loading.message,
       }}
       isPaused={isLoading}
-      isEndReached={state.book.pagination.is_end_reached}
+      isEndReached={isEndReached}
       onLoadMore={handleLoadMore}
     >
       <div
