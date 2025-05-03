@@ -59,6 +59,30 @@ export const ResultTripRidesReducers = (
   switch (action.type) {
     case ResultTripActionEnum.SetRidesData:
       return action.payload;
+    case ResultTripActionEnum.SetRidesDataData: {
+      return {
+        ...state,
+        data: action.payload,
+      };
+    }
+    case ResultTripActionEnum.SetRidesDataPaginationCurrent: {
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          current: action.payload,
+        },
+      };
+    }
+    case ResultTripActionEnum.SetRidesDataPaginationLast: {
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          last: action.payload,
+        },
+      };
+    }
 
     default:
       return state;

@@ -96,8 +96,8 @@ export interface ResultTripAdvancedFilter {
 export interface ResultTripRides {
   data: RideCardResultTripProps[];
   pagination: {
-    number: number;
-    is_end_reached: boolean;
+    current: number;
+    last: null | number;
   };
 }
 
@@ -127,6 +127,9 @@ export enum ResultTripActionEnum {
   SetAdvancedFilterData = "SetAdvancedFilterData",
   // Rides
   SetRidesData = "SetRidesData",
+  SetRidesDataData = "SetRidesDataData",
+  SetRidesDataPaginationCurrent = "SetRidesDataPaginationCurrent",
+  SetRidesDataPaginationLast = "SetRidesDataPaginationLast",
   // Detail
   SetDetailData = "SetDetailData",
   // Notification
@@ -170,6 +173,9 @@ export type ResultTripAdvancedFilterActions =
 // Rides
 type ResultTripRidesPayload = {
   [ResultTripActionEnum.SetRidesData]: ResultTripRides;
+  [ResultTripActionEnum.SetRidesDataData]: ResultTripRides["data"];
+  [ResultTripActionEnum.SetRidesDataPaginationCurrent]: ResultTripRides["pagination"]["current"];
+  [ResultTripActionEnum.SetRidesDataPaginationLast]: ResultTripRides["pagination"]["last"];
 };
 
 export type ResultTripRidesActions =

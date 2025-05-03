@@ -66,7 +66,7 @@ export const useGetRideSearch = () => {
       sort: !state.advanced_filter.sort.selected?.id
         ? "average_distance"
         : state.advanced_filter.sort.selected.id,
-      "page[number]": state.rides.pagination.number,
+      "page[number]": state.rides.pagination.current,
       "page[size]": PAGINATION.SIZE,
     },
   };
@@ -333,17 +333,14 @@ export const useGetRideSearch = () => {
       });
 
       dispatch({
-        type: ResultTripActionEnum.SetRidesData,
-        payload: {
-          ...state.rides,
-          data: !newPayload.length
-            ? state.rides.data
-            : [...state.rides.data, ...newPayload],
-          pagination: {
-            ...state.rides.pagination,
-            is_end_reached: !newPayload.length,
-          },
-        },
+        type: ResultTripActionEnum.SetRidesDataData,
+        payload: !newPayload.length
+          ? state.rides.data
+          : [...state.rides.data, ...newPayload],
+      });
+      dispatch({
+        type: ResultTripActionEnum.SetRidesDataPaginationLast,
+        payload: data.meta.last_page,
       });
     }
   }, [query.data, query.isFetching]);
