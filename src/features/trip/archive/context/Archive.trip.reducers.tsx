@@ -63,7 +63,27 @@ export const ArchiveTripBookReducers = (
   switch (action.type) {
     case ArchiveTripActionEnum.SetBookData:
       return action.payload;
-
+    case ArchiveTripActionEnum.SetBookDataData:
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case ArchiveTripActionEnum.SetBookDataPaginationCurrent:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          current: action.payload,
+        },
+      };
+    case ArchiveTripActionEnum.SetBookDataPaginationLast:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          last: action.payload,
+        },
+      };
     default:
       return state;
   }

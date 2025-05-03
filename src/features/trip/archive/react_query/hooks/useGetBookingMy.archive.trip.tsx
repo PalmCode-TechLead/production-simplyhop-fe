@@ -134,17 +134,14 @@ export const useGetBookingMy = () => {
         };
       });
       dispatch({
-        type: ArchiveTripActionEnum.SetBookData,
-        payload: {
-          ...state.book,
-          data: !newPayload.length
-            ? state.book.data
-            : [...state.book.data, ...newPayload],
-          pagination: {
-            ...state.book.pagination,
-            last: data.meta.last_page,
-          },
-        },
+        type: ArchiveTripActionEnum.SetBookDataData,
+        payload: !newPayload.length
+          ? state.book.data
+          : [...state.book.data, ...newPayload],
+      });
+      dispatch({
+        type: ArchiveTripActionEnum.SetBookDataPaginationLast,
+        payload: data.meta.last_page,
       });
     }
   }, [query.data, query.isFetching]);

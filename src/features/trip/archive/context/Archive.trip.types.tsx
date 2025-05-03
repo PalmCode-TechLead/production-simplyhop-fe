@@ -65,6 +65,9 @@ export enum ArchiveTripActionEnum {
 
   // Book
   SetBookData = "SetBookData",
+  SetBookDataData = "SetBookDataData",
+  SetBookDataPaginationCurrent = "SetBookDataPaginationCurrent",
+  SetBookDataPaginationLast = "SetBookDataPaginationLast",
 }
 
 // Action Collection Types
@@ -96,6 +99,9 @@ export type ArchiveTripRideActions =
 // Book
 type ArchiveTripBookPayload = {
   [ArchiveTripActionEnum.SetBookData]: ArchiveTripBook;
+  [ArchiveTripActionEnum.SetBookDataData]: ArchiveTripBook["data"];
+  [ArchiveTripActionEnum.SetBookDataPaginationCurrent]: ArchiveTripBook["pagination"]["current"];
+  [ArchiveTripActionEnum.SetBookDataPaginationLast]: ArchiveTripBook["pagination"]["last"];
 };
 
 export type ArchiveTripBookActions =

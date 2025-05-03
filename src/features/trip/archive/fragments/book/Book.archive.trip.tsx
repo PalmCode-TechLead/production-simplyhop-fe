@@ -45,19 +45,13 @@ export const BookArchiveTrip = () => {
   const handleLoadMore = () => {
     if (isLoading) return;
     dispatch({
-      type: ArchiveTripActionEnum.SetBookData,
-      payload: {
-        ...state.book,
-        pagination: {
-          ...state.book.pagination,
-          current: state.book.pagination.current + 1,
-        },
-      },
+      type: ArchiveTripActionEnum.SetBookDataPaginationCurrent,
+      payload: state.book.pagination.current + 1,
     });
   };
 
   const isEndReached =
-    state.ride.pagination.last === state.ride.pagination.current;
+    state.book.pagination.last === state.book.pagination.current;
   return (
     <InfiniteScrollWrapper
       loader={{
