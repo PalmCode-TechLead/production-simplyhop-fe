@@ -1,4 +1,4 @@
-import { Booking } from "@/core/models/data";
+import { Booking, Meta } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetBookingMyRequestInterface extends NextApiRequest {
@@ -31,6 +31,7 @@ export interface GetBookingMySuccessResponseInterface {
   data: Booking[];
 
   redirect: null;
+  meta: Meta;
 }
 
 export interface GetBookingMyErrorResponseInterface {

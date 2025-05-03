@@ -34,7 +34,7 @@ export const useGetRidesSearch = () => {
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
       sort: "-departure_time",
-      "page[number]": state.ride.pagination.number,
+      "page[number]": state.ride.pagination.current,
       "page[size]": PAGINATION.SIZE,
     },
   };
@@ -170,7 +170,7 @@ export const useGetRidesSearch = () => {
             : [...state.ride.data, ...newPayload],
           pagination: {
             ...state.ride.pagination,
-            is_end_reached: !newPayload.length,
+            last: data.meta.last_page,
           },
         },
       });

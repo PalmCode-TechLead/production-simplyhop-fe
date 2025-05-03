@@ -20,16 +20,16 @@ const initialState: ArchiveTripInitialStateType = {
   ride: {
     data: [],
     pagination: {
-      number: PAGINATION.NUMBER,
-      is_end_reached: false,
+      current: PAGINATION.NUMBER,
+      last: null,
     },
     detail: null,
   },
   book: {
     data: [],
     pagination: {
-      number: PAGINATION.NUMBER,
-      is_end_reached: false,
+      current: PAGINATION.NUMBER,
+      last: null,
     },
     detail: null,
   },

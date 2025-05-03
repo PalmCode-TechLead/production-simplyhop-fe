@@ -32,8 +32,8 @@ export interface ArchiveTripFilters {
 export interface ArchiveTripRide {
   data: RideCardArchiveTripProps[];
   pagination: {
-    number: number;
-    is_end_reached: boolean;
+    current: number;
+    last: number | null;
   };
   detail:
     | (RideCardArchiveTripProps & {
@@ -45,8 +45,8 @@ export interface ArchiveTripRide {
 export interface ArchiveTripBook {
   data: BookCardArchiveTripProps[];
   pagination: {
-    number: number;
-    is_end_reached: boolean;
+    current: number;
+    last: number | null;
   };
   detail:
     | (BookDetailCardArchiveTripProps & { price: CarPriceItemProps })

@@ -1,4 +1,4 @@
-import { User, Vehicle } from "@/core/models/data";
+import { Meta, User, Vehicle } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetRidesSearchRequestInterface extends NextApiRequest {
@@ -23,7 +23,7 @@ export type GetRidesSearchParamsPayloadRequestInterface = {
   "filter[user_id]"?: string;
   departure_time__gte?: string;
   departure_time__lte?: string;
-  departure_date?:string;
+  departure_date?: string;
   //mandatory
   sort?: string;
   "page[number]"?: number;
@@ -68,6 +68,7 @@ export interface GetRidesSearchSuccessResponseInterface {
   }[];
 
   redirect: null;
+  meta: Meta;
 }
 
 export interface GetRidesSearchErrorResponseInterface {

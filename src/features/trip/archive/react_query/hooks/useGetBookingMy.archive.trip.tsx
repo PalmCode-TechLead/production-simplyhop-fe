@@ -30,7 +30,7 @@ export const useGetBookingMy = () => {
         .add(1, "day")
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
-      "page[number]": state.book.pagination.number,
+      "page[number]": state.book.pagination.current,
       "page[size]": PAGINATION.SIZE,
     },
   };
@@ -142,7 +142,7 @@ export const useGetBookingMy = () => {
             : [...state.book.data, ...newPayload],
           pagination: {
             ...state.book.pagination,
-            is_end_reached: !newPayload.length,
+            last: data.meta.last_page,
           },
         },
       });

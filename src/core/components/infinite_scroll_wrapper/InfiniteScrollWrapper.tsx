@@ -30,8 +30,9 @@ export const InfiniteScrollWrapper = ({
     }
   }, [ref]);
 
+ 
   React.useEffect(() => {
-    if (isIntersecting && !isPaused) {
+    if (isIntersecting && !isPaused && !isEndReached) {
       if (!onLoadMore) return;
       onLoadMore();
     }

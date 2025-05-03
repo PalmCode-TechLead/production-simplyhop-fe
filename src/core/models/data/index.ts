@@ -10,3 +10,4 @@ export * from "./ride";
 export * from "./booking";
 export * from "./message";
 export * from "./message_content";
+export * from "./meta";
