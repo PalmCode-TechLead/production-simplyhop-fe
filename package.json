@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^10.2.9",
     "@googlemaps/polyline-codec": "^1.0.28",
     "@headlessui/react": "^2.2.0",
     "@react-google-maps/api": "^2.20.6",
@@ -38,6 +39,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack": "^5.99.7"
   }
 }
