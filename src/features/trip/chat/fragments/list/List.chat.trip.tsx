@@ -17,9 +17,11 @@ import SVGIcon from "@/core/icons";
 export const ListChatTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
+
   const { state, dispatch } = React.useContext(ChatTripContext);
   useGetMessageRoomsList();
-  const { mutate: putMessageRoomsMarkAsRead } = usePutMessageRoomsMarkAsRead();
+  const { mutateAsync: putMessageRoomsMarkAsRead } =
+    usePutMessageRoomsMarkAsRead();
 
   React.useEffect(() => {
     dispatch({
@@ -80,6 +82,26 @@ export const ListChatTrip = () => {
       },
     });
     putMessageRoomsMarkAsRead(data);
+
+    dispatch({
+      type: ChatTripActionEnum.SetListData,
+      payload: {
+        ...state.list,
+        message: {
+          ...state.list.message,
+          items: state.list.message.items.map((item) => {
+            return {
+              ...item,
+              isNew:
+                item.id === data.id && item.booking_id === data.booking_id
+                  ? false
+                  : item.isNew,
+            };
+          }),
+        },
+      },
+    });
+
     router.push(
       `${AppCollectionURL.private.chat()}?id=${data.id}&bookingId=${
         data.booking_id

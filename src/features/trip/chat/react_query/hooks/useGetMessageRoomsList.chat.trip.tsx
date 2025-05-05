@@ -95,6 +95,9 @@ export const useGetMessageRoomsList = () => {
                     }`,
                 message: displayMessage,
                 date: date,
+                isNew: !isPassenger
+                  ? item.is_driver_read === 0
+                  : item.is_passenger_read === 0,
               };
             }),
           },

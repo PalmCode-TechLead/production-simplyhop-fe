@@ -8,6 +8,7 @@ export interface ListItemChatTripProps {
   name?: string;
   message?: string;
   date?: string;
+  isNew?: boolean;
 }
 
 export const ListItemChatTrip = ({
@@ -16,6 +17,7 @@ export const ListItemChatTrip = ({
   name = "",
   message = "",
   date = "",
+  isNew = false,
 }: ListItemChatTripProps) => {
   return (
     <div
@@ -53,9 +55,26 @@ export const ListItemChatTrip = ({
         </div>
       </div>
 
-      <span className={clsx("text-[0.625rem] text-[#4F5665] font-normal")}>
-        {date}
-      </span>
+      <div
+        className={clsx(
+          "grid grid-rows-1 grid-cols-1 items-stretch content-between justify-end justify-items-end",
+          "h-full",
+          "pb-[0.5rem]"
+        )}
+      >
+        <span className={clsx("text-[0.625rem] text-[#4F5665] font-normal")}>
+          {date}
+        </span>
+        {isNew && (
+          <div
+            className={clsx(
+              "w-[0.75rem] h-[0.75rem]",
+              "bg-[#5AC53D]",
+              "rounded-[50%]"
+            )}
+          />
+        )}
+      </div>
     </div>
   );
 };
