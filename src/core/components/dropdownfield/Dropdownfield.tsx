@@ -55,6 +55,14 @@ export const Dropdownfield = ({
           // onClick={() => {
           //   inputRef.current?.focus();
           // }}
+          onClick={() => {
+            if (isOpen) {
+              inputRef.current?.blur();
+            } else {
+              inputRef.current?.focus();
+            }
+            setIsOpen((prev) => !prev);
+          }}
         >
           <div
             className={clsx(
@@ -75,12 +83,12 @@ export const Dropdownfield = ({
                 "!cursor-pointer",
                 inputContainerProps?.className
               )}
-              onFocus={() => {
-                setIsOpen(true);
-                if (disabled) {
-                  return;
-                }
-              }}
+              // onFocus={() => {
+              //   setIsOpen(true);
+              //   if (disabled) {
+              //     return;
+              //   }
+              // }}
               onChange={(event) => {
                 setIsOpen(!!event.target.value.length);
               }}
@@ -148,10 +156,16 @@ export const Dropdownfield = ({
                 !!selected?.name
                   ? "top-[25%] left-0 translate-y-[-50%] text-[0.75rem]"
                   : "top-[50%] left-0 translate-y-[-50%] text-[0.875rem]",
-                "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
+                "peer-focus:top-[25%] peer-focus:text-[0.75rem]",
+                "cursor-pointer"
               )}
               onClick={() => {
-                inputRef.current?.focus();
+                if (isOpen) {
+                  inputRef.current?.blur();
+                } else {
+                  inputRef.current?.focus();
+                }
+                setIsOpen((prev) => !prev);
               }}
             />
           </div>
