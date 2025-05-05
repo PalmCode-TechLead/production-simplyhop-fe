@@ -26,7 +26,6 @@ import { Dropdownfield } from "@/core/components/dropdownfield";
 import { UserContext } from "@/core/modules/app/context";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { ENVIRONMENTS } from "@/core/environments";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { RIDE_FILTER } from "@/core/enums";
 import dayjs from "dayjs";
