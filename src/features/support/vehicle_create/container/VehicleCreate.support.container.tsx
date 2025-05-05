@@ -18,7 +18,7 @@ export const VehicleCreateSupportContainer = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full",
-          "lg:pt-[2rem] px-[1rem]"
+          "lg:pt-[2rem] lg:pb-[3rem] px-[1rem]"
         )}
       >
         <div
@@ -34,8 +34,7 @@ export const VehicleCreateSupportContainer = () => {
               "pt-[2rem] lg:pt-[0rem]",
               // "sticky top-[90px] z-[30]",
               "bg-[white]",
-              "pb-[1.5rem]",
-              
+              "pb-[1.5rem]"
             )}
           >
             <h1

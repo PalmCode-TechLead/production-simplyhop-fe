@@ -21,7 +21,7 @@ export const VehicleUpdateSupportContainer = () => {
         className={clsx(
           "grid grid-cols-1 items-start content-start justify-center justify-items-center",
           "w-full",
-          "lg:pt-[2rem] px-[1rem]"
+          "lg:pt-[2rem] lg:pb-[3rem] px-[1rem]"
         )}
       >
         <div
