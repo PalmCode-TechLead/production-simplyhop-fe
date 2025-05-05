@@ -214,7 +214,7 @@
     }
   },
   "notification": {
-    "title": "Fahrzeuginformationen update is complete",
+    "title": "Deine Fahrzeuginformationen wurden aktualisiert",
     "cta": {
       "back": {
         "children": "Zurück"
