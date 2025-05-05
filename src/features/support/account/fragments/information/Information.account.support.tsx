@@ -2,6 +2,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { ItemAccountSupport } from "../../components/item";
 import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
@@ -9,6 +10,7 @@ import { UserContext } from "@/core/modules/app/context";
 import SVGIcon from "@/core/icons";
 
 export const InformationAccountSupport = () => {
+  const globalDictionaries = getGlobalDictionaries();
   const dictionaries = getDictionaries();
 
   const { state: userState } = React.useContext(UserContext);
@@ -71,7 +73,11 @@ export const InformationAccountSupport = () => {
       <ItemAccountSupport
         name={dictionaries.information.gender.name}
         value={
-          !userState.profile?.gender?.length ? "-" : userState.profile.gender
+          !userState.profile?.gender?.length
+            ? "-"
+            : globalDictionaries.personal_information.gender.options.items.find(
+                (item) => item.id === userState.profile?.gender
+              )?.name ?? "-"
         }
       />
       <ItemAccountSupport
