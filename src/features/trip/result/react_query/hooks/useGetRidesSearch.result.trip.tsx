@@ -71,11 +71,42 @@ export const useGetRideSearch = () => {
     },
   };
 
+  const queryPayload = {
+    url: fullPath,
+    include: "vehicle,user,vehicle.brand,vehicle.category",
+    // Need to be integrated
+    "filter[luggage_allowed]": !state.advanced_filter.luggage.selected.length
+      ? undefined
+      : state.advanced_filter.luggage.selected.length === 1
+      ? state.advanced_filter.luggage.selected[0].id === "true"
+      : undefined,
+    music_availability: !state.advanced_filter.music.selected.length
+      ? undefined
+      : state.advanced_filter.music.selected.length === 1
+      ? state.advanced_filter.music.selected[0].id === "true"
+      : undefined,
+    smoke_allowed: !state.advanced_filter.smoker.selected.length
+      ? undefined
+      : state.advanced_filter.smoker.selected.length === 1
+      ? state.advanced_filter.smoker.selected[0].id === "true"
+      : undefined,
+    pet_allowed: !state.advanced_filter.pets.selected.length
+      ? undefined
+      : state.advanced_filter.pets.selected.length === 1
+      ? state.advanced_filter.pets.selected[0].id === "true"
+      : undefined,
+    sort: !state.advanced_filter.sort.selected?.id
+      ? "average_distance"
+      : state.advanced_filter.sort.selected.id,
+    "page[number]": state.rides.pagination.current,
+    "page[size]": PAGINATION.SIZE,
+  };
+
   const query = useQuery<
     GetRidesSearchSuccessResponseInterface,
     GetRidesSearchErrorResponseInterface
   >({
-    queryKey: ResultTripReactQueryKey.GetRidesSearch(payload),
+    queryKey: ResultTripReactQueryKey.GetRidesSearch(queryPayload),
     queryFn: () => {
       return fetchGetRidesSearch(payload);
     },
