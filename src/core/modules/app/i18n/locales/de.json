@@ -53,7 +53,7 @@
         "items": [
           {
             "id": "simply_hop",
-            "name": "SimplyHop",
+            "name": "Simply Hop",
             "description": "Altmarkt 10 B / D01067 Dresden",
             "image_url": "/images/general/simplyhop.png"
           },
@@ -133,7 +133,7 @@
       }
     },
     "bottom": {
-      "copyright": "2025 SimplyHop. Alle Rechte vorbehalten."
+      "copyright": "2025 Simply Hop. Alle Rechte vorbehalten."
     }
   },
   "menu": {

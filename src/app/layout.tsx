@@ -4,9 +4,9 @@ import "./globals.css";
 import { ReactQueryProvider } from "@/core/utils/react_query";
 import { GlobalProvider, UserProvider } from "@/core/modules/app/context";
 
-const APP_NAME = "SimplyHop";
-const APP_DEFAULT_TITLE = "SimplyHop";
-const APP_TITLE_TEMPLATE = "%s - SimplyHop";
+const APP_NAME = "Simply Hop";
+const APP_DEFAULT_TITLE = "Simply Hop";
+const APP_TITLE_TEMPLATE = "%s - Simply Hop";
 const APP_DESCRIPTION = "Mitfahrgelegenheiten in deiner Stadt";
 
 const inter = Inter({
