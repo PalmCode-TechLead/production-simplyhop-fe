@@ -79,9 +79,9 @@ export const TopNavigationDesktopMenu = () => {
               <div
                 className={clsx(
                   "flex items-center justify-center",
-                  "w-[1.5rem] h-[1.5rem]",
+                  "px-[0.5rem] py-[0.25rem]",
                   "bg-green-500",
-                  "rounded-[50%]"
+                  "rounded-[1.25rem]"
                 )}
               >
                 <p className={clsx("text-white text-[0.75rem]")}>
