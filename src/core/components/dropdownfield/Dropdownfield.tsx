@@ -37,6 +37,7 @@ export const Dropdownfield = ({
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(containerRef as any, () => {
+    inputRef.current?.blur();
     setIsOpen(false);
   });
 
