@@ -18,9 +18,9 @@ export const useGetVehicleCategoryList = () => {
 
   const payload: GetVehicleCategoryListPayloadRequestInterface = {
     params: {
-      search: !state.vehicle_information.general.form.car_brand.query
+      search: !state.vehicle_information.general.form.car_category.query
         ? undefined
-        : state.vehicle_information.general.form.car_brand.query,
+        : state.vehicle_information.general.form.car_category.query,
       "page[number]": 1,
       "page[size]": 30,
     },
