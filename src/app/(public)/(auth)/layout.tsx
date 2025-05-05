@@ -73,11 +73,11 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           >
             <h1
               className={clsx(
-                "text-[#5AC53D] text-[104.6px] font-bold leading-[96px]"
+                "text-[#333FFF] text-[104.6px] font-bold leading-[96px]"
               )}
             >
               {"Simply"}
-              <span className={clsx("text-[#333FFF]")}>{"Hop"}</span>
+              <span className={clsx("text-[#5AC53D]")}>{"Hop"}</span>
             </h1>
             <p className={clsx("text-[#FFFFFF] text-[2rem] font-semibold")}>
               {"Drive Together"}
