@@ -112,9 +112,8 @@ export const FooterApp = () => {
                       className={clsx(
                         "text-[#767676] text-[0.875rem] font-normal"
                       )}
-                    >
-                      {item.description}
-                    </span>
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
                   </div>
                 </div>
               )
