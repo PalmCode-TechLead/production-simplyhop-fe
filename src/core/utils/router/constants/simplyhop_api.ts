@@ -96,6 +96,7 @@ export const SimplyHopAPICollectionURL = {
   },
   message_rooms: {
     getList: () => `/api/message-rooms`,
+    getUnreadList: () => `/api/message-rooms/unread-list`,
     getId: (path: GetMessageRoomsIdPathPayloadRequestInterface) =>
       `/api/message-rooms/${path.id}`,
     putMarkAsRead: (

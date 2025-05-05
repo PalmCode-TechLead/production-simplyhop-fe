@@ -1,11 +1,15 @@
 "use client";
 import React, { createContext, useReducer, Dispatch } from "react";
 import { GlobalActions, GlobalInitialStateType } from "./Global.types";
-import { GlobalAlertReducers } from "./Global.reducers";
+import { GlobalAlertReducers, GlobalChatReducers } from "./Global.reducers";
+import { useGetMessageRoomsUnreadList } from "@/core/utils/react_query/hooks";
 
 const initialState: GlobalInitialStateType = {
   alert: {
     items: [],
+  },
+  chat: {
+    count: 0,
   },
 };
 
@@ -18,15 +22,16 @@ const GlobalContext = createContext<{
 });
 
 const mainReducer = (
-  { alert }: GlobalInitialStateType,
+  { alert, chat }: GlobalInitialStateType,
   action: GlobalActions
 ) => ({
   alert: GlobalAlertReducers(alert, action),
+  chat: GlobalChatReducers(chat, action),
 });
 
 const GlobalProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
-
+  useGetMessageRoomsUnreadList();
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
       {props.children}

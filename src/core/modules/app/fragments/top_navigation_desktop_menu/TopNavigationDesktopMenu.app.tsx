@@ -6,8 +6,11 @@ import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import Cookies from "universal-cookie";
 import { usePathname } from "next/navigation";
 import SVGIcon, { SVGIconProps } from "@/core/icons";
+import { GlobalContext } from "../../context";
+import { formatUnreadMessageNumber } from "@/core/utils/chat/functions";
 
 export const TopNavigationDesktopMenu = () => {
+  const { state } = React.useContext(GlobalContext);
   const dictionaries = getDictionaries();
   const cookie = new Cookies();
   const token = cookie.get("token");
@@ -70,7 +73,22 @@ export const TopNavigationDesktopMenu = () => {
                   : "text-neutral-300"
               )}
             />
+
             {menu.name}
+            {menu.id === "chat" && state.chat.count > 0 && (
+              <div
+                className={clsx(
+                  "flex items-center justify-center",
+                  "w-[1.5rem] h-[1.5rem]",
+                  "bg-green-500",
+                  "rounded-[50%]"
+                )}
+              >
+                <p className={clsx("text-white text-[0.75rem]")}>
+                  {formatUnreadMessageNumber(state.chat.count)}
+                </p>
+              </div>
+            )}
           </Link>
         ))}
       </div>
