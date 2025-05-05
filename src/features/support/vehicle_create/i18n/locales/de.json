@@ -197,7 +197,7 @@
             },
             "labelProps": {
               "id": "pet",
-              "children": "Haustier",
+              "children": "Haustiere",
               "required": false
             }
           }
