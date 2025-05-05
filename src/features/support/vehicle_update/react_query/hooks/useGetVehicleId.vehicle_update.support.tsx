@@ -151,12 +151,15 @@ export const useGetVehicleId = () => {
                 ...state.vehicle_information.capacity.luggage.form,
                 luggage: {
                   ...state.vehicle_information.capacity.luggage.form.luggage,
-                  selected: !data.data.numb_of_luggages
-                    ? null
-                    : {
-                        id: String(data.data.numb_of_luggages),
-                        name: String(data.data.numb_of_luggages),
-                      },
+                  selected:
+                    data.data.numb_of_luggages === null
+                      ? null
+                      : data.data.numb_of_luggages === undefined
+                      ? null
+                      : {
+                          id: String(data.data.numb_of_luggages),
+                          name: String(data.data.numb_of_luggages),
+                        },
                   // selected: null,
                   // items: [],
                 },
