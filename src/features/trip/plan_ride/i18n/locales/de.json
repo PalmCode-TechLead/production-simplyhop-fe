@@ -316,7 +316,7 @@
           "icon": {
             "name": "Facebook2"
           },
-          "href": "https://www.facebook.com/share_channel/?type=reshare&link={{link}}&source_surface=external_reshare&display=popup&hashtag"
+          "href": "https://www.facebook.com/sharer/sharer.php?u={{link}}"
         },
         {
           "id": "twitter",

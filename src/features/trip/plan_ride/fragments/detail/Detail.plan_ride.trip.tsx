@@ -338,7 +338,7 @@ export const DetailPlanRideTrip = () => {
         is_open: true,
         share: {
           ...state.notification.share,
-          link: `${ENVIRONMENTS.SITE_URL}${AppCollectionURL.public.tripResult(
+          link: `${"https://simplyhop-fe-mmppce625q-de.a.run.app"}${AppCollectionURL.public.tripResult(
             `${RIDE_FILTER.ORIGIN}=${
               state.filters.origin.selected.item?.id ?? ""
             }&${RIDE_FILTER.DESTINATION}=${
