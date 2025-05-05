@@ -20,6 +20,7 @@ import { Button } from "@/core/components/button";
 import { FormPassenger } from "@/core/components/form_passenger";
 import { FormRoutes } from "@/core/components/form_routes";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const FilterResultTrip = () => {
   const router = useRouter();
@@ -356,6 +357,18 @@ export const FilterResultTrip = () => {
       payload: {
         ...state.filters,
         is_open: false,
+      },
+    });
+    dispatch({
+      type: ResultTripActionEnum.SetRidesData,
+      payload: {
+        ...state.rides,
+        data: [],
+        pagination: {
+          ...state.rides.pagination,
+          current: PAGINATION.NUMBER,
+          last: null,
+        },
       },
     });
     router.push(AppCollectionURL.public.tripResult(params));
