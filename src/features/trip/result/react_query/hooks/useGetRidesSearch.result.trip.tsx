@@ -365,9 +365,12 @@ export const useGetRideSearch = () => {
 
       dispatch({
         type: ResultTripActionEnum.SetRidesDataData,
-        payload: !newPayload.length
-          ? state.rides.data
-          : [...state.rides.data, ...newPayload],
+        payload:
+          state.rides.pagination.current === 1
+            ? [...newPayload]
+            : !newPayload.length
+            ? state.rides.data
+            : [...state.rides.data, ...newPayload],
       });
       dispatch({
         type: ResultTripActionEnum.SetRidesDataPaginationLast,

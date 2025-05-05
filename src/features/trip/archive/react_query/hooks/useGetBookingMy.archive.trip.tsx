@@ -135,9 +135,12 @@ export const useGetBookingMy = () => {
       });
       dispatch({
         type: ArchiveTripActionEnum.SetBookDataData,
-        payload: !newPayload.length
-          ? state.book.data
-          : [...state.book.data, ...newPayload],
+        payload:
+          state.book.pagination.current === 1
+            ? [...newPayload]
+            : !newPayload.length
+            ? state.book.data
+            : [...state.book.data, ...newPayload],
       });
       dispatch({
         type: ArchiveTripActionEnum.SetBookDataPaginationLast,
