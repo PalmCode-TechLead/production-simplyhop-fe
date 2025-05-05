@@ -1,5 +1,3 @@
-import { GetRidesSearchPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
-
 export const ResultTripReactQueryKey = {
   GetRidesSearch: (payload?: {
     url?: string;
