@@ -224,7 +224,7 @@
           {
             "id": "invalid_password",
             "name": "Mindestens 8 Zeichen, einschließlich Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen.",
-            "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&\\-])[A-Za-z\\d@$!%*?&\\-]{8,}$"
+            "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&\\-_])[A-Za-z\\d@$!%*?&\\-_]{8,}$"
           }
         ]
       }
