@@ -31,7 +31,7 @@ export const useGetMessageRoomsList = () => {
       search: !state.list.search.value.length
         ? undefined
         : state.list.search.value,
-      sort: "-updated_at",
+      sort: "-last_message_at",
     },
   };
   const query = useQuery<
