@@ -1,3 +1,5 @@
+import { RestGooglePostRouteDirectionsPayloadRequestInterface } from "@/core/models/rest/google/route";
+
 export const PlanRideTripReactQueryKey = {
   GetVehicleMy: () => {
     return ["PlanRideTripReactQueryKey.GetVehicleMy"];
@@ -5,8 +7,13 @@ export const PlanRideTripReactQueryKey = {
   GetDistanceMatrix: () => {
     return ["PlanRideTripReactQueryKey.GetDistanceMatrix"];
   },
-  PostRouteDirections: () => {
-    return ["PlanRideTripReactQueryKey.PostRouteDirections"];
+  PostRouteDirections: (
+    payload?: RestGooglePostRouteDirectionsPayloadRequestInterface
+  ) => {
+    return [
+      "PlanRideTripReactQueryKey.PostRouteDirections",
+      [payload] as const,
+    ];
   },
   PostRidesFirst: () => {
     return ["PlanRideTripReactQueryKey.PostRidesFirst"];

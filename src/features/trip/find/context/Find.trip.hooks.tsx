@@ -3,7 +3,7 @@ import React from "react";
 import { FindTripContext } from "./Find.trip.context";
 import { FindTripActionEnum } from "./Find.trip.types";
 import { getDictionaries } from "../i18n";
-import { coordinate } from "@/core/utils/map/constants";
+import { COORDINATE } from "@/core/utils/map/constants";
 
 export const useSetInitialContextValue = () => {
   const dictionaries = getDictionaries();
@@ -29,7 +29,7 @@ export const useSetInitialContextValue = () => {
       type: FindTripActionEnum.SetMapData,
       payload: {
         ...state.map,
-        initial_coordinate: coordinate.germany,
+        initial_coordinate: COORDINATE.germany,
       },
     });
   }, []);

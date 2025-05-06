@@ -1,3 +1,3 @@
 import { Libraries } from "@react-google-maps/api";
 
-export const libraries: Libraries = ["places"];
+export const LIBRARIES: Libraries = ["places"];

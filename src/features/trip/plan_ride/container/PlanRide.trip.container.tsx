@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { MapPlanRideTrip } from "../fragments/map";
@@ -6,8 +7,10 @@ import { FilterPlanRideTrip } from "../fragments/filter";
 import { DetailPlanRideTrip } from "../fragments/detail";
 import { NotificationPlanRideTrip } from "../fragments/notification";
 import { IncompleteProfilePlaneRideTrip } from "../fragments/incomplete_profile";
+import { useSetInitialContextValue } from "../context";
 
 export const PlanRideTripContainer = () => {
+  useSetInitialContextValue();
   return (
     <>
       <div className={clsx("w-full h-full", "relative")}>

@@ -14,7 +14,6 @@ import {
   fetchAutocompletePlace,
   getLatLngFromPlaceId,
 } from "@/core/utils/map/functions";
-// import { FormPassenger } from "@/core/components/form_passenger";
 import { FormAuto } from "@/core/components/form_auto";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormRoutes } from "@/core/components/form_routes";
@@ -30,8 +29,7 @@ export const FilterPlanRideTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   useGetVehicleMy();
 
-  const { mutate: fetchRestGooglePostRouteDirections } =
-    useRestGooglePostRouteDirections();
+  useRestGooglePostRouteDirections();
 
   const {
     mutateAsync: fetchRestGoogleGetDistanceMatrix,
@@ -376,64 +374,6 @@ export const FilterPlanRideTrip = () => {
     });
   };
 
-  // const handleSubmitPassenger = (data: {
-  //   car_seat: {
-  //     checked: boolean;
-  //   };
-  //   value: { id: string; value: number }[];
-  // }) => {
-  //   dispatch({
-  //     type: PlanRideTripActionEnum.SetFiltersData,
-  //     payload: {
-  //       ...state.filters,
-  //       passenger: {
-  //         ...state.filters.passenger,
-  //         car_seat: {
-  //           ...state.filters.passenger.car_seat,
-  //           checked: data.car_seat.checked,
-  //         },
-  //         value: data.value,
-  //       },
-  //     },
-  //   });
-  // };
-
-  // NOTES: listen and fetch route directions
-  React.useEffect(() => {
-    if (
-      !!state.filters.origin.selected.lat_lng &&
-      !!state.filters.destination.selected.lat_lng
-    ) {
-      fetchRestGooglePostRouteDirections();
-    }
-  }, [
-    state.filters.origin.selected.lat_lng,
-    state.filters.destination.selected.lat_lng,
-  ]);
-
-  // NOTES: set default passenger
-  const setDefaultPassenger = () => {
-    dispatch({
-      type: PlanRideTripActionEnum.SetFiltersData,
-      payload: {
-        ...state.filters,
-        passenger: {
-          ...state.filters.passenger,
-          value: dictionaries.filter.form.passenger.detail.items.map((item) => {
-            return {
-              id: item.id,
-              value: item.value,
-            };
-          }),
-        },
-      },
-    });
-  };
-
-  React.useEffect(() => {
-    setDefaultPassenger();
-  }, []);
-
   const handleClickSearch = async () => {
     const data = await fetchRestGoogleGetDistanceMatrix();
     if (!data) return;
@@ -453,7 +393,6 @@ export const FilterPlanRideTrip = () => {
     !state.filters.destination.selected.item ||
     !state.filters.date.selected ||
     !state.filters.time.value.length ||
-    !state.filters.passenger.value.length ||
     isPendingFetchRestGoogleGetDistanceMatrix;
 
   const isSubmitLoading = isPendingFetchRestGoogleGetDistanceMatrix;
@@ -641,53 +580,6 @@ export const FilterPlanRideTrip = () => {
             }}
             disabled={!userState.profile?.is_able_to_ride}
           />
-
-          {/* <FormPassenger
-            labelProps={{
-              ...dictionaries.filter.form.passenger.labelProps,
-            }}
-            detail={{
-              title: dictionaries.filter.form.passenger.detail.title,
-              carSeat: {
-                input: {
-                  ...dictionaries.filter.form.passenger.detail.carSeat.input,
-                  checked: state.filters.passenger.car_seat.checked,
-                },
-              },
-              cta: dictionaries.filter.form.passenger.detail.cta,
-              passenger: {
-                items: dictionaries.filter.form.passenger.detail.items.map(
-                  (item) => {
-                    return {
-                      ...item,
-                      value:
-                        state.filters.passenger.value.find(
-                          (passengerItem) => passengerItem.id === item.id
-                        )?.value ?? 0,
-                    };
-                  }
-                ),
-              },
-              onSelect: handleSubmitPassenger,
-            }}
-            maskedValue={dictionaries.filter.form.passenger.maskedValue
-              .replaceAll(
-                "{{adult}}",
-                String(
-                  state.filters.passenger.value.find(
-                    (item) => item.id === "adult"
-                  )?.value ?? 0
-                )
-              )
-              .replaceAll(
-                "{{children}}",
-                String(
-                  state.filters.passenger.value.find(
-                    (item) => item.id === "children"
-                  )?.value ?? 0
-                )
-              )}
-          /> */}
         </div>
 
         {/* button */}

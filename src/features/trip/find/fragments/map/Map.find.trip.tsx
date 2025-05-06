@@ -13,11 +13,12 @@ import { MapInfoWindow } from "@/core/components/map_info_window";
 import { getDictionaries } from "../../i18n";
 import useGeolocation from "@/core/utils/map/hooks/useGeoLocation";
 import {
-  boundConstants,
-  containerStyle,
-  coordinate,
-  libraries,
-  mapOptions,
+  ROUTE_BOUND_CONSTANTS,
+  CONTAINER_STYLE,
+  COORDINATE,
+  LATITUDE_COORDINATE_MARKER_CORRECTION,
+  LIBRARIES,
+  MAP_OPTIONS,
 } from "@/core/utils/map/constants";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 
@@ -27,7 +28,7 @@ export const MapFindTrip = () => {
   const { state, dispatch } = useContext(FindTripContext);
   const { isLg } = useTailwindBreakpoint();
   const { location: userLocation, error: userLocationError } = useGeolocation();
-  console.log(userLocation, userLocationError, "ini apa ya");
+
   if (!apiKey) {
     console.error(
       "🚨 API Key tidak ditemukan! Pastikan sudah diatur di .env.local"
@@ -36,19 +37,18 @@ export const MapFindTrip = () => {
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey,
-    libraries: libraries,
+    libraries: LIBRARIES,
   });
 
   const mapRef = useRef<google.maps.Map | null>(null);
 
   // NOTES: set user location
-  console.log(userLocation, "ini user location");
   useEffect(() => {
     if (!!userLocation && !userLocationError) {
       const mapCoordinate = !!state.filters.origin.selected.item
         ? state.filters.origin.selected.lat_lng
         : userLocationError
-        ? coordinate.germany
+        ? COORDINATE.germany
         : userLocation;
       dispatch({
         type: FindTripActionEnum.SetMapData,
@@ -77,7 +77,7 @@ export const MapFindTrip = () => {
 
       mapRef.current.fitBounds(
         bounds,
-        isLg ? boundConstants.desktop : boundConstants.mobile
+        isLg ? ROUTE_BOUND_CONSTANTS.desktop : ROUTE_BOUND_CONSTANTS.mobile
       );
     }
   }, [isLoaded, state.map.polyline_path, isLg, state.map.mode]);
@@ -86,7 +86,7 @@ export const MapFindTrip = () => {
 
   return (
     <GoogleMap
-      mapContainerStyle={containerStyle}
+      mapContainerStyle={CONTAINER_STYLE}
       onLoad={(map) => {
         mapRef.current = map;
       }}
@@ -95,17 +95,19 @@ export const MapFindTrip = () => {
           ? state.map.initial_coordinate
           : state.map.mode === "coordinate" && !!state.map.initial_coordinate
           ? {
-              lat: state.map.initial_coordinate.lat - 0.002,
+              lat:
+                state.map.initial_coordinate.lat -
+                LATITUDE_COORDINATE_MARKER_CORRECTION,
               lng: state.map.initial_coordinate.lng,
             }
           : undefined
       }
       options={
         state.map.mode === "country"
-          ? mapOptions.country
+          ? MAP_OPTIONS.country
           : state.map.mode === "coordinate"
-          ? mapOptions.coordinate
-          : mapOptions.route
+          ? MAP_OPTIONS.coordinate
+          : MAP_OPTIONS.route
       }
     >
       {/* User Marker */}
@@ -118,6 +120,7 @@ export const MapFindTrip = () => {
           }}
         />
       )}
+      
       {/* Start Marker */}
       {!!state.filters.origin.selected.lat_lng && state.map.marker && (
         <Marker

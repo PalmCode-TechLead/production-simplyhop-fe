@@ -49,15 +49,12 @@ const initialState: PlanRideTripInitialStateType = {
     time: {
       value: dayjs().format("HH:mm"),
     },
-    passenger: {
-      car_seat: {
-        checked: false,
-      },
-      value: [],
-    },
   },
   map: {
     polyline_path: [],
+    marker: false,
+    initial_coordinate: null,
+    mode: "country",
   },
   detail: {
     is_open: false,

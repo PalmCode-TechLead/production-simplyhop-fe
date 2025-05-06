@@ -1,4 +1,4 @@
-export const mapOptions = {
+export const MAP_OPTIONS = {
   country: {
     mapTypeControl: false,
     streetViewControl: false,

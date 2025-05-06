@@ -1,4 +1,4 @@
-export const boundConstants = {
+export const ROUTE_BOUND_CONSTANTS = {
   desktop: {
     top: 200,
     bottom: 200,

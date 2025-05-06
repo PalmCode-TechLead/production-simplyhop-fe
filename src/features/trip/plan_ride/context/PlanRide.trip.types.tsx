@@ -1,5 +1,6 @@
 import { FormError } from "@/core/utils/form";
 import { RideDetailCardPlanRideTripProps } from "../components/ride_detail_card";
+import { MapMode } from "@/core/utils/map/types";
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -59,17 +60,13 @@ export interface PlanRideTripFilters {
   time: {
     value: string;
   };
-
-  passenger: {
-    car_seat: {
-      checked: boolean;
-    };
-    value: { id: string; value: number }[];
-  };
 }
 
 export interface PlanRideTripMap {
   polyline_path: { lat: number; lng: number }[];
+  marker: boolean;
+  initial_coordinate: { lat: number; lng: number } | null;
+  mode: MapMode;
 }
 
 export interface PlanRideTripDetail {

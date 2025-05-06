@@ -10,7 +10,7 @@ import {
 import { ResultTripActionEnum } from "./Result.trip.types";
 import { ENVIRONMENTS } from "@/core/environments";
 import { useLoadScript } from "@react-google-maps/api";
-import { libraries } from "@/core/utils/map/constants";
+import { LIBRARIES } from "@/core/utils/map/constants";
 import { getDictionaries } from "../i18n";
 
 export const useRideFilterResultTrip = () => {
@@ -27,7 +27,7 @@ export const useRideFilterResultTrip = () => {
   const { state, dispatch } = React.useContext(ResultTripContext);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey,
-    libraries: libraries,
+    libraries: LIBRARIES,
   });
 
   const setOriginRoutesFromParams = async (data: { id: string }) => {
