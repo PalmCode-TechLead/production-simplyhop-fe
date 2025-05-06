@@ -74,7 +74,7 @@ export const MapFindTrip = () => {
     if (mapRef.current && state.map.mode === "route") {
       const bounds = new window.google.maps.LatLngBounds();
       state.map.polyline_path.forEach((point) => bounds.extend(point));
-     
+
       mapRef.current.fitBounds(
         bounds,
         isLg ? boundConstants.desktop : boundConstants.mobile
@@ -94,7 +94,10 @@ export const MapFindTrip = () => {
         state.map.mode === "country" && !!state.map.initial_coordinate
           ? state.map.initial_coordinate
           : state.map.mode === "coordinate" && !!state.map.initial_coordinate
-          ? state.map.initial_coordinate
+          ? {
+              lat: state.map.initial_coordinate.lat - 0.002,
+              lng: state.map.initial_coordinate.lng,
+            }
           : undefined
       }
       options={
