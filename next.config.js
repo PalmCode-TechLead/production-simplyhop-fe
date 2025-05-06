@@ -1,6 +1,8 @@
 const withPWA = require("@ducanh2912/next-pwa").default({
   dest: "public",
   disable: process.env.NEXT_PUBLIC_SITE_URL === "http://localhost:3010",
+  register: true,
+  skipWaiting: true,
 });
 
 /** @type {import('next').NextConfig} */
