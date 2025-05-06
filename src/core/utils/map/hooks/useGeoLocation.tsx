@@ -21,7 +21,7 @@ const useGeolocation = () => {
           lng: position.coords.longitude,
         });
       },
-      (error) => {
+      () => {
         setError("user is never allow location");
       }
     );

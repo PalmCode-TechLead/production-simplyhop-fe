@@ -33,7 +33,7 @@ export const storageService = <T = any>(
           });
           resolve(storageResponse);
         })
-        .catch((err) => {
+        .catch(() => {
           const storageResponse = rewriteStorageResponse({
             success: false,
             data: null,
@@ -43,14 +43,14 @@ export const storageService = <T = any>(
     } else if (config.method === "removeItem") {
       localforage
         .removeItem(config.key)
-        .then((value: any) => {
+        .then(() => {
           const storageResponse = rewriteStorageResponse({
             success: true,
             data: null,
           });
           resolve(storageResponse);
         })
-        .catch((err) => {
+        .catch(() => {
           const storageResponse = rewriteStorageResponse({
             success: false,
             data: null,
@@ -60,14 +60,14 @@ export const storageService = <T = any>(
     } else if (config.method === "clear") {
       localforage
         .clear()
-        .then((value: any) => {
+        .then(() => {
           const storageResponse = rewriteStorageResponse({
             success: true,
             data: null,
           });
           resolve(storageResponse);
         })
-        .catch((err) => {
+        .catch(() => {
           const storageResponse = rewriteStorageResponse({
             success: false,
             data: null,
@@ -84,7 +84,7 @@ export const storageService = <T = any>(
           });
           resolve(storageResponse);
         })
-        .catch((err) => {
+        .catch(() => {
           const storageResponse = rewriteStorageResponse({
             success: false,
             data: null,
