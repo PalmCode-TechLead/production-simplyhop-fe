@@ -53,7 +53,7 @@ export const TopNavigation = () => {
           <Link href={dictionaries.logo.href}>
             <Image
               {...dictionaries.logo.image}
-              className={clsx("w-[170px] h-[62px]")}
+              className={clsx("w-[170px] h-[170px]")}
             />
           </Link>
 
