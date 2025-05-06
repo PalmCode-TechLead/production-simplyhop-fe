@@ -56,9 +56,7 @@ export const RideArchiveTrip = () => {
 
   return (
     <InfiniteScrollWrapper
-      loader={{
-        message: dictionaries.list.loading.message,
-      }}
+      loader={<ListLoader message={dictionaries.list.loading.message} />}
       isPaused={isLoading}
       isEndReached={isEndReached}
       onLoadMore={handleLoadMore}

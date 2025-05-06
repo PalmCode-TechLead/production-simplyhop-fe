@@ -54,9 +54,7 @@ export const RideMyListTrip = () => {
     state.ride.pagination.last === state.ride.pagination.current;
   return (
     <InfiniteScrollWrapper
-      loader={{
-        message: dictionaries.list.loading.message,
-      }}
+      loader={<ListLoader message={dictionaries.list.loading.message} />}
       isPaused={isLoading}
       isEndReached={isEndReached}
       onLoadMore={handleLoadMore}

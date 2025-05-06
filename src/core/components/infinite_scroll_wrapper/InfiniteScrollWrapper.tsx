@@ -1,11 +1,10 @@
 import * as React from "react";
 import clsx from "clsx";
-import { ListLoader, ListLoaderProps } from "../list_loader";
 import { useIntersectionObserver } from "usehooks-ts";
 
 export interface InfiniteScrollWrapperProps {
   children?: React.ReactNode;
-  loader?: ListLoaderProps;
+  loader?: React.ReactNode;
   isPaused?: boolean;
   isEndReached?: boolean;
   onLoadMore?: () => void;
@@ -49,7 +48,7 @@ export const InfiniteScrollWrapper = ({
           isEndReached ? "h-[0px]" : "h-[400px]"
         )}
       >
-        {!isEndReached && <ListLoader {...loader} />}
+        {!isEndReached && loader}
       </div>
     </div>
   );

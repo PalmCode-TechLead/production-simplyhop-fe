@@ -54,9 +54,7 @@ export const BookArchiveTrip = () => {
     state.book.pagination.last === state.book.pagination.current;
   return (
     <InfiniteScrollWrapper
-      loader={{
-        message: dictionaries.list.loading.message,
-      }}
+      loader={<ListLoader message={dictionaries.list.loading.message} />}
       isPaused={isLoading}
       isEndReached={isEndReached}
       onLoadMore={handleLoadMore}
