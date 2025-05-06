@@ -43,6 +43,7 @@ export const useGetVehicleId = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
+      // TODO: need to adjust per field to avoid race condition
       dispatch({
         type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
         payload: {

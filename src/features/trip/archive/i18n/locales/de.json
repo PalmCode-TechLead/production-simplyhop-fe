@@ -12,11 +12,11 @@
     "items": [
       {
         "id": "ride",
-        "name": "Meine angebotenen Fahrten"
+        "name": "Meine bisher angebotenen Fahrten"
       },
       {
         "id": "book",
-        "name": "Meine Fahrten als Mitfahrer"
+        "name": "Meine bisherigen Mitfahrten"
       }
     ]
   },
