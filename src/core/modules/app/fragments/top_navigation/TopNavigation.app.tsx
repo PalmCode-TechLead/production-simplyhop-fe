@@ -51,10 +51,12 @@ export const TopNavigation = () => {
         >
           {/* NOTES: logo */}
           <Link href={dictionaries.logo.href}>
-            <Image
-              {...dictionaries.logo.image}
-              className={clsx("w-[170px] h-[170px]")}
-            />
+            <div className="w-[170px] h-[62px] flex items-center justify-center">
+              <Image
+                {...dictionaries.logo.image}
+                className={clsx("w-[170px] h-[170px]", "object-contain")}
+              />
+            </div>
           </Link>
 
           {/* NOTES: Menu */}

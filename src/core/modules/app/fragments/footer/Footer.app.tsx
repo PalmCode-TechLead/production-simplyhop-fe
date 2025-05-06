@@ -34,10 +34,12 @@ export const FooterApp = () => {
           )}
         >
           <Link href={dictionaries.footer.top.logo.href}>
-            <Image
-              {...dictionaries.footer.top.logo.image}
-              className={clsx("w-[170px] h-[170px]")}
-            />
+            <div className="w-[170px] h-[62px] flex items-center justify-center">
+              <Image
+                {...dictionaries.footer.top.logo.image}
+                className={clsx("w-[170px] h-[170px]", "object-contain")}
+              />
+            </div>
           </Link>
 
           <div
