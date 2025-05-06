@@ -21,20 +21,6 @@ export const ListChatTrip = () => {
   const { mutateAsync: putMessageRoomsMarkAsRead } =
     usePutMessageRoomsMarkAsRead();
 
-  React.useEffect(() => {
-    dispatch({
-      type: ChatTripActionEnum.SetListData,
-      payload: {
-        ...state.list,
-        tab: {
-          ...state.list.tab,
-          selected:
-            dictionaries.tab.items.find((_, index) => index === 0) ?? null,
-        },
-      },
-    });
-  }, []);
-
   const handleClickList = (data: { id: string; booking_id: string }) => {
     dispatch({
       type: ChatTripActionEnum.SetRoomData,

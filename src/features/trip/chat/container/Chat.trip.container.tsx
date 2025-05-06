@@ -11,6 +11,7 @@ import { getDictionaries } from "../i18n";
 import { TabGroup } from "@headlessui/react";
 import { SearchChatTrip } from "../fragments/search";
 import { TabChatTrip } from "../fragments/tab";
+import { useSetInitialContextValue } from "../context";
 
 export const ChatTripContainer = () => {
   const dictionaries = getDictionaries();
@@ -18,6 +19,7 @@ export const ChatTripContainer = () => {
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
 
+  useSetInitialContextValue();
   return (
     <>
       <div
