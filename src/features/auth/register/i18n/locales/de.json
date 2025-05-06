@@ -7,8 +7,8 @@
       "header": {
         "logo": {
           "src": "/logo/simply_hop.png",
-          "width": 148,
-          "height": 40,
+          "width": 170,
+          "height": 170,
           "alt": "logo",
           "priority": true
         }
@@ -79,8 +79,8 @@
       "header": {
         "logo": {
           "src": "/logo/simply_hop.png",
-          "width": 148,
-          "height": 40,
+          "width": 170,
+          "height": 170,
           "alt": "logo",
           "priority": true
         }

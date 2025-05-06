@@ -74,15 +74,13 @@ export const GeneralRegisterAuth = () => {
         "max-w-[508px] w-full"
       )}
     >
-      <Image
-        {...dictionaries.general.form.header.logo}
-        alt={dictionaries.general.form.header.logo.alt}
-        className={clsx(
-          "fixed top-[1rem] left-[1rem] lg:static",
-          "w-[148px] h-[40px]",
-          "object-center object-cover"
-        )}
-      />
+      <div className="w-[148px] h-[40px] flex items-center justify-center">
+        <Image
+          {...dictionaries.general.form.header.logo}
+          alt={dictionaries.general.form.header.logo.alt}
+          className="w-[170px] h-[170px] object-contain"
+        />
+      </div>
 
       <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
         {dictionaries.general.form.title}
