@@ -17,6 +17,8 @@ import {
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { FormPassenger } from "@/core/components/form_passenger";
 import { FormRoutes } from "@/core/components/form_routes";
+import { storageService } from "@/core/services/storage/indexdb";
+import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 
 export const FilterFindTrip = () => {
   const router = useRouter();
@@ -312,7 +314,25 @@ export const FilterFindTrip = () => {
     });
   };
 
-  const handleClickSearch = () => {
+  const handleClickSearch = async () => {
+    const findTripOriginStorage = await storageService<
+      null | { id: string; name: string }[]
+    >({
+      method: "getItem",
+      key: INDEXDB_STORAGE_NAME.FIND_TRIP_ORIGIN_SEARCH_LIST,
+      value: [state.filters.origin.selected.item],
+    });
+
+    await storageService({
+      method: "setItem",
+      key: INDEXDB_STORAGE_NAME.FIND_TRIP_ORIGIN_SEARCH_LIST,
+      value: !findTripOriginStorage.data
+        ? [state.filters.origin.selected.item]
+        : [
+            state.filters.origin.selected.item,
+            ...findTripOriginStorage.data.filter((_, index) => index < 5),
+          ],
+    });
     let params = "";
     if (state.filters.origin.selected.item) {
       const origin = `&${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item.id}`;
