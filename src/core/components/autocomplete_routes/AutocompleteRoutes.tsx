@@ -174,6 +174,11 @@ export const AutocompleteRoutes = ({
                     isFocus: true,
                     isOpen: true,
                   });
+                  setDestinationAutocomplete({
+                    ...destinationAutocomplete,
+                    isFocus: false,
+                    isOpen: false,
+                  });
                 },
                 onBlur: () => {
                   setOriginAutocomplete({
@@ -217,6 +222,11 @@ export const AutocompleteRoutes = ({
                     ...destinationAutocomplete,
                     isFocus: true,
                     isOpen: true,
+                  });
+                  setOriginAutocomplete({
+                    ...originAutocomplete,
+                    isFocus: false,
+                    isOpen: false,
                   });
                 },
                 onBlur: () => {
