@@ -18,6 +18,7 @@ import { RIDE_FILTER } from "@/core/enums";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
+import { formatDriverLabel } from "@/core/utils/driver/functions";
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -348,15 +349,11 @@ export const useGetRideSearch = () => {
               //       },
               //     ]
               //   : []),
-              ...(item.user.gender === "female"
-                ? [
-                    {
-                      id: "fahrerin",
-                      label: "Fahrerin (W)",
-                      variant: "danger" as "success" | "danger",
-                    },
-                  ]
-                : []),
+
+              ...formatDriverLabel(
+                globalDictionaries.personal_information.gender.options.items,
+                item.user.gender
+              ),
             ],
           },
           cta: {

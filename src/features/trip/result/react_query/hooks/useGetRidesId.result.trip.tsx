@@ -16,6 +16,7 @@ import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { formatEuro } from "@/core/utils/currency/functions";
+import { formatDriverLabel } from "@/core/utils/driver/functions";
 
 export const useGetRidesId = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -277,15 +278,10 @@ export const useGetRidesId = () => {
                 //       },
                 //     ]
                 //   : []),
-                ...(item.user.gender === "female"
-                  ? [
-                      {
-                        id: "fahrerin",
-                        label: "Fahrerin (W)",
-                        variant: "danger" as "success" | "danger",
-                      },
-                    ]
-                  : []),
+                ...formatDriverLabel(
+                  globalDictionaries.personal_information.gender.options.items,
+                  item.user.gender
+                ),
               ],
             },
             cta: {
