@@ -41,8 +41,8 @@ export const MapPlanRideTrip = () => {
     { lat: number; lng: number }[]
   >([]);
 
-  const startPoint = { lat: 51.0504, lng: 13.7373 }; // Munich, Germany
-  const endPoint = { lat: 51.0504, lng: 13.7373 }; // Berlin, Germany
+  const startPoint = { lat: 51.0496, lng: 13.655 };
+  const endPoint = { lat: 51.05, lng: 13.7819 };
 
   useEffect(() => {
     if (!isLoaded || !window.google) return;

@@ -41,8 +41,8 @@ export const MapFindTrip = () => {
     { lat: number; lng: number }[]
   >([]);
 
-  const startPoint = { lat: 51.0504, lng: 13.7373 }; // Munich, Germany
-  const endPoint = { lat: 51.0504, lng: 13.7373 }; // Berlin, Germany
+  const startPoint = { lat: 51.0496, lng: 13.6550 };
+  const endPoint = { lat: 51.0500, lng: 13.7819 };
 
   useEffect(() => {
     if (!isLoaded || !window.google) return;
@@ -123,7 +123,12 @@ export const MapFindTrip = () => {
     state.map.polyline_path.length,
   ]);
 
-  console.log(state.map.polyline_path.length, polylinePath, "inii apa");
+  console.log(
+    state.map.polyline_path.length,
+    polylinePath,
+    isLoaded,
+    "inii apa"
+  );
   if (!isLoaded) return <div />;
 
   return (
@@ -137,7 +142,6 @@ export const MapFindTrip = () => {
         streetViewControl: false,
         cameraControl: false,
         fullscreenControl: false,
-        zoom: 12,
       }}
     >
       {/* Start Marker */}
