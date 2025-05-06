@@ -51,10 +51,6 @@ const initialState: VehicleUpdateSupportInitialStateType = {
             selected: null,
             items: [],
           },
-          available_child_seat: {
-            selected: null,
-            items: [],
-          },
           available_car_seat: {
             selected: null,
             items: [],

@@ -36,41 +36,6 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
     });
   };
 
-  const handleSelectAvailableChildSeat = (data: {
-    id: string;
-    name: string;
-  }) => {
-    dispatch({
-      type: RegistrationProfileActionEnum.SetVehicleInformationData,
-      payload: {
-        ...state.vehicle_information,
-        capacity: {
-          ...state.vehicle_information.capacity,
-          passenger_seats: {
-            ...state.vehicle_information.capacity.passenger_seats,
-            form: {
-              ...state.vehicle_information.capacity.passenger_seats.form,
-              available_child_seat: {
-                ...state.vehicle_information.capacity.passenger_seats.form
-                  .available_child_seat,
-                selected: data,
-              },
-              available_car_seat: {
-                ...state.vehicle_information.capacity.passenger_seats.form
-                  .available_car_seat,
-                selected:
-                  data.id === "false"
-                    ? null
-                    : state.vehicle_information.capacity.passenger_seats.form
-                        .available_car_seat.selected,
-              },
-            },
-          },
-        },
-      },
-    });
-  };
-
   const handleSelectAvailableCarSeat = (data: { id: string; name: string }) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetVehicleInformationData,
@@ -206,26 +171,10 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
           />
           <div
             className={clsx(
-              "grid grid-cols-1 lg:grid-cols-2 place-content-start place-items-start gap-[0.75rem]",
+              "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
               "w-full"
             )}
           >
-            <Dropdownfield
-              labelProps={{
-                ...dictionaries.vehicle_information.capacity.passenger_seats
-                  .form.input.available_child_seat.labelProps,
-              }}
-              inputProps={{
-                ...dictionaries.vehicle_information.capacity.passenger_seats
-                  .form.input.available_child_seat.inputProps,
-              }}
-              selected={
-                state.vehicle_information.capacity.passenger_seats.form
-                  .available_child_seat.selected
-              }
-              items={globalDictionaries.vehicle.seat.child.options}
-              onSelect={handleSelectAvailableChildSeat}
-            />
             <Dropdownfield
               labelProps={{
                 ...dictionaries.vehicle_information.capacity.passenger_seats
@@ -235,10 +184,6 @@ export const CapacityVehicleInformationFormRegistrationProfile = () => {
                 ...dictionaries.vehicle_information.capacity.passenger_seats
                   .form.input.available_car_seat.inputProps,
               }}
-              disabled={
-                state.vehicle_information.capacity.passenger_seats.form
-                  .available_child_seat.selected?.id === "false"
-              }
               selected={
                 state.vehicle_information.capacity.passenger_seats.form
                   .available_car_seat.selected

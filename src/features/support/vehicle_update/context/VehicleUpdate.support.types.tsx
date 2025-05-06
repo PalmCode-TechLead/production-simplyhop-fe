@@ -60,10 +60,6 @@ export interface VehicleUpdateSupportVehicleInformation {
           selected: null | { id: string; name: string };
           items: { id: string; name: string }[];
         };
-        available_child_seat: {
-          selected: null | { id: string; name: string };
-          items: { id: string; name: string }[];
-        };
         available_car_seat: {
           selected: null | { id: string; name: string };
           items: { id: string; name: string }[];

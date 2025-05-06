@@ -54,11 +54,6 @@ export const usePostVehicleCreateMy = () => {
         music_availability: !state.vehicle_information.trip.form.music.selected
           ? false
           : state.vehicle_information.trip.form.music.selected.id === "true",
-        childseat_availability: !state.vehicle_information.capacity
-          .passenger_seats.form.available_child_seat.selected
-          ? false
-          : state.vehicle_information.capacity.passenger_seats.form
-              .available_child_seat.selected.id === "true",
         numb_of_childseats: !state.vehicle_information.capacity.passenger_seats
           .form.available_car_seat.selected
           ? 0

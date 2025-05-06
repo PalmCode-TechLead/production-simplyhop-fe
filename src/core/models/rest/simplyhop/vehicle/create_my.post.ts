@@ -18,7 +18,7 @@ export type PostVehicleCreateMyBodyRequestInterface = {
   smoke_allowed: boolean;
   pet_allowed: boolean;
   music_availability: boolean;
-  childseat_availability: boolean;
+  // childseat_availability: boolean;
   numb_of_childseats: number;
   numb_of_luggages: number;
   size_of_luggages: string;

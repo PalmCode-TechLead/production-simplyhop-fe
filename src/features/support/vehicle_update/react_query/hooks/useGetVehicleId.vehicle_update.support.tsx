@@ -120,17 +120,6 @@ export const useGetVehicleId = () => {
                   // selected: null,
                   // items: [],
                 },
-                available_child_seat: {
-                  ...state.vehicle_information.capacity.passenger_seats.form
-                    .available_child_seat,
-                  selected:
-                    globalDictionaries.vehicle.seat.child.options.find(
-                      (item) =>
-                        item.id === String(data.data.childseat_availability)
-                    ) ?? null,
-                  // selected: null,
-                  // items: [],
-                },
                 available_car_seat: {
                   ...state.vehicle_information.capacity.passenger_seats.form
                     .available_car_seat,
