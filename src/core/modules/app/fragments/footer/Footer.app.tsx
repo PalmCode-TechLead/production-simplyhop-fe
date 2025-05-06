@@ -150,7 +150,7 @@ export const FooterApp = () => {
                       key={itemIndex}
                       href={link}
                       className={clsx(
-                        "text-[#767676] text-[0.875rem] font-normal"
+                        "text-[#767676] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
                       )}
                     >
                       {item.name}
@@ -180,7 +180,9 @@ export const FooterApp = () => {
                 <Link
                   key={itemIndex}
                   href={item.href}
-                  className={clsx("text-[#767676] text-[0.875rem] font-normal")}
+                  className={clsx(
+                    "text-[#767676] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
+                  )}
                 >
                   {item.name}
                 </Link>
