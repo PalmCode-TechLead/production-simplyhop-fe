@@ -17,6 +17,7 @@ const initialState: FindTripInitialStateType = {
         item: null,
         lat_lng: null,
       },
+      saved_items: [],
       items: [],
     },
     destination: {
@@ -27,6 +28,7 @@ const initialState: FindTripInitialStateType = {
         item: null,
         lat_lng: null,
       },
+      saved_items: [],
       items: [],
     },
     date: {

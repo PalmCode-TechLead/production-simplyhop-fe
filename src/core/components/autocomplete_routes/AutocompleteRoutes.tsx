@@ -172,7 +172,7 @@ export const AutocompleteRoutes = ({
                   setOriginAutocomplete({
                     ...originAutocomplete,
                     isFocus: true,
-                    isOpen: true,
+                    isOpen: !!originFilteredItems.length,
                   });
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
@@ -190,6 +190,9 @@ export const AutocompleteRoutes = ({
                   setOriginAutocomplete({
                     ...originAutocomplete,
                     query: event.target.value,
+                    isOpen: !!event.target.value.length
+                      ? originAutocomplete.isOpen
+                      : !!originFilteredItems.length,
                   });
                   if (origin.autocomplete?.debounceQuery) {
                     originDebounced(event.target.value);
@@ -221,7 +224,7 @@ export const AutocompleteRoutes = ({
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
                     isFocus: true,
-                    isOpen: true,
+                    isOpen: !!destinationFilteredItems.length,
                   });
                   setOriginAutocomplete({
                     ...originAutocomplete,
@@ -239,6 +242,9 @@ export const AutocompleteRoutes = ({
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
                     query: event.target.value,
+                    isOpen: !!event.target.value.length
+                      ? destinationAutocomplete.isOpen
+                      : !!destinationFilteredItems.length,
                   });
                   if (destination.autocomplete?.debounceQuery) {
                     destinationDebounced(event.target.value);

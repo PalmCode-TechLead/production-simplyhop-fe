@@ -315,22 +315,14 @@ export const FilterFindTrip = () => {
   };
 
   const handleClickSearch = async () => {
-    const findTripOriginStorage = await storageService<
-      null | { id: string; name: string }[]
-    >({
-      method: "getItem",
-      key: INDEXDB_STORAGE_NAME.FIND_TRIP_ORIGIN_SEARCH_LIST,
-      value: [state.filters.origin.selected.item],
-    });
-
     await storageService({
       method: "setItem",
       key: INDEXDB_STORAGE_NAME.FIND_TRIP_ORIGIN_SEARCH_LIST,
-      value: !findTripOriginStorage.data
+      value: !state.filters.origin.saved_items.length
         ? [state.filters.origin.selected.item]
         : [
             state.filters.origin.selected.item,
-            ...findTripOriginStorage.data.filter((_, index) => index < 5),
+            ...state.filters.origin.saved_items.filter((_, index) => index < 5),
           ],
     });
     let params = "";
@@ -412,7 +404,9 @@ export const FilterFindTrip = () => {
               origin={{
                 pageSheet: {
                   selected: state.filters.origin.selected.item,
-                  items: state.filters.origin.items,
+                  items: !state.filters.origin.items.length
+                    ? state.filters.origin.saved_items
+                    : state.filters.origin.items,
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),
@@ -428,7 +422,9 @@ export const FilterFindTrip = () => {
                 },
                 autocomplete: {
                   selected: state.filters.origin.selected.item,
-                  items: state.filters.origin.items,
+                  items: !state.filters.origin.items.length
+                    ? state.filters.origin.saved_items
+                    : state.filters.origin.items,
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),

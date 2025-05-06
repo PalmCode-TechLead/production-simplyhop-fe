@@ -11,13 +11,19 @@ export const useSetInitialContextValue = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(FindTripContext);
 
-  const getFindTripSuggestion = async () => {
+  const setDefaultData = async () => {
     const findTripOriginStorage = await storageService<
       null | { id: string; name: string }[]
     >({
       method: "getItem",
       key: INDEXDB_STORAGE_NAME.FIND_TRIP_ORIGIN_SEARCH_LIST,
-      value: [state.filters.origin.selected.item],
+    });
+
+    const findTripDestinationStorage = await storageService<
+      null | { id: string; name: string }[]
+    >({
+      method: "getItem",
+      key: INDEXDB_STORAGE_NAME.FIND_TRIP_DESTINATION_SEARCH_LIST,
     });
 
     dispatch({
@@ -26,7 +32,15 @@ export const useSetInitialContextValue = () => {
         ...state.filters,
         origin: {
           ...state.filters.origin,
-          items: !findTripOriginStorage.data ? [] : findTripOriginStorage.data,
+          saved_items: !findTripOriginStorage.data
+            ? []
+            : findTripOriginStorage.data,
+        },
+        destination: {
+          ...state.filters.destination,
+          saved_items: !findTripDestinationStorage.data
+            ? []
+            : findTripDestinationStorage.data,
         },
         passenger: {
           ...state.filters.passenger,
@@ -39,23 +53,7 @@ export const useSetInitialContextValue = () => {
         },
       },
     });
-  };
-  React.useEffect(() => {
-    // dispatch({
-    //   type: FindTripActionEnum.SetFiltersData,
-    //   payload: {
-    //     ...state.filters,
-    //     passenger: {
-    //       ...state.filters.passenger,
-    //       value: dictionaries.filter.form.passenger.detail.items.map((item) => {
-    //         return {
-    //           id: item.id,
-    //           value: item.value,
-    //         };
-    //       }),
-    //     },
-    //   },
-    // });
+
     dispatch({
       type: FindTripActionEnum.SetMapData,
       payload: {
@@ -63,6 +61,8 @@ export const useSetInitialContextValue = () => {
         initial_coordinate: COORDINATE.germany,
       },
     });
-    getFindTripSuggestion();
+  };
+  React.useEffect(() => {
+    setDefaultData();
   }, []);
 };

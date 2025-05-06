@@ -24,6 +24,7 @@ export interface FindTripFilters {
       is_open: boolean;
     };
     items: { id: string; name: string }[];
+    saved_items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
       lat_lng: null | { lat: number; lng: number };
@@ -34,6 +35,7 @@ export interface FindTripFilters {
       is_open: boolean;
     };
     items: { id: string; name: string }[];
+    saved_items: { id: string; name: string }[];
     selected: {
       item: null | { id: string; name: string };
       lat_lng: null | { lat: number; lng: number };
