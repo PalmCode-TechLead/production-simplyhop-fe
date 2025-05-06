@@ -25,8 +25,10 @@ export const GlobalChatReducers = (
   action: GlobalActions
 ) => {
   switch (action.type) {
-    case GlobalActionEnum.SetChatData:
+    case GlobalActionEnum.SetChatData: {
+      console.log(action.payload, "ini action payload");
       return action.payload;
+    }
 
     default:
       return state;

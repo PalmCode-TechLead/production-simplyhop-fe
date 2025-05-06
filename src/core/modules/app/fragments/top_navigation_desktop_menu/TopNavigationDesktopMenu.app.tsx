@@ -16,6 +16,8 @@ export const TopNavigationDesktopMenu = () => {
   const token = cookie.get("token");
   const isLogin = !!token;
   const pathname = usePathname();
+
+  console.log(state.chat.count, "ini count");
   return (
     <div
       className={clsx(

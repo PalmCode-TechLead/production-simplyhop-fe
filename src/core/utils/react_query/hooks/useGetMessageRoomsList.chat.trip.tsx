@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ChatTripReactQueryKey } from "../keys";
 import Cookies from "universal-cookie";
@@ -8,10 +7,8 @@ import {
   GetMessageRoomsUnreadListPayloadRequestInterface,
   GetMessageRoomsUnreadListSuccessResponseInterface,
 } from "@/core/models/rest/simplyhop/message_rooms";
-import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
 
 export const useGetMessageRoomsUnreadList = () => {
-  const { state, dispatch } = React.useContext(GlobalContext);
   const cookies = new Cookies();
   const token = cookies.get("token");
   const payload: GetMessageRoomsUnreadListPayloadRequestInterface = {
@@ -30,21 +27,8 @@ export const useGetMessageRoomsUnreadList = () => {
       return fetchGetMessageRoomsUnreadList(payload);
     },
     enabled: !!token,
-    refetchInterval: 500,
+    refetchInterval: 15000,
   });
-
-  React.useEffect(() => {
-    if (!!query.data && !query.isFetching) {
-      const data = query.data;
-      dispatch({
-        type: GlobalActionEnum.SetChatData,
-        payload: {
-          ...state.chat,
-          count: data.meta.total,
-        },
-      });
-    }
-  }, [query.isFetching, query.data]);
 
   return query;
 };

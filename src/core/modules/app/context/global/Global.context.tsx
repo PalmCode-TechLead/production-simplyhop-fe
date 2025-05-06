@@ -1,6 +1,10 @@
 "use client";
 import React, { createContext, useReducer, Dispatch } from "react";
-import { GlobalActions, GlobalInitialStateType } from "./Global.types";
+import {
+  GlobalActionEnum,
+  GlobalActions,
+  GlobalInitialStateType,
+} from "./Global.types";
 import { GlobalAlertReducers, GlobalChatReducers } from "./Global.reducers";
 import { useGetMessageRoomsUnreadList } from "@/core/utils/react_query/hooks";
 
@@ -31,7 +35,20 @@ const mainReducer = (
 
 const GlobalProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
-  useGetMessageRoomsUnreadList();
+  const query = useGetMessageRoomsUnreadList();
+  React.useEffect(() => {
+    if (!!query.data && !query.isFetching) {
+      const data = query.data;
+      console.log(data.meta.total);
+      dispatch({
+        type: GlobalActionEnum.SetChatData,
+        payload: {
+          ...state.chat,
+          count: data.meta.total,
+        },
+      });
+    }
+  }, [query.isFetching, query.data]);
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
       {props.children}
