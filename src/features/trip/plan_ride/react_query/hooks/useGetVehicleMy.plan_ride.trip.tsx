@@ -49,7 +49,11 @@ export const useGetVehicleMy = () => {
               ? null
               : {
                   id: String(firstData.id),
-                  name: `${firstData.brand?.title} ${firstData.model}`,
+                  name: !firstData.brand?.title
+                    ? firstData.model ?? ""
+                    : !firstData.model
+                    ? firstData.brand?.title ?? ""
+                    : `${firstData.brand?.title} ${firstData.model}`,
                 },
             items: filteredData.map((item) => {
               return {
@@ -70,7 +74,11 @@ export const useGetVehicleMy = () => {
                   height: 46,
                 },
                 identity: {
-                  name: `${item.brand?.title} ${item.model}`,
+                  name: !item.brand?.title
+                    ? item.model ?? ""
+                    : !item.model
+                    ? item.brand?.title ?? ""
+                    : `${item.brand?.title} ${item.model}`,
                   number: item.plate_license,
                 },
                 facility: {
