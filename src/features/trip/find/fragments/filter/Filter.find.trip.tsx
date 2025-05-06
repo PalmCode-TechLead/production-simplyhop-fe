@@ -325,6 +325,18 @@ export const FilterFindTrip = () => {
             ...state.filters.origin.saved_items.filter((_, index) => index < 5),
           ],
     });
+    await storageService({
+      method: "setItem",
+      key: INDEXDB_STORAGE_NAME.FIND_TRIP_DESTINATION_SEARCH_LIST,
+      value: !state.filters.destination.saved_items.length
+        ? [state.filters.destination.selected.item]
+        : [
+            state.filters.destination.selected.item,
+            ...state.filters.destination.saved_items.filter(
+              (_, index) => index < 5
+            ),
+          ],
+    });
     let params = "";
     if (state.filters.origin.selected.item) {
       const origin = `&${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item.id}`;
@@ -444,7 +456,9 @@ export const FilterFindTrip = () => {
               destination={{
                 pageSheet: {
                   selected: state.filters.destination.selected.item,
-                  items: state.filters.destination.items,
+                  items: !state.filters.destination.items.length
+                    ? state.filters.destination.saved_items
+                    : state.filters.destination.items,
                   onQuery: (data: string) => handleQueryDestinationRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectDestinationRoutes(data),
@@ -460,7 +474,9 @@ export const FilterFindTrip = () => {
                 },
                 autocomplete: {
                   selected: state.filters.destination.selected.item,
-                  items: state.filters.destination.items,
+                  items: !state.filters.destination.items.length
+                    ? state.filters.destination.saved_items
+                    : state.filters.destination.items,
                   onQuery: (data: string) => handleQueryDestinationRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectDestinationRoutes(data),
