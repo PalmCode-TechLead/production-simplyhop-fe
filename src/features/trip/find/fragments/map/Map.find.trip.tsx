@@ -123,6 +123,7 @@ export const MapFindTrip = () => {
     state.map.polyline_path.length,
   ]);
 
+  console.log(state.map.polyline_path.length, polylinePath, "inii apa");
   if (!isLoaded) return <div />;
 
   return (
@@ -136,7 +137,7 @@ export const MapFindTrip = () => {
         streetViewControl: false,
         cameraControl: false,
         fullscreenControl: false,
-        zoom: !state.map.polyline_path.length ? 12 : undefined,
+        zoom: 12,
       }}
     >
       {/* Start Marker */}
