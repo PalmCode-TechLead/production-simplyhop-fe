@@ -58,7 +58,11 @@ export const useGetVehicleMy = () => {
             items: filteredData.map((item) => {
               return {
                 id: String(item.id),
-                name: `${item.brand?.title} ${item.model}`,
+                name: !item.brand?.title
+                  ? item.model ?? ""
+                  : !item.model
+                  ? item.brand?.title ?? ""
+                  : `${item.brand?.title} ${item.model}`,
               };
             }),
             data: filteredData.map((item) => {
