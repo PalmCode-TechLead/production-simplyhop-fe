@@ -97,30 +97,23 @@ export const TopNavigationMobileMenu = () => {
                     "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
                     "h-[2.5rem]",
                     "w-full",
-
+                    "cursor-pointer",
                     pathname === menu.href && menu.id === "mitfahrt-anbieten"
                       ? "text-[#333FFF]"
                       : pathname === menu.href
                       ? "text-green-500"
                       : pathname.includes(menu.id)
                       ? "text-green-500"
-                      : "text-neutral-300",
+                      : menu.id === "mitfahrt-anbieten"
+                      ? "text-neutral-300 hover:text-[#333FFF]"
+                      : "text-neutral-300 hover:text-green-500",
                     "text-[1rem] font-semibold text-inter"
                   )}
                 >
                   <SVGIcon
                     {...(menu.icon as { name: SVGIconProps["name"] })}
                     key={`svgIcon.${menuIndex}`}
-                    className={clsx(
-                      "w-[1rem] h-[1rem]",
-                      pathname === menu.href && menu.id === "mitfahrt-anbieten"
-                        ? "text-[#333FFF]"
-                        : pathname === menu.href
-                        ? "text-green-500"
-                        : pathname.includes(menu.id)
-                        ? "text-green-500"
-                        : "text-neutral-300"
-                    )}
+                    className={clsx("w-[1rem] h-[1rem]")}
                   />
                   {menu.name}
                   {menu.id === "chat" && state.chat.count > 0 && (

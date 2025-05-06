@@ -42,7 +42,7 @@ export const TopNavigationDesktopMenu = () => {
             className={clsx(
               "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
               "h-[90px]",
-
+              "cursor-pointer",
               pathname === menu.href && menu.id === "mitfahrt-anbieten"
                 ? "text-[#333FFF]"
                 : pathname === menu.href
