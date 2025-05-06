@@ -136,6 +136,16 @@ export const RoomChatTrip = () => {
     });
   };
 
+  const handleClickCancel = async () => {
+    await postBookingReject();
+
+    queryClient.invalidateQueries({
+      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+      type: "all",
+      refetchType: "all",
+    });
+  };
+
   const handleClickOffer = async () => {
     dispatch({
       type: ChatTripActionEnum.SetOfferData,
@@ -204,6 +214,19 @@ export const RoomChatTrip = () => {
                   {...chat.booking}
                   key={chatIndex}
                   cta={{
+                    cancel:
+                      type === "offer_request" &&
+                      state.room.booking.status === "pending" &&
+                      chatIndex === lastOfferCardIndex &&
+                      !!userState.profile?.id &&
+                      String(userState.profile?.id) === sender_id
+                        ? {
+                            children: "Abbrechen",
+                            disabled: isPendingPostBookingReject,
+                            loading: isPendingPostBookingReject,
+                            onClick: handleClickCancel,
+                          }
+                        : null,
                     reject:
                       type === "offer_request" &&
                       state.room.booking.status === "pending" &&

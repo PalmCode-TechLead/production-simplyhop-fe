@@ -54,6 +54,12 @@ export interface BookingCardChatTripProps {
   };
   note?: TripNoteItemProps;
   cta?: {
+    cancel: null | {
+      children: React.ReactNode;
+      disabled: boolean;
+      loading: boolean;
+      onClick: () => void;
+    };
     reject: null | {
       children: React.ReactNode;
       disabled: boolean;
@@ -180,6 +186,12 @@ export const BookingCardChatTrip = ({
     note: "Lorem Ipsum",
   },
   cta = {
+    cancel: {
+      children: "Angebot ablehnen",
+      disabled: false,
+      loading: false,
+      onClick: () => {},
+    },
     reject: {
       children: "Angebot ablehnen",
       disabled: false,
@@ -334,6 +346,24 @@ export const BookingCardChatTrip = ({
             "w-full"
           )}
         >
+          {!!cta.cancel && (
+            <button
+              className={clsx(
+                "flex items-center justify-center gap-[0.5rem]",
+                "bg-[white]",
+                "border border-[white]",
+                "px-[1rem] py-[0.75rem]",
+                "rounded-[0.375rem]",
+                "text-[#DA2323] text-[0.875rem] font-medium",
+                "w-full lg:w-fit"
+              )}
+              disabled={cta.cancel.disabled}
+              onClick={cta.cancel.onClick}
+            >
+              {cta.cancel.loading && <MoonLoader size={20} color={"#3B3B3B"} />}
+              {cta.cancel.children}
+            </button>
+          )}
           {!!cta.reject && (
             <button
               className={clsx(
