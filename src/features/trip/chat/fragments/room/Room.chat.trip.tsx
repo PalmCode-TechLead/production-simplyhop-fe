@@ -40,7 +40,8 @@ export const RoomChatTrip = () => {
 
   const { isLg } = useTailwindBreakpoint();
   useGetMessageRoomsId();
-  useGetMessagesListByRoom();
+  const { isFetching: isFetchingMessagesListByRoom } =
+    useGetMessagesListByRoom();
   useGetBookingId();
   const { mutateAsync: postMessagesChat, isPending: isPendingPostMessageChat } =
     usePostMessagesChat();
@@ -158,6 +159,7 @@ export const RoomChatTrip = () => {
   const isLoadingSendChat = isPendingPostMessageChat;
   const isDisabledSendChat =
     isPendingPostMessageChat || state.room.booking.status !== "accepted";
+
   return (
     <div
       className={clsx(
@@ -175,7 +177,15 @@ export const RoomChatTrip = () => {
 
       {/* chat */}
 
-      <RoomConversationContainerChatTrip>
+      <RoomConversationContainerChatTrip
+        className={clsx(
+          isFetchingMessagesListByRoom &&
+            "!place-content-center !place-items-center"
+        )}
+      >
+        {isFetchingMessagesListByRoom && (
+          <MoonLoader size={48} color={"#05912A"} />
+        )}
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",

@@ -3,10 +3,12 @@ import clsx from "clsx";
 
 export interface RoomConversationContainerChatTripProps {
   children?: React.ReactNode;
+  className?: string;
 }
 
 export default function RoomConversationContainerChatTrip({
   children,
+  className,
 }: RoomConversationContainerChatTripProps) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const scrollToBottom = () => {
@@ -25,7 +27,8 @@ export default function RoomConversationContainerChatTrip({
         "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
         "w-full h-full lg:h-[calc(100vh-90px-14rem)]",
         "overflow-auto",
-        "px-[1rem] lg:px-[0rem]"
+        "px-[1rem] lg:px-[0rem]",
+        className
       )}
     >
       {children}
