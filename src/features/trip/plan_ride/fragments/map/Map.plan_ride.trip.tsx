@@ -136,7 +136,6 @@ export const MapPlanRideTrip = () => {
         streetViewControl: false,
         cameraControl: false,
         fullscreenControl: false,
-        zoom: !state.map.polyline_path.length ? 12 : undefined,
       }}
     >
       {/* Start Marker */}
