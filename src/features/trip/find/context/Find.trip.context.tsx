@@ -41,6 +41,9 @@ const initialState: FindTripInitialStateType = {
   },
   map: {
     polyline_path: [],
+    marker: false,
+    initial_coordinate: null,
+    mode: "country",
   },
 };
 

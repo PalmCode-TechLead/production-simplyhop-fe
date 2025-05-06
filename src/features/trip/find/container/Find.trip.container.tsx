@@ -1,10 +1,13 @@
+'use client'
 import * as React from "react";
 import clsx from "clsx";
 import { MapFindTrip } from "../fragments/map";
 import { BadgeFindTrip } from "../fragments/badge";
 import { FilterFindTrip } from "../fragments/filter";
+import { useSetInitialContextValue } from "../context";
 
 export const FindTripContainer = () => {
+  useSetInitialContextValue();
   return (
     <div className={clsx("w-full h-full", "relative")}>
       <MapFindTrip />

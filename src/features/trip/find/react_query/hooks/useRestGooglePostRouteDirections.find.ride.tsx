@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { FindTripReactQueryKey } from "../keys";
 import { FindTripActionEnum, FindTripContext } from "../../context";
 
@@ -36,29 +36,42 @@ export const useRestGooglePostRouteDirections = () => {
       computeAlternativeRoutes: false,
     },
   };
-  const mutation =
-    useMutation<RestGooglePostRouteDirectionsSuccessResponseInterface>({
-      mutationKey: FindTripReactQueryKey.RestGooglePostRouteDirections(),
-      mutationFn: () => {
+
+  const query = useQuery<RestGooglePostRouteDirectionsSuccessResponseInterface>(
+    {
+      queryKey: FindTripReactQueryKey.RestGooglePostRouteDirections(payload),
+      queryFn: () => {
         return fetchRestGooglePostRouteDirections(payload);
       },
-      onSuccess(data) {
-        if (!Object.keys(data).length) return;
-        const encodedPolyline = data.routes[0].polyline.encodedPolyline;
-        const decodedPolyline = decode(encodedPolyline).map(([lat, lng]) => ({
-          lat,
-          lng,
-        }));
+      enabled:
+        !!state.filters.origin.selected.lat_lng &&
+        !!state.filters.destination.selected.lat_lng,
+    }
+  );
 
-        dispatch({
-          type: FindTripActionEnum.SetMapData,
-          payload: {
-            ...state.map,
-            polyline_path: decodedPolyline,
-          },
-        });
-      },
-    });
+  React.useEffect(() => {
+    if (!!query.data && !query.isFetching) {
+      const data = query.data;
+      if (!Object.keys(data).length) return;
+      const encodedPolyline = data.routes[0].polyline.encodedPolyline;
+      const decodedPolyline = decode(encodedPolyline).map(([lat, lng]) => ({
+        lat,
+        lng,
+      }));
 
-  return mutation;
+      dispatch({
+        type: FindTripActionEnum.SetMapData,
+        payload: {
+          ...state.map,
+          polyline_path: decodedPolyline,
+          marker:
+            !!state.filters.origin.selected.item &&
+            !!state.filters.destination.selected.item,
+          mode: "route",
+        },
+      });
+    }
+  }, [query.data, query.isFetching]);
+
+  return query;
 };

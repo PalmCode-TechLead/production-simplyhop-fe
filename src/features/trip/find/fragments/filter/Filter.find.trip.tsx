@@ -24,8 +24,7 @@ export const FilterFindTrip = () => {
   const { state, dispatch } = React.useContext(FindTripContext);
   const { isLg } = useTailwindBreakpoint();
 
-  const { mutate: fetchRestGooglePostRouteDirections } =
-    useRestGooglePostRouteDirections();
+  useRestGooglePostRouteDirections();
 
   const handleClickOriginRoutes = () => {
     dispatch({
@@ -313,42 +312,6 @@ export const FilterFindTrip = () => {
       },
     });
   };
-
-  // NOTES: listen and fetch route directions
-  React.useEffect(() => {
-    if (
-      !!state.filters.origin.selected.lat_lng &&
-      !!state.filters.destination.selected.lat_lng
-    ) {
-      fetchRestGooglePostRouteDirections();
-    }
-  }, [
-    state.filters.origin.selected.lat_lng,
-    state.filters.destination.selected.lat_lng,
-  ]);
-
-  // NOTES: set default passenger
-  const setDefaultPassenger = () => {
-    dispatch({
-      type: FindTripActionEnum.SetFiltersData,
-      payload: {
-        ...state.filters,
-        passenger: {
-          ...state.filters.passenger,
-          value: dictionaries.filter.form.passenger.detail.items.map((item) => {
-            return {
-              id: item.id,
-              value: item.value,
-            };
-          }),
-        },
-      },
-    });
-  };
-
-  React.useEffect(() => {
-    setDefaultPassenger();
-  }, []);
 
   const handleClickSearch = () => {
     let params = "";

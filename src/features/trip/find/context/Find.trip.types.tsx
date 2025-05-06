@@ -1,3 +1,5 @@
+import { MapMode } from "@/core/utils/map/types";
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -51,6 +53,9 @@ export interface FindTripFilters {
 
 export interface FindTripMap {
   polyline_path: { lat: number; lng: number }[];
+  marker: boolean;
+  initial_coordinate: { lat: number; lng: number } | null;
+  mode: MapMode;
 }
 
 export enum FindTripActionEnum {
