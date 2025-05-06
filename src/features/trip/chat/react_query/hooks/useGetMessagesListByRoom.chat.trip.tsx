@@ -118,7 +118,11 @@ export const useGetMessagesListByRoom = () => {
                       height: 46,
                     },
                     identity: {
-                      name: `${item.booking?.ride?.vehicle?.brand?.title} ${item.booking?.ride?.vehicle?.model}`,
+                      name: !item.booking?.ride?.vehicle?.brand?.title
+                        ? item.booking?.ride?.vehicle?.model ?? ""
+                        : !item.booking?.ride?.vehicle.model
+                        ? item.booking?.ride?.vehicle.brand?.title ?? ""
+                        : `${item.booking?.ride?.vehicle.brand?.title} ${item.booking?.ride?.vehicle.model}`,
                       number: item.booking?.ride?.vehicle?.plate_license,
                     },
                     facility: {

@@ -81,7 +81,11 @@ export const useGetBookingId = () => {
                 height: 46,
               },
               identity: {
-                name: `${data.data.ride?.vehicle?.brand?.title} ${data.data.ride?.vehicle?.model}`,
+                name: !data.data.ride?.vehicle?.brand?.title
+                  ? data.data.ride?.vehicle?.model ?? ""
+                  : !data.data.ride?.vehicle.model
+                  ? data.data.ride?.vehicle.brand?.title ?? ""
+                  : `${data.data.ride?.vehicle.brand?.title} ${data.data.ride?.vehicle.model}`,
                 number: data.data.ride?.vehicle?.plate_license,
               },
               facility: {
