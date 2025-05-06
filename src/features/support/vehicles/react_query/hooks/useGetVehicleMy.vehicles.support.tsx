@@ -56,7 +56,11 @@ export const useGetVehicleMy = () => {
                   height: 46,
                 },
                 identity: {
-                  name: `${item.brand?.title} ${item.model}`,
+                  name: !item.brand?.title
+                    ? item.model ?? ""
+                    : !item.model
+                    ? item.brand?.title ?? ""
+                    : `${item.brand?.title} ${item.model}`,
                   number: item.plate_license,
                 },
                 facility: {
