@@ -569,7 +569,7 @@
   },
   "contact": {
     "message": "Möchtest du Kontakt aufnehmen?",
-    "description": "Schreib uns eine E-Mail an service@simplyhop.com – wir melden uns so schnell wie möglich bei dir.",
+    "description": "Schreib uns eine E-Mail an: service@simplyhop.com – wir melden uns so schnell wie möglich bei dir.",
     "cta": {
       "contact": {
         "href": "mailto:service@simplyhop.com",
