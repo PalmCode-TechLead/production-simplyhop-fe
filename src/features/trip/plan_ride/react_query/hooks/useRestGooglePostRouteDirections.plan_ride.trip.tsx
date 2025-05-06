@@ -38,7 +38,7 @@ export const useRestGooglePostRouteDirections = () => {
   };
   const query = useQuery<RestGooglePostRouteDirectionsSuccessResponseInterface>(
     {
-      queryKey: PlanRideTripReactQueryKey.PostRouteDirections(),
+      queryKey: PlanRideTripReactQueryKey.PostRouteDirections(payload),
       queryFn: () => {
         return fetchRestGooglePostRouteDirections(payload);
       },
