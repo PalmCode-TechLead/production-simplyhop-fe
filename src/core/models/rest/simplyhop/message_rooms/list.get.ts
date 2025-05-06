@@ -1,3 +1,4 @@
+import { Meta } from "@/core/models/data";
 import { MessageRoom } from "@/core/models/data/message_room";
 
 import { NextApiRequest, NextApiResponse } from "next";
@@ -33,6 +34,7 @@ export interface GetMessageRoomsListSuccessResponseInterface {
   data: MessageRoom[];
 
   redirect: null;
+  meta: Meta;
 }
 
 export interface GetMessageRoomsListErrorResponseInterface {

@@ -13,6 +13,7 @@ import {
 import { UserContext } from "@/core/modules/app/context";
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const useGetMessageRoomsList = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -35,6 +36,8 @@ export const useGetMessageRoomsList = () => {
         ? undefined
         : state.list.search.value,
       sort: "-last_message_at",
+      "page[number]": state.list.message.pagination.current,
+      "page[size]": PAGINATION.SIZE,
     },
   };
   const query = useQuery<
@@ -51,61 +54,63 @@ export const useGetMessageRoomsList = () => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
 
-      dispatch({
-        type: ChatTripActionEnum.SetListData,
-        payload: {
-          ...state.list,
-          message: {
-            ...state.list.message,
-            items: data.data.map((item) => {
-              const isPassenger = userState.profile?.id === item.passenger_id;
-              const lastMessage = item.messages?.find(
-                (_, index) => index === (item.messages?.length ?? 1) - 1
-              );
+      const newPayload = data.data.map((item) => {
+        const isPassenger = userState.profile?.id === item.passenger_id;
+        const lastMessage = item.messages?.find(
+          (_, index) => index === (item.messages?.length ?? 1) - 1
+        );
 
-              const lastMessageObject: { [key: string]: string } = !lastMessage
-                ? {}
-                : typeof lastMessage.contents === "string"
-                ? JSON.parse(lastMessage.contents)
-                : lastMessage.contents;
-              const displayMessage =
-                item.booking?.status === "rejected"
-                  ? "Ihre Buchung wurde abgelehnt."
-                  : !Object.keys(lastMessageObject).length
-                  ? ""
-                  : lastMessageObject?.type !== "text"
-                  ? lastMessageObject.text
-                  : lastMessageObject?.message ?? "";
-              const date = !lastMessage
-                ? ""
-                : dayjs(lastMessage.created_at).format("MMM DD");
+        const lastMessageObject: { [key: string]: string } = !lastMessage
+          ? {}
+          : typeof lastMessage.contents === "string"
+          ? JSON.parse(lastMessage.contents)
+          : lastMessage.contents;
+        const displayMessage =
+          item.booking?.status === "rejected"
+            ? "Ihre Buchung wurde abgelehnt."
+            : !Object.keys(lastMessageObject).length
+            ? ""
+            : lastMessageObject?.type !== "text"
+            ? lastMessageObject.text
+            : lastMessageObject?.message ?? "";
+        const date = !lastMessage
+          ? ""
+          : dayjs(lastMessage.created_at).format("MMM DD");
 
-              return {
-                id: String(item.id),
-                booking_id: String(item.ride_booking_id),
-                avatar: {
-                  src: !isPassenger
-                    ? item.passenger?.avatar
-                    : item.driver?.avatar,
-                  alt: isPassenger ? "passenger" : "driver",
-                },
-                name: !isPassenger
-                  ? `${item.passenger?.first_name ?? ""} ${
-                      item.passenger?.last_name ?? ""
-                    }`
-                  : `${item.driver?.first_name ?? ""} ${
-                      item.driver?.last_name ?? ""
-                    }`,
-                message: displayMessage,
-                date: date,
-                isNew: !isPassenger
-                  ? item.is_driver_read === 0
-                  : item.is_passenger_read === 0,
-                selected: String(item.id) === id,
-              };
-            }),
+        return {
+          id: String(item.id),
+          booking_id: String(item.ride_booking_id),
+          avatar: {
+            src: !isPassenger ? item.passenger?.avatar : item.driver?.avatar,
+            alt: isPassenger ? "passenger" : "driver",
           },
-        },
+          name: !isPassenger
+            ? `${item.passenger?.first_name ?? ""} ${
+                item.passenger?.last_name ?? ""
+              }`
+            : `${item.driver?.first_name ?? ""} ${
+                item.driver?.last_name ?? ""
+              }`,
+          message: displayMessage,
+          date: date,
+          isNew: !isPassenger
+            ? item.is_driver_read === 0
+            : item.is_passenger_read === 0,
+          selected: String(item.id) === id,
+        };
+      });
+      dispatch({
+        type: ChatTripActionEnum.SetListMessageItems,
+        payload:
+          state.list.message.pagination.current === 1
+            ? [...newPayload]
+            : !newPayload.length
+            ? state.list.message.items
+            : [...state.list.message.items, ...newPayload],
+      });
+      dispatch({
+        type: ChatTripActionEnum.SetListMessagePaginationLast,
+        payload: data.meta.last_page,
       });
     }
   }, [query.data, query.isFetching]);

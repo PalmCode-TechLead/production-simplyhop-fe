@@ -14,6 +14,39 @@ export const ChatTripListReducers = (
   switch (action.type) {
     case ChatTripActionEnum.SetListData:
       return action.payload;
+    case ChatTripActionEnum.SetListMessageItems: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          items: action.payload,
+        },
+      };
+    }
+    case ChatTripActionEnum.SetListMessagePaginationCurrent: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          pagination: {
+            ...state.message.pagination,
+            current: action.payload,
+          },
+        },
+      };
+    }
+    case ChatTripActionEnum.SetListMessagePaginationLast: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          pagination: {
+            ...state.message.pagination,
+            last: action.payload,
+          },
+        },
+      };
+    }
 
     default:
       return state;

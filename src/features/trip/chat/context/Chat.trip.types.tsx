@@ -97,6 +97,9 @@ export interface ChatTripOffer {
 export enum ChatTripActionEnum {
   // List
   SetListData = "SetListData",
+  SetListMessageItems = "SetListMessageItems",
+  SetListMessagePaginationCurrent = "SetListMessagePaginationCurrent",
+  SetListMessagePaginationLast = "SetListMessagePaginationLast",
   // Room
   SetRoomData = "SetRoomData",
   // Offer
@@ -113,6 +116,9 @@ export type ChatTripActions =
 // List
 type ChatTripListPayload = {
   [ChatTripActionEnum.SetListData]: ChatTripList;
+  [ChatTripActionEnum.SetListMessageItems]: ChatTripList["message"]["items"];
+  [ChatTripActionEnum.SetListMessagePaginationCurrent]: ChatTripList["message"]["pagination"]["current"];
+  [ChatTripActionEnum.SetListMessagePaginationLast]: ChatTripList["message"]["pagination"]["last"];
 };
 
 export type ChatTripListActions =

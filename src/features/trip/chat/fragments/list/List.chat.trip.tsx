@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import SVGIcon from "@/core/icons";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
 
 export const ListChatTrip = () => {
   const router = useRouter();
@@ -115,28 +116,56 @@ export const ListChatTrip = () => {
     );
   };
 
+  const handleLoadMore = () => {
+    if (isLoading) return;
+    dispatch({
+      type: ChatTripActionEnum.SetListMessagePaginationCurrent,
+      payload: state.list.message.pagination.current + 1,
+    });
+  };
+
+  const isEndReached =
+    state.list.message.pagination.last ===
+    state.list.message.pagination.current;
+
   return (
-    <div
-      className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-        "w-full max-h-[calc(100vh-360px)]",
-        "overflow-auto"
-      )}
-    >
-      {state.list.message.items.map((item, itemIndex) => (
-        <button
-          key={itemIndex}
-          className={clsx("cursor-pointer", "w-full")}
-          onClick={() =>
-            handleClickList({
-              id: item.id,
-              booking_id: item.booking_id,
-            })
-          }
+    <InfiniteScrollWrapper
+      loader={
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-center place-items-center gap-[1rem]",
+            "w-full h-[calc(100vh-360px)]"
+          )}
         >
-          <ListItemChatTrip {...item} />
-        </button>
-      ))}
-    </div>
+          <MoonLoader size={48} color={"#05912A"} />
+        </div>
+      }
+      isPaused={isLoading}
+      isEndReached={isEndReached}
+      onLoadMore={handleLoadMore}
+    >
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+          "w-full max-h-[calc(100vh-360px)]",
+          "overflow-auto"
+        )}
+      >
+        {state.list.message.items.map((item, itemIndex) => (
+          <button
+            key={itemIndex}
+            className={clsx("cursor-pointer", "w-full")}
+            onClick={() =>
+              handleClickList({
+                id: item.id,
+                booking_id: item.booking_id,
+              })
+            }
+          >
+            <ListItemChatTrip {...item} />
+          </button>
+        ))}
+      </div>
+    </InfiniteScrollWrapper>
   );
 };
