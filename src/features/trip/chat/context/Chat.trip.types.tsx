@@ -40,6 +40,10 @@ export interface ChatTripList {
       isNew: boolean;
       selected: boolean;
     }[];
+    pagination: {
+      current: number;
+      last: null | number;
+    };
   };
 }
 

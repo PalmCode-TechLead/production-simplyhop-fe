@@ -11,15 +11,63 @@ import {
 } from "../../react_query/hooks";
 import { useRouter } from "next/navigation";
 import SVGIcon from "@/core/icons";
+import { PAGINATION } from "@/core/utils/pagination/contants";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const ListChatTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
 
   const { state, dispatch } = React.useContext(ChatTripContext);
-  useGetMessageRoomsList();
+  const { isFetching: isFetchingGetMessageRoomsList } =
+    useGetMessageRoomsList();
   const { mutateAsync: putMessageRoomsMarkAsRead } =
     usePutMessageRoomsMarkAsRead();
+
+  const isLoading = isFetchingGetMessageRoomsList;
+
+  if (
+    isLoading &&
+    state.list.message.pagination.current === PAGINATION.NUMBER
+  ) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-center place-items-center gap-[1rem]",
+          "w-full h-[calc(100vh-360px)]"
+        )}
+      >
+        <MoonLoader size={48} color={"#05912A"} />
+      </div>
+    );
+  }
+
+  if (!state.list.message.items.length && !isLoading) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-center place-items-center gap-[1rem]",
+          "w-full h-[calc(100vh-360px)]",
+          "overflow-auto"
+        )}
+      >
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-center place-items-center",
+            "w-full"
+          )}
+        >
+          <SVGIcon
+            name="MessageSquare"
+            className={clsx("w-[3rem] h-[3rem]", "text-[#C2C2C2]")}
+          />
+          <span className={clsx("text-[1rem] text-[#C2C2C2] font-medium")}>
+            {dictionaries.chat.list.empty.message}
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   const handleClickList = (data: { id: string; booking_id: string }) => {
     dispatch({
@@ -75,38 +123,20 @@ export const ListChatTrip = () => {
         "overflow-auto"
       )}
     >
-      {!state.list.message.items.length && (
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-center place-items-center",
-            "w-full h-[360px]"
-          )}
+      {state.list.message.items.map((item, itemIndex) => (
+        <button
+          key={itemIndex}
+          className={clsx("cursor-pointer", "w-full")}
+          onClick={() =>
+            handleClickList({
+              id: item.id,
+              booking_id: item.booking_id,
+            })
+          }
         >
-          <SVGIcon
-            name="MessageSquare"
-            className={clsx("w-[3rem] h-[3rem]", "text-[#C2C2C2]")}
-          />
-          <span className={clsx("text-[1rem] text-[#C2C2C2] font-medium")}>
-            {dictionaries.chat.list.empty.message}
-          </span>
-        </div>
-      )}
-
-      {!!state.list.message.items.length &&
-        state.list.message.items.map((item, itemIndex) => (
-          <button
-            key={itemIndex}
-            className={clsx("cursor-pointer", "w-full")}
-            onClick={() =>
-              handleClickList({
-                id: item.id,
-                booking_id: item.booking_id,
-              })
-            }
-          >
-            <ListItemChatTrip {...item} />
-          </button>
-        ))}
+          <ListItemChatTrip {...item} />
+        </button>
+      ))}
     </div>
   );
 };

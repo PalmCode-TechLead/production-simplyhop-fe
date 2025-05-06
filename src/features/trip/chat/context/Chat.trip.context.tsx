@@ -6,6 +6,7 @@ import {
   ChatTripOfferReducers,
   ChatTripRoomReducers,
 } from "./Chat.trip.reducers";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 const initialState: ChatTripInitialStateType = {
   list: {
@@ -17,6 +18,10 @@ const initialState: ChatTripInitialStateType = {
     },
     message: {
       items: [],
+      pagination: {
+        current: PAGINATION.NUMBER,
+        last: null,
+      },
     },
   },
   room: {
