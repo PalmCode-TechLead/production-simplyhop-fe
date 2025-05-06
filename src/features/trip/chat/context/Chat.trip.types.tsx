@@ -38,6 +38,7 @@ export interface ChatTripList {
       message: string;
       date: string;
       isNew: boolean;
+      selected: boolean;
     }[];
   };
 }

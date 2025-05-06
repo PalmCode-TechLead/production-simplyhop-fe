@@ -9,6 +9,7 @@ export interface ListItemChatTripProps {
   message?: string;
   date?: string;
   isNew?: boolean;
+  selected?: boolean;
 }
 
 export const ListItemChatTrip = ({
@@ -18,13 +19,16 @@ export const ListItemChatTrip = ({
   message = "",
   date = "",
   isNew = false,
+  selected = false,
 }: ListItemChatTripProps) => {
   return (
     <div
       id={id}
       className={clsx(
         "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[1.5rem]",
-        "w-full"
+        "w-full",
+        selected ? "bg-[#5AC53D0A]" : "hover:bg-[#5AC53D0A]",
+        "py-[0.5rem] px-[0.25rem]"
       )}
     >
       <div
