@@ -12,8 +12,8 @@ import { getError } from "@/core/utils/form";
 import {
   useGetVehicleBrandList,
   useGetVehicleCategoryList,
-  usePostVehicleBrandCreate,
-  usePostVehicleCategoryCreate,
+  // usePostVehicleBrandCreate,
+  // usePostVehicleCategoryCreate,
 } from "../../react_query/hooks";
 import { Autocomplete } from "@/core/components/autocomplete";
 
@@ -23,9 +23,9 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
   useGetVehicleBrandList();
   useGetVehicleCategoryList();
-  const { mutateAsync: postVehicleBrandCreate } = usePostVehicleBrandCreate();
-  const { mutateAsync: postVehicleCategoryCreate } =
-    usePostVehicleCategoryCreate();
+  // const { mutateAsync: postVehicleBrandCreate } = usePostVehicleBrandCreate();
+  // const { mutateAsync: postVehicleCategoryCreate } =
+  //   usePostVehicleCategoryCreate();
   const handleSelectCarBrand = (data: { id: string; name: string }) => {
     dispatch({
       type: RegistrationProfileActionEnum.SetVehicleInformationData,
@@ -45,36 +45,36 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
     });
   };
 
-  const handleClickAddCarBrand = async (data: string) => {
-    const res = await postVehicleBrandCreate({
-      title: data,
-    });
-    if (!res.data) return;
-    const payload = {
-      id: String(res.data.id),
-      name: res.data.title,
-    };
-    dispatch({
-      type: RegistrationProfileActionEnum.SetVehicleInformationData,
-      payload: {
-        ...state.vehicle_information,
-        general: {
-          ...state.vehicle_information.general,
-          form: {
-            ...state.vehicle_information.general.form,
-            car_brand: {
-              ...state.vehicle_information.general.form.car_brand,
-              selected: payload,
-              items: [
-                ...state.vehicle_information.general.form.car_brand.items,
-                payload,
-              ],
-            },
-          },
-        },
-      },
-    });
-  };
+  // const handleClickAddCarBrand = async (data: string) => {
+  //   const res = await postVehicleBrandCreate({
+  //     title: data,
+  //   });
+  //   if (!res.data) return;
+  //   const payload = {
+  //     id: String(res.data.id),
+  //     name: res.data.title,
+  //   };
+  //   dispatch({
+  //     type: RegistrationProfileActionEnum.SetVehicleInformationData,
+  //     payload: {
+  //       ...state.vehicle_information,
+  //       general: {
+  //         ...state.vehicle_information.general,
+  //         form: {
+  //           ...state.vehicle_information.general.form,
+  //           car_brand: {
+  //             ...state.vehicle_information.general.form.car_brand,
+  //             selected: payload,
+  //             items: [
+  //               ...state.vehicle_information.general.form.car_brand.items,
+  //               payload,
+  //             ],
+  //           },
+  //         },
+  //       },
+  //     },
+  //   });
+  // };
 
   const handleQueryCarBrand = (data: string) => {
     dispatch({
@@ -114,36 +114,36 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
     });
   };
 
-  const handleClickAddCarCategory = async (data: string) => {
-    const res = await postVehicleCategoryCreate({
-      title: data,
-    });
-    if (!res.data) return;
-    const payload = {
-      id: String(res.data.id),
-      name: res.data.title,
-    };
-    dispatch({
-      type: RegistrationProfileActionEnum.SetVehicleInformationData,
-      payload: {
-        ...state.vehicle_information,
-        general: {
-          ...state.vehicle_information.general,
-          form: {
-            ...state.vehicle_information.general.form,
-            car_category: {
-              ...state.vehicle_information.general.form.car_category,
-              selected: payload,
-              items: [
-                ...state.vehicle_information.general.form.car_category.items,
-                payload,
-              ],
-            },
-          },
-        },
-      },
-    });
-  };
+  // const handleClickAddCarCategory = async (data: string) => {
+  //   const res = await postVehicleCategoryCreate({
+  //     title: data,
+  //   });
+  //   if (!res.data) return;
+  //   const payload = {
+  //     id: String(res.data.id),
+  //     name: res.data.title,
+  //   };
+  //   dispatch({
+  //     type: RegistrationProfileActionEnum.SetVehicleInformationData,
+  //     payload: {
+  //       ...state.vehicle_information,
+  //       general: {
+  //         ...state.vehicle_information.general,
+  //         form: {
+  //           ...state.vehicle_information.general.form,
+  //           car_category: {
+  //             ...state.vehicle_information.general.form.car_category,
+  //             selected: payload,
+  //             items: [
+  //               ...state.vehicle_information.general.form.car_category.items,
+  //               payload,
+  //             ],
+  //           },
+  //         },
+  //       },
+  //     },
+  //   });
+  // };
 
   const handleQueryCarCategory = (data: string) => {
     dispatch({
@@ -252,13 +252,13 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
           }}
           selected={state.vehicle_information.general.form.car_brand.selected}
           items={state.vehicle_information.general.form.car_brand.items}
-          option={{
-            add: {
-              ...dictionaries.vehicle_information.general.form.input.car_brand
-                .option.cta.add,
-              onClick: handleClickAddCarBrand,
-            },
-          }}
+          // option={{
+          //   add: {
+          //     ...dictionaries.vehicle_information.general.form.input.car_brand
+          //       .option.cta.add,
+          //     onClick: handleClickAddCarBrand,
+          //   },
+          // }}
           onSelect={handleSelectCarBrand}
           onQuery={handleQueryCarBrand}
         />
@@ -275,13 +275,13 @@ export const GeneralVehicleInformationFormRegistrationProfile = () => {
             state.vehicle_information.general.form.car_category.selected
           }
           items={state.vehicle_information.general.form.car_category.items}
-          option={{
-            add: {
-              ...dictionaries.vehicle_information.general.form.input
-                .car_category.option.cta.add,
-              onClick: handleClickAddCarCategory,
-            },
-          }}
+          // option={{
+          //   add: {
+          //     ...dictionaries.vehicle_information.general.form.input
+          //       .car_category.option.cta.add,
+          //     onClick: handleClickAddCarCategory,
+          //   },
+          // }}
           onSelect={handleSelectCarCategory}
           onQuery={handleQueryCarCategory}
         />
