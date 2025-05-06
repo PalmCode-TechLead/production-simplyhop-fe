@@ -7,8 +7,13 @@ import { PageSheet } from "@/core/components/page_sheet";
 import { useSearchParams } from "next/navigation";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { OfferChatTrip } from "../fragments/offer";
+import { getDictionaries } from "../i18n";
+import { TabGroup } from "@headlessui/react";
+import { SearchChatTrip } from "../fragments/search";
+import { TabChatTrip } from "../fragments/tab";
 
 export const ChatTripContainer = () => {
+  const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
@@ -36,7 +41,34 @@ export const ChatTripContainer = () => {
             )}
           >
             {/* NOTES: List */}
-            <ListChatTrip />
+            <div
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1rem] lg:gap-[2rem]",
+                "w-full",
+                "pt-[1.5rem]",
+                "sticky top-[calc(90px+1.5rem)]"
+              )}
+            >
+              <h1
+                className={clsx(
+                  "text-[black] text-[1.125rem] lg:text-[1.5rem] font-semibold"
+                )}
+              >
+                {dictionaries.title}
+              </h1>
+              <SearchChatTrip />
+
+              <TabGroup
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
+                  "w-full"
+                )}
+              >
+                <TabChatTrip />
+                <ListChatTrip />
+              </TabGroup>
+            </div>
+
             {/* NOTES: divider */}
             <div className={clsx("w-[1px] h-full", "bg-[#E9E9E9]")} />
             {/* NOTES: Room */}
