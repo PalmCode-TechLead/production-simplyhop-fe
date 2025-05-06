@@ -63,7 +63,7 @@ export const useGetMessagesListByRoom = () => {
     queryFn: () => {
       return fetchGetMessagesListByRoom(payload);
     },
-    enabled: !!id && !!state.room.id,
+    enabled: !!id,
     refetchInterval: 10 * 1000,
   });
 

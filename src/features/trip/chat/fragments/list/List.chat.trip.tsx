@@ -14,6 +14,8 @@ import SVGIcon from "@/core/icons";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
+import { storageService } from "@/core/services/storage/indexdb";
+import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 
 export const ListChatTrip = () => {
   const router = useRouter();
@@ -70,7 +72,32 @@ export const ListChatTrip = () => {
     );
   }
 
-  const handleClickList = (data: { id: string; booking_id: string }) => {
+  const handleClickList = async (data: { id: string; booking_id: string }) => {
+    await storageService({
+      method: "setItem",
+      key: INDEXDB_STORAGE_NAME.CHAT_TRIP_ROOM_DETAIL,
+      value: {
+        id: data.id,
+        header: {
+          avatar: {
+            src:
+              state.list.message.items.find((item) => item.id === data.id)
+                ?.avatar.src ?? "",
+            alt:
+              state.list.message.items.find((item) => item.id === data.id)
+                ?.avatar.alt ?? "",
+          },
+          name:
+            state.list.message.items.find((item) => item.id === data.id)
+              ?.name ?? "",
+        },
+        booking: {
+          status:
+            state.list.message.items.find((item) => item.id === data.id)
+              ?.booking_status ?? null,
+        },
+      },
+    });
     dispatch({
       type: ChatTripActionEnum.SetRoomData,
       payload: {

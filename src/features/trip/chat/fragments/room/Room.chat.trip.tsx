@@ -14,7 +14,6 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import {
   useGetBookingId,
-  useGetMessageRoomsId,
   useGetMessagesListByRoom,
   usePostBookingAccept,
   usePostBookingReject,
@@ -39,7 +38,7 @@ export const RoomChatTrip = () => {
   const messageRoomId = !id ? "0" : String(id);
 
   const { isLg } = useTailwindBreakpoint();
-  useGetMessageRoomsId();
+
   const { isFetching: isFetchingMessagesListByRoom } =
     useGetMessagesListByRoom();
   useGetBookingId();
