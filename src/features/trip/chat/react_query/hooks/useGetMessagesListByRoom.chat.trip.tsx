@@ -59,12 +59,13 @@ export const useGetMessagesListByRoom = () => {
     GetMessagesListByRoomSuccessResponseInterface,
     GetMessagesListByRoomErrorResponseInterface
   >({
-    queryKey: ChatTripReactQueryKey.GetMessagesListByRoom(),
+    queryKey: ChatTripReactQueryKey.GetMessagesListByRoom(payload),
     queryFn: () => {
       return fetchGetMessagesListByRoom(payload);
     },
     enabled: !!id,
     refetchInterval: 10 * 1000,
+    refetchIntervalInBackground: false,
   });
 
   React.useEffect(() => {

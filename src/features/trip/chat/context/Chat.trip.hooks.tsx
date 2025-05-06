@@ -14,19 +14,22 @@ export const useSetInitialContextValue = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const setDefaultData = async () => {
-    await storageService<null | {
-      id: number | null;
-      header: {
-        name: string;
-        avatar: AvatarProps;
-      };
-      booking: {
-        status: string | null;
-      };
-    }>({
-      method: "removeItem",
-      key: INDEXDB_STORAGE_NAME.CHAT_TRIP_ROOM_DETAIL,
-    });
+    if (!id) {
+      await storageService<null | {
+        id: number | null;
+        header: {
+          name: string;
+          avatar: AvatarProps;
+        };
+        booking: {
+          status: string | null;
+        };
+      }>({
+        method: "removeItem",
+        key: INDEXDB_STORAGE_NAME.CHAT_TRIP_ROOM_DETAIL,
+      });
+    }
+
     dispatch({
       type: ChatTripActionEnum.SetListData,
       payload: {
