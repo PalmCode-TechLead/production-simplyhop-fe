@@ -169,7 +169,7 @@ export const ListChatTrip = () => {
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "w-full max-h-[360px]",
+            "w-full max-h-[calc(100vh-400px)]",
             "overflow-auto"
           )}
         >
