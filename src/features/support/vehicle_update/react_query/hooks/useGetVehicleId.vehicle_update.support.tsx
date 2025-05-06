@@ -37,10 +37,7 @@ export const useGetVehicleId = () => {
     queryFn: () => {
       return fetchGetVehicleId(payload);
     },
-    enabled:
-      !!params.id &&
-      !!state.vehicle_information.general.form.car_brand.items.length &&
-      !!state.vehicle_information.general.form.car_category.items.length,
+    enabled: !!params.id,
   });
 
   React.useEffect(() => {
@@ -58,10 +55,10 @@ export const useGetVehicleId = () => {
                 ...state.vehicle_information.general.form.car_brand,
                 selected: !data.data.brand
                   ? null
-                  : state.vehicle_information.general.form.car_brand.items.find(
-                      (carBrandItem) =>
-                        carBrandItem.id === String(data.data.brand?.id)
-                    ) ?? null,
+                  : {
+                      id: String(data.data.brand.id),
+                      name: data.data.brand.title,
+                    },
                 // items: [],
                 // error: null,
               },
@@ -69,10 +66,10 @@ export const useGetVehicleId = () => {
                 ...state.vehicle_information.general.form.car_category,
                 selected: !data.data.category
                   ? null
-                  : state.vehicle_information.general.form.car_category.items.find(
-                      (carCategoryItem) =>
-                        carCategoryItem.id === String(data.data.category?.id)
-                    ) ?? null,
+                  : {
+                      id: String(data.data.category.id),
+                      name: data.data.category.title,
+                    },
                 // items: [],
                 // error: null,
               },

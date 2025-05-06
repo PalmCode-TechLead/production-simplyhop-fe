@@ -34,32 +34,19 @@ export const useGetVehicleCategoryList = () => {
     queryFn: () => {
       return fetchGetVehicleCategoryList(payload);
     },
-    enabled: !!state.vehicle_information.general.form.car_brand.items.length,
   });
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
       dispatch({
-        type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
-        payload: {
-          ...state.vehicle_information,
-          general: {
-            ...state.vehicle_information.general,
-            form: {
-              ...state.vehicle_information.general.form,
-              car_category: {
-                ...state.vehicle_information.general.form.car_category,
-                items: data.data.map((item) => {
-                  return {
-                    id: String(item.id),
-                    name: item.title,
-                  };
-                }),
-              },
-            },
-          },
-        },
+        type: VehicleUpdateSupportActionEnum.SetVehicleInformationCarCategoryItems,
+        payload: data.data.map((item) => {
+          return {
+            id: String(item.id),
+            name: item.title,
+          };
+        }),
       });
     }
   }, [query.data, query.isFetching]);

@@ -112,6 +112,8 @@ export interface VehicleUpdateSupportSuccessDeleteNotification {
 export enum VehicleUpdateSupportActionEnum {
   // VehicleInformation
   SetVehicleInformationData = "SetVehicleInformationData",
+  SetVehicleInformationCarBrandItems = "SetVehicleInformationCarBrandItems",
+  SetVehicleInformationCarCategoryItems = "SetVehicleInformationCarCategoryItems",
   // Notification
   SetNotificationData = "SetNotificationData",
   // DeleteNotification
@@ -132,6 +134,8 @@ export type VehicleUpdateSupportActions =
 // VehicleInformation
 type VehicleUpdateSupportVehicleInformationPayload = {
   [VehicleUpdateSupportActionEnum.SetVehicleInformationData]: VehicleUpdateSupportVehicleInformation;
+  [VehicleUpdateSupportActionEnum.SetVehicleInformationCarBrandItems]: VehicleUpdateSupportVehicleInformation["general"]["form"]["car_brand"]["items"];
+  [VehicleUpdateSupportActionEnum.SetVehicleInformationCarCategoryItems]: VehicleUpdateSupportVehicleInformation["general"]["form"]["car_category"]["items"];
 };
 
 export type VehicleUpdateSupportVehicleInformationActions =

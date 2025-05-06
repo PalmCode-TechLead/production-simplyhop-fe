@@ -40,25 +40,13 @@ export const useGetVehicleBrandList = () => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
       dispatch({
-        type: VehicleUpdateSupportActionEnum.SetVehicleInformationData,
-        payload: {
-          ...state.vehicle_information,
-          general: {
-            ...state.vehicle_information.general,
-            form: {
-              ...state.vehicle_information.general.form,
-              car_brand: {
-                ...state.vehicle_information.general.form.car_brand,
-                items: data.data.map((item) => {
-                  return {
-                    id: String(item.id),
-                    name: item.title,
-                  };
-                }),
-              },
-            },
-          },
-        },
+        type: VehicleUpdateSupportActionEnum.SetVehicleInformationCarBrandItems,
+        payload: data.data.map((item) => {
+          return {
+            id: String(item.id),
+            name: item.title,
+          };
+        }),
       });
     }
   }, [query.data, query.isFetching]);
