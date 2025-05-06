@@ -40,13 +40,24 @@ export const TopNavigationMobileMenu = () => {
   return (
     <>
       <button
-        className={clsx("cursor-pointer")}
+        className={clsx("cursor-pointer", "relative")}
         onClick={handleClickDropdownButton}
       >
         <SVGIcon
           name={isOpen ? "X" : "Menu"}
           className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
         />
+        {!isOpen && state.chat.count > 0 && (
+          <div
+            className={clsx(
+              "absolute bottom-[-0.125rem] right-[-0.125rem]",
+              "flex items-center justify-center",
+              "w-[0.75rem] h-[0.75rem]",
+              "bg-green-500",
+              "rounded-[50%]"
+            )}
+          />
+        )}
       </button>
 
       <AnimatePresence>
