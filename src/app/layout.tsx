@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/core/utils/react_query";
 import { GlobalProvider, UserProvider } from "@/core/modules/app/context";
+import Head from "next/head";
 
 const APP_NAME = "Simply Hop";
 const APP_DEFAULT_TITLE = "Simply Hop";
@@ -63,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -74,7 +75,14 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
           rel="stylesheet"
         />
-      </head>
+        <Head>
+          <meta property="og:title" content={APP_DEFAULT_TITLE} />
+          <meta property="og:description" content={APP_DESCRIPTION} />
+          <meta property="og:image" content="/logo/metea_logo.png" />
+
+          <meta property="og:type" content="website" />
+        </Head>
+      </Head>
       <body className={`${inter.variable} antialiased`}>
         <ReactQueryProvider>
           <UserProvider>
