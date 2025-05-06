@@ -172,6 +172,7 @@ export const AutocompleteRoutes = ({
                   setOriginAutocomplete({
                     ...originAutocomplete,
                     isFocus: true,
+                    isOpen: true,
                   });
                 },
                 onBlur: () => {
@@ -184,7 +185,6 @@ export const AutocompleteRoutes = ({
                   setOriginAutocomplete({
                     ...originAutocomplete,
                     query: event.target.value,
-                    isOpen: !!event.target.value.length,
                   });
                   if (origin.autocomplete?.debounceQuery) {
                     originDebounced(event.target.value);
@@ -216,6 +216,7 @@ export const AutocompleteRoutes = ({
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
                     isFocus: true,
+                    isOpen: true,
                   });
                 },
                 onBlur: () => {
@@ -228,7 +229,6 @@ export const AutocompleteRoutes = ({
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
                     query: event.target.value,
-                    isOpen: !!event.target.value.length,
                   });
                   if (destination.autocomplete?.debounceQuery) {
                     destinationDebounced(event.target.value);
@@ -252,9 +252,7 @@ export const AutocompleteRoutes = ({
           <AutocompleteOptionsContainer
             className={clsx(originAutocomplete.isOpen ? "inline" : "hidden")}
           >
-            {originAutocomplete.isFocus &&
-            originFilteredItems.length === 0 &&
-            originAutocomplete.query !== "" ? (
+            {originAutocomplete.isFocus && originFilteredItems.length === 0 ? (
               <AutocompleteEmptyBox>
                 {origin.autocomplete.emptyMessage}
               </AutocompleteEmptyBox>
@@ -277,8 +275,7 @@ export const AutocompleteRoutes = ({
             )}
           >
             {destinationAutocomplete.isFocus &&
-            destinationFilteredItems.length === 0 &&
-            destinationAutocomplete.query !== "" ? (
+            destinationFilteredItems.length === 0 ? (
               <AutocompleteEmptyBox>
                 {destination.autocomplete.emptyMessage}
               </AutocompleteEmptyBox>
