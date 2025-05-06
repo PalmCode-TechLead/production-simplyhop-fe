@@ -16,6 +16,7 @@ import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { UserContext } from "@/core/modules/app/context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
@@ -124,7 +125,7 @@ export const useGetRidesSearch = () => {
           price: {
             initial: {
               label: "Angebotspreis",
-              price: item.base_price === null ? "-" : `€${item.base_price}`,
+              price: formatEuro(item.base_price),
             },
           },
           cta: {
@@ -133,35 +134,6 @@ export const useGetRidesSearch = () => {
               href: AppCollectionURL.private.myList(urlSearchParams.toString()),
             },
           },
-          // detail: {
-          //   booking: item.bookings.map((bookingItem, index) => {
-          //     return {
-          //       booking: {
-          //         number: String(index + 1),
-          //         name: `${bookingItem.user?.first_name} ${bookingItem.user?.last_name}`,
-          //       },
-          //       route: {
-          //         origin: !item.start_name ? "-" : item.start_name,
-          //         destination: !item.destination_name
-          //           ? "-"
-          //           : item.destination_name,
-          //       },
-          //       // passenger: {
-          //       //   adult: (
-          //       //     bookingItem.seats - bookingItem.child_seats
-          //       //   ).toLocaleString("de-DE"),
-          //       //   children: bookingItem.child_seats.toLocaleString("de-DE"),
-          //       // },
-          //       price: {
-          //         value: bookingItem.total_amount.toLocaleString("de-DE"),
-          //       },
-          //     };
-          //   }),
-          //   price: {
-          //     label: "Angebotspreis",
-          //     price: `€${item.base_price.toLocaleString("de-DE")}`,
-          //   },
-          // },
         };
       });
 

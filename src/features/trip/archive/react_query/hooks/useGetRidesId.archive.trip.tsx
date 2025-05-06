@@ -14,6 +14,7 @@ import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 export const useGetRidesId = () => {
   const searchParams = useSearchParams();
@@ -119,7 +120,7 @@ export const useGetRidesId = () => {
             price: {
               initial: {
                 label: "Angebotspreis",
-                price: item.base_price === null ? "-" : `€${item.base_price}`,
+                price: formatEuro(item.base_price),
               },
             },
             cta: {
@@ -150,14 +151,10 @@ export const useGetRidesId = () => {
                   children: bookingItem.child_seats.toLocaleString("de-DE"),
                 },
                 price: {
-                  value: bookingItem.total_amount.toLocaleString("de-DE"),
+                  value: formatEuro(bookingItem.total_amount),
                 },
               };
             }),
-            // price: {
-            //   label: "Angebotspreis",
-            //   price: `€${item.base_price.toLocaleString("de-DE")}`,
-            // },
           },
         },
       });

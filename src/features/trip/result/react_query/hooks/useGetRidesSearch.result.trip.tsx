@@ -17,6 +17,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { RIDE_FILTER } from "@/core/enums";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -333,7 +334,7 @@ export const useGetRideSearch = () => {
           price: {
             initial: {
               label: "Angebotspreis",
-              price: `€${item.base_price * totalPassenger}`,
+              price: formatEuro(item.base_price * totalPassenger),
             },
           },
           ride: {

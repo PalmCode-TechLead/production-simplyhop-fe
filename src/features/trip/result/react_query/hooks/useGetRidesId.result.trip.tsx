@@ -15,6 +15,7 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 export const useGetRidesId = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -262,7 +263,7 @@ export const useGetRidesId = () => {
             price: {
               initial: {
                 label: "Angebotspreis",
-                price: `€${item.base_price * totalPassenger}`,
+                price: formatEuro(item.base_price * totalPassenger),
               },
             },
             ride: {

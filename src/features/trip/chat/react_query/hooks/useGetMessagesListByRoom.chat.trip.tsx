@@ -20,6 +20,7 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { MessageContent } from "@/core/models/data";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 dayjs.extend(utc);
 dayjs.extend(isSameOrToday);
@@ -310,13 +311,13 @@ export const useGetMessagesListByRoom = () => {
                   price: {
                     initial: {
                       label: "Angebotspreis",
-                      price: `€${item.booking?.ride?.base_price}`,
+                      price: formatEuro(item.booking?.ride?.base_price),
                     },
                     offered: {
                       label: "Angebotener Preis",
                       price: !item.booking?.offered_price
                         ? "-"
-                        : `€${item.booking.offered_price}`,
+                        : formatEuro(item.booking.offered_price),
                     },
                   },
                   note: {

@@ -16,6 +16,7 @@ import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { UserContext } from "@/core/modules/app/context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 export const useGetBookingMy = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -124,7 +125,7 @@ export const useGetBookingMy = () => {
           price: {
             initial: {
               label: "Angebotspreis",
-              price: `€${item.ride?.base_price}`,
+              price: formatEuro(item.ride?.base_price),
             },
           },
           cta: {

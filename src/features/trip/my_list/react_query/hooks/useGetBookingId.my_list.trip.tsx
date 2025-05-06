@@ -14,6 +14,7 @@ import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 export const useGetBookingId = () => {
   const searchParams = useSearchParams();
@@ -124,7 +125,7 @@ export const useGetBookingId = () => {
 
             price: {
               label: "Angebotspreis",
-              price: `€${item.ride?.base_price}`,
+              price: formatEuro(item.ride?.base_price),
             },
           },
         },

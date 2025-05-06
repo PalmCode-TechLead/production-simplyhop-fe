@@ -14,6 +14,7 @@ import { useSearchParams } from "next/navigation";
 import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
+import { formatEuro } from "@/core/utils/currency/functions";
 
 export const useGetBookingId = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -50,7 +51,7 @@ export const useGetBookingId = () => {
           ...state.offer,
           price: {
             label: "Angebotspreis",
-            price: `€${data.data?.offered_price ?? 0}`,
+            price: formatEuro(data.data?.offered_price),
           },
           passenger: {
             adult: data.data.seats - data.data.child_seats,
@@ -272,13 +273,6 @@ export const useGetBookingId = () => {
               },
             },
 
-            // price: {
-            //   initial: {
-            //     label: "Angebotspreis",
-            //     price: "",
-            //     // price: `€${(data.data.ride?.base_price ?? 0) * totalPassenger}`,
-            //   },
-            // },
             ride: {
               badge: [
                 // ...(index === 0
