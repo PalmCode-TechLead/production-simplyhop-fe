@@ -49,7 +49,9 @@ export const TopNavigationDesktopMenu = () => {
                 ? "text-green-500"
                 : pathname.includes(menu.id)
                 ? "text-green-500"
-                : "text-neutral-300",
+                : menu.id === "mitfahrt-anbieten"
+                ? "text-neutral-300 hover:text-[#333FFF]"
+                : "text-neutral-300 hover:text-green-500",
               "text-[1rem] font-semibold text-inter",
               pathname === menu.href && menu.id === "mitfahrt-anbieten"
                 ? "border-b-[0.25rem] border-b-[#333FFF]"
@@ -57,22 +59,15 @@ export const TopNavigationDesktopMenu = () => {
                 ? "border-b-[0.25rem] border-b-green-500"
                 : pathname.includes(menu.id)
                 ? "border-b-[0.25rem] border-b-green-500"
-                : "border-b-[0.25rem] border-b-white"
+                : menu.id === "mitfahrt-anbieten"
+                ? "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-[#333FFF]"
+                : "border-b-[0.25rem] border-b-white hover:border-b-[0.25rem] hover:border-b-green-500"
             )}
           >
             <SVGIcon
               {...(menu.icon as { name: SVGIconProps["name"] })}
               key={`svgIcon.${menuIndex}`}
-              className={clsx(
-                "w-[1rem] h-[1rem]",
-                pathname === menu.href && menu.id === "mitfahrt-anbieten"
-                  ? "text-[#333FFF]"
-                  : pathname === menu.href
-                  ? "text-green-500"
-                  : pathname.includes(menu.id)
-                  ? "text-green-500"
-                  : "text-neutral-300"
-              )}
+              className={clsx("w-[1rem] h-[1rem]")}
             />
 
             {menu.name}
