@@ -7,7 +7,6 @@ export const fetchAutocompletePlace = async (
   if (typeof window !== "undefined" && window.google) {
     const autocompleteService = new google.maps.places.AutocompleteService();
     let results: google.maps.places.AutocompletePrediction[] = [];
-
     // 🔹 Ambil hasil dari "establishment"
     autocompleteService.getPlacePredictions(
       {
@@ -19,7 +18,6 @@ export const fetchAutocompletePlace = async (
         if (status === "OK" && businessResults) {
           results = [...results, ...businessResults];
         }
-
         // 🔹 Ambil hasil dari "geocode" (alamat & kode pos)
         autocompleteService.getPlacePredictions(
           {

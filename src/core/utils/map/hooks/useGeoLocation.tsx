@@ -22,7 +22,6 @@ const useGeolocation = () => {
         });
       },
       (error) => {
-        console.log(error, "ini error");
         setError("user is never allow location");
       }
     );

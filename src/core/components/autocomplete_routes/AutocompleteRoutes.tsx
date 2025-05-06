@@ -88,8 +88,6 @@ export const AutocompleteRoutes = ({
     isOpen: false,
   });
 
-  const isOpen = originAutocomplete.isOpen || destinationAutocomplete.isOpen;
-
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const originDebounced = useDebounceCallback(origin.autocomplete.onQuery, 500);
@@ -252,7 +250,7 @@ export const AutocompleteRoutes = ({
 
         {!origin.autocomplete?.disabled && (
           <AutocompleteOptionsContainer
-            className={clsx(isOpen ? "inline" : "hidden")}
+            className={clsx(originAutocomplete.isOpen ? "inline" : "hidden")}
           >
             {originAutocomplete.isFocus &&
             originFilteredItems.length === 0 &&
@@ -274,7 +272,9 @@ export const AutocompleteRoutes = ({
         )}
         {!destination.autocomplete?.disabled && (
           <AutocompleteOptionsContainer
-            className={clsx(isOpen ? "inline" : "hidden")}
+            className={clsx(
+              destinationAutocomplete.isOpen ? "inline" : "hidden"
+            )}
           >
             {destinationAutocomplete.isFocus &&
             destinationFilteredItems.length === 0 &&

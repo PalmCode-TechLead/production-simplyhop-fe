@@ -39,7 +39,6 @@ const GlobalProvider = (props: { children: React.ReactNode }) => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
-      console.log(data.meta.total);
       dispatch({
         type: GlobalActionEnum.SetChatData,
         payload: {

@@ -95,7 +95,6 @@ export const FilterFindTrip = () => {
         });
       }
     };
-
     await fetchAutocompletePlace(
       input,
       // state.filters.city.selected.lat_lng,
