@@ -7,7 +7,7 @@ export const boundConstants = {
   },
   mobile: {
     top: 50,
-    bottom: 200,
+    bottom: 350,
     left: 50,
     right: 50,
   },
