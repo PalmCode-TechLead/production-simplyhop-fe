@@ -17,8 +17,8 @@ const initialState: FindTripInitialStateType = {
         item: null,
         lat_lng: null,
       },
-      saved_items: [],
       items: [],
+      saved_items: [],
     },
     destination: {
       page_sheet: {
@@ -28,8 +28,8 @@ const initialState: FindTripInitialStateType = {
         item: null,
         lat_lng: null,
       },
-      saved_items: [],
       items: [],
+      saved_items: [],
     },
     date: {
       selected: dayjs().add(1, "day").toDate(),

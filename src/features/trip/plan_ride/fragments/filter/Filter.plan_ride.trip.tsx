@@ -20,6 +20,8 @@ import { FormRoutes } from "@/core/components/form_routes";
 import { Textfield } from "@/core/components/textfield";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { UserContext } from "@/core/modules/app/context";
+import { storageService } from "@/core/services/storage/indexdb";
+import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 
 export const FilterPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -375,6 +377,28 @@ export const FilterPlanRideTrip = () => {
   };
 
   const handleClickSearch = async () => {
+    await storageService({
+      method: "setItem",
+      key: INDEXDB_STORAGE_NAME.PLAN_RIDE_TRIP_ORIGIN_SEARCH_LIST,
+      value: !state.filters.origin.saved_items.length
+        ? [state.filters.origin.selected.item]
+        : [
+            state.filters.origin.selected.item,
+            ...state.filters.origin.saved_items.filter((_, index) => index < 5),
+          ],
+    });
+    await storageService({
+      method: "setItem",
+      key: INDEXDB_STORAGE_NAME.PLAN_RIDE_TRIP_DESTINATION_SEARCH_LIST,
+      value: !state.filters.destination.saved_items.length
+        ? [state.filters.destination.selected.item]
+        : [
+            state.filters.destination.selected.item,
+            ...state.filters.destination.saved_items.filter(
+              (_, index) => index < 5
+            ),
+          ],
+    });
     const data = await fetchRestGoogleGetDistanceMatrix();
     if (!data) return;
     dispatch({
@@ -485,7 +509,9 @@ export const FilterPlanRideTrip = () => {
             origin={{
               pageSheet: {
                 selected: state.filters.origin.selected.item,
-                items: state.filters.origin.items,
+                items: !state.filters.origin.items.length
+                  ? state.filters.origin.saved_items
+                  : state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectOriginRoutes(data),
@@ -502,7 +528,9 @@ export const FilterPlanRideTrip = () => {
               autocomplete: {
                 selected: state.filters.origin.selected.item,
                 disabled: !userState.profile?.is_able_to_ride,
-                items: state.filters.origin.items,
+                items: !state.filters.origin.items.length
+                  ? state.filters.origin.saved_items
+                  : state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectOriginRoutes(data),
@@ -522,7 +550,9 @@ export const FilterPlanRideTrip = () => {
             destination={{
               pageSheet: {
                 selected: state.filters.destination.selected.item,
-                items: state.filters.destination.items,
+                items: !state.filters.destination.items.length
+                  ? state.filters.destination.saved_items
+                  : state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectDestinationRoutes(data),
@@ -539,7 +569,9 @@ export const FilterPlanRideTrip = () => {
               autocomplete: {
                 selected: state.filters.destination.selected.item,
                 disabled: !userState.profile?.is_able_to_ride,
-                items: state.filters.destination.items,
+                items: !state.filters.destination.items.length
+                  ? state.filters.destination.saved_items
+                  : state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectDestinationRoutes(data),

@@ -32,6 +32,7 @@ const initialState: PlanRideTripInitialStateType = {
         lat_lng: null,
       },
       items: [],
+      saved_items: [],
     },
     destination: {
       page_sheet: {
@@ -42,6 +43,7 @@ const initialState: PlanRideTripInitialStateType = {
         lat_lng: null,
       },
       items: [],
+      saved_items: [],
     },
     date: {
       selected: dayjs().add(1, "day").toDate(),
