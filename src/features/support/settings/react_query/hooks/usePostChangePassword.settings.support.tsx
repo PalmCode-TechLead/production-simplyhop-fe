@@ -33,7 +33,6 @@ export const usePostAuthChangePassword = () => {
     },
 
     onError(error) {
-      console.log(error.message, globalState.alert, "ini error");
       dispatchGlobal({
         type: GlobalActionEnum.SetAlertData,
         payload: {

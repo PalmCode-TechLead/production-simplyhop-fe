@@ -134,7 +134,7 @@ export const ChangePasswordSettingsSupport = () => {
 
   const handleClickChangePassword = async () => {
     const res = await postChangePassword();
-    console.log(res,'ini res')
+
     if (!res) return;
     dispatch({
       type: SettingsSupportActionEnum.SetChangePasswordData,

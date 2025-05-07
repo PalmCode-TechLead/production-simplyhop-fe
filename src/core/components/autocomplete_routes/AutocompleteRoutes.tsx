@@ -97,7 +97,6 @@ export const AutocompleteRoutes = ({
   );
 
   useOnClickOutside(containerRef as any, () => {
-    console.log("ini yang ketrigger atau ini");
     setOriginAutocomplete({
       query: origin.autocomplete.selected?.name ?? "",
       isFocus: false,
@@ -114,7 +113,6 @@ export const AutocompleteRoutes = ({
   const destinationFilteredItems = destination.autocomplete?.items ?? [];
 
   const handleChangeorigin = (data: { id: string; name: string }) => {
-    console.log("ini yang ketrigger");
     if (origin.autocomplete?.onSelect) {
       origin.autocomplete?.onSelect(data);
     }

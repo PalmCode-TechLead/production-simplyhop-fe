@@ -12,7 +12,6 @@ export const GlobalAlertReducers = (
 ) => {
   switch (action.type) {
     case GlobalActionEnum.SetAlertData: {
-      console.log(action.payload,'ini action.payload')
       return action.payload;
     }
     default:
