@@ -384,7 +384,13 @@ export const FilterPlanRideTrip = () => {
         ? [state.filters.origin.selected.item]
         : [
             state.filters.origin.selected.item,
-            ...state.filters.origin.saved_items.filter((_, index) => index < 5),
+            ...state.filters.origin.saved_items
+              .filter(
+                (obj, index, self) =>
+                  index ===
+                  self.findIndex((o) => o.id === obj.id && o.name === obj.name)
+              )
+              .filter((_, index) => index < 5),
           ],
     });
     await storageService({
@@ -394,9 +400,13 @@ export const FilterPlanRideTrip = () => {
         ? [state.filters.destination.selected.item]
         : [
             state.filters.destination.selected.item,
-            ...state.filters.destination.saved_items.filter(
-              (_, index) => index < 5
-            ),
+            ...state.filters.destination.saved_items
+              .filter(
+                (obj, index, self) =>
+                  index ===
+                  self.findIndex((o) => o.id === obj.id && o.name === obj.name)
+              )
+              .filter((_, index) => index < 5),
           ],
     });
     const data = await fetchRestGoogleGetDistanceMatrix();
