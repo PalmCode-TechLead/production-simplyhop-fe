@@ -50,7 +50,7 @@ export default function AccountLayout({ children }: PaymentLayoutProps) {
                 </div>
               </div>
 
-              <div className={clsx("w-full", "pt-[calc(90px+2rem)]")}>
+              <div className={clsx("w-full", "pt-[calc(90px+2rem)]","pb-[4rem] lg:pb-[0rem]")}>
                 {children}
               </div>
             </Suspense>
