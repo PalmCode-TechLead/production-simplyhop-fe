@@ -54,7 +54,7 @@ export const useGetMessagesListByRoom = () => {
         "booking,bookingCount,bookingExists,booking,booking.ride,booking.ride.vehicle,booking.ride.vehicle.brand,driver,driverCount,driverExists,driver.profile,passenger,passengerCount,passengerExists,passenger.profile",
       sort: "-updated_at",
       "page[number]": state.room.message.pagination.current,
-      "page[size]": 10,
+      "page[size]": 100,
     },
   };
 
