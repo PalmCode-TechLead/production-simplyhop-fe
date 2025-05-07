@@ -4,11 +4,20 @@ import * as React from "react";
 import { GlobalActionEnum, GlobalAlert, GlobalContext } from "../../context";
 import clsx from "clsx";
 import SVGIcon from "@/core/icons";
+import { createPortal } from "react-dom";
 
 export const AlertApp = () => {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
 
+  if (!mounted) return null;
   const handleClickClose = (item: GlobalAlert["items"][0]) => {
     dispatchGlobal({
       type: GlobalActionEnum.SetAlertData,
@@ -20,11 +29,13 @@ export const AlertApp = () => {
       },
     });
   };
-  return (
+
+  return createPortal(
     <div
+      id="alert-portal"
       className={clsx(
-        "fixed top-[90px]",
-        "z-[2000]",
+        "fixed top-[20px] left-[50%] translate-x-[-50%]",
+        "z-[100000]",
         "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]"
       )}
     >
@@ -55,6 +66,7 @@ export const AlertApp = () => {
           />
         );
       })}
-    </div>
+    </div>,
+    document.body
   );
 };

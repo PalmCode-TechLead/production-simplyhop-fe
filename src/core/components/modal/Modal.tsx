@@ -29,7 +29,7 @@ export const Modal = ({
           "fixed inset-0",
           "flex items-center justify-center",
           "w-screen",
-          "!z-[9999]"
+          "!z-[9998]"
         )}
       >
         <DialogPanel
