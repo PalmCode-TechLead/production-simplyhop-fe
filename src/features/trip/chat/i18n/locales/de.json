@@ -18,11 +18,11 @@
         "name": "Alle"
       },
       {
-        "id": "offered-trips",
+        "id": "driver",
         "name": "Angebotene Fahrten"
       },
       {
-        "id": "my-rides",
+        "id": "passenger",
         "name": "Meine Mitfahrten"
       }
     ]

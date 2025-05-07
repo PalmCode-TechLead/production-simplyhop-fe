@@ -22,11 +22,11 @@ export const useGetMessageRoomsList = () => {
       include:
         "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
       "filter[passenger_id]":
-        state.list.tab.selected?.id === "offered-trips"
+        state.list.tab.selected?.id === "passenger"
           ? userState.profile?.id ?? undefined
           : undefined,
       "filter[driver_id]":
-        state.list.tab.selected?.id === "my-rides"
+        state.list.tab.selected?.id === "driver"
           ? userState.profile?.id ?? undefined
           : undefined,
       search: !state.list.search.value.length
