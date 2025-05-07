@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { Tab, TabList } from "@headlessui/react";
 import { getDictionaries } from "../../i18n";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const TabChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -15,6 +16,15 @@ export const TabChatTrip = () => {
         tab: {
           ...state.list.tab,
           selected: data,
+        },
+        message: {
+          ...state.list.message,
+          items: [],
+          pagination: {
+            ...state.list.message.pagination,
+            current: PAGINATION.NUMBER,
+            last: null,
+          },
         },
       },
     });
