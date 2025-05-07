@@ -27,7 +27,7 @@ export const ListItemChatTrip = ({
       className={clsx(
         "grid grid-flow-col items-start content-start justify-between justify-items-start gap-[1.5rem]",
         "w-full",
-        selected ? "bg-[#5AC53D0A]" : "hover:bg-[#5AC53D0A]",
+        selected ? "bg-[#EFF9EC]" : "hover:bg-[#EFF9EC]",
         "py-[0.5rem] px-[0.25rem]"
       )}
     >
