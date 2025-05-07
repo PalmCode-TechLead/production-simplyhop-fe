@@ -59,7 +59,7 @@ export const Passwordfield = ({
             "w-[1rem] h-[1rem]",
             "rounded-[50%]",
             "absolute",
-            !!value.length
+            !!value.length || !!inputProps?.value
               ? "top-[75%] right-[1rem] translate-y-[-50%] text-[0.75rem]"
               : "top-[50%] right-[1rem] translate-y-[-50%] text-[0.75rem]",
             "peer-focus:top-[75%]",
