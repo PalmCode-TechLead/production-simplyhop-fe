@@ -116,7 +116,7 @@ export const FormChatTrip = () => {
           value: state.room.chat.input.value,
           onChange: handleChangeChat,
           onKeyDown: (e) => {
-            if (e.key === "Enter") {
+            if (e.key === "Enter" && !isLoadingSendChat) {
               handleClickSend();
             }
           },
