@@ -9,7 +9,7 @@ import {
   useGetMessageRoomsList,
   usePutMessageRoomsMarkAsRead,
 } from "../../react_query/hooks";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SVGIcon from "@/core/icons";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { MoonLoader } from "@/core/components/moon_loader";
@@ -20,7 +20,8 @@ import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 export const ListChatTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
-
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
   const { state, dispatch } = React.useContext(ChatTripContext);
   const { isFetching: isFetchingGetMessageRoomsList } =
     useGetMessageRoomsList();
@@ -189,7 +190,7 @@ export const ListChatTrip = () => {
               })
             }
           >
-            <ListItemChatTrip {...item} />
+            <ListItemChatTrip {...item} selected={String(id) === item.id} />
           </button>
         ))}
       </div>

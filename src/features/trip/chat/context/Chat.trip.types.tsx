@@ -38,7 +38,6 @@ export interface ChatTripList {
       message: string;
       date: string;
       isNew: boolean;
-      selected: boolean;
       booking_status: string | null;
     }[];
     pagination: {

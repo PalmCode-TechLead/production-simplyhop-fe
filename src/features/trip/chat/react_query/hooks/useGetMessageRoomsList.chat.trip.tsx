@@ -96,7 +96,6 @@ export const useGetMessageRoomsList = () => {
           isNew: !isPassenger
             ? item.is_driver_read === 0
             : item.is_passenger_read === 0,
-          selected: String(item.id) === id,
           booking_status: item.booking?.status ?? null,
         };
       });
