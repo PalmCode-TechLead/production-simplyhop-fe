@@ -51,7 +51,7 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
             : "top-[25%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
           inputProps?.disabled
             ? "!text-[#C7C3C3] text-[0.75rem] lg:text-[1rem]"
-            : isLg
+            : isLg && !!value.length
             ? "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]"
             : "!text-[#C7C3C3] text-[0.75rem]"
         )}
