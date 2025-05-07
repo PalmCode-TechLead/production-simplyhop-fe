@@ -16,6 +16,7 @@ export interface PageSheetRouteProps {
   debounceQuery?: boolean;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
+  emptyMessage?: string;
   onSelect?: (data: { id: string; name: string }) => void;
   onQuery?: (data: string) => void;
   onClose?: () => void;
@@ -30,6 +31,7 @@ export const PageSheetRoute = ({
   debounceQuery = false,
   inputProps,
   labelProps,
+  emptyMessage = "",
   onSelect = () => {},
   onQuery = () => {},
   onClose = () => {},
@@ -48,7 +50,12 @@ export const PageSheetRoute = ({
     setQuery(selected?.name ?? "");
   }, [selected?.name]);
 
- 
+  useEffect(() => {
+    if (!inputProps?.disabled && isOpen) {
+      inputRef.current?.focus();
+    }
+  }, [inputProps?.disabled, isOpen]);
+
   return (
     <PageSheet open={isOpen}>
       <div
@@ -63,7 +70,12 @@ export const PageSheetRoute = ({
             "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
           )}
         >
-          <button onClick={onClose}>
+          <button
+            onClick={() => {
+              setQuery(!selected ? "" : selected.name);
+              onClose();
+            }}
+          >
             <SVGIcon
               name="X"
               className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
@@ -95,8 +107,9 @@ export const PageSheetRoute = ({
                 value={query}
                 className={clsx("pr-[1.5rem]")}
                 onFocus={() => {
-                  if (disabled) {
-                    return;
+                  if (disabled) return;
+                  if (isOpen) {
+                    inputRef.current?.focus();
                   }
                 }}
                 onChange={(event) => {
@@ -106,6 +119,15 @@ export const PageSheetRoute = ({
                   } else {
                     onQuery(event.target.value);
                   }
+                }}
+                onBlur={(e) => {
+                  if (disabled) return;
+                  if (isOpen) {
+                    inputRef.current?.focus();
+                  }
+
+                  if (!inputProps?.onBlur) return;
+                  inputProps?.onBlur(e);
                 }}
               />
 
@@ -131,23 +153,38 @@ export const PageSheetRoute = ({
               "w-full"
             )}
           >
-            {items.map((item, itemIndex) => (
-              <button
-                key={itemIndex}
+            {!items.length && (
+              <div
                 className={clsx(
                   "grid grid-cols-1 place-content-start place-items-start",
                   "w-full",
                   "cursor-pointer",
                   "text-[0.875rem] text-left",
-                  item.id === selected?.id
-                    ? "text-[#5AC53D] font-semibold"
-                    : "text-[#232323] font-normal"
+                  "text-[#232323] font-normal"
                 )}
-                onClick={() => onSelect(item)}
               >
-                {item.name}
-              </button>
-            ))}
+                {emptyMessage}
+              </div>
+            )}
+
+            {!!items.length &&
+              items.map((item, itemIndex) => (
+                <button
+                  key={itemIndex}
+                  className={clsx(
+                    "grid grid-cols-1 place-content-start place-items-start",
+                    "w-full",
+                    "cursor-pointer",
+                    "text-[0.875rem] text-left",
+                    item.id === selected?.id
+                      ? "text-[#5AC53D] font-semibold"
+                      : "text-[#232323] font-normal"
+                  )}
+                  onClick={() => onSelect(item)}
+                >
+                  {item.name}
+                </button>
+              ))}
           </div>
         </div>
       </div>

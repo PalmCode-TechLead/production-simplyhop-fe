@@ -55,6 +55,9 @@ export const FilterFindTrip = () => {
             ...state.filters.origin.page_sheet,
             is_open: false,
           },
+          query: !state.filters.origin.selected.item
+            ? ""
+            : state.filters.origin.selected.item.name,
         },
       },
     });
@@ -133,6 +136,7 @@ export const FilterFindTrip = () => {
             item: data,
             lat_lng: lat_lng,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
@@ -165,6 +169,9 @@ export const FilterFindTrip = () => {
             ...state.filters.destination.page_sheet,
             is_open: false,
           },
+          query: !state.filters.destination.selected.item
+            ? ""
+            : state.filters.destination.selected.item.name,
         },
       },
     });
@@ -244,6 +251,7 @@ export const FilterFindTrip = () => {
             item: data,
             lat_lng: lat_lng,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
@@ -434,10 +442,18 @@ export const FilterFindTrip = () => {
                     handleSelectOriginRoutes(data),
                   isOpen: state.filters.origin.page_sheet.is_open,
                   title: dictionaries.filter.form.origin.title,
+                  emptyMessage:
+                    !state.filters.origin.saved_items.length &&
+                    !state.filters.origin.query.length
+                      ? dictionaries.filter.form.origin.autocomplete
+                          .emptyMessage.no_saved_place
+                      : dictionaries.filter.form.origin.autocomplete
+                          .emptyMessage.no_result,
                   onClose: handleCloseOriginRoutes,
                   inputProps: {
                     ...dictionaries.filter.form.origin.inputProps,
                   },
+
                   labelProps: {
                     ...dictionaries.filter.form.origin.labelProps,
                   },
@@ -473,6 +489,13 @@ export const FilterFindTrip = () => {
               }}
               destination={{
                 pageSheet: {
+                  emptyMessage:
+                    !state.filters.destination.saved_items.length &&
+                    !state.filters.destination.query.length
+                      ? dictionaries.filter.form.destination.autocomplete
+                          .emptyMessage.no_saved_place
+                      : dictionaries.filter.form.destination.autocomplete
+                          .emptyMessage.no_result,
                   selected: state.filters.destination.selected.item,
                   items: !state.filters.destination.items.length
                     ? state.filters.destination.saved_items

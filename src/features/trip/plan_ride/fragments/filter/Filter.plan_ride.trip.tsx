@@ -123,6 +123,9 @@ export const FilterPlanRideTrip = () => {
             ...state.filters.origin.page_sheet,
             is_open: false,
           },
+          query: !state.filters.origin.selected.item
+            ? ""
+            : state.filters.origin.selected.item.name,
         },
       },
     });
@@ -202,6 +205,7 @@ export const FilterPlanRideTrip = () => {
             ...state.filters.origin.page_sheet,
             is_open: false,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
@@ -234,6 +238,9 @@ export const FilterPlanRideTrip = () => {
             ...state.filters.destination.page_sheet,
             is_open: false,
           },
+          query: !state.filters.destination.selected.item
+            ? ""
+            : state.filters.destination.selected.item.name,
         },
       },
     });
@@ -313,6 +320,7 @@ export const FilterPlanRideTrip = () => {
             ...state.filters.origin.page_sheet,
             is_open: false,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
@@ -516,6 +524,13 @@ export const FilterPlanRideTrip = () => {
             disabled={!userState.profile?.is_able_to_ride}
             origin={{
               pageSheet: {
+                emptyMessage:
+                  !state.filters.origin.saved_items.length &&
+                  !state.filters.origin.query.length
+                    ? dictionaries.filter.form.origin.autocomplete.emptyMessage
+                        .no_saved_place
+                    : dictionaries.filter.form.origin.autocomplete.emptyMessage
+                        .no_result,
                 selected: state.filters.origin.selected.item,
                 items: !state.filters.origin.items.length
                   ? state.filters.origin.saved_items
@@ -564,6 +579,13 @@ export const FilterPlanRideTrip = () => {
             }}
             destination={{
               pageSheet: {
+                emptyMessage:
+                  !state.filters.destination.saved_items.length &&
+                  !state.filters.destination.query.length
+                    ? dictionaries.filter.form.destination.autocomplete
+                        .emptyMessage.no_saved_place
+                    : dictionaries.filter.form.destination.autocomplete
+                        .emptyMessage.no_result,
                 selected: state.filters.destination.selected.item,
                 items: !state.filters.destination.items.length
                   ? state.filters.destination.saved_items
