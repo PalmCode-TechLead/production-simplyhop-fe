@@ -80,12 +80,12 @@ export const ChangePasswordNotificationSettingsSupport = () => {
               "flex items-center justify-center",
               "w-[120px] h-[120px]",
               "rounded-[50%]",
-              "bg-[#F5F5F5]"
+              "bg-[#EFF9EC]"
             )}
           >
             <SVGIcon
-              name="OctagonX"
-              className={clsx("w-[5rem] h-[5rem]", "text-[black]")}
+              name="ContrastCheckMark"
+              className={clsx("w-[5rem] h-[5rem]", "text-[#5AC53D]")}
             />
           </div>
         </div>
