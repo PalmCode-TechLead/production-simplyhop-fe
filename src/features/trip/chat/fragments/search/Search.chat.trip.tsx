@@ -3,20 +3,24 @@ import { getDictionaries } from "../../i18n";
 import { SearchField } from "@/core/components/searchfield";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { useDebounceValue } from "usehooks-ts";
 
 export const SearchChatTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
+  const [value, setValue] = useDebounceValue(state.list.search.value, 500);
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value, "ini apa");
+    setValue(e.currentTarget.value);
+  };
+  React.useEffect(() => {
     dispatch({
       type: ChatTripActionEnum.SetListData,
       payload: {
         ...state.list,
         search: {
           ...state.list.search,
-          value: e.currentTarget.value,
+          value: value,
         },
         message: {
           ...state.list.message,
@@ -29,7 +33,7 @@ export const SearchChatTrip = () => {
         },
       },
     });
-  };
+  }, [value]);
   return (
     <SearchField
       labelProps={{ ...dictionaries.search.labelProps }}
@@ -38,7 +42,6 @@ export const SearchChatTrip = () => {
         value: state.list.search.value,
         onChange: handleChangeSearch,
       }}
-      debounce
     />
   );
 };

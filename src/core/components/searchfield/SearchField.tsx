@@ -4,19 +4,13 @@ import { InputLabel, InputLabelProps } from "../input_label";
 import { InputContainer } from "../input_container";
 import clsx from "clsx";
 import { Input } from "../input";
-// import { useDebounceCallback } from "usehooks-ts";
 
 export interface SearchFieldProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
-  debounce?: boolean;
 }
 
-export const SearchField = ({
-  inputProps,
-  labelProps,
-  debounce = false,
-}: SearchFieldProps) => {
+export const SearchField = ({ inputProps, labelProps }: SearchFieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const [value, setValue] = React.useState<string>("");
   return (
@@ -35,12 +29,7 @@ export const SearchField = ({
           setValue(e.currentTarget.value);
 
           if (!inputProps?.onChange) return;
-          if (debounce) {
-            // debounced(e.currentTarget.value);
-            inputProps.onChange(e);
-          } else {
-            inputProps.onChange(e);
-          }
+          inputProps.onChange(e);
         }}
       />
       <InputLabel
