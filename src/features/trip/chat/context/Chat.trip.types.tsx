@@ -69,6 +69,11 @@ export interface ChatTripRoom {
       message: string;
       booking: BookingCardChatTripProps | null;
     }[];
+    pagination: {
+      current: number;
+      last: null | number;
+      is_refetch: boolean;
+    };
   };
   chat: {
     input: {
@@ -103,6 +108,10 @@ export enum ChatTripActionEnum {
   SetListMessagePaginationLast = "SetListMessagePaginationLast",
   // Room
   SetRoomData = "SetRoomData",
+  SetRoomMessageItems = "SetRoomMessageItems",
+  SetRoomMessagePaginationCurrent = "SetRoomMessagePaginationCurrent",
+  SetRoomMessagePaginationLast = "SetRoomMessagePaginationLast",
+  SetRoomMessagePaginationIsRefetch = "SetRoomMessagePaginationIsRefetch",
   // Offer
   SetOfferData = "SetOfferData",
 }
@@ -128,6 +137,10 @@ export type ChatTripListActions =
 // Room
 type ChatTripRoomPayload = {
   [ChatTripActionEnum.SetRoomData]: ChatTripRoom;
+  [ChatTripActionEnum.SetRoomMessageItems]: ChatTripRoom["message"]["items"];
+  [ChatTripActionEnum.SetRoomMessagePaginationCurrent]: ChatTripRoom["message"]["pagination"]["current"];
+  [ChatTripActionEnum.SetRoomMessagePaginationLast]: ChatTripRoom["message"]["pagination"]["last"];
+  [ChatTripActionEnum.SetRoomMessagePaginationIsRefetch]: ChatTripRoom["message"]["pagination"]["is_refetch"];
 };
 
 export type ChatTripRoomActions =

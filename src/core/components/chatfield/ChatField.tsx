@@ -12,7 +12,6 @@ export interface ChatFieldProps {
 
 export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
-  const [value, setValue] = React.useState<string>("");
 
   React.useEffect(() => {
     if (!inputProps?.disabled) {
@@ -25,7 +24,6 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
         ref={inputRef}
         {...inputProps}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setValue(e.currentTarget.value);
           if (!inputProps?.onChange) return;
           inputProps.onChange(e);
         }}

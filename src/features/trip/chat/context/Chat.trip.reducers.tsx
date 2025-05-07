@@ -62,6 +62,52 @@ export const ChatTripRoomReducers = (
     case ChatTripActionEnum.SetRoomData:
       return action.payload;
 
+    case ChatTripActionEnum.SetRoomMessageItems: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          items: action.payload,
+        },
+      };
+    }
+    case ChatTripActionEnum.SetRoomMessagePaginationCurrent: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          pagination: {
+            ...state.message.pagination,
+            current: action.payload,
+          },
+        },
+      };
+    }
+    case ChatTripActionEnum.SetRoomMessagePaginationLast: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          pagination: {
+            ...state.message.pagination,
+            last: action.payload,
+          },
+        },
+      };
+    }
+    case ChatTripActionEnum.SetRoomMessagePaginationIsRefetch: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          pagination: {
+            ...state.message.pagination,
+            is_refetch: action.payload,
+          },
+        },
+      };
+    }
+
     default:
       return state;
   }

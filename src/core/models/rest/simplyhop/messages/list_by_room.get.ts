@@ -1,4 +1,4 @@
-import { Message } from "@/core/models/data";
+import { Message, Meta } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface GetMessagesListByRoomRequestInterface extends NextApiRequest {
@@ -36,6 +36,7 @@ export interface GetMessagesListByRoomSuccessResponseInterface {
   data: Message[];
 
   redirect: null;
+  meta: Meta;
 }
 
 export interface GetMessagesListByRoomErrorResponseInterface {

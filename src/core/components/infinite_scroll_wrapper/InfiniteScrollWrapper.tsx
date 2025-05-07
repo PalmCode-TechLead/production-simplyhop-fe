@@ -7,6 +7,7 @@ export interface InfiniteScrollWrapperProps {
   loader?: React.ReactNode;
   isPaused?: boolean;
   isEndReached?: boolean;
+  position?: "bottom" | "top";
   onLoadMore?: () => void;
 }
 
@@ -15,6 +16,7 @@ export const InfiniteScrollWrapper = ({
   loader,
   isPaused = false,
   isEndReached = false,
+  position = "bottom",
   onLoadMore,
 }: InfiniteScrollWrapperProps) => {
   const loaderRef = React.useRef<HTMLDivElement | null>(null);
@@ -38,18 +40,32 @@ export const InfiniteScrollWrapper = ({
 
   return (
     <div className={clsx("w-full")}>
+      {position === "top" && (
+        <div
+          ref={ref}
+          className={clsx(
+            "grid grid-rows-1 grid-cols-1 place-content-center place-items-center gap-[1rem]",
+            "w-full",
+            isEndReached ? "h-[0px]" : "h-[400px]"
+          )}
+        >
+          {!isEndReached && loader}
+        </div>
+      )}
       {children}
 
-      <div
-        ref={ref}
-        className={clsx(
-          "grid grid-rows-1 grid-cols-1 place-content-center place-items-center gap-[1rem]",
-          "w-full",
-          isEndReached ? "h-[0px]" : "h-[400px]"
-        )}
-      >
-        {!isEndReached && loader}
-      </div>
+      {position === "bottom" && (
+        <div
+          ref={ref}
+          className={clsx(
+            "grid grid-rows-1 grid-cols-1 place-content-center place-items-center gap-[1rem]",
+            "w-full",
+            isEndReached ? "h-[0px]" : "h-[400px]"
+          )}
+        >
+          {!isEndReached && loader}
+        </div>
+      )}
     </div>
   );
 };

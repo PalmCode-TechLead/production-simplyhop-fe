@@ -38,6 +38,11 @@ const initialState: ChatTripInitialStateType = {
     },
     message: {
       items: [],
+      pagination: {
+        current: PAGINATION.NUMBER,
+        last: null,
+        is_refetch: false,
+      },
     },
 
     chat: {

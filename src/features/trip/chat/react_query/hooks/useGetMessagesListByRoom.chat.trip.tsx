@@ -21,6 +21,7 @@ import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { MessageContent } from "@/core/models/data";
 import { formatEuro } from "@/core/utils/currency/functions";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 dayjs.extend(utc);
 dayjs.extend(isSameOrToday);
@@ -52,6 +53,9 @@ export const useGetMessagesListByRoom = () => {
     params: {
       include:
         "booking,bookingCount,bookingExists,booking,booking.ride,booking.ride.vehicle,booking.ride.vehicle.brand,driver,driverCount,driverExists,driver.profile,passenger,passengerCount,passengerExists,passenger.profile",
+      sort: "-updated_at",
+      "page[number]": state.room.message.pagination.current,
+      "page[size]": PAGINATION.SIZE,
     },
   };
 
@@ -64,273 +68,265 @@ export const useGetMessagesListByRoom = () => {
       return fetchGetMessagesListByRoom(payload);
     },
     enabled: !!id,
-    refetchInterval: 10 * 1000,
-    refetchIntervalInBackground: false,
   });
 
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
 
-      dispatch({
-        type: ChatTripActionEnum.SetRoomData,
-        payload: {
-          ...state.room,
-          message: {
-            ...state.room.message,
-            items: data.data.map((item) => {
-              const isPassenger = userState.profile?.id === item.passenger_id;
-              const isSender = userState.profile?.id === item.sender_id;
-              const content =
-                typeof item.contents === "string"
-                  ? JSON.parse(item.contents)
-                  : (item.contents as MessageContent);
-              return {
-                id: String(id),
-                type: content.type,
-                role: isSender ? "sender" : "recipient",
-                sender_id: String(item.sender_id),
-                time: formatChatTime(item.created_at),
-                name: isPassenger
-                  ? `${item?.passenger?.first_name ?? ""} ${
-                      item.passenger?.last_name ?? ""
-                    }`
-                  : `${item.driver?.first_name ?? ""} ${
-                      item.driver?.last_name ?? ""
-                    }`,
-                avatar: {
-                  src: isPassenger
-                    ? item.passenger?.avatar
-                    : item.driver?.avatar,
-                  width: 36,
-                  height: 36,
-                  alt: isSender ? "sender" : "recipient",
-                },
-                message: content.message,
-                booking: {
-                  time: dayjs(item.created_at).format("hh:mma"),
-                  car: {
-                    image: {
-                      src: !item.booking?.ride?.vehicle?.image.length
-                        ? "/images/general/car.png"
-                        : item.booking.ride?.vehicle.image[0] ??
-                          "/images/general/car.png",
-                      alt: "car",
-                      width: 145,
-                      height: 46,
-                    },
-                    identity: {
-                      name: !item.booking?.ride?.vehicle?.brand?.title
-                        ? item.booking?.ride?.vehicle?.model ?? ""
-                        : !item.booking?.ride?.vehicle.model
-                        ? item.booking?.ride?.vehicle.brand?.title ?? ""
-                        : `${item.booking?.ride?.vehicle.brand?.title} ${item.booking?.ride?.vehicle.model}`,
-                      number: item.booking?.ride?.vehicle?.plate_license,
-                    },
-                    facility: {
-                      top: [
-                        ...(!!item.booking?.ride?.available_seats
-                          ? [
-                              {
-                                ...globalDictionaries.vehicle.seat.available,
-                                icon: {
-                                  ...globalDictionaries.vehicle.seat.available
-                                    .icon,
-                                  name: globalDictionaries.vehicle.seat
-                                    .available.icon
-                                    .name as SVGIconProps["name"],
-                                },
-                                name: {
-                                  ...globalDictionaries.vehicle.seat.available
-                                    .name,
-                                  label:
-                                    globalDictionaries.vehicle.seat.available.name.label.replaceAll(
-                                      "{{number}}",
-                                      item.booking.ride.available_seats.toLocaleString(
-                                        "de-DE"
-                                      )
-                                    ),
-                                },
-                              },
-                            ]
-                          : [
-                              {
-                                ...globalDictionaries.vehicle.seat.empty,
-                                icon: {
-                                  ...globalDictionaries.vehicle.seat.empty.icon,
-                                  name: globalDictionaries.vehicle.seat.empty
-                                    .icon.name as SVGIconProps["name"],
-                                },
-                              },
-                            ]),
-                        ...(!!item.booking?.ride?.vehicle?.numb_of_luggages
-                          ? [
-                              {
-                                ...globalDictionaries.vehicle.luggage.available,
-                                icon: {
-                                  ...globalDictionaries.vehicle.luggage
-                                    .available.icon,
-                                  name: globalDictionaries.vehicle.luggage
-                                    .available.icon
-                                    .name as SVGIconProps["name"],
-                                },
-                                name: {
-                                  ...globalDictionaries.vehicle.luggage
-                                    .available.name,
-                                  label:
-                                    globalDictionaries.vehicle.luggage.available
-                                      .name.label,
-                                },
-                              },
-                            ]
-                          : [
-                              {
-                                ...globalDictionaries.vehicle.luggage.empty,
-                                icon: {
-                                  ...globalDictionaries.vehicle.luggage.empty
-                                    .icon,
-                                  name: globalDictionaries.vehicle.luggage.empty
-                                    .icon.name as SVGIconProps["name"],
-                                },
-                              },
-                            ]),
-                      ],
-                      bottom: [
-                        // Smoking
-                        ...(!!item.booking?.ride?.vehicle?.smoke_allowed
-                          ? [
-                              {
-                                ...globalDictionaries.vehicle.smoking.allowed,
-                                icon: {
-                                  ...globalDictionaries.vehicle.smoking.allowed
-                                    .icon,
-                                  name: globalDictionaries.vehicle.smoking
-                                    .allowed.icon.name as SVGIconProps["name"],
-                                },
-                              },
-                            ]
-                          : [
-                              {
-                                ...globalDictionaries.vehicle.smoking
-                                  .prohibited,
-                                icon: {
-                                  ...globalDictionaries.vehicle.smoking
-                                    .prohibited.icon,
-                                  name: globalDictionaries.vehicle.smoking
-                                    .prohibited.icon
-                                    .name as SVGIconProps["name"],
-                                },
-                              },
-                            ]),
-                        // Music
-                        ...(!!item.booking?.ride?.vehicle?.music_availability
-                          ? [
-                              {
-                                ...globalDictionaries.vehicle.music.allowed,
-                                icon: {
-                                  ...globalDictionaries.vehicle.music.allowed
-                                    .icon,
-                                  name: globalDictionaries.vehicle.music.allowed
-                                    .icon.name as SVGIconProps["name"],
-                                },
-                              },
-                            ]
-                          : [
-                              {
-                                ...globalDictionaries.vehicle.music.prohibited,
-                                icon: {
-                                  ...globalDictionaries.vehicle.music.prohibited
-                                    .icon,
-                                  name: globalDictionaries.vehicle.music
-                                    .prohibited.icon
-                                    .name as SVGIconProps["name"],
-                                },
-                              },
-                            ]),
-                        // Pet
-                        ...(!!item.booking?.ride?.vehicle?.pet_allowed
-                          ? [
-                              {
-                                ...globalDictionaries.vehicle.pets.allowed,
-                                icon: {
-                                  ...globalDictionaries.vehicle.pets.allowed
-                                    .icon,
-                                  name: globalDictionaries.vehicle.pets.allowed
-                                    .icon.name as SVGIconProps["name"],
-                                },
-                              },
-                            ]
-                          : [
-                              {
-                                ...globalDictionaries.vehicle.pets.prohibited,
-                                icon: {
-                                  ...globalDictionaries.vehicle.pets.prohibited
-                                    .icon,
-                                  name: globalDictionaries.vehicle.pets
-                                    .prohibited.icon
-                                    .name as SVGIconProps["name"],
-                                },
-                              },
-                            ]),
-                      ],
-                    },
-                  },
-
-                  routes: {
-                    departure: {
-                      place: !item.booking?.ride?.start_name
-                        ? "-"
-                        : item.booking.ride.start_name,
-                      time: !item.booking?.ride?.departure_time
-                        ? "-"
-                        : dayjs(item.booking?.ride?.departure_time).format(
-                            "HH.mm [Uhr]"
-                          ),
-                    },
-                    travelTime: {
-                      time: !item.booking?.ride?.eta
-                        ? "-"
-                        : setDurationTime(item.booking.ride.eta),
-                    },
-                    arrival: {
-                      place: !item.booking?.ride?.destination_name
-                        ? "-"
-                        : item.booking.ride.destination_name,
-                      time:
-                        !item.booking?.ride?.eta ||
-                        !item.booking.ride?.departure_time
-                          ? "-"
-                          : `${setArrivalTime(
-                              dayjs(item.booking.ride?.departure_time).format(
-                                "HH:mm"
-                              ),
-                              item.booking.ride.eta
-                            )} Uhr`,
-                    },
-                  },
-
-                  price: {
-                    initial: {
-                      label: "Angebotspreis",
-                      price: formatEuro(item.booking?.ride?.base_price),
-                    },
-                    offered: {
-                      label: "Angebotener Preis",
-                      price: !item.booking?.offered_price
-                        ? "-"
-                        : formatEuro(item.booking.offered_price),
-                    },
-                  },
-                  note: {
-                    label: "Hinweis",
-                    note: content.message,
-                  },
-                },
-                driver: null,
-              };
-            }),
+      const rawPayload = data.data.map((item) => {
+        const isPassenger = userState.profile?.id === item.passenger_id;
+        const isSender = userState.profile?.id === item.sender_id;
+        const content =
+          typeof item.contents === "string"
+            ? JSON.parse(item.contents)
+            : (item.contents as MessageContent);
+        return {
+          id: String(id),
+          type: content.type,
+          updated_at: item.updated_at,
+          role: isSender ? "sender" : "recipient",
+          sender_id: String(item.sender_id),
+          time: formatChatTime(item.created_at),
+          name: isPassenger
+            ? `${item?.passenger?.first_name ?? ""} ${
+                item.passenger?.last_name ?? ""
+              }`
+            : `${item.driver?.first_name ?? ""} ${
+                item.driver?.last_name ?? ""
+              }`,
+          avatar: {
+            src: isPassenger ? item.passenger?.avatar : item.driver?.avatar,
+            width: 36,
+            height: 36,
+            alt: isSender ? "sender" : "recipient",
           },
-        },
+          message: content.message,
+          booking: {
+            time: dayjs(item.created_at).format("hh:mma"),
+            car: {
+              image: {
+                src: !item.booking?.ride?.vehicle?.image.length
+                  ? "/images/general/car.png"
+                  : item.booking.ride?.vehicle.image[0] ??
+                    "/images/general/car.png",
+                alt: "car",
+                width: 145,
+                height: 46,
+              },
+              identity: {
+                name: !item.booking?.ride?.vehicle?.brand?.title
+                  ? item.booking?.ride?.vehicle?.model ?? ""
+                  : !item.booking?.ride?.vehicle.model
+                  ? item.booking?.ride?.vehicle.brand?.title ?? ""
+                  : `${item.booking?.ride?.vehicle.brand?.title} ${item.booking?.ride?.vehicle.model}`,
+                number: item.booking?.ride?.vehicle?.plate_license,
+              },
+              facility: {
+                top: [
+                  ...(!!item.booking?.ride?.available_seats
+                    ? [
+                        {
+                          ...globalDictionaries.vehicle.seat.available,
+                          icon: {
+                            ...globalDictionaries.vehicle.seat.available.icon,
+                            name: globalDictionaries.vehicle.seat.available.icon
+                              .name as SVGIconProps["name"],
+                          },
+                          name: {
+                            ...globalDictionaries.vehicle.seat.available.name,
+                            label:
+                              globalDictionaries.vehicle.seat.available.name.label.replaceAll(
+                                "{{number}}",
+                                item.booking.ride.available_seats.toLocaleString(
+                                  "de-DE"
+                                )
+                              ),
+                          },
+                        },
+                      ]
+                    : [
+                        {
+                          ...globalDictionaries.vehicle.seat.empty,
+                          icon: {
+                            ...globalDictionaries.vehicle.seat.empty.icon,
+                            name: globalDictionaries.vehicle.seat.empty.icon
+                              .name as SVGIconProps["name"],
+                          },
+                        },
+                      ]),
+                  ...(!!item.booking?.ride?.vehicle?.numb_of_luggages
+                    ? [
+                        {
+                          ...globalDictionaries.vehicle.luggage.available,
+                          icon: {
+                            ...globalDictionaries.vehicle.luggage.available
+                              .icon,
+                            name: globalDictionaries.vehicle.luggage.available
+                              .icon.name as SVGIconProps["name"],
+                          },
+                          name: {
+                            ...globalDictionaries.vehicle.luggage.available
+                              .name,
+                            label:
+                              globalDictionaries.vehicle.luggage.available.name
+                                .label,
+                          },
+                        },
+                      ]
+                    : [
+                        {
+                          ...globalDictionaries.vehicle.luggage.empty,
+                          icon: {
+                            ...globalDictionaries.vehicle.luggage.empty.icon,
+                            name: globalDictionaries.vehicle.luggage.empty.icon
+                              .name as SVGIconProps["name"],
+                          },
+                        },
+                      ]),
+                ],
+                bottom: [
+                  // Smoking
+                  ...(!!item.booking?.ride?.vehicle?.smoke_allowed
+                    ? [
+                        {
+                          ...globalDictionaries.vehicle.smoking.allowed,
+                          icon: {
+                            ...globalDictionaries.vehicle.smoking.allowed.icon,
+                            name: globalDictionaries.vehicle.smoking.allowed
+                              .icon.name as SVGIconProps["name"],
+                          },
+                        },
+                      ]
+                    : [
+                        {
+                          ...globalDictionaries.vehicle.smoking.prohibited,
+                          icon: {
+                            ...globalDictionaries.vehicle.smoking.prohibited
+                              .icon,
+                            name: globalDictionaries.vehicle.smoking.prohibited
+                              .icon.name as SVGIconProps["name"],
+                          },
+                        },
+                      ]),
+                  // Music
+                  ...(!!item.booking?.ride?.vehicle?.music_availability
+                    ? [
+                        {
+                          ...globalDictionaries.vehicle.music.allowed,
+                          icon: {
+                            ...globalDictionaries.vehicle.music.allowed.icon,
+                            name: globalDictionaries.vehicle.music.allowed.icon
+                              .name as SVGIconProps["name"],
+                          },
+                        },
+                      ]
+                    : [
+                        {
+                          ...globalDictionaries.vehicle.music.prohibited,
+                          icon: {
+                            ...globalDictionaries.vehicle.music.prohibited.icon,
+                            name: globalDictionaries.vehicle.music.prohibited
+                              .icon.name as SVGIconProps["name"],
+                          },
+                        },
+                      ]),
+                  // Pet
+                  ...(!!item.booking?.ride?.vehicle?.pet_allowed
+                    ? [
+                        {
+                          ...globalDictionaries.vehicle.pets.allowed,
+                          icon: {
+                            ...globalDictionaries.vehicle.pets.allowed.icon,
+                            name: globalDictionaries.vehicle.pets.allowed.icon
+                              .name as SVGIconProps["name"],
+                          },
+                        },
+                      ]
+                    : [
+                        {
+                          ...globalDictionaries.vehicle.pets.prohibited,
+                          icon: {
+                            ...globalDictionaries.vehicle.pets.prohibited.icon,
+                            name: globalDictionaries.vehicle.pets.prohibited
+                              .icon.name as SVGIconProps["name"],
+                          },
+                        },
+                      ]),
+                ],
+              },
+            },
+
+            routes: {
+              departure: {
+                place: !item.booking?.ride?.start_name
+                  ? "-"
+                  : item.booking.ride.start_name,
+                time: !item.booking?.ride?.departure_time
+                  ? "-"
+                  : dayjs(item.booking?.ride?.departure_time).format(
+                      "HH.mm [Uhr]"
+                    ),
+              },
+              travelTime: {
+                time: !item.booking?.ride?.eta
+                  ? "-"
+                  : setDurationTime(item.booking.ride.eta),
+              },
+              arrival: {
+                place: !item.booking?.ride?.destination_name
+                  ? "-"
+                  : item.booking.ride.destination_name,
+                time:
+                  !item.booking?.ride?.eta || !item.booking.ride?.departure_time
+                    ? "-"
+                    : `${setArrivalTime(
+                        dayjs(item.booking.ride?.departure_time).format(
+                          "HH:mm"
+                        ),
+                        item.booking.ride.eta
+                      )} Uhr`,
+              },
+            },
+
+            price: {
+              initial: {
+                label: "Angebotspreis",
+                price: formatEuro(item.booking?.ride?.base_price),
+              },
+              offered: {
+                label: "Angebotener Preis",
+                price: !item.booking?.offered_price
+                  ? "-"
+                  : formatEuro(item.booking.offered_price),
+              },
+            },
+            note: {
+              label: "Hinweis",
+              note: content.message,
+            },
+          },
+          driver: null,
+        };
+      });
+      const newPayload = rawPayload.sort((a, b) => {
+        return (
+          new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime()
+        );
+      });
+
+      dispatch({
+        type: ChatTripActionEnum.SetRoomMessageItems,
+        payload:
+          state.room.message.pagination.current === 1
+            ? [...newPayload]
+            : !newPayload.length
+            ? state.room.message.items
+            : [...newPayload, ...state.room.message.items],
+      });
+      dispatch({
+        type: ChatTripActionEnum.SetRoomMessagePaginationLast,
+        payload: data.meta.last_page,
       });
     }
   }, [query.data, query.isFetching]);
