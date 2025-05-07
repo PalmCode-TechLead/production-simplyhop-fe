@@ -4,6 +4,12 @@ export const ChatTripReactQueryKey = {
   GetMessageRoomsUnreadList: (
     payload?: GetMessageRoomsUnreadListPayloadRequestInterface
   ) => {
-    return ["ChatTripReactQueryKey.GetMessageRoomsUnreadList", [payload] as const];
+    return [
+      "ChatTripReactQueryKey.GetMessageRoomsUnreadList",
+      [payload] as const,
+    ];
+  },
+  GetUserProfileData: () => {
+    return ["ChatTripReactQueryKey.GetUserProfileData"];
   },
 };

@@ -1,18 +1,12 @@
 "use client";
-import React, {
-  createContext,
-  useReducer,
-  Dispatch,
-  useEffect,
-  useRef,
-} from "react";
+import React, { createContext, useReducer, Dispatch, useEffect } from "react";
 import {
   UserActionEnum,
   UserActions,
   UserInitialStateType,
-  UserProfile,
 } from "./User.types";
 import { UserProfileReducers } from "./User.reducers";
+import { useGetUserProfileData } from "@/core/utils/react_query/hooks";
 
 const initialState: UserInitialStateType = {
   profile: null,
@@ -33,23 +27,32 @@ const mainReducer = (
   profile: UserProfileReducers(profile, action),
 });
 
-const UserProvider = (props: {
-  children: React.ReactNode;
-  profile?: UserProfile | null;
-}) => {
-  // ✅ Simpan initialProfile hanya sekali
-  const didInitialize = useRef(false);
+const UserProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
+  const query = useGetUserProfileData();
+
   useEffect(() => {
-    if (!didInitialize.current) {
+    if (!!query.data && !query.isFetching) {
+      const user = query.data;
       dispatch({
         type: UserActionEnum.SetProfileData,
-        payload: props.profile ?? null,
+        payload: {
+          id: user.data.id,
+          first_name: user.data?.first_name ?? "",
+          last_name: user.data?.last_name ?? "",
+          avatar: user.data.avatar,
+          email: user.data.email,
+          phonenumber: user.data?.mobile ?? "",
+          city: user.data?.city ?? "",
+          about_me: user.data?.profile?.bio ?? "",
+          is_driver: user.data?.is_driver === 1 ? true : false,
+          gender: user.data?.gender ?? null,
+          is_able_to_ride: user.data.can_share_ride,
+        },
       });
-      didInitialize.current = true;
     }
-  }, []);
+  }, [query.data, query.isFetching]);
 
   return (
     <UserContext.Provider value={{ state, dispatch }}>

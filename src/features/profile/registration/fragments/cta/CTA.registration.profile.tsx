@@ -16,8 +16,7 @@ import { UserActionEnum, UserContext } from "@/core/modules/app/context";
 export const CTARegistrationProfile = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(RegistrationProfileContext);
-  const { state: userState, dispatch: dispatchUser } =
-    React.useContext(UserContext);
+  const { dispatch: dispatchUser } = React.useContext(UserContext);
   const {
     mutateAsync: postUserProfileCreate,
     isPending: isPendingPostUserProfileCreate,
@@ -27,26 +26,29 @@ export const CTARegistrationProfile = () => {
     isPending: isPendingPostVehicleCreateMy,
   } = usePostVehicleCreateMy();
   const handleClickSave = async () => {
-    await postUserProfileCreate();
+    const user = await postUserProfileCreate();
+    if (!user) return;
 
     if (state.ride_plan.form.offer_trip.selected?.id === "yes") {
       await postVehicleCreateMy();
     }
 
-    if (userState.profile) {
-      dispatchUser({
-        type: UserActionEnum.SetProfileData,
-        payload: {
-          ...userState.profile,
-          first_name: state.personal_information.form.first_name.value,
-          last_name: state.personal_information.form.last_name.value,
-          city: state.personal_information.form.city.value,
-          phonenumber: state.personal_information.form.phonenumber.value,
-          about_me: state.personal_information.form.about_me.value,
-          gender: state.personal_information.form.gender.selected?.id ?? null,
-        },
-      });
-    }
+    dispatchUser({
+      type: UserActionEnum.SetProfileData,
+      payload: {
+        id: user.data.id,
+        first_name: user.data?.first_name ?? "",
+        last_name: user.data?.last_name ?? "",
+        avatar: user.data.avatar,
+        email: user.data.email,
+        phonenumber: user.data?.mobile ?? "",
+        city: user.data?.city ?? "",
+        about_me: user.data?.profile?.bio ?? "",
+        is_driver: user.data?.is_driver === 1 ? true : false,
+        gender: user.data?.gender ?? null,
+        is_able_to_ride: user.data.can_share_ride,
+      },
+    });
 
     dispatch({
       type: RegistrationProfileActionEnum.SetNotificationData,
