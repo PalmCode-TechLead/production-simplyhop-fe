@@ -16,7 +16,6 @@ import RecipientMessageItemChatTrip from "../../components/recipient_message_ite
 import { queryClient } from "@/core/utils/react_query";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { ChatTripReactQueryKey } from "../../react_query/keys";
-import { GetMessageRoomsIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 import { findLastIndexOfferCard } from "@/core/utils/chat/functions";
 import { UserContext } from "@/core/modules/app/context";
 import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper";
@@ -33,7 +32,6 @@ export const RoomChatTrip = () => {
   const { state, dispatch } = React.useContext(ChatTripContext);
 
   const id = searchParams.get("id");
-  const messageRoomId = !id ? "0" : String(id);
 
   const { isFetching: isFetchingMessagesListByRoom } =
     useGetMessagesListByRoom();
