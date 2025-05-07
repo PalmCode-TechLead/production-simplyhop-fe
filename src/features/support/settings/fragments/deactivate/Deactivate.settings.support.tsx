@@ -44,7 +44,7 @@ export const DeactivateSettingsSupport = () => {
   return (
     <AdaptiveModal
       className={clsx(
-        "!max-w-[calc(100vw-3rem)] sm:!max-w-[524px]",
+        "!max-w-[100vw] lg:!max-w-[524px]",
         "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
