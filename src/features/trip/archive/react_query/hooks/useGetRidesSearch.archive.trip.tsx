@@ -17,6 +17,7 @@ import { AppCollectionURL } from "@/core/utils/router/constants";
 import { UserContext } from "@/core/modules/app/context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
@@ -67,7 +68,10 @@ export const useGetRidesSearch = () => {
                     src: item.user.avatar,
                     alt: "photo_profile",
                   },
-              name: `${item.user.first_name} ${item.user.last_name}`,
+              name: formatDisplayName({
+                first_name: item.user.first_name,
+                email: item.user.email,
+              }),
             },
           },
           car: {

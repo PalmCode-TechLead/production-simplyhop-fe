@@ -21,6 +21,7 @@ import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { MessageContent } from "@/core/models/data";
 import { formatEuro } from "@/core/utils/currency/functions";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 dayjs.extend(utc);
 dayjs.extend(isSameOrToday);
@@ -89,12 +90,14 @@ export const useGetMessagesListByRoom = () => {
           sender_id: String(item.sender_id),
           time: formatChatTime(item.created_at),
           name: isPassenger
-            ? `${item?.passenger?.first_name ?? ""} ${
-                item.passenger?.last_name ?? ""
-              }`
-            : `${item.driver?.first_name ?? ""} ${
-                item.driver?.last_name ?? ""
-              }`,
+            ? formatDisplayName({
+                first_name: item.passenger?.last_name,
+                email: item.passenger?.email,
+              })
+            : formatDisplayName({
+                first_name: item.driver?.last_name,
+                email: item.driver?.email,
+              }),
           avatar: {
             src: isPassenger ? item.passenger?.avatar : item.driver?.avatar,
             width: 36,

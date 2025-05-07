@@ -15,6 +15,7 @@ import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { formatEuro } from "@/core/utils/currency/functions";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetRidesId = () => {
   const searchParams = useSearchParams();
@@ -62,7 +63,10 @@ export const useGetRidesId = () => {
                       src: item.user.avatar,
                       alt: "photo_profile",
                     },
-                name: `${item.user.first_name} ${item.user.last_name}`,
+                name: formatDisplayName({
+                  first_name: item.user.first_name,
+                  email: item.user.email,
+                }),
               },
             },
             car: {
@@ -136,7 +140,10 @@ export const useGetRidesId = () => {
               return {
                 booking: {
                   number: String(index + 1),
-                  name: `${bookingItem.user?.first_name} ${bookingItem.user?.last_name}`,
+                  name: formatDisplayName({
+                    first_name: bookingItem.user?.first_name,
+                    email: bookingItem.user?.email,
+                  }),
                 },
                 route: {
                   origin: !item.start_name ? "-" : item.start_name,

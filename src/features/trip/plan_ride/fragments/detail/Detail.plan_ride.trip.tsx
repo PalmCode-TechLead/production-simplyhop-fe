@@ -32,6 +32,7 @@ import dayjs from "dayjs";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -405,7 +406,10 @@ export const DetailPlanRideTrip = () => {
                   src: userState.profile?.avatar,
                   alt: "driver",
                 },
-                name: `${userState.profile?.first_name} ${userState.profile?.last_name}`,
+                name: formatDisplayName({
+                  first_name: userState.profile?.first_name,
+                  email: userState.profile?.email,
+                }),
               },
             }}
             car={{ ...filteredCar }}

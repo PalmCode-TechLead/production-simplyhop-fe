@@ -19,6 +19,7 @@ import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -139,9 +140,10 @@ export const useGetRideSearch = () => {
                     src: item.user.avatar,
                     alt: "photo_profile",
                   },
-              name: `${item.user.first_name ?? ""} ${
-                item.user.last_name ?? ""
-              }`,
+              name: formatDisplayName({
+                first_name: item.user.first_name,
+                email: item.user.email,
+              }),
             },
           },
           car: {

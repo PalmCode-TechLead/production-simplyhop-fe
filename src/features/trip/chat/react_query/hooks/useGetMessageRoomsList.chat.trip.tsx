@@ -13,6 +13,7 @@ import {
 import { UserContext } from "@/core/modules/app/context";
 import dayjs from "dayjs";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetMessageRoomsList = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -82,12 +83,14 @@ export const useGetMessageRoomsList = () => {
             alt: isPassenger ? "passenger" : "driver",
           },
           name: !isPassenger
-            ? `${item.passenger?.first_name ?? ""} ${
-                item.passenger?.last_name ?? ""
-              }`
-            : `${item.driver?.first_name ?? ""} ${
-                item.driver?.last_name ?? ""
-              }`,
+            ? formatDisplayName({
+                first_name: item.passenger?.first_name,
+                email: item.passenger?.email,
+              })
+            : formatDisplayName({
+                first_name: item.driver?.first_name,
+                email: item.driver?.email,
+              }),
           message: displayMessage,
           date: date,
           isNew: !isPassenger

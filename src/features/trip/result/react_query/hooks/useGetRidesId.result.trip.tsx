@@ -17,6 +17,7 @@ import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetRidesId = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -67,7 +68,10 @@ export const useGetRidesId = () => {
                       src: item.user.avatar,
                       alt: "photo_profile",
                     },
-                name: `${item.user.first_name} ${item.user.last_name}`,
+                name: formatDisplayName({
+                  first_name: item.user.first_name,
+                  email: item.user.email,
+                }),
               },
             },
             car: {

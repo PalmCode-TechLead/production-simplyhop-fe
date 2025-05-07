@@ -16,6 +16,7 @@ import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
+import { formatDisplayName } from "@/core/utils/name/functions";
 
 export const useGetBookingId = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -73,7 +74,10 @@ export const useGetBookingId = () => {
                       src: data.data.user?.avatar,
                       alt: "photo_profile",
                     },
-                name: `${data.data.user?.first_name} ${data.data.user?.last_name}`,
+                name: formatDisplayName({
+                  first_name: data.data.user?.first_name,
+                  email: data.data.user?.email,
+                }),
               },
             },
             car: {
