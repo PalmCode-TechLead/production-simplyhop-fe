@@ -21,7 +21,6 @@ import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import { MessageContent } from "@/core/models/data";
 import { formatEuro } from "@/core/utils/currency/functions";
-import { PAGINATION } from "@/core/utils/pagination/contants";
 
 dayjs.extend(utc);
 dayjs.extend(isSameOrToday);
