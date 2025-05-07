@@ -108,6 +108,7 @@ export enum ChatTripActionEnum {
   SetListMessagePaginationLast = "SetListMessagePaginationLast",
   // Room
   SetRoomData = "SetRoomData",
+  SetRoomBookingStatus = "SetRoomBookingStatus",
   SetRoomMessageItems = "SetRoomMessageItems",
   SetRoomMessagePaginationCurrent = "SetRoomMessagePaginationCurrent",
   SetRoomMessagePaginationLast = "SetRoomMessagePaginationLast",
@@ -137,6 +138,7 @@ export type ChatTripListActions =
 // Room
 type ChatTripRoomPayload = {
   [ChatTripActionEnum.SetRoomData]: ChatTripRoom;
+  [ChatTripActionEnum.SetRoomBookingStatus]: ChatTripRoom["booking"]["status"];
   [ChatTripActionEnum.SetRoomMessageItems]: ChatTripRoom["message"]["items"];
   [ChatTripActionEnum.SetRoomMessagePaginationCurrent]: ChatTripRoom["message"]["pagination"]["current"];
   [ChatTripActionEnum.SetRoomMessagePaginationLast]: ChatTripRoom["message"]["pagination"]["last"];

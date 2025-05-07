@@ -36,7 +36,7 @@ export const useGetBookingId = () => {
     GetBookingIdSuccessResponseInterface,
     GetBookingIdErrorResponseInterface
   >({
-    queryKey: ChatTripReactQueryKey.GetBookingId(),
+    queryKey: ChatTripReactQueryKey.GetBookingId(payload),
     queryFn: () => {
       return fetchGetBookingId(payload);
     },
@@ -46,6 +46,10 @@ export const useGetBookingId = () => {
   React.useEffect(() => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
+      dispatch({
+        type: ChatTripActionEnum.SetRoomBookingStatus,
+        payload: data.data.status,
+      });
       dispatch({
         type: ChatTripActionEnum.SetOfferData,
         payload: {

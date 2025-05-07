@@ -23,6 +23,7 @@ import { InfiniteScrollWrapper } from "@/core/components/infinite_scroll_wrapper
 import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { GetBookingIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
 
 export const RoomChatTrip = () => {
   const dictionaries = getDictionaries();
@@ -49,13 +50,12 @@ export const RoomChatTrip = () => {
     isPending: isPendingPostBookingReject,
   } = usePostBookingReject();
 
-  const messageRoomByIdPayload: GetMessageRoomsIdPayloadRequestInterface = {
+  const bookingIdPayload: GetBookingIdPayloadRequestInterface = {
     path: {
-      id: messageRoomId,
+      id: !id ? "0" : String(id),
     },
     params: {
-      include:
-        "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
+      include: "ride.vehicle.brand,user",
     },
   };
 
@@ -114,7 +114,7 @@ export const RoomChatTrip = () => {
     await postBookingReject();
 
     queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+      queryKey: ChatTripReactQueryKey.GetBookingId(bookingIdPayload),
       type: "all",
       refetchType: "all",
     });
@@ -124,7 +124,7 @@ export const RoomChatTrip = () => {
     await postBookingReject();
 
     queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+      queryKey: ChatTripReactQueryKey.GetBookingId(bookingIdPayload),
       type: "all",
       refetchType: "all",
     });
@@ -143,7 +143,7 @@ export const RoomChatTrip = () => {
   const handleClickAccept = async () => {
     await postBookingAccept();
     queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(bookingIdPayload),
       type: "all",
       refetchType: "all",
     });

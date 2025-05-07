@@ -61,6 +61,15 @@ export const ChatTripRoomReducers = (
   switch (action.type) {
     case ChatTripActionEnum.SetRoomData:
       return action.payload;
+    case ChatTripActionEnum.SetRoomBookingStatus: {
+      return {
+        ...state,
+        booking: {
+          ...state.booking,
+          status: action.payload,
+        },
+      };
+    }
 
     case ChatTripActionEnum.SetRoomMessageItems: {
       return {
