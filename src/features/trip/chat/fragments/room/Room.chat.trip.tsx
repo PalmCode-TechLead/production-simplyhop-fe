@@ -116,6 +116,10 @@ export const RoomChatTrip = () => {
       type: "all",
       refetchType: "all",
     });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
+      payload: 1,
+    });
   };
 
   const handleClickCancel = async () => {
@@ -125,6 +129,10 @@ export const RoomChatTrip = () => {
       queryKey: ChatTripReactQueryKey.GetBookingId(bookingIdPayload),
       type: "all",
       refetchType: "all",
+    });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
+      payload: 1,
     });
   };
 
@@ -141,9 +149,13 @@ export const RoomChatTrip = () => {
   const handleClickAccept = async () => {
     await postBookingAccept();
     queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(bookingIdPayload),
+      queryKey: ChatTripReactQueryKey.GetBookingId(bookingIdPayload),
       type: "all",
       refetchType: "all",
+    });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
+      payload: 1,
     });
   };
 
