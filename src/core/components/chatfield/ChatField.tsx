@@ -21,7 +21,6 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
     }
   }, [inputProps?.disabled, isLg]);
 
-  console.log(isLg, "ini lg");
   return (
     <InputContainer className={clsx("relative", "!border-[0px]", "!h-[48px]")}>
       <Input
