@@ -5,6 +5,7 @@ export const ResultTripReactQueryKey = {
     music_availability?: boolean;
     smoke_allowed?: boolean;
     pet_allowed?: boolean;
+    "filter[user.gender]"?: string;
     include?: string;
     //mandatory
     sort?: string;

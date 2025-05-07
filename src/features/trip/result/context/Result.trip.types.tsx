@@ -70,6 +70,9 @@ export interface ResultTripVehicleFilters {
   pets: {
     selected: { id: string; name: string }[];
   };
+  driver_gender: {
+    selected: { id: string; name: string }[];
+  };
   sort: {
     selected: null | { id: string; name: string };
   };
@@ -86,6 +89,9 @@ export interface ResultTripAdvancedFilter {
     selected: { id: string; name: string }[];
   };
   pets: {
+    selected: { id: string; name: string }[];
+  };
+  driver_gender: {
     selected: { id: string; name: string }[];
   };
   sort: {

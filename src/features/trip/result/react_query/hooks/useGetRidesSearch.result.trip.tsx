@@ -66,6 +66,14 @@ export const useGetRideSearch = () => {
         : state.advanced_filter.pets.selected.length === 1
         ? state.advanced_filter.pets.selected[0].id === "true"
         : undefined,
+      "filter[user.gender]": !state.advanced_filter.driver_gender.selected
+        .length
+        ? undefined
+        : state.advanced_filter.driver_gender.selected.length === 1
+        ? state.advanced_filter.driver_gender.selected[0].id === "undefined"
+          ? undefined
+          : state.advanced_filter.driver_gender.selected[0].id
+        : undefined,
       sort: !state.advanced_filter.sort.selected?.id
         ? "average_distance"
         : state.advanced_filter.sort.selected.id,
@@ -97,6 +105,13 @@ export const useGetRideSearch = () => {
       ? undefined
       : state.advanced_filter.pets.selected.length === 1
       ? state.advanced_filter.pets.selected[0].id === "true"
+      : undefined,
+    "filter[user.gender]": !state.advanced_filter.driver_gender.selected.length
+      ? undefined
+      : state.advanced_filter.driver_gender.selected.length === 1
+      ? state.advanced_filter.driver_gender.selected[0].id === "undefined"
+        ? undefined
+        : state.advanced_filter.driver_gender.selected[0].id
       : undefined,
     sort: !state.advanced_filter.sort.selected?.id
       ? "average_distance"

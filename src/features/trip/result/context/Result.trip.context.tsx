@@ -61,6 +61,9 @@ const initialState: ResultTripInitialStateType = {
     pets: {
       selected: [],
     },
+    driver_gender: {
+      selected: [],
+    },
     sort: {
       selected: null,
     },
@@ -76,6 +79,9 @@ const initialState: ResultTripInitialStateType = {
       selected: [],
     },
     pets: {
+      selected: [],
+    },
+    driver_gender: {
       selected: [],
     },
     sort: {

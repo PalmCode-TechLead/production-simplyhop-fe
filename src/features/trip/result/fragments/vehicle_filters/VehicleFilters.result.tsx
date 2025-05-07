@@ -136,6 +136,28 @@ export const VehicleFilters = () => {
     });
   };
 
+  const handleSelectDriverGender = (data: {
+    id: string;
+    name: string;
+    type: string;
+  }) => {
+    const selected = setMultipleCheckboxPayload(
+      state.vehicle_filters.driver_gender.selected,
+      { id: data.id, name: data.name },
+      data.type
+    );
+    dispatch({
+      type: ResultTripActionEnum.SetVehicleFiltersData,
+      payload: {
+        ...state.vehicle_filters,
+        driver_gender: {
+          ...state.vehicle_filters.driver_gender,
+          selected: selected,
+        },
+      },
+    });
+  };
+
   const handleClickReset = () => {
     dispatch({
       type: ResultTripActionEnum.SetVehicleFiltersData,
@@ -155,6 +177,10 @@ export const VehicleFilters = () => {
         },
         pets: {
           ...state.vehicle_filters.pets,
+          selected: [],
+        },
+        driver_gender: {
+          ...state.vehicle_filters.driver_gender,
           selected: [],
         },
       },
@@ -200,6 +226,10 @@ export const VehicleFilters = () => {
         pets: {
           ...state.advanced_filter.pets,
           selected: state.vehicle_filters.pets.selected,
+        },
+        driver_gender: {
+          ...state.advanced_filter.driver_gender,
+          selected: state.vehicle_filters.driver_gender.selected,
         },
       },
     });
@@ -317,6 +347,19 @@ export const VehicleFilters = () => {
               handleSelectPets({
                 ...data,
                 type: dictionaries.vehicle_filters.pets.variant,
+              })
+            }
+          />
+          <Divider />
+          <VehicleFilterList
+            {...(dictionaries.vehicle_filters
+              .driver_gender as VehicleFilterListProps)}
+            items={globalDictionaries.vehicle.driver_gender.type.options.items}
+            selected={state.vehicle_filters.driver_gender.selected}
+            onSelect={(data) =>
+              handleSelectDriverGender({
+                ...data,
+                type: dictionaries.vehicle_filters.driver_gender.variant,
               })
             }
           />

@@ -116,6 +116,10 @@
       "label": "Tiere",
       "variant": "single"
     },
+    "driver_gender": {
+      "label": "Geschlecht",
+      "variant": "single"
+    },
     "sort": {
       "label": "Sortieren",
       "variant": "single"
@@ -139,6 +143,10 @@
     },
     "pets": {
       "label": "Tiere",
+      "variant": "single"
+    },
+    "driver_gender": {
+      "label": "Geschlecht",
       "variant": "single"
     },
     "sort": {

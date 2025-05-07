@@ -570,6 +570,22 @@
           "color": "#D41010"
         }
       }
+    },
+    "driver_gender": {
+      "type": {
+        "options": {
+          "items": [
+            {
+              "id": "female",
+              "name": "Weiblich"
+            },
+            {
+              "id": "undefined",
+              "name": "Alle"
+            }
+          ]
+        }
+      }
     }
   },
   "contact": {
