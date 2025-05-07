@@ -15,7 +15,7 @@ export default function RoomConversationContainerChatTrip({
       className={clsx(
         // "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
         "flex flex-col-reverse gap-[1rem]",
-        "w-full h-full lg:h-[calc(100vh-90px-14rem)]",
+        "w-full h-[calc(100vh-61px-81px-3rem)] lg:h-[calc(100vh-90px-14rem)]",
         "overflow-auto",
         "px-[1rem] lg:px-[0rem]",
         className
