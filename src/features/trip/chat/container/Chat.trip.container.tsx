@@ -99,7 +99,13 @@ export const ChatTripContainer = () => {
               </PageSheet>
             </div>
 
-            <div className={clsx("pt-[1.5rem]", "hidden lg:block", "w-full")}>
+            <div
+              className={clsx(
+                "pt-[1.5rem]",
+                !!id ? "hidden lg:block" : "hidden",
+                "w-full"
+              )}
+            >
               <div
                 className={clsx(
                   "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
