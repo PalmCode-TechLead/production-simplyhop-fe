@@ -13,6 +13,9 @@ export const TabChatTrip = () => {
       type: ChatTripActionEnum.SetListData,
       payload: {
         ...state.list,
+        search: {
+          value: "",
+        },
         tab: {
           ...state.list.tab,
           selected: data,
