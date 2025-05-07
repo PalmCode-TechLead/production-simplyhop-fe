@@ -9,6 +9,7 @@ import {
 import { Button } from "@/core/components/button";
 import { usePostUserProfileCreate } from "../../react_query/hooks";
 import { UserActionEnum, UserContext } from "@/core/modules/app/context";
+import { MoonLoader } from "@/core/components/moon_loader";
 
 export const CTAAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
@@ -88,6 +89,7 @@ export const CTAAccountUpdateSupport = () => {
         className={clsx("w-full")}
         onClick={handleClickSave}
       >
+        {isSubmitLoading && <MoonLoader size={20} color={"white"} />}
         {dictionaries.cta.save.children}
       </Button>
     </div>
