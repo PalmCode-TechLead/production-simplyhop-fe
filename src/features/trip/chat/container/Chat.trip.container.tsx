@@ -11,13 +11,17 @@ import { getDictionaries } from "../i18n";
 import { TabGroup } from "@headlessui/react";
 import { SearchChatTrip } from "../fragments/search";
 import { TabChatTrip } from "../fragments/tab";
-import { useSetInitialContextValue } from "../context";
+import { ChatTripContext, useSetInitialContextValue } from "../context";
+import { RoomHeaderChatTrip } from "../components/room_header";
+import { AppCollectionURL } from "@/core/utils/router/constants";
+import { FormChatTrip } from "../fragments/form";
 
 export const ChatTripContainer = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const { isLg } = useTailwindBreakpoint();
+  const { state } = React.useContext(ChatTripContext);
 
   useSetInitialContextValue();
   return (
@@ -77,11 +81,40 @@ export const ChatTripContainer = () => {
 
             <div className={clsx("pt-[1.5rem]", "block lg:hidden", "w-full")}>
               <PageSheet open={!!id && !isLg} direction={"right"}>
-                <RoomChatTrip />
+                <div
+                  className={clsx(
+                    "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
+                    "w-full h-full",
+                    "bg-[white]"
+                  )}
+                >
+                  <RoomHeaderChatTrip
+                    href={AppCollectionURL.private.chat()}
+                    avatar={state.room.header.avatar}
+                    name={state.room.header.name}
+                  />
+                  <RoomChatTrip />
+                  <FormChatTrip />
+                </div>
               </PageSheet>
             </div>
+
             <div className={clsx("pt-[1.5rem]", "hidden lg:block", "w-full")}>
-              <RoomChatTrip />
+              <div
+                className={clsx(
+                  "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
+                  "w-full h-full",
+                  "bg-[white]"
+                )}
+              >
+                <RoomHeaderChatTrip
+                  href={AppCollectionURL.private.chat()}
+                  avatar={state.room.header.avatar}
+                  name={state.room.header.name}
+                />
+                <RoomChatTrip />
+                <FormChatTrip />
+              </div>
             </div>
           </div>
         </div>

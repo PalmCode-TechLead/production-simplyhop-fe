@@ -1,17 +1,10 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { getDictionaries } from "../../i18n";
-import SVGIcon from "@/core/icons";
-import { ChatField } from "@/core/components/chatfield";
-import { RoomHeaderChatTrip } from "../../components/room_header";
 import { useSearchParams } from "next/navigation";
 import { BookingCardChatTrip } from "../../components/booking_card";
-import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import RoomConversationContainerChatTrip from "../../components/room_conversation_container/RoomConversationContainer.chat.trip";
 import { ChatTripActionEnum, ChatTripContext } from "../../context";
-import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import { AppCollectionURL } from "@/core/utils/router/constants/app";
 import {
   useGetBookingId,
   useGetMessagesListByRoom,
@@ -20,7 +13,6 @@ import {
 } from "../../react_query/hooks";
 import SenderMessageItemChatTrip from "../../components/sender_message_item/SenderMessageItem.chat.trip";
 import RecipientMessageItemChatTrip from "../../components/recipient_message_item/RecipientMessageItem.chat.trip";
-import { usePostMessagesChat } from "../../react_query/hooks";
 import { queryClient } from "@/core/utils/react_query";
 import { MoonLoader } from "@/core/components/moon_loader";
 import { ChatTripReactQueryKey } from "../../react_query/keys";
@@ -30,20 +22,19 @@ import { UserContext } from "@/core/modules/app/context";
 
 export const RoomChatTrip = () => {
   const { state: userState } = React.useContext(UserContext);
-  const dictionaries = getDictionaries();
+
   const searchParams = useSearchParams();
   const { state, dispatch } = React.useContext(ChatTripContext);
-  const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
+
   const id = searchParams.get("id");
   const messageRoomId = !id ? "0" : String(id);
 
-  const { isLg } = useTailwindBreakpoint();
+  // const { isLg } = useTailwindBreakpoint();
 
   const { isFetching: isFetchingMessagesListByRoom } =
     useGetMessagesListByRoom();
   useGetBookingId();
-  const { mutateAsync: postMessagesChat, isPending: isPendingPostMessageChat } =
-    usePostMessagesChat();
+
   const {
     mutateAsync: postBookingAccept,
     isPending: isPendingPostBookingAccept,
@@ -54,9 +45,9 @@ export const RoomChatTrip = () => {
     isPending: isPendingPostBookingReject,
   } = usePostBookingReject();
 
-  if (!id && isLg) {
-    return null;
-  }
+  // if (!id && isLg) {
+  //   return null;
+  // }
 
   const messageRoomByIdPayload: GetMessageRoomsIdPayloadRequestInterface = {
     path: {
@@ -69,62 +60,6 @@ export const RoomChatTrip = () => {
   };
 
   const conversationData = state.room.message.items;
-
-  const handleClickEmoji = () => {
-    setIsEmojiOpen((prev) => !prev);
-  };
-
-  const handleChangeChat = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: ChatTripActionEnum.SetRoomData,
-      payload: {
-        ...state.room,
-        chat: {
-          ...state.room.chat,
-          input: {
-            ...state.room.chat.input,
-            value: e.currentTarget.value,
-          },
-        },
-      },
-    });
-  };
-
-  const handleSelectEmoji = (emojiData: EmojiClickData) => {
-    dispatch({
-      type: ChatTripActionEnum.SetRoomData,
-      payload: {
-        ...state.room,
-        chat: {
-          ...state.room.chat,
-          input: {
-            ...state.room.chat.input,
-            value: state.room.chat.input.value + emojiData.emoji,
-          },
-        },
-      },
-    });
-    setIsEmojiOpen(false);
-  };
-
-  const handleClickSend = async () => {
-    const res = await postMessagesChat();
-    queryClient.invalidateQueries();
-    if (!res) return;
-    dispatch({
-      type: ChatTripActionEnum.SetRoomData,
-      payload: {
-        ...state.room,
-        chat: {
-          ...state.room.chat,
-          input: {
-            ...state.room.chat.input,
-            value: "",
-          },
-        },
-      },
-    });
-  };
 
   const handleClickReject = async () => {
     await postBookingReject();
@@ -165,203 +100,101 @@ export const RoomChatTrip = () => {
     });
   };
 
-  const isLoadingSendChat = isPendingPostMessageChat;
-  const isDisabledSendChat =
-    isPendingPostMessageChat || state.room.booking.status !== "accepted";
-
   return (
-    <div
+    <RoomConversationContainerChatTrip
       className={clsx(
-        "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
-        "w-full h-full",
-        "bg-[white]"
+        isFetchingMessagesListByRoom &&
+          "!place-content-center !place-items-center"
       )}
     >
-      {/* header */}
-      <RoomHeaderChatTrip
-        href={AppCollectionURL.private.chat()}
-        avatar={state.room.header.avatar}
-        name={state.room.header.name}
-      />
-
-      {/* chat */}
-
-      <RoomConversationContainerChatTrip
-        className={clsx(
-          isFetchingMessagesListByRoom &&
-            "!place-content-center !place-items-center"
-        )}
-      >
-        {isFetchingMessagesListByRoom && (
-          <MoonLoader size={48} color={"#05912A"} />
-        )}
-        <div
-          className={clsx(
-            "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-            "w-full"
-          )}
-        >
-          {conversationData.map((chat, chatIndex) => {
-            const { type, role, sender_id, ...otherChatProps } = chat;
-            if (type === "offer_request" || type === "booking_request") {
-              const lastOfferCardIndex = findLastIndexOfferCard(
-                conversationData,
-                "type",
-                "text"
-              );
-              return (
-                <BookingCardChatTrip
-                  {...chat.booking}
-                  key={chatIndex}
-                  cta={{
-                    cancel:
-                      type === "offer_request" &&
-                      state.room.booking.status === "pending" &&
-                      chatIndex === lastOfferCardIndex &&
-                      !!userState.profile?.id &&
-                      String(userState.profile?.id) === sender_id
-                        ? {
-                            children: "Abbrechen",
-                            disabled: isPendingPostBookingReject,
-                            loading: isPendingPostBookingReject,
-                            onClick: handleClickCancel,
-                          }
-                        : null,
-                    reject:
-                      type === "offer_request" &&
-                      state.room.booking.status === "pending" &&
-                      chatIndex === lastOfferCardIndex &&
-                      !!userState.profile?.id &&
-                      String(userState.profile?.id) !== sender_id
-                        ? {
-                            children: "Angebot ablehnen",
-                            disabled: isPendingPostBookingReject,
-                            loading: isPendingPostBookingReject,
-                            onClick: handleClickReject,
-                          }
-                        : null,
-                    bargain:
-                      type === "offer_request" &&
-                      state.room.booking.status === "pending" &&
-                      chatIndex === lastOfferCardIndex &&
-                      !!userState.profile?.id &&
-                      String(userState.profile?.id) !== sender_id
-                        ? {
-                            children: "Ein weiteres Angebot senden",
-                            disabled: false,
-                            loading: false,
-                            onClick: handleClickOffer,
-                          }
-                        : null,
-                    accept:
-                      type === "offer_request" &&
-                      state.room.booking.status === "pending" &&
-                      chatIndex === lastOfferCardIndex &&
-                      !!userState.profile?.id &&
-                      String(userState.profile?.id) !== sender_id
-                        ? {
-                            children: "Angebot annehmen",
-                            disabled: isPendingPostBookingAccept,
-                            loading: isPendingPostBookingAccept,
-                            onClick: handleClickAccept,
-                          }
-                        : null,
-                  }}
-                />
-              );
-            }
-            if (role === "sender") {
-              return (
-                <SenderMessageItemChatTrip
-                  {...otherChatProps}
-                  key={chatIndex}
-                />
-              );
-            }
-            return (
-              <RecipientMessageItemChatTrip
-                {...otherChatProps}
-                key={chatIndex}
-              />
-            );
-          })}
-        </div>
-      </RoomConversationContainerChatTrip>
-
-      {/* action commentar */}
+      {isFetchingMessagesListByRoom && (
+        <MoonLoader size={48} color={"#05912A"} />
+      )}
       <div
         className={clsx(
-          "grid-cols-[1.5rem_1fr_auto]",
-          "grid items-center content-center justify-start justify-items-start gap-[0.625rem]",
-          "w-full",
-          "px-[1rem] lg:px-[2.5rem] py-[1rem]",
-          "border-t border-t-[#DFDFDF]"
+          "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+          "w-full"
         )}
       >
-        <div className={clsx("relative")}>
-          <button
-            onClick={() => {
-              if (isDisabledSendChat) return;
-              handleClickEmoji();
-            }}
-          >
-            <SVGIcon
-              name="Smile"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#BDBDBD]")}
-            />
-          </button>
-          {isEmojiOpen && (
-            <EmojiPicker
-              className={clsx(
-                "!absolute",
-                "top-[-480px] lg:left-[-175px] left-[0px]",
-                "z-[10]"
-              )}
-              onEmojiClick={handleSelectEmoji}
-            />
-          )}
-        </div>
-
-        <ChatField
-          labelProps={{ ...dictionaries.chat.room.message.labelProps }}
-          inputProps={{
-            ...dictionaries.chat.room.message.inputProps,
-            disabled: state.room.booking.status !== "accepted",
-            value: state.room.chat.input.value,
-            onChange: handleChangeChat,
-            onKeyDown: (e) => {
-              if (e.key === "Enter") {
-                handleClickSend();
-              }
-            },
-          }}
-        />
-        <button
-          className={clsx(
-            "grid grid-flow-col place-content-center place-items-center gap-[0.625rem]",
-            "px-[0.75rem] py-[0.625rem]",
-            "bg-[#05912A] disabled:bg-[#F6F6F6]",
-            "rounded-[0.375rem]",
-            "text-[0.875rem] text-[white] disabled:text-[#767676] font-normal"
-          )}
-          type="submit"
-          disabled={isDisabledSendChat}
-          onClick={handleClickSend}
-        >
-          {dictionaries.chat.room.cta.send.children}
-          {isLoadingSendChat ? (
-            <MoonLoader size={16} color={"white"} />
-          ) : (
-            <SVGIcon
-              name="SendHorizonal"
-              className={clsx(
-                "w-[1rem] h-[1rem]",
-                isDisabledSendChat ? "text-[#767676]" : "text-[white]"
-              )}
-            />
-          )}
-        </button>
+        {conversationData.map((chat, chatIndex) => {
+          const { type, role, sender_id, ...otherChatProps } = chat;
+          if (type === "offer_request" || type === "booking_request") {
+            const lastOfferCardIndex = findLastIndexOfferCard(
+              conversationData,
+              "type",
+              "text"
+            );
+            return (
+              <BookingCardChatTrip
+                {...chat.booking}
+                key={chatIndex}
+                cta={{
+                  cancel:
+                    type === "offer_request" &&
+                    state.room.booking.status === "pending" &&
+                    chatIndex === lastOfferCardIndex &&
+                    !!userState.profile?.id &&
+                    String(userState.profile?.id) === sender_id
+                      ? {
+                          children: "Abbrechen",
+                          disabled: isPendingPostBookingReject,
+                          loading: isPendingPostBookingReject,
+                          onClick: handleClickCancel,
+                        }
+                      : null,
+                  reject:
+                    type === "offer_request" &&
+                    state.room.booking.status === "pending" &&
+                    chatIndex === lastOfferCardIndex &&
+                    !!userState.profile?.id &&
+                    String(userState.profile?.id) !== sender_id
+                      ? {
+                          children: "Angebot ablehnen",
+                          disabled: isPendingPostBookingReject,
+                          loading: isPendingPostBookingReject,
+                          onClick: handleClickReject,
+                        }
+                      : null,
+                  bargain:
+                    type === "offer_request" &&
+                    state.room.booking.status === "pending" &&
+                    chatIndex === lastOfferCardIndex &&
+                    !!userState.profile?.id &&
+                    String(userState.profile?.id) !== sender_id
+                      ? {
+                          children: "Ein weiteres Angebot senden",
+                          disabled: false,
+                          loading: false,
+                          onClick: handleClickOffer,
+                        }
+                      : null,
+                  accept:
+                    type === "offer_request" &&
+                    state.room.booking.status === "pending" &&
+                    chatIndex === lastOfferCardIndex &&
+                    !!userState.profile?.id &&
+                    String(userState.profile?.id) !== sender_id
+                      ? {
+                          children: "Angebot annehmen",
+                          disabled: isPendingPostBookingAccept,
+                          loading: isPendingPostBookingAccept,
+                          onClick: handleClickAccept,
+                        }
+                      : null,
+                }}
+              />
+            );
+          }
+          if (role === "sender") {
+            return (
+              <SenderMessageItemChatTrip {...otherChatProps} key={chatIndex} />
+            );
+          }
+          return (
+            <RecipientMessageItemChatTrip {...otherChatProps} key={chatIndex} />
+          );
+        })}
       </div>
-    </div>
+    </RoomConversationContainerChatTrip>
   );
 };
