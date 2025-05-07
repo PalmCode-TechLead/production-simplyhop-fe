@@ -61,19 +61,18 @@ export const FilterFindTrip = () => {
   };
 
   const handleQueryOriginRoutes = async (input: string) => {
-    if (!input.length) {
-      dispatch({
-        type: FindTripActionEnum.SetFiltersData,
-        payload: {
-          ...state.filters,
-          origin: {
-            ...state.filters.origin,
-            items: [],
-          },
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          items: !input.length ? [] : state.filters.origin.items,
+          query: input,
         },
-      });
-      return;
-    }
+      },
+    });
+    if (!input.length) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -172,19 +171,18 @@ export const FilterFindTrip = () => {
   };
 
   const handleQueryDestinationRoutes = async (input: string) => {
-    if (!input.length) {
-      dispatch({
-        type: FindTripActionEnum.SetFiltersData,
-        payload: {
-          ...state.filters,
-          destination: {
-            ...state.filters.destination,
-            items: [],
-          },
+    dispatch({
+      type: FindTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          items: !input.length ? [] : state.filters.destination.items,
+          query: input,
         },
-      });
-      return;
-    }
+      },
+    });
+    if (!input.length) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -426,9 +424,11 @@ export const FilterFindTrip = () => {
               origin={{
                 pageSheet: {
                   selected: state.filters.origin.selected.item,
-                  items: !state.filters.origin.items.length
-                    ? state.filters.origin.saved_items
-                    : state.filters.origin.items,
+                  items:
+                    !state.filters.origin.items.length &&
+                    !state.filters.origin.query.length
+                      ? state.filters.origin.saved_items
+                      : state.filters.origin.items,
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),
@@ -443,10 +443,18 @@ export const FilterFindTrip = () => {
                   },
                 },
                 autocomplete: {
+                  emptyMessage:
+                    !state.filters.origin.saved_items.length &&
+                    !state.filters.origin.query.length
+                      ? dictionaries.filter.form.origin.autocomplete
+                          .emptyMessage.no_saved_place
+                      : dictionaries.filter.form.origin.autocomplete
+                          .emptyMessage.no_result,
                   selected: state.filters.origin.selected.item,
                   items: !state.filters.origin.items.length
                     ? state.filters.origin.saved_items
                     : state.filters.origin.items,
+
                   onQuery: (data: string) => handleQueryOriginRoutes(data),
                   onSelect: (data: { id: string; name: string }) =>
                     handleSelectOriginRoutes(data),
@@ -483,6 +491,13 @@ export const FilterFindTrip = () => {
                   },
                 },
                 autocomplete: {
+                  emptyMessage:
+                    !state.filters.destination.saved_items.length &&
+                    !state.filters.destination.query.length
+                      ? dictionaries.filter.form.destination.autocomplete
+                          .emptyMessage.no_saved_place
+                      : dictionaries.filter.form.destination.autocomplete
+                          .emptyMessage.no_result,
                   selected: state.filters.destination.selected.item,
                   items: !state.filters.destination.items.length
                     ? state.filters.destination.saved_items

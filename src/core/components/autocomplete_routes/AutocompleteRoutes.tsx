@@ -97,6 +97,7 @@ export const AutocompleteRoutes = ({
   );
 
   useOnClickOutside(containerRef as any, () => {
+    console.log("ini yang ketrigger atau ini");
     setOriginAutocomplete({
       query: origin.autocomplete.selected?.name ?? "",
       isFocus: false,
@@ -113,6 +114,7 @@ export const AutocompleteRoutes = ({
   const destinationFilteredItems = destination.autocomplete?.items ?? [];
 
   const handleChangeorigin = (data: { id: string; name: string }) => {
+    console.log("ini yang ketrigger");
     if (origin.autocomplete?.onSelect) {
       origin.autocomplete?.onSelect(data);
     }
@@ -172,7 +174,7 @@ export const AutocompleteRoutes = ({
                   setOriginAutocomplete({
                     ...originAutocomplete,
                     isFocus: true,
-                    isOpen: !!originFilteredItems.length,
+                    isOpen: true,
                   });
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
@@ -180,19 +182,10 @@ export const AutocompleteRoutes = ({
                     isOpen: false,
                   });
                 },
-                onBlur: () => {
-                  setOriginAutocomplete({
-                    ...originAutocomplete,
-                    isFocus: false,
-                  });
-                },
                 onChange: (event) => {
                   setOriginAutocomplete({
                     ...originAutocomplete,
                     query: event.target.value,
-                    isOpen: !!event.target.value.length
-                      ? originAutocomplete.isOpen
-                      : !!originFilteredItems.length,
                   });
                   if (origin.autocomplete?.debounceQuery) {
                     originDebounced(event.target.value);
@@ -224,7 +217,7 @@ export const AutocompleteRoutes = ({
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
                     isFocus: true,
-                    isOpen: !!destinationFilteredItems.length,
+                    isOpen: true,
                   });
                   setOriginAutocomplete({
                     ...originAutocomplete,
@@ -232,19 +225,10 @@ export const AutocompleteRoutes = ({
                     isOpen: false,
                   });
                 },
-                onBlur: () => {
-                  setDestinationAutocomplete({
-                    ...destinationAutocomplete,
-                    isFocus: false,
-                  });
-                },
                 onChange: (event) => {
                   setDestinationAutocomplete({
                     ...destinationAutocomplete,
                     query: event.target.value,
-                    isOpen: !!event.target.value.length
-                      ? destinationAutocomplete.isOpen
-                      : !!destinationFilteredItems.length,
                   });
                   if (destination.autocomplete?.debounceQuery) {
                     destinationDebounced(event.target.value);

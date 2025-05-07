@@ -18,6 +18,7 @@ const initialState: FindTripInitialStateType = {
         lat_lng: null,
       },
       items: [],
+      query: "",
       saved_items: [],
     },
     destination: {
@@ -28,6 +29,7 @@ const initialState: FindTripInitialStateType = {
         item: null,
         lat_lng: null,
       },
+      query: "",
       items: [],
       saved_items: [],
     },

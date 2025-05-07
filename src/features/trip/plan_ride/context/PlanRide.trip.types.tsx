@@ -37,6 +37,7 @@ export interface PlanRideTripFilters {
     page_sheet: {
       is_open: boolean;
     };
+    query: string;
     items: { id: string; name: string }[];
     saved_items: { id: string; name: string }[];
     selected: {
@@ -48,6 +49,7 @@ export interface PlanRideTripFilters {
     page_sheet: {
       is_open: boolean;
     };
+    query: string;
     items: { id: string; name: string }[];
     saved_items: { id: string; name: string }[];
     selected: {
