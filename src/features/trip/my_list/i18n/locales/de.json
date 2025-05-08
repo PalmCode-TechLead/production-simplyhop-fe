@@ -67,7 +67,7 @@
     "cta": {
       "back": {
         "children": "Zurück",
-        "href": "/"
+        "href": "/meine-fahrten"
       }
     },
     "share": {
