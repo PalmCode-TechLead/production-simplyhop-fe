@@ -74,7 +74,7 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
     <AdaptiveModal
       className={clsx(
         "!max-w-[100vw] lg:!max-w-[524px]",
-        "h-fit",
+        "h-[100vh] lg:h-fit",
         "!rounded-[0.625rem]",
         "overflow-auto",
         "!px-[0rem] !py-[0rem]"

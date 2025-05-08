@@ -15,11 +15,10 @@ export const fetchDeleteAuthDeactivateAccount = async (
 
     const cookies = new Cookies();
     const token = cookies.get("token");
-    const res = await axios.delete(url, {
+    const res = await axios.post(url, payload.body, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      params: payload.params,
     });
     return res.data;
   } catch (err) {

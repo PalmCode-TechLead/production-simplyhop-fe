@@ -10,11 +10,14 @@ import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
+import Cookies from "universal-cookie";
 export const DeactivateNotificationAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
   const { isLg } = useTailwindBreakpoint();
+  const router = useRouter();
   const isOpen = state.deactivate_notification.is_open;
   const handleClose = () => {
     dispatch({
@@ -24,6 +27,9 @@ export const DeactivateNotificationAccountUpdateSupport = () => {
         is_open: false,
       },
     });
+    const cookies = new Cookies();
+    cookies.remove("token", { path: "/" });
+    router.push(AppCollectionURL.public.home());
   };
 
   const handleClickGoToHomepage = () => {
@@ -34,6 +40,9 @@ export const DeactivateNotificationAccountUpdateSupport = () => {
         is_open: false,
       },
     });
+    const cookies = new Cookies();
+    cookies.remove("token", { path: "/" });
+    router.push(AppCollectionURL.public.home());
   };
   return (
     <AdaptiveModal

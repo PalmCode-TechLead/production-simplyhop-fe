@@ -22,7 +22,7 @@ export const useDeleteDeactivateAccount = () => {
     mutationKey: AccountUpdateSupportReactQueryKey.DeleteDeactivateAccount(),
     mutationFn: () => {
       const payload: DeleteAuthDeactivateAccountPayloadRequestInterface = {
-        params: {
+        body: {
           password: state.deactivate_confirmation.form.password.value,
         },
       };

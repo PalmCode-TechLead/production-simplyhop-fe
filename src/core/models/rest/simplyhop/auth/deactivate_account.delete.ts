@@ -6,9 +6,9 @@ export interface DeleteAuthDeactivateAccountRequestInterface
 }
 
 export interface DeleteAuthDeactivateAccountPayloadRequestInterface {
-  params: DeleteAuthDeactivateAccountParamsPayloadRequestInterface;
+  body: DeleteAuthDeactivateAccountBodyPayloadRequestInterface;
 }
-export interface DeleteAuthDeactivateAccountParamsPayloadRequestInterface {
+export interface DeleteAuthDeactivateAccountBodyPayloadRequestInterface {
   password: string;
 }
 

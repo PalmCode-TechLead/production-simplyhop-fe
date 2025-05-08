@@ -33,6 +33,13 @@ export const DeactivateAccountUpdateSupport = () => {
         is_open: false,
       },
     });
+    dispatch({
+      type: AccountUpdateSupportActionEnum.SetDeactivateConfirmationData,
+      payload: {
+        ...state.deactivate_confirmation,
+        is_open: true,
+      },
+    });
   };
   return (
     <AdaptiveModal
