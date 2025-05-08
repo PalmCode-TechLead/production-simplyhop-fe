@@ -7,6 +7,7 @@ import {
 import {
   MyListTripBookReducers,
   MyListTripDeleteRideNotificationReducers,
+  MyListTripDetailRideNotificationReducers,
   MyListTripFiltersReducers,
   MyListTripRideReducers,
   MyListTripShareRideNotificationReducers,
@@ -36,6 +37,9 @@ const initialState: MyListTripInitialStateType = {
     },
     detail: null,
   },
+  detail_ride_notification: {
+    is_open: false,
+  },
   delete_ride_notification: {
     is_open: false,
   },
@@ -63,6 +67,7 @@ const mainReducer = (
     filters,
     ride,
     book,
+    detail_ride_notification,
     delete_ride_notification,
     success_delete_ride_notification,
     share_ride_notification,
@@ -72,6 +77,10 @@ const mainReducer = (
   filters: MyListTripFiltersReducers(filters, action),
   ride: MyListTripRideReducers(ride, action),
   book: MyListTripBookReducers(book, action),
+  detail_ride_notification: MyListTripDetailRideNotificationReducers(
+    detail_ride_notification,
+    action
+  ),
   delete_ride_notification: MyListTripDeleteRideNotificationReducers(
     delete_ride_notification,
     action

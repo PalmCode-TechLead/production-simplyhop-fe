@@ -106,7 +106,11 @@ export const DeleteRideNotificationMyListTrip = () => {
             "w-full"
           )}
         >
-          <p className={clsx("text-[1rem] text-[#232323] font-semibold")}>
+          <p
+            className={clsx(
+              "text-[1rem] text-[#5B5B5B] font-normal text-center"
+            )}
+          >
             {dictionaries.delete_ride_notification.message}
           </p>
         </div>

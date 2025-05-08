@@ -26,11 +26,21 @@ export const RideDetailMyListTrip = () => {
 
   const filteredData = state.ride.detail;
 
+  React.useEffect(() => {
+    dispatch({
+      type: MyListTripActionEnum.SetDetailRideNotificationData,
+      payload: {
+        ...state.detail_ride_notification,
+        is_open: !!filteredData && !!rideId,
+      },
+    });
+  }, [filteredData, rideId]);
+
   if (!filteredData) {
     return null;
   }
 
-  const isOpen = !!rideId;
+  const isOpen = state.detail_ride_notification.is_open;
 
   const handleClose = () => {
     const params = new URLSearchParams(searchParams.toString()); // Ambil semua params
@@ -41,6 +51,13 @@ export const RideDetailMyListTrip = () => {
   };
 
   const handleClickDeleteRide = () => {
+    dispatch({
+      type: MyListTripActionEnum.SetDetailRideNotificationData,
+      payload: {
+        ...state.detail_ride_notification,
+        is_open: false,
+      },
+    });
     dispatch({
       type: MyListTripActionEnum.SetDeleteRideNotificationData,
       payload: {
@@ -145,7 +162,7 @@ export const RideDetailMyListTrip = () => {
               "px-[1rem] py-[1.5rem]",
               "bg-[white]",
               "text-[#C50707] text-[0.75rem] font-medium",
-              'cursor-pointer'
+              "cursor-pointer"
             )}
             onClick={handleClickDeleteRide}
           >

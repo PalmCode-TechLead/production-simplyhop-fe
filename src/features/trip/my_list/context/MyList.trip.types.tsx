@@ -20,6 +20,7 @@ export interface MyListTripInitialStateType {
   filters: MyListTripFilters;
   ride: MyListTripRide;
   book: MyListTripBook;
+  detail_ride_notification: MyListTripDetailRideNotification;
   delete_ride_notification: MyListTripDeleteRideNotification;
   success_delete_ride_notification: MyListTripSuccessDeleteRideNotification;
   share_ride_notification: MyListTripShareRideNotification;
@@ -54,6 +55,10 @@ export interface MyListTripBook {
   detail: (BookDetailCardMyListTripProps & { price: CarPriceItemProps }) | null;
 }
 
+export interface MyListTripDetailRideNotification {
+  is_open: boolean;
+}
+
 export interface MyListTripDeleteRideNotification {
   is_open: boolean;
 }
@@ -85,6 +90,9 @@ export enum MyListTripActionEnum {
   SetBookDataPaginationCurrent = "SetBookDataPaginationCurrent",
   SetBookDataPaginationLast = "SetBookDataPaginationLast",
 
+  // DetailRideNotification
+  SetDetailRideNotificationData = "SetDetailRideNotificationData",
+
   // DeleteRideNotification
   SetDeleteRideNotificationData = "SetDeleteRideNotificationData",
 
@@ -100,6 +108,7 @@ export type MyListTripActions =
   | MyListTripFiltersActions
   | MyListTripRideActions
   | MyListTripBookActions
+  | MyListTripDetailRideNotificationActions
   | MyListTripDeleteRideNotificationActions
   | MyListTripSuccessDeleteRideNotificationActions
   | MyListTripShareRideNotificationActions;
@@ -134,6 +143,14 @@ type MyListTripBookPayload = {
 
 export type MyListTripBookActions =
   ActionMap<MyListTripBookPayload>[keyof ActionMap<MyListTripBookPayload>];
+
+// DetailRideNotification
+type MyListTripDetailRideNotificationPayload = {
+  [MyListTripActionEnum.SetDetailRideNotificationData]: MyListTripDetailRideNotification;
+};
+
+export type MyListTripDetailRideNotificationActions =
+  ActionMap<MyListTripDetailRideNotificationPayload>[keyof ActionMap<MyListTripDetailRideNotificationPayload>];
 
 // DeleteRideNotification
 type MyListTripDeleteRideNotificationPayload = {

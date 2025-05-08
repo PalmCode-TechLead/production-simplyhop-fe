@@ -3,6 +3,7 @@ import {
   MyListTripActions,
   MyListTripBook,
   MyListTripDeleteRideNotification,
+  MyListTripDetailRideNotification,
   MyListTripFilters,
   MyListTripRide,
   MyListTripShareRideNotification,
@@ -93,6 +94,20 @@ export const MyListTripBookReducers = (
         },
       };
     }
+    default:
+      return state;
+  }
+};
+
+// DetailRideNotification
+export const MyListTripDetailRideNotificationReducers = (
+  state: MyListTripDetailRideNotification,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetDetailRideNotificationData:
+      return action.payload;
+
     default:
       return state;
   }

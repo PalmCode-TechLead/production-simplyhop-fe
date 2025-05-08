@@ -9,6 +9,7 @@ import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { PAGINATION } from "@/core/utils/pagination/contants";
 
 export const SuccessDeleteRideNotificationMyListTrip = () => {
   const router = useRouter();
@@ -17,6 +18,19 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
   const { isLg } = useTailwindBreakpoint();
   const isOpen = state.success_delete_ride_notification.is_open;
   const handleClose = () => {
+    dispatch({
+      type: MyListTripActionEnum.SetRideData,
+      payload: {
+        ...state.ride,
+        data: [],
+        pagination: {
+          ...state.ride.pagination,
+          current: PAGINATION.NUMBER,
+          last: null,
+        },
+        detail: null,
+      },
+    });
     dispatch({
       type: MyListTripActionEnum.SetSuccessDeleteRideNotificationData,
       payload: {
@@ -28,6 +42,19 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
   };
 
   const handleClickGoToHomepage = () => {
+    dispatch({
+      type: MyListTripActionEnum.SetRideData,
+      payload: {
+        ...state.ride,
+        data: [],
+        pagination: {
+          ...state.ride.pagination,
+          current: PAGINATION.NUMBER,
+          last: null,
+        },
+        detail: null,
+      },
+    });
     dispatch({
       type: MyListTripActionEnum.SetSuccessDeleteRideNotificationData,
       payload: {
