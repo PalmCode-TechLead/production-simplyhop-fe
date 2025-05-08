@@ -105,7 +105,10 @@ export const ListChatTrip = () => {
         ...state.room,
         message: {
           ...state.room.message,
-          items: [],
+          pagination: {
+            ...state.room.message.pagination,
+            current: 1,
+          },
         },
         chat: {
           ...state.room.chat,
