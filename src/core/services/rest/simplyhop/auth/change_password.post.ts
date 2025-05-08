@@ -5,7 +5,7 @@ import { PostAuthChangePasswordPayloadRequestInterface } from "@/core/models/res
 import Cookies from "universal-cookie";
 import axios from "@/core/utils/axios/functions/base";
 
-export const fetchPostAuthChangePassword = async (
+export const  fetchPostAuthChangePassword = async (
   payload: PostAuthChangePasswordPayloadRequestInterface
 ) => {
   try {
