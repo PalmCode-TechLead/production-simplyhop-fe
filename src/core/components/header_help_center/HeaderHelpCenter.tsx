@@ -21,7 +21,7 @@ export const HeaderHelpCenter = ({ title = "" }: HeaderHelpCenterProps) => {
       <Link href="" onClick={() => router.back()}>
         <SVGIcon
           name="ArrowLeft"
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
         />
       </Link>
       <h1 className={clsx("text-[1.5rem] text-[#292929] font-bold")}>

@@ -135,7 +135,7 @@ export const BookDetailCardMyListTrip = ({
             <Link href={message.link}>
               <SVGIcon
                 name="MessageSquare"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
               />
             </Link>
             <DriverProfileLabel

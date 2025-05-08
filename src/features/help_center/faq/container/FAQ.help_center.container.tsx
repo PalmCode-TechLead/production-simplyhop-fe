@@ -25,7 +25,7 @@ export const FAQHelpCenterContainer = () => {
         {dictionaries.pre.map((preItem, preIndex) => (
           <p
             key={preIndex}
-            className={clsx("text-[#767676] text-[0.875rem] font-normal")}
+            className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}
           >
             {preItem}
           </p>

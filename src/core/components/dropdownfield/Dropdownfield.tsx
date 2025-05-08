@@ -109,7 +109,7 @@ export const Dropdownfield = ({
             >
               <SVGIcon
                 name={isOpen ? "ChevronUp" : "ChevronDown"}
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
               />
             </div>
 

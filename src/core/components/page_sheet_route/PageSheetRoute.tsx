@@ -78,7 +78,7 @@ export const PageSheetRoute = ({
           >
             <SVGIcon
               name="X"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
             />
           </button>
           <h2 className={clsx("text-[1.125rem] text-[#292929] font-bold")}>

@@ -89,10 +89,10 @@ export const FilterDetailTrip = () => {
             >
               <SVGIcon
                 name="Calendar"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
               />
               <span
-                className={clsx("text-[#767676] text-[0.875rem] font-normal")}
+                className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}
               >
                 {dayjs(state.filters.date.selected).format("DD.MM.YY")}
               </span>
@@ -110,10 +110,10 @@ export const FilterDetailTrip = () => {
             >
               <SVGIcon
                 name="User2"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
               />
               <span
-                className={clsx("text-[#767676] text-[0.875rem] font-normal")}
+                className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}
               >
                 {state.filters.passenger.value.reduce((acc, item) => {
                   return acc + item.value;

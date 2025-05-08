@@ -128,7 +128,7 @@ export const FormChatTrip = () => {
           "px-[0.75rem] py-[0.625rem]",
           "bg-[#05912A] disabled:bg-[#F6F6F6]",
           "rounded-[0.375rem]",
-          "text-[0.875rem] text-[white] disabled:text-[#767676] font-normal"
+          "text-[0.875rem] text-[white] disabled:text-[#5B5B5B] font-normal"
         )}
         type="submit"
         disabled={isDisabledSendChat}
@@ -142,7 +142,7 @@ export const FormChatTrip = () => {
             name="SendHorizonal"
             className={clsx(
               "w-[1rem] h-[1rem]",
-              isDisabledSendChat ? "text-[#767676]" : "text-[white]"
+              isDisabledSendChat ? "text-[#5B5B5B]" : "text-[white]"
             )}
           />
         )}

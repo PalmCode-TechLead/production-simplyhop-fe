@@ -69,7 +69,7 @@ export const Passwordfield = ({
         >
           <SVGIcon
             name={type === "password" ? "EyeOff" : "Eye"}
-            className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+            className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
           />
         </button>
 

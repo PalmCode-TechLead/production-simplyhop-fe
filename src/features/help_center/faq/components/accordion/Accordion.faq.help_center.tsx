@@ -51,7 +51,7 @@ export const AccordionFAQHelpCenter = ({
           opacity: isOpen ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={clsx("text-[#767676] text-[0.875rem] font-normal")}
+        className={clsx("text-[#5B5B5B] text-[0.875rem] font-normal")}
       >
         {answer}
       </motion.div>

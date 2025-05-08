@@ -45,7 +45,7 @@ export const TopNavigationMobileMenu = () => {
       >
         <SVGIcon
           name={isOpen ? "X" : "Menu"}
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
         />
         {!isOpen && state.chat.count > 0 && (
           <div

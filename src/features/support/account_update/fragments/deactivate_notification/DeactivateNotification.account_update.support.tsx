@@ -58,7 +58,7 @@ export const DeactivateNotificationAccountUpdateSupport = () => {
       >
         <SVGIcon
           name="X"
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
         />
       </button>
       <div

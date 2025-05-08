@@ -87,7 +87,7 @@ export const RideBookingListItem = ({
           </span>
           <SVGIcon
             name="ArrowRight"
-            className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+            className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
           />
           <span
             className={clsx(
@@ -120,10 +120,10 @@ export const RideBookingListItem = ({
             >
               <SVGIcon
                 name="User2"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
               />
               <span
-                className={clsx("text-[0.75rem] text-[#767676] font-normal")}
+                className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}
               >
                 {passenger.adult}
               </span>
@@ -137,10 +137,10 @@ export const RideBookingListItem = ({
             >
               <SVGIcon
                 name="Baby"
-                className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+                className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
               />
               <span
-                className={clsx("text-[0.75rem] text-[#767676] font-normal")}
+                className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}
               >
                 {passenger.children}
               </span>
@@ -155,9 +155,9 @@ export const RideBookingListItem = ({
           >
             <SVGIcon
               name="BadgeEuro"
-              className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+              className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
             />
-            <span className={clsx("text-[0.75rem] text-[#767676] font-normal")}>
+            <span className={clsx("text-[0.75rem] text-[#5B5B5B] font-normal")}>
               {price.value}
             </span>
           </div>

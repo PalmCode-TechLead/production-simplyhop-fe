@@ -61,7 +61,7 @@ export const FooterApp = () => {
                 >
                   <SVGIcon
                     name={item.icon.name as SVGIconProps["name"]}
-                    className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+                    className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
                   />
                 </Link>
               )
@@ -112,7 +112,7 @@ export const FooterApp = () => {
                     </span>
                     <span
                       className={clsx(
-                        "text-[#767676] text-[0.875rem] font-normal"
+                        "text-[#5B5B5B] text-[0.875rem] font-normal"
                       )}
                       dangerouslySetInnerHTML={{ __html: item.description }}
                     />
@@ -150,7 +150,7 @@ export const FooterApp = () => {
                       key={itemIndex}
                       href={link}
                       className={clsx(
-                        "text-[#767676] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
+                        "text-[#5B5B5B] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
                       )}
                     >
                       {item.name}
@@ -181,7 +181,7 @@ export const FooterApp = () => {
                   key={itemIndex}
                   href={item.href}
                   className={clsx(
-                    "text-[#767676] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
+                    "text-[#5B5B5B] hover:text-green-500 text-[0.875rem] font-normal hover:font-medium"
                   )}
                 >
                   {item.name}
@@ -200,9 +200,9 @@ export const FooterApp = () => {
         >
           <SVGIcon
             name="Copyright"
-            className={clsx("w-[1rem] h-[1rem]", "text-[#767676]")}
+            className={clsx("w-[1rem] h-[1rem]", "text-[#5B5B5B]")}
           />
-          <span className={clsx("text-[#979797] text-[1rem] font-normal")}>
+          <span className={clsx("text-[#767676] text-[1rem] font-normal")}>
             {dictionaries.footer.bottom.copyright}
           </span>
         </div>

@@ -22,7 +22,7 @@ export const UmwegBadge = ({ label = "", icon }: UmwegBadgeProps) => {
         {...(icon as { name: SVGIconProps["name"] })}
         className={clsx("w-[1rem] h-[1rem]", icon?.className)}
       />
-      <p className={clsx("text-[0.75rem] font-medium", "text-[#767676]")}>
+      <p className={clsx("text-[0.75rem] font-medium", "text-[#5B5B5B]")}>
         {label}
       </p>
     </div>

@@ -27,7 +27,7 @@ export const RoomHeaderChatTrip = ({
       <Link href={href} className={clsx("block lg:hidden")}>
         <SVGIcon
           name="ArrowLeft"
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
         />
       </Link>
       <Avatar {...avatar} className={clsx("w-[2.25rem] h-[2.25rem]")} />
