@@ -116,6 +116,18 @@ export const ChatTripRoomReducers = (
         },
       };
     }
+    case ChatTripActionEnum.SetRoomMessagePaginationCounter: {
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          pagination: {
+            ...state.message.pagination,
+            counter: action.payload,
+          },
+        },
+      };
+    }
 
     default:
       return state;

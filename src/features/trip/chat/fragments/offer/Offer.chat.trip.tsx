@@ -113,6 +113,10 @@ export const OfferChatTrip = () => {
       payload: 1,
     });
     dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCounter,
+      payload: state.room.message.pagination.counter + 1,
+    });
+    dispatch({
       type: ChatTripActionEnum.SetOfferData,
       payload: {
         ...state.offer,

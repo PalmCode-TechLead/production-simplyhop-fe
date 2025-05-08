@@ -42,6 +42,7 @@ const initialState: ChatTripInitialStateType = {
         current: PAGINATION.NUMBER,
         last: null,
         is_refetch: false,
+        counter: 0,
       },
     },
 

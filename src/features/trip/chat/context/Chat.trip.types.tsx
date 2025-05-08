@@ -72,6 +72,7 @@ export interface ChatTripRoom {
       current: number;
       last: null | number;
       is_refetch: boolean;
+      counter: number;
     };
   };
   chat: {
@@ -112,6 +113,7 @@ export enum ChatTripActionEnum {
   SetRoomMessagePaginationCurrent = "SetRoomMessagePaginationCurrent",
   SetRoomMessagePaginationLast = "SetRoomMessagePaginationLast",
   SetRoomMessagePaginationIsRefetch = "SetRoomMessagePaginationIsRefetch",
+  SetRoomMessagePaginationCounter = "SetRoomMessagePaginationCounter",
   // Offer
   SetOfferData = "SetOfferData",
 }
@@ -142,6 +144,7 @@ type ChatTripRoomPayload = {
   [ChatTripActionEnum.SetRoomMessagePaginationCurrent]: ChatTripRoom["message"]["pagination"]["current"];
   [ChatTripActionEnum.SetRoomMessagePaginationLast]: ChatTripRoom["message"]["pagination"]["last"];
   [ChatTripActionEnum.SetRoomMessagePaginationIsRefetch]: ChatTripRoom["message"]["pagination"]["is_refetch"];
+  [ChatTripActionEnum.SetRoomMessagePaginationCounter]: ChatTripRoom["message"]["pagination"]["counter"];
 };
 
 export type ChatTripRoomActions =

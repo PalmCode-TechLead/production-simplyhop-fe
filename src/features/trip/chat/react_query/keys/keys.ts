@@ -7,7 +7,7 @@ import { GetMessagesListByRoomPayloadRequestInterface } from "@/core/models/rest
 
 export const ChatTripReactQueryKey = {
   GetMessagesListByRoom: (
-    payload?: GetMessagesListByRoomPayloadRequestInterface
+    payload?: GetMessagesListByRoomPayloadRequestInterface & { counter: number }
   ) => {
     return ["ChatTripReactQueryKey.GetMessagesList", [payload] as const];
   },

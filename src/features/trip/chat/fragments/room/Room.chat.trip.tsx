@@ -56,18 +56,27 @@ export const RoomChatTrip = () => {
       include: "ride.vehicle.brand,user",
     },
   };
+  const counterRef = React.useRef(state.room.message.pagination.counter);
 
   const conversationData = state.room.message.items;
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      dispatch({
-        type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
-        payload: 1,
-      });
-    }, 10 * 1000);
+    if (!!bookingId) {
+      const interval = setInterval(() => {
+        counterRef.current += 1;
 
-    return () => clearInterval(interval);
-  }, []);
+        dispatch({
+          type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
+          payload: 1,
+        });
+        dispatch({
+          type: ChatTripActionEnum.SetRoomMessagePaginationCounter,
+          payload: counterRef.current,
+        });
+      }, 10 * 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [bookingId]);
 
   if (
     isLoading &&
@@ -120,6 +129,10 @@ export const RoomChatTrip = () => {
       type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
       payload: 1,
     });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCounter,
+      payload: state.room.message.pagination.counter + 1,
+    });
   };
 
   const handleClickCancel = async () => {
@@ -133,6 +146,10 @@ export const RoomChatTrip = () => {
     dispatch({
       type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
       payload: 1,
+    });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCounter,
+      payload: state.room.message.pagination.counter + 1,
     });
   };
 
@@ -156,6 +173,10 @@ export const RoomChatTrip = () => {
     dispatch({
       type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
       payload: 1,
+    });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCounter,
+      payload: state.room.message.pagination.counter + 1,
     });
   };
 
