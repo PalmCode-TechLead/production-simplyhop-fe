@@ -12,9 +12,13 @@ import { useDeleteDeactivateAccount } from "../../react_query/hooks/useDeleteDea
 import { MoonLoader } from "@/core/components/moon_loader";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const DeactivateConfirmationAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
+  const router = useRouter();
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
   const { isLg } = useTailwindBreakpoint();
   const {
@@ -66,6 +70,9 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
         is_open: true,
       },
     });
+    const cookies = new Cookies();
+    cookies.remove("token", { path: "/" });
+    router.push(AppCollectionURL.public.home());
   };
 
   const isDeactivateDisabled = isPendingDeleteDeactivateAccount;
