@@ -54,7 +54,7 @@ export const FormChatTrip = () => {
 
   const handleClickSend = async () => {
     const res = await postMessagesChat();
-    queryClient.invalidateQueries();
+
     if (!res) return;
     dispatch({
       type: ChatTripActionEnum.SetRoomData,
