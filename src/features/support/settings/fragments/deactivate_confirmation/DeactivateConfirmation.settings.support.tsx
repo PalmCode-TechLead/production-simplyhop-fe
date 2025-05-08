@@ -10,11 +10,17 @@ import SVGIcon from "@/core/icons";
 import { Passwordfield } from "@/core/components/passwordfield";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
+import { useDeleteDeactivateAccount } from "../../react_query/hooks";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const DeactivateConfirmationSettingsSupport = () => {
   const dictionaries = getDictionaries();
+  const router = useRouter();
   const { state, dispatch } = React.useContext(SettingsSupportContext);
   const { isLg } = useTailwindBreakpoint();
+  const { mutateAsync: deleteDeactivateAccount } = useDeleteDeactivateAccount();
   const isOpen = state.deactivate_confirmation.is_open;
   const handleClose = () => {
     dispatch({
@@ -42,7 +48,9 @@ export const DeactivateConfirmationSettingsSupport = () => {
     });
   };
 
-  const handleClickDeactivateConfirmation = () => {
+  const handleClickDeactivateConfirmation = async () => {
+    const res = await deleteDeactivateAccount();
+    if (!res) return;
     dispatch({
       type: SettingsSupportActionEnum.SetDeactivateConfirmationData,
       payload: {
@@ -50,13 +58,9 @@ export const DeactivateConfirmationSettingsSupport = () => {
         is_open: false,
       },
     });
-    dispatch({
-      type: SettingsSupportActionEnum.SetDeactivateNotificationData,
-      payload: {
-        ...state.deactivate_notification,
-        is_open: true,
-      },
-    });
+    const cookies = new Cookies();
+    cookies.remove("token", { path: "/" });
+    router.push(AppCollectionURL.public.home());
   };
   return (
     <AdaptiveModal
