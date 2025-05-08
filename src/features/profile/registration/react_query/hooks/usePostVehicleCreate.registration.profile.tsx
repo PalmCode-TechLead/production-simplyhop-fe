@@ -39,7 +39,7 @@ export const usePostVehicleCreateMy = () => {
         plate_license:
           state.vehicle_information.general.form.license_plate.value,
         numb_free_seats: !state.vehicle_information.capacity.passenger_seats
-          .form.available_seat.selected
+          .form.available_seat.selected?.id
           ? 0
           : Number(
               state.vehicle_information.capacity.passenger_seats.form
