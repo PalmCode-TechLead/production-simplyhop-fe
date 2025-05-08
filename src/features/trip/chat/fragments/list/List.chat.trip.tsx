@@ -105,6 +105,7 @@ export const ListChatTrip = () => {
         ...state.room,
         message: {
           ...state.room.message,
+          items: String(id) === data.id ? state.room.message.items : [],
           pagination: {
             ...state.room.message.pagination,
             current: 1,
