@@ -66,6 +66,7 @@ export interface GetRidesSearchSuccessResponseInterface {
     departure_time: string; // "2025-04-22T10:00:00.000000Z";
     vehicle: Vehicle;
     user: User;
+    url: string | null;
   }[];
 
   redirect: null;

@@ -9,6 +9,7 @@ import {
   MyListTripDeleteRideNotificationReducers,
   MyListTripFiltersReducers,
   MyListTripRideReducers,
+  MyListTripShareRideNotificationReducers,
   MyListTripSuccessDeleteRideNotificationReducers,
 } from "./MyList.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
@@ -41,6 +42,12 @@ const initialState: MyListTripInitialStateType = {
   success_delete_ride_notification: {
     is_open: false,
   },
+  share_ride_notification: {
+    is_open: false,
+    share: {
+      link: "",
+    },
+  },
 };
 
 const MyListTripContext = createContext<{
@@ -58,6 +65,7 @@ const mainReducer = (
     book,
     delete_ride_notification,
     success_delete_ride_notification,
+    share_ride_notification,
   }: MyListTripInitialStateType,
   action: MyListTripActions
 ) => ({
@@ -73,6 +81,10 @@ const mainReducer = (
       success_delete_ride_notification,
       action
     ),
+  share_ride_notification: MyListTripShareRideNotificationReducers(
+    share_ride_notification,
+    action
+  ),
 });
 
 const MyListTripProvider = (props: { children: React.ReactNode }) => {

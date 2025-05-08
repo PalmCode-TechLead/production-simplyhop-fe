@@ -43,6 +43,7 @@ import {
   Camera,
   Pencil,
   Timer,
+  Forward,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -106,6 +107,7 @@ export const svgMap = {
   Camera,
   Pencil,
   Timer,
+  Forward,
   Facebook,
   Google,
   Whatsapp,

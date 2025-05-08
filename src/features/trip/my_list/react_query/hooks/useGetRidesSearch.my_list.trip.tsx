@@ -18,6 +18,7 @@ import { UserContext } from "@/core/modules/app/context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { ENVIRONMENTS } from "@/core/environments";
 
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
@@ -135,6 +136,10 @@ export const useGetRidesSearch = () => {
             detail: {
               children: "Siehe Details",
               href: AppCollectionURL.private.myList(urlSearchParams.toString()),
+            },
+            share: {
+              onClick: () => {},
+              href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
             },
           },
         };

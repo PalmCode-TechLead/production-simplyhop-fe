@@ -52,6 +52,20 @@ export const RideMyListTrip = () => {
   };
   const isEndReached =
     state.ride.pagination.last === state.ride.pagination.current;
+
+  const handleClickShare = (data: { link: string }) => {
+    dispatch({
+      type: MyListTripActionEnum.SetShareRideNotificationData,
+      payload: {
+        ...state.share_ride_notification,
+        is_open: true,
+        share: {
+          ...state.share_ride_notification.share,
+          link: data.link,
+        },
+      },
+    });
+  };
   return (
     <InfiniteScrollWrapper
       loader={<ListLoader message={dictionaries.list.loading.message} />}
@@ -66,7 +80,23 @@ export const RideMyListTrip = () => {
         )}
       >
         {state.ride.data.map((item, itemIndex) => (
-          <RideCardMyListTrip key={itemIndex} {...item} />
+          <RideCardMyListTrip
+            key={itemIndex}
+            {...item}
+            cta={{
+              detail: {
+                children: item.cta?.detail.children ?? "",
+                href: item.cta?.detail.href ?? "",
+              },
+              share: {
+                href: item.cta?.share.href ?? "",
+                onClick: () =>
+                  handleClickShare({
+                    link: item.cta?.share.href ?? "",
+                  }),
+              },
+            }}
+          />
         ))}
       </div>
     </InfiniteScrollWrapper>

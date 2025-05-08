@@ -5,6 +5,7 @@ import {
   MyListTripDeleteRideNotification,
   MyListTripFilters,
   MyListTripRide,
+  MyListTripShareRideNotification,
   MyListTripSuccessDeleteRideNotification,
 } from "./MyList.trip.types";
 
@@ -118,6 +119,20 @@ export const MyListTripSuccessDeleteRideNotificationReducers = (
 ) => {
   switch (action.type) {
     case MyListTripActionEnum.SetSuccessDeleteRideNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// ShareRideNotification
+export const MyListTripShareRideNotificationReducers = (
+  state: MyListTripShareRideNotification,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetShareRideNotificationData:
       return action.payload;
 
     default:

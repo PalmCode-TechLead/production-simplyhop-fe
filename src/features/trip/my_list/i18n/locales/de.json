@@ -61,5 +61,60 @@
         "children": "Zurück"
       }
     }
+  },
+  "share_ride_notification": {
+    "title": "Fahrt teilen",
+    "cta": {
+      "back": {
+        "children": "Zurück",
+        "href": "/"
+      }
+    },
+    "share": {
+      "label": "Teilen auf: ",
+      "example_link": "simplyhop.com/trip/2139rfkdsfns/",
+      "items": [
+        {
+          "id": "whatsapp",
+          "icon": {
+            "name": "Whatsapp"
+          },
+          "href": "https://api.whatsapp.com/send/?text={{link}}&type=custom_url&app_absent=0"
+        },
+        {
+          "id": "facebook",
+          "icon": {
+            "name": "Facebook2"
+          },
+          "href": "https://www.facebook.com/sharer/sharer.php?u={{link}}"
+        },
+        {
+          "id": "twitter",
+          "icon": {
+            "name": "Twitter"
+          },
+          "href": "https://twitter.com/intent/tweet?url={{link}}"
+        },
+        {
+          "id": "telegram",
+          "icon": {
+            "name": "Telegram"
+          },
+          "href": "https://telegram.me/share/url?url={{link}}"
+        },
+        {
+          "id": "thread",
+          "icon": {
+            "name": "Thread"
+          },
+          "href": "https://threads.net/intent/post?text={{link}}"
+        }
+      ],
+      "cta": {
+        "copy": {
+          "children": "Link kopieren"
+        }
+      }
+    }
   }
 }

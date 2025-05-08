@@ -22,6 +22,7 @@ export interface MyListTripInitialStateType {
   book: MyListTripBook;
   delete_ride_notification: MyListTripDeleteRideNotification;
   success_delete_ride_notification: MyListTripSuccessDeleteRideNotification;
+  share_ride_notification: MyListTripShareRideNotification;
 }
 
 // State Collection Types consist of:
@@ -61,6 +62,13 @@ export interface MyListTripSuccessDeleteRideNotification {
   is_open: boolean;
 }
 
+export interface MyListTripShareRideNotification {
+  is_open: boolean;
+  share: {
+    link: string;
+  };
+}
+
 export enum MyListTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
@@ -82,6 +90,9 @@ export enum MyListTripActionEnum {
 
   // SuccessDeleteRideNotification
   SetSuccessDeleteRideNotificationData = "SetSuccessDeleteRideNotificationData",
+
+  // ShareRideNotification
+  SetShareRideNotificationData = "SetShareRideNotificationData",
 }
 
 // Action Collection Types
@@ -90,7 +101,8 @@ export type MyListTripActions =
   | MyListTripRideActions
   | MyListTripBookActions
   | MyListTripDeleteRideNotificationActions
-  | MyListTripSuccessDeleteRideNotificationActions;
+  | MyListTripSuccessDeleteRideNotificationActions
+  | MyListTripShareRideNotificationActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -138,3 +150,11 @@ type MyListTripSuccessDeleteRideNotificationPayload = {
 
 export type MyListTripSuccessDeleteRideNotificationActions =
   ActionMap<MyListTripSuccessDeleteRideNotificationPayload>[keyof ActionMap<MyListTripSuccessDeleteRideNotificationPayload>];
+
+// ShareRideNotification
+type MyListTripShareRideNotificationPayload = {
+  [MyListTripActionEnum.SetShareRideNotificationData]: MyListTripShareRideNotification;
+};
+
+export type MyListTripShareRideNotificationActions =
+  ActionMap<MyListTripShareRideNotificationPayload>[keyof ActionMap<MyListTripShareRideNotificationPayload>];

@@ -27,6 +27,7 @@ import {
 } from "@/core/components/driver_profile_label";
 import Link from "next/link";
 import { DepartureDateItem } from "@/core/components/departure_date_item";
+import SVGIcon from "@/core/icons";
 
 export interface RideCardMyListTripProps {
   id?: string;
@@ -52,6 +53,10 @@ export interface RideCardMyListTripProps {
     detail: {
       children: React.ReactNode;
       href: string;
+    };
+    share: {
+      href: string;
+      onClick: () => void;
     };
   };
 }
@@ -109,6 +114,10 @@ export const RideCardMyListTrip = ({
     detail: {
       children: "Siehe Details",
       href: "",
+    },
+    share: {
+      href: "",
+      onClick: () => {},
     },
   },
 }: RideCardMyListTripProps) => {
@@ -184,11 +193,32 @@ export const RideCardMyListTrip = ({
 
         {/* cta */}
 
-        <Link href={cta.detail.href} className={clsx("w-full")}>
-          <Button className={clsx("!px-[0.5rem] !py-[0.5rem]")}>
-            {cta.detail.children}
-          </Button>
-        </Link>
+        <div
+          className={clsx(
+            "grid grid-flow-col items-start content-start justify-items-end justify-end gap-[1rem]"
+          )}
+        >
+          <button
+            className={clsx(
+              "flex items-center justify-center",
+              "rounded-[50%]",
+              "w-[2rem] h-[2rem]",
+              "bg-[#F6F6F6]",
+              "cursor-pointer"
+            )}
+            onClick={cta.share.onClick}
+          >
+            <SVGIcon
+              name="Forward"
+              className={clsx("min-w-[22px] min-wh-[22px]", "text-[#767676]")}
+            />
+          </button>
+          <Link href={cta.detail.href} className={clsx("w-full")}>
+            <Button className={clsx("!px-[0.5rem] !py-[0.5rem]")}>
+              {cta.detail.children}
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* action */}
