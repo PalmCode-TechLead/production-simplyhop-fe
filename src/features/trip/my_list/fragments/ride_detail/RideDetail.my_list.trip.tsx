@@ -9,7 +9,7 @@ import SVGIcon from "@/core/icons";
 import { getDictionaries } from "../../i18n";
 import { CarPriceItem } from "@/core/components/car_price_item";
 import { RideBookingListItem } from "@/core/components/ride_booking_list_item";
-import { MyListTripContext } from "../../context";
+import { MyListTripActionEnum, MyListTripContext } from "../../context";
 import { useGetRidesId } from "../../react_query/hooks";
 import { RideDetailCardMyListTrip } from "../../components/ride_detail_card";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
@@ -21,7 +21,7 @@ export const RideDetailMyListTrip = () => {
   const rideId = searchParams.get("ride_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
-  const { state } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(MyListTripContext);
   useGetRidesId();
 
   const filteredData = state.ride.detail;
@@ -37,6 +37,16 @@ export const RideDetailMyListTrip = () => {
     params.delete("ride_id");
     router.push(AppCollectionURL.private.myList(params.toString()), {
       scroll: false,
+    });
+  };
+
+  const handleClickDeleteRide = () => {
+    dispatch({
+      type: MyListTripActionEnum.SetDeleteRideNotificationData,
+      payload: {
+        ...state.delete_ride_notification,
+        is_open: true,
+      },
     });
   };
 
@@ -127,6 +137,20 @@ export const RideDetailMyListTrip = () => {
           >
             <CarPriceItem {...filteredData.price?.initial} />
           </div>
+
+          <button
+            className={clsx(
+              "grid grid-cols-1 place-content-center place-items-center",
+              "w-full",
+              "px-[1rem] py-[1.5rem]",
+              "bg-[white]",
+              "text-[#C50707] text-[0.75rem] font-medium",
+              'cursor-pointer'
+            )}
+            onClick={handleClickDeleteRide}
+          >
+            {"Fahrt löschen"}
+          </button>
         </AdaptiveModalContent>
       </div>
     </AdaptiveModal>

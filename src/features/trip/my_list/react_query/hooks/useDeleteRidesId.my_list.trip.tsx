@@ -8,13 +8,14 @@ import {
 } from "@/core/models/rest/simplyhop/rides";
 import { fetchDeleteRidesId } from "@/core/services/rest/simplyhop/rides";
 import { GlobalActionEnum, GlobalContext } from "@/core/modules/app/context";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
 export const useDeleteRidesId = () => {
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
-  const { id } = useParams();
+  const searchParams = useSearchParams();
+  const id = searchParams.get("ride_id");
 
   const payload: DeleteRidesIdPayloadRequestInterface = {
     path: {

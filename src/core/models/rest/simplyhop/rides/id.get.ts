@@ -56,6 +56,7 @@ export interface GetRidesIdSuccessResponseInterface {
     vehicle: Vehicle;
     user: User;
     bookings: Booking[];
+    url: string | null;
   };
 
   redirect: null;

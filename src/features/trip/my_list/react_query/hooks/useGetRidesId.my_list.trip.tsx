@@ -16,6 +16,7 @@ import dayjs from "dayjs";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { ENVIRONMENTS } from "@/core/environments";
 
 export const useGetRidesId = () => {
   const searchParams = useSearchParams();
@@ -133,6 +134,10 @@ export const useGetRidesId = () => {
                 href: AppCollectionURL.private.myList(
                   urlSearchParams.toString()
                 ),
+              },
+              share: {
+                onClick: () => {},
+                href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
               },
             },
 
