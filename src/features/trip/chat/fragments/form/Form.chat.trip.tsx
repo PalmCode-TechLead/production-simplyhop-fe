@@ -6,7 +6,6 @@ import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import { ChatField } from "@/core/components/chatfield";
 import { getDictionaries } from "../../i18n";
 import { usePostMessagesChat } from "../../react_query/hooks";
-import { queryClient } from "@/core/utils/react_query";
 import { MoonLoader } from "@/core/components/moon_loader";
 
 export const FormChatTrip = () => {
