@@ -63,13 +63,6 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
         is_open: false,
       },
     });
-    dispatch({
-      type: AccountUpdateSupportActionEnum.SetDeactivateNotificationData,
-      payload: {
-        ...state.deactivate_notification,
-        is_open: true,
-      },
-    });
     const cookies = new Cookies();
     cookies.remove("token", { path: "/" });
     router.push(AppCollectionURL.public.home());
