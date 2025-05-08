@@ -11,6 +11,7 @@ import {
   GetRidesSearchPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { SVGIconProps } from "@/core/icons";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -20,6 +21,8 @@ import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
+
+dayjs.extend(utc)
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -321,7 +324,7 @@ export const useGetRideSearch = () => {
               place: !item.start_name ? "-" : item.start_name,
               time: !item.departure_time
                 ? "-"
-                : dayjs(item.departure_time).format("HH.mm [Uhr]"),
+                : dayjs.utc(item.departure_time).format("HH.mm [Uhr]"),
             },
             travelTime: {
               time: !item.eta ? "-" : setDurationTime(item.eta),
@@ -343,7 +346,7 @@ export const useGetRideSearch = () => {
                 !item.eta || !item.departure_time
                   ? "-"
                   : `${setArrivalTime(
-                      dayjs(item.departure_time).format("HH:mm"),
+                      dayjs.utc(item.departure_time).format("HH:mm"),
                       item.eta
                     )} Uhr`,
             },

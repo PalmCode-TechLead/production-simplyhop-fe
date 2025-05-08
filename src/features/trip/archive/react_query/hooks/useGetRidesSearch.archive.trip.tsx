@@ -13,11 +13,14 @@ import {
 import { useSearchParams } from "next/navigation";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { UserContext } from "@/core/modules/app/context";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
+
+dayjs.extend(utc);
 
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
@@ -98,19 +101,19 @@ export const useGetRidesSearch = () => {
               label: "Datum",
               date: !item.departure_time
                 ? "-"
-                : dayjs(item.departure_time).format("DD.MM.YY"),
+                : dayjs.utc(item.departure_time).format("DD.MM.YY"),
             },
             startTime: {
               label: "Startzeit",
               time: !item.departure_time
                 ? "-"
-                : dayjs(item.departure_time).format("HH.mm [Uhr]"),
+                : dayjs.utc(item.departure_time).format("HH.mm [Uhr]"),
             },
             departure: {
               place: !item.start_name ? "-" : item.start_name,
               time: !item.departure_time
                 ? "-"
-                : dayjs(item.departure_time).format("HH.mm [Uhr]"),
+                : dayjs.utc(item.departure_time).format("HH.mm [Uhr]"),
             },
             travelTime: {
               time: !item.eta ? "-" : setDurationTime(item.eta),
@@ -120,7 +123,7 @@ export const useGetRidesSearch = () => {
               time: !item.eta
                 ? "-"
                 : `${setArrivalTime(
-                    dayjs(item.departure_time).format("HH:mm"),
+                    dayjs.utc(item.departure_time).format("HH:mm"),
                     item.eta
                   )} Uhr`,
             },
