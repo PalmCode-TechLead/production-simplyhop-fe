@@ -105,8 +105,8 @@ export const TopNavigationMobileMenu = () => {
                       : pathname.includes(menu.id)
                       ? "text-green-500"
                       : menu.id === "mitfahrt-anbieten"
-                      ? "text-neutral-300 hover:text-[#333FFF]"
-                      : "text-neutral-300 hover:text-green-500",
+                      ? "text-[#5B5B5B] hover:text-[#333FFF]"
+                      : "text-[#5B5B5B] hover:text-green-500",
                     "text-[1rem] font-semibold text-inter"
                   )}
                 >
