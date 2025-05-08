@@ -91,11 +91,11 @@ export const useGetMessagesListByRoom = () => {
           time: formatChatTime(item.created_at),
           name: isPassenger
             ? formatDisplayName({
-                first_name: item.passenger?.last_name,
+                first_name: item.passenger?.first_name,
                 email: item.passenger?.email,
               })
             : formatDisplayName({
-                first_name: item.driver?.last_name,
+                first_name: item.driver?.first_name,
                 email: item.driver?.email,
               }),
           avatar: {
