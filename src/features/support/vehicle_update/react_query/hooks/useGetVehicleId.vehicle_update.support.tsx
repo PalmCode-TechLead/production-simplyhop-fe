@@ -121,12 +121,15 @@ export const useGetVehicleId = () => {
                 available_car_seat: {
                   ...state.vehicle_information.capacity.passenger_seats.form
                     .available_car_seat,
-                  selected: !data.data.numb_of_childseats
-                    ? null
-                    : {
-                        id: String(data.data.numb_of_childseats),
-                        name: String(data.data.numb_of_childseats),
-                      },
+                  selected:
+                    data.data.numb_of_childseats === null
+                      ? null
+                      : data.data.numb_of_childseats === undefined
+                      ? null
+                      : {
+                          id: String(data.data.numb_of_childseats),
+                          name: String(data.data.numb_of_childseats),
+                        },
                   // selected: null,
                   // items: [],
                 },
