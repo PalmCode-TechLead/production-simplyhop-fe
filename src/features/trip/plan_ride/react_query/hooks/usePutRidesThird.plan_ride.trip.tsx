@@ -19,15 +19,16 @@ export const usePutRidesThird = () => {
   const mutation = useMutation<
     PutRidesThirdSuccessResponseInterface,
     PutRidesThirdErrorResponseInterface,
-    { id: number }
+    { id: number; url: string }
   >({
     mutationKey: PlanRideTripReactQueryKey.PutRidesThird(),
-    mutationFn: (data: { id: number }) => {
+    mutationFn: (data: { id: number; url: string }) => {
       const payload: PutRidesThirdPayloadRequestInterface = {
         path: {
           id: data.id,
         },
         body: {
+          url: data.url,
           maxtwo_backseat: state.detail.form.plan.back_seat.checked,
           base_price: state.detail.form.other.price.value,
         },

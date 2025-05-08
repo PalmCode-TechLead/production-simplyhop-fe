@@ -14,6 +14,7 @@ export type PutRidesThirdPathPayloadRequestInterface = {
 };
 
 export type PutRidesThirdBodyPayloadRequestInterface = {
+  url: string;
   maxtwo_backseat: boolean; //false;
   base_price: number; //120;
 };

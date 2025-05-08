@@ -319,9 +319,23 @@ export const DetailPlanRideTrip = () => {
   const handleClickSend = async () => {
     const ridesFirst = await postRidesFirst();
     if (!ridesFirst) return;
+    const shareUrl = `${"https://simplyhop-fe-mmppce625q-de.a.run.app"}${AppCollectionURL.public.tripResult(
+      `${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item?.id ?? ""}&${
+        RIDE_FILTER.DESTINATION
+      }=${state.filters.destination.selected.item?.id ?? ""}&${
+        RIDE_FILTER.DATE
+      }=${dayjs(state.detail.form.plan.date.selected).format("YYYY-MM-DD")}&${
+        RIDE_FILTER.ADULT_PASSENGER
+      }=${1}&${RIDE_FILTER.CHILDREN_PASSENGER}=${0}&${RIDE_FILTER.RIDE_ID}=${
+        ridesFirst.data.id
+      }`
+    )}`;
     const ridesSecond = await postRidesSecond({ id: ridesFirst.data.id });
     if (!ridesSecond) return;
-    const ridesThird = await postRidesThird({ id: ridesFirst.data.id });
+    const ridesThird = await postRidesThird({
+      id: ridesFirst.data.id,
+      url: shareUrl,
+    });
     if (!ridesThird) return;
 
     dispatch({
@@ -338,17 +352,7 @@ export const DetailPlanRideTrip = () => {
         is_open: true,
         share: {
           ...state.notification.share,
-          link: `${"https://simplyhop-fe-mmppce625q-de.a.run.app"}${AppCollectionURL.public.tripResult(
-            `${RIDE_FILTER.ORIGIN}=${
-              state.filters.origin.selected.item?.id ?? ""
-            }&${RIDE_FILTER.DESTINATION}=${
-              state.filters.destination.selected.item?.id ?? ""
-            }&${RIDE_FILTER.DATE}=${dayjs(
-              state.detail.form.plan.date.selected
-            ).format("YYYY-MM-DD")}&${RIDE_FILTER.ADULT_PASSENGER}=${1}&${
-              RIDE_FILTER.CHILDREN_PASSENGER
-            }=${0}&${RIDE_FILTER.RIDE_ID}=${ridesFirst.data.id}`
-          )}`,
+          link: shareUrl,
         },
       },
     });
