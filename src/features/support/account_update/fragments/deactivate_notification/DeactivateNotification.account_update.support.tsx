@@ -13,6 +13,7 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import Cookies from "universal-cookie";
+
 export const DeactivateNotificationAccountUpdateSupport = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(AccountUpdateSupportContext);
