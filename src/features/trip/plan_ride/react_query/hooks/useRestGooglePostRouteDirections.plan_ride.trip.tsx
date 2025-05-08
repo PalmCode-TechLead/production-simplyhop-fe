@@ -49,6 +49,7 @@ export const useRestGooglePostRouteDirections = () => {
     if (!!query.data && !query.isFetching) {
       const data = query.data;
       if (!Object.keys(data).length) return;
+      if (!data.routes.length) return;
       const encodedPolyline = data.routes[0].polyline.encodedPolyline;
       const decodedPolyline = decode(encodedPolyline).map(([lat, lng]) => ({
         lat,
