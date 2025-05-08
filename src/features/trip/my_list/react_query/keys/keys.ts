@@ -20,4 +20,7 @@ export const MyListTripReactQueryKey = {
   GetBookingId: (payload?: GetBookingIdPayloadRequestInterface) => {
     return ["MyListTripReactQueryKey.GetBookingId", [payload] as const];
   },
+  DeleteRidesId: () => {
+    return ["MyListTripReactQueryKey.DeleteRidesId"];
+  },
 };

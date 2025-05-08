@@ -2,8 +2,10 @@ import {
   MyListTripActionEnum,
   MyListTripActions,
   MyListTripBook,
+  MyListTripDeleteRideNotification,
   MyListTripFilters,
   MyListTripRide,
+  MyListTripSuccessDeleteRideNotification,
 } from "./MyList.trip.types";
 
 // Filters
@@ -90,6 +92,34 @@ export const MyListTripBookReducers = (
         },
       };
     }
+    default:
+      return state;
+  }
+};
+
+// DeleteRideNotification
+export const MyListTripDeleteRideNotificationReducers = (
+  state: MyListTripDeleteRideNotification,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetDeleteRideNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// SuccessDeleteRideNotification
+export const MyListTripSuccessDeleteRideNotificationReducers = (
+  state: MyListTripSuccessDeleteRideNotification,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetSuccessDeleteRideNotificationData:
+      return action.payload;
+
     default:
       return state;
   }

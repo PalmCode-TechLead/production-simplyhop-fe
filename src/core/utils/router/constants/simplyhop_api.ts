@@ -15,6 +15,7 @@ import {
   GetMessagesListByRoomPathPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/messages";
 import {
+  DeleteRidesIdPathPayloadRequestInterface,
   GetRidesIdPathPayloadRequestInterface,
   PutRidesSecondPathPayloadRequestInterface,
   PutRidesThirdPathPayloadRequestInterface,
@@ -74,6 +75,8 @@ export const SimplyHopAPICollectionURL = {
       `/api/rides/second/${path.id}`,
     putThird: (path: PutRidesThirdPathPayloadRequestInterface) =>
       `/api/rides/third/${path.id}`,
+    deleteId: (path: DeleteRidesIdPathPayloadRequestInterface) =>
+      `/api/rides/${path.id}`,
   },
   booking: {
     postBook: () => `/api/bookings/book`,

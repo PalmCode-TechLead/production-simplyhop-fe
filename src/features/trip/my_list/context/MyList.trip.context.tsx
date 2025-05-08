@@ -6,8 +6,10 @@ import {
 } from "./MyList.trip.types";
 import {
   MyListTripBookReducers,
+  MyListTripDeleteRideNotificationReducers,
   MyListTripFiltersReducers,
   MyListTripRideReducers,
+  MyListTripSuccessDeleteRideNotificationReducers,
 } from "./MyList.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
 
@@ -33,6 +35,12 @@ const initialState: MyListTripInitialStateType = {
     },
     detail: null,
   },
+  delete_ride_notification: {
+    is_open: false,
+  },
+  success_delete_ride_notification: {
+    is_open: false,
+  },
 };
 
 const MyListTripContext = createContext<{
@@ -44,12 +52,27 @@ const MyListTripContext = createContext<{
 });
 
 const mainReducer = (
-  { filters, ride, book }: MyListTripInitialStateType,
+  {
+    filters,
+    ride,
+    book,
+    delete_ride_notification,
+    success_delete_ride_notification,
+  }: MyListTripInitialStateType,
   action: MyListTripActions
 ) => ({
   filters: MyListTripFiltersReducers(filters, action),
   ride: MyListTripRideReducers(ride, action),
   book: MyListTripBookReducers(book, action),
+  delete_ride_notification: MyListTripDeleteRideNotificationReducers(
+    delete_ride_notification,
+    action
+  ),
+  success_delete_ride_notification:
+    MyListTripSuccessDeleteRideNotificationReducers(
+      success_delete_ride_notification,
+      action
+    ),
 });
 
 const MyListTripProvider = (props: { children: React.ReactNode }) => {

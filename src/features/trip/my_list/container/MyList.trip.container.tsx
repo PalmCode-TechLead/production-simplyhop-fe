@@ -9,6 +9,8 @@ import { RideMyListTrip } from "../fragments/ride";
 import { RideDetailMyListTrip } from "../fragments/ride_detail";
 import { BookDetailMyListTrip } from "../fragments/book_detail";
 import { UserContext } from "@/core/modules/app/context";
+import { DeleteRideNotificationMyListTrip } from "../fragments/delete_ride_notification";
+import { SuccessDeleteRideNotificationMyListTrip } from "../fragments/success_delete_ride_notification";
 
 export const MyListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -60,6 +62,8 @@ export const MyListTripContainer = () => {
       <RideDetailMyListTrip />
 
       <BookDetailMyListTrip />
+      <DeleteRideNotificationMyListTrip />
+      <SuccessDeleteRideNotificationMyListTrip />
     </>
   );
 };
