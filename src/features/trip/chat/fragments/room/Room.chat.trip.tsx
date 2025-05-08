@@ -31,7 +31,7 @@ export const RoomChatTrip = () => {
   const searchParams = useSearchParams();
   const { state, dispatch } = React.useContext(ChatTripContext);
 
-  const id = searchParams.get("id");
+  const bookingId = searchParams.get("bookingId");
 
   const { isFetching: isFetchingMessagesListByRoom } =
     useGetMessagesListByRoom();
@@ -50,7 +50,7 @@ export const RoomChatTrip = () => {
 
   const bookingIdPayload: GetBookingIdPayloadRequestInterface = {
     path: {
-      id: !id ? "0" : String(id),
+      id: !bookingId ? "0" : String(bookingId),
     },
     params: {
       include: "ride.vehicle.brand,user",

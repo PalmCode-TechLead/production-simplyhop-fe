@@ -16,20 +16,19 @@ import { PassengerCardChatTrip } from "../../components/passenger_card";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { usePostBookingOffer } from "../../react_query/hooks";
-import { GetMessageRoomsIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/message_rooms";
 import { queryClient } from "@/core/utils/react_query";
 import { ChatTripReactQueryKey } from "../../react_query/keys";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
+import { GetBookingIdPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
 
 export const OfferChatTrip = () => {
   const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
 
   const { state, dispatch } = React.useContext(ChatTripContext);
-  const id = searchParams.get("id");
-  const messageRoomId = !id ? "0" : String(id);
+  const bookingId = searchParams.get("bookingId");
 
   const { isLg } = useTailwindBreakpoint();
 
@@ -44,13 +43,12 @@ export const OfferChatTrip = () => {
   const priceData = state.offer.price;
   const passengerData = state.offer.passenger;
 
-  const messageRoomByIdPayload: GetMessageRoomsIdPayloadRequestInterface = {
+  const bookingIdPayload: GetBookingIdPayloadRequestInterface = {
     path: {
-      id: messageRoomId,
+      id: !bookingId ? "0" : String(bookingId),
     },
     params: {
-      include:
-        "messages,passenger,driver,driverExists,passengerExists,messagesExists,booking",
+      include: "ride.vehicle.brand,user",
     },
   };
 
@@ -106,9 +104,13 @@ export const OfferChatTrip = () => {
     await postBookingOffer();
 
     queryClient.invalidateQueries({
-      queryKey: ChatTripReactQueryKey.GetMessageRoomsId(messageRoomByIdPayload),
+      queryKey: ChatTripReactQueryKey.GetBookingId(bookingIdPayload),
       type: "all",
       refetchType: "all",
+    });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
+      payload: 1,
     });
     dispatch({
       type: ChatTripActionEnum.SetOfferData,
