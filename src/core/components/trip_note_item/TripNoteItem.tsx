@@ -17,9 +17,10 @@ export const TripNoteItem = ({ label = "", note = "" }: TripNoteItemProps) => {
       <p className={clsx("text-[#606060] text-[0.75rem] font-normal")}>
         {label}
       </p>
-      <p className={clsx("text-[#606060] text-[0.75rem] font-normal")}>
-        {note}
-      </p>
+      <p
+        className={clsx("text-[#606060] text-[0.75rem] font-normal")}
+        dangerouslySetInnerHTML={{ __html: note }}
+      />
     </div>
   );
 };
