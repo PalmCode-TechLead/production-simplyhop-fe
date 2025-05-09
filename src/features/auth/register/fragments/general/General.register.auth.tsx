@@ -186,11 +186,14 @@ export const GeneralRegisterAuth = () => {
             "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]"
           )}
         >
-          <Image
-            {...dictionaries.general.form.privacy_policy.credit.logo}
-            alt={dictionaries.general.form.privacy_policy.credit.logo.alt}
-            className={clsx("w-[52px] h-[14px]", "object-center object-cover")}
-          />
+          <div className="w-[52px] h-[14px] flex items-center justify-center">
+            <Image
+              {...dictionaries.general.form.privacy_policy.credit.logo}
+              alt={dictionaries.general.form.privacy_policy.credit.logo.alt}
+              className="w-[170px] h-[170px] object-contain"
+            />
+          </div>
+
           <p
             className={clsx(
               "text-[0.75rem] text-[#232323] font-normal text-center"

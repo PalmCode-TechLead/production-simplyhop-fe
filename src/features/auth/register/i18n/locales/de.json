@@ -67,7 +67,8 @@
             "src": "/logo/simply_hop.png",
             "width": 52,
             "height": 14,
-            "alt": "logo"
+            "alt": "logo",
+            "quality": 100
           },
           "message": "Alle Rechte vorbehalten"
         }
