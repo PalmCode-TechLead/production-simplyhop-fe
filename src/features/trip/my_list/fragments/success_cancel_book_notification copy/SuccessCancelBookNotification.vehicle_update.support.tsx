@@ -40,8 +40,9 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
         is_open: false,
       },
     });
+
     const params = new URLSearchParams({
-      type: "book",
+      type: String(type),
     });
     router.push(AppCollectionURL.private.myList(params.toString()));
   };
@@ -68,7 +69,7 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
       },
     });
     const params = new URLSearchParams({
-      type: "book",
+      type: String(type),
     });
     router.push(AppCollectionURL.private.myList(params.toString()));
   };

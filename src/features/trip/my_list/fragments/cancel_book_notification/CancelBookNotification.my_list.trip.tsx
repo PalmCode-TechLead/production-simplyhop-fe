@@ -7,10 +7,7 @@ import SVGIcon from "@/core/icons";
 import { Button } from "@/core/components/button";
 import { AdaptiveModal } from "@/core/components/adaptive_modal";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
-import {
-  useDeleteRidesId,
-  usePostBookingReject,
-} from "../../react_query/hooks";
+import { usePostBookingReject } from "../../react_query/hooks";
 
 export const CancelBookNotificationMyListTrip = () => {
   const dictionaries = getDictionaries();
