@@ -116,5 +116,25 @@
         }
       }
     }
+  },
+  "cancel_book_notification": {
+    "title": "Die Fahrt absagen?",
+    "message": "Möchtest du diese Fahrt wirklich stornieren?<br />Wenn du stornierst, wirst du von der Passagierliste entfernt und musst eine neue Fahrt buchen, wenn du es dir anders überlegst.",
+    "cta": {
+      "back": {
+        "children": "Zurück"
+      },
+      "confirm": {
+        "children": "Bestätige die Löschung"
+      }
+    }
+  },
+  "success_cancel_book_notification": {
+    "title": "Fahrt erfolgreich gelöscht.",
+    "cta": {
+      "back": {
+        "children": "Zurück"
+      }
+    }
   }
 }

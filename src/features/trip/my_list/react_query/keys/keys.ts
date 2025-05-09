@@ -23,4 +23,7 @@ export const MyListTripReactQueryKey = {
   DeleteRidesId: () => {
     return ["MyListTripReactQueryKey.DeleteRidesId"];
   },
+  PostBookingReject: () => {
+    return ["MyListTripReactQueryKey.PostBookingReject"];
+  },
 };

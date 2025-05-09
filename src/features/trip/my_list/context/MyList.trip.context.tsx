@@ -6,11 +6,14 @@ import {
 } from "./MyList.trip.types";
 import {
   MyListTripBookReducers,
+  MyListTripCancelBookNotificationReducers,
   MyListTripDeleteRideNotificationReducers,
+  MyListTripDetailBookNotificationReducers,
   MyListTripDetailRideNotificationReducers,
   MyListTripFiltersReducers,
   MyListTripRideReducers,
   MyListTripShareRideNotificationReducers,
+  MyListTripSuccessCancelBookNotificationReducers,
   MyListTripSuccessDeleteRideNotificationReducers,
 } from "./MyList.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
@@ -52,6 +55,15 @@ const initialState: MyListTripInitialStateType = {
       link: "",
     },
   },
+  detail_book_notification: {
+    is_open: false,
+  },
+  cancel_book_notification: {
+    is_open: false,
+  },
+  success_cancel_book_notification: {
+    is_open: false,
+  },
 };
 
 const MyListTripContext = createContext<{
@@ -71,6 +83,9 @@ const mainReducer = (
     delete_ride_notification,
     success_delete_ride_notification,
     share_ride_notification,
+    detail_book_notification,
+    cancel_book_notification,
+    success_cancel_book_notification,
   }: MyListTripInitialStateType,
   action: MyListTripActions
 ) => ({
@@ -94,6 +109,19 @@ const mainReducer = (
     share_ride_notification,
     action
   ),
+  detail_book_notification: MyListTripDetailBookNotificationReducers(
+    detail_book_notification,
+    action
+  ),
+  cancel_book_notification: MyListTripCancelBookNotificationReducers(
+    cancel_book_notification,
+    action
+  ),
+  success_cancel_book_notification:
+    MyListTripSuccessCancelBookNotificationReducers(
+      success_cancel_book_notification,
+      action
+    ),
 });
 
 const MyListTripProvider = (props: { children: React.ReactNode }) => {

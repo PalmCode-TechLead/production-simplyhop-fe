@@ -23,6 +23,9 @@ export interface MyListTripInitialStateType {
   detail_ride_notification: MyListTripDetailRideNotification;
   delete_ride_notification: MyListTripDeleteRideNotification;
   success_delete_ride_notification: MyListTripSuccessDeleteRideNotification;
+  detail_book_notification: MyListTripDetailBookNotification;
+  cancel_book_notification: MyListTripCancelBookNotification;
+  success_cancel_book_notification: MyListTripSuccessCancelBookNotification;
   share_ride_notification: MyListTripShareRideNotification;
 }
 
@@ -74,6 +77,18 @@ export interface MyListTripShareRideNotification {
   };
 }
 
+export interface MyListTripDetailBookNotification {
+  is_open: boolean;
+}
+
+export interface MyListTripCancelBookNotification {
+  is_open: boolean;
+}
+
+export interface MyListTripSuccessCancelBookNotification {
+  is_open: boolean;
+}
+
 export enum MyListTripActionEnum {
   // Filters
   SetFiltersData = "SetFiltersData",
@@ -101,6 +116,15 @@ export enum MyListTripActionEnum {
 
   // ShareRideNotification
   SetShareRideNotificationData = "SetShareRideNotificationData",
+
+  // DetailBookNotification
+  SetDetailBookNotificationData = "SetDetailBookNotificationData",
+
+  // CancelBookNotification
+  SetCancelBookNotificationData = "SetCancelBookNotificationData",
+
+  // SuccessCancelBookNotification
+  SetSuccessCancelBookNotificationData = "SetSuccessCancelBookNotificationData",
 }
 
 // Action Collection Types
@@ -111,7 +135,10 @@ export type MyListTripActions =
   | MyListTripDetailRideNotificationActions
   | MyListTripDeleteRideNotificationActions
   | MyListTripSuccessDeleteRideNotificationActions
-  | MyListTripShareRideNotificationActions;
+  | MyListTripShareRideNotificationActions
+  | MyListTripDetailBookNotificationActions
+  | MyListTripCancelBookNotificationActions
+  | MyListTripSuccessCancelBookNotificationActions;
 
 // Action Collection Types consist of:
 // Filters
@@ -175,3 +202,27 @@ type MyListTripShareRideNotificationPayload = {
 
 export type MyListTripShareRideNotificationActions =
   ActionMap<MyListTripShareRideNotificationPayload>[keyof ActionMap<MyListTripShareRideNotificationPayload>];
+
+// DetailBookNotification
+type MyListTripDetailBookNotificationPayload = {
+  [MyListTripActionEnum.SetDetailBookNotificationData]: MyListTripDetailBookNotification;
+};
+
+export type MyListTripDetailBookNotificationActions =
+  ActionMap<MyListTripDetailBookNotificationPayload>[keyof ActionMap<MyListTripDetailBookNotificationPayload>];
+
+// CancelBookNotification
+type MyListTripCancelBookNotificationPayload = {
+  [MyListTripActionEnum.SetCancelBookNotificationData]: MyListTripCancelBookNotification;
+};
+
+export type MyListTripCancelBookNotificationActions =
+  ActionMap<MyListTripCancelBookNotificationPayload>[keyof ActionMap<MyListTripCancelBookNotificationPayload>];
+
+// SuccessCancelBookNotification
+type MyListTripSuccessCancelBookNotificationPayload = {
+  [MyListTripActionEnum.SetSuccessCancelBookNotificationData]: MyListTripSuccessCancelBookNotification;
+};
+
+export type MyListTripSuccessCancelBookNotificationActions =
+  ActionMap<MyListTripSuccessCancelBookNotificationPayload>[keyof ActionMap<MyListTripSuccessCancelBookNotificationPayload>];

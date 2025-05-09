@@ -9,7 +9,7 @@ import { getDictionaries } from "../../i18n";
 import SVGIcon from "@/core/icons";
 import { BookDetailCardMyListTrip } from "../../components/book_detail_card";
 import { CarPriceItem } from "@/core/components/car_price_item";
-import { MyListTripContext } from "../../context";
+import { MyListTripActionEnum, MyListTripContext } from "../../context";
 import { useGetBookingId } from "../../react_query/hooks";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
@@ -20,22 +20,49 @@ export const BookDetailMyListTrip = () => {
   const bookingId = searchParams.get("booking_id");
   const { isLg } = useTailwindBreakpoint();
   const router = useRouter();
-  const { state } = React.useContext(MyListTripContext);
+  const { state, dispatch } = React.useContext(MyListTripContext);
   useGetBookingId();
 
   const filteredData = state.book.detail;
+
+  React.useEffect(() => {
+      dispatch({
+        type: MyListTripActionEnum.SetDetailBookNotificationData,
+        payload: {
+          ...state.detail_book_notification,
+          is_open: !!filteredData && !!bookingId,
+        },
+      });
+    }, [filteredData, bookingId]);
 
   if (!filteredData) {
     return null;
   }
 
-  const isOpen = !!bookingId;
+  const isOpen = state.detail_book_notification.is_open;
 
   const handleClose = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete("booking_id");
     router.push(AppCollectionURL.private.myList(params.toString()), {
       scroll: false,
+    });
+  };
+
+  const handleClickCancelBook = () => {
+    dispatch({
+      type: MyListTripActionEnum.SetDetailRideNotificationData,
+      payload: {
+        ...state.detail_book_notification,
+        is_open: false,
+      },
+    });
+    dispatch({
+      type: MyListTripActionEnum.SetCancelBookNotificationData,
+      payload: {
+        ...state.cancel_book_notification,
+        is_open: true,
+      },
     });
   };
 
@@ -109,6 +136,20 @@ export const BookDetailMyListTrip = () => {
           >
             <CarPriceItem {...filteredData.price} />
           </div>
+
+          <button
+            className={clsx(
+              "grid grid-cols-1 place-content-center place-items-center",
+              "w-full",
+              "px-[1rem] py-[1.5rem]",
+              "bg-[white]",
+              "text-[#C50707] text-[0.75rem] font-medium",
+              "cursor-pointer"
+            )}
+            onClick={handleClickCancelBook}
+          >
+            {"Fahrt löschen"}
+          </button>
         </AdaptiveModalContent>
       </div>
     </AdaptiveModal>

@@ -2,11 +2,14 @@ import {
   MyListTripActionEnum,
   MyListTripActions,
   MyListTripBook,
+  MyListTripCancelBookNotification,
   MyListTripDeleteRideNotification,
+  MyListTripDetailBookNotification,
   MyListTripDetailRideNotification,
   MyListTripFilters,
   MyListTripRide,
   MyListTripShareRideNotification,
+  MyListTripSuccessCancelBookNotification,
   MyListTripSuccessDeleteRideNotification,
 } from "./MyList.trip.types";
 
@@ -148,6 +151,48 @@ export const MyListTripShareRideNotificationReducers = (
 ) => {
   switch (action.type) {
     case MyListTripActionEnum.SetShareRideNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// DetailBookNotification
+export const MyListTripDetailBookNotificationReducers = (
+  state: MyListTripDetailBookNotification,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetDetailBookNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// CancelBookNotification
+export const MyListTripCancelBookNotificationReducers = (
+  state: MyListTripCancelBookNotification,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetCancelBookNotificationData:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+// SuccessCancelBookNotification
+export const MyListTripSuccessCancelBookNotificationReducers = (
+  state: MyListTripSuccessCancelBookNotification,
+  action: MyListTripActions
+) => {
+  switch (action.type) {
+    case MyListTripActionEnum.SetSuccessCancelBookNotificationData:
       return action.payload;
 
     default:
