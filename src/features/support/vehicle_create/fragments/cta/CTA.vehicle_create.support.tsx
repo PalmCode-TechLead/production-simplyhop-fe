@@ -8,9 +8,11 @@ import {
 } from "../../context";
 import { usePostVehicleCreateMy } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { UserContext } from "@/core/modules/app/context";
 
 export const CTAVehicleCreateSupport = () => {
   const dictionaries = getDictionaries();
+  const { refetch: refetchUser } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(VehicleCreateSupportContext);
 
   const {
@@ -19,6 +21,8 @@ export const CTAVehicleCreateSupport = () => {
   } = usePostVehicleCreateMy();
   const handleClickSave = async () => {
     await postVehicleCreateMy();
+    refetchUser();
+
     dispatch({
       type: VehicleCreateSupportActionEnum.SetNotificationData,
       payload: {

@@ -7,6 +7,11 @@ import {
 } from "./User.types";
 import { UserProfileReducers } from "./User.reducers";
 import { useGetUserProfileData } from "@/core/utils/react_query/hooks";
+import { QueryObserverResult, UseQueryResult } from "@tanstack/react-query";
+import {
+  GetUserProfileDataErrorResponseInterface,
+  GetUserProfileDataSuccessResponseInterface,
+} from "@/core/models/rest/simplyhop/user_profile";
 
 const initialState: UserInitialStateType = {
   profile: null,
@@ -15,9 +20,11 @@ const initialState: UserInitialStateType = {
 const UserContext = createContext<{
   state: UserInitialStateType;
   dispatch: Dispatch<UserActions>;
+  refetch: () => void;
 }>({
   state: initialState,
   dispatch: () => null,
+  refetch: () => {}, // default no-op
 });
 
 const mainReducer = (
@@ -30,11 +37,11 @@ const mainReducer = (
 const UserProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
 
-  const query = useGetUserProfileData();
+  const { data, refetch, isFetching } = useGetUserProfileData();
 
   useEffect(() => {
-    if (!!query.data && !query.isFetching) {
-      const user = query.data;
+    if (!!data && !isFetching) {
+      const user = data;
       dispatch({
         type: UserActionEnum.SetProfileData,
         payload: {
@@ -52,10 +59,10 @@ const UserProvider = (props: { children: React.ReactNode }) => {
         },
       });
     }
-  }, [query.data, query.isFetching]);
+  }, [data, isFetching]);
 
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
+    <UserContext.Provider value={{ state, dispatch, refetch }}>
       {props.children}
     </UserContext.Provider>
   );
