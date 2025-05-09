@@ -251,7 +251,7 @@
           {
             "id": "invalid_name",
             "name": "Ungültiger Name.",
-            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*$"
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*\\s*$"
           }
         ]
       }
@@ -262,7 +262,7 @@
           {
             "id": "invalid_name",
             "name": "Ungültiger Name.",
-            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*$"
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*\\s*$"
           }
         ]
       }
@@ -273,7 +273,7 @@
           {
             "id": "invalid_city",
             "name": "Bitte geben Sie eine gültige Stadt ein.",
-            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-,][A-ZÄÖÜa-zäöüß]+)*$"
+            "regex": "^[A-ZÄÖÜa-zäöüß]+(?:[ '\\-][A-ZÄÖÜa-zäöüß]+)*\\s*$"
           }
         ]
       }
