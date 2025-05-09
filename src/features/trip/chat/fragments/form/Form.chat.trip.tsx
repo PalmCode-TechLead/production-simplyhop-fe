@@ -7,10 +7,13 @@ import { ChatField } from "@/core/components/chatfield";
 import { getDictionaries } from "../../i18n";
 import { usePostMessagesChat } from "../../react_query/hooks";
 import { MoonLoader } from "@/core/components/moon_loader";
+import { useSearchParams } from "next/navigation";
 
 export const FormChatTrip = () => {
   const dictionaries = getDictionaries();
   const { state, dispatch } = React.useContext(ChatTripContext);
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
   const [isEmojiOpen, setIsEmojiOpen] = React.useState<boolean>(false);
   const { mutateAsync: postMessagesChat, isPending: isPendingPostMessageChat } =
     usePostMessagesChat();
@@ -56,6 +59,15 @@ export const FormChatTrip = () => {
     const res = await postMessagesChat();
 
     if (!res) return;
+    dispatch({
+      type: ChatTripActionEnum.SetListMessageItems,
+      payload: state.list.message.items.map((item) => {
+        return {
+          ...item,
+          message: item.id === id ? state.room.chat.input.value : item.message,
+        };
+      }),
+    });
     dispatch({
       type: ChatTripActionEnum.SetRoomData,
       payload: {
