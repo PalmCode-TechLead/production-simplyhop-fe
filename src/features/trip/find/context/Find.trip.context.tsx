@@ -34,7 +34,7 @@ const initialState: FindTripInitialStateType = {
       saved_items: [],
     },
     date: {
-      selected: dayjs().add(1, "day").toDate(),
+      selected: dayjs().toDate(),
     },
     passenger: {
       car_seat: {
