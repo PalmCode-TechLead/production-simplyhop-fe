@@ -5,7 +5,7 @@
   "form": {
     "header": {
       "logo": {
-        "src": "/logo/simply_hop.png",
+        "src": "/logo/simply_hop.svg",
         "width": 170,
         "height": 170,
         "alt": "logo",
@@ -63,7 +63,7 @@
       "label": "Wenn du dich anmeldest, stimmst du den <a href='/datenschutz' target='_blank' style='color:#5AC53D;'>Datenschutzbestimmungen</a> und den <a href='/agb' target='_blank' style='color:#5AC53D;'>AGB</a> von Simply Hop zu. ",
       "credit": {
         "logo": {
-          "src": "/logo/simply_hop.png",
+          "src": "/logo/simply_hop.svg",
           "width": 52,
           "height": 14,
           "alt": "logo"
