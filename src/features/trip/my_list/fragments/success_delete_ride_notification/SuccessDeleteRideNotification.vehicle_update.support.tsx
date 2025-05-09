@@ -10,13 +10,36 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { queryClient } from "@/core/utils/react_query";
+import { GetRidesSearchPayloadRequestInterface } from "@/core/models/rest/simplyhop/rides";
+import { UserContext } from "@/core/modules/app/context";
+import dayjs from "dayjs";
+import { MyListTripReactQueryKey } from "../../react_query/keys";
 
 export const SuccessDeleteRideNotificationMyListTrip = () => {
   const router = useRouter();
   const dictionaries = getDictionaries();
+  const { state: userState } = React.useContext(UserContext);
   const { state, dispatch } = React.useContext(MyListTripContext);
   const { isLg } = useTailwindBreakpoint();
   const isOpen = state.success_delete_ride_notification.is_open;
+
+  const payload: GetRidesSearchPayloadRequestInterface = {
+    params: {
+      "filter[user_id]": !userState.profile?.id
+        ? undefined
+        : String(userState.profile.id),
+      include: "vehicle.brand,user,bookings,bookings.user",
+      departure_time__gte: dayjs()
+        .add(1, "day")
+        .startOf("day")
+        .format("YYYY-MM-DDTHH:mm:ss"),
+      sort: "departure_time",
+      "page[number]": state.ride.pagination.current,
+      "page[size]": PAGINATION.SIZE,
+    },
+  };
+
   const handleClose = () => {
     dispatch({
       type: MyListTripActionEnum.SetRideData,
@@ -38,6 +61,12 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
         is_open: false,
       },
     });
+    queryClient.invalidateQueries({
+      queryKey: MyListTripReactQueryKey.GetRidesSearch(payload),
+      refetchType: "all",
+      type: "all",
+    });
+    console.log("ini kepanggil ga");
     router.push(AppCollectionURL.private.myList());
   };
 
@@ -62,6 +91,12 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
         is_open: false,
       },
     });
+    queryClient.invalidateQueries({
+      queryKey: MyListTripReactQueryKey.GetRidesSearch(payload),
+      refetchType: "all",
+      type: "all",
+    });
+
     router.push(AppCollectionURL.private.myList());
   };
   return (
