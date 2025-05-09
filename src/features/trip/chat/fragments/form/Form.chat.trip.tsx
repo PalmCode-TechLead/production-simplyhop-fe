@@ -57,15 +57,9 @@ export const FormChatTrip = () => {
   const handleClickSend = async () => {
     if (!state.room.chat.input.value.length) return;
     const res = await postMessagesChat();
+    console.log(res, "ini res");
     if (!res) return;
-    dispatch({
-      type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
-      payload: 1,
-    });
-    dispatch({
-      type: ChatTripActionEnum.SetRoomMessagePaginationCounter,
-      payload: state.room.message.pagination.counter + 1,
-    });
+
     dispatch({
       type: ChatTripActionEnum.SetListMessageItems,
       payload: state.list.message.items.map((item) => {
@@ -79,6 +73,14 @@ export const FormChatTrip = () => {
       type: ChatTripActionEnum.SetRoomData,
       payload: {
         ...state.room,
+        message: {
+          ...state.room.message,
+          pagination: {
+            ...state.room.message.pagination,
+            current: 1,
+            counter: state.room.message.pagination.counter + 1,
+          },
+        },
         chat: {
           ...state.room.chat,
           input: {
