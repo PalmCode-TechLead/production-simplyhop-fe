@@ -57,8 +57,15 @@ export const FormChatTrip = () => {
   const handleClickSend = async () => {
     if (!state.room.chat.input.value.length) return;
     const res = await postMessagesChat();
-
     if (!res) return;
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCurrent,
+      payload: 1,
+    });
+    dispatch({
+      type: ChatTripActionEnum.SetRoomMessagePaginationCounter,
+      payload: state.room.message.pagination.counter + 1,
+    });
     dispatch({
       type: ChatTripActionEnum.SetListMessageItems,
       payload: state.list.message.items.map((item) => {
