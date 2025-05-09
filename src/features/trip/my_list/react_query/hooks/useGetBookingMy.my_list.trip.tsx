@@ -32,6 +32,7 @@ export const useGetBookingMy = () => {
         .add(1, "day")
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
+      "filter[status]": "accepted",
       "page[number]": state.book.pagination.current,
       "page[size]": PAGINATION.SIZE,
     },
