@@ -7,11 +7,6 @@ import {
 } from "./User.types";
 import { UserProfileReducers } from "./User.reducers";
 import { useGetUserProfileData } from "@/core/utils/react_query/hooks";
-import { QueryObserverResult, UseQueryResult } from "@tanstack/react-query";
-import {
-  GetUserProfileDataErrorResponseInterface,
-  GetUserProfileDataSuccessResponseInterface,
-} from "@/core/models/rest/simplyhop/user_profile";
 
 const initialState: UserInitialStateType = {
   profile: null,
