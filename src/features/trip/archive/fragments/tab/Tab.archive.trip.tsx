@@ -29,7 +29,7 @@ export const TabArchiveTrip = () => {
         className={clsx(
           "flex justify-start items-center gap-[2rem]",
           "w-full",
-          "border-b-[0.5px] border-b-[#C2C2C2]",
+          "border-b-[0.5px] border-b-[#5B5B5B]",
           "overflow-x-auto"
         )}
       >
@@ -53,7 +53,7 @@ export const TabArchiveTrip = () => {
                     ? "text-[#5AC53D] font-semibold border-b-[2px] border-b-[#5AC53D]"
                     : !!type && item.id === type
                     ? "text-[#5AC53D] font-semibold border-b-[2px] border-b-[#5AC53D]"
-                    : "text-[#C2C2C2]",
+                    : "text-[#5B5B5B]",
                   "font-normal text-[1rem] ",
                   "outline-none",
                   "cursor-pointer",

@@ -37,7 +37,7 @@ export const TabChatTrip = () => {
       className={clsx(
         "flex justify-between",
         "w-full",
-        "border-b-[0.5px] border-b-[#C2C2C2]",
+        "border-b-[0.5px] border-b-[#5B5B5B]",
         "overflow-auto"
       )}
     >
@@ -45,7 +45,7 @@ export const TabChatTrip = () => {
         <Tab
           key={itemIndex}
           className={clsx(
-            "text-[#C2C2C2] data-[selected]:text-[#5AC53D] font-normal data-[selected]:font-semibold text-[1rem] ",
+            "text-[#5B5B5B] data-[selected]:text-[#5AC53D] font-normal data-[selected]:font-semibold text-[1rem] ",
             "outline-none",
             "data-[selected]:border-b data-[selected]:border-b-[#5AC53D]",
             "cursor-pointer"
