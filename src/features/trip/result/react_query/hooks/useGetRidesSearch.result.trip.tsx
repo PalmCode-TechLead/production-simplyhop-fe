@@ -39,14 +39,15 @@ export const useGetRideSearch = () => {
       start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
       destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
       destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
-      departure_time__gte: dayjs(state.filters.date.selected).isSame(
+      departure_date: dayjs(state.filters.date.selected).isSame(dayjs(), "day")
+        ? undefined
+        : dayjs(state.filters.date.selected).format("YYYY-MM-DD"),
+      departure_time__lte: dayjs(state.filters.date.selected).isSame(
         dayjs(),
         "day"
       )
-        ? dayjs().format("YYYY-MM-DDTHH:mm:ss")
-        : dayjs(state.filters.date.selected)
-            .startOf("day")
-            .format("YYYY-MM-DDTHH:mm:ss"),
+        ? dayjs().endOf("day").format("YYYY-MM-DDTHH:mm:ss")
+        : undefined,
       // start_lat: 52.5200066,
       // start_long: 13.414954,
       // destination_lat: 48.1351253,
