@@ -11,7 +11,7 @@ import {
   GetRidesSearchPayloadRequestInterface,
 } from "@/core/models/rest/simplyhop/rides";
 import dayjs from "dayjs";
-import utc from 'dayjs/plugin/utc'
+import utc from "dayjs/plugin/utc";
 import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18n";
 import { SVGIconProps } from "@/core/icons";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -22,7 +22,7 @@ import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
-dayjs.extend(utc)
+dayjs.extend(utc);
 
 export const useGetRideSearch = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -39,7 +39,14 @@ export const useGetRideSearch = () => {
       start_long: state.filters.origin.selected.lat_lng?.lng ?? 0,
       destination_lat: state.filters.destination.selected.lat_lng?.lat ?? 0,
       destination_long: state.filters.destination.selected.lat_lng?.lng ?? 0,
-      departure_date: dayjs(state.filters.date.selected).format("YYYY-MM-DD"),
+      departure_time__gte: dayjs(state.filters.date.selected).isSame(
+        dayjs(),
+        "day"
+      )
+        ? dayjs().format("YYYY-MM-DDTHH:mm:ss")
+        : dayjs(state.filters.date.selected)
+            .startOf("day")
+            .format("YYYY-MM-DDTHH:mm:ss"),
       // start_lat: 52.5200066,
       // start_long: 13.414954,
       // destination_lat: 48.1351253,
