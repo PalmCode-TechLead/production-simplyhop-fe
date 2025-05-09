@@ -10,6 +10,10 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { queryClient } from "@/core/utils/react_query";
+import { MyListTripReactQueryKey } from "../../react_query/keys";
+import { GetBookingMyPayloadRequestInterface } from "@/core/models/rest/simplyhop/booking";
+import dayjs from "dayjs";
 
 export const SuccessCancelBookNotificationMyListTrip = () => {
   const router = useRouter();
@@ -19,6 +23,20 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
   const { state, dispatch } = React.useContext(MyListTripContext);
   const { isLg } = useTailwindBreakpoint();
   const isOpen = state.success_cancel_book_notification.is_open;
+
+  const payload: GetBookingMyPayloadRequestInterface = {
+    params: {
+      include: "ride.vehicle.brand,user,ride.user",
+      "filter[ride.departure_time__gte]": dayjs()
+        .add(1, "day")
+        .startOf("day")
+        .format("YYYY-MM-DDTHH:mm:ss"),
+      "filter[status]": "accepted",
+      "page[number]": state.book.pagination.current,
+      "page[size]": PAGINATION.SIZE,
+    },
+  };
+
   const handleClose = () => {
     dispatch({
       type: MyListTripActionEnum.SetBookData,
@@ -43,6 +61,11 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
 
     const params = new URLSearchParams({
       type: String(type),
+    });
+    queryClient.invalidateQueries({
+      queryKey: MyListTripReactQueryKey.GetBookingMy(payload),
+      refetchType: "all",
+      type: "all",
     });
     router.push(AppCollectionURL.private.myList(params.toString()));
   };
@@ -70,6 +93,11 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
     });
     const params = new URLSearchParams({
       type: String(type),
+    });
+    queryClient.invalidateQueries({
+      queryKey: MyListTripReactQueryKey.GetBookingMy(payload),
+      refetchType: "all",
+      type: "all",
     });
     router.push(AppCollectionURL.private.myList(params.toString()));
   };
