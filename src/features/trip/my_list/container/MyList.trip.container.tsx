@@ -12,6 +12,8 @@ import { UserContext } from "@/core/modules/app/context";
 import { DeleteRideNotificationMyListTrip } from "../fragments/delete_ride_notification";
 import { SuccessDeleteRideNotificationMyListTrip } from "../fragments/success_delete_ride_notification";
 import { ShareRideNotificationMyListTrip } from "../fragments/share_ride_notification";
+import { CancelBookNotificationMyListTrip } from "../fragments/cancel_book_notification";
+import { SuccessCancelBookNotificationMyListTrip } from "../fragments/success_cancel_book_notification copy";
 
 export const MyListTripContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -66,6 +68,8 @@ export const MyListTripContainer = () => {
       <DeleteRideNotificationMyListTrip />
       <SuccessDeleteRideNotificationMyListTrip />
       <ShareRideNotificationMyListTrip />
+      <CancelBookNotificationMyListTrip />
+      <SuccessCancelBookNotificationMyListTrip />
     </>
   );
 };
