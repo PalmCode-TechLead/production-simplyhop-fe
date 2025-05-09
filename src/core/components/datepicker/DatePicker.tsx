@@ -196,7 +196,6 @@ export const DatePicker = ({
               {isDayShow && (
                 <DayPicker
                   disablePast
-                  disableToday
                   date={date}
                   onClickMonth={handleClickMonth}
                   onClickDate={handleSelectDate}
