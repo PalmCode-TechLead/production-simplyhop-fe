@@ -23,7 +23,7 @@ export const RideDetailArchiveTrip = () => {
   const router = useRouter();
   const { state } = React.useContext(ArchiveTripContext);
   useGetRidesId();
-  const filteredData = state.ride.detail;
+  const filteredData = state.ride_detail.data;
 
   if (!filteredData) {
     return null;

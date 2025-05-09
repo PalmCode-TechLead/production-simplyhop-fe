@@ -19,6 +19,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 export interface ArchiveTripInitialStateType {
   filters: ArchiveTripFilters;
   ride: ArchiveTripRide;
+  ride_detail: ArchiveTripRideDetail;
   book: ArchiveTripBook;
 }
 
@@ -35,7 +36,10 @@ export interface ArchiveTripRide {
     current: number;
     last: number | null;
   };
-  detail:
+}
+
+export interface ArchiveTripRideDetail {
+  data:
     | (RideCardArchiveTripProps & {
         booking: RideBookingListItemProps[];
       })
@@ -63,6 +67,9 @@ export enum ArchiveTripActionEnum {
   SetRideDataPaginationCurrent = "SetRideDataPaginationCurrent",
   SetRideDataPaginationLast = "SetRideDataPaginationLast",
 
+  // RideDetail
+  SetRideDetailData = "SetRideDetailData",
+
   // Book
   SetBookData = "SetBookData",
   SetBookDataData = "SetBookDataData",
@@ -73,6 +80,7 @@ export enum ArchiveTripActionEnum {
 // Action Collection Types
 export type ArchiveTripActions =
   | ArchiveTripFiltersActions
+  | ArchiveTripRideDetailActions
   | ArchiveTripRideActions
   | ArchiveTripBookActions;
 
@@ -95,6 +103,14 @@ type ArchiveTripRidePayload = {
 
 export type ArchiveTripRideActions =
   ActionMap<ArchiveTripRidePayload>[keyof ActionMap<ArchiveTripRidePayload>];
+
+//RideDetail
+type ArchiveTripRideDetailPayload = {
+  [ArchiveTripActionEnum.SetRideDetailData]: ArchiveTripRideDetail;
+};
+
+export type ArchiveTripRideDetailActions =
+  ActionMap<ArchiveTripRideDetailPayload>[keyof ActionMap<ArchiveTripRideDetailPayload>];
 
 // Book
 type ArchiveTripBookPayload = {

@@ -7,6 +7,7 @@ import {
 import {
   ArchiveTripBookReducers,
   ArchiveTripFiltersReducers,
+  ArchiveTripRideDetailReducers,
   ArchiveTripRideReducers,
 } from "./Archive.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
@@ -23,7 +24,9 @@ const initialState: ArchiveTripInitialStateType = {
       current: PAGINATION.NUMBER,
       last: 3,
     },
-    detail: null,
+  },
+  ride_detail: {
+    data: null,
   },
   book: {
     data: [],
@@ -44,11 +47,12 @@ const ArchiveTripContext = createContext<{
 });
 
 const mainReducer = (
-  { filters, ride, book }: ArchiveTripInitialStateType,
+  { filters, ride, ride_detail, book }: ArchiveTripInitialStateType,
   action: ArchiveTripActions
 ) => ({
   filters: ArchiveTripFiltersReducers(filters, action),
   ride: ArchiveTripRideReducers(ride, action),
+  ride_detail: ArchiveTripRideDetailReducers(ride_detail, action),
   book: ArchiveTripBookReducers(book, action),
 });
 

@@ -53,10 +53,10 @@ export const useGetRidesId = () => {
       const urlSearchParams = new URLSearchParams(searchParams.toString());
       urlSearchParams.append("ride_id", String(item.id));
       dispatch({
-        type: ArchiveTripActionEnum.SetRideData,
+        type: ArchiveTripActionEnum.SetRideDetailData,
         payload: {
-          ...state.ride,
-          detail: {
+          ...state.ride_detail,
+          data: {
             id: String(item.id),
             driver: {
               profile: {

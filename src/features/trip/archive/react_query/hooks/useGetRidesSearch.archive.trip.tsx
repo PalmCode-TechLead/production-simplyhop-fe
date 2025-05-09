@@ -138,7 +138,7 @@ export const useGetRidesSearch = () => {
           cta: {
             detail: {
               children: "Siehe Details",
-              href: AppCollectionURL.private.myList(urlSearchParams.toString()),
+              href: AppCollectionURL.private.myListArchive(urlSearchParams.toString()),
             },
           },
         };

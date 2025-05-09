@@ -66,7 +66,7 @@ export const SuccessDeleteRideNotificationMyListTrip = () => {
       refetchType: "all",
       type: "all",
     });
-    console.log("ini kepanggil ga");
+
     router.push(AppCollectionURL.private.myList());
   };
 

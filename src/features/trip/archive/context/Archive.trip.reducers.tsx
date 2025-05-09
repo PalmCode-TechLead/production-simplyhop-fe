@@ -4,6 +4,7 @@ import {
   ArchiveTripBook,
   ArchiveTripFilters,
   ArchiveTripRide,
+  ArchiveTripRideDetail,
 } from "./Archive.trip.types";
 
 // Filters
@@ -49,6 +50,20 @@ export const ArchiveTripRideReducers = (
           last: action.payload,
         },
       };
+
+    default:
+      return state;
+  }
+};
+
+// RideDetail
+export const ArchiveTripRideDetailReducers = (
+  state: ArchiveTripRideDetail,
+  action: ArchiveTripActions
+) => {
+  switch (action.type) {
+    case ArchiveTripActionEnum.SetRideDetailData:
+      return action.payload;
 
     default:
       return state;
