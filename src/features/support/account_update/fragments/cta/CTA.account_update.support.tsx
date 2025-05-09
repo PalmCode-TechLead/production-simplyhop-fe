@@ -31,7 +31,9 @@ export const CTAAccountUpdateSupport = () => {
 
   const handleClickSave = async () => {
     const res = await postUserProfileCreate();
+
     if (!res) return;
+
     if (userState.profile) {
       dispatchUser({
         type: UserActionEnum.SetProfileData,
@@ -43,6 +45,7 @@ export const CTAAccountUpdateSupport = () => {
           phonenumber: state.form.phonenumber.value,
           about_me: state.form.about_me.value,
           gender: state.form.gender.selected?.id ?? null,
+          is_able_to_ride: res.data.can_share_ride,
         },
       });
     }
