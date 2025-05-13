@@ -14,7 +14,7 @@ export const DeleteRideNotificationMyListTrip = () => {
   const { state, dispatch } = React.useContext(MyListTripContext);
   const { isLg } = useTailwindBreakpoint();
 
-  const { mutateAsync: deleteRidesId } = useDeleteRidesId();
+  const { mutateAsync: deleteRidesId, isPending: isPendingDeleteRidesId } = useDeleteRidesId();
 
   const isOpen = state.delete_ride_notification.is_open;
   const handleClose = () => {
@@ -138,6 +138,8 @@ export const DeleteRideNotificationMyListTrip = () => {
               "!bg-[#C50707]",
               "border border-[#C50707]"
             )}
+            disabled={isPendingDeleteRidesId}
+            isLoading={isPendingDeleteRidesId}
             onClick={handleClickDelete}
           >
             {dictionaries.delete_ride_notification.cta.confirm.children}
