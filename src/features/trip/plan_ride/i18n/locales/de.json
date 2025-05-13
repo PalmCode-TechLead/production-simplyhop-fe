@@ -296,7 +296,7 @@
       }
     },
     "tnc": {
-      "label": "Um deine Fahrt inserieren zu können, bestätige bitte die <a href='/datenschutz' target='_blank' style='color:#5AC53D'>Datenschutzbestimmungen</a> und <a href='/agb' target='_blank' style='color:#5AC53D'>AGB</a> von Simply Hop."
+      "label": "Ich akzeptiere die <a href='/datenschutz' target='_blank' style='color:#5AC53D'>Datenschutzbestimmungen</a> und <a href='/agb' target='_blank' style='color:#5AC53D'>AGB</a> der Simply Hop."
     },
     "cta": {
       "send": {
