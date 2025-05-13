@@ -100,7 +100,8 @@ export const FormChatTrip = () => {
       className={clsx(
         "grid-cols-[1.5rem_1fr_auto]",
         "grid items-center content-center justify-start justify-items-start gap-[0.625rem]",
-        "w-full",
+        "w-full sticky bottom-0",
+        "bg-[white]",
         "px-[1rem] lg:px-[2.5rem] py-[1rem]",
         "border-t border-t-[#DFDFDF]"
       )}

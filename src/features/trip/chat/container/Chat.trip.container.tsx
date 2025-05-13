@@ -29,7 +29,7 @@ export const ChatTripContainer = () => {
       <div
         className={clsx(
           "grid grid-cols-1 grid-rows-1 place-content-start place-items-start",
-          "w-full h-[calc(100vh-90px)]",
+          "w-full lg:h-[calc(100vh-90px)]",
           "pb-[0.75rem] px-[1rem]",
           "relative"
         )}
@@ -83,7 +83,7 @@ export const ChatTripContainer = () => {
               <PageSheet open={!!id && !isLg} direction={"right"}>
                 <div
                   className={clsx(
-                    "grid grid-rows-[60px_1fr_70px] grid-cols-1 place-content-start place-items-start gap-[2rem]",
+                    "grid grid-rows-[60px_1fr] pb-12 grid-cols-1 place-content-start place-items-start gap-[2rem]",
                     "w-full h-full",
                     "bg-[white]"
                   )}

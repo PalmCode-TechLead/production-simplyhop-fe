@@ -31,6 +31,14 @@ export const PageSheet = ({
     return () => setMounted(false);
   }, []);
 
+  React.useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [open]);
+
   if (!mounted) return null;
 
   const variants: Record<PageSheetDirection, PageSheetAnimationVariant> = {
@@ -66,7 +74,7 @@ export const PageSheet = ({
             "bg-[rgba(255,255,255)]",
             "inset-0",
             "fixed top-0 bottom-0 left-0 right-0",
-            "h-[100vh] z-[1000]",
+            "h-dvh z-[1000]",
             className
           )}
           initial={animation.initial}

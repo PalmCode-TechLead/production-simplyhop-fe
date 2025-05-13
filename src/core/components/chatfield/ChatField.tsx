@@ -26,6 +26,14 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
       <Input
         ref={inputRef}
         {...inputProps}
+        onFocus={(e) => {
+          if (inputProps?.disabled) return;
+          if (isLg) {
+            inputRef.current?.focus();
+          }
+          if (!inputProps?.onFocus) return;
+          inputProps.onFocus(e);
+        }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setValue(e.currentTarget.value);
           if (!inputProps?.onChange) return;
@@ -46,18 +54,16 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
           inputProps?.disabled
             ? "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
             : isLg
-            ? "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
-            : "top-[25%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
+              ? "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
+              : "top-[25%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
           inputProps?.disabled
             ? "!text-[#C7C3C3] text-[0.75rem] lg:text-[1rem]"
             : isLg && !!value.length
-            ? "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]"
-            : "!text-[#C7C3C3] text-[0.75rem]"
+              ? "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]"
+              : "!text-[#C7C3C3] text-[0.75rem]"
         )}
         onClick={() => {
-          if (isLg) {
-            inputRef.current?.focus();
-          }
+          inputRef.current?.focus();
         }}
       />
     </InputContainer>
