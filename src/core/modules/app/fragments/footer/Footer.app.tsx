@@ -85,7 +85,9 @@ export const FooterApp = () => {
           >
             {dictionaries.footer.middle.contact_center.items.map(
               (item, itemIndex) => (
-                <div
+                <Link
+                  href={item.href}
+                  target="_blank"
                   key={itemIndex}
                   className={clsx(
                     "grid grid-flow-col place-content-start place-items-start gap-[0.875rem]"
@@ -117,7 +119,7 @@ export const FooterApp = () => {
                       dangerouslySetInnerHTML={{ __html: item.description }}
                     />
                   </div>
-                </div>
+                </Link>
               )
             )}
           </div>
@@ -143,8 +145,8 @@ export const FooterApp = () => {
                     item.id === "Mitfahrt suchen"
                       ? item.href
                       : !state.profile
-                      ? "/login"
-                      : item.href;
+                        ? "/login"
+                        : item.href;
                   return (
                     <Link
                       key={itemIndex}
