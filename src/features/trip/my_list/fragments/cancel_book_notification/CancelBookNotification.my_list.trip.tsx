@@ -14,7 +14,7 @@ export const CancelBookNotificationMyListTrip = () => {
   const { state, dispatch } = React.useContext(MyListTripContext);
   const { isLg } = useTailwindBreakpoint();
 
-  const { mutateAsync: postBookingReject } = usePostBookingReject();
+  const { mutateAsync: postBookingReject, isPending: isPendingPostBookingReject } = usePostBookingReject();
 
   const isOpen = state.cancel_book_notification.is_open;
   const handleClose = () => {
@@ -138,6 +138,8 @@ export const CancelBookNotificationMyListTrip = () => {
               "!bg-[#C50707]",
               "border border-[#C50707]"
             )}
+            disabled={isPendingPostBookingReject}
+            isLoading={isPendingPostBookingReject}
             onClick={handleClickDelete}
           >
             {dictionaries.cancel_book_notification.cta.confirm.children}
