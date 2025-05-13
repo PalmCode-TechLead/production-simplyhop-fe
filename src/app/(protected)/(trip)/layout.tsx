@@ -18,7 +18,9 @@ export default function TripLayout({ children }: TripLayoutProps) {
     <Suspense fallback={<PageLoader />}>
       <main className={clsx("w-full min-h-screen")}>
         <TopNavigation />
-        {children}
+        <div className={clsx("pt-[90px]", "w-full")}>
+          {children}
+        </div>
         <FooterApp />
       </main>
     </Suspense>
