@@ -578,9 +578,9 @@ export const DetailPlanRideTrip = () => {
               </InputContainer>
             </div>
 
-            <p className={clsx("text-[1.5rem] text-[black] font-bold")}>
+            {/* <p className={clsx("text-[1.5rem] text-[black] font-bold")}>
               {dictionaries.detail.notes.form.title}
-            </p>
+            </p> */}
             <TextareafieldNotes
               inputContainerProps={{
                 className: "!border !border-[#F8F8F8]",
