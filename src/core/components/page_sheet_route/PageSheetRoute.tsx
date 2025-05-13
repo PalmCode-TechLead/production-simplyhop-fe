@@ -32,9 +32,9 @@ export const PageSheetRoute = ({
   inputProps,
   labelProps,
   emptyMessage = "",
-  onSelect = () => {},
-  onQuery = () => {},
-  onClose = () => {},
+  onSelect = () => { },
+  onQuery = () => { },
+  onClose = () => { },
 }: PageSheetRouteProps) => {
   const [query, setQuery] = useState("");
 
@@ -53,6 +53,12 @@ export const PageSheetRoute = ({
   useEffect(() => {
     if (!inputProps?.disabled && isOpen) {
       inputRef.current?.focus();
+      setTimeout(() => {
+        window.scrollTo({
+          top: containerRef.current?.offsetTop ?? 0,
+          behavior: "instant",
+        });
+      }, 100);
     }
   }, [inputProps?.disabled, isOpen]);
 
@@ -61,7 +67,7 @@ export const PageSheetRoute = ({
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
-          "w-full",
+          "w-full bg-white",
           "px-[1rem] py-[2rem]"
         )}
       >
