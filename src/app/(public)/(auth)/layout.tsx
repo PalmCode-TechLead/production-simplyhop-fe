@@ -25,7 +25,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
         token: token ?? "",
       },
     });
-  } catch {}
+  } catch { }
 
   if (res) {
     redirect(AppCollectionURL.public.home());
@@ -34,7 +34,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <main
       className={clsx(
-        "grid grid-rows-1 grid-cols-1 lg:grid-cols-2 place-content-center place-items-center",
+        "grid grid-rows-1 grid-cols-1 2xl:grid-cols-2 xl:grid-cols-[838px_1fr] lg:grid-cols-2 place-content-center place-items-center",
         "w-full h-full min-h-[100vh]",
         "relative"
       )}
@@ -47,10 +47,12 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
         )}
       >
         <Image
-          src={"/images/auth/auth-bg-3.svg"}
+          src={"/images/auth/auth-bg-portrait.png"}
           alt="login"
           width={1046}
           height={597}
+          priority
+          quality={100}
           className={clsx(
             "w-full h-full max-h-[100vh]",
             "object-center object-cover"
@@ -73,7 +75,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
           >
             <h1
               className={clsx(
-                "text-[#333FFF] text-[104.6px] font-bold leading-[96px]"
+                "text-[#333FFF] xl:text-[104.6px] text-[80px] font-bold leading-[96px]"
               )}
             >
               {"Simply"}
