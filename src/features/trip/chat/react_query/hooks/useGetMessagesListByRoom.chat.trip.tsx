@@ -265,6 +265,12 @@ export const useGetMessagesListByRoom = () => {
                 ],
               },
             },
+            date: {
+              label: "Datum",
+              date: !item.booking?.ride?.departure_time
+                ? "-"
+                : dayjs(item.booking?.ride?.departure_time).format("DD.MM.YYYY"),
+            },
 
             routes: {
               departure: {

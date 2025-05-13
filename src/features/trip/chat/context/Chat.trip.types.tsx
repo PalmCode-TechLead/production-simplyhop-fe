@@ -64,6 +64,7 @@ export interface ChatTripRoom {
       sender_id: string;
       time: string;
       name: string;
+      date: string;
       avatar: AvatarProps;
       message: string;
       booking: BookingCardChatTripProps | null;

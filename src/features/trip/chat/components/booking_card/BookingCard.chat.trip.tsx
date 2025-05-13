@@ -52,6 +52,10 @@ export interface BookingCardChatTripProps {
     initial?: CarPriceItemProps;
     offered?: PriceOfferedItemProps;
   };
+  date?: {
+    label: string;
+    date: string;
+  }
   note?: TripNoteItemProps;
   cta?: {
     cancel: null | {
@@ -181,6 +185,10 @@ export const BookingCardChatTrip = ({
       price: "€25.00",
     },
   },
+  date = {
+    label: "Datum",
+    date: "24.02.25",
+  },
   note = {
     label: "Hinweis",
     note: "Lorem Ipsum",
@@ -190,25 +198,25 @@ export const BookingCardChatTrip = ({
       children: "Angebot ablehnen",
       disabled: false,
       loading: false,
-      onClick: () => {},
+      onClick: () => { },
     },
     reject: {
       children: "Angebot ablehnen",
       disabled: false,
       loading: false,
-      onClick: () => {},
+      onClick: () => { },
     },
     bargain: {
       children: "Ein weiteres Angebot senden",
       disabled: false,
       loading: false,
-      onClick: () => {},
+      onClick: () => { },
     },
     accept: {
       children: "Angebot annehmen",
       disabled: false,
       loading: false,
-      onClick: () => {},
+      onClick: () => { },
     },
   },
 }: BookingCardChatTripProps) => {
@@ -246,11 +254,17 @@ export const BookingCardChatTrip = ({
             "w-full"
           )}
         >
-          <Image
-            {...car.image}
-            alt={car.image.alt}
-            className={clsx("w-[145px]")}
-          />
+          <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-1">
+              <span className={clsx("font-medium text-[#727272] text-[10px]")}>{date.label}</span>
+              <span className={clsx("font-semibold text-sm")}>{date.date}</span>
+            </div>
+            <Image
+              {...car.image}
+              alt={car.image.alt}
+              className={clsx("w-[145px]")}
+            />
+          </div>
 
           <div
             className={clsx(
