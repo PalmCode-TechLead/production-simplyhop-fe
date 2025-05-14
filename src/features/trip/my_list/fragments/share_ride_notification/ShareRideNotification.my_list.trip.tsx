@@ -99,14 +99,9 @@ export const ShareRideNotificationMyListTrip = () => {
           cta={{ ...dictionaries.share_ride_notification.share.cta }}
         />
 
-        <Link
-          className={clsx("w-full")}
-          href={dictionaries.share_ride_notification.cta.back.href}
-        >
-          <Button>
-            {dictionaries.share_ride_notification.cta.back.children}
-          </Button>
-        </Link>
+        <Button onClick={handleClose}>
+          {dictionaries.share_ride_notification.cta.back.children}
+        </Button>
       </div>
     </AdaptiveModal>
   );
