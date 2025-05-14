@@ -79,7 +79,7 @@ export default function RootLayout({
         <Head>
           <meta property="og:title" content={APP_DEFAULT_TITLE} />
           <meta property="og:description" content={APP_DESCRIPTION} />
-          <meta property="og:image" content="/logo/metea_logo.png" />
+          <meta property="og:image" content="/logo/meta_image_logo.png" />
 
           <meta property="og:type" content="website" />
         </Head>
