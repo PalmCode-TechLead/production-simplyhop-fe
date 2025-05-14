@@ -14,7 +14,6 @@ export interface ChatFieldProps {
 export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const { isLg } = useTailwindBreakpoint();
-  const [value, setValue] = React.useState<string>("");
   React.useEffect(() => {
     if (!inputProps?.disabled && !isLg) {
       inputRef.current?.focus();
@@ -22,20 +21,12 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
   }, [inputProps?.disabled, isLg]);
 
   return (
-    <InputContainer className={clsx("relative", "!border-[0px]", "!h-[48px]")}>
+    <InputContainer className={clsx("relative [&>input]:z-20", "!border-[0px]", "!h-[48px]")}
+    >
       <Input
-        ref={inputRef}
         {...inputProps}
-        onFocus={(e) => {
-          if (inputProps?.disabled) return;
-          if (isLg) {
-            inputRef.current?.focus();
-          }
-          if (!inputProps?.onFocus) return;
-          inputProps.onFocus(e);
-        }}
+        className="relative"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setValue(e.currentTarget.value);
           if (!inputProps?.onChange) return;
           inputProps.onChange(e);
         }}
@@ -51,20 +42,14 @@ export const ChatField = ({ inputProps, labelProps }: ChatFieldProps) => {
       <InputLabel
         {...labelProps}
         className={clsx(
-          inputProps?.disabled
-            ? "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
-            : isLg
-              ? "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]"
-              : "top-[25%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
+          "z-10",
+          "top-[50%] left-[0.75rem] lg:left-[1.625rem] translate-y-[-50%] text-[0.75rem]",
           inputProps?.disabled
             ? "!text-[#C7C3C3] text-[0.75rem] lg:text-[1rem]"
-            : isLg && !!value.length
-              ? "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]"
-              : "!text-[#C7C3C3] text-[0.75rem]"
+            : "peer-focus:top-[25%] peer-focus:text-[0.75rem] !text-[#C7C3C3] text-[0.75rem]",
+          inputProps?.value && inputProps?.value.toString().length > 0
+          && "!top-[25%]"
         )}
-        onClick={() => {
-          inputRef.current?.focus();
-        }}
       />
     </InputContainer>
   );
