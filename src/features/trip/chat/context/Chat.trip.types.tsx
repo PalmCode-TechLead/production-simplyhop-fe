@@ -95,6 +95,7 @@ export interface ChatTripOffer {
   };
   ride: null | RideDetailCardChatTripProps;
   price: null | PriceCardChatTripProps;
+  date: null | { label: string; date: string };
   passenger: null | {
     adult: number;
     children: number;
