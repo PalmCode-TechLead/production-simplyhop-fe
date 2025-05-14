@@ -51,7 +51,9 @@ export const AGBHelpCenterContainer = () => {
                     className={clsx(
                       "text-[0.875rem] text-[#606060] font-normal"
                     )}
-                    dangerouslySetInnerHTML={{ __html: subContent }}
+                    dangerouslySetInnerHTML={{
+                      __html: subContent.replaceAll("'", '"'),
+                    }}
                   />
                 );
               })}
@@ -71,7 +73,9 @@ export const AGBHelpCenterContainer = () => {
                       className={clsx(
                         "text-[0.875rem] text-[#606060] font-normal"
                       )}
-                      dangerouslySetInnerHTML={{ __html: subContent }}
+                      dangerouslySetInnerHTML={{
+                        __html: subContent.replaceAll("'", '"'),
+                      }}
                     />
                     <br />
                   </div>

@@ -2,132 +2,101 @@
   "title": "AGB’s",
   "contents": [
     {
-      "title": "Allgemeine Geschäftsbedingungen Nutzungsbedingungen (AGBs)",
+      "title": "1. Geltungsbereich",
       "type": "paragraph",
       "content": [
-        "Diese Allgemeinen Geschäftsbedingungen gelten für alle Nutzer. Nutzer können den Allgemeinen Geschäftsbedingungen jederzeit durch Beendigung des Nutzungsvertrags bzw. Löschung des Nutzer-Accounts widersprechen. Jegliche Daten eines Nutzers werden nach Beendigung des Nutzungsvertrags bzw. Löschung des Nutzer-Accounts umgehend und vollständig gelöscht. Es erfolgt keine Archivierung von Daten. Eine Löschung des Nutzer-Accounts ist jederzeit möglich unter http://www.simplyhop.com"
+        "1.1 Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der von der Simply Hop  (nachfolgend: 'Betreiber') bereitgestellten Mitfahrplattform über die PWA -App, Mobilgeräte und andere digitale Kanäle.",
+        "1.2 Die AGB gelten sowohl für registrierte Nutzerinnen und Nutzer (nachfolgend: 'Nutzer') als auch für nicht registrierte Besucher der Plattform, soweit anwendbar."
       ]
     },
     {
-      "title": "Inhaltsverzeichnis",
-      "type": "ordered-list",
+      "title": "2. Leistungsgegenstand",
+      "type": "paragraph",
       "content": [
-        "Allgemeines",
-        "Registrierung",
-        "Leistungen des Mitfahrportals",
-        "Verbindlichkeit veröffentlichter Inserate",
-        "Pflichten des Nutzers",
-        "Datenschutz und Datenschutzrechtliche Einwilligung",
-        "Email-Benachrichtgungen und Newsletter",
-        "Laufzeit und Kündigung des Nutzungsvertrages",
-        "Gewährleistung / Haftung",
-        "Widerrufsbelehrung",
-        "Anwendbares Recht, Gerichtsstand und Schlussbestimmungen"
+        "2.1 Der Betreiber stellt eine digitale Plattform zur Vermittlung von Fahrgemeinschaften zwischen Nutzerinnen und Nutzern zur Verfügung.",
+        "2.2 Der Betreiber ist ausschließlich technischer Dienstleister. Es entsteht kein Beförderungsvertrag zwischen dem Betreiber und den Nutzern, sondern ausschließlich zwischen Fahrer und Mitfahrer.",
+        "2.3 Die Nutzung der Plattform ist freiwillig und erfolgt auf eigenes Risiko der Nutzer."
       ]
     },
     {
-      "title": "1. Allgemeines",
+      "title": "3. Registrierung und Nutzerkonto",
       "type": "paragraph",
       "content": [
-        "Simply Hop, 01067 Dresden, Altmarkt 10 B / D , vertreten durch Marcus Ritter (nachfolgend „Mitfahrportals genannt), betreibt ein Onlineportal („Mitfahrportal“), welches die Vermittlung von Fahrgemeinschaften und Mitfahrgelegenheiten zum Gegenstand hat. Der Zugang und die Nutzung des Mitfahrportals ist in eingeschränkten Maß auch über die App des Mitfahrportals möglich.  Simply Hop / Marcus Ritter ermöglicht den Zugang und die Nutzung des Mitfahrportals auf Grundlage dieser allgemeinen Geschäftsbedingungen („AGB“). Die AGB regeln das Verhältnis zwischen Simply Hop Marcus Ritter als Betreiber des Mitfahrportals und den Nutzern des Mitfahrportals. Das Angebot des Mitfahrportals richtet sich nur an Verbraucher im Sinne des § 13 BGB (Privatpersonen). Das Rechtsverhältnis zwischen den Nutzern, also insbesondere zwischen Fahrer bzw. Anbieter von Fahrten und Mitfahrer, wird durch diese AGB nicht berührt."
+        "3.1 Die Nutzung bestimmter Funktionen erfordert eine vorherige Registrierung.",
+        "3.2 Die bei der Registrierung abgefragten Daten sind vollständig und korrekt anzugeben. Änderungen sind vom Nutzer unverzüglich im Nutzerkonto zu aktualisieren.",
+        "3.3 Jeder Nutzer darf nur ein Nutzerkonto anlegen."
       ]
     },
     {
-      "title": "2. Registrierung",
+      "title": "4. Nutzungspflichten",
       "type": "paragraph",
       "content": [
-        "2.1 Mit der Registrierung über das Mitfahrportal erkennt der Nutzer die AGB von Simply Hop Marcus Ritter an.",
-        "2.2 Nach Eingabe der für die Registrierung notwendigen Daten, erhält der Nutzer vom Mitfahrportal eine Nachricht mit einer Begrüßung. Der Registrierungsprozess ist erfolgreich abgeschlossen, wenn das Mitfahrportal den Nutzer über die Aktivierung seines Benutzerkontos informiert. Ein Anspruch des Nutzers auf Registrierung besteht nicht.",
-        "2.3 Mit erfolgreicher Registrierung kommt ein Vertrag zwischen dem Betreiber des Mitfahrportals und dem registrierten Nutzer zustande, der die Nutzung des Mitfahrportals zum Gegenstand hat („Nutzungsvertrag“). Der Inhalt des Nutzungsvertrages ergibt sich aus diesen AGB. Zweck des Nutzungsvertrags ist die Vermittlung von Fahrgemeinschaften und Mitfahrgelegenheiten („Vertragszweck“)."
+        "4.1 Nutzer verpflichten sich, die Plattform nur im Rahmen der geltenden Gesetze sowie dieser AGB zu verwenden.",
+        "4.2 Es ist insbesondere untersagt:",
+        "– falsche Angaben zu machen,",
+        "– Inhalte mit beleidigendem, diskriminierendem oder gesetzeswidrigem Charakter zu veröffentlichen,",
+        "– automatisierte Systeme zur Datenabfrage oder Manipulation zu verwenden."
       ]
     },
     {
-      "title": "3. Leistungen des Mitfahrportals",
+      "title": "5. Vertragsverhältnis zwischen Fahrern und Mitfahrern",
       "type": "paragraph",
       "content": [
-        "3.1 Simple Hop Marcus Ritter stellt mit dem Mitfahrportal ein kostenfreies und für jedermann zugängiges Angebot bereit. Das Mitfahrportal bietet registrierten Nutzern die Möglichkeit, Inhalte selbst in das Mitfahrportal einzustellen und für Dritte verfügbar zu machen. Das Auffinden von Angeboten und Gesuchen anderer Nutzer, sowie das Kontaktieren der jeweiligen Inseratseigentümer ist auch ohne Registrierung möglich (sofern nicht vom Nutzer eingeschränkt, siehe 3.3).",
-        "3.2 Das Mitfahrportal stellt Informationen bereit, damit Fahrer und Mitfahrer eigenständig miteinander in Kontakt treten können. Die Leistung des Betreibers des Mitfahrportals beschränkt sich dabei auf eine rein technische Vermittlungstätigkeit durch das Betreiben des Mitfahrportals. Der Betreiber des Mitfahrportals mischt sich im Normalfall zu keinem Zeitpunkt in den Vermittlungsprozeß zwischen Fahrer und Mitfahrer ein. Eine Einigung über eine konkrete Mitfahrt kommt, ohne Beteiligung des Mitfahrportals, allein zwischen Fahrer und Mitfahrer zustande. Fahrer und Mitfahrer klären alle relevanten Informationen unter sich.",
-        "3.3 Der inserierende Nutzer ermöglicht die Zugänglichkeit seiner Kontaktinformationen (z.B. Nachname, Telefonnummer, email-Adresse).",
-        "3.4 Die in den AGB beschriebenen Funktionen des Mitfahrportals stehen dem Nutzer bei Verwendung der Web-App des Mitfahrportals möglicherweise teilweise nicht oder in nur eingeschränktem Umfang zur Verfügung."
+        "5.1 Die Vermittlung von Fahrgemeinschaften erfolgt ausschließlich zwischen den beteiligten Nutzern.",
+        "5.2 Der Betreiber ist weder Vertragspartner noch haftet er für die Durchführung der Fahrt, die Pünktlichkeit, Sicherheit oder Verfügbarkeit.",
+        "5.3 Etwaige Ansprüche aus Beförderung, Kostenbeteiligung oder Schäden sind zwischen Fahrer und Mitfahrer direkt zu klären."
       ]
     },
     {
-      "title": "4. Verbindlichkeit veröffentlichter Inserate",
+      "title": "6. Kosten und Zahlungsabwicklung",
       "type": "paragraph",
       "content": [
-        "4.1 Die Veröffentlichung eines Inserats im Mitfahrportal durch einen Nutzer stellt kein verbindliches Angebot dar. Es wird erwartet, dass Anbieter und Interessent selbstständig miteinander in Kontakt treten und den Inhalt des Angebots zur Mitfahrt miteinander klären (z.B. Datum und Zeit der Fahrt, Abfahrts- und Ankunftsort, Anzahl freier Plätze, etc.)."
+        "6.1 Die Nutzung der Plattform ist grundsätzlich kostenfrei, soweit nicht ausdrücklich anders vereinbart.",
+        "6.2 Etwaige Kostenbeteiligungen zwischen Fahrer und Mitfahrer erfolgen außerhalb der Plattform und werden vom Betreiber nicht verwaltet oder kontrolliert."
       ]
     },
     {
-      "title": "5. Pflichten des Nutzers",
+      "title": "7. Inhalte und Verantwortung",
       "type": "paragraph",
       "content": [
-        "5.1 Der Nutzer verpflichtet sich, die bei der Registrierung und bei der Nutzung des Mitfahrportals angegebenen Daten stets aktuell zu halten (insbesondere Name, Vorname, E-Mail-Adresse, Telefonnummer).",
-        "5.2 Jeder Nutzer ist verpflichtet, korrekte Angaben beim Einstellen von Inseraten oder bei der Vereinbarung von Mitfahrten zu machen.",
-        "5.3 Dritte ohne deren Wissen und Einverständnis im Mitfahrportal zu registrieren ist ebenso wenig gestattet, wie die Veröffentlichung von Beiträgen oder Inhalten in deren Namen.",
-        "5.4 Die im Mitfahrportal veröffentlichten Informationen dürfen nur zu privaten Zwecken verwendet werden. Die Verbreitung von ungefragten Werbenachrichten ist untersagt (Spam-Verbot). Die Kontaktaufnahme mit anderen Benutzern ist auschschliesslich zur Vermittlung von Mitfahrten gedacht.",
-        "5.5 Der Nutzer ist verpflichtet, bei der Nutzung der Webseite das jeweils geltende Recht zu beachten. Dies beinhaltet insbesondere das Verbot der Veröffentlichung beleidigender, unwahrer, gewaltverherrlichender, jugendgefährdender, rassistischer oder pornographischer Inhalte. Das Mitfahrportal darf nicht für rechtswidrige Zwecke verwendet werden.",
-        "5.6 Nutzeraktivitäten, die darauf gerichtet sind, das Mitfahrportal funktionsuntauglich zu machen oder die Nutzung des Angebots zu erschweren, sind verboten. Dadurch entstandene Schäden werden geltend gemacht.",
-        "5.7 Jeder Nutzer hat hinsichtlich der von ihm verwendeten Inhalte und Materialien sicherzustellen, dass diese frei von Rechten Dritter sind und keine Rechte Dritter verletzen. Er stellt den Betreiber des Mitfahrportals von Ansprüchen Dritter frei, die wegen der von ihm eingestellten Inhalte und Materialien oder wegen des Nutzerverhaltens gegenüber dem Mitfahrportal erhoben werden, einschließlich der dadurch verursachten angemessenen Kosten der Rechtsverteidigung.",
-        "5.8 Der Mitfahrtanbietende bestätigt mit der Einstellung seines Mitfahrangebotes, sich im Besitz einer gültigen Fahrerlaubnis / Führerschein für das jeweilige Fahrzeug zu befinden, welche bzw. welcher für das Mitfahrangebot als Voraussetzung zur Einstellung eines Mitfahrangebotes notwendig ist. Insofern der Mitfahrtanbietende keinen aktuellen Führerschein besitzt oder im Zeitraum der angebotenen und / oder durchgeführten bzw. noch durchzuführenden Fahrten und Mitfahrten mit einem Fahrverbot belegt ist / wurde, ist die Einstellung, Annahme und Durchführung von Mitfahrangeboten sowie Mitfahranfragen im Portal der Simply Hop strengstens untersagt. Der Mitfahrtanbietende bestätigt des weiteren, das für das jeweils für die Mitfahrt angebotenen KFZ eine gültige Haftpflichtversicherung gemäß den gesetzlichen Vorgaben besteht. Im Falle eines Unfalls und / mit Personenschaden ist die Simply Hop und deren gesetzlicher Vertreter von etwaigen Ansprüchen der Unfallbeteiligten, etwaiger weiteren Beteiligten sowie gesetzlichen Vertretern aller Beteiligten befreit. Es werden keinerlei Ansprüche, Schadenersatzforderungen an das Mitfahrportal Simply Hop bzw. dessen gesetzlichen Vertreters gestellt bzw. geltend gemacht."
+        "7.1 Nutzer sind für alle von ihnen eingestellten Inhalte (z. B. Fahrangebote, Profilinformationen, Nachrichten) selbst verantwortlich.",
+        "7.2 Der Betreiber ist nicht verpflichtet, Inhalte vorab zu prüfen, behält sich aber das Recht vor, rechtswidrige oder unangemessene Inhalte zu entfernen."
       ]
     },
     {
-      "title": "6. Datenschutz",
+      "title": "8. Laufzeit und Kündigung",
       "type": "paragraph",
       "content": [
-        "6.1 Der Betreiber des Mitfahrportals unterscheidet zwischen personenbezogenen Daten („Personendaten“, z.B. Name des Nutzers, Kontaktinformationen, Profildaten) und fahrtenbezogenen Daten („Fahrtendaten“ z.B. Start-/ Ziel- und Zeitpunkt einer Fahrt). Personendaten beschreiben bzw. identifizieren eine Person, Fahrtendaten beschreiben bzw. identifizieren ein Angebot oder Gesuch einer Fahrt.",
-        "6.2 Der Betreiber des Mitfahrportals erhebt, speichert und verarbeitet Personendaten von Nutzern nur, soweit dies zur vertragsgemäßen Leistungserbringung erforderlich und durch gesetzliche Vorschriften erlaubt, oder vom Gesetzgeber angeordnet ist. Der Betreiber des Mitfahrportals behandelt Personendaten entsprechend den Bestimmungen des geltenden Datenschutzrechts. Personendaten werden vertraulich behandelt und ausschließlich auf den Servern des Betreibers des Mitfahrportals gespeichert und ohne ausdrückliche Einwilligung des Nutzers zu keinem Zeitpunkt an Dritte weiter gegeben.",
-        "6.3 Mit der Registrierung räumt der Nutzer dem Betreiber des Mitfahrportals sowohl für die Personendaten als auch für die Fahrtendaten ein auf die Verwendung und den Vertragszweck beschränktes, widerrufliches, unentgeltliches Nutzungsrecht ein. Insbesondere gilt dies für die Speicherung der Daten auf den Servern des Betreibers des Mitfahrportals sowie deren Veröffentlichung, insbesondere deren öffentlicher Zugänglichmachung (z.B. durch Darstellung der Nutzerdaten im Mitfahrportal), sowie die Bearbeitung und Vervielfältigung der Nutzerdaten, soweit dies für die Vorhaltung bzw. Veröffentlichung erforderlich ist.",
-        "6.4 Für den Fall, dass im Rahmen der Nutzung des Mitfahrportals datenschutzrechtliche Einwilligungserklärungen vom Nutzer eingeholt werden, wird darauf hingewiesen, dass diese vom Nutzer jederzeit mit Wirkung für die Zukunft widerrufen werden können.",
-        "6.5 Weitere Hinweise zum Datenschutz und zu Zweck, Art und Umfang der Erhebung, Verarbeitung und Nutzung personenbezogener Daten können in der Datenschutzerklärung eingesehen werden."
+        "8.1 Das Nutzungsverhältnis kann von beiden Seiten jederzeit ohne Angabe von Gründen gekündigt werden.",
+        "8.2 Der Betreiber behält sich das Recht vor, Nutzer bei Verstößen gegen die AGB oder gesetzliche Vorschriften zu sperren oder auszuschließen."
       ]
     },
     {
-      "title": "7. E-Mail-Benachrichtigungen und Newsletter",
+      "title": "9. Haftung",
       "type": "paragraph",
       "content": [
-        "7.1. Für manche Funktionen des Mitfahrportals werden emails vom Mitfahrportal an den Nutzer verschickt. Damit diese Funktionen genutzt werden können, sollte der Nutzer dafür Sorge tragen, dass die von ihm angegebene email-Adresse korrekt und erreichbar ist.",
-        "7.2. Das Mitfahrportal informiert die Nutzer gelegentlich per email (Newsletter) über Neuerungen rund um das Mitfahrportal. Sollte der Nutzer kein Interesse am Newsletter haben, kann er diesen jederzeit mittels des Abmeldelinks im Newsletter oder in den Einstellungen im Nutzerkonto abbestellen."
+        "9.1 Der Betreiber übernimmt keine Haftung für das Zustandekommen oder die Durchführung von Fahrgemeinschaften.",
+        "9.2 Der Betreiber haftet nicht für Schäden, die durch Nutzer verursacht werden oder aus der Nutzung der Plattform entstehen, es sei denn, es liegt ein vorsätzliches oder grob fahrlässiges Verhalten des Betreibers vor.",
+        "9.3 Der Betreiber des Mitfahrportals haftet unbeschränkt für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit, die auf einer vorsätzlichen oder fahrlässigen Pflichtverletzung des Betreibers, seiner gesetzlichen Vertreter oder Erfüllungsgehilfen beruhen. Für sonstige Schäden haftet der Betreiber nur bei vorsätzlicher oder grob fahrlässiger Pflichtverletzung oder bei Arglist."
       ]
     },
     {
-      "title": "8. Laufzeit und Kündigung des Nutzungsvertrages",
+      "title": "10. Datenschutz",
       "type": "paragraph",
       "content": [
-        "8.1 Der mit der Registrierung verknüpfte Nutzungsvertrag zwischen dem Betreiber des Mitfahrportals und dem Nutzer wird auf unbestimmte Zeit abgeschlossen. Sowohl Nutzer wie auch der Betreiber des Mitfahrportals sind jederzeit berechtigt, das Nutzungsverhältnis zu kündigen. Zur Kündigung kann am einfachsten folgender Link verwendet werden: http://www.simplyhop.com",
-        "8.2 Der Betreiber des Mitfahrportals ist ferner berechtigt, den Nutzungsvertrag mit sofortiger Wirkung zu kündigen, wenn der Nutzer durch gegen die Nutzungsbedingungen verstoßende Beiträge auf dem Mitfahrportal auffällt oder anderweitig gegen wesentliche Bestimmungen dieser Nutzungsbedingungen verstößt. In geeigneten Fällen wird der Betreiber des Mitfahrportals den Nutzer vor Kündigung des Nutzungsvertrages ermahnen.",
-        "8.3 Unbeschadet einer Möglichkeit zur Kündigung des Nutzungsvertrages behält sich der Betreiber des Mitfahrportals vor, den Nutzer, auch mit sofortiger Wirkung, von einem oder mehreren Diensten des Angebots auszuschließen und/oder einen Nutzer-Account vorübergehend und dauerhaft zu deaktivieren.",
-        "8.4 Der Betreiber des Mitfahrportals ist berechtigt, nach eigenem Ermessen, hinsichtlich einzelner Mitfahrangebote oder sonstigen Veröffentlichungen besondere Maßnahmen zu treffen, soweit diese zur Wahrung der Interessen anderer Nutzer, des Mitfahrportals oder Dritter erforderlich und angemessen sind. Dazu gehören insbesondere auch die Löschung eines Fahrtangebots und die Löschung von Nachrichten.",
-        "8.5 Jegliche Daten eines Nutzers werden nach Beendigung des Nutzungsvertrags umgehend und vollständig gelöscht. Es erfolgt keine Archivierung von Daten. Einzelheiten zum Umgang mit Daten der Nutzer können in der Datenschutzerklärung eingesehen werden."
-      ]
-    },
-    {
-      "title": "9. Verbindlichkeit veröffentlichter Inserate",
-      "type": "paragraph",
-      "content": [
-        "9.1 Der Betreiber des Mitfahrportals gewährleistet nicht den jederzeitigen ordnungsgemäßen Betrieb beziehungsweise die ununterbrochene Nutzbarkeit oder Erreichbarkeit des Mitfahrportals, da Störungen des Servers oder Schwankungen in der Qualität des Zugangs zum Mitfahrportal technisch nicht auszuschließen sind.",
-        "9.2 Der Betreiber des Mitfahrportals ist als Diensteanbieter im Sinne des Telemediengesetzes nicht dazu verpflichtet, die übermittelten oder gespeicherten Informationen seiner Nutzer zu überwachen oder nach Umständen zu forschen, die auf rechtswidrige Handlungen hinweisen. Sollte der Betreiber des Mitfahrportals allerdings Kenntnis von solchen Tatsachen erlangen, prüft der Betreiber des Mitfahrportals den Sachverhalt und entfernt beziehungsweise sperrt die rechtswidrigen Inhalte unverzüglich.",
-        "9.3 Eine Haftung seitens Betreiber des Mitfahrportals gegenüber Nutzern des Mitfahrportals für Schäden aus der schuldhaft verursachten Verletzung des Lebens, des Körpers oder der Gesundheit, sowie für sonstige Schäden, die auf einer vorsätzlichen oder grob fahrlässigen Pflichtverletzung sowie Arglist seitens des Betreibers des Mitfahrportals, ihrer gesetzlicher Vertreter, leitender Angestellter oder sonstigen Erfüllungsgehilfen beruhen, ist ausgeschlossen. Darüber hinaus haftet der Betreiber des Mitfahrportals keinesfalls für Schäden, ausser die von der Haftung nach zwingenden gesetzlichen Vorschriften, wie dem Produkthaftungsgesetz, umfasst werden, sowie im Fall der Übernahme von Garantien.",
-        "9.4 Unbeschadet der Haftung aus Ziffer 9.3 haftet der Betreiber des Mitfahrportals für die schuldhafte Verletzung wesentlicher Vertragspflichten, also solcher Pflichten, deren Erfüllung die ordnungsgemäße Erfüllung des Nutzungsvertrages überhaupt erst ermöglichen und auf deren Einhaltung der Nutzer deswegen vertrauen darf, allerdings der Höhe nach beschränkt auf die bei Vertragsschluss vorhersehbaren und vertragstypischen Schäden.",
-        "9.5 Eine Haftung des Betreibers des Mitfahrportals über Ziffer 9.3 und 9.4 hinaus ist ausgeschlossen. Der Nutzer erkennt mit der Registrierung an, dass der Betreiber des Mitfahrportals keine Haftung in Bezug auf Mitfahrten übernimmt."
-      ]
-    },
-    {
-      "title": "10. Widerrufsbelehrung",
-      "type": "paragraph",
-      "content": [
-        "Der Nutzer kann seine Registrierung jederzeit ohne Frist und ohne Angabe von Gründen in Textform (z.B. per email, Brief oder Fax an den Betreiber des Mitfahrportals) oder durch Löschung seines Accounts unter http://www.simplyhop.com widerrufen. Bei Widerruf bzw. Löschung des Accounts werden alle Daten des Nutzers unverzüglich und vollständig gelöscht. Es erfolgt keine Archivierung von Daten. Der Nutzer kann abgegebene Einwilligungserklärungen jederzeit ohne Frist und ohne Angabe von Gründen in Textform (z.B. per email, Brief oder Fax an die im Impressum aufgeführten Kontaktdaten des Mitfahrportals) oder über entsprechende Berechtigungs-Einstellungen in seinem Benutzerprofil widerrufen."
+        "10.1 Informationen zur Erhebung, Verarbeitung und Nutzung personenbezogener Daten sind in der Datenschutzerklärung abrufbar.",
+        "10.2 Der Betreiber verarbeitet personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Vorschriften."
       ]
     },
     {
       "title": "11. Verbindlichkeit veröffentlichter Inserate",
       "type": "paragraph",
       "content": [
-        "11.1 Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss der Normen des Kollisionsrechts.",
-        "11.2 Ausschließlicher Gerichtsstand für alle sich aus oder im Zusammenhang mit dem Rechtsverhältnis zwischen dem Betreiber des Mitfahrportals und den registrierten Nutzern ergebende Streitigkeiten ist Dresden, Deutschland.",
-        "11.3 Sollten einzelne Bestimmungen dieser AGB ganz oder zum Teil unwirksam sein, berührt dies die Wirksamkeit der übrigen Bestimmungen nicht.",
-        "11.4 Der Betreiber des Mitfahrportals behält sich das Recht vor, Bestimmungen dieser AGB zu ändern. Der Betreiber des Mitfahrportals wird evtl. Änderungen der AGB dem Nutzer per email mitteilen. Widerspricht der Nutzer der Geltung der neuen AGB nicht innerhalb von sechs (6) Wochen nach Empfang der email, gelten die geänderten AGB als mit dem Nutzer vereinbart. Auf diese Frist wird der Nutzer im Rahmen der Änderungsmitteilung ausdrücklich hingewiesen. Widerspricht der Nutzer der Geltung der neuen AGB innerhalb von sechs (6) Wochen, ist der Betreiber des Mitfahrportals berechtigt, den Nutzungsvertrag zu kündigen."
+        "11.1 Es gilt das Recht der Bundesrepublik Deutschland.",
+        "11.2 Gerichtsstand ist der Sitz des Betreibers, sofern der Nutzer Kaufmann ist oder keinen allgemeinen Gerichtsstand im Inland hat.",
+        "11.3 Änderungen oder Ergänzungen dieser AGB bedürfen der Textform.",
+        "11.4 Sollten sich gesetzliche Bestimmungen ändern, behält sich der Betreiber vor, diese AGB entsprechend anzupassen.",
+        "11.5 Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam oder undurchführbar sein oder werden, so wird hierdurch die Wirksamkeit der übrigen Bestimmungen nicht berührt. Anstelle der unwirksamen oder undurchführbaren Regelung gilt diejenige wirksame und durchführbare Regelung als vereinbart, die dem wirtschaftlichen Zweck der unwirksamen Regelung am nächsten kommt. Gleiches gilt für etwaige Regelungslücken."
       ]
     }
   ]
