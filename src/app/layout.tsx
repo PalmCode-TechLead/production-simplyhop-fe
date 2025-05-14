@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReactQueryProvider } from "@/core/utils/react_query";
 import { GlobalProvider, UserProvider } from "@/core/modules/app/context";
 import Head from "next/head";
+import { ENVIRONMENTS } from "@/core/environments";
 
 const APP_NAME = "Simply Hop";
 const APP_DEFAULT_TITLE = "Simply Hop";
@@ -27,7 +28,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: APP_DEFAULT_TITLE,
-    // startUpImage: [],
   },
   formatDetection: {
     telephone: false,
@@ -40,6 +40,14 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+    images: [
+      {
+        url: `${ENVIRONMENTS.SITE_URL}/logo/meta_image_logo.png`, // Ganti ke URL absolut
+        width: 1200,
+        height: 630,
+        alt: "Simply Hop Meta Image",
+      },
+    ],
   },
   twitter: {
     card: "summary",
@@ -48,6 +56,14 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+    images: [
+      {
+        url: `${ENVIRONMENTS.SITE_URL}/logo/meta_image_logo.png`, // Ganti ke URL absolut
+        width: 1200,
+        height: 630,
+        alt: "Simply Hop Meta Image",
+      },
+    ],
   },
 };
 
@@ -76,13 +92,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
           rel="stylesheet"
         />
-        <Head>
-          <meta property="og:title" content={APP_DEFAULT_TITLE} />
-          <meta property="og:description" content={APP_DESCRIPTION} />
-          <meta property="og:image" content="/logo/meta_image_logo.png" />
-
-          <meta property="og:type" content="website" />
-        </Head>
       </Head>
       <body className={`${inter.variable} antialiased`}>
         <ReactQueryProvider>
