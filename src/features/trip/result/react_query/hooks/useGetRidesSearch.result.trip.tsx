@@ -328,6 +328,12 @@ export const useGetRideSearch = () => {
           },
 
           routes: {
+            date: {
+              label: "Datum",
+              date: !item.departure_time
+                ? "-"
+                : dayjs.utc(item.departure_time).format("DD.MM.YY"),
+            },
             departure: {
               place: !item.start_name ? "-" : item.start_name,
               time: !item.departure_time

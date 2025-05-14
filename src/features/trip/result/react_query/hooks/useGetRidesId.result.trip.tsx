@@ -15,12 +15,12 @@ import { getDictionaries as getGlobalDictionaries } from "@/core/modules/app/i18
 import { SVGIconProps } from "@/core/icons";
 import { setArrivalTime, setDurationTime } from "@/core/utils/time/functions";
 import dayjs from "dayjs";
-import utc from 'dayjs/plugin/utc'
+import utc from "dayjs/plugin/utc";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDriverLabel } from "@/core/utils/driver/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
 
-dayjs.extend(utc)
+dayjs.extend(utc);
 
 export const useGetRidesId = () => {
   const globalDictionaries = getGlobalDictionaries();
@@ -236,6 +236,12 @@ export const useGetRidesId = () => {
             },
 
             routes: {
+              date: {
+                label: "Datum",
+                date: !item.departure_time
+                  ? "-"
+                  : dayjs.utc(item.departure_time).format("DD.MM.YY"),
+              },
               departure: {
                 place: !item.start_name ? "-" : item.start_name,
                 time: !item.departure_time

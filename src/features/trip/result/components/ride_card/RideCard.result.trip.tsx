@@ -31,6 +31,8 @@ import { RideBadge, RideBadgeProps } from "@/core/components/ride_badge";
 import { Button } from "@/core/components/button";
 import Link from "next/link";
 import { UmwegBadge, UmwegBadgeProps } from "@/core/components/umweg_badge";
+import { TravelDateItemProps } from "@/core/components/travel_date_item";
+import { DepartureDateItem } from "@/core/components/departure_date_item";
 
 export interface RideCardResultTripProps {
   id?: string;
@@ -48,6 +50,7 @@ export interface RideCardResultTripProps {
   };
 
   routes?: {
+    date?: TravelDateItemProps;
     departure?: DepartureItemProps;
     travelTime?: TravelTimeItemProps;
     umWeg?: UmwegBadgeProps;
@@ -150,6 +153,10 @@ export const RideCardResultTrip = ({
   },
 
   routes = {
+    date: {
+      label: "Datum",
+      date: "24.02.25",
+    },
     departure: {
       place: "Munich",
       time: "17.30 Uhr",
@@ -217,7 +224,14 @@ export const RideCardResultTrip = ({
             "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]"
           )}
         >
-          <DriverProfileLabel {...driver.profile} />
+          <div
+            className={clsx(
+              "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]"
+            )}
+          >
+            <DriverProfileLabel {...driver.profile} />
+            <DepartureDateItem {...routes.date} />
+          </div>
 
           <div
             className={clsx(
