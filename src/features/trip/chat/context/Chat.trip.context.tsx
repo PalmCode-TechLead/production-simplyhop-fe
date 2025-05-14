@@ -64,6 +64,7 @@ const initialState: ChatTripInitialStateType = {
     },
     ride: null,
     price: null,
+    date: null,
     passenger: null,
   },
 };

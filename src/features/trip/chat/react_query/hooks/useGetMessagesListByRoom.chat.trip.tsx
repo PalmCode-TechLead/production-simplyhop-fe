@@ -95,6 +95,7 @@ export const useGetMessagesListByRoom = () => {
           role: isSender ? "sender" : "recipient",
           sender_id: String(item.sender_id),
           time: formatChatTime(item.created_at),
+          date: dayjs(item.created_at).format("DD.MM.YYYY"),
           name: isPassenger
             ? formatDisplayName({
                 first_name: item.passenger?.first_name,
@@ -269,7 +270,9 @@ export const useGetMessagesListByRoom = () => {
               label: "Datum",
               date: !item.booking?.ride?.departure_time
                 ? "-"
-                : dayjs(item.booking?.ride?.departure_time).format("DD.MM.YYYY"),
+                : dayjs(item.booking?.ride?.departure_time).format(
+                    "DD.MM.YYYY"
+                  ),
             },
 
             routes: {
