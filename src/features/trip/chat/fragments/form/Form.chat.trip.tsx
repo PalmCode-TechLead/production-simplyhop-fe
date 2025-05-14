@@ -57,7 +57,6 @@ export const FormChatTrip = () => {
   const handleClickSend = async () => {
     if (!state.room.chat.input.value.length) return;
     const res = await postMessagesChat();
-    console.log(res, "ini res");
     if (!res) return;
 
     dispatch({
