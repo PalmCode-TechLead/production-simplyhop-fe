@@ -65,7 +65,7 @@ export const useGetMessageRoomsList = () => {
           : lastMessage.contents;
         const displayMessage =
           item.booking?.status === "rejected"
-            ? "Ihre Buchung wurde abgelehnt."
+            ? "Deine Buchung wurde abgelehnt"
             : !Object.keys(lastMessageObject).length
             ? ""
             : lastMessageObject?.type !== "text"
