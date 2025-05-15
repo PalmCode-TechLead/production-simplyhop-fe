@@ -61,3 +61,7 @@ body {
 .cm__btn--secondary:hover {
   background-color: #333FFF !important;
 }
+
+.cm__link-group {
+  color: #333FFF !important;
+}
