@@ -8,10 +8,10 @@ declare global {
   }
 }
 
-interface CCDetail {
-  changedCategories: CookieConsent.UserPreferences["acceptedCategories"];
-  changedServices: CookieConsent.UserPreferences["acceptedServices"];
-}
+// interface CCDetail {
+//   changedCategories: CookieConsent.UserPreferences["acceptedCategories"];
+//   changedServices: CookieConsent.UserPreferences["acceptedServices"];
+// }
 
 const addCookieConsentListeners = () => {
   /**
@@ -33,23 +33,21 @@ const addCookieConsentListeners = () => {
     }
   });
 
-  window.addEventListener("cc:onChange", (event: Event) => {
-    const { changedCategories, changedServices } = (
-      event as CustomEvent<CCDetail>
-    )?.detail;
+  // window.addEventListener("cc:onChange", (event: Event) => {
+  //   const { changedCategories } = (event as CustomEvent<CCDetail>)?.detail;
 
-    // if (changedCategories.includes('analytics')) {
-    //   if (acceptedCategory('analytics')) {
-    //     console.log('accepted analytics');
-    //   } else {
-    //     console.log('rejected analytics');
-    //   }
-    // }
+  //   // if (changedCategories.includes('analytics')) {
+  //   //   if (acceptedCategory('analytics')) {
+  //   //     console.log('accepted analytics');
+  //   //   } else {
+  //   //     console.log('rejected analytics');
+  //   //   }
+  //   // }
 
-    for (const category of changedCategories) {
-      return;
-    }
-  });
+  //   // for (const category of changedCategories) {
+  //   //   return;
+  //   // }
+  // });
 };
 
 export default addCookieConsentListeners;
