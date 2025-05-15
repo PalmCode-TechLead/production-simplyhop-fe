@@ -42,12 +42,22 @@ body {
   display: none; /* Chrome, Safari */
 }
 
-.cc__button {
+.cm__btn {
   background-color: #333FFF !important;
   color: #ffffff !important;
   border: none !important;
 }
 
-.cc__button:hover {
+.cm__btn:hover {
+  background-color: #333FFF !important;
+}
+
+.cm__btn--secondary {
+  background-color: #333FFF !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.cm__btn--secondary:hover {
   background-color: #333FFF !important;
 }
