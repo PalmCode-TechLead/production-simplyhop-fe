@@ -14,6 +14,7 @@
     "@headlessui/react": "^2.2.0",
     "@react-google-maps/api": "^2.20.6",
     "@tanstack/react-query": "^5.69.0",
+    "@types/gtag.js": "^0.0.20",
     "axios": "^1.8.3",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
@@ -29,7 +30,8 @@
     "react-tooltip": "^5.28.1",
     "universal-cookie": "^8.0.1",
     "usehooks-ts": "^3.1.1",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "vanilla-cookieconsent": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

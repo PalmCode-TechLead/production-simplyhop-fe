@@ -600,5 +600,45 @@
         "children": "Kontakt"
       }
     }
+  },
+  "cookie": {
+    "consentModal": {
+      "title": "Wir verwenden Cookies",
+      "description": "Wir verwenden Cookies, um Inhalte und Anzeigen zu personalisieren, Funktionen für soziale Medien anbieten zu können und die Zugriffe auf unsere Services zu analysieren. Außerdem geben wir Informationen zu Ihrer Verwendung unserer Services an unsere Partner für soziale Medien, Werbung und Analysen weiter. Unsere Partner führen diese Informationen möglicherweise mit weiteren Daten zusammen, die Sie ihnen bereitgestellt haben oder die sie im Rahmen Ihrer Nutzung der Dienste gesammelt haben. Funktionale Cookies sind notwendig. Alle anderen Cookies sind optional.",
+      "closeIconLabel": "",
+      "acceptAllBtn": "Alles akzeptieren",
+      "acceptNecessaryBtn": "Alle ablehnen",
+      "showPreferencesBtn": "Individuelle Einstellungen",
+      "footer": "<a href='https://palm-co.de/privacy-policy' target='_blank'>Datenschutz</a> <a href='https://palm-co.de/imprint' target='_blank'>Impressum</a> <a href='https://palm-co.de/terms-and-conditions' target='_blank'>AGB</a>"
+    },
+    "preferencesModal": {
+      "title": "Zentrum für Zustimmungspräferenzen",
+      "closeIconLabel": "Modal schließen",
+      "acceptAllBtn": "Alles akzeptieren",
+      "acceptNecessaryBtn": "Alle ablehnen",
+      "savePreferencesBtn": "Einstellungen speichern",
+      "serviceCounterLabel": "Service|Dienstleistungen",
+      "sections": [
+        {
+          "title": "Verwendung von Cookies",
+          "description": "Hier finden Sie eine Übersicht über alle verwendeten Cookies. Sie können Ihre Zustimmung zu ganzen Kategorien geben oder sich weitere Informationen anzeigen lassen und so nur bestimmte Cookies auswählen."
+        },
+        {
+          "title": "Funktionalen Cookies <span class='pm__badge'>Aleay aktiviert</span>",
+          "description": "Diese Cookies sind für die grundlegenden technischen Funktionen der Services erforderlich. Diese Cookies ermöglichen bspw. einen sicheren Login und die Speicherung des Fortschritts bei Bestellvorgängen. Weiterhin ermöglichen sie uns bspw. das Speichern Ihrer Anmeldedaten, des Warenkorb-Inhalts und die einheitliche Darstellung von Seiteninhalten.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Statistik Cookies",
+          "description": "Diese Cookies ermöglichen uns die Analyse der Services, damit wir deren Leistung messen und verbessern können. Sie können Ihre persönlichen Einstellungen der Statistik Cookies ändern, indem Sie auf den entsprechenden Opt-Out Link klicken.",
+          "linkedCategory": "analytics"
+        },
+        {
+          "title": "Marketing Cookies",
+          "description": "Diese Cookies werden von uns verwendet, um Ihnen Werbung zu unterbreiten, die für Ihre Interessen relevant sein könnte. Diese Cookies ermöglichen bspw. das Teilen von Seiten über Soziale Netzwerke und das Schreiben von Kommentaren. Ebenso werden Angebote, die Ihren Interessen entsprechen könnten, angezeigt. Sie können Ihre persönlichen Einstellungen der Marketing Cookies ändern, indem Sie auf den entsprechenden Opt-Out Link klicken.",
+          "linkedCategory": "marketing"
+        }
+      ]
+    }
   }
 }
