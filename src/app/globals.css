@@ -43,25 +43,29 @@ body {
 }
 
 .cm__btn {
-  background-color: #333FFF !important;
+  background-color: #333fff !important;
   color: #ffffff !important;
   border: none !important;
 }
 
 .cm__btn:hover {
-  background-color: #333FFF !important;
+  background-color: #333fff !important;
 }
 
 .cm__btn--secondary {
-  background-color: #333FFF !important;
+  background-color: #333fff !important;
   color: #ffffff !important;
   border: none !important;
 }
 
 .cm__btn--secondary:hover {
-  background-color: #333FFF !important;
+  background-color: #333fff !important;
 }
 
-.cm__link-group {
-  color: #333FFF !important;
+.cm__link-group a {
+  color: #333fff !important;
+}
+
+.cm__link-group a:hover {
+  color: #333fff !important;
 }
