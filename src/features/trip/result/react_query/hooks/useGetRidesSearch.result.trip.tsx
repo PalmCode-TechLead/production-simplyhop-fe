@@ -48,6 +48,12 @@ export const useGetRideSearch = () => {
       )
         ? dayjs().endOf("day").format("YYYY-MM-DDTHH:mm:ss")
         : undefined,
+      departure_time__gte: dayjs(state.filters.date.selected).isSame(
+        dayjs(),
+        "day"
+      )
+        ? dayjs().format("YYYY-MM-DDTHH:mm:ss")
+        : undefined,
       // start_lat: 52.5200066,
       // start_long: 13.414954,
       // destination_lat: 48.1351253,
