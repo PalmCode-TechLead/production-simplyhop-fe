@@ -41,3 +41,13 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
+.cc__button {
+  background-color: #333FFF !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.cc__button:hover {
+  background-color: #333FFF !important;
+}
