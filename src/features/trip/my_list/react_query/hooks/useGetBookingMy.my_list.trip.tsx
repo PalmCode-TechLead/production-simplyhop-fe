@@ -28,10 +28,7 @@ export const useGetBookingMy = () => {
   const payload: GetBookingMyPayloadRequestInterface = {
     params: {
       include: "ride.vehicle.brand,user,ride.user",
-      "filter[ride.departure_time__gte]": dayjs()
-        .add(1, "day")
-        .startOf("day")
-        .format("YYYY-MM-DDTHH:mm:ss"),
+      "filter[ride.departure_time__gte]": dayjs().format("YYYY-MM-DDTHH:mm:ss"),
       "filter[status]": "accepted",
       "page[number]": state.book.pagination.current,
       "page[size]": PAGINATION.SIZE,

@@ -34,10 +34,7 @@ export const useGetRidesSearch = () => {
         ? undefined
         : String(userState.profile.id),
       include: "vehicle.brand,user,bookings,bookings.user",
-      departure_time__lte: dayjs()
-        .add(1, "day")
-        .startOf("day")
-        .format("YYYY-MM-DDTHH:mm:ss"),
+      departure_time__lte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
       sort: "-departure_time",
       "page[number]": state.ride.pagination.current,
       "page[size]": PAGINATION.SIZE,
@@ -138,7 +135,9 @@ export const useGetRidesSearch = () => {
           cta: {
             detail: {
               children: "Siehe Details",
-              href: AppCollectionURL.private.myListArchive(urlSearchParams.toString()),
+              href: AppCollectionURL.private.myListArchive(
+                urlSearchParams.toString()
+              ),
             },
           },
         };
