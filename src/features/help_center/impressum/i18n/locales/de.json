@@ -21,5 +21,11 @@
         "USt-IdNr.: DE 364 923 766"
       ]
     }
-  ]
+  ],
+  "image": {
+    "alt": "impressum",
+    "src": "/images/legal/impressum/impressum.jpg",
+    "width": 1165,
+    "height": 565
+  }
 }
