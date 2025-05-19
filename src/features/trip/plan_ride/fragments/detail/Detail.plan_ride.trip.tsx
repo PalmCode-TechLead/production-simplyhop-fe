@@ -33,6 +33,7 @@ import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { formatDisplayName } from "@/core/utils/name/functions";
+import { ENVIRONMENTS } from "@/core/environments";
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
@@ -319,7 +320,9 @@ export const DetailPlanRideTrip = () => {
   const handleClickSend = async () => {
     const ridesFirst = await postRidesFirst();
     if (!ridesFirst) return;
-    const shareUrl = `${"https://simplyhop-fe-mmppce625q-de.a.run.app"}${AppCollectionURL.public.tripResult(
+    const shareUrl = `${
+      ENVIRONMENTS.SITE_URL
+    }${AppCollectionURL.public.tripResult(
       `${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item?.id ?? ""}&${
         RIDE_FILTER.DESTINATION
       }=${state.filters.destination.selected.item?.id ?? ""}&${
