@@ -72,7 +72,7 @@ export const FooterApp = () => {
         {/* link */}
         <div
           className={clsx(
-            "grid grid-cols-1 lg:grid-cols-3 place-content-start place-items-start gap-[2.5rem]",
+            "grid grid-cols-1 lg:grid-cols-4 place-content-start place-items-start gap-[2.5rem]",
             "w-full"
           )}
         >
@@ -124,6 +124,15 @@ export const FooterApp = () => {
             )}
           </div>
 
+          <div
+            className={clsx(
+              "lg:hidden grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
+              "w-full"
+            )}
+          >
+            <Image {...dictionaries.eu.image} className={clsx("w-full")} />
+          </div>
+
           {/* function */}
           <div
             className={clsx(
@@ -145,8 +154,8 @@ export const FooterApp = () => {
                     item.id === "Mitfahrt suchen"
                       ? item.href
                       : !state.profile
-                        ? "/login"
-                        : item.href;
+                      ? "/login"
+                      : item.href;
                   return (
                     <Link
                       key={itemIndex}
@@ -190,6 +199,16 @@ export const FooterApp = () => {
                 </Link>
               ))}
             </div>
+          </div>
+
+          {/* eu */}
+          <div
+            className={clsx(
+              "hidden lg:grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
+              "w-full"
+            )}
+          >
+            <Image {...dictionaries.eu.image} className={clsx("w-full")} />
           </div>
         </div>
 

@@ -591,6 +591,14 @@
       }
     }
   },
+  "eu": {
+    "image": {
+      "alt": "eu",
+      "src": "/logo/eu.jpg",
+      "width": 1165,
+      "height": 565
+    }
+  },
   "contact": {
     "message": "Möchtest du Kontakt aufnehmen?",
     "description": "Schreib uns eine E-Mail an: service@simplyhop.com – wir melden uns so schnell wie möglich bei dir.",
