@@ -1,5 +1,6 @@
 import { CookieConsentConfig } from "vanilla-cookieconsent";
 import de from "@/core/modules/app/i18n/locales/de.json";
+import { ENVIRONMENTS } from "@/core/environments";
 
 const getConfig = ({ lang }: { lang: string }) => {
   const config: CookieConsentConfig = {
@@ -167,7 +168,16 @@ const getConfig = ({ lang }: { lang: string }) => {
     language: {
       default: lang,
       translations: {
-        de: de.cookie,
+        de: {
+          ...de.cookie,
+          consentModal: {
+            ...de.cookie.consentModal,
+            footer: de.cookie.consentModal.footer.replaceAll(
+              "{{site_url}}",
+              ENVIRONMENTS.SITE_URL
+            ),
+          },
+        },
       },
       // autoDetect: "browser",
     },

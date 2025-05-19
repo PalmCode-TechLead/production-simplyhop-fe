@@ -609,7 +609,7 @@
       "acceptAllBtn": "Alles akzeptieren",
       "acceptNecessaryBtn": "Alle ablehnen",
       "showPreferencesBtn": "Individuelle Einstellungen",
-      "footer": "<a href='https://simplyhop-fe-mmppce625q-de.a.run.app/datenschutz' target='_blank'>Datenschutz</a> <a href='https://simplyhop-fe-mmppce625q-de.a.run.app/impressum' target='_blank'>Impressum</a> <a href='https://simplyhop-fe-mmppce625q-de.a.run.app/agb' target='_blank'>AGB</a>"
+      "footer": "<a href='{{site_url}}/datenschutz' target='_blank'>Datenschutz</a> <a href='{{site_url}}/impressum' target='_blank'>Impressum</a> <a href='{{site_url}}/agb' target='_blank'>AGB</a>"
     },
     "preferencesModal": {
       "title": "Zentrum für Zustimmungspräferenzen",
