@@ -60,7 +60,7 @@ export const PageSheetRoute = ({
         });
       }, 400);
     }
-  }, [inputProps?.disabled, isOpen]);
+  }, [inputRef.current, inputProps?.disabled, isOpen]);
 
   return (
     <PageSheet open={isOpen}>
