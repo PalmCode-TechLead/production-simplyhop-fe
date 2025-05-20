@@ -31,6 +31,8 @@ export const SimplyHopAPICollectionURL = {
   auth: {
     postLogin: () => `/api/auth/login`,
     postRegister: () => `/api/auth/register`,
+    postForgotPassword: () => `/api/auth/forgot-password`,
+    postResetPassword: () => `/api/auth/reset-password`,
     postLogout: () => `/api/auth/logout`,
     postChangePassword: () => `/api/auth/change-password`,
     getSocialRedirect: (

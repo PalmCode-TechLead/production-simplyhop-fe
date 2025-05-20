@@ -16,6 +16,7 @@ import {
   useGetSocialRedirect,
   usePostAuthLogin,
 } from "../../react_query/hooks";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
@@ -69,7 +70,7 @@ export const FormLoginAuth = () => {
   const isSubmitLoading = isPendingPostAuthLogin;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
-  const isPasswordHasNoLength = !state.form.email.value.length;
+  const isPasswordHasNoLength = !state.form.password.value.length;
   const isSubmitDisabled =
     isPendingPostAuthLogin ||
     isEmailHasNoLength ||
@@ -121,6 +122,14 @@ export const FormLoginAuth = () => {
             onChange: handleChangePassword,
           }}
           error={state.form.password.error?.name}
+          helper={
+            <Link
+              href={AppCollectionURL.public.forgot_password()}
+              className={clsx("text-[0.625rem] text-[#5B5B5B] font-normal")}
+            >
+              {"Passwort vergessen?"}
+            </Link>
+          }
         />
 
         <Button

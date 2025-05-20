@@ -1,0 +1,45 @@
+{
+  "background": {
+    "image_url": "/images/auth/auth-bg.png"
+  },
+  "form": {
+    "header": {
+      "logo": {
+        "src": "/logo/simply_hop.svg",
+        "width": 170,
+        "height": 170,
+        "alt": "logo",
+        "priority": true
+      }
+    },
+    "title": "Passwort vergessen",
+    "description": "Geben Sie die E-Mail, die Telefonnummer oder den Benutzernamen ein, die mit Ihrem Konto verbunden sind, um Ihr Passwort zu ändern.",
+    "input": {
+      "email": {
+        "inputProps": {
+          "id": "email",
+          "placeholder": " "
+        },
+        "labelProps": {
+          "id": "email",
+          "children": "Email",
+          "required": false
+        }
+      }
+    },
+    "cta": {
+      "forgot_password": {
+        "children": "Weiter"
+      }
+    }
+  },
+  "success": {
+    "message": "Überprüfe deine E-Mails",
+    "description": "Wir haben dir einen Link zum Zurücksetzen deines Passworts gesendet. Bitte überprüfe deine E-Mails.",
+    "cta": {
+      "back": {
+        "children": "Zurück zum Login"
+      }
+    }
+  }
+}

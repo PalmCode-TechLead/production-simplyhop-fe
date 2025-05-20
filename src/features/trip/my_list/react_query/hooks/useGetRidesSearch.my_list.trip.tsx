@@ -20,11 +20,13 @@ import { PAGINATION } from "@/core/utils/pagination/contants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { ENVIRONMENTS } from "@/core/environments";
+import { getDictionaries } from "../../i18n";
 
 dayjs.extend(utc);
 
 export const useGetRidesSearch = () => {
   const searchParams = useSearchParams();
+  const dictionaries = getDictionaries();
   const type = searchParams.get("type");
   const { state, dispatch } = React.useContext(MyListTripContext);
   const { state: userState } = React.useContext(UserContext);
@@ -58,6 +60,25 @@ export const useGetRidesSearch = () => {
       const newPayload = data.data.map((item) => {
         const urlSearchParams = new URLSearchParams(searchParams.toString());
         urlSearchParams.append("ride_id", String(item.id));
+        const shareMessage =
+          dictionaries.share_ride_notification.share.share_message
+            .replaceAll("{{origin}}", !item.start_name ? "-" : item.start_name)
+            .replaceAll(
+              "{{destination}}",
+              !item.destination_name ? "-" : item.destination_name
+            )
+            .replaceAll(
+              "{{departure_time}}",
+              !item.departure_time
+                ? "-"
+                : `${dayjs
+                    .utc(item.departure_time)
+                    .format("DD.MM.YYYY HH.mm [Uhr]")}`
+            )
+            .replaceAll(
+              "{{share_link}}",
+              !item.url ? ENVIRONMENTS.SITE_URL : item.url
+            );
         return {
           id: String(item.id),
           driver: {
@@ -140,6 +161,7 @@ export const useGetRidesSearch = () => {
             share: {
               onClick: () => {},
               href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
+              message: shareMessage,
             },
           },
         };

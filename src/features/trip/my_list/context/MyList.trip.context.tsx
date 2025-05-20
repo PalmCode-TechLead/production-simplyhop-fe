@@ -53,6 +53,7 @@ const initialState: MyListTripInitialStateType = {
     is_open: false,
     share: {
       link: "",
+      message: "",
     },
   },
   detail_book_notification: {

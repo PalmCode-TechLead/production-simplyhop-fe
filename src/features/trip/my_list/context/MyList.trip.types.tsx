@@ -74,6 +74,7 @@ export interface MyListTripShareRideNotification {
   is_open: boolean;
   share: {
     link: string;
+    message: string;
   };
 }
 

@@ -90,10 +90,15 @@ export const NotificationPlanRideTrip = () => {
             {dictionaries.notification.share.items.map((item, itemIndex) => (
               <Link
                 key={itemIndex}
-                href={item.href.replace(
-                  "{{link}}",
-                  encodeURIComponent(state.notification.share.link)
-                )}
+                href={item.href
+                  .replaceAll(
+                    "{{link}}",
+                    encodeURIComponent(state.notification.share.link)
+                  )
+                  .replaceAll(
+                    "{{message}}",
+                    encodeURIComponent(state.notification.share.message)
+                  )}
                 target="_blank"
                 className={clsx(
                   "flex items-center justify-center",

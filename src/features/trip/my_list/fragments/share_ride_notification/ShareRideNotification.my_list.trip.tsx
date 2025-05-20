@@ -70,10 +70,19 @@ export const ShareRideNotificationMyListTrip = () => {
               (item, itemIndex) => (
                 <Link
                   key={itemIndex}
-                  href={item.href.replace(
-                    "{{link}}",
-                    encodeURIComponent(state.share_ride_notification.share.link)
-                  )}
+                  href={item.href
+                    .replaceAll(
+                      "{{link}}",
+                      encodeURIComponent(
+                        state.share_ride_notification.share.link
+                      )
+                    )
+                    .replaceAll(
+                      "{{message}}",
+                      encodeURIComponent(
+                        state.share_ride_notification.share.message
+                      )
+                    )}
                   target="_blank"
                   className={clsx(
                     "flex items-center justify-center",
