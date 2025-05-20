@@ -124,15 +124,6 @@ export const FooterApp = () => {
             )}
           </div>
 
-          <div
-            className={clsx(
-              "lg:hidden grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
-              "w-full"
-            )}
-          >
-            <Image {...dictionaries.eu.image} className={clsx("w-full")} />
-          </div>
-
           {/* function */}
           <div
             className={clsx(
@@ -204,7 +195,7 @@ export const FooterApp = () => {
           {/* eu */}
           <div
             className={clsx(
-              "hidden lg:grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
+              "grid grid-cols-1 place-content-start place-items-start gap-[2rem]",
               "w-full"
             )}
           >

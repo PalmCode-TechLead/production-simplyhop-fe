@@ -35,7 +35,7 @@ export const useGetRidesSearch = () => {
         ? undefined
         : String(userState.profile.id),
       include: "vehicle.brand,user,bookings,bookings.user",
-      departure_time__gte: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
+      departure_time__gte: dayjs().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
       sort: "departure_time",
       "page[number]": state.ride.pagination.current,
       "page[size]": PAGINATION.SIZE,
