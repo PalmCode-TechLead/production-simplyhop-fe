@@ -16,6 +16,7 @@ import {
   useGetSocialRedirect,
   usePostAuthLogin,
 } from "../../react_query/hooks";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 export const FormLoginAuth = () => {
   const dictionaries = getDictionaries();
@@ -121,6 +122,14 @@ export const FormLoginAuth = () => {
             onChange: handleChangePassword,
           }}
           error={state.form.password.error?.name}
+          helper={
+            <Link
+              href={AppCollectionURL.public.forgot_password()}
+              className={clsx("text-[0.625rem] text-[#979797] font-normal")}
+            >
+              {"Passwort vergessen?"}
+            </Link>
+          }
         />
 
         <Button

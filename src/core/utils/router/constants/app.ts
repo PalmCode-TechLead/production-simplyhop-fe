@@ -6,6 +6,7 @@ export const AppCollectionURL = {
     login: (params?: string) => (!params ? "/login" : `/login?${params}`),
     register: (params?: string) =>
       !params ? "/register" : `/register?${params}`,
+    forgot_password: () => `/forgot-password`,
   },
   private: {
     chat: (params?: string) => (!params ? "/chat" : `/chat?${params}`),

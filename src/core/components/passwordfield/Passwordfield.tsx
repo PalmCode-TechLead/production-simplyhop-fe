@@ -11,6 +11,7 @@ export interface PasswordfieldProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   labelProps?: InputLabelProps;
   error?: string;
+  helper?: React.ReactNode;
 }
 
 export const Passwordfield = ({
@@ -18,6 +19,7 @@ export const Passwordfield = ({
   inputProps,
   labelProps,
   error,
+  helper,
 }: PasswordfieldProps) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
   const [value, setValue] = React.useState<string>("");
@@ -89,16 +91,25 @@ export const Passwordfield = ({
           }}
         />
       </InputContainer>
-      {showError && (
-        <span
-          className={clsx(
-            "text-[0.625rem] text-[#DA2323] font-normal",
-            "pl-[0.5rem]"
-          )}
-        >
-          {error}
-        </span>
-      )}
+      <div
+        className={clsx(
+          "flex items-center",
+          !showError && helper ? "justify-end" : "justify-between",
+          "w-full"
+        )}
+      >
+        {showError && (
+          <span
+            className={clsx(
+              "text-[0.625rem] text-[#DA2323] font-normal",
+              "pl-[0.5rem]"
+            )}
+          >
+            {error}
+          </span>
+        )}
+        {helper && <>{helper}</>}
+      </div>
     </div>
   );
 };
