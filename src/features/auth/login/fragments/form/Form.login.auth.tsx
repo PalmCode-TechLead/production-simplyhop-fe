@@ -69,7 +69,7 @@ export const FormLoginAuth = () => {
   const isSubmitLoading = isPendingPostAuthLogin;
   const isEmailHasNoLength = !state.form.email.value.length;
   const isEmailInvalid = !!state.form.email.error;
-  const isPasswordHasNoLength = !state.form.email.value.length;
+  const isPasswordHasNoLength = !state.form.password.value.length;
   const isSubmitDisabled =
     isPendingPostAuthLogin ||
     isEmailHasNoLength ||
