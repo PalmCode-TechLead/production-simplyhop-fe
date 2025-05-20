@@ -18,10 +18,12 @@ import { AppCollectionURL } from "@/core/utils/router/constants";
 import { formatEuro } from "@/core/utils/currency/functions";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { ENVIRONMENTS } from "@/core/environments";
+import { getDictionaries } from "../../i18n";
 
 dayjs.extend(utc);
 
 export const useGetRidesId = () => {
+  const dictionaries = getDictionaries();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const { state, dispatch } = React.useContext(MyListTripContext);
@@ -53,6 +55,25 @@ export const useGetRidesId = () => {
       const item = data.data;
       const urlSearchParams = new URLSearchParams(searchParams.toString());
       urlSearchParams.append("ride_id", String(item.id));
+      const shareMessage =
+        dictionaries.share_ride_notification.share.share_message
+          .replaceAll("{{origin}}", !item.start_name ? "-" : item.start_name)
+          .replaceAll(
+            "{{destination}}",
+            !item.destination_name ? "-" : item.destination_name
+          )
+          .replaceAll(
+            "{{departure_time}}",
+            !item.departure_time
+              ? "-"
+              : `${dayjs
+                  .utc(item.departure_time)
+                  .format("DD.MM.YYYY HH.mm [Uhr]")}`
+          )
+          .replaceAll(
+            "{{share_link}}",
+            !item.url ? ENVIRONMENTS.SITE_URL : item.url
+          );
       dispatch({
         type: MyListTripActionEnum.SetRideData,
         payload: {
@@ -141,6 +162,7 @@ export const useGetRidesId = () => {
               share: {
                 onClick: () => {},
                 href: !item.url ? ENVIRONMENTS.SITE_URL : item.url,
+                message: shareMessage,
               },
             },
 
