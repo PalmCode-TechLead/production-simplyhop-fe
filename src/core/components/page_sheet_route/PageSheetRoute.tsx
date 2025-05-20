@@ -32,9 +32,9 @@ export const PageSheetRoute = ({
   inputProps,
   labelProps,
   emptyMessage = "",
-  onSelect = () => { },
-  onQuery = () => { },
-  onClose = () => { },
+  onSelect = () => {},
+  onQuery = () => {},
+  onClose = () => {},
 }: PageSheetRouteProps) => {
   const [query, setQuery] = useState("");
 
@@ -53,12 +53,17 @@ export const PageSheetRoute = ({
   useEffect(() => {
     if (!inputProps?.disabled && isOpen) {
       inputRef.current?.focus();
+    }
+  }, [inputProps?.disabled, isOpen]);
+
+  useEffect(() => {
+    if (!inputProps?.disabled && isOpen) {
       setTimeout(() => {
         window.scrollTo({
           top: containerRef.current?.offsetTop ?? 0,
           behavior: "instant",
         });
-      }, 100);
+      }, 200);
     }
   }, [inputProps?.disabled, isOpen]);
 
