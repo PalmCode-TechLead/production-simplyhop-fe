@@ -12,8 +12,8 @@
         "priority": true
       }
     },
-    "title": "Passwort vergessen",
-    "description": "Geben Sie die E-Mail, die Telefonnummer oder den Benutzernamen ein, die mit Ihrem Konto verbunden sind, um Ihr Passwort zu ändern.",
+    "title": "Neues Passwort erstellen",
+    "description": "Sie werden von allen aktiven X-Sitzungen abgemeldet, nachdem Ihr Passwort geändert wurde.",
     "input": {
       "password": {
         "inputProps": {
@@ -49,7 +49,7 @@
     "description": "Sie haben Ihr Passwort erfolgreich geändert.",
     "cta": {
       "back": {
-        "children": "Weiter zu meinem Konto"
+        "children": "Zurück zum Login"
       }
     }
   }

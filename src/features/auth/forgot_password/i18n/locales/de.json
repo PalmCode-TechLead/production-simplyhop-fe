@@ -34,11 +34,11 @@
     }
   },
   "success": {
-    "message": "Sie sind bereit!",
-    "description": "Sie haben Ihr Passwort erfolgreich geändert.",
+    "message": "Überprüfe deine E-Mails",
+    "description": "Wir haben dir einen Link zum Zurücksetzen deines Passworts gesendet. Bitte überprüfe deine E-Mails.",
     "cta": {
       "back": {
-        "children": "Weiter zu meinem Konto"
+        "children": "Zurück zum Login"
       }
     }
   }
