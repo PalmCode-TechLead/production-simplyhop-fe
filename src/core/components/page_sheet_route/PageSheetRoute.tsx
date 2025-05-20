@@ -53,14 +53,19 @@ export const PageSheetRoute = ({
   useEffect(() => {
     if (!inputProps?.disabled && isOpen) {
       inputRef.current?.focus();
+    }
+  }, [inputProps?.disabled, isOpen]);
+
+  useEffect(() => {
+    if (!inputProps?.disabled && isOpen) {
       setTimeout(() => {
         window.scrollTo({
           top: containerRef.current?.offsetTop ?? 0,
           behavior: "instant",
         });
-      }, 400);
+      }, 200);
     }
-  }, [inputRef.current, inputProps?.disabled, isOpen]);
+  }, [inputProps?.disabled, isOpen]);
 
   return (
     <PageSheet open={isOpen}>
