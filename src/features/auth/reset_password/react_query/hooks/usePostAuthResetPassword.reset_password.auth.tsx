@@ -17,7 +17,7 @@ export const usePostAuthResetPassword = () => {
   const { state } = React.useContext(ResetPasswordAuthContext);
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
-  const email = searchParams.get("token");
+  const email = searchParams.get("email");
   const { state: globalState, dispatch: dispatchGlobal } =
     React.useContext(GlobalContext);
   const mutation = useMutation<
