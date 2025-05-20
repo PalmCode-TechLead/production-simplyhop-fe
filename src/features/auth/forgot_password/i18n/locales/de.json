@@ -29,7 +29,7 @@
     },
     "cta": {
       "forgot_password": {
-        "children": "Login"
+        "children": "Weiter"
       }
     }
   },

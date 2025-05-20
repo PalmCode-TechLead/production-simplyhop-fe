@@ -1,12 +1,12 @@
 import { AlertApp } from "@/core/modules/app/fragments/alert";
-import { ForgotPasswordAuthContainer } from "@/features/auth/forgot_password/container";
-import { ForgotPasswordAuthProvider } from "@/features/auth/forgot_password/context";
+import { ResetPasswordAuthContainer } from "@/features/auth/reset_password/container";
+import { ResetPasswordAuthProvider } from "@/features/auth/reset_password/context";
 
-export default function ForgotPasswordPage() {
+export default function ResetPasswordPage() {
   return (
-    <ForgotPasswordAuthProvider>
-      <ForgotPasswordAuthContainer />
+    <ResetPasswordAuthProvider>
+      <ResetPasswordAuthContainer />
       <AlertApp />
-    </ForgotPasswordAuthProvider>
+    </ResetPasswordAuthProvider>
   );
 }
