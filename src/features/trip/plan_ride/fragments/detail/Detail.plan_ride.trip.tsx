@@ -341,6 +341,20 @@ export const DetailPlanRideTrip = () => {
     });
     if (!ridesThird) return;
 
+    const shareMessage = dictionaries.notification.share.share_message
+      .replaceAll("{{origin}}", state.filters.origin.selected.item?.name ?? "")
+      .replaceAll(
+        "{{destination}}",
+        state.filters.destination.selected.item?.name ?? ""
+      )
+      .replaceAll(
+        "{{departure_time}}",
+        `${dayjs.utc(state.filters.date.selected).format("DD.MM.YY")} ${
+          state.detail.form.plan.time.value
+        } Uhr`
+      )
+      .replaceAll("{{share_link}}", shareUrl);
+
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
@@ -356,6 +370,7 @@ export const DetailPlanRideTrip = () => {
         share: {
           ...state.notification.share,
           link: shareUrl,
+          message: shareMessage,
         },
       },
     });

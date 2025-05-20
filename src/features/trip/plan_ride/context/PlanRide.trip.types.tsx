@@ -134,6 +134,7 @@ export interface PlanRideTripNotification {
   is_open: boolean;
   share: {
     link: string;
+    message: string;
   };
 }
 
