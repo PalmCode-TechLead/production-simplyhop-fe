@@ -5,3 +5,5 @@ export * from "./social_redirect.get";
 export * from "./social_callback.get";
 export * from "./deactivate_account.delete";
 export * from "./change_password.post";
+export * from "./forgot_password.post";
+export * from "./reset_password.post";
