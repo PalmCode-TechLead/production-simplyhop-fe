@@ -22,6 +22,9 @@ const initialState: ResetPasswordAuthInitialStateType = {
       value: "",
       error: null,
     },
+    tnc: {
+      checked: false,
+    },
   },
 };
 

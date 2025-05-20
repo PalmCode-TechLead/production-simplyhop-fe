@@ -36,11 +36,14 @@
           "children": "Neues Passwort bestätigen",
           "required": false
         }
+      },
+      "tnc": {
+        "label": "Alle Geräte auffordern, sich mit einem neuen Passwort anzumelden"
       }
     },
     "cta": {
       "reset_password": {
-        "children": "Login"
+        "children": "Passwort zurücksetzen"
       }
     }
   },

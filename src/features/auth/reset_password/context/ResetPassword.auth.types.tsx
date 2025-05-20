@@ -30,6 +30,9 @@ export interface ResetPasswordAuthForm {
     value: string;
     error: FormError;
   };
+  tnc: {
+    checked: boolean;
+  };
 }
 
 export enum ResetPasswordAuthActionEnum {

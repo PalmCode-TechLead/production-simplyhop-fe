@@ -16,6 +16,7 @@ import { Passwordfield } from "@/core/components/passwordfield";
 import SVGIcon from "@/core/icons";
 import { useRouter } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { Checkbox } from "@/core/components/checkbox";
 
 export const FormResetPasswordAuth = () => {
   const router = useRouter();
@@ -87,6 +88,19 @@ export const FormResetPasswordAuth = () => {
     });
   };
 
+  const handleChangeTNC = () => {
+    dispatch({
+      type: ResetPasswordAuthActionEnum.SetFormData,
+      payload: {
+        ...state.form,
+        tnc: {
+          ...state.form.tnc,
+          checked: !state.form.tnc.checked,
+        },
+      },
+    });
+  };
+
   const isSubmitLoading = isPendingPostAuthResetPassword;
   const isPasswordHasNoLength = !state.form.password.value.length;
   const isPasswordInvalid = !!state.form.password.error;
@@ -99,7 +113,8 @@ export const FormResetPasswordAuth = () => {
     isPasswordHasNoLength ||
     isPasswordInvalid ||
     isPasswordConfirmationHasNoLength ||
-    isPasswordConfirmationInvalid;
+    isPasswordConfirmationInvalid ||
+    !state.form.tnc.checked;
 
   const handleClickClose = () => {
     router.push(AppCollectionURL.public.login());
@@ -188,6 +203,23 @@ export const FormResetPasswordAuth = () => {
             }}
             error={state.form.password_confirmation.error?.name}
           />
+          <div
+            className={clsx(
+              "grid grid-flow-col place-content-start place-items-start gap-[1rem]",
+              "w-full"
+            )}
+          >
+            <Checkbox
+              checked={state.form.tnc.checked}
+              onChange={handleChangeTNC}
+            />
+            <p
+              className={clsx("text-[0.75rem] text-[#232323] font-light")}
+              dangerouslySetInnerHTML={{
+                __html: dictionaries.form.input.tnc.label,
+              }}
+            />
+          </div>
         </div>
       </div>
 

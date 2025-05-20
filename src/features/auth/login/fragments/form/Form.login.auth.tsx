@@ -125,7 +125,7 @@ export const FormLoginAuth = () => {
           helper={
             <Link
               href={AppCollectionURL.public.forgot_password()}
-              className={clsx("text-[0.625rem] text-[#979797] font-normal")}
+              className={clsx("text-[0.625rem] text-[#5B5B5B] font-normal")}
             >
               {"Passwort vergessen?"}
             </Link>
