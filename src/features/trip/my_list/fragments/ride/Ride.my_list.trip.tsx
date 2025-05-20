@@ -53,7 +53,7 @@ export const RideMyListTrip = () => {
   const isEndReached =
     state.ride.pagination.last === state.ride.pagination.current;
 
-  const handleClickShare = (data: { link: string }) => {
+  const handleClickShare = (data: { link: string; message: string }) => {
     dispatch({
       type: MyListTripActionEnum.SetShareRideNotificationData,
       payload: {
@@ -62,6 +62,7 @@ export const RideMyListTrip = () => {
         share: {
           ...state.share_ride_notification.share,
           link: data.link,
+          message: data.message,
         },
       },
     });
@@ -89,10 +90,12 @@ export const RideMyListTrip = () => {
                 href: item.cta?.detail.href ?? "",
               },
               share: {
+                message: item.cta?.share.message ?? "",
                 href: item.cta?.share.href ?? "",
                 onClick: () =>
                   handleClickShare({
                     link: item.cta?.share.href ?? "",
+                    message: item.cta?.share.message ?? "",
                   }),
               },
             }}

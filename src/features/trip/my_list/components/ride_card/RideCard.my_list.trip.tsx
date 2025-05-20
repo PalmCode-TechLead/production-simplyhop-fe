@@ -55,6 +55,7 @@ export interface RideCardMyListTripProps {
       href: string;
     };
     share: {
+      message: string;
       href: string;
       onClick: () => void;
     };
@@ -116,6 +117,7 @@ export const RideCardMyListTrip = ({
       href: "",
     },
     share: {
+      message: "",
       href: "",
       onClick: () => {},
     },

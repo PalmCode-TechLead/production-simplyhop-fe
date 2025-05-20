@@ -80,7 +80,7 @@
           "icon": {
             "name": "Whatsapp"
           },
-          "href": "https://api.whatsapp.com/send/?text={{link}}&type=custom_url&app_absent=0"
+          "href": "https://api.whatsapp.com/send/?text={{message}}&type=custom_url&app_absent=0"
         },
         {
           "id": "facebook",
@@ -94,14 +94,14 @@
           "icon": {
             "name": "Twitter"
           },
-          "href": "https://twitter.com/intent/tweet?url={{link}}"
+          "href": "https://twitter.com/intent/tweet?text={{message}}"
         },
         {
           "id": "telegram",
           "icon": {
             "name": "Telegram"
           },
-          "href": "https://telegram.me/share/url?url={{link}}"
+          "href": "https://telegram.me/share/url?text={{message}}"
         },
         {
           "id": "thread",
