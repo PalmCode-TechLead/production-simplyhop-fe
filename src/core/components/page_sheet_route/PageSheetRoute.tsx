@@ -32,9 +32,9 @@ export const PageSheetRoute = ({
   inputProps,
   labelProps,
   emptyMessage = "",
-  onSelect = () => { },
-  onQuery = () => { },
-  onClose = () => { },
+  onSelect = () => {},
+  onQuery = () => {},
+  onClose = () => {},
 }: PageSheetRouteProps) => {
   const [query, setQuery] = useState("");
 
@@ -58,7 +58,7 @@ export const PageSheetRoute = ({
           top: containerRef.current?.offsetTop ?? 0,
           behavior: "instant",
         });
-      }, 100);
+      }, 400);
     }
   }, [inputProps?.disabled, isOpen]);
 
