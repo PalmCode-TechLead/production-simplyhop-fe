@@ -13,6 +13,7 @@ import {
   ResultTripVehicleFiltersReducers,
 } from "./Result.trip.reducers";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import dayjs from "dayjs";
 
 const initialState: ResultTripInitialStateType = {
   filters: {
@@ -25,7 +26,9 @@ const initialState: ResultTripInitialStateType = {
         item: null,
         lat_lng: null,
       },
+      query: "",
       items: [],
+      saved_items: [],
     },
     destination: {
       page_sheet: {
@@ -35,10 +38,12 @@ const initialState: ResultTripInitialStateType = {
         item: null,
         lat_lng: null,
       },
+      query: "",
       items: [],
+      saved_items: [],
     },
     date: {
-      selected: new Date(),
+      selected: dayjs().toDate(),
     },
     passenger: {
       car_seat: {
