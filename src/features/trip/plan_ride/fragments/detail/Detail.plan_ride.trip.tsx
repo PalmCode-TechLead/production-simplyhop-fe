@@ -331,7 +331,7 @@ export const DetailPlanRideTrip = () => {
         RIDE_FILTER.DESTINATION
       }=${state.filters.destination.selected.item?.id ?? ""}&${
         RIDE_FILTER.DATE
-      }=${dayjs(state.detail.form.plan.date.selected).format("YYYY-MM-DD")}&${
+      }=${dayjs(ridesFirst.data.departure_time).format("YYYY-MM-DD")}&${
         RIDE_FILTER.ADULT_PASSENGER
       }=${1}&${RIDE_FILTER.CHILDREN_PASSENGER}=${0}&${RIDE_FILTER.RIDE_ID}=${
         ridesFirst.data.id
