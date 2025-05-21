@@ -37,7 +37,6 @@ import { formatDisplayName } from "@/core/utils/name/functions";
 import { ENVIRONMENTS } from "@/core/environments";
 
 dayjs.extend(utc);
-dayjs.locale("de");
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();

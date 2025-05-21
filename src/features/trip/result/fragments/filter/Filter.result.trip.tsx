@@ -21,6 +21,8 @@ import { FormPassenger } from "@/core/components/form_passenger";
 import { FormRoutes } from "@/core/components/form_routes";
 import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { PAGINATION } from "@/core/utils/pagination/contants";
+import { storageService } from "@/core/services/storage/indexdb";
+import { INDEXDB_STORAGE_NAME } from "@/core/utils/indexdb/constants";
 
 export const FilterResultTrip = () => {
   const router = useRouter();
@@ -63,19 +65,18 @@ export const FilterResultTrip = () => {
   };
 
   const handleQueryOriginRoutes = async (input: string) => {
-    if (!input.length) {
-      dispatch({
-        type: ResultTripActionEnum.SetFiltersData,
-        payload: {
-          ...state.filters,
-          origin: {
-            ...state.filters.origin,
-            items: [],
-          },
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        origin: {
+          ...state.filters.origin,
+          items: !input.length ? [] : state.filters.origin.items,
+          query: input,
         },
-      });
-      return;
-    }
+      },
+    });
+    if (!input.length) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -137,6 +138,7 @@ export const FilterResultTrip = () => {
             item: data,
             lat_lng: lat_lng,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
@@ -175,19 +177,18 @@ export const FilterResultTrip = () => {
   };
 
   const handleQueryDestinationRoutes = async (input: string) => {
-    if (!input.length) {
-      dispatch({
-        type: ResultTripActionEnum.SetFiltersData,
-        payload: {
-          ...state.filters,
-          destination: {
-            ...state.filters.destination,
-            items: [],
-          },
+    dispatch({
+      type: ResultTripActionEnum.SetFiltersData,
+      payload: {
+        ...state.filters,
+        destination: {
+          ...state.filters.destination,
+          items: !input.length ? [] : state.filters.destination.items,
+          query: input,
         },
-      });
-      return;
-    }
+      },
+    });
+    if (!input.length) return;
 
     const handleResult = (
       // data: null | google.maps.places.AutocompletePrediction[]
@@ -249,6 +250,7 @@ export const FilterResultTrip = () => {
             item: data,
             lat_lng: lat_lng,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
@@ -317,7 +319,37 @@ export const FilterResultTrip = () => {
     });
   };
 
-  const handleClickSearch = () => {
+  const handleClickSearch = async () => {
+    await storageService({
+      method: "setItem",
+      key: INDEXDB_STORAGE_NAME.FIND_TRIP_ORIGIN_SEARCH_LIST,
+      value: !state.filters.origin.saved_items.length
+        ? [state.filters.origin.selected.item]
+        : [
+            state.filters.origin.selected.item,
+            ...state.filters.origin.saved_items.filter((_, index) => index < 5),
+          ].filter(
+            (obj, index, self) =>
+              index ===
+              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name)
+          ),
+    });
+    await storageService({
+      method: "setItem",
+      key: INDEXDB_STORAGE_NAME.FIND_TRIP_DESTINATION_SEARCH_LIST,
+      value: !state.filters.destination.saved_items.length
+        ? [state.filters.destination.selected.item]
+        : [
+            state.filters.destination.selected.item,
+            ...state.filters.destination.saved_items.filter(
+              (_, index) => index < 5
+            ),
+          ].filter(
+            (obj, index, self) =>
+              index ===
+              self.findIndex((o) => o?.id === obj?.id && o?.name === obj?.name)
+          ),
+    });
     let params = "";
     if (state.filters.origin.selected.item) {
       const origin = `&${RIDE_FILTER.ORIGIN}=${state.filters.origin.selected.item.id}`;
@@ -374,6 +406,7 @@ export const FilterResultTrip = () => {
     router.push(AppCollectionURL.public.tripResult(params));
   };
 
+  console.log(state.filters.origin.selected.item, "ini apasih 2");
   return (
     <div
       className={clsx(
@@ -411,8 +444,17 @@ export const FilterResultTrip = () => {
           <FormRoutes
             origin={{
               pageSheet: {
+                emptyMessage:
+                  !state.filters.origin.saved_items.length &&
+                  !state.filters.origin.query.length
+                    ? dictionaries.filter.form.origin.autocomplete.emptyMessage
+                        .no_saved_place
+                    : dictionaries.filter.form.origin.autocomplete.emptyMessage
+                        .no_result,
                 selected: state.filters.origin.selected.item,
-                items: state.filters.origin.items,
+                items: !state.filters.origin.items.length
+                  ? state.filters.origin.saved_items
+                  : state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectOriginRoutes(data),
@@ -427,8 +469,17 @@ export const FilterResultTrip = () => {
                 },
               },
               autocomplete: {
+                emptyMessage:
+                  !state.filters.origin.saved_items.length &&
+                  !state.filters.origin.query.length
+                    ? dictionaries.filter.form.origin.autocomplete.emptyMessage
+                        .no_saved_place
+                    : dictionaries.filter.form.origin.autocomplete.emptyMessage
+                        .no_result,
                 selected: state.filters.origin.selected.item,
-                items: state.filters.origin.items,
+                items: !state.filters.origin.items.length
+                  ? state.filters.origin.saved_items
+                  : state.filters.origin.items,
                 onQuery: (data: string) => handleQueryOriginRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectOriginRoutes(data),
@@ -447,8 +498,17 @@ export const FilterResultTrip = () => {
             }}
             destination={{
               pageSheet: {
+                emptyMessage:
+                  !state.filters.destination.saved_items.length &&
+                  !state.filters.destination.query.length
+                    ? dictionaries.filter.form.destination.autocomplete
+                        .emptyMessage.no_saved_place
+                    : dictionaries.filter.form.destination.autocomplete
+                        .emptyMessage.no_result,
                 selected: state.filters.destination.selected.item,
-                items: state.filters.destination.items,
+                items: !state.filters.destination.items.length
+                  ? state.filters.destination.saved_items
+                  : state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectDestinationRoutes(data),
@@ -463,8 +523,17 @@ export const FilterResultTrip = () => {
                 },
               },
               autocomplete: {
+                emptyMessage:
+                  !state.filters.destination.saved_items.length &&
+                  !state.filters.destination.query.length
+                    ? dictionaries.filter.form.destination.autocomplete
+                        .emptyMessage.no_saved_place
+                    : dictionaries.filter.form.destination.autocomplete
+                        .emptyMessage.no_result,
                 selected: state.filters.destination.selected.item,
-                items: state.filters.destination.items,
+                items: !state.filters.destination.items.length
+                  ? state.filters.destination.saved_items
+                  : state.filters.destination.items,
                 onQuery: (data: string) => handleQueryDestinationRoutes(data),
                 onSelect: (data: { id: string; name: string }) =>
                   handleSelectDestinationRoutes(data),

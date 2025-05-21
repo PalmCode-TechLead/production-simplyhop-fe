@@ -23,6 +23,12 @@
           "id": "start",
           "children": "Start",
           "required": false
+        },
+        "autocomplete": {
+          "emptyMessage": {
+            "no_saved_place": "Suche starten",
+            "no_result": "Keine Ergebnisse gefunden."
+          }
         }
       },
       "destination": {
@@ -35,6 +41,12 @@
           "id": "end",
           "children": "Ziel",
           "required": false
+        },
+        "autocomplete": {
+          "emptyMessage": {
+            "no_saved_place": "Suche starten",
+            "no_result": "Keine Ergebnisse gefunden."
+          }
         }
       },
       "date": {
