@@ -124,7 +124,6 @@ export const PageSheetRoute = ({
                   }
                 }}
                 onChange={(event) => {
-                  console.log(event.target.value, "ini apa");
                   setQuery(event.target.value);
                   if (debounceQuery) {
                     debounced(event.target.value);

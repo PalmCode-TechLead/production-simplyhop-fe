@@ -138,6 +138,7 @@ export const FilterResultTrip = () => {
             item: data,
             lat_lng: lat_lng,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
@@ -249,6 +250,7 @@ export const FilterResultTrip = () => {
             item: data,
             lat_lng: lat_lng,
           },
+          query: !data ? "" : data.name,
         },
       },
     });
