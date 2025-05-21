@@ -37,6 +37,7 @@ export const FilterResultTrip = () => {
       type: ResultTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
+        is_open: false,
         origin: {
           ...state.filters.origin,
           page_sheet: {
@@ -53,6 +54,7 @@ export const FilterResultTrip = () => {
       type: ResultTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
+        is_open: true,
         origin: {
           ...state.filters.origin,
           page_sheet: {
@@ -149,6 +151,7 @@ export const FilterResultTrip = () => {
       type: ResultTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
+        is_open: false,
         destination: {
           ...state.filters.destination,
           page_sheet: {
@@ -165,6 +168,7 @@ export const FilterResultTrip = () => {
       type: ResultTripActionEnum.SetFiltersData,
       payload: {
         ...state.filters,
+        is_open: true,
         destination: {
           ...state.filters.destination,
           page_sheet: {
@@ -406,7 +410,6 @@ export const FilterResultTrip = () => {
     router.push(AppCollectionURL.public.tripResult(params));
   };
 
-  console.log(state.filters.origin.selected.item, "ini apasih 2");
   return (
     <div
       className={clsx(
