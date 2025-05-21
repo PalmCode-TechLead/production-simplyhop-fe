@@ -77,8 +77,7 @@ export const InputRoute = ({ inputProps, labelProps }: InputRoute) => {
           !!inputProps?.value
             ? "top-[25%] translate-y-[-50%] text-[0.75rem]"
             : "left-0 top-[50%] translate-y-[-50%] text-[0.75rem]",
-          "peer-focus:top-[25%] peer-focus:text-[0.75rem]",
-          "bg-[red]"
+          "peer-focus:top-[25%] peer-focus:text-[0.75rem]"
         )}
         onClick={() => {
           ref.current?.focus();
