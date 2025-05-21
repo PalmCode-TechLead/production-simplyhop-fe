@@ -1,3 +1,4 @@
+import { Vehicle } from "@/core/models/data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface PostRidesFirstRequestInterface extends NextApiRequest {
@@ -29,27 +30,24 @@ export interface PostRidesFirstSuccessResponseInterface {
   response_status: string;
   message: string;
   data: {
-    id: number; //12;
-    unique_code: string; //"2139rfkdsfns";
-    user_id: number; //8;
-    vehicle_id: number; //8;
-    start_city: number; //"München";
-    start_lat: number; //37.774929;
-    start_long: number; // -122.419418;
-    destination_lat: number; //37.774929;
-    destination_long: number; //-122.419418;
-    start_name: string; // "Munchen";
-    destination_name: string; //"Berlin";
-    eta: number; //120;
-    recurring_ride: string; //"no";
-    waiting_time: string; //"5 minuten";
-    luggage_allowed: boolean; //false;
-    available_seats: number; //2;
-    maxtwo_backseat: boolean; //false;
-    additional_info: string; //"information";
-    base_price: number; //0;
-    created_at: string; //"2025-04-21T15:36:25.578Z";
-    updated_at: string; // "2025-04-21T15:36:25.578Z";
+    unique_code: string;
+    user_id: number;
+    vehicle_id: number;
+    start_lat: number;
+    start_long: number;
+    start_name: string;
+    destination_lat: number;
+    destination_long: number;
+    destination_name: string;
+    eta: number;
+    recurring_ride: string;
+    luggage_allowed: boolean;
+    maxtwo_backseat: boolean;
+    departure_time: string;
+    updated_at: string;
+    created_at: string;
+    id: number;
+    vehicle: Vehicle;
   };
   redirect: null;
 }
