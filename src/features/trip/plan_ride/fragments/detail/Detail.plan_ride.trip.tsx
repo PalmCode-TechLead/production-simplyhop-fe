@@ -29,11 +29,15 @@ import { useTailwindBreakpoint } from "@/core/utils/ui/hooks";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { RIDE_FILTER } from "@/core/enums";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { AdaptiveModalHeader } from "@/core/components/adaptive_modal_header";
 import { AdaptiveModalFooter } from "@/core/components/adaptive_modal_footer";
 import { AdaptiveModalContent } from "@/core/components/adaptive_modal_content";
 import { formatDisplayName } from "@/core/utils/name/functions";
 import { ENVIRONMENTS } from "@/core/environments";
+
+dayjs.extend(utc);
+dayjs.locale("de");
 
 export const DetailPlanRideTrip = () => {
   const dictionaries = getDictionaries();
