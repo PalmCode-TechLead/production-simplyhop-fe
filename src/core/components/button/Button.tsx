@@ -24,21 +24,27 @@ export const Button = forwardRef<
         "py-[1rem]",
         "rounded-[0.375rem]",
         variant === "tertiary"
-          ? "text-[1rem] text-[#FFFFFF] disabled:text-[#5B5B5B] font-medium"
+          ? isLoading
+            ? "text-[1rem] text-[#FFFFFF] font-medium"
+            : "text-[1rem] text-[#FFFFFF] disabled:text-[#5B5B5B] font-medium"
           : variant === "secondary"
           ? "text-[1rem] text-[#5AC53D] disabled:text-[#5B5B5B] font-medium"
           : isLoading
           ? "text-[1rem] text-[#FFFFFF] font-medium"
           : "text-[1rem] text-[#FFFFFF] disabled:text-[#5B5B5B] font-medium",
         variant === "tertiary"
-          ? "hover:bg-[#333FFF] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]"
+          ? isLoading
+            ? ""
+            : "hover:bg-[#333FFF] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]"
           : variant === "secondary"
           ? ""
           : isLoading
           ? ""
           : "hover:bg-[#408C2B] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
         variant === "tertiary"
-          ? "border border-[#333FFF] disabled:border disabled:border-[#F6F6F6]"
+          ? isLoading
+            ? "border border-[#333FFF]"
+            : "border border-[#333FFF] disabled:border disabled:border-[#F6F6F6]"
           : variant === "secondary"
           ? "border border-[#5AC53D]"
           : isLoading
