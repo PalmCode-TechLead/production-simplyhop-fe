@@ -80,7 +80,7 @@
           "icon": {
             "name": "Whatsapp"
           },
-          "href": "https://wa.me/?text={{message}}&type=custom_url&app_absent=0"
+          "href": "https://wa.me/?text={{message}}"
         },
         {
           "id": "facebook",
