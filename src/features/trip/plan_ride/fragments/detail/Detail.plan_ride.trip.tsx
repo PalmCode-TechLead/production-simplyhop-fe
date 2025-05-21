@@ -352,7 +352,7 @@ export const DetailPlanRideTrip = () => {
       )
       .replaceAll(
         "{{departure_time}}",
-        `${dayjs.utc(state.filters.date.selected).format("DD.MM.YYYY")} ${
+        `${dayjs.utc(ridesFirst.data.departure_time).format("DD.MM.YYYY")} ${
           state.detail.form.plan.time.value
         } Uhr`
       )
