@@ -28,7 +28,6 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
     params: {
       include: "ride.vehicle.brand,user,ride.user",
       "filter[ride.departure_time__gte]": dayjs()
-        .add(1, "day")
         .startOf("day")
         .format("YYYY-MM-DDTHH:mm:ss"),
       "filter[status]": "accepted",
