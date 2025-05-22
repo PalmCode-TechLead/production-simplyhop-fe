@@ -69,7 +69,9 @@ const generateCalendarDates = (year: number, month: number): CalendarDate[] => {
   const lastDayOfMonth = new Date(year, month, 0);
 
   // Calculate the day of the week of the first day (0-6, Sunday-Saturday)
-  const firstDayOfWeek = firstDayOfMonth.getDay();
+  // Adjust so that Monday is 0 and Sunday is 6
+  const jsDay = firstDayOfMonth.getDay(); // 0 (Sun) - 6 (Sat)
+  const firstDayOfWeek = (jsDay + 6) % 7; // 0 (Mon) - 6 (Sun)
 
   // Calculate the total days in the current month
   const totalDaysInMonth = lastDayOfMonth.getDate();
