@@ -617,6 +617,7 @@ export const DetailPlanRideTrip = () => {
             />
 
             <PriceInputPlanRideTrip
+              label={"Mein Angebot"}
               inputProps={{
                 type: "number",
                 value:
