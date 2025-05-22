@@ -192,6 +192,7 @@ export const OfferChatTrip = () => {
           />
 
           <PriceInputChatTrip
+            label={"Mein Angebot"}
             inputProps={{
               type: "number",
               value:
