@@ -129,7 +129,7 @@ export const useGetBookingMy = () => {
 
           price: {
             initial: {
-              label: "Preise",
+              label: "Preis",
               price: formatEuro(item.ride?.base_price),
             },
           },
