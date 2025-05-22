@@ -389,7 +389,6 @@ export const FilterFindTrip = () => {
     router.push(AppCollectionURL.public.tripResult(params));
   };
 
-  console.log(state.filters.origin.selected.item, "ini apasih");
   return (
     <>
       <div

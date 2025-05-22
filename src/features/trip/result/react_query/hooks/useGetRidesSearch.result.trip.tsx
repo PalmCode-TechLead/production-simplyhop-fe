@@ -374,7 +374,7 @@ export const useGetRideSearch = () => {
 
           price: {
             initial: {
-              label: "Angebotspreis",
+              label: "Preis",
               price: formatEuro(item.base_price * totalPassenger),
             },
           },

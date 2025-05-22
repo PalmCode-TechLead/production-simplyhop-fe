@@ -117,7 +117,6 @@ export const ChatTripRoomReducers = (
       };
     }
     case ChatTripActionEnum.SetRoomMessagePaginationCounter: {
-      console.log(action.payload, "ini apa sih");
       return {
         ...state,
         message: {
