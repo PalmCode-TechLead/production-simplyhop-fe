@@ -220,13 +220,13 @@ export const FormLoginAuth = () => {
 
         <div
           className={clsx(
-            "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]"
+            "grid grid-cols-1 place-content-center place-items-center gap-[0.5rem]"
           )}
         >
-          <div className="w-[52px] h-[14px] flex items-center justify-center">
+          <div className="w-[148px] h-[40px] flex items-center justify-center">
             <Image
-              {...dictionaries.form.privacy_policy.credit.logo}
-              alt={dictionaries.form.privacy_policy.credit.logo.alt}
+              {...dictionaries.form.header.logo}
+              alt={dictionaries.form.header.logo.alt}
               className="w-[170px] h-[170px] object-contain"
             />
           </div>
