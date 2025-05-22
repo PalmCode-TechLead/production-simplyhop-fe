@@ -128,7 +128,7 @@ export const useGetBookingId = () => {
             },
 
             price: {
-              label: "Preise",
+              label: "Preis",
               price: formatEuro(item.ride?.base_price),
             },
           },
