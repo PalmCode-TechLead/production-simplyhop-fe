@@ -148,7 +148,7 @@ export const useGetRidesId = () => {
 
             price: {
               initial: {
-                label: "Angebotspreis",
+                label: "Preise",
                 price: formatEuro(item.base_price),
               },
             },
