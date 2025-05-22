@@ -191,6 +191,7 @@ export const DetailResultTrip = () => {
 
           {!isRideByDriver && (
             <PriceInputResultTrip
+              label={"Mein Angebot"}
               inputProps={{
                 type: "number",
                 value:
