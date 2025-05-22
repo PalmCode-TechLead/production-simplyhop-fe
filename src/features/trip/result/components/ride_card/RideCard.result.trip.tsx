@@ -380,9 +380,9 @@ export const RideCardResultTrip = ({
         >
           <CarPriceItem
             {...price.initial}
-            label={null}
-            className={clsx("!place-content-center !place-items-center")}
+            className={clsx("place-content-start place-items-start lg:!place-content-center lg:!place-items-center")}
             priceClassName={clsx("lg:!text-[2rem]")}
+            labelClassName={clsx("lg:!text-[1.25rem]")}
           />
 
           {/* cta */}
