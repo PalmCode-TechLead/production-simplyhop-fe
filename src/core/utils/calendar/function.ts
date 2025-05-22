@@ -3,7 +3,9 @@ import "dayjs/locale/de";
 dayjs.locale("de");
 
 export const weekdaysName = [...Array(7)].map((_, i) =>
-  dayjs().day(i).format("dd")
+  dayjs()
+    .day((i + 1) % 7)
+    .format("dd")
 );
 
 export const checkIsToday = (date: Date): boolean => {
