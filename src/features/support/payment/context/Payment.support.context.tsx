@@ -10,6 +10,7 @@ import {
   useGetPaymentBillingPortal,
   useGetPaymentStatus,
 } from "../react_query/hooks";
+import { useSearchParams } from "next/navigation";
 
 const initialState: PaymentSupportInitialStateType = {
   subscription: {
@@ -36,15 +37,24 @@ const mainReducer = (
 });
 
 const PaymentSupportProvider = (props: { children: React.ReactNode }) => {
+  const searchParams = useSearchParams();
+  const callback = searchParams.get("callback");
   const [state, dispatch] = useReducer(mainReducer, initialState);
   const paymentStatusQuery = useGetPaymentStatus();
   useEffect(() => {
     if (!!paymentStatusQuery.data && !paymentStatusQuery.isFetching) {
       const data = paymentStatusQuery.data;
-      dispatch({
-        type: PaymentSupportActionEnum.SetSubscriptionStatusData,
-        payload: data.active,
-      });
+      if (!!callback) {
+        dispatch({
+          type: PaymentSupportActionEnum.SetSubscriptionStatusData,
+          payload: data.active,
+        });
+      } else {
+        dispatch({
+          type: PaymentSupportActionEnum.SetSubscriptionStatusData,
+          payload: data.active,
+        });
+      }
     }
   }, [paymentStatusQuery.data, paymentStatusQuery.isFetching]);
 
