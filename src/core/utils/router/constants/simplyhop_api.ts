@@ -108,4 +108,10 @@ export const SimplyHopAPICollectionURL = {
       path: PutMessageRoomsMarkAsReadPathPayloadRequestInterface
     ) => `/api/message-rooms/${path.roomId}/mark-as-read`,
   },
+  payment: {
+    getBillingPortal: () => `/api/payments/billing-portal`,
+    getSubscribe: () => `/api/payments/subscribe`,
+    getStatus: () => `/api/payments/status`,
+    postCancel: () => `/api/payments/cancel`,
+  },
 };

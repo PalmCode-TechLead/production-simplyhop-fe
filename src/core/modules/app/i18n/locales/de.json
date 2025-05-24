@@ -197,6 +197,11 @@
           "href": "/support/konto"
         },
         {
+          "id": "abonnement",
+          "name": "Abonnement",
+          "href": "/support/abonnement"
+        },
+        {
           "id": "fahrzeuginformationen",
           "name": "Fahrzeuginformationen",
           "href": "/support/fahrzeuginformationen"
