@@ -32,8 +32,10 @@ export const SettingsSidebarApp = () => {
   }`;
 
   const settingsMenu = ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE
-    ? dictionaries.menu.items
-    : dictionaries.menu.items.filter((item) => item.id !== "abonnement");
+    ? dictionaries.settings.menu.items
+    : dictionaries.settings.menu.items.filter(
+        (item) => item.id !== "abonnement"
+      );
 
   return (
     <div
