@@ -31,7 +31,7 @@ export const PackagesPaymentSupport = () => {
         {...dictionaries.package.premium}
         badge={{
           ...dictionaries.package.premium.badge,
-          isShowed: state.subscription.status === false,
+          isShowed: state.subscription.status === true,
         }}
       />
 
