@@ -10,7 +10,8 @@ import {
   useGetPaymentBillingPortal,
   useGetPaymentStatus,
 } from "../react_query/hooks";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { AppCollectionURL } from "@/core/utils/router/constants";
 
 const initialState: PaymentSupportInitialStateType = {
   subscription: {
@@ -38,6 +39,7 @@ const mainReducer = (
 
 const PaymentSupportProvider = (props: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const callback = searchParams.get("callback");
   const [state, dispatch] = useReducer(mainReducer, initialState);
   const paymentStatusQuery = useGetPaymentStatus();
@@ -45,10 +47,9 @@ const PaymentSupportProvider = (props: { children: React.ReactNode }) => {
     if (!!paymentStatusQuery.data && !paymentStatusQuery.isFetching) {
       const data = paymentStatusQuery.data;
       if (!!callback) {
-        dispatch({
-          type: PaymentSupportActionEnum.SetSubscriptionStatusData,
-          payload: data.active,
-        });
+        if (!!data.active) {
+          router.push(AppCollectionURL.private.support_payment());
+        }
       } else {
         dispatch({
           type: PaymentSupportActionEnum.SetSubscriptionStatusData,

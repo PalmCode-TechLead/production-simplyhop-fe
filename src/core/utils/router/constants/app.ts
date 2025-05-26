@@ -22,5 +22,6 @@ export const AppCollectionURL = {
       `/support/fahrzeuginformationen/detail/${id}`,
     support_account: () => "/support/konto",
     support_account_edit: () => "/support/konto/edit",
+    support_payment: () => "/support/abonnement",
   },
 };
