@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import { UserContext } from "../../context";
 import { Avatar } from "@/core/components/avatar";
 import { Skeleton } from "@/core/components/skeleton";
+import { ENVIRONMENTS } from "@/core/environments";
 
 const Link = dynamic(() => import("next/link"), {
   ssr: false,
@@ -29,6 +30,10 @@ export const SettingsSidebarApp = () => {
   const name = `${state.profile?.first_name ?? ""} ${
     state.profile?.last_name ?? ""
   }`;
+
+  const settingsMenu = ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE
+    ? dictionaries.menu.items
+    : dictionaries.menu.items.filter((item) => item.id !== "abonnement");
 
   return (
     <div
@@ -71,7 +76,7 @@ export const SettingsSidebarApp = () => {
             "scrollbar-hide"
           )}
         >
-          {dictionaries.settings.menu.items.map((menu, index) => {
+          {settingsMenu.map((menu, index) => {
             return (
               <Link key={index} className={clsx("w-full")} href={menu.href}>
                 <TabButton

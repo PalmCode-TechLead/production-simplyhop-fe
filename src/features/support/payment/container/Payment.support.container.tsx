@@ -3,9 +3,11 @@ import clsx from "clsx";
 import { getDictionaries } from "../i18n";
 import { PackagesPaymentSupport } from "../fragments/packages";
 import { SubscriptionsPaymentSupport } from "../fragments/subscriptions";
+import { ENVIRONMENTS } from "@/core/environments";
 
 export const PaymentSupportContainer = () => {
   const dictionaries = getDictionaries();
+  if (ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE === "false") return null;
   return (
     <div
       className={clsx(
