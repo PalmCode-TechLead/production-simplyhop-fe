@@ -1,5 +1,11 @@
 "use client";
-import React, { createContext, useReducer, Dispatch, useEffect } from "react";
+import React, {
+  createContext,
+  useReducer,
+  Dispatch,
+  useEffect,
+  useContext,
+} from "react";
 import {
   PaymentSupportActionEnum,
   PaymentSupportActions,
@@ -12,6 +18,7 @@ import {
 } from "../react_query/hooks";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { UserContext } from "@/core/modules/app/context";
 
 const initialState: PaymentSupportInitialStateType = {
   subscription: {
@@ -39,6 +46,7 @@ const mainReducer = (
 
 const PaymentSupportProvider = (props: { children: React.ReactNode }) => {
   const searchParams = useSearchParams();
+  const { refetch } = useContext(UserContext);
   const router = useRouter();
   const callback = searchParams.get("callback");
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -49,6 +57,7 @@ const PaymentSupportProvider = (props: { children: React.ReactNode }) => {
       if (!!callback) {
         if (!!data.active) {
           router.push(AppCollectionURL.private.support_payment());
+          refetch();
           dispatch({
             type: PaymentSupportActionEnum.SetSubscriptionStatusData,
             payload: data.active,
