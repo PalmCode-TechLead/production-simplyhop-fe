@@ -38,15 +38,11 @@ export const SubscriptionsPaymentSupport = () => {
             "py-[0.5rem]"
           )}
         >
-          {dictionaries.subscription.menu.items.map(
-            (subscriptionItem, index) => (
-              <SubscriptionItemPaymentSupport
-                key={index}
-                {...subscriptionItem}
-                icon={subscriptionItem.icon as SVGIconProps["name"]}
-              />
-            )
-          )}
+          <SubscriptionItemPaymentSupport
+            {...dictionaries.subscription.menu.manage}
+            icon={dictionaries.subscription.menu.manage.icon as SVGIconProps["name"]}
+            link={state.subscription.portal.link ?? undefined}
+          />
         </div>
       </div>
     </div>

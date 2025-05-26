@@ -22,15 +22,13 @@
   "subscription": {
     "title": "Abonnement verwalten",
     "menu": {
-      "items": [
-        {
-          "id": "manage",
-          "name": "Tarif- & Zahlungsdetails",
-          "description": "Verwalte dein Abo, sieh dir deine Zahlungen an und kündige es jederzeit.",
-          "icon": "PieChart",
-          "link": ""
-        }
-      ]
+      "manage": {
+        "id": "manage",
+        "name": "Tarif- & Zahlungsdetails",
+        "description": "Verwalte dein Abo, sieh dir deine Zahlungen an und kündige es jederzeit.",
+        "icon": "PieChart",
+        "link": ""
+      }
     }
   }
 }

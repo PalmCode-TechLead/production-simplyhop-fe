@@ -15,7 +15,7 @@ export const SubscriptionItemPaymentSupport = ({
   name = "",
   description = "",
   icon = "PieChart",
-  link = "",
+  link,
 }: SubscriptionItemPaymentSupportProps) => {
   return (
     <div
@@ -49,12 +49,15 @@ export const SubscriptionItemPaymentSupport = ({
           </p>
         </div>
       </div>
-      <a href={link} target="_blank">
-        <SVGIcon
-          name="ArrowUpRight"
-          className={clsx("w-[1rem] h-[1rem]", "text-[#33CC33]")}
-        />
-      </a>
+
+      {!!link && (
+        <a href={link} target="_blank">
+          <SVGIcon
+            name="ArrowUpRight"
+            className={clsx("w-[1rem] h-[1rem]", "text-[#33CC33]")}
+          />
+        </a>
+      )}
     </div>
   );
 };
