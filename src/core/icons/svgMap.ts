@@ -44,6 +44,8 @@ import {
   Pencil,
   Timer,
   Forward,
+  PieChart,
+  ArrowUpRight,
 } from "lucide-react";
 import { Facebook } from "./facebook";
 import { Google } from "./google";
@@ -108,6 +110,8 @@ export const svgMap = {
   Pencil,
   Timer,
   Forward,
+  PieChart,
+  ArrowUpRight,
   Facebook,
   Google,
   Whatsapp,

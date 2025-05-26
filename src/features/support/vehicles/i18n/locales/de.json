@@ -6,6 +6,14 @@
     },
     "label": "Fahrt finden"
   },
+  "premium_ride": {
+    "message": "Abo erforderlich",
+    "description": "Du brauchst das Premium-Paket, um Fahrten zu planen und mit anderen Fahrgästen zu teilen.",
+    "cta": {
+      "children": "Jetzt abonnieren",
+      "href": "/support/abonnement"
+    }
+  },
   "ride_plan": {
     "form": {
       "input": {

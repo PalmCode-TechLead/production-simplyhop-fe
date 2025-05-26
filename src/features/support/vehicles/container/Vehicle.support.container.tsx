@@ -8,6 +8,7 @@ import Link from "next/link";
 import { AppCollectionURL } from "@/core/utils/router/constants";
 import { RidePlanFormVehiclesSupport } from "../fragments/ride_plan_form";
 import { UserContext } from "@/core/modules/app/context";
+import { PremiumRideVehiclesSupport } from "../fragments/premium_ride";
 
 export const VehiclesSupportContainer = () => {
   const { state: userState } = React.useContext(UserContext);
@@ -40,6 +41,7 @@ export const VehiclesSupportContainer = () => {
             <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
               {dictionaries.title}
             </h1>
+            <PremiumRideVehiclesSupport />
             <RidePlanFormVehiclesSupport />
             <div
               className={clsx(
@@ -70,7 +72,10 @@ export const VehiclesSupportContainer = () => {
               </div>
 
               {userState.profile?.is_driver ? (
-                <Link className={clsx("w-full lg:w-fit")} href={AppCollectionURL.private.support_vehicle_create()}>
+                <Link
+                  className={clsx("w-full lg:w-fit")}
+                  href={AppCollectionURL.private.support_vehicle_create()}
+                >
                   <Button
                     disabled={!userState.profile.is_driver}
                     className={clsx("!px-[1rem] !py-[0.5rem]")}
@@ -81,7 +86,10 @@ export const VehiclesSupportContainer = () => {
               ) : (
                 <Button
                   disabled={!userState.profile?.is_driver}
-                  className={clsx("!px-[1rem] !py-[0.5rem]", "!w-full lg:!w-fit")}
+                  className={clsx(
+                    "!px-[1rem] !py-[0.5rem]",
+                    "!w-full lg:!w-fit"
+                  )}
                 >
                   {dictionaries.cta.create.children}
                 </Button>

@@ -35,7 +35,7 @@
   "badge": {
     "uncompleted": {
       "title": "Profil vervollständigen",
-      "description": "Um mit der Planung einer Fahrt zu starten, fülle bitte dein Profil und deine Fahrzeuginformationen aus.",
+      "description": "Bevor du eine Fahrt anbieten kannst, vervollständige bitte dein Profil und trage deine Fahrzeugdaten ein – anschließend kannst du dir das Premium-Paket sichern.",
       "cta": {
         "link": {
           "children": "Vollständiges Profil",

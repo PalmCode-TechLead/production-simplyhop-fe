@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { fetchGetUserProfileData } from "@/core/services/rest/simplyhop/user_profile";
 import { UserProvider } from "@/core/modules/app/context";
 import { AppCollectionURL } from "@/core/utils/router/constants";
+import { PaymentSupportProvider } from "@/features/support/payment/context";
 
 export const metadata: Metadata = {
   title: "Profile Registration",
@@ -28,5 +29,9 @@ export default async function ProtectedLayout({
   } catch {
     redirect(AppCollectionURL.public.login());
   }
-  return <UserProvider>{children}</UserProvider>;
+  return (
+    <UserProvider>
+      <PaymentSupportProvider>{children}</PaymentSupportProvider>
+    </UserProvider>
+  );
 }
