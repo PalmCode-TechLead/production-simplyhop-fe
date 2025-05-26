@@ -49,6 +49,10 @@ const PaymentSupportProvider = (props: { children: React.ReactNode }) => {
       if (!!callback) {
         if (!!data.active) {
           router.push(AppCollectionURL.private.support_payment());
+          dispatch({
+            type: PaymentSupportActionEnum.SetSubscriptionStatusData,
+            payload: data.active,
+          });
         }
       } else {
         dispatch({
