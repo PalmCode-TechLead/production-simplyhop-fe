@@ -31,11 +31,12 @@ export const SettingsSidebarApp = () => {
     state.profile?.last_name ?? ""
   }`;
 
-  const settingsMenu = ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE
-    ? dictionaries.settings.menu.items
-    : dictionaries.settings.menu.items.filter(
-        (item) => item.id !== "abonnement"
-      );
+  const settingsMenu =
+    ENVIRONMENTS.SIMPLY_HOP_PAYMENT_FEATURE === "true"
+      ? dictionaries.settings.menu.items
+      : dictionaries.settings.menu.items.filter(
+          (item) => item.id !== "abonnement"
+        );
 
   return (
     <div
