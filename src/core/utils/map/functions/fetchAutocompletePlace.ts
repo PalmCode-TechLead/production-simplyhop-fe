@@ -11,7 +11,7 @@ export const fetchAutocompletePlace = async (
     autocompleteService.getPlacePredictions(
       {
         input,
-        componentRestrictions: { country: "de" },
+        // componentRestrictions: { country: "de" },
         types: ["establishment"],
       },
       (businessResults, status) => {
@@ -22,7 +22,7 @@ export const fetchAutocompletePlace = async (
         autocompleteService.getPlacePredictions(
           {
             input,
-            componentRestrictions: { country: "de" },
+            // componentRestrictions: { country: "de" },
             types: ["geocode"],
           },
           (geocodeResults, status) => {
@@ -34,7 +34,7 @@ export const fetchAutocompletePlace = async (
             autocompleteService.getPlacePredictions(
               {
                 input,
-                componentRestrictions: { country: "de" },
+                // componentRestrictions: { country: "de" },
                 types: ["address"],
               },
               (addressResults, status) => {
