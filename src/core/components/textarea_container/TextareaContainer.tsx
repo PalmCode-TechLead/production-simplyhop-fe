@@ -16,7 +16,7 @@ export const TextareaContainer = forwardRef<
         "overflow-hidden",
         "rounded-[0.375rem]",
         "border border-[#E2E2E2]",
-        "px-[0.75rem] sm:px-[1.625rem] py-[1rem]",
+        "px-[0.75rem] sm:px-[1.625rem] py-[1.375rem]",
         "h-[92px]",
         "bg-[white]",
         "grid grid-rows-1 grid-cols-1 items-start content-start justify-between justify-items-start",
