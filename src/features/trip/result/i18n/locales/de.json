@@ -193,7 +193,7 @@
     "title": "Mitfahgelegenheit finden"
   },
   "detail": {
-    "title": "Fahrt anbieten",
+    "title": "Fahrt Details",
     "passenger": {
       "label": "Passagiere",
       "maskedValue": "{{adult}} Erwachsene, {{children}} Kinder"
