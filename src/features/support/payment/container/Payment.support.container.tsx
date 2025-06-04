@@ -25,9 +25,9 @@ export const PaymentSupportContainer = () => {
           "rounded-[1.25rem]"
         )}
       >
-        <h1 className={clsx("text-[1.5rem] font-bold text-[#292929]")}>
+        <h2 className={clsx("text-[1.5rem] font-bold text-[#292929]")}>
           {dictionaries.title}
-        </h1>
+        </h2>
 
         <PackagesPaymentSupport />
         <SubscriptionsPaymentSupport />

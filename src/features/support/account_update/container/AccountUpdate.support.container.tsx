@@ -29,9 +29,9 @@ export const AccountUpdateSupportContainer = () => {
             "rounded-[1.25rem]"
           )}
         >
-          <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+          <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
             {dictionaries.title}
-          </h1>
+          </h2>
           <PictureFormAccountUpdateSupport />
           <FormAccountUpdateSupport />
         </div>

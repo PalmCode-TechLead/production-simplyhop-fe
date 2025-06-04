@@ -32,9 +32,9 @@ export const InformationAccountSupport = () => {
           "w-full"
         )}
       >
-        <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+        <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
           {dictionaries.title}
-        </h1>
+        </h2>
         <Link href={AppCollectionURL.private.support_account_edit()}>
           <SVGIcon
             name="Pencil"

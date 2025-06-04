@@ -404,13 +404,13 @@ export const FilterFindTrip = () => {
           boxShadow: "backdrop-filter: blur(20px),0px 0px 25px 0px #9C969640",
         }}
       >
-        <p
+        <h1
           className={clsx(
             "text-[1.125rem] sm:text-[2rem] text-[#292929] font-bold"
           )}
         >
           {dictionaries.filter.title}
-        </p>
+        </h1>
 
         <div
           className={clsx(
