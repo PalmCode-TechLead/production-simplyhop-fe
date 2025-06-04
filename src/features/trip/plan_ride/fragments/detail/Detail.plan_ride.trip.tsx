@@ -408,6 +408,7 @@ export const DetailPlanRideTrip = () => {
     !state.detail.form.plan.recurring.selected ||
     !state.detail.form.plan.umweg.value.length ||
     !state.detail.form.plan.seat.value.length ||
+    !!state.detail.form.plan.seat.error ||
     !state.detail.form.plan.available_child_seat.value ||
     !state.detail.form.other.price.value ||
     !state.detail.form.tnc.checked ||
