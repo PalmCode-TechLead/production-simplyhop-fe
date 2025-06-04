@@ -11,6 +11,15 @@
           "href": "/agb"
         }
       },
+       {
+        "id": "barrierefreiheitserklärung",
+        "name": "Barrierefreiheitserklärung",
+        "description": "Bitte lies dir die Allgemeinen Geschäftsbedingungen sorgfältig durch.",
+        "cta": {
+          "children": "Seite öffnen",
+          "href": "/accessibility"
+        }
+      },
       {
         "id": "data-protection",
         "name": "Datenschutz",
