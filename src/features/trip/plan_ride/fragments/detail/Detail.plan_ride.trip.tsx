@@ -178,6 +178,7 @@ export const DetailPlanRideTrip = () => {
       globalDictionaries.form.available_seat.validations.items.find(
         (item) => item.id === "must_greater_than"
       );
+
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
