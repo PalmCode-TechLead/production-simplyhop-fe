@@ -123,6 +123,11 @@
             "href": "/faq"
           },
           {
+            "id": "Barrierefreiheitserklärung",
+            "name": "Barrierefreiheitserklärung",
+            "href": "/accessibility"
+          },
+          {
             "id": "Datenschutz",
             "name": "Datenschutz",
             "href": "/datenschutz"
