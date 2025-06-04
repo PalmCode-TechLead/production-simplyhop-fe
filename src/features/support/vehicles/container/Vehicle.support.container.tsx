@@ -55,11 +55,11 @@ export const VehiclesSupportContainer = () => {
                   "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.5rem]"
                 )}
               >
-                <h1
+                <h3
                   className={clsx("text-[#292929] text-[1.125rem] font-bold")}
                 >
                   {dictionaries.list.title}
-                </h1>
+                </h3>
                 {!userState.profile?.is_driver && (
                   <p
                     className={clsx(
