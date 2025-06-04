@@ -174,6 +174,11 @@ export const DetailPlanRideTrip = () => {
       globalDictionaries.form.available_seat.validations.items.find(
         (item) => item.id === "invalid_available_seat"
       );
+    const mustGreaterThanSeatDictionary =
+      globalDictionaries.form.available_seat.validations.items.find(
+        (item) => item.id === "must_greater_than"
+      );
+
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
       payload: {
@@ -198,6 +203,13 @@ export const DetailPlanRideTrip = () => {
                         id: invalidSeatDictionary.id,
                         name: invalidSeatDictionary.name,
                       }
+                  : Number(e.currentTarget.value) <= 0
+                  ? !mustGreaterThanSeatDictionary
+                    ? null
+                    : {
+                        id: mustGreaterThanSeatDictionary.id,
+                        name: mustGreaterThanSeatDictionary.name,
+                      }
                   : null,
             },
           },
@@ -212,6 +224,10 @@ export const DetailPlanRideTrip = () => {
     const invalidSeatDictionary =
       globalDictionaries.form.available_child_seat.validations.items.find(
         (item) => item.id === "invalid_available_child_seat"
+      );
+    const mustGreaterThanSeatDictionary =
+      globalDictionaries.form.available_child_seat.validations.items.find(
+        (item) => item.id === "must_greater_than"
       );
     dispatch({
       type: PlanRideTripActionEnum.SetDetailData,
@@ -236,6 +252,13 @@ export const DetailPlanRideTrip = () => {
                     : {
                         id: invalidSeatDictionary.id,
                         name: invalidSeatDictionary.name,
+                      }
+                  : Number(e.currentTarget.value) < 0
+                  ? !mustGreaterThanSeatDictionary
+                    ? null
+                    : {
+                        id: mustGreaterThanSeatDictionary.id,
+                        name: mustGreaterThanSeatDictionary.name,
                       }
                   : null,
             },
@@ -386,6 +409,7 @@ export const DetailPlanRideTrip = () => {
     !state.detail.form.plan.recurring.selected ||
     !state.detail.form.plan.umweg.value.length ||
     !state.detail.form.plan.seat.value.length ||
+    !!state.detail.form.plan.seat.error ||
     !state.detail.form.plan.available_child_seat.value ||
     !state.detail.form.other.price.value ||
     !state.detail.form.tnc.checked ||

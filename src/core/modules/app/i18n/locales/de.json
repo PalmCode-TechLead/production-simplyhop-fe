@@ -123,6 +123,11 @@
             "href": "/faq"
           },
           {
+            "id": "Barrierefreiheitserklärung",
+            "name": "Barrierefreiheitserklärung",
+            "href": "/accessibility"
+          },
+          {
             "id": "Datenschutz",
             "name": "Datenschutz",
             "href": "/datenschutz"
@@ -315,6 +320,11 @@
             "id": "invalid_available_seat",
             "name": "Verfügbare Sitzplätze müssen geringer sein als die Gesamtanzahl der Sitzplätze.",
             "regex": ""
+          },
+          {
+            "id": "must_greater_than",
+            "name": "Sitznummer muss größer als -1 sein",
+            "regex": ""
           }
         ]
       }
@@ -325,6 +335,11 @@
           {
             "id": "invalid_available_child_seat",
             "name": "Verfügbare Sitzplätze müssen geringer sein als die Gesamtanzahl der Sitzplätze.",
+            "regex": ""
+          },
+          {
+            "id": "must_greater_than",
+            "name": "Sitznummer muss größer als 0 sein",
             "regex": ""
           }
         ]
