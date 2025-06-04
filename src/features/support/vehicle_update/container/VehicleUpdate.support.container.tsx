@@ -40,13 +40,13 @@ export const VehicleUpdateSupportContainer = () => {
               "pb-[1.5rem]"
             )}
           >
-            <h1
+            <h2
               className={clsx(
                 "text-[#292929] text-[1.125rem] lg:text-[1.5rem] font-bold"
               )}
             >
               {dictionaries.vehicle_information.title}
-            </h1>
+            </h2>
           </div>
 
           <div

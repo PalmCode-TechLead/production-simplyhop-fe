@@ -13,9 +13,9 @@ export const HeaderMyListTrip = () => {
         "w-full"
       )}
     >
-      <h2 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
+      <h1 className={clsx("text-[#292929] text-[1.5rem] font-bold")}>
         {dictionaries.header.title}
-      </h2>
+      </h1>
 
       <Link
         href={dictionaries.header.archive.href}

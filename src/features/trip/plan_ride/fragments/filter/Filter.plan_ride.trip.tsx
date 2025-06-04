@@ -456,13 +456,13 @@ export const FilterPlanRideTrip = () => {
           "gap-[1rem]"
         )}
       >
-        <p
+        <h1
           className={clsx(
             "text-[1.125rem] sm:text-[2rem] text-[#292929] font-bold"
           )}
         >
           {dictionaries.filter.title}
-        </p>
+        </h1>
 
         <FormAuto
           bottomSheet={{
