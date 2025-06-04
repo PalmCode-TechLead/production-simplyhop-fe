@@ -253,7 +253,7 @@ export const DetailPlanRideTrip = () => {
                         id: invalidSeatDictionary.id,
                         name: invalidSeatDictionary.name,
                       }
-                  : Number(e.currentTarget.value) <= 0
+                  : Number(e.currentTarget.value) < 0
                   ? !mustGreaterThanSeatDictionary
                     ? null
                     : {
