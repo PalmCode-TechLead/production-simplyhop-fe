@@ -40,8 +40,10 @@ export const TopNavigationMobileMenu = () => {
   return (
     <>
       <button
-        aria-label={dictionaries.menu.name}
-        name={dictionaries.menu.name}
+        aria-label={
+          isOpen ? dictionaries.menu.close_name : dictionaries.menu.name
+        }
+        name={isOpen ? dictionaries.menu.close_name : dictionaries.menu.name}
         className={clsx("cursor-pointer", "relative")}
         onClick={handleClickDropdownButton}
       >
