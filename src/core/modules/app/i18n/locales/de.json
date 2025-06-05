@@ -150,6 +150,8 @@
     }
   },
   "menu": {
+    "name": "Menü",
+    "close_name": "schließen",
     "items": [
       {
         "id": "mitfahrt-suchen",

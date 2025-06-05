@@ -122,7 +122,7 @@ export const AutocompleteCity = ({
             >
               <SVGIcon
                 name="Navigation"
-                className={clsx("w-[0.625rem] h-[0.625rem]", "text-[#5AC53D]")}
+                className={clsx("w-[0.625rem] h-[0.625rem]", "text-[#33CC33]")}
               />
             </div>
 

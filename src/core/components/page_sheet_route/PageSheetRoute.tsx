@@ -188,7 +188,7 @@ export const PageSheetRoute = ({
                     "cursor-pointer",
                     "text-[0.875rem] text-left",
                     item.id === selected?.id
-                      ? "text-[#5AC53D] font-semibold"
+                      ? "text-[#33CC33] font-semibold"
                       : "text-[#232323] font-normal"
                   )}
                   onClick={() => onSelect(item)}

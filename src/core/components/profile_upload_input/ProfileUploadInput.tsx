@@ -187,7 +187,7 @@ export const ProfileUploadInput = ({
           >
             <SVGIcon
               name="Camera"
-              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5AC53D]")}
+              className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#33CC33]")}
             />
           </div>
         )}

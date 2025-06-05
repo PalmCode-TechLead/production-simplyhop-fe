@@ -73,7 +73,7 @@ export const ListItemChatTrip = ({
           <div
             className={clsx(
               "w-[0.75rem] h-[0.75rem]",
-              "bg-[#5AC53D]",
+              "bg-[#33CC33]",
               "rounded-[50%]"
             )}
           />

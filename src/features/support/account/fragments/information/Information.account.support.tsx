@@ -38,7 +38,7 @@ export const InformationAccountSupport = () => {
         <Link href={AppCollectionURL.private.support_account_edit()}>
           <SVGIcon
             name="Pencil"
-            className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5AC53D]")}
+            className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#33CC33]")}
           />
         </Link>
       </div>

@@ -28,8 +28,8 @@ export const ContactApp = () => {
           "flex items-center justify-center",
           "px-[1.5rem] py-[1rem]",
           "rounded-[0.375rem]",
-          "border border-[#5AC53D]",
-          "text-[#5AC53D] text-[0.875rem] font-medium"
+          "border border-[#33CC33]",
+          "text-[#33CC33] text-[0.875rem] font-medium"
         )}
       >
         {dictionaries.contact.cta.contact.children}

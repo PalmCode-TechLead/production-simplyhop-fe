@@ -32,10 +32,10 @@ export const CarSortDropdown = ({
           "px-[0.5rem] py-[0.25rem]",
           "bg-[white]",
           "border",
-          isOpen ? "border-[#5AC53D]" : "border-[#E9E6E6]",
+          isOpen ? "border-[#33CC33]" : "border-[#E9E6E6]",
           "rounded-[1.25rem]",
           "text-[0.875rem] font-medium",
-          isOpen ? "text-[#5AC53D]" : "text-[#636262]",
+          isOpen ? "text-[#33CC33]" : "text-[#636262]",
           "cursor-pointer"
         )}
         onClick={handleClickDropdownButton}
@@ -44,7 +44,7 @@ export const CarSortDropdown = ({
           name={"ArrowDownWideNarrow"}
           className={clsx(
             "w-[1.25rem] h-[1.25rem]",
-            isOpen ? "text-[#5AC53D]" : "text-[#636262]"
+            isOpen ? "text-[#33CC33]" : "text-[#636262]"
           )}
         />
         {label}
@@ -52,7 +52,7 @@ export const CarSortDropdown = ({
           name={isOpen ? "ChevronUp" : "ChevronDown"}
           className={clsx(
             "w-[1.25rem] h-[1.25rem]",
-            isOpen ? "text-[#5AC53D]" : "text-[#636262]"
+            isOpen ? "text-[#33CC33]" : "text-[#636262]"
           )}
         />
       </button>
@@ -93,7 +93,7 @@ export const CarSortDropdown = ({
                     "w-full",
                     "text-[0.875rem]",
                     selected?.id === item.id
-                      ? "text-[#5AC53D] font-semibold"
+                      ? "text-[#33CC33] font-semibold"
                       : "text-[#232323] font-medium",
                     "cursor-pointer"
                   )}

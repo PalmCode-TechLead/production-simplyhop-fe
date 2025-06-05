@@ -45,9 +45,9 @@ export const TabChatTrip = () => {
         <Tab
           key={itemIndex}
           className={clsx(
-            "text-[#5B5B5B] data-[selected]:text-[#5AC53D] font-normal data-[selected]:font-semibold text-[1rem] ",
+            "text-[#5B5B5B] data-[selected]:text-[#33CC33] font-normal data-[selected]:font-semibold text-[1rem] ",
             "outline-none",
-            "data-[selected]:border-b data-[selected]:border-b-[#5AC53D]",
+            "data-[selected]:border-b data-[selected]:border-b-[#33CC33]",
             "cursor-pointer"
           )}
           onClick={() => handleClickTab(item)}

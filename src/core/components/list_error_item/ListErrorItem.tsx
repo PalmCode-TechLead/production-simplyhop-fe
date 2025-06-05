@@ -15,10 +15,10 @@ export const ListErrorItem = ({ message = "" }: ListErrorItemProps) => {
     >
       <SVGIcon
         name="Car"
-        className={clsx("w-[6rem] h-[6rem]", "text-[#5AC53D]")}
+        className={clsx("w-[6rem] h-[6rem]", "text-[#33CC33]")}
       />
 
-      <p className={clsx("text-[1rem] text-[#5AC53D] font-normal text-center")}>
+      <p className={clsx("text-[1rem] text-[#33CC33] font-normal text-center")}>
         {message}
       </p>
     </div>

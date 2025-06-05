@@ -56,7 +56,7 @@ export const SecuritySettingsSupport = () => {
         <button
           className={clsx(
             "px-[0rem] py-[1rem] lg:px-[1.5rem] lg:py-[1rem]",
-            "text-[#5AC53D] text-[0.875rem] font-medium",
+            "text-[#33CC33] text-[0.875rem] font-medium",
             "cursor-pointer"
           )}
           onClick={handleClickChangePassword}

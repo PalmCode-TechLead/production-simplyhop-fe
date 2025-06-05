@@ -221,7 +221,7 @@ export const DayPicker = ({
                 "rounded-[50%]",
                 "w-[30px] h-[30px]",
                 datesAreEqual(calendarItem.date, date)
-                  ? "bg-[#5AC53D]"
+                  ? "bg-[#33CC33]"
                   : "bg-transparent",
 
                 datesAreEqual(calendarItem.date, date)

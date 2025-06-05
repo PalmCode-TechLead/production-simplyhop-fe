@@ -147,7 +147,7 @@ export const YearPicker = ({
                 "text-[14px] font-semibold",
                 "rounded-[0.625rem]",
                 yearsAreEqual(calendarItem.year, date)
-                  ? "bg-[#5AC53D]"
+                  ? "bg-[#33CC33]"
                   : "bg-transparent",
                 disabled
                   ? "text-[#E9E6E6]"

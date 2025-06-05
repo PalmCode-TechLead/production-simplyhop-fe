@@ -38,16 +38,16 @@ export const CarFacilityFilterDropdown = ({
           "bg-[white]",
           "border",
           isOpen
-            ? "border-[#5AC53D]"
+            ? "border-[#33CC33]"
             : !!selected.length
-            ? "border-[#5AC53D]"
+            ? "border-[#33CC33]"
             : "border-[#E9E6E6]",
           "rounded-[1.25rem]",
           "text-[0.875rem] font-medium",
           isOpen
-            ? "text-[#5AC53D]"
+            ? "text-[#33CC33]"
             : !!selected.length
-            ? "text-[#5AC53D]"
+            ? "text-[#33CC33]"
             : "text-[#636262]",
           "cursor-pointer"
         )}
@@ -60,9 +60,9 @@ export const CarFacilityFilterDropdown = ({
           className={clsx(
             "w-[1.25rem] h-[1.25rem]",
             isOpen
-              ? "text-[#5AC53D]"
+              ? "text-[#33CC33]"
               : !!selected.length
-              ? "text-[#5AC53D]"
+              ? "text-[#33CC33]"
               : "text-[#636262]"
           )}
         />
@@ -70,7 +70,7 @@ export const CarFacilityFilterDropdown = ({
           <div
             className={clsx(
               "flex items-center justify-center",
-              "bg-[#5AC53D]",
+              "bg-[#33CC33]",
               "w-[1.125rem] h-[1.125rem]",
               "rounded-[50%]",
               "cursor-pointer"
@@ -112,7 +112,7 @@ export const CarFacilityFilterDropdown = ({
           >
             {/* <div className={clsx("flex items-center justify-start", "w-full")}>
               <button
-                className={clsx("text-[#5AC53D] text-[0.875rem] font-semibold")}
+                className={clsx("text-[#33CC33] text-[0.875rem] font-semibold")}
               >
                 {"Reset"}
               </button>

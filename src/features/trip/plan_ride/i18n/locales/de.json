@@ -27,7 +27,7 @@
       }
     },
     "polyline": {
-      "strokeColor": "#5AC53D",
+      "strokeColor": "#33CC33",
       "strokeOpacity": 0.8,
       "strokeWeight": 8
     }
@@ -296,7 +296,7 @@
       }
     },
     "tnc": {
-      "label": "Ich akzeptiere die <a href='/datenschutz' target='_blank' style='color:#5AC53D'>Datenschutzbestimmungen</a> und <a href='/agb' target='_blank' style='color:#5AC53D'>AGB</a> der Simply Hop."
+      "label": "Ich akzeptiere die <a href='/datenschutz' target='_blank' style='color:#33CC33'>Datenschutzbestimmungen</a> und <a href='/agb' target='_blank' style='color:#33CC33'>AGB</a> der Simply Hop."
     },
     "cta": {
       "send": {

@@ -267,7 +267,7 @@ export const RideCardResultTrip = ({
                   className={clsx(
                     "flex items-center justify-center",
                     "w-3 h-3 p-[3px] relative z-1",
-                    "bg-[#5AC53D]",
+                    "bg-[#33CC33]",
                     "rounded-[50%]"
                   )}
                 >
@@ -292,7 +292,7 @@ export const RideCardResultTrip = ({
                   className={clsx(
                     "flex items-center justify-center mt-auto",
                     "w-3 h-3 relative z-[1]",
-                    "bg-[#5AC53D]",
+                    "bg-[#33CC33]",
                     "rounded-[50%]"
                   )}
                 />

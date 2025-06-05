@@ -37,7 +37,7 @@ export const Radio = ({
           "rounded-[50%]",
           "bg-[white]",
           otherProps.checked
-            ? "border-[1px] border-[#5AC53D]"
+            ? "border-[1px] border-[#33CC33]"
             : "border-[1px] border-[#98989E]",
           "rounded-[0.25rem]",
           "flex items-center justify-center"
@@ -47,7 +47,7 @@ export const Radio = ({
         <div
           className={clsx(
             "w-[0.625rem] h-[0.625rem]",
-            otherProps.checked ? "bg-[#5AC53D]" : "bg-[white]",
+            otherProps.checked ? "bg-[#33CC33]" : "bg-[white]",
             "rounded-[50%]"
           )}
         />
