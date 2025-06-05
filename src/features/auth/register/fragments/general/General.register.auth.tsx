@@ -105,6 +105,8 @@ export const GeneralRegisterAuth = () => {
         />
 
         <Button
+          aria-label={dictionaries.general.form.cta.register.children}
+          name={dictionaries.general.form.cta.register.children}
           className={clsx("px-[1rem] py-[0.75rem]")}
           disabled={isSubmitDisabled}
           onClick={handleClickRegister}
@@ -153,6 +155,8 @@ export const GeneralRegisterAuth = () => {
           {dictionaries.general.form.social_media.items.map(
             (item, itemIndex) => (
               <button
+                aria-label={item.id}
+                name={item.id}
                 key={itemIndex}
                 className={clsx(
                   "flex items-center justify-center",

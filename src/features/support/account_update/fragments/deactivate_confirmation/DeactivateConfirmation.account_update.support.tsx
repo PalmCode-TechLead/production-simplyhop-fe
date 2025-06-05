@@ -84,6 +84,8 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
       onClose={handleClose}
     >
       <button
+        aria-label={"schließen"}
+        name={"schließen"}
         className={clsx(
           "absolute top-[1.5rem] left-[1.5rem]",
           "block lg:hidden",
@@ -158,6 +160,10 @@ export const DeactivateConfirmationAccountUpdateSupport = () => {
         </div>
 
         <button
+          aria-label={
+            dictionaries.deactivate_confirmation.cta.deactivate.children
+          }
+          name={dictionaries.deactivate_confirmation.cta.deactivate.children}
           className={clsx(
             "flex items-center justify-center gap-[0.5rem]",
             "w-full",

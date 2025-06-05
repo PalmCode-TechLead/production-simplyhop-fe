@@ -151,6 +151,8 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
           )}
         >
           <button
+            aria-label={dictionaries.delete_notification.cta.back.children}
+            name={dictionaries.delete_notification.cta.back.children}
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
@@ -162,6 +164,8 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
             {dictionaries.delete_notification.cta.back.children}
           </button>
           <Button
+            aria-label={dictionaries.delete_notification.cta.confirm.children}
+            name={dictionaries.delete_notification.cta.confirm.children}
             className={clsx(
               "py-[1rem]",
               "!bg-[#C50707]",

@@ -658,6 +658,8 @@ export const FilterPlanRideTrip = () => {
 
         {/* button */}
         <Button
+          aria-label={dictionaries.filter.cta.primary.children}
+          name={dictionaries.filter.cta.primary.children}
           variant="tertiary"
           disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}

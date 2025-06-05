@@ -436,7 +436,12 @@ export const DetailPlanRideTrip = () => {
         )}
       >
         <AdaptiveModalHeader>
-          <button className={clsx("block lg:hidden")} onClick={handleClose}>
+          <button
+            aria-label={"schließen"}
+            name={"schließen"}
+            className={clsx("block lg:hidden")}
+            onClick={handleClose}
+          >
             <SVGIcon
               name="X"
               className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
@@ -675,6 +680,8 @@ export const DetailPlanRideTrip = () => {
 
         <AdaptiveModalFooter>
           <Button
+            aria-label={dictionaries.detail.cta.send.children}
+            name={dictionaries.detail.cta.send.children}
             disabled={isSubmitDisabled}
             isLoading={isSubmitLoading}
             variant="tertiary"

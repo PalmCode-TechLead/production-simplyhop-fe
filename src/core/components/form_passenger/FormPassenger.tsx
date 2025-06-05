@@ -190,7 +190,11 @@ export const FormPassenger = ({
                   "w-full"
                 )}
               >
-                <button onClick={handleCloseBottomSheet}>
+                <button
+                  aria-label={"schließen"}
+                  name={"schließen"}
+                  onClick={handleCloseBottomSheet}
+                >
                   <SVGIcon
                     name="X"
                     className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
@@ -227,7 +231,11 @@ export const FormPassenger = ({
                 }}
               />
             </div>
-            <Button onClick={handleClickNext}>
+            <Button
+              aria-label={String(detail?.cta?.next.children ?? "")}
+              name={String(detail?.cta?.next.children ?? "")}
+              onClick={handleClickNext}
+            >
               {detail?.cta?.next.children}
             </Button>
           </div>

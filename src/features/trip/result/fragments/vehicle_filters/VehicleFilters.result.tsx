@@ -267,7 +267,12 @@ export const VehicleFilters = () => {
               "w-full"
             )}
           >
-            <button className={clsx("cursor-pointer")} onClick={handleClose}>
+            <button
+              aria-label={"schließen"}
+              name={"schließen"}
+              className={clsx("cursor-pointer")}
+              onClick={handleClose}
+            >
               <SVGIcon
                 name="X"
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
@@ -283,6 +288,8 @@ export const VehicleFilters = () => {
           </div>
 
           <button
+            aria-label={dictionaries.vehicle_filters.cta.reset.children}
+            name={dictionaries.vehicle_filters.cta.reset.children}
             className={clsx(
               "cursor-pointer",
               "px-[1rem] py-[1rem]",
@@ -367,7 +374,11 @@ export const VehicleFilters = () => {
 
         {/* cta */}
 
-        <Button onClick={handleClickApply}>
+        <Button
+          aria-label={dictionaries.vehicle_filters.cta.apply.children}
+          name={dictionaries.vehicle_filters.cta.apply.children}
+          onClick={handleClickApply}
+        >
           {dictionaries.vehicle_filters.cta.apply.children}
         </Button>
       </div>

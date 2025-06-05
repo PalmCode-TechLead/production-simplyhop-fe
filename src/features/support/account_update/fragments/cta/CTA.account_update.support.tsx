@@ -76,6 +76,8 @@ export const CTAAccountUpdateSupport = () => {
       )}
     >
       <button
+        aria-label={dictionaries.cta.deactivate.children}
+        name={dictionaries.cta.deactivate.children}
         className={clsx(
           "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
           "w-full h-full",
@@ -87,6 +89,8 @@ export const CTAAccountUpdateSupport = () => {
         {dictionaries.cta.deactivate.children}
       </button>
       <Button
+        aria-label={dictionaries.cta.save.children}
+        name={dictionaries.cta.save.children}
         disabled={isSubmitDisabled}
         isLoading={isSubmitLoading}
         className={clsx("w-full")}

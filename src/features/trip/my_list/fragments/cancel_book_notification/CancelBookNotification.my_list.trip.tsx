@@ -14,7 +14,10 @@ export const CancelBookNotificationMyListTrip = () => {
   const { state, dispatch } = React.useContext(MyListTripContext);
   const { isLg } = useTailwindBreakpoint();
 
-  const { mutateAsync: postBookingReject, isPending: isPendingPostBookingReject } = usePostBookingReject();
+  const {
+    mutateAsync: postBookingReject,
+    isPending: isPendingPostBookingReject,
+  } = usePostBookingReject();
 
   const isOpen = state.cancel_book_notification.is_open;
   const handleClose = () => {
@@ -122,6 +125,8 @@ export const CancelBookNotificationMyListTrip = () => {
           )}
         >
           <button
+            aria-label={dictionaries.cancel_book_notification.cta.back.children}
+            name={dictionaries.cancel_book_notification.cta.back.children}
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
@@ -133,6 +138,10 @@ export const CancelBookNotificationMyListTrip = () => {
             {dictionaries.cancel_book_notification.cta.back.children}
           </button>
           <Button
+            aria-label={
+              dictionaries.cancel_book_notification.cta.confirm.children
+            }
+            name={dictionaries.cancel_book_notification.cta.confirm.children}
             className={clsx(
               "py-[1rem]",
               "!bg-[#C50707]",

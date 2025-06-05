@@ -209,6 +209,8 @@ export const CardVehiclesSupport = ({
           {/* cta */}
           <Link className={clsx("w-full lg:w-fit")} href={cta.ride.href}>
             <Button
+              aria-label={String(cta.ride.children ?? "")}
+              name={String(cta.ride.children ?? "")}
               className={clsx(
                 "!px-[1rem] !py-[0.5rem]",
                 "!bg-[white] !border-[white]",

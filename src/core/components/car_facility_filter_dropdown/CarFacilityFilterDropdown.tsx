@@ -32,6 +32,8 @@ export const CarFacilityFilterDropdown = ({
   return (
     <div ref={ref} className={clsx(isOpen && "relative", "rounded-[1.25rem]")}>
       <button
+        aria-label={label}
+        name={label}
         className={clsx(
           "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
           "px-[0.5rem] py-[0.25rem]",
@@ -110,13 +112,6 @@ export const CarFacilityFilterDropdown = ({
               "w-full"
             )}
           >
-            {/* <div className={clsx("flex items-center justify-start", "w-full")}>
-              <button
-                className={clsx("text-[#33CC33] text-[0.875rem] font-semibold")}
-              >
-                {"Reset"}
-              </button>
-            </div> */}
             <div
               className={clsx(
                 "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",

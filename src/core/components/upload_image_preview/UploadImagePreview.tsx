@@ -36,6 +36,8 @@ export const UploadImagePreview = ({
         alt={`image-${id}`}
       />
       <button
+        aria-label={"Löschen"}
+        name={"Löschen"}
         disabled={cta.disabled}
         className={clsx("cursor-pointer")}
         onClick={cta.onDelete}

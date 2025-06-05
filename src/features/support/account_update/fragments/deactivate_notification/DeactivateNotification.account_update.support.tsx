@@ -112,7 +112,16 @@ export const DeactivateNotificationAccountUpdateSupport = () => {
           {dictionaries.deactivate_notification.message}
         </p>
 
-        <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
+        <Button
+          aria-label={
+            dictionaries.deactivate_notification.cta.go_to_homepage.children
+          }
+          name={
+            dictionaries.deactivate_notification.cta.go_to_homepage.children
+          }
+          className={clsx("py-[1rem]")}
+          onClick={handleClickGoToHomepage}
+        >
           {dictionaries.deactivate_notification.cta.go_to_homepage.children}
         </Button>
       </div>

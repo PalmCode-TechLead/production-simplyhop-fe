@@ -71,6 +71,8 @@ export const DropdownSelect = ({
         >
           {items.map((item, itemIndex) => (
             <button
+              aria-label={item.name}
+              name={item.name}
               key={itemIndex}
               className={clsx(
                 "w-full",

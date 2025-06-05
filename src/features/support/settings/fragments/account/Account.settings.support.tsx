@@ -54,6 +54,8 @@ export const AccountSettingsSupport = () => {
         </div>
 
         <button
+          aria-label={dictionaries.account.cta.deactivate.children}
+          name={dictionaries.account.cta.deactivate.children}
           className={clsx(
             "px-[0rem] py-[1rem] lg:px-[1.5rem] lg:py-[1rem]",
             "text-[#B30606] text-[0.875rem] font-medium",

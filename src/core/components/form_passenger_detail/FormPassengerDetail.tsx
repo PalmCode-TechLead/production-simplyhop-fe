@@ -77,6 +77,8 @@ export const FormPassengerDetail = ({
               )}
             >
               <button
+                aria-label={"Subtrahieren"}
+                name={"Subtrahieren"}
                 className={clsx(
                   "flex items-center justify-center",
                   "bg-[#F5F5F5]",
@@ -111,6 +113,8 @@ export const FormPassengerDetail = ({
               </span>
 
               <button
+                aria-label={"Hinzufügen"}
+                name={"Hinzufügen"}
                 className={clsx(
                   "flex items-center justify-center",
                   "bg-[#F5F5F5]",

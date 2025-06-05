@@ -136,6 +136,8 @@ export const ProfileUploadInput = ({
       >
         {/* overlay button */}
         <button
+          aria-label={"Hochladen"}
+          name={"Hochladen"}
           className={clsx(
             "absolute",
             "bottom-0 left-0 right-0 top-0",

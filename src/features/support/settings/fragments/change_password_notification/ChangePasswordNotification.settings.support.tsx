@@ -49,6 +49,8 @@ export const ChangePasswordNotificationSettingsSupport = () => {
       onClose={handleClose}
     >
       <button
+        aria-label={"schließen"}
+        name={"schließen"}
         className={clsx(
           "absolute top-[1.5rem] left-[1.5rem]",
           "block lg:hidden",
@@ -96,7 +98,18 @@ export const ChangePasswordNotificationSettingsSupport = () => {
           {dictionaries.change_password_notification.title}
         </h1>
 
-        <Button className={clsx("py-[1rem]")} onClick={handleClickBack}>
+        <Button
+          aria-label={
+            dictionaries.change_password_notification.cta.go_to_homepage
+              .children
+          }
+          name={
+            dictionaries.change_password_notification.cta.go_to_homepage
+              .children
+          }
+          className={clsx("py-[1rem]")}
+          onClick={handleClickBack}
+        >
           {
             dictionaries.change_password_notification.cta.go_to_homepage
               .children

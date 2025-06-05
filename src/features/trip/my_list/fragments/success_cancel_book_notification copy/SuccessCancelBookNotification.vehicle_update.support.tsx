@@ -150,7 +150,14 @@ export const SuccessCancelBookNotificationMyListTrip = () => {
 
         <div className={clsx("w-full h-[1.25rem]")} />
 
-        <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
+        <Button
+          aria-label={
+            dictionaries.success_cancel_book_notification.cta.back.children
+          }
+          name={dictionaries.success_cancel_book_notification.cta.back.children}
+          className={clsx("py-[1rem]")}
+          onClick={handleClickGoToHomepage}
+        >
           {dictionaries.success_cancel_book_notification.cta.back.children}
         </Button>
       </div>

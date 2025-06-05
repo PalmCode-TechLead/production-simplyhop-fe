@@ -65,6 +65,8 @@ export const BookDetailArchiveTrip = () => {
             )}
           >
             <button
+              aria-label={"Zurück"}
+              name={"Zurück"}
               className={clsx("cursor-pointer", "block lg:hidden")}
               onClick={handleClose}
             >

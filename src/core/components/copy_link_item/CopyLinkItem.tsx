@@ -66,6 +66,8 @@ export const CopyLinkItem = ({
         </div>
       ) : (
         <button
+          aria-label={String(cta.copy.children ?? "")}
+          name={String(cta.copy.children ?? "")}
           className={clsx(
             "flex items-center justify-center",
             "px-[0rem] lg:px-[1rem] py-[10.5px]",

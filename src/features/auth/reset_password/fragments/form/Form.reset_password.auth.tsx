@@ -159,7 +159,11 @@ export const FormResetPasswordAuth = () => {
               "w-full"
             )}
           >
-            <button onClick={handleClickClose}>
+            <button
+              aria-label={"schließen"}
+              name={"schließen"}
+              onClick={handleClickClose}
+            >
               <SVGIcon
                 name="X"
                 className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#767676]")}
@@ -224,6 +228,8 @@ export const FormResetPasswordAuth = () => {
       </div>
 
       <Button
+        aria-label={dictionaries.form.cta.reset_password.children}
+        name={dictionaries.form.cta.reset_password.children}
         className={clsx("px-[1rem] py-[0.75rem]")}
         disabled={isSubmitDisabled}
         isLoading={isSubmitLoading}

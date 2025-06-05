@@ -54,6 +54,8 @@ export const SecuritySettingsSupport = () => {
         </div>
 
         <button
+          aria-label={dictionaries.security.cta.change_password.children}
+          name={dictionaries.security.cta.change_password.children}
           className={clsx(
             "px-[0rem] py-[1rem] lg:px-[1.5rem] lg:py-[1rem]",
             "text-[#33CC33] text-[0.875rem] font-medium",

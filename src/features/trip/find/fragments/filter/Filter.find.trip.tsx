@@ -601,6 +601,8 @@ export const FilterFindTrip = () => {
 
           {/* button */}
           <Button
+            aria-label={dictionaries.filter.cta.primary.children}
+            name={dictionaries.filter.cta.primary.children}
             disabled={
               !state.filters.origin.selected.item ||
               !state.filters.destination.selected.item ||

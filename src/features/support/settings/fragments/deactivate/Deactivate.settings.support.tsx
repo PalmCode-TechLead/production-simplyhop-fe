@@ -55,6 +55,8 @@ export const DeactivateSettingsSupport = () => {
       onClose={handleClose}
     >
       <button
+        aria-label={"schließen"}
+        name={"schließen"}
         className={clsx(
           "absolute top-[1.5rem] left-[1.5rem]",
           "block lg:hidden",
@@ -137,6 +139,8 @@ export const DeactivateSettingsSupport = () => {
         </div>
 
         <button
+          aria-label={dictionaries.deactivate.cta.deactivate.children}
+          name={dictionaries.deactivate.cta.deactivate.children}
           className={clsx(
             "flex items-center justify-center",
             "w-full",

@@ -173,7 +173,12 @@ export const PasswordSetupRegisterAuth = () => {
           "w-full"
         )}
       >
-        <button className={clsx("cursor-pointer")} onClick={handleClickBack}>
+        <button
+          aria-label={"Zurück"}
+          name={"Zurück"}
+          className={clsx("cursor-pointer")}
+          onClick={handleClickBack}
+        >
           <SVGIcon
             name="ArrowLeft"
             className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
@@ -245,6 +250,8 @@ export const PasswordSetupRegisterAuth = () => {
         </div>
 
         <Button
+          aria-label={dictionaries.password_setup.form.cta.register.children}
+          name={dictionaries.password_setup.form.cta.register.children}
           className={clsx("px-[1rem] py-[0.75rem]")}
           disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}

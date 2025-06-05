@@ -108,7 +108,11 @@ export const ShareRideNotificationMyListTrip = () => {
           cta={{ ...dictionaries.share_ride_notification.share.cta }}
         />
 
-        <Button onClick={handleClose}>
+        <Button
+          aria-label={dictionaries.share_ride_notification.cta.back.children}
+          name={dictionaries.share_ride_notification.cta.back.children}
+          onClick={handleClose}
+        >
           {dictionaries.share_ride_notification.cta.back.children}
         </Button>
       </div>
