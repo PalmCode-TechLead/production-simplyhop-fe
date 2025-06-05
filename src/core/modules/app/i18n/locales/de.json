@@ -150,6 +150,7 @@
     }
   },
   "menu": {
+    "name": "Menü",
     "items": [
       {
         "id": "mitfahrt-suchen",

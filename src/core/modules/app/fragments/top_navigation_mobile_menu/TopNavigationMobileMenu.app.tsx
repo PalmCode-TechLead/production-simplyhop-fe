@@ -40,6 +40,7 @@ export const TopNavigationMobileMenu = () => {
   return (
     <>
       <button
+        name={dictionaries.menu.name}
         className={clsx("cursor-pointer", "relative")}
         onClick={handleClickDropdownButton}
       >
