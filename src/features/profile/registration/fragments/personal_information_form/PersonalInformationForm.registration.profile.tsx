@@ -23,7 +23,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
     const errorItem = getError({
       errorItems: globalDictionaries.form.first_name.validations.items,
       value: e.currentTarget.value,
-      type: "optional",
+      type: "required",
     });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
@@ -45,7 +45,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
     const errorItem = getError({
       errorItems: globalDictionaries.form.last_name.validations.items,
       value: e.currentTarget.value,
-      type: "optional",
+      type: "required",
     });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,
@@ -89,7 +89,7 @@ export const PersonalInformationFormRegistrationProfile = () => {
     const errorItem = getError({
       errorItems: globalDictionaries.form.phonenumber.validations.items,
       value: e.currentTarget.value,
-      type: "optional",
+      type: "required",
     });
     dispatch({
       type: RegistrationProfileActionEnum.SetPersonalInformationData,

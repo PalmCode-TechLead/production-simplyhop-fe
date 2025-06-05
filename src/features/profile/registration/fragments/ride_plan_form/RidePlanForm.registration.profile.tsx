@@ -56,6 +56,9 @@ export const RidePlanFormRegistrationProfile = () => {
     >
       <p className={clsx("text-[#292929] text-[1rem] font-semibold")}>
         {dictionaries.ride_plan.form.input.offer_trip.label}
+        {dictionaries.ride_plan.form.input.offer_trip.required && (
+          <span className={clsx("text-[#FF0066]")}>{"*"}</span>
+        )}
       </p>
 
       <DropdownSelect
