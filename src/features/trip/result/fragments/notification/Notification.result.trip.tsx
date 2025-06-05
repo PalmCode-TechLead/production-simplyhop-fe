@@ -86,7 +86,12 @@ export const NotificationResultTrip = () => {
           className={clsx("w-full")}
           href={dictionaries.notification.cta.back.href}
         >
-          <Button>{dictionaries.notification.cta.back.children}</Button>
+          <Button
+            aria-label={dictionaries.notification.cta.back.children}
+            name={dictionaries.notification.cta.back.children}
+          >
+            {dictionaries.notification.cta.back.children}
+          </Button>
         </Link>
       </div>
     </AdaptiveModal>

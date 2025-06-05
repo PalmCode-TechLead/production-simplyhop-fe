@@ -17,6 +17,8 @@ export const CarFacilityFilterCounterBadge = ({
 }: CarFacilityFilterCounterBadgeProps) => {
   return (
     <button
+      aria-label={label}
+      name={label}
       className={clsx(
         "grid grid-flow-col place-content-center place-items-center gap-[0.5rem]",
         "px-[0.5rem] py-[0.25rem]",

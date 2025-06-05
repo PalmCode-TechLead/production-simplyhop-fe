@@ -161,6 +161,8 @@ export const DetailResultTrip = () => {
       >
         <AdaptiveModalHeader>
           <button
+            aria-label={"schließen"}
+            name={"schließen"}
             className={clsx("block lg:hidden", "cursor-pointer")}
             onClick={handleClose}
           >
@@ -225,6 +227,8 @@ export const DetailResultTrip = () => {
         <AdaptiveModalFooter>
           {!isRideByDriver && (
             <Button
+              aria-label={dictionaries.detail.cta.send.children}
+              name={dictionaries.detail.cta.send.children}
               disabled={isSubmitDisabled}
               isLoading={isPendingPostBookingBook}
               onClick={handleClickSend}

@@ -94,6 +94,8 @@ export const RideDetailMyListTrip = () => {
             )}
           >
             <button
+              aria-label={"Zurück"}
+              name={"Zurück"}
               className={clsx("cursor-pointer", "block lg:hidden")}
               onClick={handleClose}
             >
@@ -156,6 +158,8 @@ export const RideDetailMyListTrip = () => {
           </div>
 
           <button
+            aria-label={"Fahrt löschen"}
+            name={"Fahrt löschen"}
             className={clsx(
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",

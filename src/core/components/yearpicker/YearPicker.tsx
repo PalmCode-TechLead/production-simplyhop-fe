@@ -101,7 +101,11 @@ export const YearPicker = ({
           "w-full"
         )}
       >
-        <button onClick={handleClickPrevious}>
+        <button
+          aria-label={"vorherige"}
+          name={"vorherige"}
+          onClick={handleClickPrevious}
+        >
           <SVGIcon
             name="ChevronLeft"
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
@@ -109,6 +113,8 @@ export const YearPicker = ({
         </button>
 
         <button
+          aria-label={yearName}
+          name={yearName}
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center",
             "w-full",
@@ -118,7 +124,11 @@ export const YearPicker = ({
           {yearName}
         </button>
 
-        <button onClick={handleClickNext}>
+        <button
+          aria-label={"Nächste"}
+          name={"Nächste"}
+          onClick={handleClickNext}
+        >
           <SVGIcon
             name="ChevronRight"
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
@@ -140,6 +150,12 @@ export const YearPicker = ({
 
           return (
             <button
+              aria-label={calendarItem.year.toLocaleString("de-DE", {
+                year: "numeric",
+              })}
+              name={calendarItem.year.toLocaleString("de-DE", {
+                year: "numeric",
+              })}
               key={calendarIndex}
               className={clsx(
                 "grid grid-cols-1 place-content-center place-items-center",

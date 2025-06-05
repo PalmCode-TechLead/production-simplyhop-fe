@@ -93,8 +93,16 @@ export const SuccessForgotPasswordAuth = () => {
           </p>
         </div>
 
-        <Link href={AppCollectionURL.public.login()} className={clsx("w-full")}>
-          <Button className={clsx("px-[1rem] py-[0.75rem]")}>
+        <Link
+          aria-label={dictionaries.success.cta.back.children}
+          href={AppCollectionURL.public.login()}
+          className={clsx("w-full")}
+        >
+          <Button
+            aria-label={dictionaries.success.cta.back.children}
+            name={dictionaries.success.cta.back.children}
+            className={clsx("px-[1rem] py-[0.75rem]")}
+          >
             {dictionaries.success.cta.back.children}
           </Button>
         </Link>

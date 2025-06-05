@@ -613,6 +613,8 @@ export const FilterResultTrip = () => {
           />
 
           <Button
+            aria-label={dictionaries.filter.cta.primary.children}
+            name={dictionaries.filter.cta.primary.children}
             className={clsx("px-[1.25rem] py-[0.75rem]")}
             disabled={
               !state.filters.origin.selected.item ||

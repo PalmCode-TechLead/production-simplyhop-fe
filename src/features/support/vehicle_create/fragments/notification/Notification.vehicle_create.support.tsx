@@ -88,7 +88,12 @@ export const NotificationVehicleCreateSupport = () => {
 
         <div className={clsx("w-full h-[1.25rem]")} />
 
-        <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
+        <Button
+          aria-label={dictionaries.notification.cta.back.children}
+          name={dictionaries.notification.cta.back.children}
+          className={clsx("py-[1rem]")}
+          onClick={handleClickGoToHomepage}
+        >
           {dictionaries.notification.cta.back.children}
         </Button>
       </div>

@@ -29,6 +29,8 @@ export const AccordionFAQHelpCenter = ({
       )}
     >
       <button
+        aria-label={question}
+        name={question}
         className={clsx(
           "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0rem]",
           "w-full",

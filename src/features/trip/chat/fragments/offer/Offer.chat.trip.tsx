@@ -159,6 +159,8 @@ export const OfferChatTrip = () => {
           )}
         >
           <button
+            aria-label={"schließen"}
+            name={"schließen"}
             className={clsx("block lg:hidden", "cursor-pointer")}
             onClick={handleClose}
           >
@@ -222,6 +224,8 @@ export const OfferChatTrip = () => {
 
         <AdaptiveModalFooter>
           <Button
+            aria-label={dictionaries.offer.cta.send.children}
+            name={dictionaries.offer.cta.send.children}
             disabled={isSubmitDisabled}
             isLoading={isPendingPostBookingOffer}
             onClick={handleClickSend}

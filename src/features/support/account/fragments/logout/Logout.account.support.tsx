@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
@@ -23,6 +23,8 @@ export const LogoutAccountSupport = () => {
       )}
     >
       <button
+        aria-label={dictionaries.cta.logout.children}
+        name={dictionaries.cta.logout.children}
         className={clsx(
           "grid grid-flow-col grid-rows-1 grid-cols-none place-content-center place-items-center gap-[0.5rem]",
           "w-full h-full",

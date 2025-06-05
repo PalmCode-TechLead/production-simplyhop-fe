@@ -93,7 +93,15 @@ export const Alert = ({
           {message}
         </span>
       </div>
-      {cta && <button onClick={cta.onClick}>{cta.children}</button>}
+      {cta && (
+        <button
+          aria-label={String(cta.children ?? "")}
+          name={String(cta.children ?? "")}
+          onClick={cta.onClick}
+        >
+          {cta.children}
+        </button>
+      )}
     </div>
   );
 };

@@ -26,14 +26,14 @@ export const BookDetailMyListTrip = () => {
   const filteredData = state.book.detail;
 
   React.useEffect(() => {
-      dispatch({
-        type: MyListTripActionEnum.SetDetailBookNotificationData,
-        payload: {
-          ...state.detail_book_notification,
-          is_open: !!filteredData && !!bookingId,
-        },
-      });
-    }, [filteredData, bookingId]);
+    dispatch({
+      type: MyListTripActionEnum.SetDetailBookNotificationData,
+      payload: {
+        ...state.detail_book_notification,
+        is_open: !!filteredData && !!bookingId,
+      },
+    });
+  }, [filteredData, bookingId]);
 
   if (!filteredData) {
     return null;
@@ -93,6 +93,8 @@ export const BookDetailMyListTrip = () => {
             )}
           >
             <button
+              aria-label={"Zurück"}
+              name={"Zurück"}
               className={clsx("cursor-pointer", "block lg:hidden")}
               onClick={handleClose}
             >
@@ -138,6 +140,8 @@ export const BookDetailMyListTrip = () => {
           </div>
 
           <button
+            aria-label={"Fahrt löschen"}
+            name={"Fahrt löschen"}
             className={clsx(
               "grid grid-cols-1 place-content-center place-items-center",
               "w-full",

@@ -380,14 +380,21 @@ export const RideCardResultTrip = ({
         >
           <CarPriceItem
             {...price.initial}
-            className={clsx("place-content-start place-items-start lg:!place-content-center lg:!place-items-center")}
+            className={clsx(
+              "place-content-start place-items-start lg:!place-content-center lg:!place-items-center"
+            )}
             priceClassName={clsx("lg:!text-[2rem]")}
             labelClassName={clsx("lg:!text-[1.25rem]")}
           />
 
           {/* cta */}
-          <Link href={cta.ride.href}>
+          <Link
+            aria-label={String(cta.ride.children ?? "")}
+            href={cta.ride.href}
+          >
             <Button
+              aria-label={String(cta.ride.children ?? "")}
+              name={String(cta.ride.children ?? "")}
               className={clsx("!px-[1rem] !py-[0.5rem]")}
               // onClick={cta.ride.onClick}
             >

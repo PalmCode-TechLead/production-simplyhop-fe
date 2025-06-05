@@ -62,7 +62,7 @@ export const BottomSheetAuto = ({
             "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]"
           )}
         >
-          <button onClick={onClose}>
+          <button aria-label={"schließen"} name={"schließen"} onClick={onClose}>
             <SVGIcon
               name="X"
               className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5B5B5B]")}
@@ -133,6 +133,8 @@ export const BottomSheetAuto = ({
           >
             {items.map((item, itemIndex) => (
               <button
+                aria-label={item.name}
+                name={item.name}
                 key={itemIndex}
                 className={clsx(
                   "grid grid-cols-1 place-content-start place-items-start",

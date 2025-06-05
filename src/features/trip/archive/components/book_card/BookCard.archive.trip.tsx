@@ -184,8 +184,16 @@ export const BookCardArchiveTrip = ({
 
         {/* cta */}
 
-        <Link href={cta.detail.href} className={clsx("w-full")}>
-          <Button className={clsx("!px-[0.5rem] !py-[0.5rem]")}>
+        <Link
+          aria-label={String(cta.detail.children ?? "")}
+          href={cta.detail.href}
+          className={clsx("w-full")}
+        >
+          <Button
+            aria-label={String(cta.detail.children ?? "")}
+            name={String(cta.detail.children ?? "")}
+            className={clsx("!px-[0.5rem] !py-[0.5rem]")}
+          >
             {cta.detail.children}
           </Button>
         </Link>

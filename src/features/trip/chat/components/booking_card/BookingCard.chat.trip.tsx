@@ -55,7 +55,7 @@ export interface BookingCardChatTripProps {
   date?: {
     label: string;
     date: string;
-  }
+  };
   note?: TripNoteItemProps;
   cta?: {
     cancel: null | {
@@ -198,25 +198,25 @@ export const BookingCardChatTrip = ({
       children: "Angebot ablehnen",
       disabled: false,
       loading: false,
-      onClick: () => { },
+      onClick: () => {},
     },
     reject: {
       children: "Angebot ablehnen",
       disabled: false,
       loading: false,
-      onClick: () => { },
+      onClick: () => {},
     },
     bargain: {
       children: "Ein weiteres Angebot senden",
       disabled: false,
       loading: false,
-      onClick: () => { },
+      onClick: () => {},
     },
     accept: {
       children: "Angebot annehmen",
       disabled: false,
       loading: false,
-      onClick: () => { },
+      onClick: () => {},
     },
   },
 }: BookingCardChatTripProps) => {
@@ -256,7 +256,9 @@ export const BookingCardChatTrip = ({
         >
           <div className="grid grid-cols-1 gap-4">
             <div className="grid grid-cols-1 gap-1">
-              <span className={clsx("font-medium text-[#727272] text-[10px]")}>{date.label}</span>
+              <span className={clsx("font-medium text-[#727272] text-[10px]")}>
+                {date.label}
+              </span>
               <span className={clsx("font-semibold text-sm")}>{date.date}</span>
             </div>
             <Image
@@ -419,6 +421,8 @@ export const BookingCardChatTrip = ({
 
           {!!cta.accept && (
             <button
+              aria-label={String(cta.accept.children ?? "")}
+              name={String(cta.accept.children ?? "")}
               className={clsx(
                 "flex items-center justify-center gap-[0.5rem]",
                 "bg-[#33CC33]",

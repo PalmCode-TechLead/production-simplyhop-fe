@@ -124,10 +124,15 @@ export const NotificationPlanRideTrip = () => {
         />
 
         <Link
+          aria-label={dictionaries.notification.cta.back.children}
           className={clsx("w-full")}
           href={dictionaries.notification.cta.back.href}
         >
-          <Button variant="tertiary">
+          <Button
+            aria-label={dictionaries.notification.cta.back.children}
+            name={dictionaries.notification.cta.back.children}
+            variant="tertiary"
+          >
             {dictionaries.notification.cta.back.children}
           </Button>
         </Link>

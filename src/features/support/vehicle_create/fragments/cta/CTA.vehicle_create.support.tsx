@@ -36,6 +36,8 @@ export const CTAVehicleCreateSupport = () => {
   const isSaveLoading = isPendingPostVehicleCreateMy;
   return (
     <Button
+      aria-label={dictionaries.cta.save.children}
+      name={dictionaries.cta.save.children}
       disabled={isSaveDisabled}
       isLoading={isSaveLoading}
       className={clsx("py-[1rem]")}

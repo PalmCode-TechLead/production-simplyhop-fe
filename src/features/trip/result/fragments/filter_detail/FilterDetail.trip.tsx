@@ -123,6 +123,8 @@ export const FilterDetailTrip = () => {
           </div>
         </div>
         <Button
+          aria-label={"Ändern"}
+          name={"Ändern"}
           variant="secondary"
           className={clsx("!px-[1rem] !py-[0.5rem]")}
           onClick={handleClickOpenFilter}

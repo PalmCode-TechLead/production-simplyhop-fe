@@ -73,10 +73,13 @@ export const VehiclesSupportContainer = () => {
 
               {userState.profile?.is_driver ? (
                 <Link
+                  aria-label={dictionaries.cta.create.children}
                   className={clsx("w-full lg:w-fit")}
                   href={AppCollectionURL.private.support_vehicle_create()}
                 >
                   <Button
+                    aria-label={dictionaries.cta.create.children}
+                    name={dictionaries.cta.create.children}
                     disabled={!userState.profile.is_driver}
                     className={clsx("!px-[1rem] !py-[0.5rem]")}
                   >
@@ -85,6 +88,8 @@ export const VehiclesSupportContainer = () => {
                 </Link>
               ) : (
                 <Button
+                  aria-label={dictionaries.cta.create.children}
+                  name={dictionaries.cta.create.children}
                   disabled={!userState.profile?.is_driver}
                   className={clsx(
                     "!px-[1rem] !py-[0.5rem]",

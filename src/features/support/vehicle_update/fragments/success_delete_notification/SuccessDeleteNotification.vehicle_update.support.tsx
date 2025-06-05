@@ -90,7 +90,14 @@ export const SuccessDeleteNotificationVehicleUpdateSupport = () => {
 
         <div className={clsx("w-full h-[1.25rem]")} />
 
-        <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
+        <Button
+          aria-label={
+            dictionaries.success_delete_notification.cta.back.children
+          }
+          name={dictionaries.success_delete_notification.cta.back.children}
+          className={clsx("py-[1rem]")}
+          onClick={handleClickGoToHomepage}
+        >
           {dictionaries.success_delete_notification.cta.back.children}
         </Button>
       </div>

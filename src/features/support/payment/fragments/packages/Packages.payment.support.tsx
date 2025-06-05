@@ -37,6 +37,8 @@ export const PackagesPaymentSupport = () => {
 
       {state.subscription.status === false && (
         <Button
+          aria-label={dictionaries.package.cta.subscribe.children}
+          name={dictionaries.package.cta.subscribe.children}
           onClick={handleClickSubscribe}
           disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}

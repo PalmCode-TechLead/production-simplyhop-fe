@@ -149,7 +149,11 @@ export const DayPicker = ({
           "w-full"
         )}
       >
-        <button onClick={handleClickPreviousMonth}>
+        <button
+          aria-label={"vorherige"}
+          name={"vorherige"}
+          onClick={handleClickPreviousMonth}
+        >
           <SVGIcon
             name="ChevronLeft"
             className={clsx("w-[1rem] h-[1rem]", "text-[#B5BEC6]")}
@@ -157,6 +161,8 @@ export const DayPicker = ({
         </button>
 
         <button
+          aria-label={monthName}
+          name={monthName}
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center",
             "w-full",
@@ -167,7 +173,11 @@ export const DayPicker = ({
           {monthName}
         </button>
 
-        <button onClick={handleClickNextMonth}>
+        <button
+          aria-label={"Nächste"}
+          name={"Nächste"}
+          onClick={handleClickNextMonth}
+        >
           <SVGIcon
             name="ChevronRight"
             className={clsx("w-[1rem] h-[1rem]", "text-[#B5BEC6]")}
@@ -214,6 +224,12 @@ export const DayPicker = ({
             (disableToday && isToday);
           return (
             <button
+              aria-label={calendarItem.date.toLocaleString("de-DE", {
+                day: "numeric",
+              })}
+              name={calendarItem.date.toLocaleString("de-DE", {
+                day: "numeric",
+              })}
               key={calendarIndex}
               className={clsx(
                 "grid grid-cols-1 place-content-center place-items-center",

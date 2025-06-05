@@ -49,6 +49,8 @@ export const DeactivateNotificationSettingsSupport = () => {
       onClose={handleClose}
     >
       <button
+        aria-label={"schließen"}
+        name={"schließen"}
         className={clsx(
           "absolute top-[1.5rem] left-[1.5rem]",
           "block lg:hidden",
@@ -102,7 +104,16 @@ export const DeactivateNotificationSettingsSupport = () => {
           {dictionaries.deactivate_notification.message}
         </p>
 
-        <Button className={clsx("py-[1rem]")} onClick={handleClickGoToHomepage}>
+        <Button
+          aria-label={
+            dictionaries.deactivate_notification.cta.go_to_homepage.children
+          }
+          name={
+            dictionaries.deactivate_notification.cta.go_to_homepage.children
+          }
+          className={clsx("py-[1rem]")}
+          onClick={handleClickGoToHomepage}
+        >
           {dictionaries.deactivate_notification.cta.go_to_homepage.children}
         </Button>
       </div>

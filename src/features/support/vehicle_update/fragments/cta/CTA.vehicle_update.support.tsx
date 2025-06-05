@@ -53,6 +53,8 @@ export const CTAVehicleUpdateSupport = () => {
       )}
     >
       <button
+        aria-label={dictionaries.cta.delete.children}
+        name={dictionaries.cta.delete.children}
         className={clsx(
           "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
           "w-full h-full",
@@ -66,6 +68,8 @@ export const CTAVehicleUpdateSupport = () => {
       </button>
 
       <Button
+        aria-label={dictionaries.cta.save.children}
+        name={dictionaries.cta.save.children}
         disabled={isSaveDisabled}
         isLoading={isSaveLoading}
         className={clsx("px-[1rem] py-[1rem]")}

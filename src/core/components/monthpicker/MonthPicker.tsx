@@ -106,7 +106,11 @@ export const MonthPicker = ({
           "w-full"
         )}
       >
-        <button onClick={handleClickPreviousYear}>
+        <button
+          aria-label={"vorherige"}
+          name={"vorherige"}
+          onClick={handleClickPreviousYear}
+        >
           <SVGIcon
             name="ChevronLeft"
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
@@ -114,6 +118,8 @@ export const MonthPicker = ({
         </button>
 
         <button
+          aria-label={yearName}
+          name={yearName}
           className={clsx(
             "grid grid-cols-1 place-content-center place-items-center",
             "w-full",
@@ -124,7 +130,11 @@ export const MonthPicker = ({
           {yearName}
         </button>
 
-        <button onClick={handleClickNextYear}>
+        <button
+          aria-label={"Nächste"}
+          name={"Nächste"}
+          onClick={handleClickNextYear}
+        >
           <SVGIcon
             name="ChevronRight"
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
@@ -145,6 +155,12 @@ export const MonthPicker = ({
           const disabled = disablePast && isPreviousMonth;
           return (
             <button
+              aria-label={calendarItem.month.toLocaleString("de-DE", {
+                month: "short",
+              })}
+              name={calendarItem.month.toLocaleString("de-DE", {
+                month: "short",
+              })}
               key={calendarIndex}
               className={clsx(
                 "grid grid-cols-1 place-content-center place-items-center",

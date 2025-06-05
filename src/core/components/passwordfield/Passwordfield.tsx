@@ -56,6 +56,8 @@ export const Passwordfield = ({
           }}
         />
         <button
+          aria-label={type === "password" ? "Anzeigen" : "Ausblenden"}
+          name={type === "password" ? "Anzeigen" : "Ausblenden"}
           className={clsx(
             "flex items-center justify-center",
             "w-[1rem] h-[1rem]",

@@ -82,6 +82,8 @@ export const PageSheetRoute = ({
           )}
         >
           <button
+            aria-label={"schließen"}
+            name={"schließen"}
             onClick={() => {
               setQuery(!selected ? "" : selected.name);
               onClose();
@@ -181,6 +183,8 @@ export const PageSheetRoute = ({
             {!!items.length &&
               items.map((item, itemIndex) => (
                 <button
+                  aria-label={item.name}
+                  name={item.name}
                   key={itemIndex}
                   className={clsx(
                     "grid grid-cols-1 place-content-start place-items-start",

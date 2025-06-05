@@ -87,6 +87,8 @@ export const CarSortDropdown = ({
             >
               {items.map((item, itemIndex) => (
                 <button
+                  aria-label={item.name}
+                  name={item.name}
                   key={itemIndex}
                   className={clsx(
                     "grid grid-flow-col items-center content-center justify-between justify-items-start",

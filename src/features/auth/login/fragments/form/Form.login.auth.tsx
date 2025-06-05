@@ -133,6 +133,8 @@ export const FormLoginAuth = () => {
         />
 
         <Button
+          aria-label={dictionaries.form.cta.login.children}
+          name={dictionaries.form.cta.login.children}
           className={clsx("px-[1rem] py-[0.75rem]")}
           disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}
@@ -182,6 +184,8 @@ export const FormLoginAuth = () => {
           {/* bundaran */}
           {dictionaries.form.social_media.items.map((item, itemIndex) => (
             <button
+              aria-label={item.id}
+              name={item.id}
               key={itemIndex}
               className={clsx(
                 "flex items-center justify-center",

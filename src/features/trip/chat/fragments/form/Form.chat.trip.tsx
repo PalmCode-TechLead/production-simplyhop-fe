@@ -107,6 +107,8 @@ export const FormChatTrip = () => {
     >
       <div className={clsx("relative")}>
         <button
+          aria-label={"Emoji"}
+          name={"Emoji"}
           onClick={() => {
             if (isDisabledSendChat) return;
             handleClickEmoji();
@@ -144,6 +146,8 @@ export const FormChatTrip = () => {
         }}
       />
       <button
+        aria-label={dictionaries.chat.room.cta.send.children}
+        name={dictionaries.chat.room.cta.send.children}
         className={clsx(
           "grid grid-flow-col place-content-center place-items-center gap-[0.625rem]",
           "px-[0.75rem] py-[0.625rem]",

@@ -176,6 +176,8 @@ export const ChangePasswordSettingsSupport = () => {
       onClose={handleClose}
     >
       <button
+        aria-label={"schließen"}
+        name={"schließen"}
         className={clsx(
           "absolute top-[1.5rem] left-[1.5rem]",
           "block lg:hidden",
@@ -267,6 +269,8 @@ export const ChangePasswordSettingsSupport = () => {
         </div>
 
         <Button
+          aria-label={dictionaries.change_password.cta.change_password.children}
+          name={dictionaries.change_password.cta.change_password.children}
           className={clsx("py-[1rem]")}
           disabled={isSubmitDisabled}
           isLoading={isSubmitLoading}
