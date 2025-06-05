@@ -28,7 +28,7 @@ export const SquareUploadInput = ({
       className={clsx(
         "relative",
         "grid grid-cols-1 place-content-center place-items-center gap-y-[0.5rem]",
-        "border-[#5AC53D] border border-dashed",
+        "border-[#33CC33] border border-dashed",
         "w-[100px] h-[100px]",
         "rounded-[0.5rem]"
       )}
@@ -62,7 +62,7 @@ export const SquareUploadInput = ({
       >
         <span
           className={clsx(
-            "text-[#5AC53D] text-center text-[0.625rem] font-normal"
+            "text-[#33CC33] text-center text-[0.625rem] font-normal"
           )}
           dangerouslySetInnerHTML={{ __html: label }}
         />

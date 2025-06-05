@@ -25,9 +25,9 @@ export const HeaderMyListTrip = () => {
           {...(dictionaries.header.archive.icon as {
             name: SVGIconProps["name"];
           })}
-          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#5AC53D]")}
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#33CC33]")}
         />
-        <p className={clsx("text-[#5AC53D] text-[1rem] font-medium")}>
+        <p className={clsx("text-[#33CC33] text-[1rem] font-medium")}>
           {dictionaries.header.archive.label}
         </p>
       </Link>

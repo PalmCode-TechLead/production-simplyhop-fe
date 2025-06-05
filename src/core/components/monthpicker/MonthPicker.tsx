@@ -152,7 +152,7 @@ export const MonthPicker = ({
                 "text-[14px] font-medium",
                 "rounded-[0.625rem]",
                 monthsAreEqual(calendarItem.month, date)
-                  ? "bg-[#5AC53D]"
+                  ? "bg-[#33CC33]"
                   : "bg-transparent",
                 disabled
                   ? "text-[#E9E6E6]"

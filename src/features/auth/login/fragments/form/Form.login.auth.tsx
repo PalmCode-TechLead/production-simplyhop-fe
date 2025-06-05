@@ -152,7 +152,7 @@ export const FormLoginAuth = () => {
             {dictionaries.form.account.label}
             <Link
               href={dictionaries.form.account.cta.href}
-              className={clsx("text-[#5AC53D] font-semibold text-[0.875rem]")}
+              className={clsx("text-[#33CC33] font-semibold text-[0.875rem]")}
             >
               <span> {dictionaries.form.account.cta.children}</span>
             </Link>

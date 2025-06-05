@@ -20,7 +20,7 @@ export const Button = forwardRef<
           ? "bg-[#333FFF]"
           : variant === "secondary"
           ? "bg-[white]"
-          : "bg-[#5AC53D]",
+          : "bg-[#33CC33]",
         "py-[1rem]",
         "rounded-[0.375rem]",
         variant === "tertiary"
@@ -28,10 +28,10 @@ export const Button = forwardRef<
             ? "text-[1rem] text-[#FFFFFF] font-medium"
             : "text-[1rem] text-[#FFFFFF] disabled:text-[#5B5B5B] font-medium"
           : variant === "secondary"
-          ? "text-[1rem] text-[#5AC53D] disabled:text-[#5B5B5B] font-medium"
+          ? "text-[1rem] text-[#33CC33] disabled:text-[#5B5B5B] font-medium"
           : isLoading
-          ? "text-[1rem] text-[#FFFFFF] font-medium"
-          : "text-[1rem] text-[#FFFFFF] disabled:text-[#5B5B5B] font-medium",
+          ? "text-[1rem] text-[#232323] font-medium"
+          : "text-[1rem] text-[#232323] disabled:text-[#5B5B5B] font-medium",
         variant === "tertiary"
           ? isLoading
             ? ""
@@ -40,16 +40,16 @@ export const Button = forwardRef<
           ? ""
           : isLoading
           ? ""
-          : "hover:bg-[#408C2B] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
+          : "hover:bg-[#7BD164] disabled:bg-[#F6F6F6] disabled:hover:bg-[#F6F6F6]",
         variant === "tertiary"
           ? isLoading
             ? "border border-[#333FFF]"
             : "border border-[#333FFF] disabled:border disabled:border-[#F6F6F6]"
           : variant === "secondary"
-          ? "border border-[#5AC53D]"
+          ? "border border-[#33CC33]"
           : isLoading
-          ? "border border-[#5AC53D]"
-          : "border border-[#5AC53D] disabled:border disabled:border-[#F6F6F6]",
+          ? "border border-[#33CC33]"
+          : "border border-[#33CC33] disabled:border disabled:border-[#F6F6F6]",
         "cursor-pointer disabled:cursor-default",
         className
       )}

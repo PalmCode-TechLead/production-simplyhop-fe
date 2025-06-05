@@ -212,7 +212,7 @@ export const CardVehiclesSupport = ({
               className={clsx(
                 "!px-[1rem] !py-[0.5rem]",
                 "!bg-[white] !border-[white]",
-                "!text-[#5AC53D]"
+                "!text-[#33CC33]"
               )}
               // onClick={cta.ride.onClick}
             >

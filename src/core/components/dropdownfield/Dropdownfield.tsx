@@ -181,7 +181,7 @@ export const Dropdownfield = ({
                 key={index}
                 className={clsx(
                   selected?.id === item.id
-                    ? "font-bold text-[#5AC53D]"
+                    ? "font-bold text-[#33CC33]"
                     : "font-normal text-[#201E2C]"
                 )}
                 onClick={() => handleChange(item)}

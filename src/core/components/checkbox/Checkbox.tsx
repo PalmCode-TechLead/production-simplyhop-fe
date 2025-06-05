@@ -40,12 +40,12 @@ export const Checkbox = ({
           otherProps.checked
             ? variant === "secondary"
               ? "bg-[#333FFF]"
-              : "bg-[#5AC53D]"
+              : "bg-[#33CC33]"
             : "bg-transparent",
           otherProps.checked
             ? variant === "secondary"
               ? "border-[1px] border-[#333FFF]"
-              : "border-[1px] border-[#5AC53D]"
+              : "border-[1px] border-[#33CC33]"
             : "border-[1px] border-[#98989E]",
           "rounded-[0.25rem]",
           "flex items-center justify-center",

@@ -421,8 +421,8 @@ export const BookingCardChatTrip = ({
             <button
               className={clsx(
                 "flex items-center justify-center gap-[0.5rem]",
-                "bg-[#5AC53D]",
-                "border border-[#5AC53D]",
+                "bg-[#33CC33]",
+                "border border-[#33CC33]",
                 "px-[1rem] py-[0.75rem]",
                 "rounded-[0.375rem]",
                 "text-[white] text-[0.875rem] font-medium",

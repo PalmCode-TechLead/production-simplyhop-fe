@@ -286,7 +286,7 @@ export const VehicleFilters = () => {
             className={clsx(
               "cursor-pointer",
               "px-[1rem] py-[1rem]",
-              "text-[#5AC53D] text-[0.75rem] lg:text-[1rem] font-medium"
+              "text-[#33CC33] text-[0.75rem] lg:text-[1rem] font-medium"
             )}
             onClick={handleClickReset}
           >

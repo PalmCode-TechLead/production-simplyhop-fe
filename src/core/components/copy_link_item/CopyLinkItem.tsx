@@ -56,7 +56,7 @@ export const CopyLinkItem = ({
             "flex items-center justify-center",
             "w-[1rem] h-[1rem]",
             "rounded-[50%]",
-            "bg-[#5AC53D]"
+            "bg-[#33CC33]"
           )}
         >
           <SVGIcon
@@ -69,7 +69,7 @@ export const CopyLinkItem = ({
           className={clsx(
             "flex items-center justify-center",
             "px-[0rem] lg:px-[1rem] py-[10.5px]",
-            "text-[#5AC53D] text-[0.75rem] font-medium",
+            "text-[#33CC33] text-[0.75rem] font-medium",
             "cursor-pointer"
           )}
           onClick={handleClickCopy}

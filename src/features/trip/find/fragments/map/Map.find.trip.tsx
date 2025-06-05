@@ -181,7 +181,7 @@ export const MapFindTrip = () => {
         <Polyline
           path={state.map.polyline_path}
           options={{
-            strokeColor: "#5AC53D",
+            strokeColor: "#33CC33",
             strokeOpacity: 0.8,
             strokeWeight: 8,
           }}

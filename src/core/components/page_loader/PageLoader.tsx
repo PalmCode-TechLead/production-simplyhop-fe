@@ -14,7 +14,7 @@ export const PageLoader = () => {
       )}
     >
       <div className="horizontal-loader">
-        <PulseLoader size={16} color={"#5AC53D"} />
+        <PulseLoader size={16} color={"#33CC33"} />
       </div>
     </div>
   );

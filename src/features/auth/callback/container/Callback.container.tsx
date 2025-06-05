@@ -8,7 +8,7 @@ export const CallbackAuthContainer = () => {
   useGetSocialCallback();
   return (
     <div className={clsx("w-full h-full min-h-[100vh]")}>
-      <MoonLoader size={24} color={"#5AC53D"} />
+      <MoonLoader size={24} color={"#33CC33"} />
     </div>
   );
 };

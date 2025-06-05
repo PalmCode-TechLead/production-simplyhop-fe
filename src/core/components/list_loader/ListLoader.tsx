@@ -17,13 +17,13 @@ export const ListLoader = ({ message = "" }: ListLoaderProps) => {
     >
       <SVGIcon
         name="Car"
-        className={clsx("w-[6rem] h-[6rem]", "text-[#5AC53D]")}
+        className={clsx("w-[6rem] h-[6rem]", "text-[#33CC33]")}
       />
       <div className="horizontal-loader">
-        <PulseLoader size={16} color={"#5AC53D"} />
+        <PulseLoader size={16} color={"#33CC33"} />
       </div>
 
-      <p className={clsx("text-[1rem] text-[#5AC53D] font-normal text-center")}>
+      <p className={clsx("text-[1rem] text-[#33CC33] font-normal text-center")}>
         {message}
       </p>
     </div>

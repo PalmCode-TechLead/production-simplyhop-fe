@@ -47,7 +47,7 @@ export const LegalItemHelpCenterSupport = ({
         href={cta.href}
         className={clsx(
           "px-[0rem] py-[1rem] lg:px-[46.5px] lg:py-[1rem]",
-          "text-[#5AC53D] text-[0.875rem] font-medium"
+          "text-[#33CC33] text-[0.875rem] font-medium"
         )}
       >
         {cta.children}

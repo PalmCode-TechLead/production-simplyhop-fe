@@ -154,7 +154,7 @@ export const DeleteNotificationVehicleUpdateSupport = () => {
             className={clsx(
               "grid grid-rows-1 grid-cols-1 place-content-center place-items-center",
               "w-full h-full",
-              "text-[1rem] text-[#5AC53D] font-medium",
+              "text-[1rem] text-[#33CC33] font-medium",
               "cursor-pointer"
             )}
             onClick={handleClose}
